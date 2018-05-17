@@ -1,4 +1,9 @@
 # IdleAnt2
+[![Build Status](https://travis-ci.org/scorzy/IdleAnt2.svg?branch=master)](https://travis-ci.org/scorzy/IdleAnt2)
+[![Coverage Status](https://coveralls.io/repos/github/scorzy/IdleAnt2/badge.svg?branch=master)](https://coveralls.io/github/scorzy/IdleAnt2?branch=master)
+[![CodeFactor](https://www.codefactor.io/repository/github/scorzy/idleant2/badge)](https://www.codefactor.io/repository/github/scorzy/idleant2)
+
+This will be a better version of IdleAnt.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1.
 
