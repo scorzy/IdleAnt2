@@ -10,6 +10,7 @@
     "no-submodule-imports": false,
     "member-access": false,
     "ordered-imports": false,
+    "comment-format": false,
     "curly": [false, "ignore-same-line"],
     "prettier": true
   }

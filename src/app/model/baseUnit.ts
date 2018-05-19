@@ -1,3 +1,5 @@
+import { Action } from "./action";
+
 export class BaseUnit {
   constructor(
     public id: string,
@@ -6,6 +8,7 @@ export class BaseUnit {
     public quantity: Decimal = new Decimal(0)
   ) {}
 
+  //Region Save and Restore
   public getSave(): any {
     return {
       i: this.id,
@@ -14,13 +17,11 @@ export class BaseUnit {
   }
 
   public restore(data: any): boolean {
-    if (!("i" in data && data.i === this.id)) {
-      return false;
-    }
-    if ("q" in data) {
-      this.quantity = new Decimal(data.q);
-    }
+    if (!("i" in data && data.i === this.id)) return false;
+
+    if ("q" in data) this.quantity = new Decimal(data.q);
 
     return true;
   }
+  //Endregion
 }
