@@ -1,5 +1,5 @@
-import { Price } from "./price";
 import { BaseUnit } from "./baseUnit";
+import { Price } from "./price";
 
 describe("Price", () => {
   it("should create an instance", () => {
@@ -12,8 +12,12 @@ describe("Price", () => {
     const price = new Price(base, new Decimal(10), 1.1);
     price.reload(new Decimal(0));
 
-    it("cannot buy", () => { expect(price.canBuy).toBeFalsy(); });
-    it("maxBuy = 0", () => { expect(price.maxBuy.toNumber()).toBe(0); });
+    it("cannot buy", () => {
+      expect(price.canBuy).toBeFalsy();
+    });
+    it("maxBuy = 0", () => {
+      expect(price.maxBuy.toNumber()).toBe(0);
+    });
   });
 
   describe("reload cannot buy 2", () => {
@@ -22,8 +26,12 @@ describe("Price", () => {
     const price = new Price(unit1, new Decimal(10), 1.1);
     price.reload(new Decimal(0));
 
-    it("cannot buy", () => { expect(price.canBuy).toBeFalsy(); });
-    it("maxBuy = 0", () => { expect(price.maxBuy.toNumber()).toBe(0); });
+    it("cannot buy", () => {
+      expect(price.canBuy).toBeFalsy();
+    });
+    it("maxBuy = 0", () => {
+      expect(price.maxBuy.toNumber()).toBe(0);
+    });
   });
 
   describe("reload can buy", () => {
@@ -32,8 +40,12 @@ describe("Price", () => {
     const price = new Price(base, new Decimal(10), 1.1);
     price.reload(new Decimal(1));
 
-    it("can buy", () => { expect(price.canBuy).toBeTruthy(); });
-    it("maxBuy = 1", () => { expect(price.maxBuy.toNumber()).toBe(1); });
+    it("can buy", () => {
+      expect(price.canBuy).toBeTruthy();
+    });
+    it("maxBuy = 1", () => {
+      expect(price.maxBuy.toNumber()).toBe(1);
+    });
   });
 
   describe("buy", () => {
@@ -44,10 +56,14 @@ describe("Price", () => {
     price.buy(new Decimal(2), new Decimal(1));
     price.reload(new Decimal(1));
 
-    it("can buy", () => { expect(price.canBuy).toBeTruthy(); });
-    it("maxBuy = 1", () => { expect(price.maxBuy.toNumber()).toBe(1); });
-    it("quantity", () => { expect(Math.floor(price.base.quantity.toNumber())).toBe(11); });
+    it("can buy", () => {
+      expect(price.canBuy).toBeTruthy();
+    });
+    it("maxBuy = 1", () => {
+      expect(price.maxBuy.toNumber()).toBe(1);
+    });
+    it("quantity", () => {
+      expect(Math.floor(price.base.quantity.toNumber())).toBe(11);
+    });
   });
-
 });
-

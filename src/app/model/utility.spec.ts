@@ -50,7 +50,7 @@ describe("Utility", () => {
       new Decimal(12)
     );
     const actualJSON = JSON.stringify(result);
-    const expectedJSON = "[\"6\",\"2\",\"-1\"]";
+    const expectedJSON = '["6","2","-1"]';
     it("x^3 – 7x^2 + 4x + 12 => x = 1 ", () =>
       expect(actualJSON).toBe(expectedJSON));
   });
@@ -63,7 +63,7 @@ describe("Utility", () => {
       new Decimal(187091096050)
     );
     const actualJSON = JSON.stringify(result);
-    const expectedJSON = "[\"32688.834485634798\"]";
+    const expectedJSON = '["32688.834485634798"]';
     it("", () => expect(actualJSON).toBe(expectedJSON));
   });
 
@@ -75,7 +75,7 @@ describe("Utility", () => {
       new Decimal(155768059470.00133285)
     );
     const actualJSON = JSON.stringify(result);
-    const expectedJSON = "[\"-821.551274779984\"]";
+    const expectedJSON = '["-821.551274779984"]';
     it("", () => expect(actualJSON).toBe(expectedJSON));
   });
 
@@ -107,7 +107,7 @@ describe("Utility", () => {
       new Decimal(1000)
     );
     const actualJSON = JSON.stringify(result);
-    const expectedJSON = "[\"-10\"]";
+    const expectedJSON = '["-10"]';
     it("x = -10", () => expect(actualJSON).toBe(expectedJSON));
   });
 
@@ -120,7 +120,7 @@ describe("Utility", () => {
     );
 
     const actualJSON = JSON.stringify(result);
-    const expectedJSON = "[\"0\",\"10\",\"-10\"]";
+    const expectedJSON = '["0","10","-10"]';
     it("x = -10, 0, 10", () => expect(actualJSON).toBe(expectedJSON));
   });
 });

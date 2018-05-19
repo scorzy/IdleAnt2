@@ -2,7 +2,6 @@ import { BaseUnit } from "./baseUnit";
 import { Price } from "./price";
 
 export class Action extends BaseUnit {
-
   done = false;
   limit = new Decimal(Number.POSITIVE_INFINITY);
   complete = false;
@@ -14,18 +13,18 @@ export class Action extends BaseUnit {
     id: string,
     name: string,
     description: string,
-    public prices: Array<Price> = null
+    public prices: Price[] = null
   ) {
     super(id, name, description, new Decimal(0));
   }
 
   reload() {
     this.prices.forEach(p => p.reload(this.quantity));
-    this.maxBuy = this.prices.map(p => p.maxBuy)
+    this.maxBuy = this.prices
+      .map(p => p.maxBuy)
       .reduce((p, c) => p.min(c), new Decimal(Number.POSITIVE_INFINITY))
       .min(this.limit.minus(this.quantity));
     this.canBuy = this.maxBuy.gte(1);
-
   }
 
   buy(number = new Decimal(1)): boolean {
@@ -49,8 +48,12 @@ export class Action extends BaseUnit {
 
   restore(data: any): boolean {
     if (super.restore(data)) {
-      if ("d" in data) { this.done = data.d; }
-      if ("c" in data) { this.complete = data.c; }
+      if ("d" in data) {
+        this.done = data.d;
+      }
+      if ("c" in data) {
+        this.complete = data.c;
+      }
       return true;
     } else {
       return false;

@@ -4,7 +4,7 @@ export class BaseUnit {
     public name: string,
     public description: string,
     public quantity: Decimal = new Decimal(0)
-  ) { }
+  ) {}
 
   getSave(): any {
     return {

@@ -26,5 +26,4 @@ describe("BaseUnit", () => {
       expect(other.restore(baseUnit.getSave())).toBeFalsy();
     });
   });
-
 });
