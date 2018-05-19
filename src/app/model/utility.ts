@@ -156,4 +156,23 @@ export class Utility {
 
     return roots;
   }
+
+  // static affordGeometricSeries(
+  //   resourcesAvailable: Decimal,
+  //   priceStart: Decimal,
+  //   priceRatio: number,
+  //   currentOwned: Decimal
+  // ): Decimal {
+  //   const ratio = new Decimal(priceRatio);
+  //   return new Decimal(
+  //     ratio.lte(1)
+  //       ? resourcesAvailable.div(priceStart)
+  //       : ratio
+  //           .minus(1)
+  //           .times(resourcesAvailable)
+  //           .div(ratio.pow(currentOwned).times(priceStart))
+  //           .plus(1)
+  //           .log(ratio)
+  //   ).floor();
+  // }
 }

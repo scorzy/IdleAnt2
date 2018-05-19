@@ -69,6 +69,9 @@ describe("Action", () => {
     it("max buy = 0", () => {
       expect(action.maxBuy.toNumber()).toBe(0);
     });
+    it("not done", () => {
+      expect(action.done).toBeFalsy();
+    });
   });
   describe("Reload 2", () => {
     const action = new Action("id", "name", "desc");
@@ -137,6 +140,7 @@ describe("Action", () => {
       new Price(unit2, new Decimal(100), 1.1),
       new Price(unit3, new Decimal(1e3), 1.1)
     ];
+    action.isLimited = true;
 
     unit1.quantity = new Decimal(1e500);
     unit2.quantity = new Decimal(1e500);
@@ -171,6 +175,7 @@ describe("Action", () => {
       new Price(unit2, new Decimal(100), 1.1),
       new Price(unit3, new Decimal(1e3), 1.1)
     ];
+    action.isLimited = true;
 
     unit1.quantity = new Decimal(1e500);
     unit2.quantity = new Decimal(1e500);
@@ -206,6 +211,7 @@ describe("Action", () => {
       new Price(unit2, new Decimal(100), 1.1),
       new Price(unit3, new Decimal(1e3), 1.1)
     ];
+    action.isLimited = true;
 
     unit1.quantity = new Decimal(1e500);
     unit2.quantity = new Decimal(1e500);
@@ -241,6 +247,7 @@ describe("Action", () => {
       new Price(unit2, new Decimal(100), 1.1),
       new Price(unit3, new Decimal(1e3), 1.1)
     ];
+    action.isLimited = true;
 
     unit1.quantity = new Decimal(1e500);
     unit2.quantity = new Decimal(1e500);
@@ -276,21 +283,45 @@ describe("Action", () => {
       new Price(unit2, new Decimal(100), 1.1),
       new Price(unit3, new Decimal(1e3), 1.1)
     ];
-
+    action.isLimited = false;
     unit1.quantity = new Decimal(35);
     unit2.quantity = new Decimal(350);
     unit3.quantity = new Decimal(1e10);
+
     action.reload();
+
     const ret = action.buy(new Decimal(2));
+
+    it("u1 quantity", () => {
+      expect(unit1.quantity.toNumber()).toBe(14);
+    });
+    it("u1 buyable", () => {
+      expect(action.prices[0].canBuy).toBeTruthy();
+    });
+    it("u2 buyable", () => {
+      expect(action.prices[1].canBuy).toBeTruthy();
+    });
+    it("u3 buyable", () => {
+      expect(action.prices[2].canBuy).toBeTruthy();
+    });
 
     it("return true", () => {
       expect(ret).toBeTruthy();
     });
-    it("buyable", () => {
-      expect(action.canBuy).toBeTruthy();
+    it("quantity = 2", () => {
+      expect(action.quantity.toNumber()).toBe(2);
     });
     it("max buy = 1", () => {
       expect(action.maxBuy.toNumber()).toBe(1);
+    });
+    it("buyable", () => {
+      expect(action.canBuy).toBeTruthy();
+    });
+    it("done", () => {
+      expect(action.done).toBeTruthy();
+    });
+    it("completed", () => {
+      expect(action.complete).toBeFalsy();
     });
   });
   describe("Buy 2", () => {
@@ -319,6 +350,89 @@ describe("Action", () => {
     });
     it("max buy = 0", () => {
       expect(action.maxBuy.toNumber()).toBe(0);
+    });
+    it("completed", () => {
+      expect(action.complete).toBeFalsy();
+    });
+  });
+  describe("Buy limited", () => {
+    const action = new Action("id", "name", "desc");
+    const unit1 = new BaseUnit("u1", "name", "desc");
+
+    action.prices = [new Price(unit1, new Decimal(10), 1.1)];
+    action.isLimited = true;
+
+    unit1.quantity = new Decimal(1e500);
+    action.limit = new Decimal(10);
+    action.buy(new Decimal(10));
+
+    it("max buy = 0", () => {
+      expect(action.maxBuy.toNumber()).toBe(0);
+    });
+    it("buyable", () => {
+      expect(action.canBuy).toBeFalsy();
+    });
+    it("done", () => {
+      expect(action.done).toBeTruthy();
+    });
+    it("completed", () => {
+      expect(action.complete).toBeTruthy();
+    });
+  });
+  describe("Buy last", () => {
+    const action = new Action("id", "name", "desc");
+    const unit1 = new BaseUnit("u1", "name", "desc");
+
+    action.prices = [new Price(unit1, new Decimal(10), 1.1)];
+    action.isLimited = true;
+
+    unit1.quantity = new Decimal(1e500);
+    action.limit = new Decimal(10);
+    action.quantity = new Decimal(9);
+    const ret = action.buy(new Decimal(1));
+
+    it("bought", () => {
+      expect(ret).toBeTruthy();
+    });
+    it("buyable", () => {
+      expect(action.canBuy).toBeFalsy();
+    });
+    it("max buy = 0", () => {
+      expect(action.maxBuy.toNumber()).toBe(0);
+    });
+    it("done", () => {
+      expect(action.done).toBeTruthy();
+    });
+    it("completed", () => {
+      expect(action.complete).toBeTruthy();
+    });
+  });
+  describe("Buy all exepct one", () => {
+    const action = new Action("id", "name", "desc");
+    const unit1 = new BaseUnit("u1", "name", "desc");
+
+    action.prices = [new Price(unit1, new Decimal(10), 1.1)];
+    action.isLimited = true;
+
+    unit1.quantity = new Decimal(1e500);
+    action.limit = new Decimal(10);
+    action.quantity = new Decimal(8);
+    const ret = action.buy(new Decimal(1));
+
+    it("bought", () => {
+      expect(ret).toBeTruthy();
+    });
+    it("buyable", () => {
+      expect(action.canBuy).toBeTruthy();
+    });
+    it("max buy = 1", () => {
+      expect(action.maxBuy.toNumber()).toBe(1);
+    });
+    it("done", () => {
+      expect(action.done).toBeTruthy();
+    });
+    it("not completed", () => {
+      expect(action.complete).toBeFalsy();
     });
   });
 });

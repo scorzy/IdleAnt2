@@ -2,12 +2,13 @@ import { BaseUnit } from "./baseUnit";
 import { Price } from "./price";
 
 export class Action extends BaseUnit {
-  done = false;
-  limit = new Decimal(Number.POSITIVE_INFINITY);
-  complete = false;
+  public done = false;
+  public isLimited = false;
+  public limit = new Decimal(Number.POSITIVE_INFINITY);
+  public complete = false;
 
-  canBuy = false;
-  maxBuy = new Decimal(0);
+  public canBuy = false;
+  public maxBuy = new Decimal(0);
 
   constructor(
     id: string,
@@ -18,19 +19,23 @@ export class Action extends BaseUnit {
     super(id, name, description, new Decimal(0));
   }
 
-  reload() {
+  public reload() {
     this.prices.forEach(p => p.reload(this.quantity));
     this.maxBuy = this.prices
       .map(p => p.maxBuy)
-      .reduce((p, c) => p.min(c), new Decimal(Number.POSITIVE_INFINITY))
-      .min(this.limit.minus(this.quantity));
+      .reduce((p, c) => p.min(c), new Decimal(Number.POSITIVE_INFINITY));
+    if (this.isLimited)
+      this.maxBuy = Decimal.min(this.limit.minus(this.quantity), this.maxBuy);
     this.canBuy = this.maxBuy.gte(1);
   }
 
-  buy(number = new Decimal(1)): boolean {
+  public buy(toBuy = new Decimal(1)): boolean {
     this.reload();
-    if (this.canBuy && this.maxBuy.gte(number)) {
-      this.prices.forEach(p => p.buy(number, this.quantity));
+    if (this.canBuy && this.maxBuy.gte(toBuy)) {
+      this.prices.forEach(p => p.buy(toBuy, this.quantity));
+      this.quantity = this.quantity.plus(toBuy);
+      this.done = true;
+      if (this.isLimited && this.quantity.gte(this.limit)) this.complete = true;
 
       this.reload();
       return true;
@@ -39,21 +44,18 @@ export class Action extends BaseUnit {
     }
   }
 
-  getSave(): any {
+  public getSave(): any {
     const save = super.getSave();
     save.d = this.done;
     save.c = this.complete;
     return save;
   }
 
-  restore(data: any): boolean {
+  public restore(data: any): boolean {
     if (super.restore(data)) {
-      if ("d" in data) {
-        this.done = data.d;
-      }
-      if ("c" in data) {
-        this.complete = data.c;
-      }
+      this.done = !!data.d;
+      this.complete = !!data.c;
+
       return true;
     } else {
       return false;

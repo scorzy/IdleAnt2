@@ -6,14 +6,14 @@ export class BaseUnit {
     public quantity: Decimal = new Decimal(0)
   ) {}
 
-  getSave(): any {
+  public getSave(): any {
     return {
       i: this.id,
       q: this.quantity
     };
   }
 
-  restore(data: any): boolean {
+  public restore(data: any): boolean {
     if (!("i" in data && data.i === this.id)) {
       return false;
     }

@@ -1,4 +1,5 @@
 import { BaseUnit } from "./baseUnit";
+import { Utility } from "./utility";
 
 export class Price {
   canBuy = false;
@@ -7,7 +8,7 @@ export class Price {
   constructor(
     public base: BaseUnit,
     public price: Decimal,
-    public growRate: number = 1.1
+    public growRate = 1.1
   ) {}
 
   reload(bought: Decimal) {
@@ -16,12 +17,12 @@ export class Price {
       this.price,
       this.growRate,
       bought
-    ).floor();
+    );
     this.canBuy = this.maxBuy.gte(1);
   }
-  buy(number: Decimal, start: Decimal) {
+  buy(toBuy: Decimal, start: Decimal) {
     const price = Decimal.sumGeometricSeries(
-      number,
+      toBuy,
       this.price,
       this.growRate,
       start
