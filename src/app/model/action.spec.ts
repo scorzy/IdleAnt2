@@ -75,9 +75,9 @@ describe("Action", () => {
   });
   describe("Reload 2", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("u1", "name", "desc");
-    const unit2 = new BaseUnit("u2", "name", "desc");
-    const unit3 = new BaseUnit("u3", "name", "desc");
+    const unit1 = new BaseUnit("a1", "name", "desc");
+    const unit2 = new BaseUnit("a2", "name", "desc");
+    const unit3 = new BaseUnit("a3", "name", "desc");
 
     action.prices = [
       new Price(unit1, new Decimal(10), 1.1),
@@ -98,9 +98,9 @@ describe("Action", () => {
   });
   describe("Reload 3", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("u1", "name", "desc");
-    const unit2 = new BaseUnit("u2", "name", "desc");
-    const unit3 = new BaseUnit("u3", "name", "desc");
+    const unit1 = new BaseUnit("u1", "", "");
+    const unit2 = new BaseUnit("u2", "", "");
+    const unit3 = new BaseUnit("u3", "", "");
 
     action.prices = [
       new Price(unit1, new Decimal(10), 1.1),
@@ -131,9 +131,9 @@ describe("Action", () => {
   });
   describe("Reload limited", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("u1", "name", "desc");
-    const unit2 = new BaseUnit("u2", "name", "desc");
-    const unit3 = new BaseUnit("u3", "name", "desc");
+    const unit1 = new BaseUnit("l1", "", "");
+    const unit2 = new BaseUnit("l2", "", "");
+    const unit3 = new BaseUnit("l3", "", "");
 
     action.prices = [
       new Price(unit1, new Decimal(10), 1.1),
@@ -166,9 +166,9 @@ describe("Action", () => {
   });
   describe("Reload limited 2", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("u1", "name", "desc");
-    const unit2 = new BaseUnit("u2", "name", "desc");
-    const unit3 = new BaseUnit("u3", "name", "desc");
+    const unit1 = new BaseUnit("l21", "", "");
+    const unit2 = new BaseUnit("l22", "", "");
+    const unit3 = new BaseUnit("l23", "", "");
 
     action.prices = [
       new Price(unit1, new Decimal(10), 1.1),
@@ -202,9 +202,9 @@ describe("Action", () => {
   });
   describe("Reload limited 3", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("u1", "name", "desc");
-    const unit2 = new BaseUnit("u2", "name", "desc");
-    const unit3 = new BaseUnit("u3", "name", "desc");
+    const unit1 = new BaseUnit("u31", "", "");
+    const unit2 = new BaseUnit("u32", "", "");
+    const unit3 = new BaseUnit("u33", "", "");
 
     action.prices = [
       new Price(unit1, new Decimal(10), 1.1),
@@ -238,9 +238,9 @@ describe("Action", () => {
   });
   describe("Reload limited 4", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("u1", "name", "desc");
-    const unit2 = new BaseUnit("u2", "name", "desc");
-    const unit3 = new BaseUnit("u3", "name", "desc");
+    const unit1 = new BaseUnit("u41", "", "");
+    const unit2 = new BaseUnit("u42", "", "");
+    const unit3 = new BaseUnit("u43", "", "");
 
     action.prices = [
       new Price(unit1, new Decimal(10), 1.1),
@@ -274,9 +274,9 @@ describe("Action", () => {
   });
   describe("Buy 1", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("u1", "name", "desc");
-    const unit2 = new BaseUnit("u2", "name", "desc");
-    const unit3 = new BaseUnit("u3", "name", "desc");
+    const unit1 = new BaseUnit("b1", "", "");
+    const unit2 = new BaseUnit("b2", "", "");
+    const unit3 = new BaseUnit("b3", "", "");
 
     action.prices = [
       new Price(unit1, new Decimal(10), 1.1),
@@ -326,9 +326,9 @@ describe("Action", () => {
   });
   describe("Buy 2", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("u1", "name", "desc");
-    const unit2 = new BaseUnit("u2", "name", "desc");
-    const unit3 = new BaseUnit("u3", "name", "desc");
+    const unit1 = new BaseUnit("b21", "", "");
+    const unit2 = new BaseUnit("b22", "", "");
+    const unit3 = new BaseUnit("b23", "", "");
 
     action.prices = [
       new Price(unit1, new Decimal(10), 1.1),
@@ -357,7 +357,7 @@ describe("Action", () => {
   });
   describe("Buy limited", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("u1", "name", "desc");
+    const unit1 = new BaseUnit("bl1", "", "");
 
     action.prices = [new Price(unit1, new Decimal(10), 1.1)];
     action.isLimited = true;
@@ -381,7 +381,7 @@ describe("Action", () => {
   });
   describe("Buy last", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("u1", "name", "desc");
+    const unit1 = new BaseUnit("ul1", "", "");
 
     action.prices = [new Price(unit1, new Decimal(10), 1.1)];
     action.isLimited = true;
@@ -409,7 +409,7 @@ describe("Action", () => {
   });
   describe("Buy all exepct one", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("u1", "name", "desc");
+    const unit1 = new BaseUnit("qwe", "", "");
 
     action.prices = [new Price(unit1, new Decimal(10), 1.1)];
     action.isLimited = true;
