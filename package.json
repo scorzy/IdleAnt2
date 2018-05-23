@@ -8,8 +8,7 @@
     "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "coveralls":
-      "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "tslint-check": "tslint-config-prettier-check ./tslint.json"
   },
   "private": true,
@@ -25,6 +24,7 @@
     "@angular/router": "^6.0.0",
     "break_infinity.js": "^1.0.5",
     "core-js": "^2.5.4",
+    "normalize.css": "^8.0.0",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },
