@@ -1,7 +1,11 @@
+import { Injectable } from "@angular/core";
 import { FullUnit } from "./full-unit";
 import { Production } from "./production";
 
-export class Game {
+@Injectable({
+  providedIn: "root"
+})
+export class GameService {
   units = new Array<FullUnit>();
   prod = new Array<Production>();
 

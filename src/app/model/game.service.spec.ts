@@ -1,13 +1,24 @@
-import { Game } from "./game";
+import { TestBed, inject } from "@angular/core/testing";
+
+import { GameService } from "./game.service";
 import { FullUnit } from "./full-unit";
 
-describe("Game", () => {
-  it("should create an instance", () => {
-    expect(new Game()).toBeTruthy();
+describe("GameService", () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [GameService]
+    });
   });
+
+  it(
+    "should be created",
+    inject([GameService], (service: GameService) => {
+      expect(service).toBeTruthy();
+    })
+  );
   it("Save works", () => {
-    const original = new Game();
-    const second = new Game();
+    const original = new GameService();
+    const second = new GameService();
 
     original.units = [
       new FullUnit("id1", "name1", "desc", new Decimal(10)),
@@ -25,8 +36,8 @@ describe("Game", () => {
     expect(ok).toBeTruthy();
     expect(JSON.stringify(original)).toBe(JSON.stringify(second));
   });
-  it("Save works", () => {
-    const game = new Game();
+  it("Save works 2", () => {
+    const game = new GameService();
     expect(game.restore({})).toBeFalsy();
   });
 });
