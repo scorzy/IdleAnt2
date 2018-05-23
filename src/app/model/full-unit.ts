@@ -3,6 +3,7 @@ import { Action } from "./action";
 import { IUnlocable } from "./iunlocable";
 import { Price } from "./price";
 import { BuyAction } from "./buy-action";
+import { Production } from "./production";
 
 export class FullUnit extends BaseUnit implements IUnlocable {
   unlocked = false;
@@ -28,7 +29,7 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     this.unlocked = true;
   }
 
-  //Region Save and Restore
+  //#region Save and Restore
   public getSave(): any {
     const save: any = {
       i: this.id,
@@ -50,5 +51,5 @@ export class FullUnit extends BaseUnit implements IUnlocable {
 
     return true;
   }
-  //Endregion
+  //#endregion
 }
