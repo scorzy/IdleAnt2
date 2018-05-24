@@ -27,10 +27,16 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/normalize.css/normalize.css",
+              "node_modules/normalize.css/normalize.css",
+              "node_modules/@clr/icons/clr-icons.min.css",
+              "node_modules/@clr/ui/clr-ui.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/break_infinity.js/break_infinity.js",
+              "./node_modules/@webcomponents/custom-elements/custom-elements.min.js",
+              "./node_modules/@clr/icons/clr-icons.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -78,7 +84,9 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "./node_modules/break_infinity.js/break_infinity.js"
+              "./node_modules/break_infinity.js/break_infinity.js",
+              "./node_modules/@webcomponents/custom-elements/custom-elements.min.js",
+              "./node_modules/@clr/icons/clr-icons.min.js"
             ],
             "assets": [
               "src/favicon.ico",
