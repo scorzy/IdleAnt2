@@ -1,6 +1,8 @@
 import { Action } from "./action";
 
 export class BaseUnit {
+  unlocked = true;
+
   constructor(
     public id: string,
     public name: string,

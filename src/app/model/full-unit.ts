@@ -4,12 +4,14 @@ import { IUnlocable } from "./iunlocable";
 import { Price } from "./price";
 import { BuyAction } from "./buy-action";
 import { Production } from "./production";
+import { UnitGroup } from "./unit-group";
 
 export class FullUnit extends BaseUnit implements IUnlocable {
   unlocked = false;
   actions = new Array<Action>();
 
   buyAction: Action;
+  unitGroup: UnitGroup;
 
   constructor(
     id: string,
