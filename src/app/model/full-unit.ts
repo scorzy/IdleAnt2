@@ -13,6 +13,17 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   buyAction: Action;
   unitGroup: UnitGroup;
 
+  efficiency = 100;
+
+  a = new Decimal(0);
+  b = new Decimal(0);
+  c = new Decimal(0);
+
+  producedBy = Array<Production>();
+  produces = Array<Production>();
+
+  endIn = Number.POSITIVE_INFINITY;
+
   constructor(
     id: string,
     name: string,
@@ -22,13 +33,23 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     super(id, name, description, quantity);
   }
 
-  public generateBuyAction(prices: Price[]) {
+  generateBuyAction(prices: Price[]) {
     this.buyAction = new BuyAction(prices, this);
     this.actions.push(this.buyAction);
   }
 
-  public unlock() {
+  unlock() {
     this.unlocked = true;
+  }
+
+  isActive(): boolean {
+    return this.unlocked && this.efficiency > 0 && this.quantity.gt(0);
+  }
+
+  addProductor(productor: FullUnit, rateo: Decimal) {
+    const prod = new Production(productor, this, rateo);
+    this.producedBy.push(prod);
+    productor.produces.push(prod);
   }
 
   //#region Save and Restore
@@ -36,7 +57,8 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     const save: any = {
       i: this.id,
       q: this.quantity,
-      u: this.unlocked
+      u: this.unlocked,
+      e: this.efficiency
     };
     if (this.actions) save.a = this.actions.map(a => a.getSave());
     return save;
@@ -50,6 +72,8 @@ export class FullUnit extends BaseUnit implements IUnlocable {
       for (const s of data.a) this.actions.find(a => a.id === s.i).restore(s);
 
     this.unlocked = !!data.u;
+
+    if ("e" in data) this.efficiency = data.e;
 
     return true;
   }

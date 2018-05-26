@@ -3,6 +3,9 @@ import { GameService } from "./game.service";
 import { BaseUnit } from "./baseUnit";
 
 export abstract class UnitGroup {
+  isEnding = false;
+  isCollapsed = false;
+
   constructor(
     public name: string,
     public list: BaseUnit[] = new Array<BaseUnit>(),

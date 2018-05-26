@@ -9,10 +9,19 @@ import { APPROUTES } from "./app.routes";
 import { NavComponent } from "./nav/nav.component";
 import { UnitComponent } from "./unit/unit.component";
 import { GameService } from "./model/game.service";
+import { SubNavComponent } from "./nav/sub-nav/sub-nav.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, NavComponent, UnitComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    NavComponent,
+    UnitComponent,
+    SubNavComponent
+  ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     ClarityModule,
     RouterModule.forRoot(APPROUTES, { useHash: true })

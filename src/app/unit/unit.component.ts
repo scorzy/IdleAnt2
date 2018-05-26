@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject, OnDestroy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { GameService } from "../model/game.service";
 import { BaseUnit } from "../model/baseUnit";
@@ -11,7 +11,7 @@ import { BaseUnit } from "../model/baseUnit";
     "[class.content-area]": "true"
   }
 })
-export class UnitComponent implements OnInit {
+export class UnitComponent implements OnInit, OnDestroy {
   paramsSub: any;
   unit: BaseUnit;
 
@@ -19,6 +19,9 @@ export class UnitComponent implements OnInit {
 
   ngOnInit() {
     this.paramsSub = this.route.params.subscribe(this.getUnit.bind(this));
+  }
+  ngOnDestroy() {
+    this.paramsSub.unsubscribe();
   }
   getUnit(params: any) {
     let id = params.id;

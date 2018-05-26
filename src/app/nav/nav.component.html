@@ -1,6 +1,14 @@
 <router-outlet></router-outlet>
 <nav class="sidenav" [clr-nav-level]="2">
   <section class="sidenav-content">
-    Ciao
+
+    <clr-tree-node *ngFor="let list of game.unlockedGroups; trackBy:getListId">
+
+      <app-sub-nav [unitGroup]="list"></app-sub-nav>
+
+
+
+    </clr-tree-node>
+
   </section>
 </nav>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { GameService } from "../model/game.service";
+import { UnitGroup } from "../model/unit-group";
+import { BaseUnit } from "../model/baseUnit";
 
 @Component({
   selector: "app-nav",
@@ -9,7 +12,13 @@ import { Component, OnInit } from "@angular/core";
   }
 })
 export class NavComponent implements OnInit {
-  constructor() {}
+  constructor(public game: GameService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    //Nothing
+  }
+
+  getListId(index, list: UnitGroup) {
+    return list.name;
+  }
 }
