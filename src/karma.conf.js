@@ -1,7 +1,7 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
-module.exports = function (config) {
+module.exports = function(config) {
   config.set({
     basePath: "",
     frameworks: ["jasmine", "@angular-devkit/build-angular"],
@@ -18,16 +18,16 @@ module.exports = function (config) {
     },
     coverageIstanbulReporter: {
       dir: require("path").join(__dirname, "../coverage"),
-      reports: ["html", "lcovonly", 'text-summary'],
-      fixWebpackSourcePaths: true,
-      thresholds: {
-        statements: 80,
-        lines: 80,
-        branches: 80,
-        functions: 80
-      }
+      reports: ["html", "lcovonly", "text-summary"],
+      fixWebpackSourcePaths: true
+      // thresholds: {
+      //   statements: 80,
+      //   lines: 80,
+      //   branches: 80,
+      //   functions: 80
+      // }
     },
-    reporters: ["progress", 'spec', "coverage-istanbul"],
+    reporters: ["progress", "spec", "coverage-istanbul"],
     specReporter: {
       maxLogLines: 5, // limit number of lines logged per test
       suppressErrorSummary: true, // do not print error summary

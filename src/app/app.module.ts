@@ -9,8 +9,9 @@ import { APPROUTES } from "./app.routes";
 import { NavComponent } from "./nav/nav.component";
 import { UnitComponent } from "./unit/unit.component";
 import { GameService } from "./model/game.service";
-import { SubNavComponent } from "./nav/sub-nav/sub-nav.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FormatPipe } from "./format.pipe";
+import { OptionsService } from "./options.service";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     HeaderComponent,
     NavComponent,
     UnitComponent,
-    SubNavComponent
+    FormatPipe
   ],
   imports: [
     BrowserAnimationsModule,
@@ -26,7 +27,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     ClarityModule,
     RouterModule.forRoot(APPROUTES, { useHash: true })
   ],
-  providers: [GameService],
+  providers: [OptionsService, GameService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

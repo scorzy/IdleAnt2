@@ -15,6 +15,8 @@ export class GameService {
 
   unitGroups = new Array<UnitGroup>();
   unlockedGroups = new Array<UnitGroup>();
+
+  isPaused = false;
   //#region UnitGroups
   materials: Materials;
   //#endregion
@@ -41,9 +43,19 @@ export class GameService {
     this.unlockedGroups = this.unitGroups.filter(g => g.unlocked.length > 0);
   }
 
+  /**
+   * Update function.
+   * Works only with resource groving at max rate of x^3
+   * When something reach zero consumers are stopped and it will update again
+   * @param time in milliseconds
+   */
   update(time: number) {
     let maxTime = time;
     let unitZero: FullUnit = null;
+
+    this.unlockedUnits.forEach(u =>
+      u.produces.forEach(p => p.reloadProdPerSec())
+    );
 
     for (const unit of this.unlockedUnits) {
       unit.a = new Decimal(0);
@@ -53,21 +65,21 @@ export class GameService {
 
       for (const prod1 of unit.producedBy.filter(p => p.prductor.isActive())) {
         // x
-        const prodX = prod1.rateo;
+        const prodX = prod1.prodPerSec;
         unit.c = unit.c.plus(prodX.times(prod1.prductor.quantity));
 
         for (const prod2 of prod1.prductor.producedBy.filter(p =>
           p.prductor.isActive()
         )) {
           // x^2
-          const prodX2 = prod2.rateo.times(prodX);
+          const prodX2 = prod2.prodPerSec.times(prodX);
           unit.b = unit.b.plus(prodX2.times(prod2.prductor.quantity));
 
           for (const prod3 of prod2.prductor.producedBy.filter(p =>
             p.prductor.isActive()
           )) {
             // x^3
-            const prodX3 = prod3.rateo.times(prodX2);
+            const prodX3 = prod3.prodPerSec.times(prodX2);
             unit.a = unit.a.plus(prodX3.times(prod3.prductor.quantity));
           }
         }
@@ -98,7 +110,8 @@ export class GameService {
       .filter(u => u.endIn > 0)
       .forEach(u => (u.endIn = u.endIn - maxTime));
 
-    if (maxTime > Number.EPSILON) this.update2(new Decimal(maxTime).div(1000));
+    if (maxTime > Number.EPSILON && !this.isPaused)
+      this.update2(new Decimal(maxTime).div(1000));
 
     if (unitZero)
       unitZero.producedBy
@@ -112,12 +125,16 @@ export class GameService {
     }
   }
 
-  update2(dif: Decimal) {
+  /**
+   * Sub Update function.
+   * @param seconds time in seconds
+   */
+  update2(seconds: Decimal) {
     this.unlockedUnits.forEach(u => {
       u.quantity = u.quantity
-        .plus(u.a.times(Decimal.pow(dif, 3)))
-        .plus(u.b.times(Decimal.pow(dif, 2)))
-        .plus(u.c.times(dif));
+        .plus(u.a.times(Decimal.pow(seconds, 3)))
+        .plus(u.b.times(Decimal.pow(seconds, 2)))
+        .plus(u.c.times(seconds));
     });
   }
 

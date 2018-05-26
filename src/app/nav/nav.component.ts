@@ -21,4 +21,7 @@ export class NavComponent implements OnInit {
   getListId(index, list: UnitGroup) {
     return list.name;
   }
+  getUnitId(index, base: BaseUnit) {
+    return base.id;
+  }
 }

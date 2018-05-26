@@ -24,6 +24,8 @@ export class FullUnit extends BaseUnit implements IUnlocable {
 
   endIn = Number.POSITIVE_INFINITY;
 
+  boughtBonus = 0.005;
+
   constructor(
     id: string,
     name: string,
