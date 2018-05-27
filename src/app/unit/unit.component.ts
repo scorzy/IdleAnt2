@@ -2,6 +2,8 @@ import { Component, OnInit, Inject, OnDestroy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { GameService } from "../model/game.service";
 import { BaseUnit } from "../model/baseUnit";
+import { FullUnit } from "../model/full-unit";
+import { Action } from "../model/action";
 
 @Component({
   selector: "app-unit",
@@ -13,7 +15,7 @@ import { BaseUnit } from "../model/baseUnit";
 })
 export class UnitComponent implements OnInit, OnDestroy {
   paramsSub: any;
-  unit: BaseUnit;
+  unit: FullUnit;
 
   constructor(public gameService: GameService, private route: ActivatedRoute) {}
 
@@ -28,6 +30,10 @@ export class UnitComponent implements OnInit, OnDestroy {
     if (id === undefined) {
       id = "fo";
     }
-    this.unit = this.gameService.units.find(u => u.id === id);
+    const b = this.gameService.units.find(u => u.id === id);
+    if (b instanceof FullUnit) this.unit = b;
+  }
+  getActId(index, action: Action) {
+    return action.id;
   }
 }

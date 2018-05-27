@@ -12,6 +12,11 @@ import { GameService } from "./model/game.service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormatPipe } from "./format.pipe";
 import { OptionsService } from "./options.service";
+import { MainService } from "./main.service";
+import { ToastrModule, ToastrService } from "ngx-toastr";
+import { ActionComponent } from "./action/action.component";
+import { UnitLineComponent } from "./nav/unit-line/unit-line.component";
+import { PriceLineComponent } from './action/price-line/price-line.component';
 
 @NgModule({
   declarations: [
@@ -19,15 +24,19 @@ import { OptionsService } from "./options.service";
     HeaderComponent,
     NavComponent,
     UnitComponent,
-    FormatPipe
+    FormatPipe,
+    ActionComponent,
+    UnitLineComponent,
+    PriceLineComponent
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     ClarityModule,
-    RouterModule.forRoot(APPROUTES, { useHash: true })
+    RouterModule.forRoot(APPROUTES, { useHash: true }),
+    ToastrModule.forRoot()
   ],
-  providers: [OptionsService, GameService],
+  providers: [ToastrService, OptionsService, GameService, MainService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

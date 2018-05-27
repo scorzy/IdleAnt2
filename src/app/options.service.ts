@@ -7,6 +7,7 @@ declare let numberformat;
 export class OptionsService {
   usaFormat = false;
   numFormat = "scientific";
+  autosaveNotification = true;
 
   formatter: any;
   constructor() {
@@ -24,12 +25,14 @@ export class OptionsService {
   getSave(): any {
     return {
       u: this.usaFormat,
-      n: this.numFormat
+      n: this.numFormat,
+      s: this.autosaveNotification
     };
   }
   restore(data: any) {
     if ("u" in data) this.usaFormat = data.u;
     if ("n" in data) this.numFormat = data.n;
+    if ("s" in data) this.autosaveNotification = data.s;
     this.generateFormatter();
   }
   //#endregion

@@ -1,7 +1,9 @@
 import { Action } from "./action";
+import { UnitGroup } from "./unit-group";
 
 export class BaseUnit {
   unlocked = true;
+  unitGroup: UnitGroup;
 
   constructor(
     public id: string,

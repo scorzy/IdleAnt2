@@ -1,0 +1,26 @@
+<div class="card-block">
+  <div class="card-title">
+    {{action.name}} ({{action.quantity | format}})
+  </div>
+  <div class="card-text p">
+    {{action.description}}
+    <br/>
+    <span>One will cost: </span>
+    <app-price-line *ngFor="let price of action.actualPrices; trackBy:getPriceId" [name]="price.base.name" [canBuy]="price.canBuy"
+      [price]="price.price"></app-price-line>
+  </div>
+</div>
+<div class="card-footer">
+  <button *ngIf="!action.canBuy" class="btn btn-sm btn-link" disabled>
+    Can't buy
+  </button>
+  <button *ngIf="action.canBuy" class="btn btn-sm btn-link" (click)="action.buy(1)">
+    Get 1
+  </button>
+  <button *ngIf="action.maxBuy.gt(3)" class="btn btn-sm btn-link" (click)="action.buy(action.maxBuy.div(2).floor())">
+    Get {{action.maxBuy.div(2).floor() | format}}
+  </button>
+  <button *ngIf="action.maxBuy.gt(2)" class="btn btn-sm btn-link" (click)="action.buy(action.maxBuy)">
+    Get {{action.maxBuy | format}}
+  </button>
+</div>

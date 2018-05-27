@@ -1,4 +1,10 @@
 <div *ngIf="unit">
   <h1>{{unit.name}}</h1>
   <p>{{unit.description}}</p>
+
+  <div class="row">
+    <div class="col-xs-12	col-sm-6	col-md-6	col-lg-6	col-xl-6">
+      <app-action *ngFor="let act of unit.actions; trackBy:getActId" [action]="act"></app-action>
+    </div>
+  </div>
 </div>

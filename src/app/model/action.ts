@@ -10,6 +10,8 @@ export class Action extends BaseUnit {
   public canBuy = false;
   public maxBuy = new Decimal(0);
 
+  public actualPrices: Price[];
+
   constructor(
     id: string,
     name: string,
@@ -17,6 +19,16 @@ export class Action extends BaseUnit {
     public prices: Price[] = null
   ) {
     super(id, name, description, new Decimal(0));
+    this.makeActualPrices();
+  }
+  public makeActualPrices() {
+    if (this.prices)
+      this.actualPrices = this.prices.map(p => {
+        const pr = Decimal.pow(p.growRate, this.quantity).times(p.price);
+        const price = new Price(p.base, pr, p.growRate);
+        price.reload(new Decimal(1));
+        return price;
+      });
   }
 
   public reload() {
@@ -27,6 +39,7 @@ export class Action extends BaseUnit {
     if (this.isLimited)
       this.maxBuy = Decimal.min(this.limit.minus(this.quantity), this.maxBuy);
     this.canBuy = this.maxBuy.gte(1);
+    this.actualPrices.forEach(p => p.reload(new Decimal(1)));
   }
 
   public buy(toBuy = new Decimal(1)): boolean {
@@ -36,7 +49,7 @@ export class Action extends BaseUnit {
       this.quantity = this.quantity.plus(toBuy);
       this.done = true;
       if (this.isLimited && this.quantity.gte(this.limit)) this.complete = true;
-
+      this.makeActualPrices();
       this.reload();
       return true;
     } else {

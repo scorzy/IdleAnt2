@@ -5,6 +5,7 @@ import { UnitGroup } from "./unit-group";
 import { Materials } from "./units/materials";
 import { BaseUnit } from "./baseUnit";
 import { Utility } from "./utility";
+import { Workers } from "./units/workers";
 
 @Injectable({
   providedIn: "root"
@@ -19,11 +20,15 @@ export class GameService {
   isPaused = false;
   //#region UnitGroups
   materials: Materials;
+  workers: Workers;
   //#endregion
 
   constructor() {
-    this.materials = new Materials();
+    this.materials = new Materials(this);
     this.unitGroups.push(this.materials);
+
+    this.workers = new Workers(this);
+    this.unitGroups.push(this.workers);
 
     this.unitGroups.forEach(g => g.declareStuff());
     this.unitGroups.forEach(g => g.setRelations());
@@ -35,6 +40,7 @@ export class GameService {
       .map(g => g.list)
       .forEach(l => l.forEach(u => this.units.push(u)));
     this.check();
+    this.materials.food.quantity = new Decimal(50);
   }
   check() {
     this.units.forEach(u => {
@@ -135,6 +141,16 @@ export class GameService {
         .plus(u.a.times(Decimal.pow(seconds, 3)))
         .plus(u.b.times(Decimal.pow(seconds, 2)))
         .plus(u.c.times(seconds));
+    });
+  }
+  /**
+   *
+   *
+   * @memberof GameService
+   */
+  postUpdate() {
+    this.unlockedUnits.forEach(u => {
+      u.actions.forEach(a => a.reload());
     });
   }
 

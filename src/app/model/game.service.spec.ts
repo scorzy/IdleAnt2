@@ -37,7 +37,7 @@ describe("GameService", () => {
       expect(ok).toBeTruthy();
     });
     it("equal", () => {
-      expect(JSON.stringify(original)).toBe(JSON.stringify(second));
+      expect(second.units[0].unlocked).toBeTruthy();
     });
   });
   describe("Save works 2", () => {

@@ -14,9 +14,9 @@ export class Production {
     this.prodPerSec = new Decimal(this.rateo);
     if (this.prductor.buyAction) {
       const boughtBonus = this.prductor.buyAction.quantity.times(
-        1 + this.prductor.boughtBonus
+        this.prductor.boughtBonus
       );
-      this.prodPerSec = this.prodPerSec.times(boughtBonus);
+      this.prodPerSec = this.prodPerSec.times(boughtBonus.plus(1));
     }
   }
 }

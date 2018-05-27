@@ -52,6 +52,7 @@ describe("Action", () => {
     unit1.quantity = new Decimal(0);
     unit2.quantity = new Decimal(0);
     unit3.quantity = new Decimal(0);
+    action.makeActualPrices();
     action.reload();
 
     // it("u1 not buyable", () => {
@@ -88,6 +89,7 @@ describe("Action", () => {
     unit1.quantity = new Decimal(35);
     unit2.quantity = new Decimal(350);
     unit3.quantity = new Decimal(0);
+    action.makeActualPrices();
     action.reload();
     it("still not buyable", () => {
       expect(action.canBuy).toBeFalsy();
@@ -111,6 +113,7 @@ describe("Action", () => {
     unit1.quantity = new Decimal(35);
     unit2.quantity = new Decimal(350);
     unit3.quantity = new Decimal(1e10);
+    action.makeActualPrices();
     action.reload();
     // it("u1 buyable", () => {
     //   expect(action.prices[0].canBuy).toBeTruthy();
@@ -146,6 +149,7 @@ describe("Action", () => {
     unit2.quantity = new Decimal(1e500);
     unit3.quantity = new Decimal(1e500);
     action.limit = new Decimal(10);
+    action.makeActualPrices();
     action.reload();
     // it("u1 buyable", () => {
     //   expect(action.prices[0].canBuy).toBeTruthy();
@@ -182,6 +186,7 @@ describe("Action", () => {
     unit3.quantity = new Decimal(1e500);
     action.limit = new Decimal(10);
     action.quantity = new Decimal(3);
+    action.makeActualPrices();
     action.reload();
     // it("u1 buyable", () => {
     //   expect(action.prices[0].canBuy).toBeTruthy();
@@ -218,6 +223,7 @@ describe("Action", () => {
     unit3.quantity = new Decimal(1e500);
     action.limit = new Decimal(10);
     action.quantity = new Decimal(9);
+    action.makeActualPrices();
     action.reload();
     // it("u1 buyable", () => {
     //   expect(action.prices[0].canBuy).toBeTruthy();
@@ -254,6 +260,7 @@ describe("Action", () => {
     unit3.quantity = new Decimal(1e500);
     action.limit = new Decimal(10);
     action.quantity = new Decimal(10);
+    action.makeActualPrices();
     action.reload();
     // it("u1 buyable", () => {
     //   expect(action.prices[0].canBuy).toBeTruthy();
@@ -287,7 +294,7 @@ describe("Action", () => {
     unit1.quantity = new Decimal(35);
     unit2.quantity = new Decimal(350);
     unit3.quantity = new Decimal(1e10);
-
+    action.makeActualPrices();
     action.reload();
 
     const ret = action.buy(new Decimal(2));
@@ -339,6 +346,7 @@ describe("Action", () => {
     unit1.quantity = new Decimal(8);
     unit2.quantity = new Decimal(350);
     unit3.quantity = new Decimal(1e10);
+    action.makeActualPrices();
     action.reload();
     const ret = action.buy(new Decimal(2));
 
@@ -360,6 +368,7 @@ describe("Action", () => {
     const unit1 = new BaseUnit("bl1", "", "");
 
     action.prices = [new Price(unit1, new Decimal(10), 1.1)];
+    action.makeActualPrices();
     action.isLimited = true;
 
     unit1.quantity = new Decimal(1e500);
@@ -384,6 +393,7 @@ describe("Action", () => {
     const unit1 = new BaseUnit("ul1", "", "");
 
     action.prices = [new Price(unit1, new Decimal(10), 1.1)];
+    action.makeActualPrices();
     action.isLimited = true;
 
     unit1.quantity = new Decimal(1e500);
@@ -412,6 +422,7 @@ describe("Action", () => {
     const unit1 = new BaseUnit("qwe", "", "");
 
     action.prices = [new Price(unit1, new Decimal(10), 1.1)];
+    action.makeActualPrices();
     action.isLimited = true;
 
     unit1.quantity = new Decimal(1e500);

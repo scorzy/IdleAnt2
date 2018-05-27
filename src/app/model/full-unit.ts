@@ -5,13 +5,13 @@ import { Price } from "./price";
 import { BuyAction } from "./buy-action";
 import { Production } from "./production";
 import { UnitGroup } from "./unit-group";
+import { UnlockAction } from "./unlock-action";
 
 export class FullUnit extends BaseUnit implements IUnlocable {
   unlocked = false;
   actions = new Array<Action>();
 
   buyAction: Action;
-  unitGroup: UnitGroup;
 
   efficiency = 100;
 
@@ -35,20 +35,21 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     super(id, name, description, quantity);
   }
 
-  generateBuyAction(prices: Price[]) {
-    this.buyAction = new BuyAction(prices, this);
+  generateBuyAction(prices: Price[], toUnlock: IUnlocable[] = null) {
+    this.buyAction = new BuyAction(prices, this, toUnlock);
     this.actions.push(this.buyAction);
   }
 
   unlock() {
     this.unlocked = true;
+    if (this.unitGroup) this.unitGroup.check();
   }
 
   isActive(): boolean {
     return this.unlocked && this.efficiency > 0 && this.quantity.gt(0);
   }
 
-  addProductor(productor: FullUnit, rateo: Decimal) {
+  addProductor(productor: FullUnit, rateo: Decimal = new Decimal(1)) {
     const prod = new Production(productor, this, rateo);
     this.producedBy.push(prod);
     productor.produces.push(prod);

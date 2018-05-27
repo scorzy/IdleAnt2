@@ -9,8 +9,8 @@ export class Materials extends UnitGroup {
   crystal: FullUnit;
   science: FullUnit;
 
-  constructor() {
-    super("Materials");
+  constructor(game: GameService) {
+    super("Materials", game);
   }
 
   declareStuff(): void {
@@ -20,7 +20,13 @@ export class Materials extends UnitGroup {
     this.crystal = new FullUnit("cry", "Crystal", "Crystal");
     this.science = new FullUnit("sci", "Science", "Science");
 
-    this.list = [this.food, this.wood, this.metal, this.crystal, this.science];
+    this.addUnits([
+      this.food,
+      this.wood,
+      this.metal,
+      this.crystal,
+      this.science
+    ]);
   }
   setRelations(): void {
     //Nothig

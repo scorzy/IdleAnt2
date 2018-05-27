@@ -3,18 +3,22 @@ import { GameService } from "./game.service";
 import { BaseUnit } from "./baseUnit";
 
 export abstract class UnitGroup {
-  isEnding = false;
-  isCollapsed = false;
+  list: BaseUnit[] = new Array<BaseUnit>();
+  unlocked: BaseUnit[] = new Array<BaseUnit>();
 
-  constructor(
-    public name: string,
-    public list: BaseUnit[] = new Array<BaseUnit>(),
-    public unlocked: BaseUnit[] = new Array<BaseUnit>()
-  ) {}
+  isEnding = false;
+  isExpanded = true;
+
+  constructor(public name: string, public game: GameService) {}
 
   check(noGame = false) {
     this.unlocked = this.list.filter(u => u.unlocked);
-    // if (!noGame) GameService.gameService.check();
+    if (!noGame) this.game.check();
+  }
+
+  addUnits(units: BaseUnit[]) {
+    units.forEach(u => (u.unitGroup = this));
+    this.list = units;
   }
 
   abstract declareStuff(): void;
