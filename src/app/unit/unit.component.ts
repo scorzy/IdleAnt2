@@ -32,6 +32,7 @@ export class UnitComponent implements OnInit, OnDestroy {
     }
     const b = this.gameService.units.find(u => u.id === id);
     if (b instanceof FullUnit) this.unit = b;
+    this.unit.isNew = false;
   }
   getActId(index, action: Action) {
     return action.id;

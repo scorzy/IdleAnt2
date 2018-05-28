@@ -34,13 +34,14 @@ export class GameService {
     this.unitGroups.forEach(g => g.setRelations());
 
     this.materials.list.forEach(u => (u.unlocked = true));
+    this.workers.list.forEach(u => (u.unlocked = true));
 
     this.unitGroups.forEach(g => g.check(true));
     this.unitGroups
       .map(g => g.list)
       .forEach(l => l.forEach(u => this.units.push(u)));
     this.check();
-    this.materials.food.quantity = new Decimal(50);
+    this.materials.food.quantity = new Decimal(1e4);
   }
   check() {
     this.unlockedUnits = [];
@@ -152,6 +153,7 @@ export class GameService {
   postUpdate() {
     this.unlockedUnits.forEach(u => {
       u.actions.forEach(a => a.reload());
+      u.quantity = u.quantity.max(0);
     });
   }
 

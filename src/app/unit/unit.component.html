@@ -2,6 +2,11 @@
   <h1>{{unit.name}}</h1>
   <p>{{unit.description}}</p>
 
+  <span *ngIf="unit.c.abs().gt(0.01)">
+    This is increasing at:
+    <app-polynom [a]="unit.a" [b]="unit.b" [c]="unit.c"></app-polynom>
+  </span>
+
   <div class="row">
     <div class="col-xs-12	col-sm-6	col-md-6	col-lg-6	col-xl-6">
       <app-action *ngFor="let act of unit.actions; trackBy:getActId" [action]="act"></app-action>

@@ -1,15 +1,15 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { UnitLineComponent } from "./unit-line.component";
+import { PolynomComponent } from "./polynom.component";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ClarityModule } from "@clr/angular";
 import { RouterTestingModule } from "@angular/router/testing";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FormatPipe } from "../../format.pipe";
+import { FormatPipe } from "../format.pipe";
 
-describe("UnitLineComponent", () => {
-  let component: UnitLineComponent;
-  let fixture: ComponentFixture<UnitLineComponent>;
+describe("PolynomComponent", () => {
+  let component: PolynomComponent;
+  let fixture: ComponentFixture<PolynomComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -19,15 +19,16 @@ describe("UnitLineComponent", () => {
         RouterTestingModule,
         BrowserAnimationsModule
       ],
-      declarations: [UnitLineComponent, FormatPipe]
+      declarations: [PolynomComponent, FormatPipe]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UnitLineComponent);
+    fixture = TestBed.createComponent(PolynomComponent);
     component = fixture.componentInstance;
-    component.perSec = new Decimal(0);
-    component.quantity = new Decimal(0);
+    component.a = new Decimal(1);
+    component.b = new Decimal(1);
+    component.c = new Decimal(1);
     fixture.detectChanges();
   });
 

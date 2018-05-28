@@ -19,6 +19,7 @@ export class UnitLineComponent implements OnInit {
   @Input() name: string;
   @Input() quantity: Decimal;
   @Input() perSec: Decimal;
+  @Input() isNew: boolean;
 
   constructor() {
     //Nothing

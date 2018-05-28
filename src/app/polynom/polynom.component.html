@@ -1,0 +1,14 @@
+<span class="monospace">
+  <span *ngIf="a.abs().gt(0.01)">
+    {{a | format}}/s
+    <sup>3</sup>
+  </span>
+  <span *ngIf="b.abs().gt(0.01)">
+    <span *ngIf="a.abs().gt(0.01) && b.gt(0)">+</span>
+    {{b | format}}/s
+    <sup>2</sup>
+  </span>
+  <span *ngIf="c.abs().gt(0.01)">
+    <span *ngIf="b.abs().gt(0.01) && c.gt(0)">+</span>
+    {{c | format}}/s </span>
+</span>

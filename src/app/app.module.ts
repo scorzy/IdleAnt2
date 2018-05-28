@@ -17,6 +17,7 @@ import { ToastrModule, ToastrService } from "ngx-toastr";
 import { ActionComponent } from "./action/action.component";
 import { UnitLineComponent } from "./nav/unit-line/unit-line.component";
 import { PriceLineComponent } from './action/price-line/price-line.component';
+import { PolynomComponent } from './polynom/polynom.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PriceLineComponent } from './action/price-line/price-line.component';
     FormatPipe,
     ActionComponent,
     UnitLineComponent,
-    PriceLineComponent
+    PriceLineComponent,
+    PolynomComponent
   ],
   imports: [
     BrowserAnimationsModule,

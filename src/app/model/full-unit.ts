@@ -19,12 +19,17 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   b = new Decimal(0);
   c = new Decimal(0);
 
+  // hasA = false;
+  // hasB = false;
+  // hasC = false;
+
   producedBy = Array<Production>();
   produces = Array<Production>();
 
   endIn = Number.POSITIVE_INFINITY;
 
   boughtBonus = 0.005;
+  isNew = false;
 
   constructor(
     id: string,
@@ -41,7 +46,10 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   }
 
   unlock() {
+    if (this.unlocked) return;
+
     this.unlocked = true;
+    this.isNew = true;
     if (this.unitGroup) this.unitGroup.check();
   }
 
@@ -61,7 +69,8 @@ export class FullUnit extends BaseUnit implements IUnlocable {
       i: this.id,
       q: this.quantity,
       u: this.unlocked,
-      e: this.efficiency
+      e: this.efficiency,
+      n: this.isNew
     };
     if (this.actions) save.a = this.actions.map(a => a.getSave());
     return save;
@@ -77,6 +86,7 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     this.unlocked = !!data.u;
 
     if ("e" in data) this.efficiency = data.e;
+    if ("n" in data) this.isNew = data.n;
 
     return true;
   }

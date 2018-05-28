@@ -8,3 +8,7 @@ $padding: 0.4rem;
 :host /deep/ p {
   margin-top: 0;
 }
+:host /deep/ .monospace {
+  font-family: monospace, monospace !important;
+  font-size: 90%;
+}
