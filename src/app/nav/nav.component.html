@@ -14,7 +14,7 @@
         <div class="unit-group">
           <clr-tree-node *ngFor="let g of unitGroup.unlocked; trackBy:getUnitId">
 
-            <app-unit-line [id]="g.id" [name]="g.name" [quantity]="g.quantity"></app-unit-line>
+            <app-unit-line [id]="g.id" [name]="g.name" [quantity]="g.quantity" [perSec]="g.c"></app-unit-line>
 
             <!-- <a [routerLink]="['./unit/'+g.id]" class="clr-treenode-link" routerLinkActive="active">
               <span class="resName">

@@ -17,11 +17,12 @@ export class MainService {
     private toastr: ToastrService
   ) {
     this.last = Date.now();
-    setInterval(this.update.bind(this), 250);
+    setInterval(this.update.bind(this), 200);
   }
   public update() {
     const now = Date.now();
     const diff = now - this.last;
+
     this.model.update(diff);
     this.model.postUpdate();
     this.last = now;

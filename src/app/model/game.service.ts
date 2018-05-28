@@ -43,6 +43,7 @@ export class GameService {
     this.materials.food.quantity = new Decimal(50);
   }
   check() {
+    this.unlockedUnits = [];
     this.units.forEach(u => {
       if (u instanceof FullUnit && u.unlocked) this.unlockedUnits.push(u);
     });

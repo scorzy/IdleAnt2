@@ -302,16 +302,6 @@ describe("Action", () => {
     it("u1 quantity", () => {
       expect(unit1.quantity.toNumber()).toBe(14);
     });
-    // it("u1 buyable", () => {
-    //   expect(action.prices[0].canBuy).toBeTruthy();
-    // });
-    // it("u2 buyable", () => {
-    //   expect(action.prices[1].canBuy).toBeTruthy();
-    // });
-    // it("u3 buyable", () => {
-    //   expect(action.prices[2].canBuy).toBeTruthy();
-    // });
-
     it("return true", () => {
       expect(ret).toBeTruthy();
     });
