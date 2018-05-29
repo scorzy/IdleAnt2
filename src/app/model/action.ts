@@ -25,7 +25,7 @@ export class Action extends BaseUnit {
     if (this.prices)
       this.actualPrices = this.prices.map(p => {
         const pr = Decimal.pow(p.growRate, this.quantity).times(p.price);
-        const price = new Price(p.base, pr, p.growRate);
+        const price = new Price(p.base, pr, 1);
         price.reload(new Decimal(1));
         return price;
       });

@@ -12,12 +12,15 @@ export class Price {
   ) {}
 
   reload(bought: Decimal) {
-    this.maxBuy = Decimal.affordGeometricSeries(
-      this.base.quantity,
-      this.price,
-      this.growRate,
-      bought
-    );
+    if (this.growRate !== 1)
+      this.maxBuy = Decimal.affordGeometricSeries(
+        this.base.quantity,
+        this.price,
+        this.growRate,
+        bought
+      );
+    else this.maxBuy = this.base.quantity.div(this.price).floor();
+
     this.canBuy = this.maxBuy.gte(1);
   }
   buy(toBuy: Decimal, start: Decimal) {
