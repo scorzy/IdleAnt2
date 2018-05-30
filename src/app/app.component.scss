@@ -12,3 +12,11 @@ $padding: 0.4rem;
   font-family: Consolas, Monaco, Courier, monospace !important;
   font-size: 90%;
 }
+
+:host /deep/ nouislider {
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+:host /deep/ .noEnought {
+  color: #c92100;
+}

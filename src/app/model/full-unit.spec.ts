@@ -49,4 +49,18 @@ describe("FullUnit", () => {
       expect(stuff.unlocked).toBeTruthy();
     });
   });
+  describe("isStopped()", () => {
+    const stopped = new FullUnit("id3", "name", "desc");
+    const notStopped = new FullUnit("id2", "name", "desc");
+
+    stopped.efficiency = 0;
+    notStopped.efficiency = 10;
+
+    it("Stopped", () => {
+      expect(stopped.isStopped()).toBeTruthy();
+    });
+    it("Not stopped", () => {
+      expect(notStopped.isStopped()).toBeFalsy();
+    });
+  });
 });

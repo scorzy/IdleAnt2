@@ -6,6 +6,7 @@ import { BuyAction } from "./buy-action";
 import { Production } from "./production";
 import { UnitGroup } from "./unit-group";
 import { UnlockAction } from "./unlock-action";
+import { ThrowStmt } from "@angular/compiler";
 
 export class FullUnit extends BaseUnit implements IUnlocable {
   unlocked = false;
@@ -30,6 +31,7 @@ export class FullUnit extends BaseUnit implements IUnlocable {
 
   boughtBonus = 0.005;
   isNew = false;
+  isEnding = false;
 
   constructor(
     id: string,
@@ -55,6 +57,10 @@ export class FullUnit extends BaseUnit implements IUnlocable {
 
   isActive(): boolean {
     return this.unlocked && this.efficiency > 0 && this.quantity.gt(0);
+  }
+
+  isStopped(): boolean {
+    return this.efficiency < 0.01;
   }
 
   addProductor(productor: FullUnit, rateo: Decimal = new Decimal(1)) {

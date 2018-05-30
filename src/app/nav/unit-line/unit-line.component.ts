@@ -4,6 +4,7 @@ import {
   Input,
   ChangeDetectionStrategy
 } from "@angular/core";
+import { FullUnit } from "../../model/full-unit";
 
 @Component({
   selector: "app-unit-line",
@@ -20,6 +21,9 @@ export class UnitLineComponent implements OnInit {
   @Input() quantity: Decimal;
   @Input() perSec: Decimal;
   @Input() isNew: boolean;
+  @Input() isEnding: boolean;
+  @Input() isStopped: boolean;
+  @Input() unit: FullUnit;
 
   constructor() {
     //Nothing

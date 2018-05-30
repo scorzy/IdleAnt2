@@ -61,9 +61,10 @@ export class GameService {
     let maxTime = time;
     let unitZero: FullUnit = null;
 
-    this.unlockedUnits.forEach(u =>
-      u.produces.forEach(p => p.reloadProdPerSec())
-    );
+    this.unlockedUnits.forEach(u => {
+      u.produces.forEach(p => p.reloadProdPerSec());
+      u.isEnding = false;
+    });
 
     for (const unit of this.unlockedUnits) {
       unit.a = new Decimal(0);
@@ -110,6 +111,7 @@ export class GameService {
             unitZero = unit;
           }
           unit.endIn = Math.min(min.times(1000).toNumber(), unit.endIn);
+          unit.isEnding = true;
         }
       }
     }

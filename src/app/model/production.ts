@@ -18,5 +18,6 @@ export class Production {
       );
       this.prodPerSec = this.prodPerSec.times(boughtBonus.plus(1));
     }
+    this.prodPerSec = this.prodPerSec.times(this.prductor.efficiency / 100);
   }
 }

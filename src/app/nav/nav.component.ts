@@ -3,6 +3,8 @@ import { GameService } from "../model/game.service";
 import { UnitGroup } from "../model/unit-group";
 import { BaseUnit } from "../model/baseUnit";
 
+// declare let isFinite;
+
 @Component({
   selector: "app-nav",
   templateUrl: "./nav.component.html",
@@ -12,6 +14,8 @@ import { BaseUnit } from "../model/baseUnit";
   }
 })
 export class NavComponent implements OnInit {
+  isFinite = isFinite;
+
   constructor(public game: GameService) {}
 
   ngOnInit() {

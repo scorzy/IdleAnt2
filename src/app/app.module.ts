@@ -16,8 +16,10 @@ import { MainService } from "./main.service";
 import { ToastrModule, ToastrService } from "ngx-toastr";
 import { ActionComponent } from "./action/action.component";
 import { UnitLineComponent } from "./nav/unit-line/unit-line.component";
-import { PriceLineComponent } from './action/price-line/price-line.component';
-import { PolynomComponent } from './polynom/polynom.component';
+import { PriceLineComponent } from "./action/price-line/price-line.component";
+import { PolynomComponent } from "./polynom/polynom.component";
+import { NouisliderModule } from "ng2-nouislider";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { PolynomComponent } from './polynom/polynom.component';
     BrowserModule,
     ClarityModule,
     RouterModule.forRoot(APPROUTES, { useHash: true }),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    FormsModule,
+    NouisliderModule
   ],
   providers: [ToastrService, OptionsService, GameService, MainService],
   bootstrap: [AppComponent]

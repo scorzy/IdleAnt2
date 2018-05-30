@@ -4,6 +4,9 @@ import { UnitComponent } from "./unit.component";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ClarityModule } from "@clr/angular";
+import { FormsModule } from "@angular/forms";
+import { NouisliderModule } from "ng2-nouislider";
+import { FormatPipe } from "../format.pipe";
 
 describe("UnitComponent", () => {
   let component: UnitComponent;
@@ -11,8 +14,13 @@ describe("UnitComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [UnitComponent],
-      imports: [ClarityModule.forRoot(), RouterTestingModule],
+      declarations: [UnitComponent, FormatPipe],
+      imports: [
+        ClarityModule.forRoot(),
+        RouterTestingModule,
+        FormsModule,
+        NouisliderModule
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
