@@ -20,6 +20,8 @@ import { PriceLineComponent } from "./action/price-line/price-line.component";
 import { PolynomComponent } from "./polynom/polynom.component";
 import { NouisliderModule } from "ng2-nouislider";
 import { FormsModule } from "@angular/forms";
+import { OptionsNavComponent } from "./options-nav/options-nav.component";
+import { SaveComponent } from "./save/save.component";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { FormsModule } from "@angular/forms";
     ActionComponent,
     UnitLineComponent,
     PriceLineComponent,
-    PolynomComponent
+    PolynomComponent,
+    OptionsNavComponent,
+    SaveComponent
   ],
   imports: [
     BrowserAnimationsModule,

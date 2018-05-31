@@ -111,4 +111,8 @@ export class MainService {
       );
     }
   }
+  clear() {
+    localStorage.removeItem("save");
+    window.location.reload();
+  }
 }
