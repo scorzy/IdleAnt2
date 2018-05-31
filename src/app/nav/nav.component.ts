@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Game } from "../model/game.service";
+import { Game } from "../model/game";
 import { UnitGroup } from "../model/unit-group";
 import { BaseUnit } from "../model/baseUnit";
 import { MainService } from "../main.service";

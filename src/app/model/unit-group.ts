@@ -1,5 +1,5 @@
 import { FullUnit } from "./full-unit";
-import { Game } from "./game.service";
+import { Game } from "./game";
 import { BaseUnit } from "./baseUnit";
 
 export abstract class UnitGroup {

@@ -7,6 +7,7 @@ import { ClarityModule } from "@clr/angular";
 import { FormsModule } from "@angular/forms";
 import { NouisliderModule } from "ng2-nouislider";
 import { FormatPipe } from "../format.pipe";
+import { ToastrModule } from "ngx-toastr";
 
 describe("UnitComponent", () => {
   let component: UnitComponent;
@@ -17,6 +18,7 @@ describe("UnitComponent", () => {
       declarations: [UnitComponent, FormatPipe],
       imports: [
         ClarityModule.forRoot(),
+        ToastrModule.forRoot(),
         RouterTestingModule,
         FormsModule,
         NouisliderModule

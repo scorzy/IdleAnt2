@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Game } from "./model/game.service";
+import { Game } from "./model/game";
 import { OptionsService } from "./options.service";
 import * as LZString from "lz-string";
 import { ToastrService } from "ngx-toastr";

@@ -1,5 +1,5 @@
 import { Materials } from "./materials";
-import { Game } from "../game.service";
+import { Game } from "../game";
 
 describe("Materials", () => {
   it("should create an instance", () => {

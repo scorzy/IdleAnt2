@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, OnDestroy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Game } from "../model/game.service";
+import { Game } from "../model/game";
 import { BaseUnit } from "../model/baseUnit";
 import { FullUnit } from "../model/full-unit";
 import { Action } from "../model/action";

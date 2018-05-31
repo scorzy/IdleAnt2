@@ -5,6 +5,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ClarityModule } from "@clr/angular";
 import { RouterTestingModule } from "@angular/router/testing";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ToastrModule } from "ngx-toastr";
 
 describe("NavComponent", () => {
   let component: NavComponent;
@@ -15,6 +16,7 @@ describe("NavComponent", () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
         ClarityModule.forRoot(),
+        ToastrModule.forRoot(),
         RouterTestingModule,
         BrowserAnimationsModule
       ],

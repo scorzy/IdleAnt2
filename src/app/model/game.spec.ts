@@ -1,6 +1,6 @@
 import { TestBed, inject } from "@angular/core/testing";
 
-import { Game } from "./game.service";
+import { Game } from "./game";
 import { FullUnit } from "./full-unit";
 
 describe("Game", () => {
