@@ -20,6 +20,8 @@ export class Materials extends UnitGroup {
     this.crystal = new FullUnit("cry", "Crystal", "Crystal");
     this.science = new FullUnit("sci", "Science", "Science");
 
+    this.food.unlocked = true;
+
     this.addUnits([
       this.food,
       this.wood,

@@ -6,6 +6,8 @@ import { Materials } from "./units/materials";
 import { BaseUnit } from "./baseUnit";
 import { Utility } from "./utility";
 import { Workers } from "./units/workers";
+import { Tab } from "./tab";
+import { Tabs } from "./tabs";
 
 export class Game {
   units = new Array<BaseUnit>();
@@ -15,12 +17,16 @@ export class Game {
   unlockedGroups = new Array<UnitGroup>();
 
   isPaused = false;
+  tabs: Tabs;
+
   //#region UnitGroups
   materials: Materials;
   workers: Workers;
   //#endregion
 
   constructor() {
+    this.tabs = new Tabs();
+
     this.materials = new Materials(this);
     this.unitGroups.push(this.materials);
 
@@ -30,8 +36,8 @@ export class Game {
     this.unitGroups.forEach(g => g.declareStuff());
     this.unitGroups.forEach(g => g.setRelations());
 
-    this.materials.list.forEach(u => (u.unlocked = true));
-    this.workers.list.forEach(u => (u.unlocked = true));
+    // this.materials.list.forEach(u => (u.unlocked = true));
+    // this.workers.list.forEach(u => (u.unlocked = true));
 
     this.unitGroups.forEach(g => g.check(true));
     this.unitGroups
@@ -145,7 +151,8 @@ export class Game {
     });
   }
   /**
-   *
+   *  Reload actions costs
+   *  and eventually fix quantity > 0
    *
    * @memberof Game
    */
@@ -159,12 +166,14 @@ export class Game {
   //#region Save and Load
   getSave(): any {
     return {
-      u: this.units.map(u => u.getSave())
+      u: this.units.map(u => u.getSave()),
+      t: this.tabs.getSave()
     };
   }
   restore(data: any): boolean {
     if ("u" in data) {
       for (const s of data.u) this.units.find(u => u.id === s.i).restore(s);
+      if ("t" in data) this.tabs.restore(data.t);
       return true;
     } else {
       return false;

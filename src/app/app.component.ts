@@ -7,5 +7,5 @@ import { MainService } from "./main.service";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  constructor(private service: MainService) {}
+  constructor(public ms: MainService) {}
 }
