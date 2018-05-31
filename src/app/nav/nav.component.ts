@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { GameService } from "../model/game.service";
+import { Game } from "../model/game.service";
 import { UnitGroup } from "../model/unit-group";
 import { BaseUnit } from "../model/baseUnit";
+import { MainService } from "../main.service";
 
 // declare let isFinite;
 
@@ -16,7 +17,7 @@ import { BaseUnit } from "../model/baseUnit";
 export class NavComponent implements OnInit {
   isFinite = isFinite;
 
-  constructor(public game: GameService) {}
+  constructor(public ms: MainService) {}
 
   ngOnInit() {
     //Nothing

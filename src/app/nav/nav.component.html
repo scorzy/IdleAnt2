@@ -2,7 +2,7 @@
 <nav class="sidenav" [clr-nav-level]="2">
   <section class="sidenav-content">
 
-    <clr-tree-node *ngFor="let unitGroup of game.unlockedGroups; trackBy:getListId">
+    <clr-tree-node *ngFor="let unitGroup of ms.game.unlockedGroups; trackBy:getListId">
 
       <span class="font-weight-bold">
         <clr-icon class="alert-icon is-error" shape="exclamation-triangle" *ngIf="unitGroup.isEnding"></clr-icon>

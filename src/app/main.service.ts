@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { GameService } from "./model/game.service";
+import { Game } from "./model/game.service";
 import { OptionsService } from "./options.service";
 import * as LZString from "lz-string";
 import { ToastrService } from "ngx-toastr";
@@ -10,12 +10,10 @@ const GAME_VERSION = 0;
   providedIn: "root"
 })
 export class MainService {
+  game: Game;
   last: number;
-  constructor(
-    public model: GameService,
-    public options: OptionsService,
-    private toastr: ToastrService
-  ) {
+  constructor(public options: OptionsService, private toastr: ToastrService) {
+    this.game = new Game();
     this.last = Date.now();
     setInterval(this.update.bind(this), 200);
   }
@@ -23,15 +21,15 @@ export class MainService {
     const now = Date.now();
     const diff = now - this.last;
 
-    this.model.update(diff);
-    this.model.postUpdate();
+    this.game.update(diff);
+    this.game.postUpdate();
     this.last = now;
   }
 
   getSave(): string {
     try {
       const save: any = {};
-      save.m = this.model.getSave();
+      save.m = this.game.getSave();
       save.o = this.options.getSave();
       save.time = this.last;
       save.ver = GAME_VERSION;
@@ -84,7 +82,7 @@ export class MainService {
       if (!!data.o) this.options.restore(data.o);
       // this.setTheme();
       this.last = data.time;
-      this.model.restore(data.m);
+      this.game.restore(data.m);
       setTimeout(() => this.toastr.success("", "Game Loaded"), 0);
     } catch (ex) {
       setTimeout(

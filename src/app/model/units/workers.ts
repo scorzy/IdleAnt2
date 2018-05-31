@@ -1,6 +1,6 @@
 import { UnitGroup } from "../unit-group";
 import { FullUnit } from "../full-unit";
-import { GameService } from "../game.service";
+import { Game } from "../game.service";
 import { Price } from "../price";
 
 export class Workers extends UnitGroup {
@@ -10,7 +10,7 @@ export class Workers extends UnitGroup {
   geologist2: FullUnit;
   geologist3: FullUnit;
 
-  constructor(game: GameService) {
+  constructor(game: Game) {
     super("Workers", game);
   }
   declareStuff(): void {

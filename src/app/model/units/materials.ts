@@ -1,6 +1,6 @@
 import { UnitGroup } from "../unit-group";
 import { FullUnit } from "../full-unit";
-import { GameService } from "../game.service";
+import { Game } from "../game.service";
 
 export class Materials extends UnitGroup {
   food: FullUnit;
@@ -9,7 +9,7 @@ export class Materials extends UnitGroup {
   crystal: FullUnit;
   science: FullUnit;
 
-  constructor(game: GameService) {
+  constructor(game: Game) {
     super("Materials", game);
   }
 

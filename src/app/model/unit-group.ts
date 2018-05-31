@@ -1,5 +1,5 @@
 import { FullUnit } from "./full-unit";
-import { GameService } from "./game.service";
+import { Game } from "./game.service";
 import { BaseUnit } from "./baseUnit";
 
 export abstract class UnitGroup {
@@ -9,7 +9,7 @@ export abstract class UnitGroup {
   isEnding = false;
   isExpanded = true;
 
-  constructor(public name: string, public game: GameService) {}
+  constructor(public name: string, public game: Game) {}
 
   check(noGame = false) {
     this.unlocked = this.list.filter(u => u.unlocked);

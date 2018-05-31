@@ -7,10 +7,7 @@ import { BaseUnit } from "./baseUnit";
 import { Utility } from "./utility";
 import { Workers } from "./units/workers";
 
-@Injectable({
-  providedIn: "root"
-})
-export class GameService {
+export class Game {
   units = new Array<BaseUnit>();
   unlockedUnits = new Array<FullUnit>();
 
@@ -150,7 +147,7 @@ export class GameService {
   /**
    *
    *
-   * @memberof GameService
+   * @memberof Game
    */
   postUpdate() {
     this.unlockedUnits.forEach(u => {

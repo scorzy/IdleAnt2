@@ -8,7 +8,6 @@ import { HeaderComponent } from "./header/header.component";
 import { APPROUTES } from "./app.routes";
 import { NavComponent } from "./nav/nav.component";
 import { UnitComponent } from "./unit/unit.component";
-import { GameService } from "./model/game.service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormatPipe } from "./format.pipe";
 import { OptionsService } from "./options.service";
@@ -46,7 +45,7 @@ import { SaveComponent } from "./save/save.component";
     FormsModule,
     NouisliderModule
   ],
-  providers: [ToastrService, OptionsService, GameService, MainService],
+  providers: [ToastrService, OptionsService, MainService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

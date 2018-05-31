@@ -1,24 +1,24 @@
 import { TestBed, inject } from "@angular/core/testing";
 
-import { GameService } from "./game.service";
+import { Game } from "./game.service";
 import { FullUnit } from "./full-unit";
 
-describe("GameService", () => {
+describe("Game", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [GameService]
+      providers: [Game]
     });
   });
   it(
     "should be created",
-    inject([GameService], (service: GameService) => {
+    inject([Game], (service: Game) => {
       expect(service).toBeTruthy();
     })
   );
 
   describe("Save works", () => {
-    const original = new GameService();
-    const second = new GameService();
+    const original = new Game();
+    const second = new Game();
 
     original.units = [
       new FullUnit("id1", "name1", "desc", new Decimal(10)),
@@ -41,14 +41,14 @@ describe("GameService", () => {
     });
   });
   describe("Save works 2", () => {
-    const game = new GameService();
+    const game = new Game();
     it("equal", () => {
       expect(game.restore({})).toBeFalsy();
     });
   });
 
   describe("Simple update", () => {
-    const game = new GameService();
+    const game = new Game();
     const food = new FullUnit("food", "Food", "Food");
     const farmer = new FullUnit("farmer", "Farmer", "Farmer");
     farmer.quantity = new Decimal(1);
@@ -62,7 +62,7 @@ describe("GameService", () => {
     });
   });
   describe("Simple update 2", () => {
-    const game = new GameService();
+    const game = new Game();
     const food = new FullUnit("food", "Food", "Food");
     const farmer = new FullUnit("farmer", "Farmer-", "Farmer");
     const farmer2 = new FullUnit("farmer2", "Farmer2-", "Farmer2");
@@ -87,7 +87,7 @@ describe("GameService", () => {
     });
   });
   describe("Ending update 2", () => {
-    const game = new GameService();
+    const game = new Game();
     const food = new FullUnit("food", "Food", "Food");
     const consumer = new FullUnit("consumer", "Consumer-", "Consumer");
     const farmer = new FullUnit("farmer", "Farmer-", "Farmer");

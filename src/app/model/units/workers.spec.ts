@@ -1,9 +1,9 @@
 import { Workers } from "./workers";
-import { GameService } from "../game.service";
+import { Game } from "../game.service";
 
 describe("Workers", () => {
   it("should create an instance", () => {
-    const game = new GameService();
+    const game = new Game();
     expect(new Workers(game)).toBeTruthy();
   });
 });
