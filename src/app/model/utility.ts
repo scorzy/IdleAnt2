@@ -11,7 +11,7 @@ export class Utility {
   }
 
   /**
-   * Solve a cubic equation ax^3 + bx^2 + cx + d = 0
+   * Solve an equation, up to cubic equation ax^3 + bx^2 + cx + d = 0
    *
    * @param a x^3
    * @param b x^2
@@ -19,7 +19,12 @@ export class Utility {
    * @param d constant
    * @returns solutions, real roots only
    */
-  static solveCubic(a: Decimal, b: Decimal, c: Decimal, d: Decimal): Decimal[] {
+  static solveEquation(
+    a: Decimal,
+    b: Decimal,
+    c: Decimal,
+    d: Decimal
+  ): Decimal[] {
     // Thanks to:
     // https://stackoverflow.com/questions/27176423/function-to-solve-cubic-equation-analytically
     // http://www.wolframalpha.com/calculators/equation-solver/
@@ -57,8 +62,18 @@ export class Utility {
 
       return [];
     }
-
-    // Convert to depressed cubic t^3+pt+q = 0 (subst x = t - b/3a)
+    return Utility.solveCubic(a, b, c, d);
+  }
+  /**
+   * Solve an equation, cubic only
+   *
+   * @param a x^3
+   * @param b x^2
+   * @param c x
+   * @param d constant
+   * @returns solutions, real roots only
+   */
+  static solveCubic(a: Decimal, b: Decimal, c: Decimal, d: Decimal): Decimal[] {
     const p = a
       .times(c)
       .times(3)
@@ -156,23 +171,4 @@ export class Utility {
 
     return roots;
   }
-
-  // static affordGeometricSeries(
-  //   resourcesAvailable: Decimal,
-  //   priceStart: Decimal,
-  //   priceRatio: number,
-  //   currentOwned: Decimal
-  // ): Decimal {
-  //   const ratio = new Decimal(priceRatio);
-  //   return new Decimal(
-  //     ratio.lte(1)
-  //       ? resourcesAvailable.div(priceStart)
-  //       : ratio
-  //           .minus(1)
-  //           .times(resourcesAvailable)
-  //           .div(ratio.pow(currentOwned).times(priceStart))
-  //           .plus(1)
-  //           .log(ratio)
-  //   ).floor();
-  // }
 }

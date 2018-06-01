@@ -113,9 +113,12 @@ export class Game {
       unit.b = unit.b.div(2);
 
       if (unit.a.lt(0) || unit.b.lt(0) || unit.c.lt(0) || d.lt(0)) {
-        const solution = Utility.solveCubic(unit.a, unit.b, unit.c, d).filter(
-          s => s.gt(0)
-        );
+        const solution = Utility.solveEquation(
+          unit.a,
+          unit.b,
+          unit.c,
+          d
+        ).filter(s => s.gt(0));
 
         if (solution.length > 0) {
           const min = solution.reduce(

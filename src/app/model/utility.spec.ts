@@ -6,7 +6,7 @@ describe("Utility", () => {
   });
 
   describe("linear tests", () => {
-    const result = Utility.solveCubic(
+    const result = Utility.solveEquation(
       new Decimal(0),
       new Decimal(0),
       new Decimal(1),
@@ -18,7 +18,7 @@ describe("Utility", () => {
   });
 
   describe("quadratic tests", () => {
-    const result = Utility.solveCubic(
+    const result = Utility.solveEquation(
       new Decimal(0),
       new Decimal(1),
       new Decimal(-2),
@@ -30,7 +30,7 @@ describe("Utility", () => {
   });
 
   describe("quadratic test 2", () => {
-    const result = Utility.solveCubic(
+    const result = Utility.solveEquation(
       new Decimal(0),
       new Decimal(2),
       new Decimal(5),
@@ -43,7 +43,7 @@ describe("Utility", () => {
   });
 
   describe("cubic tests", () => {
-    const result = Utility.solveCubic(
+    const result = Utility.solveEquation(
       new Decimal(1),
       new Decimal(-7),
       new Decimal(4),
@@ -56,7 +56,7 @@ describe("Utility", () => {
   });
 
   describe("cubic tests 2", () => {
-    const result = Utility.solveCubic(
+    const result = Utility.solveEquation(
       new Decimal(-44),
       new Decimal(1413637),
       new Decimal(800766291),
@@ -68,7 +68,7 @@ describe("Utility", () => {
   });
 
   describe("cubic tests 3", () => {
-    const result = Utility.solveCubic(
+    const result = Utility.solveEquation(
       new Decimal(168.22549160416666667),
       new Decimal(-62370.8640283213725),
       new Decimal(24818289.542591014547),
@@ -80,7 +80,7 @@ describe("Utility", () => {
   });
 
   describe("degenerate case", () => {
-    const result = Utility.solveCubic(
+    const result = Utility.solveEquation(
       new Decimal(0),
       new Decimal(0),
       new Decimal(0),
@@ -90,7 +90,7 @@ describe("Utility", () => {
   });
 
   describe("-10 = 0", () => {
-    const result = Utility.solveCubic(
+    const result = Utility.solveEquation(
       new Decimal(0),
       new Decimal(0),
       new Decimal(0),
@@ -100,7 +100,7 @@ describe("Utility", () => {
   });
 
   describe("x^3 + 1000", () => {
-    const result = Utility.solveCubic(
+    const result = Utility.solveEquation(
       new Decimal(1),
       new Decimal(0),
       new Decimal(0),
@@ -112,7 +112,7 @@ describe("Utility", () => {
   });
 
   describe("x^3 - x100", () => {
-    const result = Utility.solveCubic(
+    const result = Utility.solveEquation(
       new Decimal(1),
       new Decimal(0),
       new Decimal(-100),
