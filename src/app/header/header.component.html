@@ -7,10 +7,10 @@
   </div> -->
 
   <div class="header-nav" [clr-nav-level]="1">
-    <a [routerLink]='"nav/unit/fo"' class="active nav-link">
+    <a [routerLink]='"nav/unit"' class="active nav-link" [routerLinkActive]="'active'">
       <span class="nav-text">Units</span>
     </a>
-    <a [routerLink]='"lab"' class="active nav-link" *ngIf="lab">
+    <a [routerLink]='"lab"' class="active nav-link" *ngIf="lab" [routerLinkActive]="'active'">
       <span class="nav-text">Lab</span>
     </a>
   </div>

@@ -34,7 +34,7 @@ export class Workers extends UnitGroup {
 
     this.student.generateBuyAction(
       [new Price(this.game.materials.food, new Decimal(20), 1.1)],
-      [this.game.tabs.lab]
+      [this.game.tabs.lab, this.game.researchs.team1]
     );
     this.game.materials.science.addProductor(this.student);
     this.game.materials.crystal.addProductor(this.student, new Decimal(-1));

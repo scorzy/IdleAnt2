@@ -1,3 +1,13 @@
-<p>
-  laboratory works!
-</p>
+<div class="content-area">
+  <h1>Here, scientists discuss things no one has seen before.</h1>
+  <div class="toggle-switch">
+    <input type="checkbox" id="t1" [(ngModel)]="resDone" (change)="changeList()">
+    <label for="t1">Show research done</label>
+  </div>
+  <span>
+    Science: {{ms.game.materials.science.quantity | format}} - {{ms.game.materials.science.c | format}} /s
+  </span>
+  <div class="card-columns card-columns-3">
+    <app-action [action]="res" *ngFor="let res of resList ;trackBy:getRestId"></app-action>
+  </div>
+</div>

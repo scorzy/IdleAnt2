@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, EventEmitter } from "@angular/core";
 import { Game } from "./model/game";
 import { OptionsService } from "./options.service";
 import * as LZString from "lz-string";
@@ -12,8 +12,12 @@ const GAME_VERSION = 0;
 export class MainService {
   game: Game;
   last: number;
+
+  updateEmitter: EventEmitter<number> = new EventEmitter<number>();
+  researchEmitter: EventEmitter<string> = new EventEmitter<string>();
+
   constructor(public options: OptionsService, private toastr: ToastrService) {
-    this.game = new Game();
+    this.game = new Game(this.updateEmitter, this.researchEmitter);
     this.last = Date.now();
     setInterval(this.update.bind(this), 200);
   }
@@ -24,6 +28,7 @@ export class MainService {
     this.game.update(diff);
     this.game.postUpdate();
     this.last = now;
+    this.updateEmitter.emit(diff);
   }
 
   getSave(): string {

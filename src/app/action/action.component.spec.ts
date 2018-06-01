@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormatPipe } from "../format.pipe";
 import { BuyAction } from "../model/buy-action";
 import { FullUnit } from "../model/full-unit";
+import { ToastrModule } from "ngx-toastr";
 
 describe("ActionComponent", () => {
   let component: ActionComponent;
@@ -18,6 +19,7 @@ describe("ActionComponent", () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
         ClarityModule.forRoot(),
+        ToastrModule.forRoot(),
         RouterTestingModule,
         BrowserAnimationsModule
       ],

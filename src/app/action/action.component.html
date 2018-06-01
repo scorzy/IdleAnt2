@@ -1,16 +1,19 @@
 <div class="card-block">
   <div class="card-title">
-    {{action.name}} ({{action.quantity | format}})
+    {{action.name}}
+    <span *ngIf="action.limit.gte(2)"> ({{action.quantity | format}}) </span>
   </div>
   <div class="card-text p">
     {{action.description}}
     <br/>
-    <span>One will cost: </span>
-    <app-price-line *ngFor="let price of action.actualPrices; trackBy:getPriceId" [name]="price.base.name" [canBuy]="price.canBuy"
-      [price]="price.price"></app-price-line>
+    <div *ngIf="!action.complete">
+      <span>One will cost: </span>
+      <app-price-line *ngFor="let price of action.actualPrices; trackBy:getPriceId" [name]="price.base.name" [canBuy]="price.canBuy"
+        [price]="price.price"></app-price-line>
+    </div>
   </div>
 </div>
-<div class="card-footer">
+<div class="card-footer" *ngIf="!action.complete">
   <button *ngIf="!action.canBuy" class="btn btn-sm btn-link" disabled>
     Can't buy
   </button>

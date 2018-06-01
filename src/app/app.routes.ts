@@ -3,6 +3,7 @@ import { NavComponent } from "./nav/nav.component";
 import { UnitComponent } from "./unit/unit.component";
 import { SaveComponent } from "./save/save.component";
 import { OptionsNavComponent } from "./options-nav/options-nav.component";
+import { LaboratoryComponent } from "./laboratory/laboratory.component";
 
 export const APPROUTES: Routes = [
   {
@@ -17,6 +18,10 @@ export const APPROUTES: Routes = [
       { path: "unit", component: UnitComponent },
       { path: "unit/:id", component: UnitComponent }
     ]
+  },
+  {
+    path: "lab",
+    component: LaboratoryComponent
   },
   {
     path: "opt",

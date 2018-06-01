@@ -3,32 +3,48 @@ import { FullUnit } from "../full-unit";
 import { Price } from "../price";
 import { Research } from "../research";
 import { Game } from "../game";
+import { EventEmitter } from "@angular/core";
 
 export class Researchs {
   researchs: Research[];
+  toDo: Research[];
+  done: Research[];
 
   team1: Research;
   team2: Research;
 
-  constructor(public science: FullUnit) {}
+  constructor(
+    public science: FullUnit,
+    public researchEmitter: EventEmitter<string>
+  ) {}
 
   declareStuff(): void {
     this.team1 = new Research(
       "team1",
       "Team 1",
       "Team 1",
-      this.genPrice(new Decimal(20))
+      this.genPrice(new Decimal(20)),
+      this
     );
     this.team2 = new Research(
       "team2",
       "Team 2",
       "Team 2",
-      this.genPrice(new Decimal(100))
+      this.genPrice(new Decimal(100)),
+      this
     );
+    this.team1.unlocked = true;
     this.researchs = [this.team1, this.team2];
+    this.reloadLists();
   }
   setRelations(): void {
     this.team1.toUnlock = [this.team2];
+  }
+
+  reloadLists() {
+    this.toDo = this.researchs.filter(r => r.unlocked && !r.done);
+    this.done = this.researchs.filter(r => r.unlocked && r.done);
+    this.researchEmitter.emit("");
   }
 
   //#region Save and load
@@ -41,6 +57,7 @@ export class Researchs {
     if ("res" in data) {
       for (const r of data.res)
         this.researchs.find(u => u.id === r.i).restore(r);
+      this.reloadLists();
       return true;
     } else {
       return false;

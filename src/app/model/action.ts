@@ -32,14 +32,19 @@ export class Action extends BaseUnit {
   }
 
   public reload() {
-    this.prices.forEach(p => p.reload(this.quantity));
-    this.maxBuy = this.prices
-      .map(p => p.maxBuy)
-      .reduce((p, c) => p.min(c), new Decimal(Number.POSITIVE_INFINITY));
-    if (this.isLimited)
-      this.maxBuy = Decimal.min(this.limit.minus(this.quantity), this.maxBuy);
-    this.canBuy = this.maxBuy.gte(1);
-    this.actualPrices.forEach(p => p.reload(new Decimal(1)));
+    if (this.complete) {
+      this.maxBuy = new Decimal(0);
+      this.canBuy = false;
+    } else {
+      this.prices.forEach(p => p.reload(this.quantity));
+      this.maxBuy = this.prices
+        .map(p => p.maxBuy)
+        .reduce((p, c) => p.min(c), new Decimal(Number.POSITIVE_INFINITY));
+      if (this.isLimited)
+        this.maxBuy = Decimal.min(this.limit.minus(this.quantity), this.maxBuy);
+      this.canBuy = this.maxBuy.gte(1);
+      this.actualPrices.forEach(p => p.reload(new Decimal(1)));
+    }
   }
 
   public buy(toBuy = new Decimal(1)): boolean {

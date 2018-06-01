@@ -2,23 +2,18 @@ import { TestBed, inject } from "@angular/core/testing";
 
 import { Game } from "./game";
 import { FullUnit } from "./full-unit";
+import { EventEmitter } from "@angular/core";
 
 describe("Game", () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [Game]
-    });
+  const updateEmitter = new EventEmitter<number>();
+  const researchEmitter = new EventEmitter<string>();
+  it("should be created", () => {
+    expect(new Game(updateEmitter, researchEmitter)).toBeTruthy();
   });
-  it(
-    "should be created",
-    inject([Game], (service: Game) => {
-      expect(service).toBeTruthy();
-    })
-  );
 
   describe("Save works", () => {
-    const original = new Game();
-    const second = new Game();
+    const original = new Game(updateEmitter, researchEmitter);
+    const second = new Game(updateEmitter, researchEmitter);
 
     original.units = [
       new FullUnit("id1", "name1", "desc", new Decimal(10)),
@@ -41,14 +36,14 @@ describe("Game", () => {
     });
   });
   describe("Save works 2", () => {
-    const game = new Game();
+    const game = new Game(updateEmitter, researchEmitter);
     it("equal", () => {
       expect(game.restore({})).toBeFalsy();
     });
   });
 
   describe("Simple update", () => {
-    const game = new Game();
+    const game = new Game(updateEmitter, researchEmitter);
     const food = new FullUnit("food", "Food", "Food");
     const farmer = new FullUnit("farmer", "Farmer", "Farmer");
     farmer.quantity = new Decimal(1);
@@ -62,7 +57,7 @@ describe("Game", () => {
     });
   });
   describe("Simple update 2", () => {
-    const game = new Game();
+    const game = new Game(updateEmitter, researchEmitter);
     const food = new FullUnit("food", "Food", "Food");
     const farmer = new FullUnit("farmer", "Farmer-", "Farmer");
     const farmer2 = new FullUnit("farmer2", "Farmer2-", "Farmer2");
@@ -87,7 +82,7 @@ describe("Game", () => {
     });
   });
   describe("Ending update 2", () => {
-    const game = new Game();
+    const game = new Game(updateEmitter, researchEmitter);
     const food = new FullUnit("food", "Food", "Food");
     const consumer = new FullUnit("consumer", "Consumer-", "Consumer");
     const farmer = new FullUnit("farmer", "Farmer-", "Farmer");

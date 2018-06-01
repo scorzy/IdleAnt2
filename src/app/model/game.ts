@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, EventEmitter } from "@angular/core";
 import { FullUnit } from "./full-unit";
 import { Production } from "./production";
 import { UnitGroup } from "./unit-group";
@@ -27,7 +27,10 @@ export class Game {
   researchs: Researchs;
   //#endregion
 
-  constructor() {
+  constructor(
+    public updateEmitter: EventEmitter<number>,
+    public researchEmitter: EventEmitter<string>
+  ) {
     this.tabs = new Tabs();
 
     this.materials = new Materials(this);
@@ -37,7 +40,14 @@ export class Game {
     this.unitGroups.push(this.workers);
 
     this.unitGroups.forEach(g => g.declareStuff());
+    this.researchs = new Researchs(
+      this.materials.science,
+      this.researchEmitter
+    );
+    this.researchs.declareStuff();
+
     this.unitGroups.forEach(g => g.setRelations());
+    this.researchs.setRelations();
 
     // this.materials.list.forEach(u => (u.unlocked = true));
     // this.workers.list.forEach(u => (u.unlocked = true));
@@ -48,10 +58,6 @@ export class Game {
       .forEach(l => l.forEach(u => this.units.push(u)));
     this.check();
     this.materials.food.quantity = new Decimal(1e4);
-
-    this.researchs = new Researchs(this.materials.science);
-    this.researchs.declareStuff();
-    this.researchs.setRelations();
   }
   check() {
     this.unlockedUnits = [];
@@ -168,6 +174,7 @@ export class Game {
       u.actions.forEach(a => a.reload());
       u.quantity = u.quantity.max(0);
     });
+    this.researchs.researchs.filter(r => r.unlocked).forEach(u => u.reload());
   }
 
   //#region Save and Load
@@ -181,6 +188,9 @@ export class Game {
     if ("u" in data) {
       for (const s of data.u) this.units.find(u => u.id === s.i).restore(s);
       if ("t" in data) this.tabs.restore(data.t);
+
+      this.unitGroups.forEach(g => g.check());
+      this.check();
       return true;
     } else {
       return false;

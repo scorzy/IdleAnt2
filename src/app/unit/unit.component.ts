@@ -1,4 +1,11 @@
-import { Component, OnInit, Inject, OnDestroy } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Inject,
+  OnDestroy,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy
+} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Game } from "../model/game";
 import { BaseUnit } from "../model/baseUnit";
@@ -10,6 +17,7 @@ import { MainService } from "../main.service";
   selector: "app-unit",
   templateUrl: "./unit.component.html",
   styleUrls: ["./unit.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     "[class.content-area]": "true"
   }
@@ -18,7 +26,11 @@ export class UnitComponent implements OnInit, OnDestroy {
   paramsSub: any;
   unit: FullUnit;
 
-  constructor(public ms: MainService, private route: ActivatedRoute) {}
+  constructor(
+    public ms: MainService,
+    private route: ActivatedRoute,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.paramsSub = this.route.params.subscribe(this.getUnit.bind(this));
