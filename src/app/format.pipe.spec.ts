@@ -25,6 +25,9 @@ describe("FormatPipe", () => {
     it("123,4", () => {
       expect(pipeEuro.transform(123.4)).toBe("123");
     });
+    it("1", () => {
+      expect(pipeEuro.transform(1, true)).toBe("1");
+    });
   });
   describe("Usa format", () => {
     const optionsUs = new OptionsService();
@@ -39,6 +42,9 @@ describe("FormatPipe", () => {
     });
     it("456.7", () => {
       expect(pipeUsa.transform(456.7)).toBe("456");
+    });
+    it("2", () => {
+      expect(pipeUsa.transform(2, true)).toBe("2");
     });
   });
 });

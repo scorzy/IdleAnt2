@@ -9,7 +9,7 @@ export class BuyAction extends Action {
     public unit: FullUnit,
     public toUnlock: IUnlocable[] = null
   ) {
-    super("buy", "Hach", "Get more units", prices);
+    super("buy", "Hach", "", prices);
   }
   public buy(toBuy = new Decimal(1)): boolean {
     if (super.buy(toBuy)) {

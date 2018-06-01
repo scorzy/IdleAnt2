@@ -1,5 +1,6 @@
 import { BaseUnit } from "./baseUnit";
 import { Price } from "./price";
+import { isNumber } from "util";
 
 export class Action extends BaseUnit {
   public done = false;
@@ -10,7 +11,8 @@ export class Action extends BaseUnit {
   public canBuy = false;
   public maxBuy = new Decimal(0);
 
-  public actualPrices: Price[];
+  public userNum: number;
+  public realNum = new Decimal(1);
 
   constructor(
     id: string,
@@ -19,16 +21,6 @@ export class Action extends BaseUnit {
     public prices: Price[] = null
   ) {
     super(id, name, description, new Decimal(0));
-    this.makeActualPrices();
-  }
-  public makeActualPrices() {
-    if (this.prices)
-      this.actualPrices = this.prices.map(p => {
-        const pr = Decimal.pow(p.growRate, this.quantity).times(p.price);
-        const price = new Price(p.base, pr, 1);
-        price.reload(new Decimal(1));
-        return price;
-      });
   }
 
   public reload() {
@@ -43,7 +35,6 @@ export class Action extends BaseUnit {
       if (this.isLimited)
         this.maxBuy = Decimal.min(this.limit.minus(this.quantity), this.maxBuy);
       this.canBuy = this.maxBuy.gte(1);
-      this.actualPrices.forEach(p => p.reload(new Decimal(1)));
     }
   }
 
@@ -54,12 +45,21 @@ export class Action extends BaseUnit {
       this.quantity = this.quantity.plus(toBuy);
       this.done = true;
       if (this.isLimited && this.quantity.gte(this.limit)) this.complete = true;
-      this.makeActualPrices();
       this.reload();
+      this.reloadUserPrices();
       return true;
     } else {
       return false;
     }
+  }
+
+  public reloadUserPrices() {
+    let real = 1;
+    if (!isNaN(this.userNum) && this.userNum >= 1) real = this.userNum;
+    this.realNum = new Decimal(real);
+    this.prices.forEach(p =>
+      p.loadPriceUser(new Decimal(this.realNum), this.quantity)
+    );
   }
 
   public getSave(): any {

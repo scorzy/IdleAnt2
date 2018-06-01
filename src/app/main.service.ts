@@ -19,7 +19,7 @@ export class MainService {
   constructor(public options: OptionsService, private toastr: ToastrService) {
     this.game = new Game(this.updateEmitter, this.researchEmitter);
     this.last = Date.now();
-    setInterval(this.update.bind(this), 200);
+    setInterval(this.update.bind(this), 100);
   }
   public update() {
     const now = Date.now();

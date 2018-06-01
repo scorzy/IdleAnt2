@@ -60,9 +60,10 @@ export class UnitComponent implements OnInit, OnDestroy {
     this.activeProductor = this.unit.producedBy.filter(
       p => p.productor.unlocked
     );
+    this.unit.reloadUiStuff();
     this.cd.markForCheck();
   }
   getActId(index, action: Action) {
-    return action.id;
+    return action.id + this.unit.id;
   }
 }

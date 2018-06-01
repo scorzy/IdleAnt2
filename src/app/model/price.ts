@@ -5,6 +5,9 @@ export class Price {
   canBuy = false;
   maxBuy = new Decimal(0);
 
+  priceUser = new Decimal(0);
+  userCanBuy = false;
+
   constructor(
     public base: BaseUnit,
     public price: Decimal,
@@ -36,5 +39,15 @@ export class Price {
       );
     }
     this.base.quantity = this.base.quantity.minus(price);
+  }
+
+  loadPriceUser(num: Decimal, start: Decimal) {
+    this.priceUser = Decimal.sumGeometricSeries(
+      num,
+      this.price,
+      this.growRate,
+      start
+    );
+    this.userCanBuy = this.priceUser.lt(this.base.quantity);
   }
 }

@@ -9,6 +9,7 @@ import {
 import { Action } from "../model/action";
 import { Price } from "../model/price";
 import { MainService } from "../main.service";
+import { isNumber } from "util";
 
 @Component({
   selector: "app-action",
@@ -28,7 +29,13 @@ export class ActionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sub = this.ms.updateEmitter.subscribe(m => this.cd.markForCheck());
+    this.action.reloadUserPrices();
+    this.cd.markForCheck();
+
+    this.sub = this.ms.updateEmitter.subscribe(m => {
+      this.action.reloadUserPrices();
+      this.cd.markForCheck();
+    });
   }
   ngOnDestroy() {
     this.sub.unsubscribe();

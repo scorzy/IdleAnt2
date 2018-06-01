@@ -94,6 +94,10 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     }
   }
 
+  reloadUiStuff() {
+    this.actions.forEach(a => a.reloadUserPrices());
+  }
+
   //#region Save and Restore
   public getSave(): any {
     const save: any = {
