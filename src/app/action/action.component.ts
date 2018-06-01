@@ -15,10 +15,7 @@ import { isNumber } from "util";
   selector: "app-action",
   templateUrl: "./action.component.html",
   styleUrls: ["./action.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    "[class.card]": "true"
-  }
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ActionComponent implements OnInit, OnDestroy {
   @Input() action: Action;

@@ -34,9 +34,9 @@
     </div>
     <div class="col-xs-12	col-sm-6 col-md-6	col-lg-6 col-xl-6">
       <div *ngIf="activeProduct?.length > 0">
-        <span class="p2">
+        <h6>
           {{unit.name}} produces:
-        </span>
+        </h6>
         <clr-datagrid class="datagrid-compact">
           <clr-dg-column [clrDgField]="'product.name'">Name</clr-dg-column>
           <clr-dg-column [clrDgSortBy]="prodSorter">Rateo</clr-dg-column>
@@ -68,9 +68,9 @@
       </div>
 
       <div *ngIf="activeProductor?.length > 0">
-        <span class="p2">
+        <h6>
           {{unit.name}} is made by:
-        </span>
+        </h6>
         <clr-datagrid class="datagrid-compact">
           <clr-dg-column [clrDgField]="'productor.name'">Name</clr-dg-column>
           <clr-dg-column [clrDgSortBy]="prodSorter">Rateo</clr-dg-column>

@@ -1,33 +1,31 @@
-<div class="card-block">
-  <div class="card-title">
-    {{action.name}}
-    <span *ngIf="action.limit.gte(2)"> ({{action.quantity | format: true}}) </span>
-  </div>
-  <div class="card-text p">
-    <span *ngIf="action.description !==''">
-      {{action.description}}
-      <br/>
-    </span>
-    <div *ngIf="!action.complete">
-      <input type="text" id="userNum" [(ngModel)]="action.userNum" (change)="action.reloadUserPrices()" type="number" placeholder="1"
-        step="1" min="1" size="3">
-      <span> will cost: </span>
-      <app-price-line *ngFor="let price of action.prices; trackBy:getPriceId" [name]="price.base.name" [canBuy]="price.userCanBuy"
-        [price]="price.priceUser"></app-price-line>
-    </div>
+<h6> {{action.name}}
+  <span *ngIf="action.limit.gte(2)"> ({{action.quantity | format: true}}) </span>
+</h6>
+<div class="p">
+  <span *ngIf="action.description !==''">
+    {{action.description}}
+    <br/>
+  </span>
+  <div *ngIf="!action.complete">
+    <input type="text" id="userNum" [(ngModel)]="action.userNum" (change)="action.reloadUserPrices()" type="number" placeholder="1"
+      step="1" min="1" size="3">
+    <span> will cost: </span>
+    <app-price-line *ngFor="let price of action.prices; trackBy:getPriceId" [name]="price.base.name" [canBuy]="price.userCanBuy"
+      [price]="price.priceUser"></app-price-line>
   </div>
 </div>
-<div class="card-footer" *ngIf="!action.complete">
-  <button *ngIf="!action.canBuy" class="btn btn-sm btn-link" disabled>
+<div *ngIf="!action.complete" class="btn-group">
+  <button *ngIf="!action.canBuy" class="btn btn-sm" disabled>
     Can't buy
   </button>
-  <button *ngIf="action.canBuy" class="btn btn-sm btn-link" (click)="action.buy(action.realNum)">
+  <button *ngIf="action.canBuy" class="btn btn-sm" (click)="action.buy(action.realNum)">
     Get {{action.realNum | format: true}}
   </button>
-  <button *ngIf="action.maxBuy.gt(3)" class="btn btn-sm btn-link" (click)="action.buy(action.maxBuy.div(2).floor())">
+  <button *ngIf="action.maxBuy.gt(3)" class="btn btn-sm" (click)="action.buy(action.maxBuy.div(2).floor())">
     Get {{action.maxBuy.div(2).floor() | format: true}}
   </button>
-  <button *ngIf="action.maxBuy.gt(2)" class="btn btn-sm btn-link" (click)="action.buy(action.maxBuy)">
+  <button *ngIf="action.maxBuy.gt(2)" class="btn btn-sm" (click)="action.buy(action.maxBuy)">
     Get {{action.maxBuy | format: true}}
   </button>
 </div>
+<hr/>

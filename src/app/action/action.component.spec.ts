@@ -9,6 +9,7 @@ import { FormatPipe } from "../format.pipe";
 import { BuyAction } from "../model/actions/buy-action";
 import { FullUnit } from "../model/full-unit";
 import { ToastrModule } from "ngx-toastr";
+import { FormsModule } from "@angular/forms";
 
 describe("ActionComponent", () => {
   let component: ActionComponent;
@@ -21,6 +22,7 @@ describe("ActionComponent", () => {
         ClarityModule.forRoot(),
         ToastrModule.forRoot(),
         RouterTestingModule,
+        FormsModule,
         BrowserAnimationsModule
       ],
       declarations: [ActionComponent, FormatPipe]
