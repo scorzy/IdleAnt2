@@ -12,6 +12,8 @@ import { BaseUnit } from "../model/baseUnit";
 import { FullUnit } from "../model/full-unit";
 import { Action } from "../model/action";
 import { MainService } from "../main.service";
+import { ProductionSorter, TotalProductionSorter } from "../model/utility";
+import { Production } from "../model/production";
 
 @Component({
   selector: "app-unit",
@@ -26,6 +28,11 @@ export class UnitComponent implements OnInit, OnDestroy {
   paramsSub: any;
   sub: any;
   unit: FullUnit;
+  prodSorter = new ProductionSorter();
+  totalProdSorter = new TotalProductionSorter();
+
+  activeProduct: Production[];
+  activeProductor: Production[];
 
   constructor(
     public ms: MainService,
@@ -49,6 +56,10 @@ export class UnitComponent implements OnInit, OnDestroy {
     const b = this.ms.game.units.find(u => u.id === id);
     if (b instanceof FullUnit) this.unit = b;
     this.unit.isNew = false;
+    this.activeProduct = this.unit.produces.filter(p => p.product.unlocked);
+    this.activeProductor = this.unit.producedBy.filter(
+      p => p.productor.unlocked
+    );
     this.cd.markForCheck();
   }
   getActId(index, action: Action) {

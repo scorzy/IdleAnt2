@@ -17,7 +17,7 @@
   <button *ngIf="!action.canBuy" class="btn btn-sm btn-link" disabled>
     Can't buy
   </button>
-  <button *ngIf="action.canBuy" class="btn btn-sm btn-link" (click)="action.buy(1)">
+  <button *ngIf="action.canBuy" class="btn btn-sm btn-link" (click)="action.buy()">
     Get 1
   </button>
   <button *ngIf="action.maxBuy.gt(3)" class="btn btn-sm btn-link" (click)="action.buy(action.maxBuy.div(2).floor())">

@@ -7,8 +7,11 @@
     <clr-icon shape="info-standard" class="is-info" *ngIf="isNew"></clr-icon>
     {{name}}
   </span>
-  <span class="perSec monospace" [class.noEnought]="isEnding" *ngIf="perSec.abs().gt(0.001)">
-    {{perSec | format}}/s
+  <span class="perSec monospace">
+    <span *ngIf="perSec.abs().gt(0.001)" [class.noEnought]="isEnding">
+      {{perSec | format}}/s
+    </span>
+    &nbsp;
   </span>
   <span *ngIf="quantity.abs().gt(0.001)" class="qta monospace">{{quantity | format}}</span>
 </a>

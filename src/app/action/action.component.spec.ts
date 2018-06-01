@@ -6,7 +6,7 @@ import { ClarityModule } from "@clr/angular";
 import { RouterTestingModule } from "@angular/router/testing";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormatPipe } from "../format.pipe";
-import { BuyAction } from "../model/buy-action";
+import { BuyAction } from "../model/actions/buy-action";
 import { FullUnit } from "../model/full-unit";
 import { ToastrModule } from "ngx-toastr";
 

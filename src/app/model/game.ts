@@ -9,6 +9,7 @@ import { Workers } from "./units/workers";
 import { Tab } from "./tab";
 import { Tabs } from "./tabs";
 import { Researchs } from "./units/researchs";
+import { Price } from "./price";
 
 export class Game {
   units = new Array<BaseUnit>();
@@ -49,7 +50,7 @@ export class Game {
     this.unitGroups.forEach(g => g.setRelations());
     this.researchs.setRelations();
 
-    // this.materials.list.forEach(u => (u.unlocked = true));
+    this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
     // this.workers.list.forEach(u => (u.unlocked = true));
 
     this.unitGroups.forEach(g => g.check(true));
@@ -78,6 +79,7 @@ export class Game {
     let unitZero: FullUnit = null;
 
     this.unlockedUnits.forEach(u => {
+      u.reloadBonus(this.researchs.team1.done);
       u.produces.forEach(p => p.reloadProdPerSec(this.researchs.team1.done));
       u.isEnding = false;
     });
@@ -88,24 +90,24 @@ export class Game {
       unit.c = new Decimal(0);
       const d = unit.quantity;
 
-      for (const prod1 of unit.producedBy.filter(p => p.prductor.isActive())) {
+      for (const prod1 of unit.producedBy.filter(p => p.productor.isActive())) {
         // x
         const prodX = prod1.prodPerSec;
-        unit.c = unit.c.plus(prodX.times(prod1.prductor.quantity));
+        unit.c = unit.c.plus(prodX.times(prod1.productor.quantity));
 
-        for (const prod2 of prod1.prductor.producedBy.filter(p =>
-          p.prductor.isActive()
+        for (const prod2 of prod1.productor.producedBy.filter(p =>
+          p.productor.isActive()
         )) {
           // x^2
           const prodX2 = prod2.prodPerSec.times(prodX);
-          unit.b = unit.b.plus(prodX2.times(prod2.prductor.quantity));
+          unit.b = unit.b.plus(prodX2.times(prod2.productor.quantity));
 
-          for (const prod3 of prod2.prductor.producedBy.filter(p =>
-            p.prductor.isActive()
+          for (const prod3 of prod2.productor.producedBy.filter(p =>
+            p.productor.isActive()
           )) {
             // x^3
             const prodX3 = prod3.prodPerSec.times(prodX2);
-            unit.a = unit.a.plus(prodX3.times(prod3.prductor.quantity));
+            unit.a = unit.a.plus(prodX3.times(prod3.productor.quantity));
           }
         }
       }
@@ -145,7 +147,7 @@ export class Game {
     if (unitZero)
       unitZero.producedBy
         .filter(p => p.rateo.lt(0))
-        .forEach(p => (p.prductor.efficiency = 0));
+        .forEach(p => (p.productor.efficiency = 0));
 
     const remaning = time - maxTime;
     if (remaning > Number.EPSILON) {
@@ -180,18 +182,26 @@ export class Game {
     this.researchs.researchs.filter(r => r.unlocked).forEach(u => u.reload());
   }
 
+  genTeamPrice(price: Decimal): Price[] {
+    return [new Price(this.materials.science, price, 4)];
+  }
+  genTwinPrice(price: Decimal): Price[] {
+    return [new Price(this.materials.science, price, 10)];
+  }
+
   //#region Save and Load
   getSave(): any {
     return {
       u: this.units.map(u => u.getSave()),
-      t: this.tabs.getSave()
+      t: this.tabs.getSave(),
+      r: this.researchs.getSave()
     };
   }
   restore(data: any): boolean {
     if ("u" in data) {
       for (const s of data.u) this.units.find(u => u.id === s.i).restore(s);
       if ("t" in data) this.tabs.restore(data.t);
-
+      if ("r" in data) this.researchs.restore(data.r);
       this.unitGroups.forEach(g => g.check());
       this.check();
       return true;

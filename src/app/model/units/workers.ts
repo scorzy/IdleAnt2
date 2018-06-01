@@ -38,5 +38,12 @@ export class Workers extends UnitGroup {
     );
     this.game.materials.science.addProductor(this.student);
     this.game.materials.crystal.addProductor(this.student, new Decimal(-1));
+
+    this.list.forEach(u => {
+      if (u instanceof FullUnit) {
+        u.generateTeamAction(this.game.genTeamPrice(new Decimal(500)));
+        u.generateTwinAction(this.game.genTwinPrice(new Decimal(1e3)));
+      }
+    });
   }
 }

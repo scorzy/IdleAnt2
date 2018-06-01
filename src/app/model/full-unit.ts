@@ -2,27 +2,26 @@ import { BaseUnit } from "./baseUnit";
 import { Action } from "./action";
 import { IUnlocable } from "./iunlocable";
 import { Price } from "./price";
-import { BuyAction } from "./buy-action";
+import { BuyAction } from "./actions/buy-action";
 import { Production } from "./production";
 import { UnitGroup } from "./unit-group";
 import { UnlockAction } from "./unlock-action";
 import { ThrowStmt } from "@angular/compiler";
+import { TwinAction } from "./actions/twin-action";
 
 export class FullUnit extends BaseUnit implements IUnlocable {
   unlocked = false;
   actions = new Array<Action>();
 
-  buyAction: Action;
+  buyAction: BuyAction;
+  teamAction: Action;
+  twinAction: TwinAction;
 
   efficiency = 100;
 
   a = new Decimal(0);
   b = new Decimal(0);
   c = new Decimal(0);
-
-  // hasA = false;
-  // hasB = false;
-  // hasC = false;
 
   producedBy = Array<Production>();
   produces = Array<Production>();
@@ -32,6 +31,8 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   boughtBonus = 0.005;
   isNew = false;
   isEnding = false;
+
+  bonus = new Decimal(0);
 
   constructor(
     id: string,
@@ -45,6 +46,19 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   generateBuyAction(prices: Price[], toUnlock: IUnlocable[] = null) {
     this.buyAction = new BuyAction(prices, this, toUnlock);
     this.actions.push(this.buyAction);
+  }
+  generateTeamAction(price: Price[]) {
+    this.teamAction = new Action(
+      "team",
+      "Teamwork",
+      "Get a better teamwork bonus",
+      price
+    );
+    this.actions.push(this.teamAction);
+  }
+  generateTwinAction(price: Price[]) {
+    this.twinAction = new TwinAction(price, this);
+    this.actions.push(this.twinAction);
   }
 
   unlock() {
@@ -68,6 +82,16 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     const prod = new Production(productor, this, rateo);
     this.producedBy.push(prod);
     productor.produces.push(prod);
+  }
+
+  reloadBonus(teamBonus = false) {
+    this.bonus = new Decimal(0);
+
+    if (teamBonus && this.buyAction) {
+      this.bonus = this.buyAction.quantity.times(this.boughtBonus);
+      if (this.teamAction)
+        this.bonus = this.bonus.times(this.teamAction.quantity.plus(1));
+    }
   }
 
   //#region Save and Restore

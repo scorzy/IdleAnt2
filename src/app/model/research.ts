@@ -20,7 +20,8 @@ export class Research extends Action implements IUnlocable {
   }
   buy(toBuy = new Decimal(1)): boolean {
     if (super.buy(toBuy)) {
-      this.toUnlock.filter(i => !i.unlocked).forEach(u => u.unlock());
+      if (this.toUnlock)
+        this.toUnlock.filter(i => !i.unlocked).forEach(u => u.unlock());
       this.researchs.reloadLists();
       return true;
     } else {
@@ -30,6 +31,7 @@ export class Research extends Action implements IUnlocable {
   unlock() {
     if (!this.unlocked) {
       this.unlocked = true;
+      this.reload();
       return true;
     } else {
       return false;

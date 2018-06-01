@@ -13,6 +13,8 @@ export class Researchs {
   team1: Research;
   team2: Research;
 
+  twin: Research;
+
   constructor(
     public science: FullUnit,
     public researchEmitter: EventEmitter<string>
@@ -33,12 +35,20 @@ export class Researchs {
       this.genPrice(new Decimal(100)),
       this
     );
+    this.twin = new Research(
+      "twin",
+      "Twin",
+      "Twin",
+      this.genPrice(new Decimal(1e3)),
+      this
+    );
     this.team1.unlocked = true;
-    this.researchs = [this.team1, this.team2];
+    this.researchs = [this.team1, this.team2, this.twin];
     this.reloadLists();
   }
   setRelations(): void {
     this.team1.toUnlock = [this.team2];
+    this.team2.toUnlock = [this.twin];
   }
 
   reloadLists() {

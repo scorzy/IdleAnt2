@@ -5,6 +5,10 @@
       <h1>{{unit.name}}</h1>
       <p>{{unit.description}}</p>
 
+      <span *ngIf="ms.game.researchs.team1.done && unit.buyAction">
+        You bought {{unit.buyAction.quantity | format}} times earning a bonus of + {{unit.bonus.times(100) | format}}% production
+      </span>
+
       <span *ngIf="unit.c.abs().gt(0.01)">
         This is groving at:
         <app-polynom [a]="unit.a" [b]="unit.b" [c]="unit.c"></app-polynom>
@@ -23,9 +27,80 @@
         <nouislider [min]="0" [max]="100" [step]="0.01" [(ngModel)]="unit.efficiency"></nouislider>
       </div>
 
-      <app-action *ngFor="let act of unit.actions; trackBy:getActId" [action]="act"></app-action>
+      <app-action *ngIf="unit.buyAction" [action]="unit.buyAction"></app-action>
+      <app-action *ngIf="unit.teamAction && ms.game.researchs.team2.done" [action]="unit.teamAction"></app-action>
+      <app-action *ngIf="unit.twinAction && ms.game.researchs.twin.done" [action]="unit.twinAction"></app-action>
+
     </div>
     <div class="col-xs-12	col-sm-6 col-md-6	col-lg-6 col-xl-6">
+      <div *ngIf="activeProduct?.length > 0">
+        <span>
+          {{unit.name}} produces:
+        </span>
+        <clr-datagrid>
+          <clr-dg-column [clrDgField]="'product.name'">Name</clr-dg-column>
+          <clr-dg-column [clrDgSortBy]="prodSorter">Rateo</clr-dg-column>
+          <clr-dg-column [clrDgSortBy]="totalProdSorter">Total production</clr-dg-column>
+
+          <clr-dg-row *clrDgItems="let product of activeProduct">
+            <clr-dg-cell>
+              <a [routerLink]="'/nav/unit/'+product.product.id">
+                {{product.product.name}}
+              </a>
+            </clr-dg-cell>
+            <clr-dg-cell>
+              <span [class.noEnought]="product.rateo.lt(0)">
+                {{product.prodPerSec | format}}</span>
+            </clr-dg-cell>
+            <clr-dg-cell>
+              <span [class.noEnought]="product.rateo.lt(0)">
+                {{product.prodPerSec.times(unit.quantity) | format}}</span>
+            </clr-dg-cell>
+          </clr-dg-row>
+
+          <clr-dg-footer>
+            <clr-dg-pagination #pagination [clrDgPageSize]="10">
+              {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}}
+            </clr-dg-pagination>
+          </clr-dg-footer>
+
+        </clr-datagrid>
+      </div>
+
+      <div *ngIf="activeProductor?.length > 0">
+        <span>
+          {{unit.name}} is made by:
+        </span>
+        <clr-datagrid>
+          <clr-dg-column [clrDgField]="'productor.name'">Name</clr-dg-column>
+          <clr-dg-column [clrDgSortBy]="prodSorter">Rateo</clr-dg-column>
+          <clr-dg-column [clrDgSortBy]="totalProdSorter">Total production</clr-dg-column>
+
+          <clr-dg-row *clrDgItems="let productor of activeProductor">
+            <clr-dg-cell>
+              <a [routerLink]="'/nav/unit/'+productor.productor.id">
+                {{productor.productor.name}}
+              </a>
+            </clr-dg-cell>
+            <clr-dg-cell>
+              <span [class.noEnought]="productor.rateo.lt(0)">
+                {{productor.prodPerSec | format}}
+              </span>
+            </clr-dg-cell>
+            <clr-dg-cell>
+              <span [class.noEnought]="productor.rateo.lt(0)">
+                {{productor.prodPerSec.times(unit.quantity) | format}}</span>
+            </clr-dg-cell>
+          </clr-dg-row>
+
+          <clr-dg-footer>
+            <clr-dg-pagination #pagination [clrDgPageSize]="10">
+              {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}}
+            </clr-dg-pagination>
+          </clr-dg-footer>
+
+        </clr-datagrid>
+      </div>
 
     </div>
   </div>

@@ -12,28 +12,20 @@ export class FormatPipe implements PipeTransform {
 
     return this.options.usaFormat
       ? value.abs().lessThan(10)
-        ? value
-            .toNumber()
-            .toFixed(2)
-            .replace(/\.0+$/, "")
+        ? value.toNumber().toFixed(2)
         : value.abs().lessThan(100)
-          ? value
-              .toNumber()
-              .toFixed(1)
-              .replace(/\.0+$/, "")
+          ? value.toNumber().toFixed(1)
           : (value.greaterThanOrEqualTo(0) ? "" : "-") +
             this.options.formatter.formatShort(value.abs())
       : value.abs().lessThan(10)
         ? value
             .toNumber()
             .toFixed(2)
-            .replace(/\.0+$/, "")
             .replace(".", ",")
         : value.abs().lessThan(100)
           ? value
               .toNumber()
               .toFixed(1)
-              .replace(/\.0+$/, "")
               .replace(".", ",")
           : (value.greaterThanOrEqualTo(0) ? "" : "-") +
             this.options.formatter.formatShort(value.abs()).replace(".", ",");

@@ -2,8 +2,10 @@ import { FullUnit } from "./full-unit";
 
 export class Production {
   prodPerSec = new Decimal(1);
+  boughtBonus = new Decimal(0);
+
   constructor(
-    public prductor: FullUnit,
+    public productor: FullUnit,
     public product: FullUnit,
     public rateo = new Decimal(1)
   ) {
@@ -12,12 +14,9 @@ export class Production {
 
   reloadProdPerSec(teamBonus = false) {
     this.prodPerSec = new Decimal(this.rateo);
-    if (teamBonus && this.prductor.buyAction) {
-      const boughtBonus = this.prductor.buyAction.quantity.times(
-        this.prductor.boughtBonus
-      );
-      this.prodPerSec = this.prodPerSec.times(boughtBonus.plus(1));
+    if (teamBonus && this.productor.buyAction) {
+      this.prodPerSec = this.prodPerSec.times(this.productor.bonus.plus(1));
     }
-    this.prodPerSec = this.prodPerSec.times(this.prductor.efficiency / 100);
+    this.prodPerSec = this.prodPerSec.times(this.productor.efficiency / 100);
   }
 }

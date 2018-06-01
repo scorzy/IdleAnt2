@@ -24,12 +24,17 @@ export class Price {
     this.canBuy = this.maxBuy.gte(1);
   }
   buy(toBuy: Decimal, start: Decimal) {
-    const price = Decimal.sumGeometricSeries(
-      toBuy,
-      this.price,
-      this.growRate,
-      start
-    );
+    let price: Decimal;
+    if (this.growRate === 1) {
+      price = toBuy.times(this.price);
+    } else {
+      price = Decimal.sumGeometricSeries(
+        toBuy,
+        this.price,
+        this.growRate,
+        start
+      );
+    }
     this.base.quantity = this.base.quantity.minus(price);
   }
 }

@@ -1,3 +1,6 @@
+import { ClrDatagridComparatorInterface } from "@clr/angular";
+import { Production } from "./production";
+
 export class Utility {
   /**
    * Cube root function
@@ -170,5 +173,22 @@ export class Utility {
     }
 
     return roots;
+  }
+}
+
+// tslint:disable-next-line:max-classes-per-file
+export class ProductionSorter
+  implements ClrDatagridComparatorInterface<Production> {
+  compare(a: Production, b: Production) {
+    return a.prodPerSec.cmp(b.prodPerSec);
+  }
+}
+// tslint:disable-next-line:max-classes-per-file
+export class TotalProductionSorter
+  implements ClrDatagridComparatorInterface<Production> {
+  compare(a: Production, b: Production) {
+    return a.prodPerSec
+      .times(a.productor.quantity)
+      .cmp(b.prodPerSec.times(b.productor.quantity));
   }
 }

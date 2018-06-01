@@ -1,4 +1,4 @@
-$padding: 0.4rem;
+$padding: 0.35rem;
 :host /deep/ .content-container .content-area {
   padding: $padding $padding $padding $padding;
 }
@@ -14,9 +14,12 @@ $padding: 0.4rem;
 }
 
 :host /deep/ nouislider {
-  margin-top: 0.4rem;
-  margin-bottom: 0.4rem;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
 }
 :host /deep/ .noEnought {
   color: #c92100;
+}
+:host /deep/ .card {
+  margin-top: 0.4rem;
 }
