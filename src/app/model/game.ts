@@ -8,6 +8,7 @@ import { Utility } from "./utility";
 import { Workers } from "./units/workers";
 import { Tab } from "./tab";
 import { Tabs } from "./tabs";
+import { Researchs } from "./units/researchs";
 
 export class Game {
   units = new Array<BaseUnit>();
@@ -22,6 +23,8 @@ export class Game {
   //#region UnitGroups
   materials: Materials;
   workers: Workers;
+
+  researchs: Researchs;
   //#endregion
 
   constructor() {
@@ -45,6 +48,10 @@ export class Game {
       .forEach(l => l.forEach(u => this.units.push(u)));
     this.check();
     this.materials.food.quantity = new Decimal(1e4);
+
+    this.researchs = new Researchs(this.materials.science);
+    this.researchs.declareStuff();
+    this.researchs.setRelations();
   }
   check() {
     this.unlockedUnits = [];

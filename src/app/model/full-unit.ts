@@ -75,11 +75,11 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     const save: any = {
       i: this.id,
       q: this.quantity,
-      u: this.unlocked,
-      e: this.efficiency,
-      n: this.isNew
+      u: this.unlocked
     };
     if (this.actions) save.a = this.actions.map(a => a.getSave());
+    if (this.efficiency < 100) save.e = this.efficiency;
+    if (this.isNew) save.n = true;
     return save;
   }
   public restore(data: any): boolean {

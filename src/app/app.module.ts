@@ -21,6 +21,7 @@ import { NouisliderModule } from "ng2-nouislider";
 import { FormsModule } from "@angular/forms";
 import { OptionsNavComponent } from "./options-nav/options-nav.component";
 import { SaveComponent } from "./save/save.component";
+import { LaboratoryComponent } from './laboratory/laboratory.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SaveComponent } from "./save/save.component";
     PriceLineComponent,
     PolynomComponent,
     OptionsNavComponent,
-    SaveComponent
+    SaveComponent,
+    LaboratoryComponent
   ],
   imports: [
     BrowserAnimationsModule,
