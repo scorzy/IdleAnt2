@@ -10,6 +10,14 @@
         <app-polynom [a]="unit.a" [b]="unit.b" [c]="unit.c"></app-polynom>
       </span>
 
+      <clr-alert *ngIf="unit.isEnding" [clrAlertType]="'alert-warning'" [clrAlertClosable]="false" [clrAlertSizeSmall]="true">
+        <div clr-alert-item class="alert-item">
+          <span class="alert-text">
+            End in {{unit.endIn | endIn}}
+          </span>
+        </div>
+      </clr-alert>
+
       <div *ngIf="unit.produces.length > 0">
         <span>Unit operativity: {{unit.efficiency | format}} %</span>
         <nouislider [min]="0" [max]="100" [step]="0.01" [(ngModel)]="unit.efficiency"></nouislider>

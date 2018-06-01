@@ -77,13 +77,8 @@ export class MainService {
         );
         return false;
       }
-      // this.model = null;
-      // this.model = new Model(
-      //   this.toastr,
-      //   this.achievementsEmitter,
-      //   this.buyNodeEmitter,
-      //   this.prestigeEmitter
-      // );
+      this.game = null;
+      this.game = new Game(this.updateEmitter, this.researchEmitter);
       if (!!data.o) this.options.restore(data.o);
       // this.setTheme();
       this.last = data.time;

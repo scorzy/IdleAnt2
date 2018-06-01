@@ -78,7 +78,7 @@ export class Game {
     let unitZero: FullUnit = null;
 
     this.unlockedUnits.forEach(u => {
-      u.produces.forEach(p => p.reloadProdPerSec());
+      u.produces.forEach(p => p.reloadProdPerSec(this.researchs.team1.done));
       u.isEnding = false;
     });
 

@@ -11,3 +11,6 @@
 .fullWidth {
   width: 100% !important;
 }
+:host /deep/ .clr-treenode-children {
+  margin-left: 0.3rem;
+}

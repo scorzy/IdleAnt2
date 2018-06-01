@@ -24,6 +24,7 @@ import { MainService } from "../main.service";
 })
 export class UnitComponent implements OnInit, OnDestroy {
   paramsSub: any;
+  sub: any;
   unit: FullUnit;
 
   constructor(
@@ -34,9 +35,11 @@ export class UnitComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.paramsSub = this.route.params.subscribe(this.getUnit.bind(this));
+    this.sub = this.ms.updateEmitter.subscribe(m => this.cd.markForCheck());
   }
   ngOnDestroy() {
     this.paramsSub.unsubscribe();
+    this.sub.unsubscribe();
   }
   getUnit(params: any) {
     let id = params.id;
@@ -46,6 +49,7 @@ export class UnitComponent implements OnInit, OnDestroy {
     const b = this.ms.game.units.find(u => u.id === id);
     if (b instanceof FullUnit) this.unit = b;
     this.unit.isNew = false;
+    this.cd.markForCheck();
   }
   getActId(index, action: Action) {
     return action.id;

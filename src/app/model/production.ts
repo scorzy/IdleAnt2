@@ -10,9 +10,9 @@ export class Production {
     this.reloadProdPerSec();
   }
 
-  reloadProdPerSec() {
+  reloadProdPerSec(teamBonus = false) {
     this.prodPerSec = new Decimal(this.rateo);
-    if (this.prductor.buyAction) {
+    if (teamBonus && this.prductor.buyAction) {
       const boughtBonus = this.prductor.buyAction.quantity.times(
         this.prductor.boughtBonus
       );

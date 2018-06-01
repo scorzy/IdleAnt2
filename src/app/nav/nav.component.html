@@ -1,28 +1,26 @@
 <router-outlet></router-outlet>
-<nav class="sidenav" [clr-nav-level]="2">
-  <section class="sidenav-content">
+<clr-vertical-nav [clrVerticalNavCollapsible]="false" [clr-nav-level]="2">
 
-    <clr-tree-node *ngFor="let unitGroup of ms.game.unlockedGroups; trackBy:getListId">
+  <clr-tree-node *ngFor="let unitGroup of ms.game.unlockedGroups; trackBy:getListId">
 
-      <span class="font-weight-bold">
-        <clr-icon class="alert-icon is-error" shape="exclamation-triangle" *ngIf="unitGroup.isEnding"></clr-icon>
-        {{unitGroup.name}}
-      </span>
+    <span class="font-weight-bold">
+      <clr-icon class="alert-icon is-error" shape="exclamation-triangle" *ngIf="unitGroup.isEnding"></clr-icon>
+      {{unitGroup.name}}
+    </span>
 
-      <ng-template [(clrIfExpanded)]="unitGroup.isExpanded">
+    <ng-template [(clrIfExpanded)]="unitGroup.isExpanded">
 
-        <div class="unit-group">
-          <clr-tree-node *ngFor="let g of unitGroup.unlocked; trackBy:getUnitId">
+      <div class="unit-group">
+        <clr-tree-node *ngFor="let g of unitGroup.unlocked; trackBy:getUnitId">
 
-            <app-unit-line [unit]="g" [isStopped]="g.isStopped()" [isEnding]="g.isEnding" [id]="g.id" [name]="g.name" [quantity]="g.quantity"
-              [perSec]="g.c" [isNew]="g.isNew"></app-unit-line>
+          <app-unit-line [unit]="g" [isStopped]="g.isStopped()" [isEnding]="g.isEnding" [id]="g.id" [name]="g.name" [quantity]="g.quantity"
+            [perSec]="g.c" [isNew]="g.isNew"></app-unit-line>
 
-          </clr-tree-node>
-        </div>
+        </clr-tree-node>
+      </div>
 
-      </ng-template>
+    </ng-template>
 
-    </clr-tree-node>
+  </clr-tree-node>
 
-  </section>
-</nav>
+</clr-vertical-nav>
