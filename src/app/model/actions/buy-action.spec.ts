@@ -5,6 +5,9 @@ import { Action } from "../action";
 import { TwinAction } from "./twin-action";
 
 describe("BuyAction", () => {
+  const twinRes = jasmine.createSpyObj("Research", ["unlocked"]);
+  twinRes.unlocked = true;
+
   it("should create an instance", () => {
     expect(new BuyAction([], null)).toBeTruthy();
   });
@@ -26,7 +29,7 @@ describe("BuyAction", () => {
   });
   it("twin", () => {
     const unit = new FullUnit("id2", "name2", "desc2", new Decimal(0));
-    unit.twinAction = new TwinAction([], unit);
+    unit.twinAction = new TwinAction([], unit, twinRes);
     unit.twinAction.quantity = new Decimal(10);
     const buyAction = new BuyAction([], unit);
     buyAction.buy(new Decimal(10));

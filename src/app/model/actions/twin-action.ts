@@ -2,13 +2,18 @@ import { Action } from "../action";
 import { Price } from "../price";
 import { FullUnit } from "../full-unit";
 import { BuyAction } from "./buy-action";
+import { Research } from "../research";
 
 export class TwinAction extends Action {
-  constructor(prices: Price[], private unit: FullUnit) {
+  constructor(
+    prices: Price[],
+    private unit: FullUnit,
+    public twinRes: Research
+  ) {
     super(
       "twin",
       "Twin",
-      "Hatch more " + unit.name + " for the same price (retroactive)",
+      "Hatch more " + unit.name + " for the same price",
       prices
     );
   }
@@ -24,6 +29,14 @@ export class TwinAction extends Action {
       return true;
     } else {
       return false;
+    }
+  }
+  public reload() {
+    if (this.twinRes.done) {
+      super.reload();
+    } else {
+      this.canBuy = false;
+      // this.maxBuy = new Decimal(0);
     }
   }
 }

@@ -41,8 +41,14 @@ export class Workers extends UnitGroup {
 
     this.list.forEach(u => {
       if (u instanceof FullUnit) {
-        u.generateTeamAction(this.game.genTeamPrice(new Decimal(500)));
-        u.generateTwinAction(this.game.genTwinPrice(new Decimal(1e3)));
+        u.generateTeamAction(
+          this.game.genTeamPrice(new Decimal(500)),
+          this.game.researchs.team2
+        );
+        u.generateTwinAction(
+          this.game.genTwinPrice(new Decimal(1e3)),
+          this.game.researchs.twin
+        );
       }
     });
   }

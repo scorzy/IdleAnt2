@@ -14,7 +14,7 @@
         <clr-tree-node *ngFor="let g of unitGroup.unlocked; trackBy:getUnitId">
 
           <app-unit-line [unit]="g" [isStopped]="g.isStopped()" [isEnding]="g.isEnding" [id]="g.id" [name]="g.name" [quantity]="g.quantity"
-            [perSec]="g.c" [isNew]="g.isNew"></app-unit-line>
+            [perSec]="g.c" [isNew]="g.isNew" [team]="g.teamAction?.canBuy" [twin]="g.twinAction?.canBuy"></app-unit-line>
 
         </clr-tree-node>
       </div>

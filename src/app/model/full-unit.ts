@@ -8,6 +8,8 @@ import { UnitGroup } from "./unit-group";
 import { UnlockAction } from "./unlock-action";
 import { ThrowStmt } from "@angular/compiler";
 import { TwinAction } from "./actions/twin-action";
+import { Research } from "./research";
+import { TeamAction } from "./actions/team-action";
 
 export class FullUnit extends BaseUnit implements IUnlocable {
   unlocked = false;
@@ -47,17 +49,12 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     this.buyAction = new BuyAction(prices, this, toUnlock);
     this.actions.push(this.buyAction);
   }
-  generateTeamAction(price: Price[]) {
-    this.teamAction = new Action(
-      "team",
-      "Teamwork",
-      "Get a better teamwork bonus",
-      price
-    );
+  generateTeamAction(price: Price[], teamRes: Research) {
+    this.teamAction = new TeamAction(price, this, teamRes);
     this.actions.push(this.teamAction);
   }
-  generateTwinAction(price: Price[]) {
-    this.twinAction = new TwinAction(price, this);
+  generateTwinAction(price: Price[], twinRes: Research) {
+    this.twinAction = new TwinAction(price, this, twinRes);
     this.actions.push(this.twinAction);
   }
 

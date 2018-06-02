@@ -24,6 +24,8 @@ export class UnitLineComponent implements OnInit {
   @Input() isEnding: boolean;
   @Input() isStopped: boolean;
   @Input() unit: FullUnit;
+  @Input() team: boolean;
+  @Input() twin: boolean;
 
   constructor() {
     //Nothing

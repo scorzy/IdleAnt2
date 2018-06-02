@@ -1,8 +1,10 @@
 <a [routerLink]="['./unit/'+id]" class="clr-treenode-link" routerLinkActive="active">
   <span class="resName">
-    <!-- <clr-icon class="is-info" shape="angle-double" *ngIf="g.showUp"></clr-icon>  -->
 
-    <clr-icon class="is-warning is-solid" shape="pause" *ngIf="isStopped" (click)="unit.efficiency = 100"></clr-icon>
+    <clr-icon class="is-info" shape="angle" *ngIf="team" (click)="unit.teamAction.buy()"></clr-icon>
+    <clr-icon class="is-info" shape="angle-double" *ngIf="twin" (click)="unit.twinAction.buy()"></clr-icon>
+
+    <clr-icon class="is-warning" shape="pause" *ngIf="isStopped" (click)="unit.efficiency = 100"></clr-icon>
     <clr-icon class="alert-icon is-error" shape="exclamation-triangle" *ngIf="isEnding"></clr-icon>
     <clr-icon shape="info-standard" class="is-info" *ngIf="isNew"></clr-icon>
     {{name}}
