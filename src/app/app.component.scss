@@ -26,3 +26,6 @@ $padding: 0.35rem;
 :host /deep/ h6 {
   margin-top: 0.6rem;
 }
+app-material-nav {
+  min-height: fit-content;
+}

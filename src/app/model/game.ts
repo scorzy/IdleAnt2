@@ -51,7 +51,7 @@ export class Game {
     this.researchs.setRelations();
 
     // this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
-    // this.workers.list.forEach(u => (u.unlocked = true));
+    this.materials.list.forEach(u => (u.unlocked = true));
 
     this.unitGroups.forEach(g => g.check(true));
     this.unitGroups

@@ -24,6 +24,7 @@ import { SaveComponent } from "./save/save.component";
 import { LaboratoryComponent } from "./laboratory/laboratory.component";
 import { EndInPipe } from './end-in.pipe';
 import { ResearchComponent } from './research/research.component';
+import { MaterialNavComponent } from './material-nav/material-nav.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ResearchComponent } from './research/research.component';
     SaveComponent,
     LaboratoryComponent,
     EndInPipe,
-    ResearchComponent
+    ResearchComponent,
+    MaterialNavComponent
   ],
   imports: [
     BrowserAnimationsModule,

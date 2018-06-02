@@ -3,8 +3,8 @@ import { Game } from "./game";
 import { BaseUnit } from "./baseUnit";
 
 export abstract class UnitGroup {
-  list: BaseUnit[] = new Array<BaseUnit>();
-  unlocked: BaseUnit[] = new Array<BaseUnit>();
+  list: FullUnit[] = new Array<FullUnit>();
+  unlocked: FullUnit[] = new Array<FullUnit>();
 
   isEnding = false;
   isExpanded = true;
@@ -16,7 +16,7 @@ export abstract class UnitGroup {
     if (!noGame) this.game.check();
   }
 
-  addUnits(units: BaseUnit[]) {
+  addUnits(units: FullUnit[]) {
     units.forEach(u => (u.unitGroup = this));
     this.list = units;
   }

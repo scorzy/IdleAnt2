@@ -1,0 +1,22 @@
+<ul class="nav navMat" role="tablist">
+  <li class="nav-item" class="matTab" *ngFor="let g of ms.game.materials.unlocked ; trackBy:getUnitId">
+
+    <a [routerLink]="['/nav/unit/'+g.id]" class="nav-link matLink" routerLinkActive="active" [ngClass]="{'red': g.isEnding}">
+
+      <span>
+        <clr-icon class="is-error" shape="exclamation-triangle" *ngIf="g.isEnding"></clr-icon>
+        <span class="first small">{{g.name}}</span>
+      </span>
+      <br/>
+
+      <span class=" monospace">{{g.quantity | format}}</span>
+
+      <span class="perSecTab  monospace">
+        <span *ngIf="g.c.abs().gt(0.001)">
+          {{g.c | format}}/s
+        </span>
+      </span>
+
+    </a>
+  </li>
+</ul>
