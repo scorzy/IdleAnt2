@@ -1,6 +1,7 @@
 import { Action } from "./action";
 import { BaseUnit } from "./baseUnit";
 import { Price } from "./price";
+import { FullUnit } from "./full-unit";
 
 describe("Action", () => {
   it("should create an instance", () => {
@@ -40,9 +41,9 @@ describe("Action", () => {
   });
   describe("Reload 1", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("u1", "name", "desc");
-    const unit2 = new BaseUnit("u2", "name", "desc");
-    const unit3 = new BaseUnit("u3", "name", "desc");
+    const unit1 = new FullUnit("u1", "name", "desc");
+    const unit2 = new FullUnit("u2", "name", "desc");
+    const unit3 = new FullUnit("u3", "name", "desc");
 
     action.prices = [
       new Price(unit1, new Decimal(10), 1.1),
@@ -54,15 +55,6 @@ describe("Action", () => {
     unit3.quantity = new Decimal(0);
     action.reload();
 
-    // it("u1 not buyable", () => {
-    //   expect(action.prices[0].canBuy).toBeFalsy();
-    // });
-    // it("u2 not buyable", () => {
-    //   expect(action.prices[1].canBuy).toBeFalsy();
-    // });
-    // it("u3 not buyable", () => {
-    //   expect(action.prices[2].canBuy).toBeFalsy();
-    // });
     it("not buyable", () => {
       expect(action.canBuy).toBeFalsy();
     });
@@ -75,9 +67,9 @@ describe("Action", () => {
   });
   describe("Reload 2", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("a1", "name", "desc");
-    const unit2 = new BaseUnit("a2", "name", "desc");
-    const unit3 = new BaseUnit("a3", "name", "desc");
+    const unit1 = new FullUnit("a1", "name", "desc");
+    const unit2 = new FullUnit("a2", "name", "desc");
+    const unit3 = new FullUnit("a3", "name", "desc");
 
     action.prices = [
       new Price(unit1, new Decimal(10), 1.1),
@@ -98,9 +90,9 @@ describe("Action", () => {
   });
   describe("Reload 3", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("u1", "", "");
-    const unit2 = new BaseUnit("u2", "", "");
-    const unit3 = new BaseUnit("u3", "", "");
+    const unit1 = new FullUnit("u1", "", "");
+    const unit2 = new FullUnit("u2", "", "");
+    const unit3 = new FullUnit("u3", "", "");
 
     action.prices = [
       new Price(unit1, new Decimal(10), 1.1),
@@ -112,15 +104,6 @@ describe("Action", () => {
     unit2.quantity = new Decimal(350);
     unit3.quantity = new Decimal(1e10);
     action.reload();
-    // it("u1 buyable", () => {
-    //   expect(action.prices[0].canBuy).toBeTruthy();
-    // });
-    // it("u2 buyable", () => {
-    //   expect(action.prices[1].canBuy).toBeTruthy();
-    // });
-    // it("u3 buyable", () => {
-    //   expect(action.prices[2].canBuy).toBeTruthy();
-    // });
 
     it("buyable", () => {
       expect(action.canBuy).toBeTruthy();
@@ -131,9 +114,9 @@ describe("Action", () => {
   });
   describe("Reload limited", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("l1", "", "");
-    const unit2 = new BaseUnit("l2", "", "");
-    const unit3 = new BaseUnit("l3", "", "");
+    const unit1 = new FullUnit("l1", "", "");
+    const unit2 = new FullUnit("l2", "", "");
+    const unit3 = new FullUnit("l3", "", "");
 
     action.prices = [
       new Price(unit1, new Decimal(10), 1.1),
@@ -147,15 +130,6 @@ describe("Action", () => {
     unit3.quantity = new Decimal(1e500);
     action.limit = new Decimal(10);
     action.reload();
-    // it("u1 buyable", () => {
-    //   expect(action.prices[0].canBuy).toBeTruthy();
-    // });
-    // it("u2 buyable", () => {
-    //   expect(action.prices[1].canBuy).toBeTruthy();
-    // });
-    // it("u3 buyable", () => {
-    //   expect(action.prices[2].canBuy).toBeTruthy();
-    // });
 
     it("buyable", () => {
       expect(action.canBuy).toBeTruthy();
@@ -166,9 +140,9 @@ describe("Action", () => {
   });
   describe("Reload limited 2", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("l21", "", "");
-    const unit2 = new BaseUnit("l22", "", "");
-    const unit3 = new BaseUnit("l23", "", "");
+    const unit1 = new FullUnit("l21", "", "");
+    const unit2 = new FullUnit("l22", "", "");
+    const unit3 = new FullUnit("l23", "", "");
 
     action.prices = [
       new Price(unit1, new Decimal(10), 1.1),
@@ -183,15 +157,6 @@ describe("Action", () => {
     action.limit = new Decimal(10);
     action.quantity = new Decimal(3);
     action.reload();
-    // it("u1 buyable", () => {
-    //   expect(action.prices[0].canBuy).toBeTruthy();
-    // });
-    // it("u2 buyable", () => {
-    //   expect(action.prices[1].canBuy).toBeTruthy();
-    // });
-    // it("u3 buyable", () => {
-    //   expect(action.prices[2].canBuy).toBeTruthy();
-    // });
 
     it("buyable", () => {
       expect(action.canBuy).toBeTruthy();
@@ -202,9 +167,9 @@ describe("Action", () => {
   });
   describe("Reload limited 3", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("u31", "", "");
-    const unit2 = new BaseUnit("u32", "", "");
-    const unit3 = new BaseUnit("u33", "", "");
+    const unit1 = new FullUnit("u31", "", "");
+    const unit2 = new FullUnit("u32", "", "");
+    const unit3 = new FullUnit("u33", "", "");
 
     action.prices = [
       new Price(unit1, new Decimal(10), 1.1),
@@ -219,15 +184,6 @@ describe("Action", () => {
     action.limit = new Decimal(10);
     action.quantity = new Decimal(9);
     action.reload();
-    // it("u1 buyable", () => {
-    //   expect(action.prices[0].canBuy).toBeTruthy();
-    // });
-    // it("u2 buyable", () => {
-    //   expect(action.prices[1].canBuy).toBeTruthy();
-    // });
-    // it("u3 buyable", () => {
-    //   expect(action.prices[2].canBuy).toBeTruthy();
-    // });
 
     it("buyable", () => {
       expect(action.canBuy).toBeTruthy();
@@ -238,9 +194,9 @@ describe("Action", () => {
   });
   describe("Reload limited 4", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("u41", "", "");
-    const unit2 = new BaseUnit("u42", "", "");
-    const unit3 = new BaseUnit("u43", "", "");
+    const unit1 = new FullUnit("u41", "", "");
+    const unit2 = new FullUnit("u42", "", "");
+    const unit3 = new FullUnit("u43", "", "");
 
     action.prices = [
       new Price(unit1, new Decimal(10), 1.1),
@@ -255,15 +211,6 @@ describe("Action", () => {
     action.limit = new Decimal(10);
     action.quantity = new Decimal(10);
     action.reload();
-    // it("u1 buyable", () => {
-    //   expect(action.prices[0].canBuy).toBeTruthy();
-    // });
-    // it("u2 buyable", () => {
-    //   expect(action.prices[1].canBuy).toBeTruthy();
-    // });
-    // it("u3 buyable", () => {
-    //   expect(action.prices[2].canBuy).toBeTruthy();
-    // });
 
     it("buyable", () => {
       expect(action.canBuy).toBeFalsy();
@@ -274,9 +221,9 @@ describe("Action", () => {
   });
   describe("Buy 1", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("b1", "", "");
-    const unit2 = new BaseUnit("b2", "", "");
-    const unit3 = new BaseUnit("b3", "", "");
+    const unit1 = new FullUnit("b1", "", "");
+    const unit2 = new FullUnit("b2", "", "");
+    const unit3 = new FullUnit("b3", "", "");
 
     action.prices = [
       new Price(unit1, new Decimal(10), 1.1),
@@ -315,9 +262,9 @@ describe("Action", () => {
   });
   describe("Buy 2", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("b21", "", "");
-    const unit2 = new BaseUnit("b22", "", "");
-    const unit3 = new BaseUnit("b23", "", "");
+    const unit1 = new FullUnit("b21", "", "");
+    const unit2 = new FullUnit("b22", "", "");
+    const unit3 = new FullUnit("b23", "", "");
 
     action.prices = [
       new Price(unit1, new Decimal(10), 1.1),
@@ -346,7 +293,7 @@ describe("Action", () => {
   });
   describe("Buy limited", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("bl1", "", "");
+    const unit1 = new FullUnit("bl1", "", "");
 
     action.prices = [new Price(unit1, new Decimal(10), 1.1)];
     action.isLimited = true;
@@ -370,7 +317,7 @@ describe("Action", () => {
   });
   describe("Buy last", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("ul1", "", "");
+    const unit1 = new FullUnit("ul1", "", "");
 
     action.prices = [new Price(unit1, new Decimal(10), 1.1)];
     action.isLimited = true;
@@ -398,7 +345,7 @@ describe("Action", () => {
   });
   describe("Buy all exepct one", () => {
     const action = new Action("id", "name", "desc");
-    const unit1 = new BaseUnit("qwe", "", "");
+    const unit1 = new FullUnit("qwe", "", "");
 
     action.prices = [new Price(unit1, new Decimal(10), 1.1)];
     action.isLimited = true;

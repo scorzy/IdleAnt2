@@ -5,9 +5,12 @@
     <label for="t1">Show research done</label>
   </div>
   <span>
-    Science: {{ms.game.materials.science.quantity | format}} - {{ms.game.materials.science.c | format}} /s
+    Science:
+    <span class="monospace">
+      {{ms.game.materials.science.quantity | format}} - {{ms.game.materials.science.c | format}} /s
+    </span>
   </span>
   <div class="card-columns card-columns-3">
-    <app-action [action]="res" *ngFor="let res of resList ;trackBy:getRestId"></app-action>
+    <app-research [research]="res" *ngFor="let res of resList ;trackBy:getRestId"></app-research>
   </div>
 </div>

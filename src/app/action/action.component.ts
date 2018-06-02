@@ -26,11 +26,9 @@ export class ActionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.action.reloadUserPrices();
-    this.cd.markForCheck();
-
     this.sub = this.ms.updateEmitter.subscribe(m => {
       this.action.reloadUserPrices();
+      this.action.reloadAvaiableTime();
       this.cd.markForCheck();
     });
   }

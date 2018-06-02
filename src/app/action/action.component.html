@@ -7,16 +7,17 @@
     <br/>
   </span>
   <div *ngIf="!action.complete">
-    <input type="text" id="userNum" [(ngModel)]="action.userNum" (change)="action.reloadUserPrices()" type="number" placeholder="1"
-      step="1" min="1" size="3">
+    <input *ngIf="!action.isLimited || action.limit.gte(2); else one" id="userNum" [(ngModel)]="action.userNum" (change)="action.reloadUserPrices()"
+      type="number" placeholder="1" step="1" min="1" size="3">
+    <ng-template #one>1</ng-template>
     <span> will cost: </span>
     <app-price-line *ngFor="let price of action.prices; trackBy:getPriceId" [name]="price.base.name" [canBuy]="price.userCanBuy"
       [price]="price.priceUser"></app-price-line>
   </div>
 </div>
 <div *ngIf="!action.complete" class="btn-group">
-  <button *ngIf="!action.canBuy" class="btn btn-sm" disabled>
-    Can't buy
+  <button *ngIf="!action.canBuy" class="btn btn-sm w-100" disabled>
+    Can't buy. Avaiable in {{action.avaiableIn | endIn}}
   </button>
   <button *ngIf="action.canBuy" class="btn btn-sm" (click)="action.buy(action.realNum)">
     Get {{action.realNum | format: true}}

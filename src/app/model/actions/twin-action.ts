@@ -8,7 +8,7 @@ export class TwinAction extends Action {
     super(
       "twin",
       "Twin",
-      "Hatch more " + unit.name + " for the same price. Twin is retroactive.",
+      "Hatch more " + unit.name + " for the same price (retroactive)",
       prices
     );
   }

@@ -1,20 +1,21 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ActionComponent } from "./action.component";
-import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { ResearchComponent } from "./research.component";
+import { CUSTOM_ELEMENTS_SCHEMA, EventEmitter } from "@angular/core";
 import { ClarityModule } from "@clr/angular";
+import { ToastrModule } from "ngx-toastr";
 import { RouterTestingModule } from "@angular/router/testing";
+import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormatPipe } from "../format.pipe";
-import { BuyAction } from "../model/actions/buy-action";
-import { FullUnit } from "../model/full-unit";
-import { ToastrModule } from "ngx-toastr";
-import { FormsModule } from "@angular/forms";
 import { EndInPipe } from "../end-in.pipe";
+import { Research } from "../model/research";
+import { Researchs } from "../model/units/researchs";
+import { FullUnit } from "../model/full-unit";
 
-describe("ActionComponent", () => {
-  let component: ActionComponent;
-  let fixture: ComponentFixture<ActionComponent>;
+describe("ResearchComponent", () => {
+  let component: ResearchComponent;
+  let fixture: ComponentFixture<ResearchComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -26,14 +27,20 @@ describe("ActionComponent", () => {
         FormsModule,
         BrowserAnimationsModule
       ],
-      declarations: [ActionComponent, FormatPipe, EndInPipe]
+      declarations: [ResearchComponent, FormatPipe, EndInPipe]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ActionComponent);
+    fixture = TestBed.createComponent(ResearchComponent);
     component = fixture.componentInstance;
-    component.action = new BuyAction([], new FullUnit("id", "name", "desc"));
+    component.research = new Research(
+      "",
+      "name",
+      "desc",
+      [],
+      new Researchs(new FullUnit("", "", ""), new EventEmitter<string>())
+    );
     fixture.detectChanges();
   });
 

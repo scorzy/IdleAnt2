@@ -1,0 +1,23 @@
+<div class="card-block">
+  <div class="card-title">
+    {{research.name}}
+  </div>
+  <div class="card-text p">
+    {{research.description}}
+    <br/>
+    <div *ngIf="!research.complete">
+      <span>Cost: </span>
+      <app-price-line *ngFor="let price of research.prices; trackBy:getPriceId" [name]="price.base.name" [canBuy]="price.canBuy"
+        [price]="price.price">
+      </app-price-line>
+    </div>
+  </div>
+</div>
+<div class="card-footer" *ngIf="!research.complete">
+  <button *ngIf="!research.canBuy" class="btn btn-sm btn-link" disabled>
+    Can't buy. Avaiable in {{research.avaiableIn | endIn}}
+  </button>
+  <button *ngIf="research.canBuy" class="btn btn-sm btn-link" (click)="research.buy(research.realNum)">
+    Research
+  </button>
+</div>

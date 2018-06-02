@@ -20,6 +20,10 @@ export class LaboratoryComponent implements OnInit {
   ngOnInit() {
     this.changeList();
     this.sub = this.ms.researchEmitter.subscribe(m => this.changeList());
+    this.ms.game.researchs.toDo.forEach(r => {
+      r.reloadUserPrices();
+      r.reloadAvaiableTime();
+    });
   }
   ngOnDestroy() {
     this.sub.unsubscribe();

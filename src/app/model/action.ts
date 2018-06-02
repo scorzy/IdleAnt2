@@ -11,8 +11,10 @@ export class Action extends BaseUnit {
   public canBuy = false;
   public maxBuy = new Decimal(0);
 
-  public userNum: number;
+  public userNum = 1;
   public realNum = new Decimal(1);
+
+  public avaiableIn = NaN;
 
   constructor(
     id: string,
@@ -61,7 +63,19 @@ export class Action extends BaseUnit {
       p.loadPriceUser(new Decimal(this.realNum), this.quantity)
     );
   }
+  public reloadAvaiableTime() {
+    if (this.prices.findIndex(p => p.base.isEnding) > -1) {
+      this.avaiableIn = NaN;
+    } else {
+      this.avaiableIn =
+        this.prices
+          .map(p => p.getTime())
+          .reduce((p, c) => p.max(c), new Decimal(0))
+          .toNumber() * 1000;
+    }
+  }
 
+  //#region Save and Load
   public getSave(): any {
     const save = super.getSave();
     save.d = this.done;
@@ -79,4 +93,5 @@ export class Action extends BaseUnit {
       return false;
     }
   }
+  //#endregion
 }

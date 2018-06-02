@@ -1,14 +1,15 @@
 import { BaseUnit } from "./baseUnit";
 import { Price } from "./price";
+import { FullUnit } from "./full-unit";
 
 describe("Price", () => {
   it("should create an instance", () => {
-    const base = new BaseUnit("id", "base", "desc");
+    const base = new FullUnit("id", "base", "desc");
     expect(new Price(base, new Decimal(1))).toBeTruthy();
   });
 
   describe("reload cannot buy", () => {
-    const base = new BaseUnit("id", "base", "desc");
+    const base = new FullUnit("id", "base", "desc");
     const price = new Price(base, new Decimal(10), 1.1);
     price.reload(new Decimal(0));
 
@@ -21,7 +22,7 @@ describe("Price", () => {
   });
 
   describe("reload cannot buy 2", () => {
-    const unit1 = new BaseUnit("u1", "name", "desc");
+    const unit1 = new FullUnit("u1", "name", "desc");
     unit1.quantity = new Decimal(0);
     const price = new Price(unit1, new Decimal(10), 1.1);
     price.reload(new Decimal(0));
@@ -35,7 +36,7 @@ describe("Price", () => {
   });
 
   describe("reload can buy", () => {
-    const base = new BaseUnit("id", "base", "desc");
+    const base = new FullUnit("id", "base", "desc");
     base.quantity = new Decimal(15);
     const price = new Price(base, new Decimal(10), 1.1);
     price.reload(new Decimal(1));
@@ -49,7 +50,7 @@ describe("Price", () => {
   });
 
   describe("reload can buy 2", () => {
-    const base = new BaseUnit("id", "base", "desc");
+    const base = new FullUnit("id", "base", "desc");
     base.quantity = new Decimal(35);
     const price = new Price(base, new Decimal(10), 1.1);
     price.reload(new Decimal(2));
@@ -63,7 +64,7 @@ describe("Price", () => {
   });
 
   describe("buy", () => {
-    const base = new BaseUnit("id", "base", "desc");
+    const base = new FullUnit("id", "base", "desc");
     base.quantity = new Decimal(35);
     const price = new Price(base, new Decimal(10), 1.1);
     price.reload(new Decimal(1));

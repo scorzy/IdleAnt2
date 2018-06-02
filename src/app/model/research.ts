@@ -17,6 +17,7 @@ export class Research extends Action implements IUnlocable {
     super(id, name, description, prices);
     this.limit = new Decimal(1);
     this.isLimited = true;
+    this.userNum = 1;
   }
   buy(toBuy = new Decimal(1)): boolean {
     if (super.buy(toBuy)) {

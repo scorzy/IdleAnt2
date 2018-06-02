@@ -23,6 +23,7 @@ import { OptionsNavComponent } from "./options-nav/options-nav.component";
 import { SaveComponent } from "./save/save.component";
 import { LaboratoryComponent } from "./laboratory/laboratory.component";
 import { EndInPipe } from './end-in.pipe';
+import { ResearchComponent } from './research/research.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { EndInPipe } from './end-in.pipe';
     OptionsNavComponent,
     SaveComponent,
     LaboratoryComponent,
-    EndInPipe
+    EndInPipe,
+    ResearchComponent
   ],
   imports: [
     BrowserAnimationsModule,

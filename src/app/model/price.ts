@@ -1,5 +1,6 @@
 import { BaseUnit } from "./baseUnit";
 import { Utility } from "./utility";
+import { FullUnit } from "./full-unit";
 
 export class Price {
   canBuy = false;
@@ -9,7 +10,7 @@ export class Price {
   userCanBuy = false;
 
   constructor(
-    public base: BaseUnit,
+    public base: FullUnit,
     public price: Decimal,
     public growRate = 1.1
   ) {}
@@ -42,12 +43,31 @@ export class Price {
   }
 
   loadPriceUser(num: Decimal, start: Decimal) {
-    this.priceUser = Decimal.sumGeometricSeries(
-      num,
-      this.price,
-      this.growRate,
-      start
-    );
+    if (this.growRate > 1) {
+      this.priceUser = Decimal.sumGeometricSeries(
+        num,
+        this.price,
+        this.growRate,
+        start
+      );
+    } else {
+      this.priceUser = this.price.times(num);
+    }
     this.userCanBuy = this.priceUser.lt(this.base.quantity);
+  }
+
+  getTime(): Decimal {
+    if (this.priceUser.lte(this.base.quantity)) return new Decimal(0);
+    else {
+      const sol = Utility.solveEquation(
+        this.base.a,
+        this.base.b,
+        this.base.c,
+        this.base.quantity.minus(this.priceUser)
+      )
+        .filter(s => s.gte(0))
+        .reduce((p, c) => p.min(c), new Decimal(Number.POSITIVE_INFINITY));
+      return sol;
+    }
   }
 }

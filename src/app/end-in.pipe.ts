@@ -6,6 +6,8 @@ import * as moment from "moment";
 })
 export class EndInPipe implements PipeTransform {
   transform(value: number, args?: any): any {
-    return moment.duration(value).humanize();
+    return !isNaN(value) && value > 0
+      ? moment.duration(value).humanize()
+      : "never";
   }
 }

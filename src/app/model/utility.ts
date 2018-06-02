@@ -76,7 +76,12 @@ export class Utility {
    * @param d constant
    * @returns solutions, real roots only
    */
-  static solveCubic(a: Decimal, b: Decimal, c: Decimal, d: Decimal): Decimal[] {
+  private static solveCubic(
+    a: Decimal,
+    b: Decimal,
+    c: Decimal,
+    d: Decimal
+  ): Decimal[] {
     const p = a
       .times(c)
       .times(3)

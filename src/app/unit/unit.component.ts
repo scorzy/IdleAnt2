@@ -60,7 +60,11 @@ export class UnitComponent implements OnInit, OnDestroy {
     this.activeProductor = this.unit.producedBy.filter(
       p => p.productor.unlocked
     );
-    this.unit.reloadUiStuff();
+    if (this.unit.buyAction) this.unit.buyAction.reloadUserPrices();
+    if (this.unit.teamAction && this.ms.game.researchs.team2.done)
+      this.unit.teamAction.reloadUserPrices();
+    if (this.unit.twinAction && this.ms.game.researchs.twin.done)
+      this.unit.twinAction.reloadUserPrices();
     this.cd.markForCheck();
   }
   getActId(index, action: Action) {
