@@ -12,7 +12,6 @@ export class Researchs {
 
   team1: Research;
   team2: Research;
-
   twin: Research;
 
   constructor(

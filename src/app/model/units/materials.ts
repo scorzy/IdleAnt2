@@ -5,7 +5,7 @@ import { Game } from "../game";
 export class Materials extends UnitGroup {
   food: FullUnit;
   wood: FullUnit;
-  metal: FullUnit;
+  // metal: FullUnit;
   crystal: FullUnit;
   science: FullUnit;
 
@@ -16,7 +16,7 @@ export class Materials extends UnitGroup {
   declareStuff(): void {
     this.food = new FullUnit("fo", "Food", "Food");
     this.wood = new FullUnit("wo", "Wood", "Wood");
-    this.metal = new FullUnit("me", "Metal", "Metal");
+    // this.metal = new FullUnit("me", "Metal", "Metal");
     this.crystal = new FullUnit("cry", "Crystal", "Crystal");
     this.science = new FullUnit("sci", "Science", "Science");
 
@@ -25,7 +25,7 @@ export class Materials extends UnitGroup {
     this.addUnits([
       this.food,
       this.wood,
-      this.metal,
+      // this.metal,
       this.crystal,
       this.science
     ]);

@@ -10,6 +10,7 @@ import { Tab } from "./tab";
 import { Tabs } from "./tabs";
 import { Researchs } from "./units/researchs";
 import { Price } from "./price";
+import { Worker2 } from "./units/worker2";
 
 export class Game {
   units = new Array<BaseUnit>();
@@ -24,6 +25,7 @@ export class Game {
   //#region UnitGroups
   materials: Materials;
   workers: Workers;
+  advWorkers: Worker2;
 
   researchs: Researchs;
   //#endregion
@@ -39,6 +41,8 @@ export class Game {
 
     this.workers = new Workers(this);
     this.unitGroups.push(this.workers);
+
+    this.advWorkers = new Worker2(this);
 
     this.unitGroups.forEach(g => g.declareStuff());
     this.researchs = new Researchs(
