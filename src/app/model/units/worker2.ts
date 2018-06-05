@@ -18,10 +18,10 @@ export class Worker2 extends UnitGroup {
   }
 
   declareStuff(): void {
-    this.farmer = new FullUnit("farmer", "Farmer", "Farmer");
-    this.carpenter = new FullUnit("carpenter", "Carpenter", "Carpenter");
-    this.miner = new FullUnit("miner", "Miner", "Miner");
-    this.scientist = new FullUnit("scientist", "Scientist", "scientist");
+    this.farmer = new FullUnit("farmer");
+    this.carpenter = new FullUnit("carpenter");
+    this.miner = new FullUnit("miner");
+    this.scientist = new FullUnit("scientist");
 
     this.addUnits([this.farmer, this.carpenter, this.miner, this.scientist]);
   }
@@ -50,6 +50,9 @@ export class Worker2 extends UnitGroup {
 
     this.game.materials.crystal.addProductor(this.miner, this.prod);
     this.game.materials.wood.addProductor(this.miner, this.consume);
+
+    this.game.materials.science.addProductor(this.scientist, this.prod);
+    this.game.materials.crystal.addProductor(this.scientist, this.consume);
 
     this.list.forEach(u => {
       if (u instanceof FullUnit) {

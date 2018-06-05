@@ -14,11 +14,11 @@ export class Materials extends UnitGroup {
   }
 
   declareStuff(): void {
-    this.food = new FullUnit("fo", "Food", "Food");
-    this.wood = new FullUnit("wo", "Wood", "Wood");
+    this.food = new FullUnit("fo");
+    this.wood = new FullUnit("wo");
     // this.metal = new FullUnit("me", "Metal", "Metal");
-    this.crystal = new FullUnit("cry", "Crystal", "Crystal");
-    this.science = new FullUnit("sci", "Science", "Science");
+    this.crystal = new FullUnit("cry");
+    this.science = new FullUnit("sci");
 
     this.food.unlocked = true;
 

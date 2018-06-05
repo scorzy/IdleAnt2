@@ -2,16 +2,11 @@ import { ClrDatagridComparatorInterface } from "@clr/angular";
 import { Production } from "./production";
 
 export class Utility {
-  /**
-   * Cube root function
-   *
-   * @param x cube root
-   */
-  static cuberoot(x: Decimal): Decimal {
-    const y = x.abs().pow(1 / 3);
+  // static cuberoot(x: Decimal): Decimal {
+  //   const y = x.abs().pow(1 / 3);
 
-    return x.lt(0) ? y.times(-1) : y;
-  }
+  //   return x.lt(0) ? y.times(-1) : y;
+  // }
 
   /**
    * Solve an equation, up to cubic equation ax^3 + bx^2 + cx + d = 0
@@ -109,7 +104,7 @@ export class Utility {
 
     if (p.abs().lt(Number.EPSILON)) {
       // p = 0 -> t^3 = -q -> t = -q^1/3
-      roots = [this.cuberoot(q.times(-1))];
+      roots = [q.times(-1).cbrt()];
     } else if (q.abs().lt(Number.EPSILON)) {
       // q = 0 -> t^3 + pt = 0 -> t(t^2+p)=0
       roots = [new Decimal(0)].concat(
@@ -124,7 +119,7 @@ export class Utility {
           : []
       );
     } else {
-      const D = q
+      const D = new Decimal(q)
         .pow(2)
         .div(new Decimal(4))
         .plus(p.pow(3).div(27));
@@ -137,7 +132,12 @@ export class Utility {
         // Only one real root
         // var u = cuberoot(-q/2 - Math.sqrt(D));
         // roots = [u - p/(3*u)];
-        const u = this.cuberoot(q.times(-0.5).minus(D.sqrt()));
+        const first = q.times(-0.5);
+        const second = D.sqrt();
+        let q3 = first.minus(second);
+        if (q3.toNumber() === 0)
+          q3 = new Decimal(first.toNumber() - second.toNumber());
+        const u = Decimal.cbrt(q3);
         roots = [u.minus(p.div(u.times(3)))];
       } else {
         // D < 0, three roots, but needs to use complex numbers/trigonometric solution
@@ -145,7 +145,7 @@ export class Utility {
         // console.log(q.toString() + " " + p.toString() + " " + u.toString())
         // let acos = new Decimal(3).times(q).div(p).div(u)
 
-        let acos = q;
+        let acos = new Decimal(q);
         acos = acos.div(p);
         acos = acos.div(u);
         acos = acos.times(3);

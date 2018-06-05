@@ -26,7 +26,8 @@ export class Game {
   materials: Materials;
   workers: Workers;
   advWorkers: Worker2;
-
+  genX2: UnitGroup;
+  genX3: UnitGroup;
   researchs: Researchs;
   //#endregion
 
@@ -43,6 +44,13 @@ export class Game {
     this.unitGroups.push(this.workers);
 
     this.advWorkers = new Worker2(this);
+    this.unitGroups.push(this.advWorkers);
+
+    this.genX2 = this.advWorkers.getProducerGroup("gen2", this);
+    this.unitGroups.push(this.genX2);
+
+    this.genX3 = this.genX2.getProducerGroup("gen3", this);
+    this.unitGroups.push(this.genX3);
 
     this.unitGroups.forEach(g => g.declareStuff());
     this.researchs = new Researchs(
@@ -54,15 +62,16 @@ export class Game {
     this.unitGroups.forEach(g => g.setRelations());
     this.researchs.setRelations();
 
-    // this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
+    this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
     this.materials.list.forEach(u => (u.unlocked = true));
+
+    this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
 
     this.unitGroups.forEach(g => g.check(true));
     this.unitGroups
       .map(g => g.list)
       .forEach(l => l.forEach(u => this.units.push(u)));
     this.check();
-    this.materials.food.quantity = new Decimal(1e4);
   }
   check() {
     this.unlockedUnits = [];

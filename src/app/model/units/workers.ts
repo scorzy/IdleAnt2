@@ -12,9 +12,9 @@ export class Workers extends UnitGroup {
     super("Workers", game);
   }
   declareStuff(): void {
-    this.drone = new FullUnit("drone", "Drone", "Drone");
-    this.geologist = new FullUnit("geologist", "Geologist", "Geologist");
-    this.student = new FullUnit("student", "Student", "Student");
+    this.drone = new FullUnit("drone");
+    this.geologist = new FullUnit("geologist");
+    this.student = new FullUnit("student");
 
     this.addUnits([this.drone, this.geologist, this.student]);
   }

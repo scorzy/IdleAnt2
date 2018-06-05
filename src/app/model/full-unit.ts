@@ -38,8 +38,8 @@ export class FullUnit extends BaseUnit implements IUnlocable {
 
   constructor(
     id: string,
-    name: string,
-    description: string,
+    name: string = "",
+    description: string = "",
     quantity: Decimal = new Decimal(0)
   ) {
     super(id, name, description, quantity);

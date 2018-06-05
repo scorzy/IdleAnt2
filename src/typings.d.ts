@@ -30,6 +30,7 @@ declare class Decimal {
   abs: () => Decimal;
   sqrt: () => Decimal;
   log: (base) => number;
+  cbrt: () => Decimal;
 
   toNumber: () => number;
 
@@ -46,4 +47,5 @@ declare class Decimal {
   static ln: (any) => number;
   static log10: (any) => number;
   static sqrt: (any) => Decimal;
+  static cbrt: (any) => Decimal;
 }
