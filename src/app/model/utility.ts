@@ -2,12 +2,6 @@ import { ClrDatagridComparatorInterface } from "@clr/angular";
 import { Production } from "./production";
 
 export class Utility {
-  // static cuberoot(x: Decimal): Decimal {
-  //   const y = x.abs().pow(1 / 3);
-
-  //   return x.lt(0) ? y.times(-1) : y;
-  // }
-
   /**
    * Solve an equation, up to cubic equation ax^3 + bx^2 + cx + d = 0
    *
@@ -103,10 +97,8 @@ export class Utility {
     let roots: Decimal[];
 
     if (p.abs().lt(Number.EPSILON)) {
-      // p = 0 -> t^3 = -q -> t = -q^1/3
       roots = [q.times(-1).cbrt()];
     } else if (q.abs().lt(Number.EPSILON)) {
-      // q = 0 -> t^3 + pt = 0 -> t(t^2+p)=0
       roots = [new Decimal(0)].concat(
         p.lt(0)
           ? [
@@ -119,31 +111,33 @@ export class Utility {
           : []
       );
     } else {
-      const D = new Decimal(q)
+      const D = q
         .pow(2)
-        .div(new Decimal(4))
+        .div(4)
         .plus(p.pow(3).div(27));
-      // console.log("D: " + D.toString())
 
       if (D.abs().lt(Number.EPSILON)) {
         // D = 0 -> two roots
         roots = [q.times(-1.5).div(p), new Decimal(3).times(q).times(p)];
       } else if (D.gt(0)) {
         // Only one real root
-        // var u = cuberoot(-q/2 - Math.sqrt(D));
-        // roots = [u - p/(3*u)];
         const first = q.times(-0.5);
         const second = D.sqrt();
         let q3 = first.minus(second);
+
+        //  workaround for aprossimation
         if (q3.toNumber() === 0)
-          q3 = new Decimal(first.toNumber() - second.toNumber());
+          q3 = new Decimal(1).div(
+            Decimal.max(a.abs(), b.abs())
+              .max(c.abs())
+              .max(d.abs())
+          );
+
         const u = Decimal.cbrt(q3);
         roots = [u.minus(p.div(u.times(3)))];
       } else {
         // D < 0, three roots, but needs to use complex numbers/trigonometric solution
         const u = new Decimal(2).times(Decimal.sqrt(p.times(-1).div(3)));
-        // console.log(q.toString() + " " + p.toString() + " " + u.toString())
-        // let acos = new Decimal(3).times(q).div(p).div(u)
 
         let acos = new Decimal(q);
         acos = acos.div(p);
@@ -165,10 +159,6 @@ export class Utility {
           u.times(Math.cos(t.minus(k).toNumber())),
           u.times(Math.cos(t.minus(k.times(2)).toNumber()))
         ];
-
-        // console.log(roots[0].toString())
-        // console.log(roots[1].toString())
-        // console.log(roots[2].toString())
       }
     }
 

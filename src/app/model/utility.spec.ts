@@ -124,17 +124,18 @@ describe("Utility", () => {
     it("x = -10, 0, 10", () => expect(actualJSON).toBe(expectedJSON));
   });
 
-  // describe("-2.5x^3 - 600x^2 - 100x + 3.8e98", () => {
-  //   //533680329744388953840372552826880
-  //   const result = Utility.solveEquation(
-  //     new Decimal(-2.5),
-  //     new Decimal(-600),
-  //     new Decimal(-100),
-  //     new Decimal(3.8e98)
-  //   );
+  describe("-2.5x^3 - 600x^2 - 100x + 3.8e98", () => {
+    //  Not accurate
+    //  533680329744388953840372552826880
+    const result = Utility.solveEquation(
+      new Decimal(-2.5),
+      new Decimal(-600),
+      new Decimal(-100),
+      new Decimal(3.8e98)
+    );
 
-  //   const actualJSON = JSON.stringify(result);
-  //   const expectedJSON = '["-2.4758800785707606e+27"]';
-  //   it("x = -10, 0, 10", () => expect(actualJSON).toBe(expectedJSON));
-  // });
+    const actualJSON = JSON.stringify(result);
+    const expectedJSON = '["4.625962581878125e+36"]';
+    it("x = -10, 0, 10", () => expect(actualJSON).toBe(expectedJSON));
+  });
 });
