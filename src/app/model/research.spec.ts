@@ -4,19 +4,14 @@ import { FullUnit } from "./full-unit";
 import { EventEmitter } from "@angular/core";
 
 describe("Research", () => {
-  const researchs = new Researchs(
-    new FullUnit("sci", "science", "science"),
-    new EventEmitter<string>()
-  );
+  const researchs = new Researchs(new EventEmitter<string>());
   researchs.declareStuff();
 
   it("should create an instance", () => {
-    expect(
-      new Research("id", "name", "description", [], researchs)
-    ).toBeTruthy();
+    expect(new Research("id", researchs)).toBeTruthy();
   });
   describe("Unlock", () => {
-    const res = new Research("id", "name", "description", [], researchs);
+    const res = new Research("id", researchs);
     res.unlocked = false;
     res.unlock();
 
@@ -25,13 +20,7 @@ describe("Research", () => {
     });
   });
   describe("Unlock already unlocked", () => {
-    const resUnlocked = new Research(
-      "idUnl",
-      "name",
-      "description",
-      [],
-      researchs
-    );
+    const resUnlocked = new Research("idUnl", researchs);
     resUnlocked.unlocked = true;
     const result = resUnlocked.unlock();
 
@@ -49,7 +38,7 @@ describe("Research", () => {
     const alreadyUnlocked = jasmine.createSpyObj("IUnlocable", ["unlock"]);
     alreadyUnlocked.unlocked = true;
 
-    const res = new Research("id2", "name2", "description2", [], researchs);
+    const res = new Research("id2", researchs);
     res.unlocked = true;
     res.toUnlock = [alreadyUnlocked, toUnlock];
     const result = res.buy();
@@ -65,9 +54,9 @@ describe("Research", () => {
     });
   });
   describe("Save", () => {
-    const res1 = new Research("id", "name", "description", [], researchs);
+    const res1 = new Research("id", researchs);
     res1.unlocked = true;
-    const res2 = new Research("id", "name", "description", [], researchs);
+    const res2 = new Research("id", researchs);
     res2.unlocked = false;
 
     const result = res2.restore(res1.getSave());
@@ -80,9 +69,9 @@ describe("Research", () => {
     });
   });
   describe("Save different", () => {
-    const resOrig = new Research("id1", "name", "description", [], researchs);
+    const resOrig = new Research("id1", researchs);
     resOrig.unlocked = true;
-    const resDiff = new Research("id2", "name", "description", [], researchs);
+    const resDiff = new Research("id2", researchs);
     resOrig.unlocked = false;
 
     const result = resOrig.restore(resDiff.getSave());

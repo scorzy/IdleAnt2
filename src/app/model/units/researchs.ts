@@ -1,12 +1,12 @@
-import { UnitGroup } from "../unit-group";
 import { FullUnit } from "../full-unit";
 import { Price } from "../price";
 import { Research } from "../research";
-import { Game } from "../game";
 import { EventEmitter } from "@angular/core";
 
 export class Researchs {
-  researchs: Research[];
+  science: FullUnit;
+
+  researchs = new Array<Research>();
   toDo: Research[];
   done: Research[];
 
@@ -14,38 +14,20 @@ export class Researchs {
   team2: Research;
   twin: Research;
 
-  constructor(
-    public science: FullUnit,
-    public researchEmitter: EventEmitter<string>
-  ) {}
+  constructor(public researchEmitter: EventEmitter<string>) {}
 
   declareStuff(): void {
-    this.team1 = new Research(
-      "team1",
-      "Team 1",
-      "Team 1",
-      this.genPrice(new Decimal(20)),
-      this
-    );
-    this.team2 = new Research(
-      "team2",
-      "Team 2",
-      "Team 2",
-      this.genPrice(new Decimal(100)),
-      this
-    );
-    this.twin = new Research(
-      "twin",
-      "Twin",
-      "Twin",
-      this.genPrice(new Decimal(1e3)),
-      this
-    );
+    this.team1 = new Research("team1", this);
+    this.team2 = new Research("team2", this);
+    this.twin = new Research("twin", this);
     this.team1.unlocked = true;
-    this.researchs = [this.team1, this.team2, this.twin];
     this.reloadLists();
   }
-  setRelations(): void {
+  setRelations(science: FullUnit): void {
+    this.team1.genPrice(new Decimal(20), science);
+    this.team2.genPrice(new Decimal(100), science);
+    this.twin.genPrice(new Decimal(1e3), science);
+
     this.team1.toUnlock = [this.team2];
     this.team2.toUnlock = [this.twin];
   }

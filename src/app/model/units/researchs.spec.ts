@@ -8,23 +8,23 @@ describe("Researchs", () => {
     const science = new FullUnit("scie", "Science", "Science");
     const researchEmitter: EventEmitter<string> = new EventEmitter<string>();
 
-    expect(new Researchs(science, researchEmitter)).toBeTruthy();
+    expect(new Researchs(researchEmitter)).toBeTruthy();
   });
   describe("Save", () => {
     const science = new FullUnit("scie", "Science", "Science");
     const researchEmitter: EventEmitter<string> = new EventEmitter<string>();
 
-    const res1 = new Researchs(science, researchEmitter);
+    const res1 = new Researchs(researchEmitter);
     res1.declareStuff();
-    res1.setRelations();
+    res1.setRelations(science);
     res1.team2.unlocked = true;
     res1.team2.done = true;
     res1.team2.quantity = new Decimal(1);
     res1.team2.complete = true;
 
-    const res2 = new Researchs(science, researchEmitter);
+    const res2 = new Researchs(researchEmitter);
     res2.declareStuff();
-    res2.setRelations();
+    res2.setRelations(science);
 
     const result = res2.restore(res1.getSave());
 

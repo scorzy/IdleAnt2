@@ -5,12 +5,12 @@ import { UnitGroup } from "./unit-group";
 import { Materials } from "./units/materials";
 import { BaseUnit } from "./baseUnit";
 import { Utility } from "./utility";
-import { Workers } from "./units/workers";
+import { Gatherers } from "./units/gatherers";
 import { Tab } from "./tab";
 import { Tabs } from "./tabs";
 import { Researchs } from "./units/researchs";
 import { Price } from "./price";
-import { Worker2 } from "./units/worker2";
+import { Workers } from "./units/workers";
 
 export class Game {
   units = new Array<BaseUnit>();
@@ -24,8 +24,8 @@ export class Game {
 
   //#region UnitGroups
   materials: Materials;
-  workers: Workers;
-  advWorkers: Worker2;
+  gatherers: Gatherers;
+  advWorkers: Workers;
   genX2: UnitGroup;
   genX3: UnitGroup;
   researchs: Researchs;
@@ -37,36 +37,53 @@ export class Game {
   ) {
     this.tabs = new Tabs();
 
+    //
+    //  Declarations
+    //
     this.materials = new Materials(this);
     this.unitGroups.push(this.materials);
 
-    this.workers = new Workers(this);
-    this.unitGroups.push(this.workers);
+    this.researchs = new Researchs(this.researchEmitter);
 
-    this.advWorkers = new Worker2(this);
+    this.gatherers = new Gatherers(this);
+    this.unitGroups.push(this.gatherers);
+
+    this.advWorkers = new Workers(this);
     this.unitGroups.push(this.advWorkers);
 
-    this.genX2 = this.advWorkers.getProducerGroup("gen2", this);
+    this.genX2 = this.advWorkers.getProducerGroup(
+      "Buildings",
+      new Decimal(1e6)
+    );
     this.unitGroups.push(this.genX2);
 
-    this.genX3 = this.genX2.getProducerGroup("gen3", this);
+    this.genX3 = this.genX2.getProducerGroup("Engineers", new Decimal(1e10));
     this.unitGroups.push(this.genX3);
 
     this.unitGroups.forEach(g => g.declareStuff());
-    this.researchs = new Researchs(
-      this.materials.science,
-      this.researchEmitter
-    );
     this.researchs.declareStuff();
 
+    //
+    //  Relations
+    //
     this.unitGroups.forEach(g => g.setRelations());
-    this.researchs.setRelations();
+    this.researchs.setRelations(this.materials.science);
+    this.researchs.team1.toUnlock.push(this.advWorkers.firstResearch);
+    this.advWorkers.firstResearch.toUnlock.push(this.genX2.firstResearch);
+    this.genX2.firstResearch.toUnlock.push(this.genX3.firstResearch);
 
-    this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
-    this.materials.list.forEach(u => (u.unlocked = true));
+    this.materials.food.quantity = new Decimal(1e100);
 
-    this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
+    //
+    //  Debug
+    //
+    // this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
+    // this.materials.list.forEach(u => (u.unlocked = true));
+    // this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
 
+    //
+    //  Build list
+    //
     this.unitGroups.forEach(g => g.check(true));
     this.unitGroups
       .map(g => g.list)
@@ -201,7 +218,9 @@ export class Game {
   genTwinPrice(price: Decimal): Price[] {
     return [new Price(this.materials.science, price, 10)];
   }
-
+  genSciencePrice(price: Decimal): Price[] {
+    return [new Price(this.materials.science, price, 1)];
+  }
   //#region Save and Load
   getSave(): any {
     return {

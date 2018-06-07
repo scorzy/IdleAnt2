@@ -20,7 +20,7 @@ export class Action extends BaseUnit {
     id: string,
     name: string,
     description: string,
-    public prices: Price[] = null
+    public prices = new Array<Price>()
   ) {
     super(id, name, description, new Decimal(0));
   }

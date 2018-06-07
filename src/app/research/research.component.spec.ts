@@ -36,10 +36,7 @@ describe("ResearchComponent", () => {
     component = fixture.componentInstance;
     component.research = new Research(
       "",
-      "name",
-      "desc",
-      [],
-      new Researchs(new FullUnit("", "", ""), new EventEmitter<string>())
+      new Researchs(new EventEmitter<string>())
     );
     fixture.detectChanges();
   });
