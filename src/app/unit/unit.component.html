@@ -89,7 +89,7 @@
             </clr-dg-cell>
             <clr-dg-cell>
               <span [class.noEnought]="productor.rateo.lt(0)">
-                {{productor.prodPerSec.times(unit.quantity) | format}}</span>
+                {{productor.prodPerSec.times(productor.productor.quantity) | format}}</span>
             </clr-dg-cell>
           </clr-dg-row>
 

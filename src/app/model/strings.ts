@@ -2,9 +2,9 @@ export const STRINGS = {
   units: {
     fo: ["Food", "Food"],
     wo: ["Wood", "Wood"],
-    cry: ["Crystal", "Crystal"],
-    sci: ["Science", "Science"],
-    drone: ["Science", "science"],
+    cry: ["Crystal", "crystal"],
+    sci: ["Science", "science"],
+    drone: ["Drone", "drone"],
     geologist: ["Geologist", "geologist"],
     student: ["Student", "student"],
     farmer: ["Farmer", "farmer"],
