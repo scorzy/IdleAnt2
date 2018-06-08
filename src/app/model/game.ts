@@ -77,7 +77,7 @@ export class Game {
     //
     //  Debug
     //
-    // this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
+    this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
     // this.materials.list.forEach(u => (u.unlocked = true));
     // this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
 

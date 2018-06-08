@@ -35,6 +35,29 @@ export const STRINGS = {
     team1: ["Team 1", "Team 1"],
     team2: ["Team 2", "Team 2"],
     twin: ["Twin", "Twin"],
-    work_res: ["Workers", "Workers"]
+    work_res: ["Workers", "Workers"],
+    Buildings_r: ["Buildings", "Buildings"],
+    //  Workers
+    farmer_wr: [
+      "Farmer",
+      "Hydroponics farmers uses crystalls to grow fungi without soil."
+    ],
+    carpenter_wr: [
+      "Carpenter",
+      "Carpenter ants build nests inside wood consisting of galleries."
+    ],
+    miner_wr: ["Miner", "miner"],
+    scientist_wr: ["Scientist", "scientist"],
+    // Workers 2
+    farmer_g_r: ["Farm", "farmer"],
+    carpenter_g_r: ["Wood Camp", "carpenter"],
+    miner_g_r: ["Mine", "miner"],
+    scientist_g_r: ["University", "scientist"],
+    //  Workers 3
+    Engineers_r: ["Engineers", "Engineers"],
+    farmer_g_g_r: ["Hydro Eng.", "Hydro Engineer"],
+    carpenter_g_g_r: ["Wood Eng.", "Wood Engineer"],
+    miner_g_g_r: ["Mine Eng.", "Mine Engineer"],
+    scientist_g_g_r: ["Dep. of Education", "Department of Education"]
   }
 };

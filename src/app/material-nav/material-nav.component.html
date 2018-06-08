@@ -4,7 +4,7 @@
     <a [routerLink]="['/nav/unit/'+g.id]" class="nav-link matLink" routerLinkActive="active" [ngClass]="{'red': g.isEnding}">
 
       <span>
-        <clr-icon class="is-error" shape="exclamation-triangle" *ngIf="g.isEnding"></clr-icon>
+        <clr-icon class="is-error is-solid" shape="exclamation-triangle" *ngIf="g.isEnding"></clr-icon>
         <span class="first small">{{g.name}}</span>
       </span>
       <br/>
