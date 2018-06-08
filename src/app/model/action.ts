@@ -1,6 +1,5 @@
 import { BaseUnit } from "./baseUnit";
 import { Price } from "./price";
-import { isNumber } from "util";
 
 export class Action extends BaseUnit {
   public done = false;

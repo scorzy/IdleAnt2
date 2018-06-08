@@ -25,6 +25,7 @@ import { LaboratoryComponent } from "./laboratory/laboratory.component";
 import { EndInPipe } from './end-in.pipe';
 import { ResearchComponent } from './research/research.component';
 import { MaterialNavComponent } from './material-nav/material-nav.component';
+import { ProductionSignpostsComponent } from './production-signposts/production-signposts.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MaterialNavComponent } from './material-nav/material-nav.component';
     LaboratoryComponent,
     EndInPipe,
     ResearchComponent,
-    MaterialNavComponent
+    MaterialNavComponent,
+    ProductionSignpostsComponent
   ],
   imports: [
     BrowserAnimationsModule,

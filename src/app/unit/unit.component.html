@@ -51,10 +51,12 @@
             <clr-dg-cell>
               <span [class.noEnought]="product.rateo.lt(0)">
                 {{product.prodPerSec | format}}</span>
+              <app-production-signposts [production]="product"></app-production-signposts>
             </clr-dg-cell>
             <clr-dg-cell>
               <span [class.noEnought]="product.rateo.lt(0)">
-                {{product.prodPerSec.times(unit.quantity) | format}}</span>
+                {{product.prodPerSec.times(unit.quantity) | format}}
+              </span>
             </clr-dg-cell>
           </clr-dg-row>
 

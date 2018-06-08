@@ -2,6 +2,7 @@ import { UnitGroup } from "../unit-group";
 import { FullUnit } from "../full-unit";
 import { Game } from "../game";
 import { Price } from "../price";
+import { Research } from "../research";
 
 export class Gatherers extends UnitGroup {
   drone: FullUnit;

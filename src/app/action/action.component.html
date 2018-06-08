@@ -19,13 +19,13 @@
   <button *ngIf="!action.canBuy" class="btn btn-sm w-100" disabled>
     Can't buy. Avaiable in {{action.avaiableIn | endIn}}
   </button>
-  <button *ngIf="action.canBuy" class="btn btn-sm" (click)="action.buy(action.realNum)">
+  <button *ngIf="action.canBuy" class="btn btn-sm w-100" (click)="action.buy(action.realNum)">
     Get {{action.realNum | format: true}}
   </button>
-  <button *ngIf="action.maxBuy.gt(3)" class="btn btn-sm" (click)="action.buy(action.maxBuy.div(2).floor())">
+  <button *ngIf="action.maxBuy.gt(3)" class="btn btn-sm w-100" (click)="action.buy(action.maxBuy.div(2).floor())">
     Get {{action.maxBuy.div(2).floor() | format: true}}
   </button>
-  <button *ngIf="action.maxBuy.gt(2)" class="btn btn-sm" (click)="action.buy(action.maxBuy)">
+  <button *ngIf="action.maxBuy.gt(2)" class="btn btn-sm w-100" (click)="action.buy(action.maxBuy)">
     Get {{action.maxBuy | format: true}}
   </button>
 </div>

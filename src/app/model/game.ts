@@ -1,12 +1,10 @@
-import { Injectable, EventEmitter } from "@angular/core";
+import { EventEmitter } from "@angular/core";
 import { FullUnit } from "./full-unit";
-import { Production } from "./production";
 import { UnitGroup } from "./unit-group";
 import { Materials } from "./units/materials";
 import { BaseUnit } from "./baseUnit";
 import { Utility } from "./utility";
 import { Gatherers } from "./units/gatherers";
-import { Tab } from "./tab";
 import { Tabs } from "./tabs";
 import { Researchs } from "./units/researchs";
 import { Price } from "./price";
@@ -67,7 +65,7 @@ export class Game {
     //  Relations
     //
     this.unitGroups.forEach(g => g.setRelations());
-    this.researchs.setRelations(this.materials.science);
+    this.researchs.setRelations(this.materials.science, this);
     this.researchs.team1.toUnlock.push(this.advWorkers.firstResearch);
     this.advWorkers.firstResearch.toUnlock.push(this.genX2.firstResearch);
     this.genX2.firstResearch.toUnlock.push(this.genX3.firstResearch);
@@ -109,10 +107,10 @@ export class Game {
     let unitZero: FullUnit = null;
 
     this.unlockedUnits.forEach(u => {
-      u.reloadBonus(this.researchs.team1.done);
-      u.produces.forEach(p => p.reloadProdPerSec(this.researchs.team1.done));
       u.isEnding = false;
     });
+
+    this.reloadProduction();
 
     for (const unit of this.unlockedUnits) {
       unit.a = new Decimal(0);
@@ -181,7 +179,7 @@ export class Game {
 
     const remaning = time - maxTime;
     if (remaning > Number.EPSILON) {
-      // this.reloadProduction();
+      this.reloadProduction();
       this.update(remaning);
     }
   }
@@ -210,6 +208,17 @@ export class Game {
       u.quantity = u.quantity.max(0);
     });
     this.researchs.researchs.filter(r => r.unlocked).forEach(u => u.reload());
+  }
+
+  /**
+   * Calculate production per second
+   */
+  reloadProduction() {
+    this.unlockedUnits.forEach(u => {
+      u.reloadBonus(this.researchs.team1.done);
+      u.produces.forEach(p => p.reloadProdPerSec(this.researchs.team1.done));
+      u.isEnding = false;
+    });
   }
 
   genTeamPrice(price: Decimal): Price[] {

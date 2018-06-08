@@ -38,7 +38,7 @@ export class UnitGroup {
    * @param name
    * @param game
    */
-  getProducerGroup(id: string, price: Decimal): UnitGroup {
+  getProducerGroup(name: string, price: Decimal): UnitGroup {
     const gen = new UnitGroup(name, this.game);
 
     gen.declareStuff = () => {
@@ -47,7 +47,7 @@ export class UnitGroup {
         u => new FullUnit(u.id + "_g", "gen of " + u.name, "")
       );
       gen.addUnits(list);
-      gen.firstResearch = new Research(id + "_r", this.game.researchs);
+      gen.firstResearch = new Research(name + "_r", this.game.researchs);
       gen.researchList = [];
       list.forEach(u => {
         const res = new Research(u.id + "_r", this.game.researchs);

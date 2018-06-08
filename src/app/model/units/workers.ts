@@ -10,6 +10,8 @@ export class Workers extends UnitGroup {
   miner: FullUnit;
   scientist: FullUnit;
 
+  scientificMethod1: Research;
+
   private readonly price = new Decimal(100);
   private readonly prod = new Decimal(20);
   private readonly consume = new Decimal(-15);
@@ -23,6 +25,8 @@ export class Workers extends UnitGroup {
     this.carpenter = new FullUnit("carpenter");
     this.miner = new FullUnit("miner");
     this.scientist = new FullUnit("scientist");
+
+    this.scientificMethod1 = new Research("scie1", this.game.researchs);
 
     this.addUnits([this.farmer, this.carpenter, this.miner, this.scientist]);
 
@@ -79,5 +83,12 @@ export class Workers extends UnitGroup {
       r => (r.prices = this.game.genSciencePrice(new Decimal(5e3)))
     );
     this.firstResearch.toUnlock = this.researchList;
+
+    this.scientificMethod1.prices = this.game.genSciencePrice(new Decimal(1e3));
+    this.researchList[3].toUnlock.push(this.scientificMethod1);
+    this.game.materials.science.productionsBonus.push([
+      this.scientificMethod1,
+      new Decimal(0.5)
+    ]);
   }
 }

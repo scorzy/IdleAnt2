@@ -4,19 +4,21 @@ import { FullUnit } from "../full-unit";
 import { EventEmitter } from "@angular/core";
 
 describe("Researchs", () => {
+  const science = new FullUnit("scie", "Science", "Science");
+  const game = new Game(new EventEmitter<number>(), new EventEmitter<string>());
+
   it("should create an instance", () => {
-    const science = new FullUnit("scie", "Science", "Science");
     const researchEmitter: EventEmitter<string> = new EventEmitter<string>();
 
     expect(new Researchs(researchEmitter)).toBeTruthy();
   });
   describe("Save", () => {
-    const science = new FullUnit("scie", "Science", "Science");
+    // const science = new FullUnit("scie", "Science", "Science");
     const researchEmitter: EventEmitter<string> = new EventEmitter<string>();
 
     const res1 = new Researchs(researchEmitter);
     res1.declareStuff();
-    res1.setRelations(science);
+    res1.setRelations(science, game);
     res1.team2.unlocked = true;
     res1.team2.done = true;
     res1.team2.quantity = new Decimal(1);
@@ -24,7 +26,7 @@ describe("Researchs", () => {
 
     const res2 = new Researchs(researchEmitter);
     res2.declareStuff();
-    res2.setRelations(science);
+    res2.setRelations(science, game);
 
     const result = res2.restore(res1.getSave());
 

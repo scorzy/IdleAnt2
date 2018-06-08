@@ -5,6 +5,7 @@
   width: 100%;
   max-width: 200px;
   min-width: 130px;
+  text-align: left;
 }
 ul {
   min-height: fit-content;
@@ -14,6 +15,7 @@ a {
 }
 .perSecTab {
   float: right;
+  width: 45%;
 }
 li {
   padding-left: 1rem;

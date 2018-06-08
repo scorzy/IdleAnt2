@@ -36,6 +36,8 @@ export class FullUnit extends BaseUnit implements IUnlocable {
 
   bonus = new Decimal(0);
 
+  productionsBonus = new Array<[BaseUnit, Decimal]>();
+
   constructor(
     id: string,
     name: string = "",

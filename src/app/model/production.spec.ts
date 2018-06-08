@@ -1,8 +1,10 @@
 import { Production } from "./production";
+import { BaseUnit } from "./baseUnit";
 
 describe("Production", () => {
   const producer = jasmine.createSpyObj("FullUnit", ["id"]);
   const product = jasmine.createSpyObj("FullUnit", ["id"]);
+  product.productionsBonus = new Array<[BaseUnit, Decimal]>();
   it("should create an instance", () => {
     expect(new Production(producer, product)).toBeTruthy();
   });

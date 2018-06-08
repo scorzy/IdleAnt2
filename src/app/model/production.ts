@@ -14,9 +14,17 @@ export class Production {
 
   reloadProdPerSec(teamBonus = false) {
     this.prodPerSec = new Decimal(this.rateo);
+
     if (teamBonus && this.productor.buyAction) {
       this.prodPerSec = this.prodPerSec.times(this.productor.bonus.plus(1));
     }
     this.prodPerSec = this.prodPerSec.times(this.productor.efficiency / 100);
+
+    const productBonus = this.product.productionsBonus
+      .filter(bn => bn["0"].unlocked)
+      .map(prod => prod["0"].quantity.times(prod["1"]))
+      .reduce((p, n) => p.plus(n), new Decimal(0));
+
+    this.prodPerSec = this.prodPerSec.times(productBonus.plus(1));
   }
 }
