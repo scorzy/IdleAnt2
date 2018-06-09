@@ -1,33 +1,33 @@
 import { Research } from "./research";
-import { Researchs } from "./units/researchs";
+import { Researches } from "./units/researches";
 import { FullUnit } from "./full-unit";
 import { EventEmitter } from "@angular/core";
 
 describe("Research", () => {
-  const researchs = new Researchs(new EventEmitter<string>());
-  researchs.declareStuff();
+  const researches = new Researches(new EventEmitter<string>());
+  researches.declareStuff();
 
   it("should create an instance", () => {
-    expect(new Research("id", researchs)).toBeTruthy();
+    expect(new Research("id", researches)).toBeTruthy();
   });
   describe("Unlock", () => {
-    const res = new Research("id", researchs);
+    const res = new Research("id", researches);
     res.unlocked = false;
     res.unlock();
 
-    it("Shoud be unlocked", () => {
+    it("Should be unlocked", () => {
       expect(res.unlocked).toBeTruthy();
     });
   });
   describe("Unlock already unlocked", () => {
-    const resUnlocked = new Research("idUnl", researchs);
+    const resUnlocked = new Research("idUnl", researches);
     resUnlocked.unlocked = true;
     const result = resUnlocked.unlock();
 
-    it("Shoud be unlocked", () => {
+    it("Should be unlocked", () => {
       expect(resUnlocked.unlocked).toBeTruthy();
     });
-    it("Shoud return false", () => {
+    it("Should return false", () => {
       expect(result).toBeFalsy();
     });
   });
@@ -38,7 +38,7 @@ describe("Research", () => {
     const alreadyUnlocked = jasmine.createSpyObj("IUnlocable", ["unlock"]);
     alreadyUnlocked.unlocked = true;
 
-    const res = new Research("id2", researchs);
+    const res = new Research("id2", researches);
     res.unlocked = true;
     res.toUnlock = [alreadyUnlocked, toUnlock];
     const result = res.buy();
@@ -54,9 +54,9 @@ describe("Research", () => {
     });
   });
   describe("Save", () => {
-    const res1 = new Research("id", researchs);
+    const res1 = new Research("id", researches);
     res1.unlocked = true;
-    const res2 = new Research("id", researchs);
+    const res2 = new Research("id", researches);
     res2.unlocked = false;
 
     const result = res2.restore(res1.getSave());
@@ -69,9 +69,9 @@ describe("Research", () => {
     });
   });
   describe("Save different", () => {
-    const resOrig = new Research("id1", researchs);
+    const resOrig = new Research("id1", researches);
     resOrig.unlocked = true;
-    const resDiff = new Research("id2", researchs);
+    const resDiff = new Research("id2", researches);
     resOrig.unlocked = false;
 
     const result = resOrig.restore(resDiff.getSave());

@@ -3,21 +3,20 @@ import {
   OnInit,
   Input,
   ChangeDetectionStrategy,
-  OnDestroy,
   ChangeDetectorRef
 } from "@angular/core";
-import { Action } from "../model/action";
+import { ActionGroup } from "../model/actions/action-group";
 import { Price } from "../model/price";
 import { MainService } from "../main.service";
 
 @Component({
-  selector: "app-action",
-  templateUrl: "./action.component.html",
-  styleUrls: ["./action.component.scss"],
+  selector: "app-action-group",
+  templateUrl: "./action-group.component.html",
+  styleUrls: ["./action-group.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ActionComponent implements OnInit, OnDestroy {
-  @Input() action: Action;
+export class ActionGroupComponent implements OnInit {
+  @Input() actGr: ActionGroup;
   sub: any;
 
   constructor(private ms: MainService, private cd: ChangeDetectorRef) {
@@ -26,14 +25,15 @@ export class ActionComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.ms.updateEmitter.subscribe(() => {
-      this.action.reloadUserPrices();
-      this.action.reloadAvailableTime();
+      this.actGr.reload();
+      // this.actGr.reloadAvailableTime();
       this.cd.markForCheck();
     });
   }
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
+
   getPriceId(index, price: Price) {
     return price.base.id;
   }

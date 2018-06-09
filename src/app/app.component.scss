@@ -2,12 +2,15 @@ $padding: 0.35rem;
 :host /deep/ .content-container .content-area {
   padding: $padding $padding $padding $padding;
 }
+
 :host /deep/ h1 {
   margin-top: 0;
 }
+
 :host /deep/ p {
   margin-top: 0;
 }
+
 :host /deep/ .monospace {
   font-family: Consolas, Monaco, Courier, monospace !important;
   font-size: 90%;
@@ -17,24 +20,38 @@ $padding: 0.35rem;
   margin-top: 0.1rem;
   margin-bottom: 0.1rem;
 }
+
 :host /deep/ .noEnought {
   color: #c92100;
 }
+
 :host /deep/ .card {
   margin-top: 0.4rem;
 }
+
 :host /deep/ h6 {
   margin-top: 0.6rem;
 }
+
 app-material-nav {
   min-height: fit-content;
 }
+
 :host /deep/ .w-100 {
   max-width: 100% !important;
 }
+
 :host /deep/ clr-signpost-content {
   h3 {
     margin-top: 0;
     margin-bottom: 0.3rem;
   }
+}
+
+:host /deep/ .nav-content {
+  padding-bottom: 1rem;
+}
+
+:host /deep/.clr-vertical-nav {
+  padding-top: 0;
 }

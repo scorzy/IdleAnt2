@@ -7,6 +7,7 @@ import {
 import { Production } from "../model/production";
 import { MainService } from "../main.service";
 import { BaseUnit } from "../model/baseUnit";
+import { ProductionBonus } from "../model/production-bonus";
 
 @Component({
   selector: "app-production-signposts",
@@ -18,19 +19,20 @@ export class ProductionSignpostsComponent implements OnInit {
   @Input() production: Production;
   open = false;
 
-  productionsBonus = new Array<[BaseUnit, Decimal]>();
+  productionsBonus = new Array<ProductionBonus>();
 
   constructor(public ms: MainService) {
     //
   }
 
   ngOnInit() {
-    this.productionsBonus = this.production.product.productionsBonus.filter(
-      bn => bn["0"].unlocked
-    );
+    if (this.production)
+      this.productionsBonus = this.production.product.productionsBonus.filter(
+        bn => bn.isActive()
+      );
   }
 
-  getProdID(index, bon: Array<[BaseUnit, Decimal]>) {
-    return bon["0"].id + bon["1"].toNumber();
+  getProdID(index, bon: ProductionBonus) {
+    return bon.unit.id + bon.quantity.toNumber();
   }
 }

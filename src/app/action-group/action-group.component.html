@@ -1,0 +1,20 @@
+<h6> {{actGr.name}}</h6>
+<div class="p">
+
+  <input id="userNum" [(ngModel)]="actGr.userNum" (change)="actGr.reload()" type="number" placeholder="1" step="1" min="1"
+    size="3">
+  <ng-template #one>1</ng-template>
+  <span> will cost: </span>
+  <app-price-line *ngFor="let price of actGr.pricesTemp; trackBy:getPriceId" [name]="price.base.name" [canBuy]="price.canBuy"
+    [price]="price.price"></app-price-line>
+
+</div>
+<div class="btn-group">
+  <button *ngIf="!actGr.canBuy" class="btn btn-sm w-100" disabled>
+    Can't buy.
+  </button>
+  <!-- <app-cant-buy-signposts *ngIf="!action.canBuy" [action]="action"></app-cant-buy-signposts> -->
+  <button *ngIf="actGr.canBuy" class="btn btn-sm w-100" (click)="actGr.buy(actGr.realNum)">
+    Get {{actGr.realNum | format: true}}
+  </button>
+</div>

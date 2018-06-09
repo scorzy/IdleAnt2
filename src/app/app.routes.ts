@@ -1,9 +1,10 @@
-import { RouterModule, Routes } from "@angular/router";
+import { Routes } from "@angular/router";
 import { NavComponent } from "./nav/nav.component";
 import { UnitComponent } from "./unit/unit.component";
 import { SaveComponent } from "./save/save.component";
 import { OptionsNavComponent } from "./options-nav/options-nav.component";
 import { LaboratoryComponent } from "./laboratory/laboratory.component";
+import { UnitGroupComponent } from "./unit-group/unit-group.component";
 
 export const APPROUTES: Routes = [
   {
@@ -16,7 +17,8 @@ export const APPROUTES: Routes = [
     component: NavComponent,
     children: [
       { path: "unit", component: UnitComponent },
-      { path: "unit/:id", component: UnitComponent }
+      { path: "unit/:id", component: UnitComponent },
+      { path: "group/:id", component: UnitGroupComponent }
     ]
   },
   {

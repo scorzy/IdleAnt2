@@ -2,7 +2,7 @@ export const STRINGS = {
   units: {
     //  Materials
     fo: ["Food", "Food is used to sustain all units."],
-    wo: ["Wood", "Wood is used to cuild better nest."],
+    wo: ["Wood", "Wood is used to build better nest."],
     cry: ["Crystal", "crystal"],
     sci: ["Science", "science"],
     //  Ghantering
@@ -12,7 +12,7 @@ export const STRINGS = {
     //  Workers
     farmer: [
       "Farmer",
-      "Hydroponics farmers uses crystalls to grow fungi without soil."
+      "Hydroponics farmers uses crystals to grow fungi without soil."
     ],
     carpenter: [
       "Carpenter",
@@ -31,7 +31,7 @@ export const STRINGS = {
     miner_g_g: ["Mine Eng.", "Mine Engineer"],
     scientist_g_g: ["Education Dep.", "Department of Education"]
   },
-  researchs: {
+  researches: {
     team1: ["Team 1", "Team 1"],
     team2: ["Team 2", "Team 2"],
     twin: ["Twin", "Twin"],
@@ -40,7 +40,7 @@ export const STRINGS = {
     //  Workers
     farmer_wr: [
       "Farmer",
-      "Hydroponics farmers uses crystalls to grow fungi without soil."
+      "Hydroponics farmers uses crystals to grow fungi without soil."
     ],
     carpenter_wr: [
       "Carpenter",

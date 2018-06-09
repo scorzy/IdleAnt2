@@ -1,7 +1,7 @@
 import { IUnlocable } from "./iunlocable";
 import { Action } from "./action";
 import { Price } from "./price";
-import { Researchs } from "./units/researchs";
+import { Researches } from "./units/researches";
 import { STRINGS } from "./strings";
 import { FullUnit } from "./full-unit";
 
@@ -9,16 +9,16 @@ export class Research extends Action implements IUnlocable {
   unlocked = false;
   public toUnlock = new Array<IUnlocable>();
 
-  constructor(id: string, public researchs: Researchs) {
+  constructor(id: string, public researches: Researches) {
     super(id, "", "");
-    if (id in STRINGS.researchs) {
-      this.name = STRINGS.researchs[id][0];
-      this.description = STRINGS.researchs[id][1];
+    if (id in STRINGS.researches) {
+      this.name = STRINGS.researches[id][0];
+      this.description = STRINGS.researches[id][1];
     }
     this.limit = new Decimal(1);
     this.isLimited = true;
     this.userNum = 1;
-    this.researchs.researchs.push(this);
+    this.researches.researches.push(this);
   }
   genPrice(price: Decimal, science: FullUnit) {
     this.prices = [new Price(science, price, 1)];
@@ -27,7 +27,7 @@ export class Research extends Action implements IUnlocable {
     if (super.buy(toBuy)) {
       if (this.toUnlock)
         this.toUnlock.filter(i => !i.unlocked).forEach(u => u.unlock());
-      this.researchs.reloadLists();
+      this.researches.reloadLists();
       return true;
     } else {
       return false;

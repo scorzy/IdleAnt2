@@ -22,11 +22,13 @@ import { FormsModule } from "@angular/forms";
 import { OptionsNavComponent } from "./options-nav/options-nav.component";
 import { SaveComponent } from "./save/save.component";
 import { LaboratoryComponent } from "./laboratory/laboratory.component";
-import { EndInPipe } from './end-in.pipe';
-import { ResearchComponent } from './research/research.component';
-import { MaterialNavComponent } from './material-nav/material-nav.component';
-import { ProductionSignpostsComponent } from './production-signposts/production-signposts.component';
-import { CantBuySignpostsComponent } from './action/cant-buy-signposts/cant-buy-signposts.component';
+import { EndInPipe } from "./end-in.pipe";
+import { ResearchComponent } from "./research/research.component";
+import { MaterialNavComponent } from "./material-nav/material-nav.component";
+import { ProductionSignpostsComponent } from "./production-signposts/production-signposts.component";
+import { CantBuySignpostsComponent } from "./action/cant-buy-signposts/cant-buy-signposts.component";
+import { UnitGroupComponent } from "./unit-group/unit-group.component";
+import { ActionGroupComponent } from './action-group/action-group.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { CantBuySignpostsComponent } from './action/cant-buy-signposts/cant-buy-
     ResearchComponent,
     MaterialNavComponent,
     ProductionSignpostsComponent,
-    CantBuySignpostsComponent
+    CantBuySignpostsComponent,
+    UnitGroupComponent,
+    ActionGroupComponent
   ],
   imports: [
     BrowserAnimationsModule,

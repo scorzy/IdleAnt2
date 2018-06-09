@@ -5,7 +5,7 @@
       <h1>{{unit.name}}</h1>
       <p>{{unit.description}}</p>
 
-      <p *ngIf="ms.game.researchs.team1.done && unit.buyAction">
+      <p *ngIf="ms.game.researches.team1.done && unit.buyAction">
         You bought {{unit.buyAction.quantity | format}} times earning a bonus of + {{unit.bonus.times(100) | format}}% production
       </p>
 
@@ -28,8 +28,8 @@
       </div>
 
       <app-action *ngIf="unit.buyAction" [action]="unit.buyAction"></app-action>
-      <app-action *ngIf="unit.teamAction && ms.game.researchs.team2.done" [action]="unit.teamAction"></app-action>
-      <app-action *ngIf="unit.twinAction && ms.game.researchs.twin.done" [action]="unit.twinAction"></app-action>
+      <app-action *ngIf="unit.teamAction && ms.game.researches.team2.done" [action]="unit.teamAction"></app-action>
+      <app-action *ngIf="unit.twinAction && ms.game.researches.twin.done" [action]="unit.twinAction"></app-action>
 
     </div>
     <div class="col-xs-12	col-sm-6 col-md-6	col-lg-6 col-xl-6">

@@ -1,0 +1,17 @@
+<div *ngIf="unitGroup">
+  <div class="row">
+    <div class="col-xs-12	col-sm-6	col-md-6	col-lg-6	col-xl-6">
+
+      <h1>{{unitGroup.name}}</h1>
+      <p>Aggregate group for {{unitGroup.name}}: {{unitsSpan}} </p>
+
+      <app-action-group *ngIf="hatchActionGrp" [actGr]="hatchActionGrp"></app-action-group>
+      <app-action-group *ngIf="teamActionGrp && ms.game.researches.team2.done" [actGr]="teamActionGrp"></app-action-group>
+      <app-action-group *ngIf="twinActionGrp && ms.game.researches.twin.done" [actGr]="twinActionGrp"></app-action-group>
+
+    </div>
+    <div class="col-xs-12	col-sm-6	col-md-6	col-lg-6	col-xl-6">
+
+    </div>
+  </div>
+</div>

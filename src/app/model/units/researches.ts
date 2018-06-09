@@ -3,11 +3,12 @@ import { Price } from "../price";
 import { Research } from "../research";
 import { EventEmitter } from "@angular/core";
 import { Game } from "../game";
+import { ProductionBonus } from "../production-bonus";
 
-export class Researchs {
+export class Researches {
   science: FullUnit;
 
-  researchs = new Array<Research>();
+  researches = new Array<Research>();
   toDo: Research[];
   done: Research[];
 
@@ -46,27 +47,27 @@ export class Researchs {
     this.scientificMethod3.genPrice(new Decimal(1e11), science);
 
     science.productionsBonus.push(
-      [this.scientificMethod2, new Decimal(0.75)],
-      [this.scientificMethod2, new Decimal(1)]
+      new ProductionBonus(this.scientificMethod2, new Decimal(0.75)),
+      new ProductionBonus(this.scientificMethod3, new Decimal(1))
     );
   }
 
   reloadLists() {
-    this.toDo = this.researchs.filter(r => r.unlocked && !r.done);
-    this.done = this.researchs.filter(r => r.unlocked && r.done);
+    this.toDo = this.researches.filter(r => r.unlocked && !r.done);
+    this.done = this.researches.filter(r => r.unlocked && r.done);
     this.researchEmitter.emit("");
   }
 
   //#region Save and load
   getSave(): any {
     return {
-      res: this.researchs.map(r => r.getSave())
+      res: this.researches.map(r => r.getSave())
     };
   }
   restore(data: any): boolean {
     if ("res" in data) {
       for (const r of data.res)
-        this.researchs.find(u => u.id === r.i).restore(r);
+        this.researches.find(u => u.id === r.i).restore(r);
       this.reloadLists();
       return true;
     } else {

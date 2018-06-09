@@ -10,6 +10,7 @@ import { ThrowStmt } from "@angular/compiler";
 import { TwinAction } from "./actions/twin-action";
 import { Research } from "./research";
 import { TeamAction } from "./actions/team-action";
+import { ProductionBonus } from "./production-bonus";
 
 export class FullUnit extends BaseUnit implements IUnlocable {
   unlocked = false;
@@ -36,7 +37,7 @@ export class FullUnit extends BaseUnit implements IUnlocable {
 
   bonus = new Decimal(0);
 
-  productionsBonus = new Array<[BaseUnit, Decimal]>();
+  productionsBonus = new Array<ProductionBonus>();
 
   constructor(
     id: string,

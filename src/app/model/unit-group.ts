@@ -1,21 +1,28 @@
 import { FullUnit } from "./full-unit";
 import { Game } from "./game";
-import { BaseUnit } from "./baseUnit";
 import { Price } from "./price";
 import { Research } from "./research";
-import { Researchs } from "./units/researchs";
 
 export class UnitGroup {
+  static maxId = 0;
+
   list: FullUnit[] = new Array<FullUnit>();
   unlocked: FullUnit[] = new Array<FullUnit>();
 
   isEnding = false;
+  upTeam = false;
+  upTwin = false;
   isExpanded = true;
 
   firstResearch: Research;
   researchList = new Array<Research>();
 
-  constructor(public name: string, public game: Game) {}
+  id: number;
+
+  constructor(public name: string, public game: Game) {
+    this.id = UnitGroup.maxId;
+    UnitGroup.maxId++;
+  }
 
   check(noGame = false) {
     this.unlocked = this.list.filter(u => u.unlocked);
@@ -33,6 +40,19 @@ export class UnitGroup {
   setRelations() {
     //
   }
+
+  setFlags(team = false, twin = false) {
+    this.isEnding = this.unlocked.findIndex(u => u.isEnding) > -1;
+
+    this.upTeam =
+      team &&
+      this.unlocked.findIndex(u => u.teamAction && u.teamAction.canBuy) > -1;
+
+    this.upTwin =
+      twin &&
+      this.unlocked.findIndex(u => u.twinAction && u.twinAction.canBuy) > -1;
+  }
+
   /**
    * Return a new unitgroup where units are producers of this units
    * @param name
@@ -47,10 +67,10 @@ export class UnitGroup {
         u => new FullUnit(u.id + "_g", "gen of " + u.name, "")
       );
       gen.addUnits(list);
-      gen.firstResearch = new Research(name + "_r", this.game.researchs);
+      gen.firstResearch = new Research(name + "_r", this.game.researches);
       gen.researchList = [];
       list.forEach(u => {
-        const res = new Research(u.id + "_r", this.game.researchs);
+        const res = new Research(u.id + "_r", this.game.researches);
         res.toUnlock = [u];
         gen.researchList.push(res);
       });
@@ -75,7 +95,7 @@ export class UnitGroup {
           original.teamAction.prices.map(
             p => new Price(p.base, p.price.times(10), p.growRate)
           ),
-          this.game.researchs.team2
+          this.game.researches.team2
         );
 
         //  Twin Action
@@ -83,10 +103,10 @@ export class UnitGroup {
           original.twinAction.prices.map(
             p => new Price(p.base, p.price.times(10), p.growRate)
           ),
-          this.game.researchs.twin
+          this.game.researches.twin
         );
 
-        //  Researchs
+        //  researches
         gen.firstResearch.toUnlock = gen.researchList;
         gen.firstResearch.prices = this.game.genSciencePrice(price);
 

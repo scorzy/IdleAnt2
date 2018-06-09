@@ -35,7 +35,7 @@ export class Gatherers extends UnitGroup {
 
     this.student.generateBuyAction(
       [new Price(this.game.materials.food, new Decimal(20), 1.1)],
-      [this.game.tabs.lab, this.game.researchs.team1]
+      [this.game.tabs.lab, this.game.researches.team1]
     );
     this.game.materials.science.addProductor(this.student);
     this.game.materials.crystal.addProductor(this.student, new Decimal(-1));
@@ -44,11 +44,11 @@ export class Gatherers extends UnitGroup {
       if (u instanceof FullUnit) {
         u.generateTeamAction(
           this.game.genTeamPrice(new Decimal(500)),
-          this.game.researchs.team2
+          this.game.researches.team2
         );
         u.generateTwinAction(
           this.game.genTwinPrice(new Decimal(1e3)),
-          this.game.researchs.twin
+          this.game.researches.twin
         );
       }
     });

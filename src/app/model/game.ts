@@ -6,7 +6,7 @@ import { BaseUnit } from "./baseUnit";
 import { Utility } from "./utility";
 import { Gatherers } from "./units/gatherers";
 import { Tabs } from "./tabs";
-import { Researchs } from "./units/researchs";
+import { Researches } from "./units/researches";
 import { Price } from "./price";
 import { Workers } from "./units/workers";
 
@@ -26,7 +26,7 @@ export class Game {
   advWorkers: Workers;
   genX2: UnitGroup;
   genX3: UnitGroup;
-  researchs: Researchs;
+  researches: Researches;
   //#endregion
 
   constructor(
@@ -41,7 +41,7 @@ export class Game {
     this.materials = new Materials(this);
     this.unitGroups.push(this.materials);
 
-    this.researchs = new Researchs(this.researchEmitter);
+    this.researches = new Researches(this.researchEmitter);
 
     this.gatherers = new Gatherers(this);
     this.unitGroups.push(this.gatherers);
@@ -59,14 +59,14 @@ export class Game {
     this.unitGroups.push(this.genX3);
 
     this.unitGroups.forEach(g => g.declareStuff());
-    this.researchs.declareStuff();
+    this.researches.declareStuff();
 
     //
     //  Relations
     //
     this.unitGroups.forEach(g => g.setRelations());
-    this.researchs.setRelations(this.materials.science, this);
-    this.researchs.team1.toUnlock.push(this.advWorkers.firstResearch);
+    this.researches.setRelations(this.materials.science, this);
+    this.researches.team1.toUnlock.push(this.advWorkers.firstResearch);
     this.advWorkers.firstResearch.toUnlock.push(this.genX2.firstResearch);
     this.genX2.firstResearch.toUnlock.push(this.genX3.firstResearch);
 
@@ -207,16 +207,18 @@ export class Game {
       u.actions.forEach(a => a.reload());
       u.quantity = u.quantity.max(0);
     });
-    this.researchs.researchs.filter(r => r.unlocked).forEach(u => u.reload());
+    this.researches.researches.filter(r => r.unlocked).forEach(u => u.reload());
+    const team = this.researches.team2.done;
+    const twin = this.researches.twin.done;
+    this.unitGroups.forEach(g => g.setFlags(team, twin));
   }
-
   /**
    * Calculate production per second
    */
   reloadProduction() {
     this.unlockedUnits.forEach(u => {
-      u.reloadBonus(this.researchs.team1.done);
-      u.produces.forEach(p => p.reloadProdPerSec(this.researchs.team1.done));
+      u.reloadBonus(this.researches.team1.done);
+      u.produces.forEach(p => p.reloadProdPerSec(this.researches.team1.done));
     });
   }
 
@@ -234,14 +236,14 @@ export class Game {
     return {
       u: this.units.map(u => u.getSave()),
       t: this.tabs.getSave(),
-      r: this.researchs.getSave()
+      r: this.researches.getSave()
     };
   }
   restore(data: any): boolean {
     if ("u" in data) {
       for (const s of data.u) this.units.find(u => u.id === s.i).restore(s);
       if ("t" in data) this.tabs.restore(data.t);
-      if ("r" in data) this.researchs.restore(data.r);
+      if ("r" in data) this.researches.restore(data.r);
       this.unitGroups.forEach(g => g.check());
       this.check();
       return true;

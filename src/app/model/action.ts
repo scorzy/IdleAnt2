@@ -13,7 +13,7 @@ export class Action extends BaseUnit {
   public userNum = 1;
   public realNum = new Decimal(1);
 
-  public avaiableIn = NaN;
+  public availableIn = NaN;
 
   constructor(
     id: string,
@@ -62,11 +62,11 @@ export class Action extends BaseUnit {
       p.loadPriceUser(new Decimal(this.realNum), this.quantity)
     );
   }
-  public reloadAvaiableTime() {
+  public reloadAvailableTime() {
     if (this.prices.findIndex(p => p.base.isEnding) > -1) {
-      this.avaiableIn = NaN;
+      this.availableIn = NaN;
     } else {
-      this.avaiableIn =
+      this.availableIn =
         this.prices
           .map(p => p.getTime())
           .reduce((p, c) => p.max(c), new Decimal(0))

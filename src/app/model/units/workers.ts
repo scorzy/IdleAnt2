@@ -3,6 +3,7 @@ import { UnitGroup } from "../unit-group";
 import { Price } from "../price";
 import { Game } from "../game";
 import { Research } from "../research";
+import { ProductionBonus } from "../production-bonus";
 
 export class Workers extends UnitGroup {
   farmer: FullUnit;
@@ -26,13 +27,13 @@ export class Workers extends UnitGroup {
     this.miner = new FullUnit("miner");
     this.scientist = new FullUnit("scientist");
 
-    this.scientificMethod1 = new Research("scie1", this.game.researchs);
+    this.scientificMethod1 = new Research("scie1", this.game.researches);
 
     this.addUnits([this.farmer, this.carpenter, this.miner, this.scientist]);
 
-    this.firstResearch = new Research("work_res", this.game.researchs);
+    this.firstResearch = new Research("work_res", this.game.researches);
     this.list.forEach(u => {
-      const res = new Research(u.id + "_wr", this.game.researchs);
+      const res = new Research(u.id + "_wr", this.game.researches);
       res.toUnlock = [u];
       this.researchList.push(res);
     });
@@ -70,11 +71,11 @@ export class Workers extends UnitGroup {
       if (u instanceof FullUnit) {
         u.generateTeamAction(
           this.game.genTeamPrice(new Decimal(5e3)),
-          this.game.researchs.team2
+          this.game.researches.team2
         );
         u.generateTwinAction(
           this.game.genTwinPrice(new Decimal(1e4)),
-          this.game.researchs.twin
+          this.game.researches.twin
         );
       }
     });
@@ -86,9 +87,8 @@ export class Workers extends UnitGroup {
 
     this.scientificMethod1.prices = this.game.genSciencePrice(new Decimal(1e3));
     this.researchList[3].toUnlock.push(this.scientificMethod1);
-    this.game.materials.science.productionsBonus.push([
-      this.scientificMethod1,
-      new Decimal(0.5)
-    ]);
+    this.game.materials.science.productionsBonus.push(
+      new ProductionBonus(this.scientificMethod1, new Decimal(0.5))
+    );
   }
 }

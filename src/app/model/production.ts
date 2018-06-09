@@ -20,8 +20,8 @@ export class Production {
     this.prodPerSec = this.prodPerSec.times(this.productor.efficiency / 100);
 
     const productBonus = this.product.productionsBonus
-      .filter(bn => bn["0"].unlocked)
-      .map(prod => prod["0"].quantity.times(prod["1"]))
+      .filter(bn => bn.isActive())
+      .map(prod => prod.getBonus())
       .reduce((p, n) => p.plus(n), new Decimal(0));
 
     this.prodPerSec = this.prodPerSec.times(productBonus.plus(1));

@@ -1,14 +1,11 @@
 import {
   Component,
   OnInit,
-  Inject,
   OnDestroy,
   ChangeDetectorRef,
   ChangeDetectionStrategy
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Game } from "../model/game";
-import { BaseUnit } from "../model/baseUnit";
 import { FullUnit } from "../model/full-unit";
 import { Action } from "../model/action";
 import { MainService } from "../main.service";
@@ -42,7 +39,7 @@ export class UnitComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.paramsSub = this.route.params.subscribe(this.getUnit.bind(this));
-    this.sub = this.ms.updateEmitter.subscribe(m => this.cd.markForCheck());
+    this.sub = this.ms.updateEmitter.subscribe(() => this.cd.markForCheck());
   }
   ngOnDestroy() {
     this.paramsSub.unsubscribe();
@@ -61,13 +58,13 @@ export class UnitComponent implements OnInit, OnDestroy {
       p => p.productor.unlocked
     );
     if (this.unit.buyAction) this.unit.buyAction.reloadUserPrices();
-    if (this.unit.teamAction && this.ms.game.researchs.team2.done)
+    if (this.unit.teamAction && this.ms.game.researches.team2.done)
       this.unit.teamAction.reloadUserPrices();
-    if (this.unit.twinAction && this.ms.game.researchs.twin.done)
+    if (this.unit.twinAction && this.ms.game.researches.twin.done)
       this.unit.twinAction.reloadUserPrices();
     this.cd.markForCheck();
   }
-  getActId(index, action: Action) {
+  getActId(action: Action) {
     return action.id + this.unit.id;
   }
 }

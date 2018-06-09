@@ -1,7 +1,5 @@
-import { BaseUnit } from "./baseUnit";
 import { Utility } from "./utility";
 import { FullUnit } from "./full-unit";
-import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 
 export class Price {
   canBuy = false;

@@ -20,9 +20,9 @@ export class LaboratoryComponent implements OnInit {
   ngOnInit() {
     this.changeList();
     this.sub = this.ms.researchEmitter.subscribe(m => this.changeList());
-    this.ms.game.researchs.toDo.forEach(r => {
+    this.ms.game.researches.toDo.forEach(r => {
       r.reloadUserPrices();
-      r.reloadAvaiableTime();
+      r.reloadAvailableTime();
     });
   }
   ngOnDestroy() {
@@ -30,8 +30,8 @@ export class LaboratoryComponent implements OnInit {
   }
   changeList() {
     this.resList = this.resDone
-      ? this.ms.game.researchs.done
-      : this.ms.game.researchs.toDo;
+      ? this.ms.game.researches.done
+      : this.ms.game.researches.toDo;
   }
   getRestId(index, res: Research) {
     return res.id;

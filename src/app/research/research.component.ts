@@ -28,7 +28,7 @@ export class ResearchComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.ms.updateEmitter.subscribe(m => {
       this.research.reloadUserPrices();
-      this.research.reloadAvaiableTime();
+      this.research.reloadAvailableTime();
       this.cd.markForCheck();
     });
   }

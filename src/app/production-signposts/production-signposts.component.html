@@ -3,14 +3,14 @@
     <h3>{{production.product.name}}:</h3>
     <ul class="list">
       <li [class.noEnought]="production.rateo.lt(0)">Base production: {{production.rateo | format}}</li>
-      <li *ngIf="ms.game.researchs.team1.done && production.productor.buyAction">
+      <li *ngIf="ms.game.researches.team1.done && production.productor.buyAction">
         Teamwork bonus: +{{production.productor.bonus | format}}%
       </li>
       <li>
         Operativity: {{production.productor.efficiency}}%
       </li>
       <li *ngFor="let bon of productionsBonus; trackBy getProdID">
-        {{bon['0'].name}}: +{{bon['1'].times(bon['0'].quantity) | format }}%
+        {{bon.unit.name}}: +{{bon.getBonus() | format }}%
       </li>
     </ul>
   </clr-signpost-content>
