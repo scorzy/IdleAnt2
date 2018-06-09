@@ -2,7 +2,6 @@ import { FullUnit } from "./full-unit";
 
 export class Production {
   prodPerSec = new Decimal(1);
-  boughtBonus = new Decimal(0);
 
   constructor(
     public productor: FullUnit,

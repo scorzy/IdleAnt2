@@ -32,3 +32,9 @@ app-material-nav {
 :host /deep/ .w-100 {
   max-width: 100% !important;
 }
+:host /deep/ clr-signpost-content {
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0.3rem;
+  }
+}

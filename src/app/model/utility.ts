@@ -123,16 +123,18 @@ export class Utility {
         // Only one real root
         const first = q.times(-0.5);
         const second = D.sqrt();
-        let q3 = first.minus(second);
+        const q3 = first.minus(second);
 
         //  workaround for aprossimation
-        if (q3.toNumber() === 0)
-          q3 = new Decimal(1).div(
-            Decimal.max(a.abs(), b.abs())
-              .max(c.abs())
-              .max(d.abs())
-          );
+        if (q3.toNumber() === 0) {
+          // q3 = new Decimal(1).div(
+          //   Decimal.max(a.abs(), b.abs())
+          //     .max(c.abs())
+          //     .max(d.abs())
+          // );
 
+          return [d.div(a.abs()).cbrt()];
+        }
         const u = Decimal.cbrt(q3);
         roots = [u.minus(p.div(u.times(3)))];
       } else {

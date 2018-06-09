@@ -135,7 +135,23 @@ describe("Utility", () => {
     );
 
     const actualJSON = JSON.stringify(result);
-    const expectedJSON = '["4.625962581878125e+36"]';
-    it("x = -10, 0, 10", () => expect(actualJSON).toBe(expectedJSON));
+    const expectedJSON = '["5.336803297443891e+32"]';
+    it("x = 5.336803297443891e+32", () =>
+      expect(actualJSON).toBe(expectedJSON));
+  });
+
+  describe("-28.7x^3 -8e5x^2 -1e10x + 3.8e98", () => {
+    //  Not accurate
+    const result = Utility.solveEquation(
+      new Decimal(-28.7),
+      new Decimal(-8e5),
+      new Decimal(-1e10),
+      new Decimal(3.8e98)
+    );
+
+    const actualJSON = JSON.stringify(result);
+    const expectedJSON = '["2.3657412000069544e+32"]';
+    it("x = 2.3657412000069544e+32", () =>
+      expect(actualJSON).toBe(expectedJSON));
   });
 });

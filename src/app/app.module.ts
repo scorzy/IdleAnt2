@@ -26,6 +26,7 @@ import { EndInPipe } from './end-in.pipe';
 import { ResearchComponent } from './research/research.component';
 import { MaterialNavComponent } from './material-nav/material-nav.component';
 import { ProductionSignpostsComponent } from './production-signposts/production-signposts.component';
+import { CantBuySignpostsComponent } from './action/cant-buy-signposts/cant-buy-signposts.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ProductionSignpostsComponent } from './production-signposts/production-
     EndInPipe,
     ResearchComponent,
     MaterialNavComponent,
-    ProductionSignpostsComponent
+    ProductionSignpostsComponent,
+    CantBuySignpostsComponent
   ],
   imports: [
     BrowserAnimationsModule,

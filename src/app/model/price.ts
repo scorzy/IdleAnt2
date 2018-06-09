@@ -1,6 +1,7 @@
 import { BaseUnit } from "./baseUnit";
 import { Utility } from "./utility";
 import { FullUnit } from "./full-unit";
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 
 export class Price {
   canBuy = false;
@@ -8,6 +9,7 @@ export class Price {
 
   priceUser = new Decimal(0);
   userCanBuy = false;
+  avIn = new Decimal(0);
 
   constructor(
     public base: FullUnit,
@@ -59,7 +61,7 @@ export class Price {
   getTime(): Decimal {
     if (this.priceUser.lte(this.base.quantity)) return new Decimal(0);
     else {
-      const sol = Utility.solveEquation(
+      this.avIn = Utility.solveEquation(
         this.base.a,
         this.base.b,
         this.base.c,
@@ -67,7 +69,7 @@ export class Price {
       )
         .filter(s => s.gte(0))
         .reduce((p, c) => p.min(c), new Decimal(Number.POSITIVE_INFINITY));
-      return sol;
+      return this.avIn;
     }
   }
 }

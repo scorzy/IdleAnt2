@@ -2,14 +2,14 @@
   <clr-signpost-content *clrIfOpen="open" [clrPosition]="'left-middle'">
     <h3>{{production.product.name}}:</h3>
     <ul class="list">
-      <li>Base production: {{production.rateo | format}}</li>
+      <li [class.noEnought]="production.rateo.lt(0)">Base production: {{production.rateo | format}}</li>
       <li *ngIf="ms.game.researchs.team1.done && production.productor.buyAction">
         Teamwork bonus: +{{production.productor.bonus | format}}%
       </li>
       <li>
         Operativity: {{production.productor.efficiency}}%
       </li>
-      <li *ngFor="let bon of productionsBonus">
+      <li *ngFor="let bon of productionsBonus; trackBy getProdID">
         {{bon['0'].name}}: +{{bon['1'].times(bon['0'].quantity) | format }}%
       </li>
     </ul>

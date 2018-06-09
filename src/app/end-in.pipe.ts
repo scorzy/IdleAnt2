@@ -1,5 +1,7 @@
 import { Pipe, PipeTransform } from "@angular/core";
 import * as moment from "moment";
+import { FormatPipe } from "./format.pipe";
+import { OptionsService } from "./options.service";
 
 @Pipe({
   name: "endIn"

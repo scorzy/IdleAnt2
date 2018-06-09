@@ -217,7 +217,6 @@ export class Game {
     this.unlockedUnits.forEach(u => {
       u.reloadBonus(this.researchs.team1.done);
       u.produces.forEach(p => p.reloadProdPerSec(this.researchs.team1.done));
-      u.isEnding = false;
     });
   }
 
