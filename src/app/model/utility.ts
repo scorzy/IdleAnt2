@@ -1,5 +1,7 @@
 import { ClrDatagridComparatorInterface } from "@clr/angular";
 import { Production } from "./production";
+import { BaseUnit } from "./baseUnit";
+import { FullUnit } from "./full-unit";
 
 export class Utility {
   /**
@@ -187,5 +189,33 @@ export class TotalProductionSorter
     return a.prodPerSec
       .times(a.productor.quantity)
       .cmp(b.prodPerSec.times(b.productor.quantity));
+  }
+}
+// tslint:disable-next-line:max-classes-per-file
+export class UnitQuantitySorter
+  implements ClrDatagridComparatorInterface<BaseUnit> {
+  compare(a: BaseUnit, b: BaseUnit) {
+    return a.quantity.cmp(b.quantity);
+  }
+}
+// tslint:disable-next-line:max-classes-per-file
+export class UnitBoughtSorter
+  implements ClrDatagridComparatorInterface<FullUnit> {
+  compare(a: FullUnit, b: FullUnit) {
+    return a.buyAction.quantity.cmp(b.buyAction.quantity);
+  }
+}
+// tslint:disable-next-line:max-classes-per-file
+export class UnitTeamSorter
+  implements ClrDatagridComparatorInterface<FullUnit> {
+  compare(a: FullUnit, b: FullUnit) {
+    return a.teamAction.quantity.cmp(b.teamAction.quantity);
+  }
+}
+// tslint:disable-next-line:max-classes-per-file
+export class UnitTwinSorter
+  implements ClrDatagridComparatorInterface<FullUnit> {
+  compare(a: FullUnit, b: FullUnit) {
+    return a.twinAction.quantity.cmp(b.twinAction.quantity);
   }
 }

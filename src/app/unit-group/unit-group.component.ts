@@ -8,6 +8,12 @@ import { MainService } from "../main.service";
 import { ActivatedRoute } from "@angular/router";
 import { UnitGroup } from "../model/unit-group";
 import { ActionGroup } from "../model/actions/action-group";
+import {
+  UnitQuantitySorter,
+  UnitBoughtSorter,
+  UnitTeamSorter,
+  UnitTwinSorter
+} from "../model/utility";
 
 @Component({
   selector: "app-unit-group",
@@ -28,6 +34,14 @@ export class UnitGroupComponent implements OnInit {
   hatchActionGrp: ActionGroup;
   teamActionGrp: ActionGroup;
   twinActionGrp: ActionGroup;
+
+  unitQuantitySorter = new UnitQuantitySorter();
+  unitBoughtSorter = new UnitBoughtSorter();
+  unitTeamSorter = new UnitTeamSorter();
+  unitTwinSorter = new UnitTwinSorter();
+
+  team = false;
+  twin = false;
 
   constructor(
     public ms: MainService,
@@ -57,20 +71,24 @@ export class UnitGroupComponent implements OnInit {
         "Hatch",
         this.unitGroup.unlocked.filter(u => u.buyAction).map(u => u.buyAction)
       );
-      if (this.ms.game.researches.team2.done)
+      if (this.ms.game.researches.team2.done) {
+        this.team = true;
         this.teamActionGrp = new ActionGroup(
           "Teamwork",
           this.unitGroup.unlocked
             .filter(u => u.teamAction)
             .map(u => u.teamAction)
         );
-      if (this.ms.game.researches.twin.done)
+      }
+      if (this.ms.game.researches.twin.done) {
+        this.twin = true;
         this.twinActionGrp = new ActionGroup(
           "Twin",
           this.unitGroup.unlocked
             .filter(u => u.twinAction)
             .map(u => u.teamAction)
         );
+      }
     }
     this.cd.markForCheck();
   }

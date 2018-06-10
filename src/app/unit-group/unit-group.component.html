@@ -11,6 +11,37 @@
 
     </div>
     <div class="col-xs-12	col-sm-6	col-md-6	col-lg-6	col-xl-6">
+      <h6> Stats: </h6>
+      <clr-datagrid class="datagrid-compact">
+
+        <clr-dg-column [clrDgField]="'unit.name'">Name</clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="unitQuantitySorter">Quantity</clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="unitBoughtSorter">Bought</clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="unitTeamSorter" *ngIf="team">Team</clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="unitTwinSorter" *ngIf="twin">Twin</clr-dg-column>
+
+        <clr-dg-row *clrDgItems="let unit of unitGroup.unlocked">
+          <clr-dg-cell>
+            <a [routerLink]="'/nav/unit/'+unit.id">
+              {{unit.name}}
+            </a>
+          </clr-dg-cell>
+          <clr-dg-cell>
+            {{unit.quantity | format: true}}
+          </clr-dg-cell>
+          <clr-dg-cell>
+            {{unit.buyAction.quantity | format: true}}
+          </clr-dg-cell>
+          <clr-dg-cell *ngIf="team">
+            {{unit.teamAction.quantity | format: true}}
+          </clr-dg-cell>
+          <clr-dg-cell *ngIf="twin">
+            {{unit.twinAction.quantity | format: true}}
+          </clr-dg-cell>
+        </clr-dg-row>
+
+
+      </clr-datagrid>
 
     </div>
   </div>
