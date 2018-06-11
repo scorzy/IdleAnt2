@@ -10,6 +10,7 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { FormsModule } from "@angular/forms";
 import { NouisliderModule } from "ng2-nouislider";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { UnitGroup } from "../model/unit-group";
 
 describe("UnitGroupComponent", () => {
   let component: UnitGroupComponent;

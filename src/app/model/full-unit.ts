@@ -50,7 +50,7 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     this.actions.push(this.buyAction);
   }
   generateTeamAction(price: Price[], teamRes: Research) {
-    this.teamAction = new TeamAction(price, this, teamRes);
+    this.teamAction = new TeamAction(price, teamRes);
     this.actions.push(this.teamAction);
   }
   generateTwinAction(price: Price[], twinRes: Research) {

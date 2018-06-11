@@ -7,8 +7,10 @@ import { ClarityModule } from "@clr/angular";
 import { FormsModule } from "@angular/forms";
 import { NouisliderModule } from "ng2-nouislider";
 import { FormatPipe } from "../format.pipe";
-import { ToastrModule } from "ngx-toastr";
+import { ToastrModule, ToastrService } from "ngx-toastr";
 import { EndInPipe } from "../end-in.pipe";
+import { FullUnit } from "../model/full-unit";
+import { MainService } from "../main.service";
 
 describe("UnitComponent", () => {
   let component: UnitComponent;
@@ -24,7 +26,8 @@ describe("UnitComponent", () => {
         FormsModule,
         NouisliderModule
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [ToastrService, MainService]
     }).compileComponents();
   }));
 

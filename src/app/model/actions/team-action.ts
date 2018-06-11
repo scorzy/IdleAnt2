@@ -4,11 +4,7 @@ import { FullUnit } from "../full-unit";
 import { Research } from "../research";
 
 export class TeamAction extends Action {
-  constructor(
-    prices: Price[],
-    private unit: FullUnit,
-    public teamRes: Research
-  ) {
+  constructor(prices: Price[], public teamRes: Research) {
     super("team", "Team", "Get a better team work bonus", prices);
   }
 

@@ -28,8 +28,8 @@ export class UnitComponent implements OnInit, OnDestroy {
   prodSorter = new ProductionSorter();
   totalProdSorter = new TotalProductionSorter();
 
-  activeProduct: Production[];
-  activeProductor: Production[];
+  activeProduct = new Array<Production>();
+  activeProductor = new Array<Production>();
 
   constructor(
     public ms: MainService,
@@ -51,17 +51,19 @@ export class UnitComponent implements OnInit, OnDestroy {
       id = "fo";
     }
     const b = this.ms.game.units.find(u => u.id === id);
-    if (b instanceof FullUnit) this.unit = b;
-    this.unit.isNew = false;
-    this.activeProduct = this.unit.produces.filter(p => p.product.unlocked);
-    this.activeProductor = this.unit.producedBy.filter(
-      p => p.productor.unlocked
-    );
-    if (this.unit.buyAction) this.unit.buyAction.reloadUserPrices();
-    if (this.unit.teamAction && this.ms.game.researches.team2.done)
-      this.unit.teamAction.reloadUserPrices();
-    if (this.unit.twinAction && this.ms.game.researches.twin.done)
-      this.unit.twinAction.reloadUserPrices();
+    if (b instanceof FullUnit) {
+      this.unit = b;
+      this.unit.isNew = false;
+      this.activeProduct = this.unit.produces.filter(p => p.product.unlocked);
+      this.activeProductor = this.unit.producedBy.filter(
+        p => p.productor.unlocked
+      );
+      if (this.unit.buyAction) this.unit.buyAction.reloadUserPrices();
+      if (this.unit.teamAction && this.ms.game.researches.team2.done)
+        this.unit.teamAction.reloadUserPrices();
+      if (this.unit.twinAction && this.ms.game.researches.twin.done)
+        this.unit.twinAction.reloadUserPrices();
+    }
     this.cd.markForCheck();
   }
   getActId(action: Action) {

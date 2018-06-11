@@ -9,8 +9,9 @@ export class ActionGroup {
 
   public availableIn = NaN;
 
-  prices = new Array<Price>();
-  pricesTemp = new Array<Price>();
+  public pricesTemp = new Array<Price>();
+
+  private prices = new Array<Price>();
 
   constructor(public name: string, public actionList: Action[]) {
     this.actionList = this.actionList.filter(a => !a.complete && a.unlocked);
