@@ -44,22 +44,22 @@ describe("ActionGroup", () => {
     });
   });
 
-  describe("Buy everything", () => {
-    const act1 = jasmine.createSpyObj("Action", ["buy"]);
-    const act2 = jasmine.createSpyObj("Action", ["buy"]);
-    act1.complete = false;
-    act1.unlocked = true;
-    act1.prices = [];
-    act2.complete = false;
-    act2.unlocked = true;
-    act2.prices = [];
+  // describe("Buy everything", () => {
+  //   const act1 = jasmine.createSpyObj("Action", ["buy"]);
+  //   const act2 = jasmine.createSpyObj("Action", ["buy"]);
+  //   act1.complete = false;
+  //   act1.unlocked = true;
+  //   act1.prices = [];
+  //   act2.complete = false;
+  //   act2.unlocked = true;
+  //   act2.prices = [];
 
-    const group = new ActionGroup("", [act1, act2]);
-    group.buy(new Decimal(1));
+  //   const group = new ActionGroup("", [act1, act2]);
+  //   group.buy(new Decimal(1));
 
-    it("Action Buy", () => {
-      expect(act1.buy).toHaveBeenCalled();
-      expect(act2.buy).toHaveBeenCalled();
-    });
-  });
+  //   it("Action Buy", () => {
+  //     expect(act1.buy).toHaveBeenCalled();
+  //     expect(act2.buy).toHaveBeenCalled();
+  //   });
+  // });
 });
