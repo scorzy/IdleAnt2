@@ -12,7 +12,7 @@
     </div>
     <div class="col-xs-12	col-sm-6	col-md-6	col-lg-6	col-xl-6">
       <h6> Stats: </h6>
-      <clr-datagrid class="datagrid-compact">
+      <clr-datagrid class="datagrid-compact" [(clrDgSelected)]="unitGroup.selected" (clrDgSelectedChange)="selectedChanged($event)">
 
         <clr-dg-column [clrDgField]="'unit.name'">Name</clr-dg-column>
         <clr-dg-column [clrDgSortBy]="unitQuantitySorter">Quantity</clr-dg-column>
@@ -20,7 +20,7 @@
         <clr-dg-column [clrDgSortBy]="unitTeamSorter" *ngIf="team">Team</clr-dg-column>
         <clr-dg-column [clrDgSortBy]="unitTwinSorter" *ngIf="twin">Twin</clr-dg-column>
 
-        <clr-dg-row *clrDgItems="let unit of unitGroup.unlocked">
+        <clr-dg-row *clrDgItems="let unit of unitGroup.unlocked" [clrDgItem]="unit">
           <clr-dg-cell>
             <a [routerLink]="'/nav/unit/'+unit.id">
               {{unit.name}}

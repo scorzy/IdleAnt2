@@ -14,6 +14,7 @@ import {
   UnitTeamSorter,
   UnitTwinSorter
 } from "../model/utility";
+import { FullUnit } from "../model/full-unit";
 
 @Component({
   selector: "app-unit-group",
@@ -27,6 +28,9 @@ import {
 export class UnitGroupComponent implements OnInit {
   paramsSub: any;
   sub: any;
+  paramsSave: any;
+
+  selected = new Array<FullUnit>();
 
   unitGroup: UnitGroup;
 
@@ -58,6 +62,7 @@ export class UnitGroupComponent implements OnInit {
     this.sub.unsubscribe();
   }
   getGroup(params: any) {
+    this.paramsSave = params;
     let id = "" + params.id;
     if (id === undefined) id = "0";
     this.unitGroup = this.ms.game.unitGroups.find(g => "" + g.id === id);
@@ -69,13 +74,13 @@ export class UnitGroupComponent implements OnInit {
     if (this.unitGroup.unlocked[0].buyAction) {
       this.hatchActionGrp = new ActionGroup(
         "Hatch",
-        this.unitGroup.unlocked.filter(u => u.buyAction).map(u => u.buyAction)
+        this.unitGroup.selected.filter(u => u.buyAction).map(u => u.buyAction)
       );
       if (this.ms.game.researches.team2.done) {
         this.team = true;
         this.teamActionGrp = new ActionGroup(
           "Teamwork",
-          this.unitGroup.unlocked
+          this.unitGroup.selected
             .filter(u => u.teamAction)
             .map(u => u.teamAction)
         );
@@ -84,12 +89,15 @@ export class UnitGroupComponent implements OnInit {
         this.twin = true;
         this.twinActionGrp = new ActionGroup(
           "Twin",
-          this.unitGroup.unlocked
+          this.unitGroup.selected
             .filter(u => u.twinAction)
-            .map(u => u.teamAction)
+            .map(u => u.twinAction)
         );
       }
     }
     this.cd.markForCheck();
+  }
+  selectedChanged(event: any) {
+    this.getGroup(this.paramsSave);
   }
 }

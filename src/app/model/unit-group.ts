@@ -19,6 +19,8 @@ export class UnitGroup {
 
   id: number;
 
+  selected = new Array<FullUnit>();
+
   constructor(public name: string, public game: Game) {
     this.id = UnitGroup.maxId;
     UnitGroup.maxId++;

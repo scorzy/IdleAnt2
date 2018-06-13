@@ -87,6 +87,7 @@ export class Game {
       .map(g => g.list)
       .forEach(l => l.forEach(u => this.units.push(u)));
     this.check();
+    this.unitGroups.forEach(g => (g.selected = g.list.filter(u => u.unlocked)));
   }
   check() {
     this.unlockedUnits = [];
@@ -246,6 +247,9 @@ export class Game {
       if ("r" in data) this.researches.restore(data.r);
       this.unitGroups.forEach(g => g.check());
       this.check();
+      this.unitGroups.forEach(
+        g => (g.selected = g.list.filter(u => u.unlocked))
+      );
       return true;
     } else {
       return false;

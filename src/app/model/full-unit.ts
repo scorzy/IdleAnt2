@@ -64,7 +64,10 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     this.unlocked = true;
     this.isNew = true;
     this.produces.forEach(u => u.product.unlock());
-    if (this.unitGroup) this.unitGroup.check();
+    if (this.unitGroup) {
+      this.unitGroup.check();
+      this.unitGroup.selected.push(this);
+    }
   }
 
   isActive(): boolean {
