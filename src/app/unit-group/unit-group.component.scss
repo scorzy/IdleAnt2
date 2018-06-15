@@ -6,3 +6,12 @@ clr-datagrid {
   margin-top: 0;
   padding-top: 0;
 }
+@media only screen and (max-width: 768px) {
+  .col-xs-12 {
+    padding-left: 0.2rem !important;
+    padding-right: 0 !important;
+  }
+  .pieContainer {
+    max-width: calc(100% - 40px);
+  }
+}

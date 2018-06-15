@@ -53,8 +53,10 @@
 
       </clr-datagrid>
 
-      <canvas baseChart [data]="unitGroup.chartData" [labels]="unitGroup.chartLabels" [chartType]="'pie'">
-      </canvas>
+      <div class="pieContainer">
+        <canvas baseChart [data]="unitGroup.chartData" [labels]="unitGroup.chartLabels" [chartType]="'pie'">
+        </canvas>
+      </div>
 
     </div>
 

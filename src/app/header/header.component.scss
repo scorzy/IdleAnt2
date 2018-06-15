@@ -1,5 +1,9 @@
 $height: 1.5rem;
 
+:host /deep/ .header-hamburger-trigger,
+:host /deep/ .header-overflow-trigger {
+  height: $height !important;
+}
 header,
 .header {
   height: $height;

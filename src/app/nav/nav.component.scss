@@ -14,7 +14,7 @@
 :host /deep/ .clr-treenode-children {
   margin-left: 0;
 }
-@media only screen and (min-device-width: 750px) {
+@media only screen and (min-width: 768px) {
   .clr-vertical-nav {
     width: 320px !important;
   }
