@@ -2,7 +2,9 @@ import {
   Component,
   OnInit,
   ChangeDetectorRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ViewChild,
+  OnDestroy
 } from "@angular/core";
 import { MainService } from "../main.service";
 import { ActivatedRoute } from "@angular/router";
@@ -15,6 +17,7 @@ import {
   UnitTwinSorter
 } from "../model/utility";
 import { FullUnit } from "../model/full-unit";
+import { BaseChartDirective } from "ng2-charts";
 
 @Component({
   selector: "app-unit-group",
@@ -25,7 +28,7 @@ import { FullUnit } from "../model/full-unit";
     "[class.content-area]": "true"
   }
 })
-export class UnitGroupComponent implements OnInit {
+export class UnitGroupComponent implements OnInit, OnDestroy {
   paramsSub: any;
   sub: any;
   paramsSave: any;
@@ -49,6 +52,10 @@ export class UnitGroupComponent implements OnInit {
 
   isSmall = false;
 
+  stop = true;
+
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective;
+
   constructor(
     public ms: MainService,
     private route: ActivatedRoute,
@@ -57,7 +64,10 @@ export class UnitGroupComponent implements OnInit {
 
   ngOnInit() {
     this.paramsSub = this.route.params.subscribe(this.getGroup.bind(this));
-    this.sub = this.ms.updateEmitter.subscribe(m => this.cd.markForCheck());
+    this.sub = this.ms.updateEmitter.subscribe(m => {
+      this.updateChart();
+      this.cd.markForCheck();
+    });
     this.isSmall = window.innerWidth < 1200;
   }
   ngOnDestroy() {
@@ -69,6 +79,8 @@ export class UnitGroupComponent implements OnInit {
     let id = "" + params.id;
     if (id === undefined) id = "0";
     this.unitGroup = this.ms.game.unitGroups.find(g => "" + g.id === id);
+
+    if (!this.unitGroup) return;
 
     this.unitsSpan = this.unitGroup.unlocked
       .map(u => u.name)
@@ -97,10 +109,37 @@ export class UnitGroupComponent implements OnInit {
             .map(u => u.twinAction)
         );
       }
+    } else {
+      this.hatchActionGrp = null;
     }
+    this.doGraph();
     this.cd.markForCheck();
   }
   selectedChanged(event: any) {
     this.getGroup(this.paramsSave);
+  }
+  updateChart() {
+    if (this.stop || !this.unitGroup) return;
+
+    this.unitGroup.updateChart();
+  }
+  doGraph() {
+    this.stop = true;
+    this.unitGroup.updateChartLabel();
+
+    setTimeout(() => {
+      if (
+        typeof this.chart !== "undefined" &&
+        this.chart &&
+        this.chart.chart &&
+        this.chart.chart.config
+      ) {
+        this.chart.chart.options.tooltips.enabled = false;
+        this.chart.data = this.unitGroup.chartData;
+        this.chart.chart.config.data.labels = this.unitGroup.chartLabels;
+        this.chart.chart.update();
+        this.stop = false;
+      }
+    }, 1);
   }
 }

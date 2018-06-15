@@ -40,19 +40,23 @@
             </span>
           </clr-dg-cell>
           <clr-dg-cell *ngIf="!isSmall">
-            {{unit.buyAction.quantity | format: true}}
+            {{unit.buyAction?.quantity | format: true}}
           </clr-dg-cell>
           <clr-dg-cell *ngIf="team && !isSmall">
-            {{unit.teamAction.quantity | format: true}}
+            {{unit.teamAction?.quantity | format: true}}
           </clr-dg-cell>
           <clr-dg-cell *ngIf="twin && !isSmall">
-            {{unit.twinAction.quantity | format: true}}
+            {{unit.twinAction?.quantity | format: true}}
           </clr-dg-cell>
         </clr-dg-row>
 
 
       </clr-datagrid>
 
+      <canvas baseChart [data]="unitGroup.chartData" [labels]="unitGroup.chartLabels" [chartType]="'pie'">
+      </canvas>
+
     </div>
+
   </div>
 </div>

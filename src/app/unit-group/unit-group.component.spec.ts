@@ -10,7 +10,7 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { FormsModule } from "@angular/forms";
 import { NouisliderModule } from "ng2-nouislider";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { UnitGroup } from "../model/unit-group";
+import { ChartsModule } from "ng2-charts/ng2-charts";
 
 describe("UnitGroupComponent", () => {
   let component: UnitGroupComponent;
@@ -24,7 +24,8 @@ describe("UnitGroupComponent", () => {
         ToastrModule.forRoot(),
         RouterTestingModule,
         FormsModule,
-        NouisliderModule
+        NouisliderModule,
+        ChartsModule
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();

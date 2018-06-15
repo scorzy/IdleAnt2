@@ -1,7 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-
+import { RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { ClarityModule } from "@clr/angular";
 import { HeaderComponent } from "./header/header.component";
@@ -28,8 +27,8 @@ import { MaterialNavComponent } from "./material-nav/material-nav.component";
 import { ProductionSignpostsComponent } from "./production-signposts/production-signposts.component";
 import { CantBuySignpostsComponent } from "./action/cant-buy-signposts/cant-buy-signposts.component";
 import { UnitGroupComponent } from "./unit-group/unit-group.component";
-import { ActionGroupComponent } from './action-group/action-group.component';
-
+import { ActionGroupComponent } from "./action-group/action-group.component";
+import { ChartsModule } from "ng2-charts/ng2-charts";
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +58,8 @@ import { ActionGroupComponent } from './action-group/action-group.component';
     RouterModule.forRoot(APPROUTES, { useHash: true }),
     ToastrModule.forRoot(),
     FormsModule,
-    NouisliderModule
+    NouisliderModule,
+    ChartsModule
   ],
   providers: [ToastrService, OptionsService, MainService],
   bootstrap: [AppComponent]

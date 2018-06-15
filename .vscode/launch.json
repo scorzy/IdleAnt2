@@ -10,7 +10,7 @@
       "name": "Esecuzione di Chrome su localhost",
       "url": "http://localhost:4200",
       "webRoot": "${workspaceFolder}",
-      // "runtimeExecutable": "/usr/bin/chromium",
+      "runtimeExecutable": "/usr/bin/chromium",
       "runtimeArgs": [
         "--new-window",
         "-user-data-dir=\"/${workspaceFolder}/DevProfile\"",

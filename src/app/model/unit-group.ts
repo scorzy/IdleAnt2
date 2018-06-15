@@ -19,7 +19,12 @@ export class UnitGroup {
 
   id: number;
 
+  //#region ui
   selected = new Array<FullUnit>();
+  // Pie
+  chartLabels: string[] = [];
+  chartData: number[] = [];
+  //#endregion
 
   constructor(public name: string, public game: Game) {
     this.id = UnitGroup.maxId;
@@ -118,5 +123,28 @@ export class UnitGroup {
       }
     };
     return gen;
+  }
+
+  updateChart() {
+    const qtList = this.selected.map(u => u.quantity);
+    const sum = qtList.reduce(
+      (p: Decimal, c: Decimal) => p.plus(c),
+      new Decimal(0)
+    );
+    const newChartData = qtList.map(u =>
+      Math.round(u.div(sum).toNumber() * 100)
+    );
+    let toChange = false;
+
+    if (this.chartData.length === newChartData.length)
+      for (let i = 0; i < this.selected.length; i++)
+        toChange = toChange || newChartData[i] !== this.chartData[i];
+    else toChange = true;
+
+    if (toChange) this.chartData = newChartData;
+  }
+  updateChartLabel() {
+    this.chartLabels = this.selected.map(u => u.name + " %");
+    this.updateChart();
   }
 }

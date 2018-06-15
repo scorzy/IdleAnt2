@@ -30,6 +30,7 @@
     "core-js": "^2.5.4",
     "lz-string": "^1.4.4",
     "moment": "^2.22.2",
+    "ng2-charts": "^1.6.0",
     "ng2-nouislider": "^1.7.11",
     "ngx-toastr": "^8.7.3",
     "normalize.css": "^8.0.0",
