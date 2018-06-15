@@ -47,6 +47,8 @@ export class UnitGroupComponent implements OnInit {
   team = false;
   twin = false;
 
+  isSmall = false;
+
   constructor(
     public ms: MainService,
     private route: ActivatedRoute,
@@ -56,6 +58,7 @@ export class UnitGroupComponent implements OnInit {
   ngOnInit() {
     this.paramsSub = this.route.params.subscribe(this.getGroup.bind(this));
     this.sub = this.ms.updateEmitter.subscribe(m => this.cd.markForCheck());
+    this.isSmall = window.innerWidth < 1200;
   }
   ngOnDestroy() {
     this.paramsSub.unsubscribe();

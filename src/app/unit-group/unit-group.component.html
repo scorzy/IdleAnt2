@@ -15,10 +15,15 @@
       <clr-datagrid class="datagrid-compact" [(clrDgSelected)]="unitGroup.selected" (clrDgSelectedChange)="selectedChanged($event)">
 
         <clr-dg-column [clrDgField]="'unit.name'">Name</clr-dg-column>
-        <clr-dg-column [clrDgSortBy]="unitQuantitySorter">Quantity</clr-dg-column>
-        <clr-dg-column [clrDgSortBy]="unitBoughtSorter">Bought</clr-dg-column>
-        <clr-dg-column [clrDgSortBy]="unitTeamSorter" *ngIf="team">Team</clr-dg-column>
-        <clr-dg-column [clrDgSortBy]="unitTwinSorter" *ngIf="twin">Twin</clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="unitQuantitySorter">
+          <span *ngIf="!isSmall">Quantity</span>
+          <span *ngIf="isSmall">Q. B.</span>
+          <span *ngIf="team && isSmall">Te.</span>
+          <span *ngIf="twin && isSmall">Tw.</span>
+        </clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="unitBoughtSorter" *ngIf="!isSmall">Bought</clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="unitTeamSorter" *ngIf="team && !isSmall">Team</clr-dg-column>
+        <clr-dg-column [clrDgSortBy]="unitTwinSorter" *ngIf="twin && !isSmall">Twin</clr-dg-column>
 
         <clr-dg-row *clrDgItems="let unit of unitGroup.unlocked" [clrDgItem]="unit">
           <clr-dg-cell>
@@ -27,15 +32,20 @@
             </a>
           </clr-dg-cell>
           <clr-dg-cell>
-            {{unit.quantity | format: true}}
+            <span *ngIf="!isSmall">{{unit.quantity | format: true}}</span>
+            <span *ngIf="isSmall">
+              {{unit.quantity | format: true}} - {{unit.buyAction.quantity | format: true}}
+              <span *ngIf="team && isSmall">- {{unit.teamAction.quantity | format: true}}</span>
+              <span *ngIf="twin && isSmall">- {{unit.twinAction.quantity | format: true}}</span>
+            </span>
           </clr-dg-cell>
-          <clr-dg-cell>
+          <clr-dg-cell *ngIf="!isSmall">
             {{unit.buyAction.quantity | format: true}}
           </clr-dg-cell>
-          <clr-dg-cell *ngIf="team">
+          <clr-dg-cell *ngIf="team && !isSmall">
             {{unit.teamAction.quantity | format: true}}
           </clr-dg-cell>
-          <clr-dg-cell *ngIf="twin">
+          <clr-dg-cell *ngIf="twin && !isSmall">
             {{unit.twinAction.quantity | format: true}}
           </clr-dg-cell>
         </clr-dg-row>

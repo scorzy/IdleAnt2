@@ -6,7 +6,7 @@
       <p>{{unit.description}}</p>
 
       <p *ngIf="ms.game.researches.team1.done && unit.buyAction">
-        You bought {{unit.buyAction.quantity | format}} times earning a bonus of + {{unit.bonus.times(100) | format}}% production
+        You bought {{unit.buyAction.quantity | format}} times; bonus: + {{unit.bonus.times(100) | format}}%
       </p>
 
       <p *ngIf="unit.c.abs().gt(0.01)">
