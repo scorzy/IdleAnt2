@@ -95,7 +95,7 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   }
 
   //#region Save and Restore
-  public getSave(): any {
+  getSave(): any {
     const save: any = {
       i: this.id,
       q: this.quantity,
@@ -106,7 +106,7 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     if (this.isNew) save.n = true;
     return save;
   }
-  public restore(data: any): boolean {
+  restore(data: any): boolean {
     if (!("i" in data && data.i === this.id)) return false;
 
     if ("q" in data) this.quantity = new Decimal(data.q);

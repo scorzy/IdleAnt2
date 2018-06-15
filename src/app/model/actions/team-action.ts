@@ -8,7 +8,7 @@ export class TeamAction extends Action {
     super("team", "Team", "Get a better team work bonus", prices);
   }
 
-  public reload() {
+  reload() {
     if (this.teamRes.done) {
       super.reload();
     } else {

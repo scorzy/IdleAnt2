@@ -7,7 +7,7 @@ import { FullUnit } from "./full-unit";
 
 export class Research extends Action implements IUnlocable {
   unlocked = false;
-  public toUnlock = new Array<IUnlocable>();
+  toUnlock = new Array<IUnlocable>();
 
   constructor(id: string, public researches: Researches) {
     super(id, "", "");

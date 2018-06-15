@@ -21,7 +21,7 @@ export class MainService {
     this.last = Date.now();
     setInterval(this.update.bind(this), 250);
   }
-  public update() {
+  update() {
     const now = Date.now();
     const diff = now - this.last;
 

@@ -1,13 +1,10 @@
 {
-  "rulesDirectory": ["node_modules/codelyzer","tslint-plugin-prettier"],
-  "extends": [
-    "tslint:latest",
-    "tslint-config-prettier"
-  ],
+  "rulesDirectory": ["node_modules/codelyzer", "tslint-plugin-prettier"],
+  "extends": ["tslint:latest", "tslint-config-prettier"],
   "rules": {
     "object-literal-sort-keys": false,
     "no-submodule-imports": false,
-    "member-access": false,
+    "member-access": [true, "no-public"],
     "ordered-imports": false,
     "comment-format": false,
     "curly": [false, "ignore-same-line"],

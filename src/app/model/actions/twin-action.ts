@@ -21,7 +21,7 @@ export class TwinAction extends Action {
    * On buy add unit retroactively
    * @param toBuy
    */
-  public buy(toBuy = new Decimal(1)): boolean {
+  buy(toBuy = new Decimal(1)): boolean {
     if (super.buy(toBuy)) {
       this.unit.quantity = this.unit.quantity.plus(
         this.unit.buyAction.quantity.times(toBuy)
@@ -31,7 +31,7 @@ export class TwinAction extends Action {
       return false;
     }
   }
-  public reload() {
+  reload() {
     if (this.twinRes.done) {
       super.reload();
     } else {

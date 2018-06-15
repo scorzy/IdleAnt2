@@ -2,18 +2,18 @@ import { BaseUnit } from "./baseUnit";
 import { Price } from "./price";
 
 export class Action extends BaseUnit {
-  public done = false;
-  public isLimited = false;
-  public limit = new Decimal(Number.POSITIVE_INFINITY);
-  public complete = false;
+  done = false;
+  isLimited = false;
+  limit = new Decimal(Number.POSITIVE_INFINITY);
+  complete = false;
 
-  public canBuy = false;
-  public maxBuy = new Decimal(0);
+  canBuy = false;
+  maxBuy = new Decimal(0);
 
-  public userNum = 1;
-  public realNum = new Decimal(1);
+  userNum = 1;
+  realNum = new Decimal(1);
 
-  public availableIn = NaN;
+  availableIn = NaN;
 
   constructor(
     id: string,
@@ -24,7 +24,7 @@ export class Action extends BaseUnit {
     super(id, name, description, new Decimal(0));
   }
 
-  public reload() {
+  reload() {
     if (this.complete) {
       this.maxBuy = new Decimal(0);
       this.canBuy = false;
@@ -39,7 +39,7 @@ export class Action extends BaseUnit {
     }
   }
 
-  public buy(toBuy = new Decimal(1)): boolean {
+  buy(toBuy = new Decimal(1)): boolean {
     this.reload();
     if (this.canBuy && this.maxBuy.gte(toBuy)) {
       this.prices.forEach(p => p.buy(toBuy, this.quantity));
@@ -54,7 +54,7 @@ export class Action extends BaseUnit {
     }
   }
 
-  public reloadUserPrices() {
+  reloadUserPrices() {
     let real = 1;
     if (!isNaN(this.userNum) && this.userNum >= 1) real = this.userNum;
     this.realNum = new Decimal(real);
@@ -62,7 +62,7 @@ export class Action extends BaseUnit {
       p.loadPriceUser(new Decimal(this.realNum), this.quantity)
     );
   }
-  public reloadAvailableTime() {
+  reloadAvailableTime() {
     if (this.prices.findIndex(p => p.base.isEnding) > -1) {
       this.availableIn = NaN;
     } else {
@@ -75,14 +75,14 @@ export class Action extends BaseUnit {
   }
 
   //#region Save and Load
-  public getSave(): any {
+  getSave(): any {
     const save = super.getSave();
     save.d = this.done;
     save.c = this.complete;
     return save;
   }
 
-  public restore(data: any): boolean {
+  restore(data: any): boolean {
     if (super.restore(data)) {
       this.done = !!data.d;
       this.complete = !!data.c;

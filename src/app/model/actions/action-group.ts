@@ -2,14 +2,14 @@ import { Action } from "../action";
 import { Price } from "../price";
 
 export class ActionGroup {
-  public canBuy = false;
+  canBuy = false;
 
-  public userNum = 1;
-  public realNum = new Decimal(1);
+  userNum = 1;
+  realNum = new Decimal(1);
 
-  public availableIn = NaN;
+  availableIn = NaN;
 
-  public pricesTemp = new Array<Price>();
+  pricesTemp = new Array<Price>();
 
   private prices = new Array<Price>();
 
@@ -22,7 +22,7 @@ export class ActionGroup {
     this.reload();
   }
 
-  public reload() {
+  reload() {
     if (this.actionList.findIndex(a => !a.canBuy) > -1) {
       this.canBuy = false;
     } else {
@@ -50,7 +50,7 @@ export class ActionGroup {
     }
   }
 
-  public buy(toBuy = new Decimal(1)): boolean {
+  buy(toBuy = new Decimal(1)): boolean {
     let ret = true;
     this.actionList.forEach(a => {
       if (!a.buy(toBuy)) {

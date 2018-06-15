@@ -11,7 +11,7 @@ export class BuyAction extends Action {
   ) {
     super("buy", "Hach", "", prices);
   }
-  public buy(toBuy = new Decimal(1)): boolean {
+  buy(toBuy = new Decimal(1)): boolean {
     if (super.buy(toBuy)) {
       if (this.unit.twinAction) {
         toBuy = toBuy.times(this.unit.twinAction.quantity.plus(1));

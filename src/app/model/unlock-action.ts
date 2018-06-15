@@ -12,7 +12,7 @@ export class UnlockAction extends Action {
   ) {
     super(id, name, description, prices);
   }
-  public buy(toBuy = new Decimal(1)): boolean {
+  buy(toBuy = new Decimal(1)): boolean {
     const prev = this.done;
     const ret = super.buy(toBuy);
     if (!prev && ret) {
