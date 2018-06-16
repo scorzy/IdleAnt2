@@ -34,7 +34,13 @@ export class FullUnit extends BaseUnit implements IUnlocable {
 
   bonus = new Decimal(0);
 
+  /**
+   * Increase production of this unit by other units
+   */
   productionsBonus = new Array<ProductionBonus>();
+
+  productionsEfficienty = new Array<ProductionBonus>();
+  productionsAll = new Array<ProductionBonus>();
 
   constructor(
     id: string,
@@ -78,13 +84,13 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     return this.efficiency < 0.01;
   }
 
-  addProductor(productor: FullUnit, rateo: Decimal = new Decimal(1)) {
-    const prod = new Production(productor, this, rateo);
+  addProducer(producer: FullUnit, rateo: Decimal = new Decimal(1)) {
+    const prod = new Production(producer, this, rateo);
     this.producedBy.push(prod);
-    productor.produces.push(prod);
+    producer.produces.push(prod);
   }
 
-  reloadBonus(teamBonus = false) {
+  reloadTeamBonus(teamBonus = false) {
     this.bonus = new Decimal(0);
 
     if (teamBonus && this.buyAction) {

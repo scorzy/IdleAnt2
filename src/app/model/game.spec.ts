@@ -47,7 +47,7 @@ describe("Game", () => {
     const food = new FullUnit("food", "Food", "Food");
     const farmer = new FullUnit("farmer", "Farmer", "Farmer");
     farmer.quantity = new Decimal(1);
-    food.addProductor(farmer, new Decimal(1));
+    food.addProducer(farmer, new Decimal(1));
     food.unlocked = true;
     farmer.unlocked = true;
     game.unlockedUnits = [food, farmer];
@@ -65,9 +65,9 @@ describe("Game", () => {
     farmer.quantity = new Decimal(1);
     farmer2.quantity = new Decimal(1);
     farmer3.quantity = new Decimal(1);
-    food.addProductor(farmer, new Decimal(1));
-    farmer.addProductor(farmer2, new Decimal(1));
-    farmer2.addProductor(farmer3, new Decimal(1));
+    food.addProducer(farmer, new Decimal(1));
+    farmer.addProducer(farmer2, new Decimal(1));
+    farmer2.addProducer(farmer3, new Decimal(1));
     food.unlocked = true;
     farmer.unlocked = true;
     farmer2.unlocked = true;
@@ -89,8 +89,8 @@ describe("Game", () => {
     consumer.quantity = new Decimal(1);
     farmer.quantity = new Decimal(1);
     food.quantity = new Decimal(3);
-    food.addProductor(farmer, new Decimal(1));
-    food.addProductor(consumer, new Decimal(-2));
+    food.addProducer(farmer, new Decimal(1));
+    food.addProducer(consumer, new Decimal(-2));
     food.unlocked = true;
     farmer.unlocked = true;
     consumer.unlocked = true;

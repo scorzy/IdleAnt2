@@ -187,8 +187,8 @@ export class TotalProductionSorter
   implements ClrDatagridComparatorInterface<Production> {
   compare(a: Production, b: Production) {
     return a.prodPerSec
-      .times(a.productor.quantity)
-      .cmp(b.prodPerSec.times(b.productor.quantity));
+      .times(a.producer.quantity)
+      .cmp(b.prodPerSec.times(b.producer.quantity));
   }
 }
 // tslint:disable-next-line:max-classes-per-file

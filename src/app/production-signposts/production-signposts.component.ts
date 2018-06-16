@@ -19,6 +19,8 @@ export class ProductionSignpostsComponent implements OnInit {
   @Input() production: Production;
   open = false;
 
+  productionsAll = new Array<ProductionBonus>();
+  productionsEfficienty = new Array<ProductionBonus>();
   productionsBonus = new Array<ProductionBonus>();
 
   constructor(public ms: MainService) {
@@ -26,10 +28,17 @@ export class ProductionSignpostsComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.production)
+    if (this.production) {
+      this.productionsAll = this.production.producer.productionsAll.filter(bn =>
+        bn.isActive()
+      );
+      this.productionsEfficienty = this.production.producer.productionsEfficienty.filter(
+        bn => bn.isActive()
+      );
       this.productionsBonus = this.production.product.productionsBonus.filter(
         bn => bn.isActive()
       );
+    }
   }
 
   getProdID(index, bon: ProductionBonus) {

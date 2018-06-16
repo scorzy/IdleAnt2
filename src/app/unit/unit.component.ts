@@ -29,7 +29,7 @@ export class UnitComponent implements OnInit, OnDestroy {
   totalProdSorter = new TotalProductionSorter();
 
   activeProduct = new Array<Production>();
-  activeProductor = new Array<Production>();
+  activeProducer = new Array<Production>();
 
   constructor(
     public ms: MainService,
@@ -55,8 +55,8 @@ export class UnitComponent implements OnInit, OnDestroy {
       this.unit = b;
       this.unit.isNew = false;
       this.activeProduct = this.unit.produces.filter(p => p.product.unlocked);
-      this.activeProductor = this.unit.producedBy.filter(
-        p => p.productor.unlocked
+      this.activeProducer = this.unit.producedBy.filter(
+        p => p.producer.unlocked
       );
       if (this.unit.buyAction) this.unit.buyAction.reloadUserPrices();
       if (this.unit.teamAction && this.ms.game.researches.team2.done)

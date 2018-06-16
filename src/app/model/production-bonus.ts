@@ -6,7 +6,7 @@ export class ProductionBonus {
     return this.unit.unlocked && this.unit.quantity.gt(0);
   }
   getBonus(): Decimal {
-    if (this.isActive) return this.unit.quantity.times(this.quantity);
+    if (this.isActive()) return this.unit.quantity.times(this.quantity);
     else return new Decimal(0);
   }
 }

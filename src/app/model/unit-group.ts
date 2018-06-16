@@ -89,9 +89,9 @@ export class UnitGroup {
         const producer = gen.list[i];
 
         //  Production
-        original.addProductor(producer);
+        original.addProducer(producer);
         original.buyAction.prices.forEach(p => {
-          p.base.addProductor(producer, p.price.times(-1));
+          p.base.addProducer(producer, p.price.times(-1));
         });
 
         //  Buy Action

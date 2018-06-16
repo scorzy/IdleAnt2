@@ -55,17 +55,17 @@ export class Workers extends UnitGroup {
       new Price(this.game.materials.crystal, this.price, 1.1)
     ]);
 
-    this.game.materials.food.addProductor(this.farmer, this.prod);
-    this.game.materials.crystal.addProductor(this.farmer, this.consume);
+    this.game.materials.food.addProducer(this.farmer, this.prod);
+    this.game.materials.crystal.addProducer(this.farmer, this.consume);
 
-    this.game.materials.wood.addProductor(this.carpenter, this.prod);
-    this.game.materials.food.addProductor(this.carpenter, this.consume);
+    this.game.materials.wood.addProducer(this.carpenter, this.prod);
+    this.game.materials.food.addProducer(this.carpenter, this.consume);
 
-    this.game.materials.crystal.addProductor(this.miner, this.prod);
-    this.game.materials.wood.addProductor(this.miner, this.consume);
+    this.game.materials.crystal.addProducer(this.miner, this.prod);
+    this.game.materials.wood.addProducer(this.miner, this.consume);
 
-    this.game.materials.science.addProductor(this.scientist, this.prod);
-    this.game.materials.crystal.addProductor(this.scientist, this.consume);
+    this.game.materials.science.addProducer(this.scientist, this.prod);
+    this.game.materials.crystal.addProducer(this.scientist, this.consume);
 
     this.list.forEach(u => {
       if (u instanceof FullUnit) {

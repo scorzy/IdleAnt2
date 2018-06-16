@@ -29,16 +29,16 @@ export class Gatherers extends UnitGroup {
       [new Price(this.game.materials.food, new Decimal(20), 1.1)],
       [this.student]
     );
-    this.game.materials.food.addProductor(this.drone);
-    this.game.materials.crystal.addProductor(this.geologist);
-    this.game.materials.food.addProductor(this.geologist, new Decimal(-1));
+    this.game.materials.food.addProducer(this.drone);
+    this.game.materials.crystal.addProducer(this.geologist);
+    this.game.materials.food.addProducer(this.geologist, new Decimal(-1));
 
     this.student.generateBuyAction(
       [new Price(this.game.materials.food, new Decimal(20), 1.1)],
       [this.game.tabs.lab, this.game.researches.team1]
     );
-    this.game.materials.science.addProductor(this.student);
-    this.game.materials.crystal.addProductor(this.student, new Decimal(-1));
+    this.game.materials.science.addProducer(this.student);
+    this.game.materials.crystal.addProducer(this.student, new Decimal(-1));
 
     this.list.forEach(u => {
       if (u instanceof FullUnit) {

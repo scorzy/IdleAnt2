@@ -119,24 +119,24 @@ export class Game {
       unit.c = new Decimal(0);
       const d = unit.quantity;
 
-      for (const prod1 of unit.producedBy.filter(p => p.productor.isActive())) {
+      for (const prod1 of unit.producedBy.filter(p => p.producer.isActive())) {
         // x
         const prodX = prod1.prodPerSec;
-        unit.c = unit.c.plus(prodX.times(prod1.productor.quantity));
+        unit.c = unit.c.plus(prodX.times(prod1.producer.quantity));
 
-        for (const prod2 of prod1.productor.producedBy.filter(p =>
-          p.productor.isActive()
+        for (const prod2 of prod1.producer.producedBy.filter(p =>
+          p.producer.isActive()
         )) {
           // x^2
           const prodX2 = prod2.prodPerSec.times(prodX);
-          unit.b = unit.b.plus(prodX2.times(prod2.productor.quantity));
+          unit.b = unit.b.plus(prodX2.times(prod2.producer.quantity));
 
-          for (const prod3 of prod2.productor.producedBy.filter(p =>
-            p.productor.isActive()
+          for (const prod3 of prod2.producer.producedBy.filter(p =>
+            p.producer.isActive()
           )) {
             // x^3
             const prodX3 = prod3.prodPerSec.times(prodX2);
-            unit.a = unit.a.plus(prodX3.times(prod3.productor.quantity));
+            unit.a = unit.a.plus(prodX3.times(prod3.producer.quantity));
           }
         }
       }
@@ -176,7 +176,7 @@ export class Game {
     if (unitZero)
       unitZero.producedBy
         .filter(p => p.rateo.lt(0))
-        .forEach(p => (p.productor.efficiency = 0));
+        .forEach(p => (p.producer.efficiency = 0));
 
     const remaning = time - maxTime;
     if (remaning > Number.EPSILON) {
@@ -200,8 +200,6 @@ export class Game {
   /**
    *  Reload actions costs
    *  and eventually fix quantity > 0
-   *
-   * @memberof Game
    */
   postUpdate() {
     this.unlockedUnits.forEach(u => {
@@ -218,7 +216,7 @@ export class Game {
    */
   reloadProduction() {
     this.unlockedUnits.forEach(u => {
-      u.reloadBonus(this.researches.team1.done);
+      u.reloadTeamBonus(this.researches.team1.done);
       u.produces.forEach(p => p.reloadProdPerSec(this.researches.team1.done));
     });
   }
