@@ -29,6 +29,8 @@ export class Game {
   researches: Researches;
   //#endregion
 
+  lastUnitUrl: string = "nav/unit/fo";
+
   constructor(
     public updateEmitter: EventEmitter<number>,
     public researchEmitter: EventEmitter<string>

@@ -57,6 +57,7 @@ export class ActionGroup {
         ret = false;
       }
     });
+    this.reload();
     return ret;
   }
 }

@@ -82,6 +82,8 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
 
     if (!this.unitGroup) return;
 
+    this.ms.game.lastUnitUrl = "nav/group/" + this.unitGroup.id;
+
     this.unitsSpan = this.unitGroup.unlocked
       .map(u => u.name)
       .reduce((p, c) => p + ", " + c);
