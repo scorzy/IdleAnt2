@@ -4,16 +4,16 @@
     <ul class="list">
       <li [class.noEnought]="production.rateo.lt(0)">Base production: {{production.rateo | format}}</li>
       <li *ngIf="ms.game.researches.team1.done && production.producer.buyAction">
-        Teamwork bonus: +{{production.producer.bonus | format}}%
+        Teamwork bonus: +{{production.producer.bonus.times(100) | format}}%
       </li>
       <li *ngFor="let bon of productionsAll; trackBy getProdID">
-        {{bon.unit.name}}: +{{bon.getBonus() | format }}%
+        {{bon.unit.name}}: +{{bon.getBonusPercent() | format }}%
       </li>
       <li *ngFor="let bon of productionsEfficienty; trackBy getProdID">
-        {{bon.unit.name}}: +{{bon.getBonus() | format }}%
+        {{bon.unit.name}}: +{{bon.getBonusPercent() | format }}%
       </li>
       <li *ngFor="let bon of productionsBonus; trackBy getProdID">
-        {{bon.unit.name}}: +{{bon.getBonus() | format }}%
+        {{bon.unit.name}}: +{{bon.getBonusPercent() | format }}%
       </li>
       <li>
         Operativity: {{production.producer.efficiency}}%

@@ -34,9 +34,7 @@ export class FullUnit extends BaseUnit implements IUnlocable {
 
   bonus = new Decimal(0);
 
-  /**
-   * Increase production of this unit by other units
-   */
+  //  Increase production of this unit by other unit
   productionsBonus = new Array<ProductionBonus>();
 
   productionsEfficienty = new Array<ProductionBonus>();

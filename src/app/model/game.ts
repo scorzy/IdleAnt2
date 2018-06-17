@@ -9,6 +9,8 @@ import { Tabs } from "./tabs";
 import { Researches } from "./units/researches";
 import { Price } from "./price";
 import { Workers } from "./units/workers";
+import { World } from "./world";
+import { WorldBonus } from "./units/worldBonus";
 
 export class Game {
   units = new Array<BaseUnit>();
@@ -26,10 +28,14 @@ export class Game {
   advWorkers: Workers;
   genX2: UnitGroup;
   genX3: UnitGroup;
+
   researches: Researches;
+  worldBonus: WorldBonus;
   //#endregion
 
   lastUnitUrl: string = "nav/unit/fo";
+
+  currentWorld: World = new World();
 
   constructor(
     public updateEmitter: EventEmitter<number>,
@@ -62,6 +68,8 @@ export class Game {
 
     this.unitGroups.forEach(g => g.declareStuff());
     this.researches.declareStuff();
+    this.worldBonus = new WorldBonus();
+    this.worldBonus.declareStuff();
 
     //
     //  Relations
@@ -71,12 +79,12 @@ export class Game {
     this.researches.team1.toUnlock.push(this.advWorkers.firstResearch);
     this.advWorkers.firstResearch.toUnlock.push(this.genX2.firstResearch);
     this.genX2.firstResearch.toUnlock.push(this.genX3.firstResearch);
-
-    this.materials.food.quantity = new Decimal(1e100);
+    this.worldBonus.setRelations(this);
 
     //
     //  Debug
     //
+    this.materials.food.quantity = new Decimal(1e100);
     this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
     // this.materials.list.forEach(u => (u.unlocked = true));
     // this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
@@ -88,10 +96,10 @@ export class Game {
     this.unitGroups
       .map(g => g.list)
       .forEach(l => l.forEach(u => this.units.push(u)));
-    this.check();
+    this.buildLists();
     this.unitGroups.forEach(g => (g.selected = g.list.filter(u => u.unlocked)));
   }
-  check() {
+  buildLists() {
     this.unlockedUnits = [];
     this.units.forEach(u => {
       if (u instanceof FullUnit && u.unlocked) this.unlockedUnits.push(u);
@@ -222,7 +230,25 @@ export class Game {
       u.produces.forEach(p => p.reloadProdPerSec(this.researches.team1.done));
     });
   }
-
+  /**
+   * Apply world bonus
+   */
+  applyWorldBonus() {
+    this.worldBonus.reset();
+    this.currentWorld.productionsBonus.forEach(b => {
+      b[0].quantity = new Decimal(b[1]);
+      b[0].unlocked = true;
+    });
+    this.currentWorld.productionsAll.forEach(b => {
+      b[0].quantity = new Decimal(b[1]);
+      b[0].unlocked = true;
+    });
+    this.currentWorld.productionsEfficienty.forEach(b => {
+      b[0].quantity = new Decimal(b[1]);
+      b[0].unlocked = true;
+    });
+  }
+  //#region Price Utility
   genTeamPrice(price: Decimal): Price[] {
     return [new Price(this.materials.science, price, 4)];
   }
@@ -232,12 +258,14 @@ export class Game {
   genSciencePrice(price: Decimal): Price[] {
     return [new Price(this.materials.science, price, 1)];
   }
+  //#endregion
   //#region Save and Load
   getSave(): any {
     return {
       u: this.units.map(u => u.getSave()),
       t: this.tabs.getSave(),
-      r: this.researches.getSave()
+      r: this.researches.getSave(),
+      w: this.currentWorld.getSave()
     };
   }
   restore(data: any): boolean {
@@ -245,11 +273,16 @@ export class Game {
       for (const s of data.u) this.units.find(u => u.id === s.i).restore(s);
       if ("t" in data) this.tabs.restore(data.t);
       if ("r" in data) this.researches.restore(data.r);
+      if ("w" in data) this.currentWorld.restore(data.w, this);
+
       this.unitGroups.forEach(g => g.check());
-      this.check();
+      this.buildLists();
       this.unitGroups.forEach(
         g => (g.selected = g.list.filter(u => u.unlocked))
       );
+
+      this.applyWorldBonus();
+      this.reloadProduction();
       return true;
     } else {
       return false;

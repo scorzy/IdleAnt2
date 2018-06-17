@@ -33,7 +33,7 @@ export class UnitGroup {
 
   check(noGame = false) {
     this.unlocked = this.list.filter(u => u.unlocked);
-    if (!noGame) this.game.check();
+    if (!noGame) this.game.buildLists();
   }
 
   addUnits(units: FullUnit[]) {

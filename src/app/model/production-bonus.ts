@@ -9,4 +9,7 @@ export class ProductionBonus {
     if (this.isActive()) return this.unit.quantity.times(this.quantity);
     else return new Decimal(0);
   }
+  getBonusPercent(): Decimal {
+    return this.getBonus().times(100);
+  }
 }

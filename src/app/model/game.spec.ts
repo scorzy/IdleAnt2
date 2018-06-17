@@ -11,7 +11,7 @@ describe("Game", () => {
     expect(new Game(updateEmitter, researchEmitter)).toBeTruthy();
   });
 
-  describe("Save works", () => {
+  it("Save works", () => {
     const original = new Game(updateEmitter, researchEmitter);
     const second = new Game(updateEmitter, researchEmitter);
 
@@ -25,24 +25,20 @@ describe("Game", () => {
     ];
 
     original.units[0].unlocked = true;
+    original.currentWorld.name = "world name";
 
     const ok = second.restore(original.getSave());
 
-    it("return true", () => {
-      expect(ok).toBeTruthy();
-    });
-    it("equal", () => {
-      expect(second.units[0].unlocked).toBeTruthy();
-    });
+    expect(ok).toBeTruthy();
+    expect(second.units[0].unlocked).toBeTruthy();
+    expect(second.currentWorld.name).toBe("world name");
   });
-  describe("Save works 2", () => {
+  it("Save works 2", () => {
     const game = new Game(updateEmitter, researchEmitter);
-    it("equal", () => {
-      expect(game.restore({})).toBeFalsy();
-    });
+    expect(game.restore({})).toBeFalsy();
   });
 
-  describe("Simple update", () => {
+  it("Simple update", () => {
     const game = new Game(updateEmitter, researchEmitter);
     const food = new FullUnit("food", "Food", "Food");
     const farmer = new FullUnit("farmer", "Farmer", "Farmer");
@@ -52,11 +48,10 @@ describe("Game", () => {
     farmer.unlocked = true;
     game.unlockedUnits = [food, farmer];
     game.update(10 * 1e3);
-    it("10 food", () => {
-      expect(food.quantity.toNumber()).toBe(10);
-    });
+
+    expect(food.quantity.toNumber()).toBe(10);
   });
-  describe("Simple update 2", () => {
+  it("Simple update 2", () => {
     const game = new Game(updateEmitter, researchEmitter);
     const food = new FullUnit("food", "Food", "Food");
     const farmer = new FullUnit("farmer", "Farmer-", "Farmer");
@@ -74,14 +69,11 @@ describe("Game", () => {
     farmer3.unlocked = true;
     game.unlockedUnits = [food, farmer, farmer2, farmer3];
     game.update(10 * 1e3);
-    it("226 food", () => {
-      expect(Math.floor(food.quantity.toNumber())).toBe(226);
-    });
-    it("11 farmer2", () => {
-      expect(Math.floor(farmer2.quantity.toNumber())).toBe(11);
-    });
+
+    expect(Math.floor(food.quantity.toNumber())).toBe(226);
+    expect(Math.floor(farmer2.quantity.toNumber())).toBe(11);
   });
-  describe("Ending update 2", () => {
+  it("Ending update 2", () => {
     const game = new Game(updateEmitter, researchEmitter);
     const food = new FullUnit("food", "Food", "Food");
     const consumer = new FullUnit("consumer", "Consumer-", "Consumer");
@@ -96,14 +88,9 @@ describe("Game", () => {
     consumer.unlocked = true;
     game.unlockedUnits = [food, consumer, farmer];
     game.update(10 * 1e3);
-    it("7 food", () => {
-      expect(Math.floor(food.quantity.toNumber())).toBe(7);
-    });
-    it("consumer stopped", () => {
-      expect(consumer.efficiency).toBe(0);
-    });
-    it("farmer active", () => {
-      expect(farmer.efficiency).toBe(100);
-    });
+
+    expect(Math.floor(food.quantity.toNumber())).toBe(7);
+    expect(consumer.efficiency).toBe(0);
+    expect(farmer.efficiency).toBe(100);
   });
 });
