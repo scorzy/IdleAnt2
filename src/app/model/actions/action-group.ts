@@ -1,5 +1,6 @@
 import { Action } from "../action";
 import { Price } from "../price";
+import { Game } from "../game";
 
 export class ActionGroup {
   canBuy = false;
@@ -13,16 +14,16 @@ export class ActionGroup {
 
   private prices = new Array<Price>();
 
-  constructor(public name: string, public actionList: Action[]) {
+  constructor(public name: string, public actionList: Action[], game: Game) {
     this.actionList = this.actionList.filter(a => !a.complete && a.unlocked);
     this.actionList
       .map(b => b.prices)
       .forEach(p => p.forEach(p2 => this.prices.push(p2)));
 
-    this.reload();
+    this.reload(game);
   }
 
-  reload() {
+  reload(game: Game) {
     if (this.actionList.findIndex(a => !a.canBuy) > -1) {
       this.canBuy = false;
     } else {
@@ -44,20 +45,23 @@ export class ActionGroup {
           }
         });
 
-        this.pricesTemp.forEach(p => p.reload(new Decimal(0)));
+        this.pricesTemp.forEach(p => {
+          p.reloadRealPrice(game.materials, game.worldMalus);
+          p.reload(new Decimal(0));
+        });
         this.canBuy = this.pricesTemp.findIndex(p => !p.canBuy) < 0;
       });
     }
   }
 
-  buy(toBuy = new Decimal(1)): boolean {
+  buy(game: Game, toBuy = new Decimal(1)): boolean {
     let ret = true;
     this.actionList.forEach(a => {
       if (!a.buy(toBuy)) {
         ret = false;
       }
     });
-    this.reload();
+    this.reload(game);
     return ret;
   }
 }

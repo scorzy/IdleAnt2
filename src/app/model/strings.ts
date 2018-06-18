@@ -29,7 +29,12 @@ export const STRINGS = {
     farmer_g_g: ["Hydro Eng.", "Hydro Engineer"],
     carpenter_g_g: ["Wood Eng.", "Wood Engineer"],
     miner_g_g: ["Mine Eng.", "Mine Engineer"],
-    scientist_g_g: ["Education Dep.", "Department of Education"]
+    scientist_g_g: ["Education Dep.", "Department of Education"],
+    //  World Bonus
+    foB: ["Food Production Bonus", ""],
+    woB: ["Wood Production Bonus", ""],
+    crB: ["Crystal Production Bonus", ""],
+    scB: ["Science Production Bonus", ""]
   },
   researches: {
     team1: ["Team 1", "Team 1"],

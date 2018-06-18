@@ -11,6 +11,8 @@ import { Price } from "./price";
 import { Workers } from "./units/workers";
 import { World } from "./world";
 import { WorldBonus } from "./units/worldBonus";
+import { Malus } from "./malus";
+import { WorldMalus } from "./units/world-malus";
 
 export class Game {
   units = new Array<BaseUnit>();
@@ -31,6 +33,7 @@ export class Game {
 
   researches: Researches;
   worldBonus: WorldBonus;
+  worldMalus: WorldMalus;
   //#endregion
 
   lastUnitUrl: string = "nav/unit/fo";
@@ -65,6 +68,9 @@ export class Game {
 
     this.genX3 = this.genX2.getProducerGroup("Engineers", new Decimal(1e10));
     this.unitGroups.push(this.genX3);
+
+    this.worldMalus = new WorldMalus(this);
+    this.unitGroups.push(this.worldMalus);
 
     this.unitGroups.forEach(g => g.declareStuff());
     this.researches.declareStuff();
@@ -183,10 +189,18 @@ export class Game {
     if (maxTime > Number.EPSILON && !this.isPaused)
       this.update2(new Decimal(maxTime).div(1000));
 
-    if (unitZero)
+    // Something has ened
+    if (unitZero) {
+      //  Stop consumers
       unitZero.producedBy
         .filter(p => p.rateo.lt(0))
         .forEach(p => (p.producer.efficiency = 0));
+
+      //  Kill Malus
+      if (unitZero instanceof Malus) {
+        unitZero.kill();
+      }
+    }
 
     const remaning = time - maxTime;
     if (remaning > Number.EPSILON) {
@@ -212,6 +226,11 @@ export class Game {
    *  and eventually fix quantity > 0
    */
   postUpdate() {
+    this.worldMalus.foodMalus1.reloadPriceMulti();
+    this.worldMalus.woodMalus1.reloadPriceMulti();
+    this.worldMalus.crystalMalus1.reloadPriceMulti();
+    this.worldMalus.scienceMalus1.reloadPriceMulti();
+
     this.unlockedUnits.forEach(u => {
       u.actions.forEach(a => a.reload());
       u.quantity = u.quantity.max(0);

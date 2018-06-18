@@ -25,7 +25,7 @@ export class ActionGroupComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.ms.updateEmitter.subscribe(() => {
-      this.actGr.reload();
+      this.actGr.reload(this.ms.game);
       // this.actGr.reloadAvailableTime();
       this.cd.markForCheck();
     });

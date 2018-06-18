@@ -1,12 +1,14 @@
 import { ActionGroup } from "./action-group";
 import { Action } from "../action";
-import { BaseUnit } from "../baseUnit";
 import { Price } from "../price";
 import { FullUnit } from "../full-unit";
+import { Game } from "../game";
+import { EventEmitter } from "@angular/core";
 
 describe("ActionGroup", () => {
+  const game = new Game(new EventEmitter<number>(), new EventEmitter<string>());
   it("should create an instance", () => {
-    expect(new ActionGroup("", [])).toBeTruthy();
+    expect(new ActionGroup("", [], game)).toBeTruthy();
   });
 
   describe("Reload", () => {
@@ -15,8 +17,8 @@ describe("ActionGroup", () => {
 
     act1.canBuy = false;
 
-    const group = new ActionGroup("", [act1, act2]);
-    group.reload();
+    const group = new ActionGroup("", [act1, act2], game);
+    group.reload(game);
 
     it("Cannot buy", () => {
       expect(group.canBuy).toBeFalsy();
@@ -33,8 +35,8 @@ describe("ActionGroup", () => {
     ]);
     act1.reload();
     act2.reload();
-    const group = new ActionGroup("", [act1, act2]);
-    group.reload();
+    const group = new ActionGroup("", [act1, act2], game);
+    group.reload(game);
 
     it("Can buy", () => {
       expect(group.canBuy).toBeTruthy();

@@ -1,6 +1,7 @@
 import { Utility } from "./utility";
 import { FullUnit } from "./full-unit";
-import { BaseUnit } from "./baseUnit";
+import { WorldMalus } from "./units/world-malus";
+import { Materials } from "./units/materials";
 
 export class Price {
   canBuy = false;
@@ -10,32 +11,52 @@ export class Price {
   userCanBuy = false;
   avIn = new Decimal(0);
 
+  //  Price with malus
+  realPrice = new Decimal(0);
+
   constructor(
     public base: FullUnit,
     public price: Decimal,
     public growRate = 1.1
-  ) {}
+  ) {
+    this.realPrice = new Decimal(this.price);
+  }
+
+  reloadRealPrice(materials: Materials, malus: WorldMalus) {
+    let multi = new Decimal(1);
+    switch (this.base) {
+      case materials.food:
+        multi = malus.foodMalus1.priceMultiplier;
+      case materials.wood:
+        multi = malus.woodMalus1.priceMultiplier;
+      case materials.crystal:
+        multi = malus.crystalMalus1.priceMultiplier;
+      case materials.science:
+        multi = malus.scienceMalus1.priceMultiplier;
+    }
+    this.realPrice = this.price.times(multi);
+  }
 
   reload(bought: Decimal) {
     if (this.growRate !== 1)
       this.maxBuy = Decimal.affordGeometricSeries(
         this.base.quantity,
-        this.price,
+        this.realPrice,
         this.growRate,
         bought
       );
-    else this.maxBuy = this.base.quantity.div(this.price).floor();
+    else this.maxBuy = this.base.quantity.div(this.realPrice).floor();
 
     this.canBuy = this.maxBuy.gte(1);
   }
   buy(toBuy: Decimal, start: Decimal) {
     let price: Decimal;
     if (this.growRate === 1) {
-      price = toBuy.times(this.price);
+      price = toBuy.times(this.realPrice);
     } else {
       price = Decimal.sumGeometricSeries(
         toBuy,
-        this.price,
+        this.realPrice,
         this.growRate,
         start
       );
@@ -47,12 +68,12 @@ export class Price {
     if (this.growRate > 1) {
       this.priceUser = Decimal.sumGeometricSeries(
         num,
-        this.price,
+        this.realPrice,
         this.growRate,
         start
       );
     } else {
-      this.priceUser = this.price.times(num);
+      this.priceUser = this.realPrice.times(num);
     }
     this.userCanBuy = this.priceUser.lt(this.base.quantity);
   }

@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { ActionGroupComponent } from "./action-group.component";
-import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, EventEmitter } from "@angular/core";
 import { ClarityModule } from "@clr/angular";
 import { ToastrModule } from "ngx-toastr";
 import { RouterTestingModule } from "@angular/router/testing";
@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormatPipe } from "../format.pipe";
 import { EndInPipe } from "../end-in.pipe";
 import { ActionGroup } from "../model/actions/action-group";
+import { Game } from "../model/game";
 
 describe("ActionGroupComponent", () => {
   let component: ActionGroupComponent;
@@ -32,7 +33,11 @@ describe("ActionGroupComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ActionGroupComponent);
     component = fixture.componentInstance;
-    component.actGr = new ActionGroup("", []);
+    component.actGr = new ActionGroup(
+      "",
+      [],
+      new Game(new EventEmitter<number>(), new EventEmitter<string>())
+    );
     fixture.detectChanges();
   });
 

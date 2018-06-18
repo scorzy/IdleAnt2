@@ -20,8 +20,10 @@ export class World {
   //  Unit, Quantity
   startingUnit = new Array<[FullUnit, Decimal]>();
 
-  //  Win
+  //  Wining condition
   winContidions = new Array<Price>();
+  //  This resources must be zero
+  notWinConditions = new Array<FullUnit>();
 
   //#region Save and Load
   getSave(): any {
