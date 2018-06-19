@@ -61,6 +61,16 @@ export class WorldMalus extends UnitGroup {
     ]);
   }
   setRelations(): void {
-    //Nothig
+    this.foodMalus1.addProducer(this.foodMalus2, new Decimal(0.01));
+    this.foodMalus2.addProducer(this.foodMalus3, new Decimal(0.01));
+
+    this.woodMalus1.addProducer(this.woodMalus2, new Decimal(0.01));
+    this.woodMalus2.addProducer(this.woodMalus3, new Decimal(0.01));
+
+    this.crystalMalus1.addProducer(this.crystalMalus2, new Decimal(0.01));
+    this.crystalMalus2.addProducer(this.crystalMalus3, new Decimal(0.01));
+
+    this.scienceMalus1.addProducer(this.scienceMalus2, new Decimal(0.01));
+    this.scienceMalus2.addProducer(this.scienceMalus3, new Decimal(0.01));
   }
 }

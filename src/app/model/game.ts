@@ -10,7 +10,7 @@ import { Researches } from "./units/researches";
 import { Price } from "./price";
 import { Workers } from "./units/workers";
 import { World } from "./world";
-import { WorldBonus } from "./units/worldBonus";
+import { WorldBonus } from "./units/world-bonus";
 import { Malus } from "./malus";
 import { WorldMalus } from "./units/world-malus";
 
