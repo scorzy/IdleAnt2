@@ -1,0 +1,17 @@
+<a [routerLink]="['/nav/unit/'+id]" class="nav-link matLink" routerLinkActive="active" [ngClass]="{'red': isEnding}">
+
+  <span>
+    <clr-icon class="is-error is-solid" shape="exclamation-triangle" *ngIf="isEnding"></clr-icon>
+    <span class="first small">{{name}}</span>
+  </span>
+  <br/>
+
+  <span class="monospace">{{quantity | format}}</span>
+
+  <span class="perSecTab  monospace">
+    <span *ngIf="perSec.abs().gt(0.001)">
+      {{perSec | format}}/s
+    </span>
+  </span>
+
+</a>

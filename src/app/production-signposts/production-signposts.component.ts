@@ -6,7 +6,6 @@ import {
 } from "@angular/core";
 import { Production } from "../model/production";
 import { MainService } from "../main.service";
-import { BaseUnit } from "../model/baseUnit";
 import { ProductionBonus } from "../model/production-bonus";
 
 @Component({

@@ -1,7 +1,7 @@
-.nav .nav-link {
+:host /deep/ .nav .nav-link {
   line-height: 0.8rem;
 }
-.matTab {
+:host /deep/ .matTab {
   width: 100%;
   max-width: 200px;
   min-width: 130px;
@@ -10,19 +10,9 @@
 ul {
   min-height: fit-content;
 }
-a {
-  width: 100%;
-}
-.perSecTab {
-  float: right;
-  width: 45%;
-}
 li {
   padding-left: 1rem;
 }
-.navMat {
+:host /deep/ .navMat {
   padding-left: 0 !important;
 }
-// clr-icon {
-//   height: 0.8rem !important;
-// }

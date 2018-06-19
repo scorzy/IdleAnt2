@@ -40,6 +40,12 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   productionsEfficienty = new Array<ProductionBonus>();
   productionsAll = new Array<ProductionBonus>();
 
+  //#region ui
+  uiA = new Decimal(0);
+  uiB = new Decimal(0);
+  uiC = new Decimal(0);
+  //#endregion
+
   constructor(
     id: string,
     name: string = "",
@@ -98,13 +104,17 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     }
   }
 
+  setUiValue() {
+    super.setUiValue();
+    if (this.uiA.cmp(this.a) !== 0) this.uiA = this.a;
+    if (this.uiB.cmp(this.b) !== 0) this.uiB = this.b;
+    if (this.uiC.cmp(this.c) !== 0) this.uiC = this.c;
+  }
+
   //#region Save and Restore
   getSave(): any {
-    const save: any = {
-      i: this.id,
-      q: this.quantity,
-      u: this.unlocked
-    };
+    const save = super.getSave();
+    save.u = this.unlocked;
     if (this.actions) save.a = this.actions.map(a => a.getSave());
     if (this.efficiency < 100) save.e = this.efficiency;
     if (this.isNew) save.n = true;

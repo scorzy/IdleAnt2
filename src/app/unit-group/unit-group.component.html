@@ -32,11 +32,11 @@
             </a>
           </clr-dg-cell>
           <clr-dg-cell>
-            <span *ngIf="!isSmall">{{unit.quantity | format: true}}</span>
+            <span *ngIf="!isSmall">{{unit.uiQuantity | format: true}}</span>
             <span *ngIf="isSmall">
-              {{unit.quantity | format: true}} - {{unit.buyAction.quantity | format: true}}
-              <span *ngIf="team && isSmall">- {{unit.teamAction.quantity | format: true}}</span>
-              <span *ngIf="twin && isSmall">- {{unit.twinAction.quantity | format: true}}</span>
+              {{unit.quantity | format: true}} - {{unit.buyAction.uiQuantity | format: true}}
+              <span *ngIf="team && isSmall">- {{unit.teamAction.uiQuantity | format: true}}</span>
+              <span *ngIf="twin && isSmall">- {{unit.twinAction.uiQuantity | format: true}}</span>
             </span>
           </clr-dg-cell>
           <clr-dg-cell *ngIf="!isSmall">

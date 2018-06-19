@@ -29,6 +29,7 @@ import { CantBuySignpostsComponent } from "./action/cant-buy-signposts/cant-buy-
 import { UnitGroupComponent } from "./unit-group/unit-group.component";
 import { ActionGroupComponent } from "./action-group/action-group.component";
 import { ChartsModule } from "ng2-charts/ng2-charts";
+import { TabComponent } from './material-nav/tab/tab.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,8 @@ import { ChartsModule } from "ng2-charts/ng2-charts";
     ProductionSignpostsComponent,
     CantBuySignpostsComponent,
     UnitGroupComponent,
-    ActionGroupComponent
+    ActionGroupComponent,
+    TabComponent
   ],
   imports: [
     BrowserAnimationsModule,

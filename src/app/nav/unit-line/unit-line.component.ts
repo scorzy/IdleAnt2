@@ -2,7 +2,8 @@ import {
   Component,
   OnInit,
   Input,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  OnChanges
 } from "@angular/core";
 import { FullUnit } from "../../model/full-unit";
 
@@ -30,7 +31,6 @@ export class UnitLineComponent implements OnInit {
   constructor() {
     //Nothing
   }
-
   ngOnInit() {
     //Nothing
   }

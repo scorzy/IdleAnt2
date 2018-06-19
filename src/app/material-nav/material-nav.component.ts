@@ -1,4 +1,10 @@
-import { Component, OnInit, ChangeDetectorRef, OnDestroy } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  OnDestroy,
+  ChangeDetectionStrategy
+} from "@angular/core";
 import { MainService } from "../main.service";
 import { BaseUnit } from "../model/baseUnit";
 
@@ -6,6 +12,7 @@ import { BaseUnit } from "../model/baseUnit";
   selector: "app-material-nav",
   templateUrl: "./material-nav.component.html",
   styleUrls: ["./material-nav.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     "[class.subnav]": "true",
     "[class.matTab]": "true"

@@ -234,6 +234,7 @@ export class Game {
     this.unlockedUnits.forEach(u => {
       u.actions.forEach(a => a.reload());
       u.quantity = u.quantity.max(0);
+      u.setUiValue();
     });
     this.researches.researches.filter(r => r.unlocked).forEach(u => u.reload());
     const team = this.researches.team2.done;

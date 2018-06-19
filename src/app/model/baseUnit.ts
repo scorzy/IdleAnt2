@@ -1,10 +1,11 @@
-import { Action } from "./action";
 import { UnitGroup } from "./unit-group";
 import { STRINGS } from "./strings";
 
 export class BaseUnit {
   unlocked = true;
   unitGroup: UnitGroup;
+
+  uiQuantity = new Decimal(0);
 
   constructor(
     public id: string,
@@ -16,6 +17,11 @@ export class BaseUnit {
       this.name = STRINGS.units[id][0];
       this.description = STRINGS.units[id][1];
     }
+  }
+
+  setUiValue() {
+    if (this.quantity.cmp(this.uiQuantity) !== 0)
+      this.uiQuantity = this.quantity;
   }
 
   //Region Save and Restore

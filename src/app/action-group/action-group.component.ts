@@ -19,7 +19,7 @@ export class ActionGroupComponent implements OnInit {
   @Input() actGr: ActionGroup;
   sub: any;
 
-  constructor(private ms: MainService, private cd: ChangeDetectorRef) {
+  constructor(public ms: MainService, private cd: ChangeDetectorRef) {
     //Nothing
   }
 

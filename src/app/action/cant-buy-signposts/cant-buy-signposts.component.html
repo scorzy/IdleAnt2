@@ -1,7 +1,7 @@
 <clr-signpost>
   <clr-signpost-content *clrIfOpen>
     <h3 style="margin-top: 0">{{action.name}}</h3>
-    <p>Avaiable in {{action.avaiableIn | endIn}}</p>
+    <p>Avaiable in {{action.availableIn | endIn}}</p>
 
     <div *ngFor="let cost of action.prices; trackBy getPriceId">
       <h6>{{cost.base.name}} {{getVal(cost)}}% </h6>

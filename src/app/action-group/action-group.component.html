@@ -1,7 +1,7 @@
 <h6> {{actGr.name}}</h6>
 <div class="p">
 
-  <input id="userNum" [(ngModel)]="actGr.userNum" (change)="actGr.reload()" type="number" placeholder="1" step="1" min="1"
+  <input id="userNum" [(ngModel)]="actGr.userNum" (change)="actGr.reload(ms.game)" type="number" placeholder="1" step="1" min="1"
     size="3">
   <ng-template #one>1</ng-template>
   <span> will cost: </span>
