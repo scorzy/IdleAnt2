@@ -1,16 +1,14 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { UnitComponent } from "./unit.component";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ClarityModule } from "@clr/angular";
 import { FormsModule } from "@angular/forms";
-import { NouisliderModule } from "ng2-nouislider";
 import { FormatPipe } from "../format.pipe";
 import { ToastrModule, ToastrService } from "ngx-toastr";
 import { EndInPipe } from "../end-in.pipe";
-import { FullUnit } from "../model/full-unit";
 import { MainService } from "../main.service";
+import { SliderModule } from "primeng/slider";
 
 describe("UnitComponent", () => {
   let component: UnitComponent;
@@ -24,7 +22,7 @@ describe("UnitComponent", () => {
         ToastrModule.forRoot(),
         RouterTestingModule,
         FormsModule,
-        NouisliderModule
+        SliderModule
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [ToastrService, MainService]

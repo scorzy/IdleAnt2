@@ -16,7 +16,6 @@ import { ActionComponent } from "./action/action.component";
 import { UnitLineComponent } from "./nav/unit-line/unit-line.component";
 import { PriceLineComponent } from "./action/price-line/price-line.component";
 import { PolynomComponent } from "./polynom/polynom.component";
-import { NouisliderModule } from "ng2-nouislider";
 import { FormsModule } from "@angular/forms";
 import { OptionsNavComponent } from "./options-nav/options-nav.component";
 import { SaveComponent } from "./save/save.component";
@@ -28,8 +27,10 @@ import { ProductionSignpostsComponent } from "./production-signposts/production-
 import { CantBuySignpostsComponent } from "./action/cant-buy-signposts/cant-buy-signposts.component";
 import { UnitGroupComponent } from "./unit-group/unit-group.component";
 import { ActionGroupComponent } from "./action-group/action-group.component";
+import { SliderModule } from "primeng/slider";
+import { TabComponent } from "./material-nav/tab/tab.component";
 import { ChartsModule } from "ng2-charts/ng2-charts";
-import { TabComponent } from './material-nav/tab/tab.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +61,7 @@ import { TabComponent } from './material-nav/tab/tab.component';
     RouterModule.forRoot(APPROUTES, { useHash: true }),
     ToastrModule.forRoot(),
     FormsModule,
-    NouisliderModule,
+    SliderModule,
     ChartsModule
   ],
   providers: [ToastrService, OptionsService, MainService],

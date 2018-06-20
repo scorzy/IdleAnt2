@@ -24,7 +24,7 @@
 
       <div *ngIf="unit.produces.length > 0">
         <span>Unit operativity: {{unit.efficiency | format}} %</span>
-        <nouislider [min]="0" [max]="100" [step]="0.01" [(ngModel)]="unit.efficiency"></nouislider>
+        <p-slider [min]="0" [max]="100" [step]="0.01" [(ngModel)]="unit.efficiency"></p-slider>
       </div>
 
       <app-action *ngIf="unit.buyAction" [action]="unit.buyAction"></app-action>

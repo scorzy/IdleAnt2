@@ -25,13 +25,16 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/normalize.css/normalize.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/start/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "node_modules/@clr/icons/clr-icons.min.css",
               "node_modules/@clr/ui/clr-ui.css",
               "node_modules/ngx-toastr/toastr.css",
-              "node_modules/nouislider/distribute/nouislider.min.css",
               "src/styles.scss"
             ],
             "scripts": [
+              "./node_modules/chart.js/dist/Chart.js",
               "./node_modules/break_infinity.js/break_infinity.js",
               "./node_modules/@webcomponents/custom-elements/custom-elements.min.js",
               "./node_modules/@clr/icons/clr-icons.min.js",

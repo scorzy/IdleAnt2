@@ -8,8 +8,7 @@
     "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "coveralls":
-      "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "lint-fix": "ng lint IdleAnt2 --fix"
   },
@@ -33,10 +32,10 @@
     "lz-string": "^1.4.4",
     "moment": "^2.22.2",
     "ng2-charts": "^1.6.0",
-    "ng2-nouislider": "^1.7.11",
     "ngx-toastr": "^8.7.3",
     "normalize.css": "^8.0.0",
-    "nouislider": "^11.1.0",
+    "primeicons": "^1.0.0-beta.9",
+    "primeng": "^6.0.0",
     "rxjs": "^6.2.0",
     "swarm-numberformat": "^0.4.0",
     "zone.js": "^0.8.26"

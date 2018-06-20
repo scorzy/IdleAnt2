@@ -2,10 +2,16 @@
 
   <div class="header-nav" [clr-nav-level]="1">
     <a [routerLink]='"nav"' class="active nav-link" [routerLinkActive]="'active'" (click)="navigateLast()">
-      <span class="nav-text">Units</span>
+
+      <span class="nav-text">
+        <clr-icon shape="bug"></clr-icon>
+      </span>
     </a>
     <a [routerLink]='"lab"' class="active nav-link" *ngIf="lab" [routerLinkActive]="'active'">
-      <span class="nav-text">Lab</span>
+
+      <span class="nav-text">
+        <clr-icon shape="flask"></clr-icon>
+      </span>
     </a>
   </div>
 

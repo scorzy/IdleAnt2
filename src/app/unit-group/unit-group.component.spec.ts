@@ -8,7 +8,6 @@ import { ClarityModule } from "@clr/angular";
 import { ToastrModule } from "ngx-toastr";
 import { RouterTestingModule } from "@angular/router/testing";
 import { FormsModule } from "@angular/forms";
-import { NouisliderModule } from "ng2-nouislider";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ChartsModule } from "ng2-charts/ng2-charts";
 
@@ -24,7 +23,6 @@ describe("UnitGroupComponent", () => {
         ToastrModule.forRoot(),
         RouterTestingModule,
         FormsModule,
-        NouisliderModule,
         ChartsModule
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]

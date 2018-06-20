@@ -9,6 +9,8 @@ import {
 import { Action } from "../model/action";
 import { Price } from "../model/price";
 import { MainService } from "../main.service";
+import { TeamAction } from "../model/actions/team-action";
+import { TwinAction } from "../model/actions/twin-action";
 
 @Component({
   selector: "app-action",
@@ -19,12 +21,19 @@ import { MainService } from "../main.service";
 export class ActionComponent implements OnInit, OnDestroy {
   @Input() action: Action;
   sub: any;
+  shape: string;
 
   constructor(private ms: MainService, private cd: ChangeDetectorRef) {
     //Nothing
   }
 
   ngOnInit() {
+    this.shape =
+      this.action instanceof TeamAction
+        ? "angle"
+        : this.action instanceof TwinAction
+          ? "angle-double"
+          : "";
     this.sub = this.ms.updateEmitter.subscribe(() => {
       this.action.reloadUserPrices();
       this.action.reloadAvailableTime();
