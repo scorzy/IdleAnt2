@@ -4,6 +4,7 @@ export class Malus extends FullUnit {
   isKilled = false;
   priceMultiplier = new Decimal(1);
   first = false;
+  malusType: FullUnit;
 
   kill(): boolean {
     if (this.isKilled) return false;
@@ -23,10 +24,9 @@ export class Malus extends FullUnit {
   reloadPriceMulti() {
     if (!this.first) return;
 
-    this.priceMultiplier =
-      this.quantity.gte(11) && this.isActive()
-        ? new Decimal(this.quantity.log10())
-        : (this.priceMultiplier = new Decimal(1));
+    this.priceMultiplier = this.isActive()
+      ? new Decimal(this.quantity.plus(11).log10())
+      : (this.priceMultiplier = new Decimal(1));
   }
   isActive(): boolean {
     return !this.isKilled && super.isActive();

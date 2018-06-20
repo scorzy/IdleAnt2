@@ -17,7 +17,7 @@ export class FormatPipe implements PipeTransform {
         : (value.greaterThanOrEqualTo(0) ? "" : "-") +
           this.options.formatter.formatShort(value.abs());
 
-    if (integer) str = str.replace(/\.0+$/, "");
+    if (integer && value.abs().lessThan(100)) str = str.replace(/\.0+$/, "");
     if (!this.options.usaFormat) str = str.replace(".", ",");
 
     return str;

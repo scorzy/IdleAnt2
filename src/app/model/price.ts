@@ -22,22 +22,14 @@ export class Price {
     this.realPrice = new Decimal(this.price);
   }
 
-  reloadRealPrice(materials: Materials, malus: WorldMalus) {
-    let multi = new Decimal(1);
-    switch (this.base) {
-      case materials.food:
-        multi = malus.foodMalus1.priceMultiplier;
-      case materials.wood:
-        multi = malus.woodMalus1.priceMultiplier;
-      case materials.crystal:
-        multi = malus.crystalMalus1.priceMultiplier;
-      case materials.science:
-        multi = malus.scienceMalus1.priceMultiplier;
-    }
-    this.realPrice = this.price.times(multi);
+  reloadRealPrice() {
+    this.realPrice = this.base.malus
+      ? this.price.times(this.base.malus.priceMultiplier)
+      : (this.realPrice = this.price);
   }
 
   reload(bought: Decimal) {
+    this.reloadRealPrice();
     if (this.growRate !== 1)
       this.maxBuy = Decimal.affordGeometricSeries(
         this.base.quantity,

@@ -15,7 +15,7 @@
 </div>
 <div class="card-footer" *ngIf="!research.complete">
   <button *ngIf="!research.canBuy" class="btn btn-sm btn-link" disabled>
-    Can't buy. Avaiable in {{research.avaiableIn | endIn}}
+    Can't buy. Avaiable in {{research.availableIn | endIn}}
   </button>
   <button *ngIf="research.canBuy" class="btn btn-sm btn-link" (click)="research.buy(research.realNum)">
     Research

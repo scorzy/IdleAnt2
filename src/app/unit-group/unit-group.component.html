@@ -5,6 +5,12 @@
       <h1>{{unitGroup.name}}</h1>
       <p>Aggregate group for {{unitGroup.name}}: {{unitsSpan}} </p>
 
+      <div *ngIf="hatchActionGrp">
+        <span>Operativity (average): </span>
+        <p-slider [min]="0" [max]="100" [step]="0.01" [(ngModel)]="operativity" (onChange)="changeOperativity()" [disabled]="unitGroup.selected.length == 0"
+          animate="true"></p-slider>
+      </div>
+
       <app-action-group *ngIf="hatchActionGrp" [actGr]="hatchActionGrp"></app-action-group>
       <app-action-group *ngIf="teamActionGrp && ms.game.researches.team2.done" [actGr]="teamActionGrp"></app-action-group>
       <app-action-group *ngIf="twinActionGrp && ms.game.researches.twin.done" [actGr]="twinActionGrp"></app-action-group>

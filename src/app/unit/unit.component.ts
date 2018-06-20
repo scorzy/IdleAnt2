@@ -11,6 +11,7 @@ import { Action } from "../model/action";
 import { MainService } from "../main.service";
 import { ProductionSorter, TotalProductionSorter } from "../model/utility";
 import { Production } from "../model/production";
+import { Malus } from "../model/malus";
 
 @Component({
   selector: "app-unit",
@@ -25,6 +26,7 @@ export class UnitComponent implements OnInit, OnDestroy {
   paramsSub: any;
   sub: any;
   unit: FullUnit;
+  malus: Malus;
   prodSorter = new ProductionSorter();
   totalProdSorter = new TotalProductionSorter();
 
@@ -50,10 +52,15 @@ export class UnitComponent implements OnInit, OnDestroy {
     if (id === undefined) {
       id = "fo";
     }
+    this.malus = null;
     const b = this.ms.game.units.find(u => u.id === id);
     if (b instanceof FullUnit) {
       this.unit = b;
       this.unit.isNew = false;
+      if (this.unit instanceof Malus) {
+        this.malus = this.unit;
+      }
+
       this.activeProduct = this.unit.produces.filter(p => p.product.unlocked);
       this.activeProducer = this.unit.producedBy.filter(
         p => p.producer.unlocked

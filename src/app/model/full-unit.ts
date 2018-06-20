@@ -8,6 +8,7 @@ import { TwinAction } from "./actions/twin-action";
 import { Research } from "./research";
 import { TeamAction } from "./actions/team-action";
 import { ProductionBonus } from "./production-bonus";
+import { Malus } from "./malus";
 
 export class FullUnit extends BaseUnit implements IUnlocable {
   unlocked = false;
@@ -45,6 +46,8 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   uiB = new Decimal(0);
   uiC = new Decimal(0);
   //#endregion
+
+  malus: Malus = null;
 
   constructor(
     id: string,

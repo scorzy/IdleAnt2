@@ -54,6 +54,8 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
 
   stop = true;
 
+  operativity = 100;
+
   @ViewChild(BaseChartDirective) chart: BaseChartDirective;
 
   constructor(
@@ -89,6 +91,13 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
       .reduce((p, c) => p + ", " + c);
 
     if (this.unitGroup.unlocked[0].buyAction) {
+      this.operativity =
+        this.unitGroup.selected.length > 0
+          ? this.unitGroup.selected
+              .map(u => u.efficiency)
+              .reduce((p, c) => p + c, 0) / this.unitGroup.selected.length
+          : 0;
+
       this.hatchActionGrp = new ActionGroup(
         "Hatch",
         this.unitGroup.selected.filter(u => u.buyAction).map(u => u.buyAction),
@@ -116,6 +125,8 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
       }
     } else {
       this.hatchActionGrp = null;
+      this.teamActionGrp = null;
+      this.twinActionGrp = null;
     }
     this.doGraph();
     this.cd.markForCheck();
@@ -146,5 +157,8 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
         this.stop = false;
       }
     }, 1);
+  }
+  changeOperativity(event: any) {
+    this.unitGroup.selected.forEach(u => (u.efficiency = this.operativity));
   }
 }

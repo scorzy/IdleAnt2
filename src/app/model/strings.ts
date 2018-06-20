@@ -34,7 +34,20 @@ export const STRINGS = {
     foB: ["Food Production Bonus", ""],
     woB: ["Wood Production Bonus", ""],
     crB: ["Crystal Production Bonus", ""],
-    scB: ["Science Production Bonus", ""]
+    scB: ["Science Production Bonus", ""],
+    //  Malus
+    foMalu1: ["foMalu1", "foMalu1"],
+    foMalu2: ["foMalu2", "foMalu2"],
+    foMalu3: ["foMalu3", "foMalu3"],
+    woMalu1: ["woMalu1", "woMalu1"],
+    woMalu2: ["woMalu2", "woMalu2"],
+    woMalu3: ["woMalu3", "woMalu3"],
+    crMalu1: ["crMalu1", "crMalu1"],
+    crMalu2: ["crMalu2", "crMalu2"],
+    crMalu3: ["crMalu3", "crMalu3"],
+    scMalu1: ["scMalu1", "scMalu1"],
+    scMalu2: ["scMalu2", "scMalu2"],
+    scMalu3: ["scMalu3", "scMalu3"]
   },
   researches: {
     team1: ["Team 1", "Team 1"],

@@ -46,7 +46,7 @@ export class ActionGroup {
         });
 
         this.pricesTemp.forEach(p => {
-          p.reloadRealPrice(game.materials, game.worldMalus);
+          p.reloadRealPrice();
           p.reload(new Decimal(0));
         });
         this.canBuy = this.pricesTemp.findIndex(p => !p.canBuy) < 0;

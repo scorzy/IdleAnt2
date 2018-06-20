@@ -87,13 +87,24 @@ export class Game {
     this.genX2.firstResearch.toUnlock.push(this.genX3.firstResearch);
     this.worldBonus.setRelations(this);
 
+    this.worldMalus.foodMalus1.malusType = this.materials.food;
+    this.worldMalus.woodMalus1.malusType = this.materials.wood;
+    this.worldMalus.crystalMalus1.malusType = this.materials.crystal;
+    this.worldMalus.scienceMalus1.malusType = this.materials.science;
+
+    this.materials.food.malus = this.worldMalus.foodMalus1;
+    this.materials.wood.malus = this.worldMalus.woodMalus1;
+    this.materials.crystal.malus = this.worldMalus.crystalMalus1;
+    this.materials.science.malus = this.worldMalus.scienceMalus1;
+
     //
     //  Debug
     //
     this.materials.food.quantity = new Decimal(1e100);
-    this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
+    // this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
     // this.materials.list.forEach(u => (u.unlocked = true));
     // this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
+    // this.worldMalus.foodMalus1.quantity = new Decimal(100);
 
     //
     //  Build list

@@ -22,7 +22,7 @@
     Can't buy. Available in {{action.availableIn | endIn}}
   </button>
   <app-cant-buy-signposts *ngIf="!action.canBuy" [action]="action"></app-cant-buy-signposts>
-  <button *ngIf="action.canBuy" class="btn btn-sm w-100" (click)="action.buy(action.realNum)">
+  <button *ngIf="action.canBuy" class="btn btn-sm w-100" (click)="action.buy(action.realNum)" [disabled]="!action.canUserBuy">
     Get {{action.realNum | format: true}}
   </button>
   <button *ngIf="action.maxBuy.gt(3)" class="btn btn-sm w-100" (click)="action.buy(action.maxBuy.div(2).floor())">

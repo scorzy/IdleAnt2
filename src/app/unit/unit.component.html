@@ -14,17 +14,23 @@
         <app-polynom [a]="unit.uiA" [b]="unit.uiB" [c]="unit.uiC"></app-polynom>
       </p>
 
-      <clr-alert *ngIf="unit.isEnding" [clrAlertType]="'alert-warning'" [clrAlertClosable]="false" [clrAlertSizeSmall]="true">
-        <div clr-alert-item class="alert-item">
+      <clr-alert *ngIf="unit.isEnding" [clrAlertType]="malus ? 'alert-sucess':'alert-warning'" [clrAlertClosable]="false" [clrAlertSizeSmall]="false">
+        <clr-alert-item>
           <span class="alert-text">
             End in {{unit.endIn | endIn}}
           </span>
-        </div>
+        </clr-alert-item>
       </clr-alert>
 
-      <div *ngIf="unit.produces.length > 0">
+      <clr-alert *ngIf="malus && malus.first && malus.isActive()" [clrAlertType]="'alert-danger'" [clrAlertSizeSmall]="false">
+        <clr-alert-item>
+          {{malus.name}} is causing {{malus.priceMultiplier.minus(1).times(100) | format}} % increased {{malus.malusType.name}} prices.
+        </clr-alert-item>
+      </clr-alert>
+
+      <div *ngIf="unit.produces.length > 0 && !malus">
         <span>Unit operativity: {{unit.efficiency | format}} %</span>
-        <p-slider [min]="0" [max]="100" [step]="0.01" [(ngModel)]="unit.efficiency"></p-slider>
+        <p-slider [min]="0" [max]="100" [step]="0.01" [(ngModel)]="unit.efficiency" animate="true"></p-slider>
       </div>
 
       <app-action *ngIf="unit.buyAction" [action]="unit.buyAction"></app-action>

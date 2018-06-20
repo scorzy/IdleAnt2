@@ -1,5 +1,6 @@
 import { BaseUnit } from "./baseUnit";
 import { Price } from "./price";
+import { Game } from "./game";
 
 export class Action extends BaseUnit {
   done = false;
@@ -9,6 +10,7 @@ export class Action extends BaseUnit {
 
   canBuy = false;
   maxBuy = new Decimal(0);
+  canUserBuy = false;
 
   userNum = 1;
   realNum = new Decimal(1);
@@ -58,6 +60,7 @@ export class Action extends BaseUnit {
     let real = 1;
     if (!isNaN(this.userNum) && this.userNum >= 1) real = this.userNum;
     this.realNum = new Decimal(real);
+    this.canUserBuy = this.maxBuy.gte(this.realNum);
     this.prices.forEach(p =>
       p.loadPriceUser(new Decimal(this.realNum), this.quantity)
     );
