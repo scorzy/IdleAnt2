@@ -36,9 +36,9 @@ export const STRINGS = {
     crB: ["Crystal Production Bonus", ""],
     scB: ["Science Production Bonus", ""],
     //  Malus
-    foMalu1: ["foMalu1", "foMalu1"],
-    foMalu2: ["foMalu2", "foMalu2"],
-    foMalu3: ["foMalu3", "foMalu3"],
+    foMalu1: ["Poisonous Fungus", "Poisonous Fungus"],
+    foMalu2: ["Ancient Fungus", "Ancient Fungus"],
+    foMalu3: ["Zombie Fungus", "Zombie Fungus"],
     woMalu1: ["woMalu1", "woMalu1"],
     woMalu2: ["woMalu2", "woMalu2"],
     woMalu3: ["woMalu3", "woMalu3"],
@@ -47,7 +47,12 @@ export const STRINGS = {
     crMalu3: ["crMalu3", "crMalu3"],
     scMalu1: ["scMalu1", "scMalu1"],
     scMalu2: ["scMalu2", "scMalu2"],
-    scMalu3: ["scMalu3", "scMalu3"]
+    scMalu3: ["scMalu3", "scMalu3"],
+    //  Killers
+    fmki: ["fmki", ""],
+    wmki: ["wmki", ""],
+    cmki: ["cmki", ""],
+    smki: ["smki", ""]
   },
   researches: {
     team1: ["Team 1", "Team 1"],

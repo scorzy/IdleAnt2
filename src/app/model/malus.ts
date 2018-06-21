@@ -11,6 +11,7 @@ export class Malus extends FullUnit {
 
     this.isKilled = true;
     this.efficiency = 0;
+    this.quantity = new Decimal(0);
 
     //  Recursive kill malus
     this.producedBy.forEach(p => {
@@ -24,9 +25,10 @@ export class Malus extends FullUnit {
   reloadPriceMulti() {
     if (!this.first) return;
 
-    this.priceMultiplier = this.isActive()
-      ? new Decimal(this.quantity.plus(11).log10())
-      : (this.priceMultiplier = new Decimal(1));
+    this.priceMultiplier =
+      this.quantity.gte(1) && this.isActive()
+        ? new Decimal(this.quantity.log(20))
+        : (this.priceMultiplier = new Decimal(1));
   }
   isActive(): boolean {
     return !this.isKilled && super.isActive();

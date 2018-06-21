@@ -19,7 +19,8 @@ export class MainService {
   constructor(public options: OptionsService, private toastr: ToastrService) {
     this.game = new Game(this.updateEmitter, this.researchEmitter);
     this.last = Date.now();
-    setInterval(this.update.bind(this), 250);
+    // requestAnimationFrame(this.update.bind(this));
+    setInterval(this.update.bind(this), 100);
   }
   update() {
     const now = Date.now();
@@ -29,6 +30,7 @@ export class MainService {
     this.game.postUpdate();
     this.last = now;
     this.updateEmitter.emit(diff);
+    // requestAnimationFrame(this.update.bind(this));
   }
 
   getSave(): string {

@@ -8,6 +8,8 @@ import { Game } from "../model/game";
 import { UnitGroup } from "../model/unit-group";
 import { BaseUnit } from "../model/baseUnit";
 import { MainService } from "../main.service";
+import { Malus } from "../model/malus";
+import { FullUnit } from "../model/full-unit";
 
 // declare let isFinite;
 
@@ -37,5 +39,8 @@ export class NavComponent implements OnInit {
   }
   getUnitId(index, base: BaseUnit) {
     return base.id;
+  }
+  isMalus(unit: FullUnit): boolean {
+    return unit instanceof Malus;
   }
 }

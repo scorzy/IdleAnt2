@@ -13,6 +13,7 @@ import { World } from "./world";
 import { WorldBonus } from "./units/world-bonus";
 import { Malus } from "./malus";
 import { WorldMalus } from "./units/world-malus";
+import { MalusKiller } from "./units/malus-killer";
 
 export class Game {
   units = new Array<BaseUnit>();
@@ -30,6 +31,7 @@ export class Game {
   advWorkers: Workers;
   genX2: UnitGroup;
   genX3: UnitGroup;
+  killers: UnitGroup;
 
   researches: Researches;
   worldBonus: WorldBonus;
@@ -72,7 +74,11 @@ export class Game {
     this.worldMalus = new WorldMalus(this);
     this.unitGroups.push(this.worldMalus);
 
+    this.killers = new MalusKiller(this);
+    this.unitGroups.push(this.killers);
+
     this.unitGroups.forEach(g => g.declareStuff());
+
     this.researches.declareStuff();
     this.worldBonus = new WorldBonus();
     this.worldBonus.declareStuff();
@@ -87,24 +93,16 @@ export class Game {
     this.genX2.firstResearch.toUnlock.push(this.genX3.firstResearch);
     this.worldBonus.setRelations(this);
 
-    this.worldMalus.foodMalus1.malusType = this.materials.food;
-    this.worldMalus.woodMalus1.malusType = this.materials.wood;
-    this.worldMalus.crystalMalus1.malusType = this.materials.crystal;
-    this.worldMalus.scienceMalus1.malusType = this.materials.science;
-
-    this.materials.food.malus = this.worldMalus.foodMalus1;
-    this.materials.wood.malus = this.worldMalus.woodMalus1;
-    this.materials.crystal.malus = this.worldMalus.crystalMalus1;
-    this.materials.science.malus = this.worldMalus.scienceMalus1;
-
     //
     //  Debug
     //
-    this.materials.food.quantity = new Decimal(1e100);
-    // this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
-    // this.materials.list.forEach(u => (u.unlocked = true));
-    // this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
+    //this.materials.food.quantity = new Decimal(1e100);
+    this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
+    this.materials.list.forEach(u => (u.unlocked = true));
+    this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
     // this.worldMalus.foodMalus1.quantity = new Decimal(100);
+    this.worldMalus.foodMalus1.quantity = new Decimal(100);
+    this.worldMalus.foodMalus2.quantity = new Decimal(10);
 
     //
     //  Build list
@@ -176,7 +174,7 @@ export class Game {
           unit.b,
           unit.c,
           d
-        ).filter(s => s.gt(0));
+        ).filter(s => s.gte(0));
 
         if (solution.length > 0) {
           const min = solution.reduce(

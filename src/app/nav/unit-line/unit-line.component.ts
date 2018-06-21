@@ -27,11 +27,12 @@ export class UnitLineComponent implements OnInit {
   @Input() unit: FullUnit;
   @Input() team: boolean;
   @Input() twin: boolean;
+  @Input() isMalus = false;
 
   constructor() {
     //Nothing
   }
   ngOnInit() {
-    //Nothing
+    //
   }
 }
