@@ -1,5 +1,6 @@
 import { UnitGroup } from "./unit-group";
 import { STRINGS } from "./strings";
+import { Utility } from "./utility";
 
 export class BaseUnit {
   unlocked = true;
@@ -15,8 +16,15 @@ export class BaseUnit {
   ) {
     if (id in STRINGS.units) {
       this.name = STRINGS.units[id][0];
-      this.description = STRINGS.units[id][1];
+      this.getRandomDescription();
     }
+  }
+
+  getRandomDescription() {
+    this.description =
+      STRINGS.units[this.id][1] instanceof Array
+        ? Utility.getRandom(STRINGS.units[this.id][1])
+        : STRINGS.units[this.id][1];
   }
 
   setUiValue() {

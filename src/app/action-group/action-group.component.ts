@@ -33,6 +33,9 @@ export class ActionGroupComponent implements OnInit {
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
+  buy(event: Event) {
+    this.actGr.buy(this.ms.game, this.actGr.realNum);
+  }
 
   getPriceId(index, price: Price) {
     return price.base.id;

@@ -4,6 +4,10 @@ import { BaseUnit } from "./baseUnit";
 import { FullUnit } from "./full-unit";
 
 export class Utility {
+  static getRandom(arr: any[]): any {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
   /**
    * Solve an equation, up to cubic equation ax^3 + bx^2 + cx + d = 0
    *

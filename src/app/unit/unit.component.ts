@@ -72,6 +72,7 @@ export class UnitComponent implements OnInit, OnDestroy {
         this.unit.twinAction.reloadUserPrices();
 
       this.ms.game.lastUnitUrl = "nav/unit/" + b.id;
+      this.unit.getRandomDescription();
     }
     this.cd.markForCheck();
   }

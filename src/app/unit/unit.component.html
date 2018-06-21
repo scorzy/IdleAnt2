@@ -22,9 +22,18 @@
         </clr-alert-item>
       </clr-alert>
 
-      <clr-alert *ngIf="malus && malus.first && malus.isActive()" [clrAlertType]="'alert-danger'" [clrAlertSizeSmall]="false">
+      <clr-alert *ngIf="malus && malus.first && malus.isActive()" [clrAlertType]="'alert-danger'" [clrAlertSizeSmall]="false" [clrAlertClosable]="false">
         <clr-alert-item>
-          {{malus.name}} is causing {{malus.priceMultiplier.minus(1).times(100) | format}} % increased {{malus.malusType.name}} prices.
+          <span>
+            {{malus.name}} is causing
+            <span class="monospace"> {{malus.priceMultiplier.minus(1).times(100) | format}} %
+            </span>
+            increased
+            <a [routerLink]="'/nav/unit/'+malus.malusType.id">
+              {{malus.malusType.name}}
+            </a>
+            prices.
+          </span>
         </clr-alert-item>
       </clr-alert>
 
@@ -55,12 +64,12 @@
               </a>
             </clr-dg-cell>
             <clr-dg-cell>
-              <span [class.noEnought]="product.rateo.lt(0)">
+              <span [class.noEnought]="product.rateo.lt(0)" class="monospace">
                 {{product.prodPerSec | format}}</span>
               <app-production-signposts [production]="product"></app-production-signposts>
             </clr-dg-cell>
             <clr-dg-cell>
-              <span [class.noEnought]="product.rateo.lt(0)">
+              <span [class.noEnought]="product.rateo.lt(0)" class="monospace">
                 {{product.prodPerSec.times(unit.quantity) | format}}
               </span>
             </clr-dg-cell>
@@ -91,12 +100,12 @@
               </a>
             </clr-dg-cell>
             <clr-dg-cell>
-              <span [class.noEnought]="producer.rateo.lt(0)">
+              <span [class.noEnought]="producer.rateo.lt(0)" class="monospace">
                 {{producer.prodPerSec | format}}
               </span>
             </clr-dg-cell>
             <clr-dg-cell>
-              <span [class.noEnought]="producer.rateo.lt(0)">
+              <span [class.noEnought]="producer.rateo.lt(0)" class="monospace">
                 {{producer.prodPerSec.times(producer.producer.quantity) | format}}</span>
             </clr-dg-cell>
           </clr-dg-row>

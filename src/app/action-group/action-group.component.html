@@ -14,7 +14,7 @@
     Can't buy.
   </button>
   <!-- <app-cant-buy-signposts *ngIf="!action.canBuy" [action]="action"></app-cant-buy-signposts> -->
-  <button *ngIf="actGr.canBuy" class="btn btn-sm w-100" (click)="actGr.buy(actGr.realNum)">
+  <button *ngIf="actGr.canBuy" class="btn btn-sm w-100" (click)="buy()">
     Get {{actGr.realNum | format: true}}
   </button>
 </div>

@@ -3,6 +3,7 @@ import { IUnlocable } from "./iunlocable";
 import { FullUnit } from "./full-unit";
 import { BaseUnit } from "./baseUnit";
 import { Game } from "./game";
+import { Malus } from "./malus";
 
 export class World {
   name = "";
@@ -23,7 +24,7 @@ export class World {
   //  Wining condition
   winContidions = new Array<Price>();
   //  This resources must be zero
-  notWinConditions = new Array<FullUnit>();
+  notWinConditions = new Array<Malus>();
 
   //#region Save and Load
   getSave(): any {

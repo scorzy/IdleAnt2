@@ -45,14 +45,14 @@ export const STRINGS = {
     crMalu1: ["crMalu1", "crMalu1"],
     crMalu2: ["crMalu2", "crMalu2"],
     crMalu3: ["crMalu3", "crMalu3"],
-    scMalu1: ["scMalu1", "scMalu1"],
-    scMalu2: ["scMalu2", "scMalu2"],
-    scMalu3: ["scMalu3", "scMalu3"],
+    scMalu1: ["Pseudoscientist", ["1", "2", "3"]],
+    scMalu2: ["Pseudoscientist", "Pseudoscientist"],
+    scMalu3: ["Pseudoscientist", "Pseudoscientist"],
     //  Killers
-    fmki: ["fmki", ""],
+    fmki: ["Disinfestation Ant", "Destroy poisonous fungus."],
     wmki: ["wmki", ""],
     cmki: ["cmki", ""],
-    smki: ["smki", ""]
+    smki: ["Popularizers", ""]
   },
   researches: {
     team1: ["Team 1", "Team 1"],

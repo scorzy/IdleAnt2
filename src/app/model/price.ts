@@ -58,17 +58,13 @@ export class Price {
   }
 
   loadPriceUser(num: Decimal, start: Decimal) {
-    if (this.growRate > 1) {
-      this.priceUser = Decimal.sumGeometricSeries(
-        num,
-        this.realPrice,
-        this.growRate,
-        start
-      );
-    } else {
-      this.priceUser = this.realPrice.times(num);
-    }
-    this.userCanBuy = this.priceUser.lt(this.base.quantity);
+    const tempPrice: Decimal =
+      this.growRate > 1
+        ? Decimal.sumGeometricSeries(num, this.realPrice, this.growRate, start)
+        : this.realPrice.times(num);
+
+    this.userCanBuy = tempPrice.lte(this.base.quantity);
+    if (this.priceUser.cmp(tempPrice) !== 0) this.priceUser = tempPrice;
   }
 
   getTime(): Decimal {
