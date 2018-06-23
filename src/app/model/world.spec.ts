@@ -1,6 +1,8 @@
 import { World } from "./world";
 import { Game } from "./game";
 import { EventEmitter } from "@angular/core";
+import { FullUnit } from "./full-unit";
+import { Price } from "./price";
 
 describe("World", () => {
   it("should create an instance", () => {
@@ -48,5 +50,92 @@ describe("World", () => {
       game.worldBonus.scienceBonus.id
     );
     expect(world2.productionsEfficienty[0][1].toNumber()).toBe(4);
+  });
+  it("Merge", () => {
+    const world1 = new World();
+    const world3 = new World();
+    const world2 = new World();
+
+    const unit1 = new FullUnit("");
+    const unit2 = new FullUnit("");
+    const unit3 = new FullUnit("");
+    const unit4 = new FullUnit("");
+    const unit5 = new FullUnit("");
+    const unit6 = new FullUnit("");
+
+    world1.name = "1";
+    world2.name = "2";
+    world3.name = "3";
+
+    world1.productionsBonus = [
+      [unit1, new Decimal(1)],
+      [unit2, new Decimal(2)]
+    ];
+    world2.productionsBonus = [
+      [unit2, new Decimal(1)],
+      [unit3, new Decimal(2)]
+    ];
+    world3.productionsBonus = [
+      [unit4, new Decimal(1)],
+      [unit5, new Decimal(2)]
+    ];
+
+    world1.productionsEfficienty = [
+      [unit1, new Decimal(1)],
+      [unit6, new Decimal(2)]
+    ];
+    world2.productionsEfficienty = [
+      [unit1, new Decimal(1)],
+      [unit4, new Decimal(1)],
+      [unit3, new Decimal(2)]
+    ];
+    world3.productionsEfficienty = [
+      [unit2, new Decimal(1)],
+      [unit5, new Decimal(2)]
+    ];
+
+    world1.productionsAll = [[unit1, new Decimal(1)], [unit2, new Decimal(2)]];
+    world2.productionsAll = [[unit3, new Decimal(1)], [unit4, new Decimal(2)]];
+    world3.productionsAll = [[unit1, new Decimal(1)], [unit6, new Decimal(2)]];
+
+    world1.startingUnit = [[unit1, new Decimal(1)], [unit2, new Decimal(2)]];
+    world2.startingUnit = [[unit2, new Decimal(1)], [unit3, new Decimal(2)]];
+
+    world1.startingUnlocked = [unit1];
+    world2.startingUnlocked = [unit1];
+    world3.startingUnlocked = [unit2];
+
+    world1.winContidions = [new Price(unit1, new Decimal(2))];
+    world2.winContidions = [
+      new Price(unit1, new Decimal(2)),
+      new Price(unit2, new Decimal(2))
+    ];
+
+    const merged = World.merge([world1, world2, world3]);
+
+    expect(merged.name).toBe("1 2 3");
+
+    expect(
+      merged.productionsBonus.find(u => u[0] === unit1)[1].toNumber()
+    ).toBe(1);
+    expect(
+      merged.productionsBonus.find(u => u[0] === unit2)[1].toNumber()
+    ).toBe(3);
+    expect(
+      merged.productionsBonus.find(u => u[0] === unit3)[1].toNumber()
+    ).toBe(2);
+    expect(
+      merged.productionsBonus.find(u => u[0] === unit4)[1].toNumber()
+    ).toBe(1);
+    expect(
+      merged.productionsBonus.find(u => u[0] === unit5)[1].toNumber()
+    ).toBe(2);
+    expect(merged.productionsBonus.find(u => u[0] === unit6)).toBeFalsy();
+
+    expect(merged.startingUnlocked.length).toBe(2);
+    expect(merged.startingUnlocked.find(u => u === unit1)).toBeDefined();
+    expect(merged.startingUnlocked.find(u => u === unit2)).toBeDefined();
+
+    expect(merged.winContidions.length).toBe(2);
   });
 });

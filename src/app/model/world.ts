@@ -4,6 +4,7 @@ import { FullUnit } from "./full-unit";
 import { BaseUnit } from "./baseUnit";
 import { Game } from "./game";
 import { Malus } from "./malus";
+import { uniq } from "lodash-es";
 
 export class World {
   name = "";
@@ -62,4 +63,53 @@ export class World {
     return game.worldBonus.bonusList.find(b => b.id === id);
   }
   //#endregion
+
+  // tslint:disable-next-line:member-ordering
+  static merge(worlds: World[]): World {
+    const retWorld = new World();
+
+    retWorld.name = worlds.map(w => w.name).reduce((p, c) => p + " " + c);
+
+    worlds.forEach(w => {
+      w.productionsBonus.forEach(a => {
+        const prod = retWorld.productionsBonus.find(p => p[0] === a[0]);
+        if (!prod) retWorld.productionsBonus.push([a[0], new Decimal(a[1])]);
+        else prod[1] = prod[1].plus(a[1]);
+      });
+      w.productionsEfficienty.forEach(a => {
+        const prod = retWorld.productionsEfficienty.find(p => p[0] === a[0]);
+        if (!prod)
+          retWorld.productionsEfficienty.push([a[0], new Decimal(a[1])]);
+        else prod[1] = prod[1].plus(a[1]);
+      });
+      w.productionsAll.forEach(a => {
+        const prod = retWorld.productionsAll.find(p => p[0] === a[0]);
+        if (!prod) retWorld.productionsAll.push([a[0], new Decimal(a[1])]);
+        else prod[1] = prod[1].plus(a[1]);
+      });
+      //  Starting
+      w.startingUnit.forEach(a => {
+        const un = retWorld.startingUnit.find(p => p[0] === a[0]);
+        if (!un) retWorld.startingUnit.push([a[0], new Decimal(a[1])]);
+        else un[1] = un[1].plus(a[1]);
+      });
+      //  Win
+      w.winContidions.forEach(a => {
+        const win = retWorld.winContidions.find(p => p.base === a.base);
+        if (!win) retWorld.winContidions.push(new Price(a.base, a.price, 1));
+        else win.price = win.price.plus(a.price);
+      });
+    });
+
+    //  Unlocked
+    retWorld.startingUnlocked = uniq(
+      [].concat.apply([], worlds.map(w => w.startingUnlocked))
+    );
+    //  Malus
+    retWorld.notWinConditions = uniq(
+      [].concat.apply([], worlds.map(w => w.notWinConditions))
+    );
+
+    return retWorld;
+  }
 }

@@ -1,6 +1,6 @@
 import { UnitGroup } from "./unit-group";
 import { STRINGS } from "./strings";
-import { Utility } from "./utility";
+import { sample, isArray } from "lodash-es";
 
 export class BaseUnit {
   unlocked = true;
@@ -21,10 +21,9 @@ export class BaseUnit {
   }
 
   getRandomDescription() {
-    this.description =
-      STRINGS.units[this.id][1] instanceof Array
-        ? Utility.getRandom(STRINGS.units[this.id][1])
-        : STRINGS.units[this.id][1];
+    this.description = isArray(STRINGS.units[this.id][1])
+      ? sample(STRINGS.units[this.id][1])
+      : STRINGS.units[this.id][1];
   }
 
   setUiValue() {
