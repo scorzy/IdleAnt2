@@ -1,6 +1,6 @@
 <div *ngIf="unit">
-  <div class="row">
-    <div class="col-xs-12	col-sm-6	col-md-6	col-lg-6	col-xl-6">
+  <div class="clr-row">
+    <div class="clr-col-xs-12	clr-col-sm-6	clr-col-md-6	clr-col-lg-6	clr-col-xl-6">
 
       <h1>{{unit.name}}</h1>
       <p>{{unit.description}}</p>
@@ -47,7 +47,7 @@
       <app-action *ngIf="unit.twinAction && ms.game.researches.twin.done" [action]="unit.twinAction"></app-action>
 
     </div>
-    <div class="col-xs-12	col-sm-6 col-md-6	col-lg-6 col-xl-6">
+    <div class="clr-col-xs-12	clr-col-sm-6 clr-col-md-6	clr-col-lg-6 clr-col-xl-6">
       <div *ngIf="activeProduct?.length > 0">
         <h6>
           {{unit.name}} produces:

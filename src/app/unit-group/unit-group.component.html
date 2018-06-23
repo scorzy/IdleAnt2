@@ -1,6 +1,6 @@
 <div *ngIf="unitGroup">
-  <div class="row">
-    <div class="col-xs-12	col-sm-6	col-md-6	col-lg-6	col-xl-6">
+  <div class="clr-row">
+    <div class="clr-col-xs-12	clr-col-sm-6	clr-col-md-6	clr-col-lg-6	clr-col-xl-6">
 
       <h1>{{unitGroup.name}}</h1>
       <p>Aggregate group for {{unitGroup.name}}: {{unitsSpan}} </p>
@@ -16,7 +16,7 @@
       <app-action-group *ngIf="twinActionGrp && ms.game.researches.twin.done" [actGr]="twinActionGrp"></app-action-group>
 
     </div>
-    <div class="col-xs-12	col-sm-6	col-md-6	col-lg-6	col-xl-6">
+    <div class="clr-col-xs-12	clr-col-sm-6	clr-col-md-6	clr-col-lg-6	clr-col-xl-6">
       <h6> Stats: </h6>
       <clr-datagrid class="datagrid-compact" [(clrDgSelected)]="unitGroup.selected" (clrDgSelectedChange)="selectedChanged($event)">
 

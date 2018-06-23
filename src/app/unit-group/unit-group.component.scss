@@ -1,4 +1,4 @@
-.row {
+.clr-row {
   margin-right: 0;
   margin-left: 0;
 }
@@ -7,7 +7,7 @@ clr-datagrid {
   padding-top: 0;
 }
 @media only screen and (max-width: 768px) {
-  .col-xs-12 {
+  .clr-col-xs-12 {
     padding-left: 0.2rem !important;
     padding-right: 0 !important;
   }
