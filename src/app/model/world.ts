@@ -27,6 +27,19 @@ export class World {
   //  This resources must be zero
   notWinConditions = new Array<Malus>();
 
+  setLevel(level: Decimal) {
+    this.level = new Decimal(level);
+    const multi = level.div(10).plus(1);
+    this.productionsBonus.forEach(b => (b[1] = b[1].times(multi)));
+    this.productionsEfficienty.forEach(b => (b[1] = b[1].times(multi)));
+    this.productionsAll.forEach(b => (b[1] = b[1].times(multi)));
+    this.startingUnit.forEach(b => (b[1] = b[1].times(multi)));
+    this.winContidions.forEach(w => {
+      w.price = w.price.times(multi);
+      if (w.base.winNonLiner) w.price = new Decimal(w.price.log(1.1));
+    });
+  }
+
   //#region Save and Load
   getSave(): any {
     return {

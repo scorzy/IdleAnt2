@@ -48,6 +48,7 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   //#endregion
 
   malus: Malus = null;
+  winNonLiner = true;
 
   constructor(
     id: string,
