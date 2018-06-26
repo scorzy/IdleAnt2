@@ -85,5 +85,15 @@ export const STRINGS = {
     miner_g_g_r: ["Mine Engineer", "Mine Engineer"],
     scientist_g_g_r: ["Department of Education", "Department of Education"],
     scie3: ["Scientific Method 3", "+100% science production"]
+  },
+  worlds: {
+    foBPre: "Hot",
+    woBPre: "Wooded",
+    crBPre: "Crystallized",
+    scBPre: "Scientific",
+    foBSuf: "of Food",
+    woBSuf: "of Wood",
+    crBSuf: "of Crystall",
+    scBSuf: "of Science"
   }
 };

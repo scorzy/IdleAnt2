@@ -47,6 +47,9 @@ export class UnitGroup {
   setRelations() {
     //
   }
+  addWorlds() {
+    //
+  }
 
   setFlags(team = false, twin = false) {
     this.isEnding = this.unlocked.findIndex(u => u.isEnding) > -1;

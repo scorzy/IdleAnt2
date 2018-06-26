@@ -40,7 +40,10 @@ export class Game {
 
   lastUnitUrl: string = "nav/unit/fo";
 
-  currentWorld: World = new World();
+  currentWorld = new World();
+  nextWorlds = new Array<World>();
+
+  maxLevel = new Decimal(1);
 
   constructor(
     public updateEmitter: EventEmitter<number>,
@@ -92,6 +95,12 @@ export class Game {
     this.advWorkers.firstResearch.toUnlock.push(this.genX2.firstResearch);
     this.genX2.firstResearch.toUnlock.push(this.genX3.firstResearch);
     this.worldBonus.setRelations(this);
+
+    //
+    //  Worlds
+    //
+    this.worldBonus.addWorlds();
+    this.unitGroups.forEach(g => g.addWorlds());
 
     //
     //  Debug
@@ -276,6 +285,18 @@ export class Game {
       b[0].quantity = new Decimal(b[1]);
       b[0].unlocked = true;
     });
+  }
+  generateWorlds(userMin: Decimal = null, userMax: Decimal = null) {
+    if (userMin == null) userMin = new Decimal(1);
+    if (userMax == null) userMax = new Decimal(1);
+
+    userMax = Decimal.min(userMax, this.maxLevel);
+
+    this.nextWorlds = [
+      World.getRandomWorld(userMin, userMax),
+      World.getRandomWorld(userMin, userMax),
+      World.getRandomWorld(userMin, userMax)
+    ];
   }
   //#region Price Utility
   genTeamPrice(price: Decimal): Price[] {

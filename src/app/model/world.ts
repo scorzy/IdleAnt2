@@ -4,9 +4,15 @@ import { FullUnit } from "./full-unit";
 import { BaseUnit } from "./baseUnit";
 import { Game } from "./game";
 import { Malus } from "./malus";
-import { uniq } from "lodash-es";
+import { uniq, sample } from "lodash-es";
+import { STRINGS } from "./strings";
+import { Utility } from "./utility";
 
 export class World {
+  static prefix = new Array<World>();
+  static biome = new Array<World>();
+  static suffix = new Array<World>();
+
   name = "";
   level = new Decimal(1);
 
@@ -27,16 +33,20 @@ export class World {
   //  This resources must be zero
   notWinConditions = new Array<Malus>();
 
+  constructor(public id = "") {
+    if (id !== "") this.name = STRINGS.worlds[this.id];
+  }
+
   setLevel(level: Decimal) {
     this.level = new Decimal(level);
     const multi = level.div(10).plus(1);
+    const multiLog = new Decimal(multi.plus(1.1).log(1.1));
     this.productionsBonus.forEach(b => (b[1] = b[1].times(multi)));
     this.productionsEfficienty.forEach(b => (b[1] = b[1].times(multi)));
     this.productionsAll.forEach(b => (b[1] = b[1].times(multi)));
     this.startingUnit.forEach(b => (b[1] = b[1].times(multi)));
     this.winContidions.forEach(w => {
-      w.price = w.price.times(multi);
-      if (w.base.winNonLiner) w.price = new Decimal(w.price.log(1.1));
+      w.price = w.price.times(w.base.winNonLiner ? multi : multiLog);
     });
   }
 
@@ -124,5 +134,17 @@ export class World {
     );
 
     return retWorld;
+  }
+  // tslint:disable-next-line:member-ordering
+  static getRandomWorld(min: Decimal, max: Decimal): World {
+    const world = World.merge([
+      sample(World.prefix),
+      sample(World.biome),
+      sample(World.suffix)
+    ]);
+
+    world.setLevel(Utility.random(min, max));
+
+    return world;
   }
 }

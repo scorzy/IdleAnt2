@@ -23,7 +23,4 @@ export class Materials extends UnitGroup {
     this.addUnits([this.food, this.wood, this.crystal, this.science]);
     this.list.forEach(m => (m.winNonLiner = false));
   }
-  setRelations(): void {
-    //Nothig
-  }
 }

@@ -1,6 +1,7 @@
 import { BaseUnit } from "../baseUnit";
 import { Game } from "../game";
 import { ProductionBonus } from "../production-bonus";
+import { World } from "../world";
 
 export class WorldBonus {
   static bonusValue = new Decimal(0.3);
@@ -43,6 +44,18 @@ export class WorldBonus {
     this.bonusList.forEach(b => {
       b.unlocked = false;
       b.quantity = new Decimal(0);
+    });
+  }
+
+  addWorlds(): void {
+    this.bonusList.forEach(b => {
+      const pre = new World(b.id + "Pre");
+      pre.productionsBonus = [[b, new Decimal(1.3)]];
+      World.prefix.push(pre);
+
+      const suff = new World(b.id + "Suf");
+      suff.productionsBonus = [[b, new Decimal(1.3)]];
+      World.suffix.push(suff);
     });
   }
 }

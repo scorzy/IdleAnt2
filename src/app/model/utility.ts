@@ -4,10 +4,9 @@ import { BaseUnit } from "./baseUnit";
 import { FullUnit } from "./full-unit";
 
 export class Utility {
-  // static getRandom(arr: any[]): any {
-  //   return arr[Math.floor(Math.random() * arr.length)];
-  // }
-
+  static random(min: Decimal = new Decimal(0), max: Decimal = new Decimal(1)) {
+    return min.plus(max.minus(min).times(Math.random()));
+  }
   /**
    * Solve an equation, up to cubic equation ax^3 + bx^2 + cx + d = 0
    *
