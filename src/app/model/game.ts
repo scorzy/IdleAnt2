@@ -122,6 +122,9 @@ export class Game {
       .forEach(l => l.forEach(u => this.units.push(u)));
     this.buildLists();
     this.unitGroups.forEach(g => (g.selected = g.list.filter(u => u.unlocked)));
+
+    World.biome.push(new World());
+    this.generateWorlds();
   }
   buildLists() {
     this.unlockedUnits = [];

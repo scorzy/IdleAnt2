@@ -1,0 +1,21 @@
+<div *ngIf="world">
+  <h6>{{world.name}} ({{world.name}})</h6>
+
+  <ul class="list">
+    <li *ngFor="let bon of world.productionsBonus; trackBy:getBonusId">
+      {{bon[1] | format }} x {{bon[0].name }}
+    </li>
+    <li *ngFor="let bon of world.productionsEfficienty; trackBy:getBonusId">
+      {{bon[1] | format }} x {{bon[0].name }}
+    </li>
+    <li *ngFor="let bon of world.productionsAll; trackBy:getBonusId">
+      {{bon[1] | format }} x {{bon[0].name }}
+    </li>
+    <li *ngFor="let unl of world.startingUnlocked; trackBy:getResearchId">
+      {{unl.name}} avaiable.
+    </li>
+    <li *ngFor="let start of world.startingUnit; trackBy:getStartId">
+      {{start[1] | format}} x {{start[0].name}}
+    </li>
+  </ul>
+</div>

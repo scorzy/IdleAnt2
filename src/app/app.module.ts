@@ -30,6 +30,8 @@ import { ActionGroupComponent } from "./action-group/action-group.component";
 import { SliderModule } from "primeng/slider";
 import { TabComponent } from "./material-nav/tab/tab.component";
 import { ChartsModule } from "ng2-charts/ng2-charts";
+import { WorldComponent } from "./world/world.component";
+import { ChangeWorldComponent } from "./change-world/change-world.component";
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { ChartsModule } from "ng2-charts/ng2-charts";
     CantBuySignpostsComponent,
     UnitGroupComponent,
     ActionGroupComponent,
-    TabComponent
+    TabComponent,
+    WorldComponent,
+    ChangeWorldComponent
   ],
   imports: [
     BrowserAnimationsModule,

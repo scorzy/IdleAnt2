@@ -3,6 +3,7 @@ import { Game } from "./game";
 import { EventEmitter } from "@angular/core";
 import { FullUnit } from "./full-unit";
 import { Price } from "./price";
+import { Research } from "./research";
 
 describe("World", () => {
   it("should create an instance", () => {
@@ -101,10 +102,6 @@ describe("World", () => {
     world1.startingUnit = [[unit1, new Decimal(1)], [unit2, new Decimal(2)]];
     world2.startingUnit = [[unit2, new Decimal(1)], [unit3, new Decimal(2)]];
 
-    world1.startingUnlocked = [unit1];
-    world2.startingUnlocked = [unit1];
-    world3.startingUnlocked = [unit2];
-
     world1.winContidions = [new Price(unit1, new Decimal(2))];
     world2.winContidions = [
       new Price(unit1, new Decimal(2)),
@@ -132,9 +129,7 @@ describe("World", () => {
     ).toBe(2);
     expect(merged.productionsBonus.find(u => u[0] === unit6)).toBeFalsy();
 
-    expect(merged.startingUnlocked.length).toBe(2);
-    expect(merged.startingUnlocked.find(u => u === unit1)).toBeDefined();
-    expect(merged.startingUnlocked.find(u => u === unit2)).toBeDefined();
+    expect(merged.startingUnlocked.length).toBe(0);
 
     expect(merged.winContidions.length).toBe(2);
   });
