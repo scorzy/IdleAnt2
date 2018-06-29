@@ -9,22 +9,34 @@ import { Price } from "../model/price";
 import { BaseUnit } from "../model/baseUnit";
 import { Research } from "../model/research";
 import { FullUnit } from "../model/full-unit";
+import { MainService } from "../main.service";
 
 @Component({
   selector: "app-world",
   templateUrl: "./world.component.html",
   styleUrls: ["./world.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    "[class.card]": "true",
+    "[class.clickable]": "cantTravel"
+  }
 })
 export class WorldComponent implements OnInit {
   @Input() world: World;
+  @Input() cantTravel = true;
 
-  constructor() {
+  travelMessage = false;
+
+  constructor(public ms: MainService) {
     //
   }
 
   ngOnInit() {
     //
+  }
+
+  openModal() {
+    this.ms.worldEmitter.emit(this.world);
   }
 
   getBonusId(index, bonus: [BaseUnit, Decimal]) {

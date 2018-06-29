@@ -4,4 +4,16 @@
   <div class="content-container">
     <router-outlet></router-outlet>
   </div>
+
+  <clr-modal [(clrModalOpen)]="travelMessage">
+    <h3 class="modal-title">Change world ?</h3>
+    <div class="modal-body">
+      <p>You will lose everything except prestige upgrade, continue ?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" (click)="travelMessage = false">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="travelMessage = false">Ok</button>
+    </div>
+  </clr-modal>
+
 </clr-main-container>

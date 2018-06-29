@@ -1,5 +1,5 @@
-<div *ngIf="world">
-  <h6>{{world.name}} ({{world.name}})</h6>
+<div class="card-block" *ngIf="world" (click)="openModal()">
+  <h3 class="card-title">{{world.name}} ({{world.level |format:true}})</h3>
 
   <ul class="list">
     <li *ngFor="let bon of world.productionsBonus; trackBy:getBonusId">

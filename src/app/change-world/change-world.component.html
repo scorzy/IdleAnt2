@@ -2,11 +2,7 @@
   <h1>Here you can travel to a new world.</h1>
 
   <div class="card-columns">
-    <div class="card" *ngFor="let world of ms.game.nextWorlds; trackBy:getWorldId">
-      <div class="card-block">
-        <app-world [world]="world"></app-world>
-      </div>
-    </div>
+    <app-world [world]="world" *ngFor="let world of ms.game.nextWorlds; trackBy:getWorldId"></app-world>
   </div>
 
 </div>

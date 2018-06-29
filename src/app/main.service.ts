@@ -3,6 +3,7 @@ import { Game } from "./model/game";
 import { OptionsService } from "./options.service";
 import * as LZString from "lz-string";
 import { ToastrService } from "ngx-toastr";
+import { World } from "./model/world";
 
 const GAME_VERSION = 0;
 
@@ -15,6 +16,7 @@ export class MainService {
 
   updateEmitter: EventEmitter<number> = new EventEmitter<number>();
   researchEmitter: EventEmitter<string> = new EventEmitter<string>();
+  worldEmitter: EventEmitter<World> = new EventEmitter<World>();
 
   constructor(public options: OptionsService, private toastr: ToastrService) {
     this.game = new Game(this.updateEmitter, this.researchEmitter);
