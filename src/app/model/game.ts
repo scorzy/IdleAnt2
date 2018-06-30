@@ -42,6 +42,7 @@ export class Game {
 
   currentWorld = new World();
   nextWorlds = new Array<World>();
+  canTravel = false;
 
   maxLevel = new Decimal(1);
 
@@ -124,6 +125,9 @@ export class Game {
     this.unitGroups.forEach(g => (g.selected = g.list.filter(u => u.unlocked)));
 
     World.biome.push(new World());
+    this.currentWorld.winContidions.push(
+      new Price(this.genX3.list[0], new Decimal(100))
+    );
     this.generateWorlds();
   }
   buildLists() {
@@ -261,6 +265,8 @@ export class Game {
     const team = this.researches.team2.done;
     const twin = this.researches.twin.done;
     this.unitGroups.forEach(g => g.setFlags(team, twin));
+
+    this.canTravel = this.currentWorld.canTravel();
   }
   /**
    * Calculate production per second
@@ -289,6 +295,7 @@ export class Game {
       b[0].unlocked = true;
     });
   }
+
   generateWorlds(userMin: Decimal = null, userMax: Decimal = null) {
     if (userMin == null) userMin = new Decimal(1);
     if (userMax == null) userMax = new Decimal(1);

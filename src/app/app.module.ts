@@ -32,6 +32,7 @@ import { TabComponent } from "./material-nav/tab/tab.component";
 import { ChartsModule } from "ng2-charts/ng2-charts";
 import { WorldComponent } from "./world/world.component";
 import { ChangeWorldComponent } from "./change-world/change-world.component";
+import { PrestigeComponent } from "./prestige/prestige.component";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ChangeWorldComponent } from "./change-world/change-world.component";
     ActionGroupComponent,
     TabComponent,
     WorldComponent,
-    ChangeWorldComponent
+    ChangeWorldComponent,
+    PrestigeComponent
   ],
   imports: [
     BrowserAnimationsModule,

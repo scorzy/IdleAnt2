@@ -49,6 +49,15 @@ export class World {
       w.price = w.price.times(w.base.winNonLiner ? multi : multiLog);
     });
   }
+  canTravel(): boolean {
+    this.winContidions.forEach(p => {
+      p.canBuy = p.base.quantity.gte(p.price);
+    });
+    return !(
+      this.winContidions.findIndex(p => !p.canBuy) > -1 ||
+      this.notWinConditions.findIndex(n => !n.isKilled) > -1
+    );
+  }
 
   //#region Save and Load
   getSave(): any {

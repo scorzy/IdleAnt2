@@ -5,7 +5,7 @@ import { SaveComponent } from "./save/save.component";
 import { OptionsNavComponent } from "./options-nav/options-nav.component";
 import { LaboratoryComponent } from "./laboratory/laboratory.component";
 import { UnitGroupComponent } from "./unit-group/unit-group.component";
-import { ChangeWorldComponent } from "./change-world/change-world.component";
+import { PrestigeComponent } from "./prestige/prestige.component";
 
 export const APPROUTES: Routes = [
   {
@@ -28,7 +28,7 @@ export const APPROUTES: Routes = [
   },
   {
     path: "travel",
-    component: ChangeWorldComponent
+    component: PrestigeComponent
   },
   {
     path: "opt",

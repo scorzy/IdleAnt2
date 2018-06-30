@@ -1,0 +1,16 @@
+<app-change-world *ngIf="ms.game.canTravel; else noTravel"></app-change-world>
+<ng-template #noTravel>
+  <div class="content-area">
+    <h1>Travel to a new world</h1>
+
+
+    <div *ngFor="let price of ms.game.currentWorld.winContidions; trackBy:getPriceId">
+      <h4>{{price.base.name}}</h4>
+      <div class="progress-static" [ngClass]="{'success': price.canBuy,'danger': !price.canBuy}">
+        <div class="progress-meter" [attr.data-value]="price.completedPercent"></div>
+      </div>
+    </div>
+
+
+  </div>
+</ng-template>

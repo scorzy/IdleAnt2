@@ -1,7 +1,5 @@
 import { Utility } from "./utility";
 import { FullUnit } from "./full-unit";
-import { WorldMalus } from "./units/world-malus";
-import { Materials } from "./units/materials";
 
 export class Price {
   canBuy = false;
@@ -13,6 +11,8 @@ export class Price {
 
   //  Price with malus
   realPrice = new Decimal(0);
+
+  completedPercent: number = 0;
 
   constructor(
     public base: FullUnit,
@@ -27,8 +27,7 @@ export class Price {
       ? this.price.times(this.base.malus.priceMultiplier)
       : (this.realPrice = this.price);
   }
-
-  reload(bought: Decimal) {
+  reload(bought: Decimal = new Decimal(0)) {
     this.reloadRealPrice();
     if (this.growRate !== 1)
       this.maxBuy = Decimal.affordGeometricSeries(
@@ -56,7 +55,6 @@ export class Price {
     this.base.quantity = this.base.quantity.minus(price);
     this.base.setUiValue();
   }
-
   loadPriceUser(num: Decimal, start: Decimal) {
     const tempPrice: Decimal =
       this.growRate > 1
@@ -66,7 +64,6 @@ export class Price {
     this.userCanBuy = tempPrice.lte(this.base.quantity);
     if (this.priceUser.cmp(tempPrice) !== 0) this.priceUser = tempPrice;
   }
-
   getTime(): Decimal {
     if (this.priceUser.lte(this.base.quantity)) return new Decimal(0);
     else {
@@ -80,5 +77,13 @@ export class Price {
         .reduce((p, c) => p.min(c), new Decimal(Number.POSITIVE_INFINITY));
       return this.avIn;
     }
+  }
+  reloadPercent() {
+    this.completedPercent = this.canBuy
+      ? 100
+      : this.base.quantity
+          .times(100)
+          .div(this.price)
+          .toNumber();
   }
 }

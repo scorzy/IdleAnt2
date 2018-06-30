@@ -5,10 +5,7 @@ import { World } from "../model/world";
   selector: "app-change-world",
   templateUrl: "./change-world.component.html",
   styleUrls: ["./change-world.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    "[class.content-container]": "true"
-  }
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChangeWorldComponent implements OnInit {
   constructor(public ms: MainService) {}
