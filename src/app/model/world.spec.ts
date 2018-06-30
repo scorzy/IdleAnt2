@@ -4,6 +4,7 @@ import { EventEmitter } from "@angular/core";
 import { FullUnit } from "./full-unit";
 import { Price } from "./price";
 import { Research } from "./research";
+import { Malus } from "./malus";
 
 describe("World", () => {
   it("should create an instance", () => {
@@ -132,5 +133,24 @@ describe("World", () => {
     expect(merged.startingUnlocked.length).toBe(0);
 
     expect(merged.winContidions.length).toBe(2);
+  });
+  it("CanTravel", () => {
+    const world1 = new World("");
+    const unit = new FullUnit("");
+    world1.winContidions = [new Price(unit, new Decimal(20))];
+    let canTravel = world1.canTravel();
+    expect(canTravel).toBeFalsy();
+    unit.quantity = new Decimal(20);
+    canTravel = world1.canTravel();
+    expect(canTravel).toBeTruthy();
+
+    const malus = new Malus("");
+    malus.isKilled = false;
+    world1.notWinConditions = [malus];
+    canTravel = world1.canTravel();
+    expect(canTravel).toBeFalsy();
+    malus.isKilled = true;
+    canTravel = world1.canTravel();
+    expect(canTravel).toBeTruthy();
   });
 });

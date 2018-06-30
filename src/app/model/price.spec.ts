@@ -7,63 +7,42 @@ describe("Price", () => {
     const base = new FullUnit("id", "base", "desc");
     expect(new Price(base, new Decimal(1))).toBeTruthy();
   });
-
-  describe("reload cannot buy", () => {
+  it("reload cannot buy", () => {
     const base = new FullUnit("id", "base", "desc");
     const price = new Price(base, new Decimal(10), 1.1);
     price.reload(new Decimal(0));
 
-    it("cannot buy", () => {
-      expect(price.canBuy).toBeFalsy();
-    });
-    it("maxBuy = 0", () => {
-      expect(price.maxBuy.toNumber()).toBe(0);
-    });
+    expect(price.canBuy).toBeFalsy();
+    expect(price.maxBuy.toNumber()).toBe(0);
   });
-
-  describe("reload cannot buy 2", () => {
+  it("reload cannot buy 2", () => {
     const unit1 = new FullUnit("u1", "name", "desc");
     unit1.quantity = new Decimal(0);
     const price = new Price(unit1, new Decimal(10), 1.1);
     price.reload(new Decimal(0));
 
-    it("cannot buy", () => {
-      expect(price.canBuy).toBeFalsy();
-    });
-    it("maxBuy = 0", () => {
-      expect(price.maxBuy.toNumber()).toBe(0);
-    });
+    expect(price.canBuy).toBeFalsy();
+    expect(price.maxBuy.toNumber()).toBe(0);
   });
-
-  describe("reload can buy", () => {
+  it("reload can buy", () => {
     const base = new FullUnit("id", "base", "desc");
     base.quantity = new Decimal(15);
     const price = new Price(base, new Decimal(10), 1.1);
     price.reload(new Decimal(1));
 
-    it("can buy", () => {
-      expect(price.canBuy).toBeTruthy();
-    });
-    it("maxBuy = 1", () => {
-      expect(price.maxBuy.toNumber()).toBe(1);
-    });
+    expect(price.canBuy).toBeTruthy();
+    expect(price.maxBuy.toNumber()).toBe(1);
   });
-
-  describe("reload can buy 2", () => {
+  it("reload can buy 2", () => {
     const base = new FullUnit("id", "base", "desc");
     base.quantity = new Decimal(35);
     const price = new Price(base, new Decimal(10), 1.1);
     price.reload(new Decimal(2));
 
-    it("can buy", () => {
-      expect(price.canBuy).toBeTruthy();
-    });
-    it("maxBuy = 1", () => {
-      expect(price.maxBuy.toNumber()).toBe(2);
-    });
+    expect(price.canBuy).toBeTruthy();
+    expect(price.maxBuy.toNumber()).toBe(2);
   });
-
-  describe("buy", () => {
+  it("buy", () => {
     const base = new FullUnit("id", "base", "desc");
     base.quantity = new Decimal(35);
     const price = new Price(base, new Decimal(10), 1.1);
@@ -71,14 +50,15 @@ describe("Price", () => {
     price.buy(new Decimal(2), new Decimal(1));
     price.reload(new Decimal(1));
 
-    it("can buy", () => {
-      expect(price.canBuy).toBeTruthy();
-    });
-    it("maxBuy = 1", () => {
-      expect(price.maxBuy.toNumber()).toBe(1);
-    });
-    it("quantity", () => {
-      expect(Math.floor(price.base.quantity.toNumber())).toBe(11);
-    });
+    expect(price.canBuy).toBeTruthy();
+    expect(price.maxBuy.toNumber()).toBe(1);
+    expect(Math.floor(price.base.quantity.toNumber())).toBe(11);
+  });
+  it("reloadPercent", () => {
+    const unit = new FullUnit("");
+    unit.quantity = new Decimal(60);
+    const price = new Price(unit, new Decimal(200));
+    price.reloadPercent();
+    expect(price.completedPercent).toBe(30);
   });
 });
