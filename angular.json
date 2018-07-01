@@ -22,14 +22,35 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "clr-ui.min.css",
+                "input": "./node_modules/@clr/ui/",
+                "output": "./"
+              },
+              {
+                "glob": "clr-ui-dark.min.css",
+                "input": "./node_modules/@clr/ui/",
+                "output": "./"
+              },
+              {
+                "glob": "theme.css",
+                "input": "./node_modules/primeng/resources/themes/start/",
+                "output": "./start"
+              },
+              {
+                "glob": "theme.css",
+                "input": "./node_modules/primeng/resources/themes/darkness/",
+                "output": "./darkness"
+              }
+            ],
             "styles": [
               "node_modules/normalize.css/normalize.css",
               "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/themes/start/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/@clr/icons/clr-icons.min.css",
-              "node_modules/@clr/ui/clr-ui.css",
               "node_modules/ngx-toastr/toastr.css",
               "src/styles.scss"
             ],

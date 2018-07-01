@@ -59,6 +59,7 @@ app-material-nav {
 :host /deep/.clr-vertical-nav {
   padding-top: 0;
 }
+
 @media screen and (max-width: 768px) {
   app-material-nav {
     display: none;

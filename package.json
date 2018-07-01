@@ -3,14 +3,17 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --open",
-    "build": "ng build --prod --base-href ./",
+    "start": "npm run make-themes && ng serve --open",
+    "build": "npm run make-themes && ng build --prod --base-href ./",
     "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "coveralls":
+      "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
-    "lint-fix": "ng lint IdleAnt2 --fix"
+    "lint-fix": "ng lint IdleAnt2 --fix",
+    "make-themes":
+      "./node_modules/node-sass/bin/node-sass ./src/themes --output ./src/assets --output-style compact"
   },
   "private": true,
   "dependencies": {

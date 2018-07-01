@@ -8,6 +8,7 @@ export class OptionsService {
   usaFormat = false;
   numFormat = "scientific";
   autosaveNotification = true;
+  dark = false;
 
   formatter: any;
   constructor() {

@@ -1,9 +1,10 @@
-import { Injectable, EventEmitter } from "@angular/core";
+import { Injectable, EventEmitter, Inject } from "@angular/core";
 import { Game } from "./model/game";
 import { OptionsService } from "./options.service";
 import * as LZString from "lz-string";
 import { ToastrService } from "ngx-toastr";
 import { World } from "./model/world";
+import { DOCUMENT } from "@angular/platform-browser";
 
 const GAME_VERSION = 0;
 
@@ -18,10 +19,34 @@ export class MainService {
   researchEmitter: EventEmitter<string> = new EventEmitter<string>();
   worldEmitter: EventEmitter<World> = new EventEmitter<World>();
 
-  constructor(public options: OptionsService, private toastr: ToastrService) {
+  themeClarity: HTMLLinkElement;
+  themePrime: HTMLLinkElement;
+  themeMy: HTMLLinkElement;
+
+  constructor(
+    public options: OptionsService,
+    private toastr: ToastrService,
+    @Inject(DOCUMENT) private document: Document
+  ) {
+    this.themeClarity = this.document.createElement("link");
+    this.themeClarity.rel = "stylesheet";
+    this.themeClarity.type = "text/css";
+    this.document.querySelector("head").appendChild(this.themeClarity);
+
+    this.themePrime = this.document.createElement("link");
+    this.themePrime.rel = "stylesheet";
+    this.themePrime.type = "text/css";
+    this.document.querySelector("head").appendChild(this.themePrime);
+
+    this.themeMy = this.document.createElement("link");
+    this.themeMy.rel = "stylesheet";
+    this.themeMy.type = "text/css";
+    this.document.querySelector("head").appendChild(this.themeMy);
+
+    this.setTheme();
+
     this.game = new Game(this.updateEmitter, this.researchEmitter);
     this.last = Date.now();
-    // requestAnimationFrame(this.update.bind(this));
     setInterval(this.update.bind(this), 100);
   }
   update() {
@@ -32,7 +57,6 @@ export class MainService {
     this.game.postUpdate();
     this.last = now;
     this.updateEmitter.emit(diff);
-    // requestAnimationFrame(this.update.bind(this));
   }
 
   getSave(): string {
@@ -116,5 +140,14 @@ export class MainService {
   clear() {
     localStorage.removeItem("save");
     window.location.reload();
+  }
+  setTheme() {
+    this.themeClarity.href = this.options.dark
+      ? "/clr-ui.min-dark.css"
+      : "/clr-ui.min.css";
+    this.themePrime.href =
+      (this.options.dark ? "/darkness" : "/start") + "/theme.css";
+    this.themeMy.href =
+      "/assets/" + (this.options.dark ? "dark.css" : "light.css");
   }
 }

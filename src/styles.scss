@@ -1,5 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 html {
-  /* the following line of CSS would change Clarity to a 20px vertical rhythm with a 5px grid */
   font-size: 24px;
+}
+::-webkit-scrollbar {
+  width: 0.2rem;
+  height: 0.2rem;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 0.2rem;
 }
