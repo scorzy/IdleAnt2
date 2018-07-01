@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { MainService } from "./main.service";
 import { World } from "./model/world";
+import { Router } from "@angular/router";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit, OnDestroy {
   worldTravel: World;
   worldSub: any;
 
-  constructor(public ms: MainService) {}
+  constructor(public ms: MainService, private router: Router) {}
 
   ngOnInit(): void {
     this.ms.worldEmitter.subscribe(world => {
@@ -21,5 +22,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.worldSub.unsubscribe();
+  }
+  travel() {
+    this.travelMessage = false;
+    this.ms.game.goToWorld(this.worldTravel);
+    this.router.navigateByUrl("/nav/unit/fo");
   }
 }

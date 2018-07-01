@@ -1,6 +1,5 @@
 import { BaseUnit } from "./baseUnit";
 import { Price } from "./price";
-import { Game } from "./game";
 
 export class Action extends BaseUnit {
   done = false;
@@ -75,6 +74,16 @@ export class Action extends BaseUnit {
           .reduce((p, c) => p.max(c), new Decimal(0))
           .toNumber() * 1000;
     }
+  }
+  reset() {
+    this.done = false;
+    this.complete = false;
+    this.canBuy = false;
+    this.maxBuy = new Decimal(0);
+    this.canUserBuy = false;
+    this.userNum = 1;
+    this.realNum = new Decimal(1);
+    this.availableIn = NaN;
   }
 
   //#region Save and Load

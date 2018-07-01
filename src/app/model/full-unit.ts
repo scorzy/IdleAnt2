@@ -83,21 +83,17 @@ export class FullUnit extends BaseUnit implements IUnlocable {
       this.unitGroup.selected.push(this);
     }
   }
-
   isActive(): boolean {
     return this.unlocked && this.efficiency > 0 && this.quantity.gt(0);
   }
-
   isStopped(): boolean {
     return this.efficiency < 0.01;
   }
-
   addProducer(producer: FullUnit, rateo: Decimal = new Decimal(1)) {
     const prod = new Production(producer, this, rateo);
     this.producedBy.push(prod);
     producer.produces.push(prod);
   }
-
   reloadTeamBonus(teamBonus = false) {
     this.bonus = new Decimal(0);
 
@@ -107,7 +103,6 @@ export class FullUnit extends BaseUnit implements IUnlocable {
         this.bonus = this.bonus.times(this.teamAction.quantity.plus(1));
     }
   }
-
   setUiValue() {
     super.setUiValue();
     if (this.uiA.cmp(this.a) !== 0) this.uiA = this.a;
@@ -115,6 +110,19 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     if (this.uiC.cmp(this.c) !== 0) this.uiC = this.c;
   }
 
+  reset() {
+    super.reset();
+    this.unlocked = false;
+    this.efficiency = 100;
+
+    this.a = new Decimal(0);
+    this.b = new Decimal(0);
+    this.c = new Decimal(0);
+
+    if (this.buyAction) this.buyAction.reset();
+    if (this.teamAction) this.teamAction.reset();
+    if (this.twinAction) this.twinAction.reset();
+  }
   //#region Save and Restore
   getSave(): any {
     const save = super.getSave();

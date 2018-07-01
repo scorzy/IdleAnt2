@@ -31,6 +31,11 @@ export class BaseUnit {
       this.uiQuantity = this.quantity;
   }
 
+  reset() {
+    this.quantity = new Decimal(0);
+    this.uiQuantity = new Decimal(0);
+  }
+
   //Region Save and Restore
   getSave(): any {
     return {

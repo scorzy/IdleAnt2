@@ -15,6 +15,8 @@ import { Malus } from "./malus";
 import { WorldMalus } from "./units/world-malus";
 import { MalusKiller } from "./units/malus-killer";
 
+const STARTING_FOOD = new Decimal(100);
+
 export class Game {
   units = new Array<BaseUnit>();
   unlockedUnits = new Array<FullUnit>();
@@ -45,6 +47,7 @@ export class Game {
   canTravel = false;
 
   maxLevel = new Decimal(1);
+  prestige: FullUnit;
 
   constructor(
     public updateEmitter: EventEmitter<number>,
@@ -86,6 +89,7 @@ export class Game {
     this.researches.declareStuff();
     this.worldBonus = new WorldBonus();
     this.worldBonus.declareStuff();
+    this.prestige = new FullUnit("prest");
 
     //
     //  Relations
@@ -121,6 +125,7 @@ export class Game {
     this.unitGroups
       .map(g => g.list)
       .forEach(l => l.forEach(u => this.units.push(u)));
+    this.units.push(this.prestige);
     this.buildLists();
     this.unitGroups.forEach(g => (g.selected = g.list.filter(u => u.unlocked)));
 
@@ -138,7 +143,6 @@ export class Game {
     });
     this.unlockedGroups = this.unitGroups.filter(g => g.unlocked.length > 0);
   }
-
   /**
    * Update function.
    * Works only with resource groving at max rate of x^3
@@ -234,7 +238,6 @@ export class Game {
       this.update(remaning);
     }
   }
-
   /**
    * Sub Update function.
    * @param seconds time in seconds
@@ -296,7 +299,24 @@ export class Game {
       b[0].unlocked = true;
     });
   }
+  goToWorld(world: World): boolean {
+    if (!this.canTravel) return false;
 
+    const newPrestige = this.prestige.quantity.plus(this.currentWorld.prestige);
+    this.units.forEach(u => u.reset());
+    this.materials.food.quantity = new Decimal(STARTING_FOOD);
+    this.gatherers.drone.unlocked = true;
+    this.materials.food.unlocked = true;
+    this.prestige.quantity = newPrestige;
+    this.currentWorld = world;
+    this.applyWorldBonus();
+
+    this.unitGroups.forEach(g => g.check());
+    this.buildLists();
+    this.generateWorlds();
+
+    return true;
+  }
   generateWorlds(userMin: Decimal = null, userMax: Decimal = null) {
     if (userMin == null) userMin = new Decimal(1);
     if (userMax == null) userMax = new Decimal(1);

@@ -33,7 +33,11 @@ export class Malus extends FullUnit {
   isActive(): boolean {
     return !this.isKilled && super.isActive();
   }
-
+  reset() {
+    super.reset();
+    this.isKilled = false;
+    this.reloadPriceMulti();
+  }
   //#region Save and Restore
   getSave(): any {
     const save = super.getSave();

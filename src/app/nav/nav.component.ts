@@ -11,8 +11,6 @@ import { MainService } from "../main.service";
 import { Malus } from "../model/malus";
 import { FullUnit } from "../model/full-unit";
 
-// declare let isFinite;
-
 @Component({
   selector: "app-nav",
   templateUrl: "./nav.component.html",

@@ -15,6 +15,7 @@ export class World {
 
   name = "";
   level = new Decimal(1);
+  prestige = new Decimal(10);
 
   //  Productions Bonus/Malus
   productionsBonus = new Array<[BaseUnit, Decimal]>();
@@ -48,6 +49,10 @@ export class World {
     this.winContidions.forEach(w => {
       w.price = w.price.times(w.base.winNonLiner ? multi : multiLog);
     });
+    this.level = level
+      .times(10)
+      .times(level.plus(10).log10())
+      .floor();
   }
   canTravel(): boolean {
     this.winContidions.forEach(p => {
