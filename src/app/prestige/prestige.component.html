@@ -2,15 +2,30 @@
 <ng-template #noTravel>
   <div class="content-area">
     <h1>Travel to a new world</h1>
-
-
-    <div *ngFor="let price of ms.game.currentWorld.winContidions; trackBy:getPriceId">
-      <h4>{{price.base.name}}</h4>
-      <div class="progress-static" [ngClass]="{'success': price.canBuy,'danger': !price.canBuy}">
-        <div class="progress-meter" [attr.data-value]="price.completedPercent"></div>
+    <div class="clr-row">
+      <div class="clr-col-12 clr-col-sm-12 clr-col-md-6 clr-col-lg-6 clr-col-xl-6">
+        <p>You need:</p>
+        <div *ngFor="let price of ms.game.currentWorld.winContidions; trackBy:getPriceId">
+          <h6>{{price.base.name}}
+            <span class="monospace">{{price.base.quantity | format}}/{{price.price | format}}</span>
+          </h6>
+          <div class="progress-static labeled" [ngClass]="{'success': price.canBuy,'danger': !price.canBuy}">
+            <div class="progress-meter" [attr.data-value]="price.completedPercent" [attr.data-displayval]="price.completedPercent"></div>
+          </div>
+        </div>
       </div>
-    </div>
 
+      <div class="clr-col-12 clr-col-sm-12 clr-col-md-6 clr-col-lg-6 clr-col-xl-6" *ngIf="ms.game.currentWorld.notWinConditions">
+        <p>You must kill:</p>
+        <ul class="list-unstyled">
+          <li *ngFor="let malus of ms.game.currentWorld.notWinConditions; trackBy:getMalusId">
+            <clr-icon [attr.shape]="malus.isKilled ? 'check' : 'times'"></clr-icon>
+            {{malus.name}}
+          </li>
+        </ul>
+      </div>
+
+    </div>
 
   </div>
 </ng-template>

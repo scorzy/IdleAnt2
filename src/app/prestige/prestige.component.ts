@@ -7,6 +7,7 @@ import {
 } from "@angular/core";
 import { MainService } from "../main.service";
 import { Price } from "../model/price";
+import { Malus } from "../model/malus";
 
 @Component({
   selector: "app-prestige",
@@ -33,5 +34,8 @@ export class PrestigeComponent implements OnInit, OnDestroy {
   }
   getPriceId(index: number, price: Price) {
     return "" + index + price.base.id;
+  }
+  getMalusId(index: number, malus: Malus) {
+    return "" + index + malus.id;
   }
 }

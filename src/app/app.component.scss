@@ -1,6 +1,10 @@
-$padding: 0.35rem;
+$padding: 0.45rem;
 :host /deep/ .content-container .content-area {
   padding: $padding $padding $padding $padding;
+}
+:host /deep/ .clr-row {
+  margin-right: -$padding/2;
+  margin-left: -$padding/2;
 }
 
 :host /deep/ h1 {
@@ -62,6 +66,19 @@ app-material-nav {
 }
 @media screen and (max-width: 1050px) {
   :host /deep/ {
+    .clr-col,
+    .clr-col-1,
+    .clr-col-2,
+    .clr-col-3,
+    .clr-col-4,
+    .clr-col-5,
+    .clr-col-6,
+    .clr-col-7,
+    .clr-col-8,
+    .clr-col-9,
+    .clr-col-10,
+    .clr-col-11,
+    .clr-col-12,
     .clr-col-xs,
     .clr-col-xs-1,
     .clr-col-xs-2,

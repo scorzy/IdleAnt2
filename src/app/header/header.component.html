@@ -1,26 +1,25 @@
 <clr-header class="header header-6">
 
   <div class="header-nav" [clr-nav-level]="1">
-    <a [routerLink]='"nav"' class="active nav-link" [routerLinkActive]="'active'" (click)="navigateLast()">
-
+    <a [routerLink]='"nav"' class="nav-link" [routerLinkActive]="'active'" (click)="navigateLast()">
       <span class="nav-text">
         <clr-icon shape="bug"></clr-icon>
       </span>
     </a>
-    <a [routerLink]='"lab"' class="active nav-link" *ngIf="lab" [routerLinkActive]="'active'">
+    <a [routerLink]='"lab"' class="nav-link" *ngIf="lab" [routerLinkActive]="'active'">
       <span class="nav-text">
         <clr-icon shape="flask"></clr-icon>
       </span>
     </a>
-    <a [routerLink]='"travel"' class="active nav-link" [routerLinkActive]="'active'">
+    <a [routerLink]='"travel"' class="nav-link" *ngIf="travel" [routerLinkActive]="'active'">
       <span class="nav-text">
-        <clr-icon shape="world"></clr-icon>
+        <clr-icon shape="world" [ngClass]="{'has-badge': travelBadge}"></clr-icon>
       </span>
     </a>
   </div>
 
   <div class="header-actions">
-    <a [routerLink]="'opt/save/'" class="nav-link nav-icon">
+    <a [routerLink]="'opt/save/'" class="nav-link nav-icon" [routerLinkActive]="'active'">
       <clr-icon shape="cog"></clr-icon>
     </a>
   </div>

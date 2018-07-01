@@ -2,12 +2,14 @@ import { Tab } from "./tab";
 
 export class Tabs {
   lab: Tab;
+  travel: Tab;
 
   tabList: Tab[];
   constructor() {
     this.lab = new Tab("lab");
+    this.travel = new Tab("travel");
 
-    this.tabList = [this.lab];
+    this.tabList = [this.lab, this.travel];
   }
   getSave(): any {
     return {

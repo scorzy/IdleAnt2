@@ -19,6 +19,8 @@ export class Researches {
   scientificMethod2: Research;
   scientificMethod3: Research;
 
+  travel: Research;
+
   constructor(public researchEmitter: EventEmitter<string>) {}
 
   declareStuff(): void {
@@ -29,6 +31,8 @@ export class Researches {
     this.scientificMethod2 = new Research("scie2", this);
     this.scientificMethod3 = new Research("scie3", this);
 
+    this.travel = new Research("travel", this);
+
     this.team1.unlocked = true;
     this.reloadLists();
   }
@@ -36,15 +40,21 @@ export class Researches {
     this.team1.genPrice(new Decimal(20), science);
     this.team2.genPrice(new Decimal(100), science);
     this.twin.genPrice(new Decimal(1e3), science);
+    this.travel.genPrice(new Decimal(1e6), science);
 
     this.team1.toUnlock = [this.team2];
     this.team2.toUnlock = [this.twin];
 
     game.genX2.researchList[3].toUnlock.push(this.scientificMethod2);
-    game.genX3.researchList[3].toUnlock.push(this.scientificMethod3);
+    game.genX3.researchList[3].toUnlock.push(
+      this.scientificMethod3,
+      this.travel
+    );
 
     this.scientificMethod2.genPrice(new Decimal(1e7), science);
     this.scientificMethod3.genPrice(new Decimal(1e11), science);
+
+    this.travel.toUnlock.push(game.tabs.travel);
 
     science.productionsBonus.push(
       new ProductionBonus(this.scientificMethod2, new Decimal(0.75)),
@@ -75,8 +85,4 @@ export class Researches {
     }
   }
   //#endregion
-
-  private genPrice(price: Decimal): Price[] {
-    return [new Price(this.science, price, 1)];
-  }
 }

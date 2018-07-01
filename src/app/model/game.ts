@@ -128,6 +128,7 @@ export class Game {
     this.currentWorld.winContidions.push(
       new Price(this.genX3.list[0], new Decimal(100))
     );
+    this.currentWorld.notWinConditions.push(this.worldMalus.crystalMalus1);
     this.generateWorlds();
   }
   buildLists() {
