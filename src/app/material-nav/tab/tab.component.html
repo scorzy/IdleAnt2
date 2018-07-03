@@ -6,11 +6,11 @@
   </span>
   <br/>
 
-  <span class="monospace">{{quantity | format}}</span>
+  <span class="monospace">{{quantity | format:false:ms.options.formatter}}</span>
 
   <span class="perSecTab  monospace">
     <span *ngIf="perSec.abs().gt(0.001)">
-      {{perSec | format}}/s
+      {{perSec | format:false:ms.options.formatter}}/s
     </span>
   </span>
 

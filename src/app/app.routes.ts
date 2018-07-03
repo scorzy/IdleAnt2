@@ -6,6 +6,7 @@ import { OptionsNavComponent } from "./options-nav/options-nav.component";
 import { LaboratoryComponent } from "./laboratory/laboratory.component";
 import { UnitGroupComponent } from "./unit-group/unit-group.component";
 import { PrestigeComponent } from "./prestige/prestige.component";
+import { UiOptionsComponent } from "./ui-options/ui-options.component";
 
 export const APPROUTES: Routes = [
   {
@@ -33,6 +34,9 @@ export const APPROUTES: Routes = [
   {
     path: "opt",
     component: OptionsNavComponent,
-    children: [{ path: "save", component: SaveComponent }]
+    children: [
+      { path: "save", component: SaveComponent },
+      { path: "ui", component: UiOptionsComponent }
+    ]
   }
 ];

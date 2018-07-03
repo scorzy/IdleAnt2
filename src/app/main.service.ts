@@ -18,6 +18,7 @@ export class MainService {
   updateEmitter: EventEmitter<number> = new EventEmitter<number>();
   researchEmitter: EventEmitter<string> = new EventEmitter<string>();
   worldEmitter: EventEmitter<World> = new EventEmitter<World>();
+  formatEmitter: EventEmitter<number> = new EventEmitter<number>();
 
   themeClarity: HTMLLinkElement;
   themePrime: HTMLLinkElement;
@@ -48,6 +49,7 @@ export class MainService {
     this.game = new Game(this.updateEmitter, this.researchEmitter);
     this.last = Date.now();
     setInterval(this.update.bind(this), 100);
+    this.options.formatEmitter = this.formatEmitter;
   }
   update() {
     const now = Date.now();
@@ -108,7 +110,7 @@ export class MainService {
       this.game = null;
       this.game = new Game(this.updateEmitter, this.researchEmitter);
       if (!!data.o) this.options.restore(data.o);
-      // this.setTheme();
+      this.setTheme();
       this.last = data.time;
       this.game.restore(data.m);
       setTimeout(() => this.toastr.success("", "Game Loaded"), 0);
@@ -143,7 +145,7 @@ export class MainService {
   }
   setTheme() {
     this.themeClarity.href = this.options.dark
-      ? "/clr-ui.min-dark.css"
+      ? "/clr-ui-dark.min.css"
       : "/clr-ui.min.css";
     this.themePrime.href =
       (this.options.dark ? "/darkness" : "/start") + "/theme.css";

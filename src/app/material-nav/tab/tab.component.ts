@@ -2,8 +2,11 @@ import {
   Component,
   OnInit,
   Input,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  OnDestroy
 } from "@angular/core";
+import { MainService } from "../../main.service";
 
 @Component({
   selector: "app-tab",
@@ -11,17 +14,24 @@ import {
   styleUrls: ["./tab.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabComponent implements OnInit {
+export class TabComponent implements OnInit, OnDestroy {
   @Input() id = "";
   @Input() isEnding = false;
   @Input() name = "";
   @Input() quantity = new Decimal(0);
   @Input() perSec = new Decimal(0);
-  constructor() {
+  formatSub: any;
+
+  constructor(public ms: MainService, private cd: ChangeDetectorRef) {
     //
   }
 
   ngOnInit() {
-    //
+    this.formatSub = this.ms.formatEmitter.subscribe(m => {
+      this.cd.markForCheck();
+    });
+  }
+  ngOnDestroy() {
+    this.formatSub.unsubscribe();
   }
 }

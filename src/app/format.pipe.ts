@@ -7,15 +7,16 @@ import { OptionsService } from "./options.service";
 export class FormatPipe implements PipeTransform {
   constructor(public options: OptionsService) {}
 
-  transform(value: any, integer?: boolean): any {
+  transform(value: any, integer?: boolean, formatter?: any): any {
     value = new Decimal(value);
+    if (!formatter) formatter = this.options.formatter;
 
     let str = value.abs().lessThan(10)
       ? value.toNumber().toFixed(2)
       : value.abs().lessThan(100)
         ? value.toNumber().toFixed(1)
         : (value.greaterThanOrEqualTo(0) ? "" : "-") +
-          this.options.formatter.formatShort(value.abs());
+          formatter.formatShort(value.abs());
 
     if (integer && value.abs().lessThan(100)) str = str.replace(/\.0+$/, "");
     if (!this.options.usaFormat) str = str.replace(".", ",");
