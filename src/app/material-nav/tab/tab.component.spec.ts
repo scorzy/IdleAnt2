@@ -6,6 +6,7 @@ import { ClarityModule } from "@clr/angular";
 import { RouterTestingModule } from "@angular/router/testing";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormatPipe } from "../../format.pipe";
+import { ToastrModule } from "ngx-toastr";
 
 describe("TabComponent", () => {
   let component: TabComponent;
@@ -16,6 +17,7 @@ describe("TabComponent", () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
         ClarityModule.forRoot(),
+        ToastrModule.forRoot(),
         RouterTestingModule,
         BrowserAnimationsModule
       ],
