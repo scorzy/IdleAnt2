@@ -1,10 +1,14 @@
+app-material-nav {
+  min-height: fit-content;
+}
+
 $padding: 0.45rem;
 :host /deep/ .content-container .content-area {
-  padding: $padding $padding $padding $padding;
+  padding: $padding $padding $padding $padding !important;
 }
 :host /deep/ .clr-row {
-  margin-right: -$padding/2;
-  margin-left: -$padding/2;
+  margin-right: -$padding/2 !important;
+  margin-left: -$padding/2 !important;
 }
 
 :host /deep/ h1 {
@@ -37,10 +41,6 @@ $padding: 0.45rem;
   margin-top: 0.6rem;
 }
 
-app-material-nav {
-  min-height: fit-content;
-}
-
 :host /deep/ .w-100 {
   max-width: 100% !important;
 }
@@ -58,6 +58,13 @@ app-material-nav {
 
 :host /deep/.clr-vertical-nav {
   padding-top: 0;
+}
+
+:host /deep/ .ui-slider {
+  background-color: transparent !important;
+}
+:host /deep/ .ui-widget-content {
+  border-radius: 0.125rem;
 }
 
 @media screen and (max-width: 768px) {

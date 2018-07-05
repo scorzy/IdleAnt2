@@ -1,4 +1,4 @@
-<clr-header class="header header-6">
+<clr-header class="header" [ngClass]="headerClass">
 
   <div class="header-nav" [clr-nav-level]="1">
     <a [routerLink]='"nav"' class="nav-link" [routerLinkActive]="'active'" (click)="navigateLast()">

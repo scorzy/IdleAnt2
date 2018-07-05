@@ -27,7 +27,7 @@ export class TabComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.formatSub = this.ms.formatEmitter.subscribe(m => {
+    this.formatSub = this.ms.options.formatEmitter.subscribe(m => {
       this.cd.markForCheck();
     });
   }
