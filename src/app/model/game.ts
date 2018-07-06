@@ -14,6 +14,7 @@ import { WorldBonus } from "./units/world-bonus";
 import { Malus } from "./malus";
 import { WorldMalus } from "./units/world-malus";
 import { MalusKiller } from "./units/malus-killer";
+import { AllPrestige } from "./prestige/all-prestige";
 
 const STARTING_FOOD = new Decimal(100);
 
@@ -47,7 +48,8 @@ export class Game {
   canTravel = false;
 
   maxLevel = new Decimal(1);
-  prestige: FullUnit;
+  experience: FullUnit;
+  allPrestige: AllPrestige;
 
   constructor(
     public updateEmitter: EventEmitter<number>,
@@ -89,7 +91,7 @@ export class Game {
     this.researches.declareStuff();
     this.worldBonus = new WorldBonus();
     this.worldBonus.declareStuff();
-    this.prestige = new FullUnit("prest");
+    this.experience = new FullUnit("prest");
 
     //
     //  Relations
@@ -106,6 +108,12 @@ export class Game {
     //
     this.worldBonus.addWorlds();
     this.unitGroups.forEach(g => g.addWorlds());
+
+    //
+    //  Prestige
+    //
+    this.allPrestige = new AllPrestige();
+    this.allPrestige.declareStuff(this.experience);
 
     //
     //  Debug
@@ -125,7 +133,7 @@ export class Game {
     this.unitGroups
       .map(g => g.list)
       .forEach(l => l.forEach(u => this.units.push(u)));
-    this.units.push(this.prestige);
+    this.units.push(this.experience);
     this.buildLists();
     this.unitGroups.forEach(g => (g.selected = g.list.filter(u => u.unlocked)));
 
@@ -302,12 +310,14 @@ export class Game {
   goToWorld(world: World): boolean {
     if (!this.canTravel) return false;
 
-    const newPrestige = this.prestige.quantity.plus(this.currentWorld.prestige);
+    const newPrestige = this.experience.quantity.plus(
+      this.currentWorld.prestige
+    );
     this.units.forEach(u => u.reset());
     this.materials.food.quantity = new Decimal(STARTING_FOOD);
     this.gatherers.drone.unlocked = true;
     this.materials.food.unlocked = true;
-    this.prestige.quantity = newPrestige;
+    this.experience.quantity = newPrestige;
     this.currentWorld = world;
     this.applyWorldBonus();
 
@@ -346,7 +356,9 @@ export class Game {
       u: this.units.map(u => u.getSave()),
       t: this.tabs.getSave(),
       r: this.researches.getSave(),
-      w: this.currentWorld.getSave()
+      w: this.currentWorld.getSave(),
+      p: this.allPrestige.getSave(),
+      m: this.maxLevel
     };
   }
   restore(data: any): boolean {
@@ -355,6 +367,8 @@ export class Game {
       if ("t" in data) this.tabs.restore(data.t);
       if ("r" in data) this.researches.restore(data.r);
       if ("w" in data) this.currentWorld.restore(data.w, this);
+      if ("p" in data) this.allPrestige.restore(data.p);
+      if ("m" in data) this.maxLevel = new Decimal(data.m);
 
       this.unitGroups.forEach(g => g.check());
       this.buildLists();

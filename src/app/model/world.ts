@@ -49,7 +49,7 @@ export class World {
     this.winContidions.forEach(w => {
       w.price = w.price.times(w.base.winNonLiner ? multi : multiLog);
     });
-    this.level = level
+    this.prestige = level
       .times(10)
       .times(level.plus(10).log10())
       .floor();

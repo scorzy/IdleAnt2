@@ -95,5 +95,6 @@ export const STRINGS = {
     woBSuf: "of Wood",
     crBSuf: "of Crystall",
     scBSuf: "of Science"
-  }
+  },
+  prestige: {}
 };

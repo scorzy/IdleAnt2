@@ -113,7 +113,30 @@
               "./node_modules/@clr/icons/clr-icons.min.js",
               "./node_modules/swarm-numberformat/dist/swarm-numberformat.min.js"
             ],
-            "assets": ["src/favicon.ico", "src/assets"]
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "clr-ui.min.css",
+                "input": "./node_modules/@clr/ui/",
+                "output": "./"
+              },
+              {
+                "glob": "clr-ui-dark.min.css",
+                "input": "./node_modules/@clr/ui/",
+                "output": "./"
+              },
+              {
+                "glob": "theme.css",
+                "input": "./node_modules/primeng/resources/themes/start/",
+                "output": "./start"
+              },
+              {
+                "glob": "theme.css",
+                "input": "./node_modules/primeng/resources/themes/darkness/",
+                "output": "./darkness"
+              }
+            ]
           }
         },
         "lint": {
