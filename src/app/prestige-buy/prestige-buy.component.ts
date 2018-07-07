@@ -26,6 +26,7 @@ export class PrestigeBuyComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.ms.updateEmitter.subscribe(m => {
+      this.prestige.reload();
       this.prestige.reloadUserPrices();
       this.cd.markForCheck();
     });

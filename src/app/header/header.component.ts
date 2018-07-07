@@ -16,8 +16,12 @@ import { MainService } from "../main.service";
 })
 export class HeaderComponent implements OnInit {
   @Input() lab = false;
+  @Input() labBadge = false;
+
   @Input() travel = false;
   @Input() travelBadge = false;
+
+  @Input() prestige = false;
 
   sub: any;
   headerClass = "header-6";
@@ -30,13 +34,13 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.ms.options.headerEmitter.subscribe(() => {
-      this.reloadHeade();
+      this.reloadHeader();
       this.cd.markForCheck();
     });
-    this.reloadHeade();
+    this.reloadHeader();
     this.cd.markForCheck();
   }
-  reloadHeade() {
+  reloadHeader() {
     this.headerClass = "header-" + this.ms.options.header;
   }
   ngOnDestroy() {

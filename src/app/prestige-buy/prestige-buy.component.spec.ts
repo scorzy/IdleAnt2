@@ -9,7 +9,6 @@ import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormatPipe } from "../format.pipe";
 import { Prestige } from "../model/prestige/prestige";
-import { Price } from "../model/price";
 import { FullUnit } from "../model/full-unit";
 
 describe("PrestigeBuyComponent", () => {

@@ -11,6 +11,7 @@ import { Price } from "../model/price";
 import { MainService } from "../main.service";
 import { TeamAction } from "../model/actions/team-action";
 import { TwinAction } from "../model/actions/twin-action";
+import { Prestige } from "../model/prestige/prestige";
 
 @Component({
   selector: "app-action",
@@ -20,6 +21,7 @@ import { TwinAction } from "../model/actions/twin-action";
 })
 export class ActionComponent implements OnInit, OnDestroy {
   @Input() action: Action;
+  showTime = true;
   sub: any;
   shape: string;
 
@@ -34,6 +36,7 @@ export class ActionComponent implements OnInit, OnDestroy {
         : this.action instanceof TwinAction
           ? "angle-double"
           : "";
+    this.showTime = !(this.action instanceof Prestige);
     this.sub = this.ms.updateEmitter.subscribe(() => {
       this.action.reloadUserPrices();
       this.action.reloadAvailableTime();

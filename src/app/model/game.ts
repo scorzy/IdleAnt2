@@ -19,7 +19,7 @@ import { AllPrestige } from "./prestige/all-prestige";
 const STARTING_FOOD = new Decimal(100);
 
 export class Game {
-  units = new Array<BaseUnit>();
+  units = new Array<FullUnit>();
   unlockedUnits = new Array<FullUnit>();
 
   unitGroups = new Array<UnitGroup>();
@@ -50,6 +50,8 @@ export class Game {
   maxLevel = new Decimal(1);
   experience: FullUnit;
   allPrestige: AllPrestige;
+
+  canBuyResearch = false;
 
   constructor(
     public updateEmitter: EventEmitter<number>,
@@ -125,6 +127,7 @@ export class Game {
     // this.worldMalus.foodMalus1.quantity = new Decimal(100);
     this.worldMalus.foodMalus1.quantity = new Decimal(100);
     this.worldMalus.foodMalus2.quantity = new Decimal(10);
+    this.experience.quantity = new Decimal(100);
 
     //
     //  Build list
@@ -274,6 +277,9 @@ export class Game {
       u.setUiValue();
     });
     this.researches.researches.filter(r => r.unlocked).forEach(u => u.reload());
+    this.canBuyResearch = !!this.researches.researches.find(
+      r => r.unlocked && r.canBuy
+    );
     const team = this.researches.team2.done;
     const twin = this.researches.twin.done;
     this.unitGroups.forEach(g => g.setFlags(team, twin));
@@ -307,6 +313,11 @@ export class Game {
       b[0].unlocked = true;
     });
   }
+  /**
+   * Prestige, reset everything except prestige stuff
+   * and move to another world
+   * @param world choosen world
+   */
   goToWorld(world: World): boolean {
     if (!this.canTravel) return false;
 
@@ -321,9 +332,23 @@ export class Game {
     this.currentWorld = world;
     this.applyWorldBonus();
 
+    //  Followers
+    this.units.filter(u => u.follower).forEach(u => {
+      u.quantity = u.quantity.plus(
+        u.follower.quantity.times(u.followerQuantity)
+      );
+      if (u.quantity.gt(0.5)) {
+        u.unlock();
+        if (u.buyAction && u.buyAction.toUnlock)
+          u.buyAction.toUnlock.forEach(a => a.unlock());
+      }
+    });
+
     this.unitGroups.forEach(g => g.check());
     this.buildLists();
     this.generateWorlds();
+
+    this.tabs.prestige.unlock();
 
     return true;
   }

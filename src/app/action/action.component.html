@@ -19,9 +19,10 @@
 </div>
 <div *ngIf="!action.complete" class="btn-group">
   <button *ngIf="!action.canBuy" class="btn btn-sm w-100" disabled>
-    Can't buy. Available in {{action.availableIn | endIn}}
+    Can't buy.
+    <span *ngIf="showTime">Available in {{action.availableIn | endIn}}</span>
   </button>
-  <app-cant-buy-signposts *ngIf="!action.canBuy" [action]="action"></app-cant-buy-signposts>
+  <app-cant-buy-signposts *ngIf="showTime && !action.canBuy" [action]="action"></app-cant-buy-signposts>
   <button *ngIf="action.canBuy" class="btn btn-sm w-100" (click)="action.buy(action.realNum)" [disabled]="!action.canUserBuy">
     Get {{action.realNum | format: true}}
   </button>

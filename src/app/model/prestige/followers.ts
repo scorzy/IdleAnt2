@@ -10,6 +10,7 @@ export class Followers extends PrestigeGroup {
   declareStuff(game: Game) {
     game.gatherers.list.forEach(ga => {
       const follower = new Prestige(ga.id + "_fol", 5, game.experience);
+      ga.follower = follower;
       this.list.push(follower);
     });
   }

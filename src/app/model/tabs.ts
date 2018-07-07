@@ -3,13 +3,15 @@ import { Tab } from "./tab";
 export class Tabs {
   lab: Tab;
   travel: Tab;
+  prestige: Tab;
 
   tabList: Tab[];
   constructor() {
     this.lab = new Tab("lab");
     this.travel = new Tab("travel");
+    this.prestige = new Tab("prestige");
 
-    this.tabList = [this.lab, this.travel];
+    this.tabList = [this.lab, this.travel, this.prestige];
   }
   getSave(): any {
     return {

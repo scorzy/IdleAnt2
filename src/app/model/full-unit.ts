@@ -9,6 +9,7 @@ import { Research } from "./research";
 import { TeamAction } from "./actions/team-action";
 import { ProductionBonus } from "./production-bonus";
 import { Malus } from "./malus";
+import { Prestige } from "./prestige/prestige";
 
 export class FullUnit extends BaseUnit implements IUnlocable {
   unlocked = false;
@@ -49,6 +50,9 @@ export class FullUnit extends BaseUnit implements IUnlocable {
 
   malus: Malus = null;
   winNonLiner = true;
+
+  follower: Prestige;
+  followerQuantity = new Decimal(5);
 
   constructor(
     id: string,

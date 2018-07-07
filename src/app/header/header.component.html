@@ -3,29 +3,29 @@
   <div class="header-nav" [clr-nav-level]="1">
     <a [routerLink]='"nav"' class="nav-link" [routerLinkActive]="'active'" (click)="navigateLast()">
       <span class="nav-text">
-        <clr-icon shape="bug"></clr-icon>
+        <clr-icon shape="bug" class="is-solid"></clr-icon>
       </span>
     </a>
     <a [routerLink]='"lab"' class="nav-link" *ngIf="lab" [routerLinkActive]="'active'">
-      <span class="nav-text">
-        <clr-icon shape="flask"></clr-icon>
+      <span class="nav-text" [ngClass]="{'has-badge': labBadge}">
+        <clr-icon shape="flask" class="is-solid"></clr-icon>
       </span>
     </a>
     <a [routerLink]='"travel"' class="nav-link" *ngIf="travel" [routerLinkActive]="'active'">
       <span class="nav-text">
-        <clr-icon shape="world" [ngClass]="{'has-badge': travelBadge}"></clr-icon>
+        <clr-icon shape="world" class="is-solid" [ngClass]="{'has-badge': travelBadge}"></clr-icon>
       </span>
     </a>
-    <a [routerLink]='"pre"' class="nav-link" [routerLinkActive]="'active'">
+    <a [routerLink]='"pre"' class="nav-link" *ngIf="prestige" [routerLinkActive]="'active'">
       <span class="nav-text">
-        <clr-icon shape="world"></clr-icon>
+        <clr-icon shape="store" class="is-solid"></clr-icon>
       </span>
     </a>
   </div>
 
   <div class="header-actions">
     <a [routerLink]="'opt/save/'" class="nav-link nav-icon" [routerLinkActive]="'active'">
-      <clr-icon shape="cog"></clr-icon>
+      <clr-icon shape="cog" class="is-solid"></clr-icon>
     </a>
   </div>
 
