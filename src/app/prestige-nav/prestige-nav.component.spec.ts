@@ -1,20 +1,17 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ResearchComponent } from "./research.component";
-import { CUSTOM_ELEMENTS_SCHEMA, EventEmitter } from "@angular/core";
+import { PrestigeNavComponent } from "./prestige-nav.component";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ClarityModule } from "@clr/angular";
 import { ToastrModule } from "ngx-toastr";
 import { RouterTestingModule } from "@angular/router/testing";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormatPipe } from "../format.pipe";
-import { EndInPipe } from "../end-in.pipe";
-import { Research } from "../model/research";
-import { Researches } from "../model/units/researches";
 
-describe("ResearchComponent", () => {
-  let component: ResearchComponent;
-  let fixture: ComponentFixture<ResearchComponent>;
+describe("PrestigeNavComponent", () => {
+  let component: PrestigeNavComponent;
+  let fixture: ComponentFixture<PrestigeNavComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -26,17 +23,13 @@ describe("ResearchComponent", () => {
         FormsModule,
         BrowserAnimationsModule
       ],
-      declarations: [ResearchComponent, FormatPipe, EndInPipe]
+      declarations: [PrestigeNavComponent, FormatPipe]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ResearchComponent);
+    fixture = TestBed.createComponent(PrestigeNavComponent);
     component = fixture.componentInstance;
-    component.research = new Research(
-      "",
-      new Researches(new EventEmitter<string>())
-    );
     fixture.detectChanges();
   });
 

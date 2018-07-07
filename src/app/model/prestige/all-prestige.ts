@@ -1,12 +1,22 @@
 import { Action } from "../action";
-import { FullUnit } from "../full-unit";
 import { PrestigeGroup } from "./prestige-group";
+import { Game } from "../game";
+import { Followers } from "./followers";
 
 export class AllPrestige {
+  followers: Followers;
+
   prestigeGroups = new Array<PrestigeGroup>();
   prestigeList = new Array<Action>();
-  declareStuff(experience: FullUnit) {
+
+  constructor() {
+    this.followers = new Followers();
+    this.prestigeGroups.push(this.followers);
+  }
+
+  declareStuff(game: Game) {
     this.prestigeGroups.forEach(g => {
+      g.declareStuff(game);
       g.list.forEach(p => this.prestigeList.push(p));
     });
   }

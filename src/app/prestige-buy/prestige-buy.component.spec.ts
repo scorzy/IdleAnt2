@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ResearchComponent } from "./research.component";
-import { CUSTOM_ELEMENTS_SCHEMA, EventEmitter } from "@angular/core";
+import { PrestigeBuyComponent } from "./prestige-buy.component";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ClarityModule } from "@clr/angular";
 import { ToastrModule } from "ngx-toastr";
 import { RouterTestingModule } from "@angular/router/testing";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormatPipe } from "../format.pipe";
-import { EndInPipe } from "../end-in.pipe";
-import { Research } from "../model/research";
-import { Researches } from "../model/units/researches";
+import { Prestige } from "../model/prestige/prestige";
+import { Price } from "../model/price";
+import { FullUnit } from "../model/full-unit";
 
-describe("ResearchComponent", () => {
-  let component: ResearchComponent;
-  let fixture: ComponentFixture<ResearchComponent>;
+describe("PrestigeBuyComponent", () => {
+  let component: PrestigeBuyComponent;
+  let fixture: ComponentFixture<PrestigeBuyComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -26,17 +26,14 @@ describe("ResearchComponent", () => {
         FormsModule,
         BrowserAnimationsModule
       ],
-      declarations: [ResearchComponent, FormatPipe, EndInPipe]
+      declarations: [PrestigeBuyComponent, FormatPipe]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ResearchComponent);
+    fixture = TestBed.createComponent(PrestigeBuyComponent);
     component = fixture.componentInstance;
-    component.research = new Research(
-      "",
-      new Researches(new EventEmitter<string>())
-    );
+    component.prestige = new Prestige("", 10, new FullUnit(""));
     fixture.detectChanges();
   });
 

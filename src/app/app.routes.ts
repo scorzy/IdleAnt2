@@ -7,6 +7,8 @@ import { LaboratoryComponent } from "./laboratory/laboratory.component";
 import { UnitGroupComponent } from "./unit-group/unit-group.component";
 import { PrestigeComponent } from "./prestige/prestige.component";
 import { UiOptionsComponent } from "./ui-options/ui-options.component";
+import { PrestigeGroupComponent } from "./prestige-group/prestige-group.component";
+import { PrestigeNavComponent } from "./prestige-nav/prestige-nav.component";
 
 export const APPROUTES: Routes = [
   {
@@ -22,6 +24,11 @@ export const APPROUTES: Routes = [
       { path: "unit/:id", component: UnitComponent },
       { path: "group/:id", component: UnitGroupComponent }
     ]
+  },
+  {
+    path: "pre",
+    component: PrestigeNavComponent,
+    children: [{ path: ":id", component: PrestigeGroupComponent }]
   },
   {
     path: "lab",

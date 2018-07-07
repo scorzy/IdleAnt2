@@ -1,36 +1,32 @@
 import {
   Component,
   OnInit,
+  ChangeDetectionStrategy,
   Input,
-  ChangeDetectorRef,
-  OnDestroy,
-  ChangeDetectionStrategy
+  ChangeDetectorRef
 } from "@angular/core";
-import { Research } from "../model/research";
+import { Prestige } from "../model/prestige/prestige";
 import { MainService } from "../main.service";
 import { Price } from "../model/price";
 
 @Component({
-  selector: "app-research",
-  templateUrl: "./research.component.html",
-  styleUrls: ["./research.component.scss"],
+  selector: "app-prestige-buy",
+  templateUrl: "./prestige-buy.component.html",
+  styleUrls: ["./prestige-buy.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     "[class.card]": "true"
   }
 })
-export class ResearchComponent implements OnInit, OnDestroy {
-  @Input() research: Research;
+export class PrestigeBuyComponent implements OnInit {
+  @Input() prestige: Prestige;
   sub: any;
 
-  constructor(private ms: MainService, private cd: ChangeDetectorRef) {
-    //Nothing
-  }
+  constructor(public ms: MainService, private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.sub = this.ms.updateEmitter.subscribe(m => {
-      this.research.reloadUserPrices();
-      this.research.reloadAvailableTime();
+      this.prestige.reloadUserPrices();
       this.cd.markForCheck();
     });
   }

@@ -96,5 +96,12 @@ export const STRINGS = {
     crBSuf: "of Crystall",
     scBSuf: "of Science"
   },
-  prestige: {}
+  prestige: {
+    drone_fol: ["Drone Follower", "Start new worlds with 5 more drones"],
+    geologist_fol: [
+      "Geologist Follower",
+      "Start new worlds with 5 more geologists"
+    ],
+    student_fol: ["Student Follower", "Start new worlds with 5 more students"]
+  }
 };

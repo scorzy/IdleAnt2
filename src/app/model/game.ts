@@ -113,7 +113,7 @@ export class Game {
     //  Prestige
     //
     this.allPrestige = new AllPrestige();
-    this.allPrestige.declareStuff(this.experience);
+    this.allPrestige.declareStuff(this);
 
     //
     //  Debug
@@ -348,6 +348,9 @@ export class Game {
   }
   genSciencePrice(price: Decimal): Price[] {
     return [new Price(this.materials.science, price, 1)];
+  }
+  genExperiencePrice(price: Decimal): Price[] {
+    return [new Price(this.experience, price, 1)];
   }
   //#endregion
   //#region Save and Load
