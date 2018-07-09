@@ -97,11 +97,23 @@ export const STRINGS = {
     scBSuf: "of Science"
   },
   prestige: {
+    //  Followers 1
     drone_fol: ["Drone Follower", "Start new worlds with 5 more drones"],
     geologist_fol: [
       "Geologist Follower",
       "Start new worlds with 5 more geologists"
     ],
-    student_fol: ["Student Follower", "Start new worlds with 5 more students"]
+    student_fol: ["Student Follower", "Start new worlds with 5 more students"],
+    //  Followers 2
+    farmer_fol2: ["Farmer Follower", "Start new worlds with 5 more farmer"],
+    carpenter_fol2: [
+      "Carpenter Follower",
+      "Start new worlds with 5 more farmer"
+    ],
+    miner_fol2: ["Miner Follower", "Start new worlds with 5 more miner"],
+    scientist_fol2: [
+      "Scientist Follower",
+      "Start new worlds with 5 more scientist"
+    ]
   }
 };
