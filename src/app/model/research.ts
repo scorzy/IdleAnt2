@@ -42,6 +42,10 @@ export class Research extends Action implements IUnlocable {
       return false;
     }
   }
+  reset() {
+    super.reset();
+    this.unlocked = false;
+  }
   //#region Save and Load
   getSave(): any {
     const save = super.getSave();

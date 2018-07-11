@@ -53,6 +53,26 @@ export class World {
       .times(10)
       .times(level.plus(10).log10())
       .floor();
+    this.notWinConditions.forEach(n => {
+      n.quantity = new Decimal(level);
+      n.producedBy.find(u => u.rateo.lt(0)).producer.unlock();
+      const n2 = n.producedBy.find(u => u.rateo.gt(0)).producer;
+      const n3 = n2.producedBy.find(u => u.rateo.gt(0)).producer;
+
+      n2.quantity = n.quantity.div(10);
+
+      if (n2.quantity.gt(0.1)) {
+        n2.unlock();
+        n3.quantity = n.quantity.div(200);
+        if (n3.quantity.gt(0.1)) {
+          n3.unlock();
+        } else {
+          n3.quantity = new Decimal(0);
+        }
+      } else {
+        n2.quantity = new Decimal(0);
+      }
+    });
   }
   canTravel(): boolean {
     this.winContidions.forEach(p => {

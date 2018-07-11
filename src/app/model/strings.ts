@@ -58,6 +58,7 @@ export const STRINGS = {
     team1: ["Team 1", "Team 1"],
     team2: ["Team 2", "Team 2"],
     twin: ["Twin", "Twin"],
+    travel: ["Trave", "Travel to a new world !"],
     work_res: ["Workers", "Workers"],
     Buildings_r: ["Buildings", "Buildings"],
     //  Workers

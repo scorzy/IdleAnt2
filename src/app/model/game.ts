@@ -166,6 +166,7 @@ export class Game {
 
     this.unlockedUnits.forEach(u => {
       u.isEnding = false;
+      u.endIn = Number.POSITIVE_INFINITY;
     });
 
     this.reloadProduction();
@@ -331,6 +332,7 @@ export class Game {
     this.experience.quantity = newPrestige;
     this.currentWorld = world;
     this.applyWorldBonus();
+    this.researches.reset();
 
     //  Followers
     this.units.filter(u => u.follower).forEach(u => {

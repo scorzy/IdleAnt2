@@ -1,5 +1,4 @@
 import { FullUnit } from "../full-unit";
-import { Price } from "../price";
 import { Research } from "../research";
 import { EventEmitter } from "@angular/core";
 import { Game } from "../game";
@@ -62,6 +61,13 @@ export class Researches {
     );
   }
 
+  reset() {
+    this.researches.forEach(r => {
+      r.reset();
+    });
+    this.team1.unlocked = true;
+    this.reloadLists();
+  }
   reloadLists() {
     this.toDo = this.researches.filter(r => r.unlocked && !r.done);
     this.done = this.researches.filter(r => r.unlocked && r.done);
