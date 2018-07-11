@@ -274,4 +274,10 @@ describe("Action", () => {
     expect(action.done).toBeTruthy();
     expect(action.complete).toBeFalsy();
   });
+  it("Reset", () => {
+    action.buy();
+    action.buy();
+    action.reset();
+    expect(action.quantity.toNumber()).toBe(0);
+  });
 });

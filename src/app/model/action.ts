@@ -76,6 +76,7 @@ export class Action extends BaseUnit {
     }
   }
   reset() {
+    super.reset();
     this.done = false;
     this.complete = false;
     this.canBuy = false;
