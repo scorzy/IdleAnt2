@@ -47,13 +47,13 @@ export class MainService {
 
     this.game = new Game(this.updateEmitter, this.researchEmitter);
     this.last = Date.now();
-    setInterval(this.update.bind(this), 100);
+    setInterval(this.update.bind(this), 200);
   }
   update() {
     const now = Date.now();
     const diff = now - this.last;
 
-    this.game.update(diff);
+    this.game.updateWithTime(diff);
     this.game.postUpdate();
     this.last = now;
     this.updateEmitter.emit(diff);

@@ -13,12 +13,14 @@ export class Price {
   realPrice = new Decimal(0);
 
   completedPercent: number = 0;
+  price: Decimal;
 
   constructor(
     public base: FullUnit,
-    public price: Decimal,
+    price: Decimal | number,
     public growRate = 1.1
   ) {
+    this.price = new Decimal(price);
     this.realPrice = new Decimal(this.price);
   }
 

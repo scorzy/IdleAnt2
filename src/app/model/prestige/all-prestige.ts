@@ -3,10 +3,12 @@ import { PrestigeGroup } from "./prestige-group";
 import { Game } from "../game";
 import { Followers } from "./followers";
 import { Followers2 } from "./followers2";
+import { Time } from "./time";
 
 export class AllPrestige {
   followers: Followers;
   followers2: Followers2;
+  time: Time;
 
   prestigeGroups = new Array<PrestigeGroup>();
   prestigeList = new Array<Action>();
@@ -14,7 +16,8 @@ export class AllPrestige {
   constructor() {
     this.followers = new Followers();
     this.followers2 = new Followers2();
-    this.prestigeGroups.push(this.followers, this.followers2);
+    this.time = new Time();
+    this.prestigeGroups.push(this.followers, this.followers2, this.time);
   }
 
   declareStuff(game: Game) {

@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
 
   sub: any;
   headerClass = "header-6";
+  timeModal = false;
 
   constructor(
     private router: Router,

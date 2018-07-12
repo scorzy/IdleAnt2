@@ -15,6 +15,8 @@ import { Malus } from "./malus";
 import { WorldMalus } from "./units/world-malus";
 import { MalusKiller } from "./units/malus-killer";
 import { AllPrestige } from "./prestige/all-prestige";
+import { Action } from "rxjs/internal/scheduler/Action";
+import { WarpAction } from "./actions/warp-action";
 
 const STARTING_FOOD = new Decimal(100);
 
@@ -49,9 +51,13 @@ export class Game {
 
   maxLevel = new Decimal(1);
   experience: FullUnit;
+  time: FullUnit;
   allPrestige: AllPrestige;
 
   canBuyResearch = false;
+
+  actMin: WarpAction;
+  actHour: WarpAction;
 
   constructor(
     public updateEmitter: EventEmitter<number>,
@@ -93,7 +99,9 @@ export class Game {
     this.researches.declareStuff();
     this.worldBonus = new WorldBonus();
     this.worldBonus.declareStuff();
+
     this.experience = new FullUnit("prest");
+    this.time = new FullUnit("time");
 
     //
     //  Relations
@@ -136,7 +144,7 @@ export class Game {
     this.unitGroups
       .map(g => g.list)
       .forEach(l => l.forEach(u => this.units.push(u)));
-    this.units.push(this.experience);
+    this.units.push(this.experience, this.time);
     this.buildLists();
     this.unitGroups.forEach(g => (g.selected = g.list.filter(u => u.unlocked)));
 
@@ -146,6 +154,9 @@ export class Game {
     );
     this.currentWorld.notWinConditions.push(this.worldMalus.crystalMalus1);
     this.generateWorlds();
+
+    this.actMin = new WarpAction(60, this);
+    this.actHour = new WarpAction(3600, this);
   }
   buildLists() {
     this.unlockedUnits = [];
@@ -155,13 +166,25 @@ export class Game {
     this.unlockedGroups = this.unitGroups.filter(g => g.unlocked.length > 0);
   }
   /**
+   * Update game and add time
+   * @param delta time passed in milliseconds
+   */
+  updateWithTime(delta: number) {
+    const timePerSec = this.allPrestige.time.timeProducer.quantity.div(10);
+    this.time.quantity = this.time.quantity
+      .plus(timePerSec.times(delta / 1000))
+      .min(this.allPrestige.time.timeBank.quantity.times(3600).plus(7200));
+    this.time.c = timePerSec;
+    this.update(delta);
+  }
+  /**
    * Update function.
    * Works only with resource groving at max rate of x^3
    * When something reach zero consumers are stopped and it will update again
-   * @param time in milliseconds
+   * @param delta in milliseconds
    */
-  update(time: number) {
-    let maxTime = time;
+  update(delta: number) {
+    let maxTime = delta;
     let unitZero: FullUnit = null;
 
     this.unlockedUnits.forEach(u => {
@@ -245,7 +268,7 @@ export class Game {
         }
       }
 
-      const remaning = time - maxTime;
+      const remaning = delta - maxTime;
       if (remaning > Number.EPSILON) {
         this.reloadProduction();
         this.update(remaning);
@@ -288,6 +311,8 @@ export class Game {
     this.unitGroups.forEach(g => g.setFlags(team, twin));
 
     this.canTravel = this.currentWorld.canTravel();
+    this.actHour.reload();
+    this.actMin.reload();
   }
   /**
    * Calculate production per second
@@ -369,17 +394,17 @@ export class Game {
     ];
   }
   //#region Price Utility
-  genTeamPrice(price: Decimal): Price[] {
-    return [new Price(this.materials.science, price, 4)];
+  genTeamPrice(price: Decimal | number): Price[] {
+    return [new Price(this.materials.science, new Decimal(price), 4)];
   }
-  genTwinPrice(price: Decimal): Price[] {
-    return [new Price(this.materials.science, price, 10)];
+  genTwinPrice(price: Decimal | number): Price[] {
+    return [new Price(this.materials.science, new Decimal(price), 10)];
   }
-  genSciencePrice(price: Decimal): Price[] {
-    return [new Price(this.materials.science, price, 1)];
+  genSciencePrice(price: Decimal | number): Price[] {
+    return [new Price(this.materials.science, new Decimal(price), 1)];
   }
-  genExperiencePrice(price: Decimal): Price[] {
-    return [new Price(this.experience, price, 1)];
+  genExperiencePrice(price: Decimal | number): Price[] {
+    return [new Price(this.experience, new Decimal(price), 1)];
   }
   //#endregion
   //#region Save and Load

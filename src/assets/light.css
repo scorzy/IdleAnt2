@@ -9,3 +9,5 @@
 ::-webkit-scrollbar-track:hover { background: #c7c7c7; }
 
 ::-webkit-scrollbar-track:active { background: #adadad; }
+
+.ui-widget-content { border: 1px solid #0077b7 !important; }

@@ -24,11 +24,6 @@ $padding: 0.45rem;
   font-size: 90%;
 }
 
-:host /deep/ nouislider {
-  margin-top: 0.1rem;
-  margin-bottom: 0.1rem;
-}
-
 :host /deep/ .noEnought {
   color: #c92100;
 }
@@ -58,13 +53,6 @@ $padding: 0.45rem;
 
 :host /deep/.clr-vertical-nav {
   padding-top: 0;
-}
-
-:host /deep/ .ui-slider {
-  background-color: transparent !important;
-}
-:host /deep/ .ui-widget-content {
-  border-radius: 0.125rem;
 }
 
 @media screen and (max-width: 768px) {

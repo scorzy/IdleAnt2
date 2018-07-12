@@ -32,7 +32,7 @@ describe("PrestigeBuyComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PrestigeBuyComponent);
     component = fixture.componentInstance;
-    component.prestige = new Prestige("", 10, new FullUnit(""));
+    component.prestige = new Prestige("", []);
     fixture.detectChanges();
   });
 

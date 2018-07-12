@@ -13,3 +13,16 @@ html {
 ::-webkit-scrollbar-thumb {
   border-radius: 0.2rem;
 }
+
+//#region slider
+.ui-slider {
+  background-color: transparent !important;
+}
+.ui-widget-content {
+  border-radius: 0.125rem !important;
+}
+.ui-slider-range {
+  border-radius: 0.08rem !important;
+  height: 101% !important;
+}
+//#endregion

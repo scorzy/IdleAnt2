@@ -115,6 +115,12 @@ export const STRINGS = {
     scientist_fol2: [
       "Scientist Follower",
       "Start new worlds with 5 more scientist"
-    ]
+    ],
+    tiPr: ["Time Producer", "+0.1 time/s"],
+    tiBa: ["Time Bank", "+1 max hour"]
+  },
+  actions: {
+    warp60: ["Warp minute", "Time warp by minutes"],
+    warp3600: ["Warp hour", "Time warp by hours"]
   }
 };
