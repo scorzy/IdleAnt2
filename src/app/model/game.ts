@@ -228,26 +228,28 @@ export class Game {
       .filter(u => u.endIn > 0)
       .forEach(u => (u.endIn = u.endIn - maxTime));
 
-    if (maxTime > Number.EPSILON && !this.isPaused)
-      this.update2(new Decimal(maxTime).div(1000));
+    if (!this.isPaused) {
+      if (maxTime > Number.EPSILON)
+        this.update2(new Decimal(maxTime).div(1000));
 
-    // Something has ened
-    if (unitZero) {
-      //  Stop consumers
-      unitZero.producedBy
-        .filter(p => p.rateo.lt(0))
-        .forEach(p => (p.producer.efficiency = 0));
+      // Something has ened
+      if (unitZero) {
+        //  Stop consumers
+        unitZero.producedBy
+          .filter(p => p.rateo.lt(0))
+          .forEach(p => (p.producer.efficiency = 0));
 
-      //  Kill Malus
-      if (unitZero instanceof Malus) {
-        unitZero.kill();
+        //  Kill Malus
+        if (unitZero instanceof Malus) {
+          unitZero.kill();
+        }
       }
-    }
 
-    const remaning = time - maxTime;
-    if (remaning > Number.EPSILON) {
-      this.reloadProduction();
-      this.update(remaning);
+      const remaning = time - maxTime;
+      if (remaning > Number.EPSILON) {
+        this.reloadProduction();
+        this.update(remaning);
+      }
     }
   }
   /**
@@ -388,7 +390,8 @@ export class Game {
       r: this.researches.getSave(),
       w: this.currentWorld.getSave(),
       p: this.allPrestige.getSave(),
-      m: this.maxLevel
+      m: this.maxLevel,
+      a: this.isPaused
     };
   }
   restore(data: any): boolean {
@@ -399,6 +402,7 @@ export class Game {
       if ("w" in data) this.currentWorld.restore(data.w, this);
       if ("p" in data) this.allPrestige.restore(data.p);
       if ("m" in data) this.maxLevel = new Decimal(data.m);
+      if ("a" in data) this.isPaused = data.a;
 
       this.unitGroups.forEach(g => g.check());
       this.buildLists();
