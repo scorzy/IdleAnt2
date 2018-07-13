@@ -4,15 +4,19 @@
   "scripts": {
     "ng": "ng",
     "start": "npm run make-themes && ng serve --open",
-    "build": "npm run make-themes && ng build --prod --base-href ./",
+    "build":
+      "npm run make-themes && ng build --prod --aot --build-optimizer --base-href ./",
     "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "coveralls":
+      "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "lint-fix": "ng lint IdleAnt2 --fix",
-    "make-themes": "./node_modules/node-sass/bin/node-sass ./src/themes --output ./src/assets --output-style compact",
-    "analyze": "ng build --prod --stats-json --build-optimizer=false && webpack-bundle-analyzer dist/IdleAnt2/stats.json"
+    "make-themes":
+      "./node_modules/node-sass/bin/node-sass ./src/themes --output ./src/assets --output-style compact",
+    "analyze":
+      "ng build --prod --stats-json --build-optimizer=false && webpack-bundle-analyzer dist/IdleAnt2/stats.json"
   },
   "private": true,
   "dependencies": {
