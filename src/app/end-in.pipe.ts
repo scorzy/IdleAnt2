@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import * as moment from "moment";
+import * as distanceInWordsToNow from "date-fns/distance_in_words_to_now";
 
 @Pipe({
   name: "endIn"
@@ -7,7 +7,7 @@ import * as moment from "moment";
 export class EndInPipe implements PipeTransform {
   transform(value: number, args?: any): any {
     return !isNaN(value) && value > 0
-      ? moment.duration(value).humanize()
+      ? distanceInWordsToNow(new Date(Date.now() + value))
       : "never";
   }
 }

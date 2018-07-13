@@ -4,7 +4,8 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   ViewChild,
-  OnDestroy
+  OnDestroy,
+  ElementRef
 } from "@angular/core";
 import { MainService } from "../main.service";
 import { ActivatedRoute } from "@angular/router";
@@ -17,7 +18,7 @@ import {
   UnitTwinSorter
 } from "../model/utility";
 import { FullUnit } from "../model/full-unit";
-import { BaseChartDirective } from "ng2-charts";
+declare let Chart;
 
 @Component({
   selector: "app-unit-group",
@@ -56,13 +57,54 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
 
   operativity = 100;
 
-  @ViewChild(BaseChartDirective) chart: BaseChartDirective;
+  // @ViewChild(BaseChartDirective) chart: BaseChartDirective;
+  @ViewChild("chart") chartRef: ElementRef;
+  chart: any;
 
   constructor(
     public ms: MainService,
     private route: ActivatedRoute,
     private cd: ChangeDetectorRef
   ) {}
+
+  ngAfterViewInit() {
+    this.unitGroup.updateChart();
+
+    const chartCtx = this.chartRef.nativeElement.getContext("2d");
+
+    Chart.defaults.global.tooltips.enabled = false;
+    this.chart = new Chart(chartCtx, {
+      type: "pie",
+      data: {
+        labels: this.unitGroup.chartLabels,
+        datasets: [
+          {
+            data: this.unitGroup.chartData,
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.3)",
+              "rgba(54, 162, 235, 0.3)",
+              "rgba(255, 206, 86, 0.3)",
+              "rgba(75, 192, 192, 0.3)",
+              "rgba(153, 102, 255, 0.3)",
+              "rgba(255, 159, 64, 0.3)"
+            ],
+            borderColor: [
+              "rgba(255,99,132,1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)",
+              "rgba(255, 159, 64, 1)"
+            ],
+            borderWidth: 0
+          }
+        ]
+      },
+      options: {
+        responsive: true
+      }
+    });
+  }
 
   ngOnInit() {
     this.paramsSub = this.route.params.subscribe(this.getGroup.bind(this));
@@ -136,27 +178,20 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
   }
   updateChart() {
     if (this.stop || !this.unitGroup) return;
-
+    const lastData = this.unitGroup.chartData;
     this.unitGroup.updateChart();
+    if (lastData !== this.unitGroup.chartData) this.doGraph();
   }
   doGraph() {
     this.stop = true;
     this.unitGroup.updateChartLabel();
 
-    setTimeout(() => {
-      if (
-        typeof this.chart !== "undefined" &&
-        this.chart &&
-        this.chart.chart &&
-        this.chart.chart.config
-      ) {
-        this.chart.chart.options.tooltips.enabled = false;
-        this.chart.data = this.unitGroup.chartData;
-        this.chart.chart.config.data.labels = this.unitGroup.chartLabels;
-        this.chart.chart.update();
-        this.stop = false;
-      }
-    }, 1);
+    if (typeof this.chart !== "undefined" && this.chart) {
+      this.chart.data.datasets[0].data = this.unitGroup.chartData;
+      this.chart.data.labels = this.unitGroup.chartLabels;
+      this.chart.update();
+    }
+    this.stop = false;
   }
   changeOperativity(event: any) {
     this.unitGroup.selected.forEach(u => (u.efficiency = this.operativity));

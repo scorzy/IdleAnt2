@@ -3,10 +3,11 @@ import { FullUnit } from "./full-unit";
 import { BaseUnit } from "./baseUnit";
 import { Game } from "./game";
 import { Malus } from "./malus";
-import { uniq, sample } from "lodash-es";
 import { STRINGS } from "./strings";
 import { Utility } from "./utility";
 import { Research } from "./research";
+import uniq from "lodash-es/uniq";
+import sample from "lodash-es/sample";
 
 export class World {
   static prefix = new Array<World>();

@@ -1,6 +1,7 @@
 import { UnitGroup } from "./unit-group";
 import { STRINGS } from "./strings";
-import { sample, isArray } from "lodash-es";
+import isArray from "lodash-es/isArray";
+import sample from "lodash-es/sample";
 
 export class BaseUnit {
   unlocked = true;

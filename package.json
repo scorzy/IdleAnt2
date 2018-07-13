@@ -8,14 +8,11 @@
     "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "coveralls":
-      "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "lint-fix": "ng lint IdleAnt2 --fix",
-    "make-themes":
-      "./node_modules/node-sass/bin/node-sass ./src/themes --output ./src/assets --output-style compact",
-    "analyze":
-      "ng build --prod --stats-json --build-optimizer=false && webpack-bundle-analyzer dist/IdleAnt2/stats.json"
+    "make-themes": "./node_modules/node-sass/bin/node-sass ./src/themes --output ./src/assets --output-style compact",
+    "analyze": "ng build --prod --stats-json --build-optimizer=false && webpack-bundle-analyzer dist/IdleAnt2/stats.json"
   },
   "private": true,
   "dependencies": {
@@ -31,14 +28,16 @@
     "@clr/angular": "^0.12.1",
     "@clr/icons": "^0.12.1",
     "@clr/ui": "^0.12.1",
+    "@types/chart.js": "^2.7.27",
     "@types/lodash-es": "^4.17.0",
     "@webcomponents/custom-elements": "^1.0.0",
     "break_infinity.js": "^1.0.5",
+    "chart.js": "^2.7.2",
     "core-js": "^2.5.4",
+    "date-fns": "^1.29.0",
     "lodash-es": "^4.17.10",
     "lz-string": "^1.4.4",
     "moment": "^2.22.2",
-    "ng2-charts": "^1.6.0",
     "ngx-toastr": "^8.7.3",
     "normalize.css": "^8.0.0",
     "primeicons": "^1.0.0-beta.9",

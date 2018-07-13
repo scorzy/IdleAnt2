@@ -29,7 +29,6 @@ import { UnitGroupComponent } from "./unit-group/unit-group.component";
 import { ActionGroupComponent } from "./action-group/action-group.component";
 import { SliderModule } from "primeng/slider";
 import { TabComponent } from "./material-nav/tab/tab.component";
-import { ChartsModule } from "ng2-charts/ng2-charts";
 import { WorldComponent } from "./world/world.component";
 import { ChangeWorldComponent } from "./change-world/change-world.component";
 import { PrestigeComponent } from "./prestige/prestige.component";
@@ -79,8 +78,7 @@ import { PrestigeBuyComponent } from "./prestige-buy/prestige-buy.component";
       preventDuplicates: false
     }),
     FormsModule,
-    SliderModule,
-    ChartsModule
+    SliderModule
   ],
   providers: [ToastrService, OptionsService, MainService],
   bootstrap: [AppComponent]
