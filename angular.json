@@ -34,28 +34,18 @@
                 "glob": "clr-ui-dark.min.css",
                 "input": "./node_modules/@clr/ui/",
                 "output": "./"
-              },
-              {
-                "glob": "theme.css",
-                "input": "./node_modules/primeng/resources/themes/start/",
-                "output": "./start"
-              },
-              {
-                "glob": "theme.css",
-                "input": "./node_modules/primeng/resources/themes/darkness/",
-                "output": "./darkness"
               }
             ],
             "styles": [
               "node_modules/normalize.css/normalize.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeng/resources/themes/start/theme.css",
               "node_modules/@clr/icons/clr-icons.min.css",
               "node_modules/ngx-toastr/toastr.css",
               "src/styles.scss"
             ],
             "scripts": [
-              "./node_modules/chart.js/dist/Chart.js",
               "./node_modules/break_infinity.js/break_infinity.js",
               "./node_modules/@webcomponents/custom-elements/custom-elements.min.js",
               "./node_modules/@clr/icons/clr-icons.min.js",
@@ -125,16 +115,6 @@
                 "glob": "clr-ui-dark.min.css",
                 "input": "./node_modules/@clr/ui/",
                 "output": "./"
-              },
-              {
-                "glob": "theme.css",
-                "input": "./node_modules/primeng/resources/themes/start/",
-                "output": "./start"
-              },
-              {
-                "glob": "theme.css",
-                "input": "./node_modules/primeng/resources/themes/darkness/",
-                "output": "./darkness"
               }
             ]
           }

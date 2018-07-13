@@ -20,7 +20,7 @@ export class MainService {
   worldEmitter: EventEmitter<World> = new EventEmitter<World>();
 
   themeClarity: HTMLLinkElement;
-  themePrime: HTMLLinkElement;
+  // themePrime: HTMLLinkElement;
   themeMy: HTMLLinkElement;
 
   constructor(
@@ -33,10 +33,10 @@ export class MainService {
     this.themeClarity.type = "text/css";
     this.document.querySelector("head").appendChild(this.themeClarity);
 
-    this.themePrime = this.document.createElement("link");
-    this.themePrime.rel = "stylesheet";
-    this.themePrime.type = "text/css";
-    this.document.querySelector("head").appendChild(this.themePrime);
+    // this.themePrime = this.document.createElement("link");
+    // this.themePrime.rel = "stylesheet";
+    // this.themePrime.type = "text/css";
+    // this.document.querySelector("head").appendChild(this.themePrime);
 
     this.themeMy = this.document.createElement("link");
     this.themeMy.rel = "stylesheet";
@@ -93,7 +93,7 @@ export class MainService {
     try {
       if (!raw) {
         if (!first)
-          setTimeout(() => this.toastr.error("No save foud", "Not Loaded"), 0);
+          setTimeout(() => this.toastr.error("No save found", "Not Loaded"), 0);
         return false;
       }
       const json = LZString.decompressFromBase64(raw);
@@ -142,12 +142,19 @@ export class MainService {
     window.location.reload();
   }
   setTheme() {
-    this.themeClarity.href = this.options.dark
+    const themeClarity = this.options.dark
       ? "/clr-ui-dark.min.css"
       : "/clr-ui.min.css";
-    this.themePrime.href =
-      (this.options.dark ? "/start" : "/start") + "/theme.css";
-    this.themeMy.href =
-      "/assets/" + (this.options.dark ? "dark.css" : "light.css");
+
+    if (this.themeClarity.href !== themeClarity)
+      this.themeClarity.href = themeClarity;
+
+    // this.themePrime.href =
+    //   (this.options.dark ? "/start" : "/start") + "/theme.css";
+
+    const myTheme = "/assets/" + (this.options.dark ? "dark.css" : "light.css");
+    if (myTheme !== this.themeMy.href)
+      this.themeMy.href =
+        "/assets/" + (this.options.dark ? "dark.css" : "light.css");
   }
 }

@@ -33,10 +33,10 @@ import { ChartsModule } from "ng2-charts/ng2-charts";
 import { WorldComponent } from "./world/world.component";
 import { ChangeWorldComponent } from "./change-world/change-world.component";
 import { PrestigeComponent } from "./prestige/prestige.component";
-import { UiOptionsComponent } from './ui-options/ui-options.component';
-import { PrestigeNavComponent } from './prestige-nav/prestige-nav.component';
-import { PrestigeGroupComponent } from './prestige-group/prestige-group.component';
-import { PrestigeBuyComponent } from './prestige-buy/prestige-buy.component';
+import { UiOptionsComponent } from "./ui-options/ui-options.component";
+import { PrestigeNavComponent } from "./prestige-nav/prestige-nav.component";
+import { PrestigeGroupComponent } from "./prestige-group/prestige-group.component";
+import { PrestigeBuyComponent } from "./prestige-buy/prestige-buy.component";
 
 @NgModule({
   declarations: [
@@ -73,7 +73,11 @@ import { PrestigeBuyComponent } from './prestige-buy/prestige-buy.component';
     BrowserModule,
     ClarityModule,
     RouterModule.forRoot(APPROUTES, { useHash: true }),
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: "toast-bottom-right",
+      preventDuplicates: false
+    }),
     FormsModule,
     SliderModule,
     ChartsModule
