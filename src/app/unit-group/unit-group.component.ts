@@ -68,6 +68,7 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
   ) {}
 
   ngAfterViewInit() {
+    if (!this.unitGroup) this.unitGroup = this.ms.game.unitGroups[0];
     this.unitGroup.updateChart();
 
     const chartCtx = this.chartRef.nativeElement.getContext("2d");
@@ -123,7 +124,7 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
     let id = "" + params.id;
     if (id === undefined) id = "0";
     this.unitGroup = this.ms.game.unitGroups.find(g => "" + g.id === id);
-
+    if (!this.unitGroup) this.unitGroup = this.ms.game.unitGroups[0];
     if (!this.unitGroup) return;
 
     this.ms.game.lastUnitUrl = "nav/group/" + this.unitGroup.id;
@@ -170,7 +171,7 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
       this.teamActionGrp = null;
       this.twinActionGrp = null;
     }
-    this.doGraph();
+    // this.doGraph();
     this.cd.markForCheck();
   }
   selectedChanged(event: any) {
