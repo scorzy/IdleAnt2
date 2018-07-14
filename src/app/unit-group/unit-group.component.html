@@ -40,19 +40,19 @@
           <clr-dg-cell>
             <span *ngIf="!isSmall" class="monospace">{{unit.uiQuantity | format: true}}</span>
             <span *ngIf="isSmall" class="monospace">
-              {{unit.quantity | format: true}} - {{unit.buyAction?.uiQuantity | format: true}}
-              <span *ngIf="team && isSmall" class="monospace">- {{unit.teamAction?.uiQuantity | format: true}}</span>
-              <span *ngIf="twin && isSmall" class="monospace">- {{unit.twinAction?.uiQuantity | format: true}}</span>
+              {{unit.uiQuantity | format: true}} - {{unit.buyAction?.quantity | format: true}}
+              <span *ngIf="team && isSmall" class="monospace">- {{unit.teamAction?.quantity | format: true}}</span>
+              <span *ngIf="twin && isSmall" class="monospace">- {{unit.twinAction?.quantity | format: true}}</span>
             </span>
           </clr-dg-cell>
           <clr-dg-cell *ngIf="!isSmall" class="monospace">
-            {{unit.buyAction?.uiQuantity | format: true}}
+            {{unit.buyAction?.quantity | format: true}}
           </clr-dg-cell>
           <clr-dg-cell *ngIf="team && !isSmall" class="monospace">
-            {{unit.teamAction?.uiQuantity | format: true}}
+            {{unit.teamAction?.quantity | format: true}}
           </clr-dg-cell>
           <clr-dg-cell *ngIf="twin && !isSmall" class="monospace">
-            {{unit.twinAction?.uiQuantity | format: true}}
+            {{unit.twinAction?.quantity | format: true}}
           </clr-dg-cell>
         </clr-dg-row>
 
