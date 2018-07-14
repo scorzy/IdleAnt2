@@ -15,3 +15,8 @@ clr-datagrid {
     max-width: calc(100% - 40px);
   }
 }
+.pieContainer {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+}

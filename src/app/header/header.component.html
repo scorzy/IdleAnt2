@@ -25,7 +25,7 @@
 
   <div class="header-actions">
     <a href="javascript://" class="nav-link nav-icon">
-      <clr-icon shape="clock" (click)="timeModal = true" class="is-solid"></clr-icon>
+      <clr-icon shape="clock" (click)="openTimeModal()" class="is-solid"></clr-icon>
     </a>
     <a href="javascript://" class="nav-link nav-icon">
       <clr-icon [attr.shape]="ms.game.isPaused ? 'play' : 'pause'" (click)="ms.game.isPaused = ! ms.game.isPaused" class="is-solid"></clr-icon>

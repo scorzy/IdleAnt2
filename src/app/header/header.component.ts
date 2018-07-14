@@ -50,4 +50,9 @@ export class HeaderComponent implements OnInit {
   navigateLast() {
     this.router.navigateByUrl(this.ms.game.lastUnitUrl);
   }
+  openTimeModal() {
+    this.ms.game.actHour.reload();
+    this.ms.game.actMin.reload();
+    this.timeModal = true;
+  }
 }

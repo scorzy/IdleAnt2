@@ -130,10 +130,9 @@ export class UnitGroup {
 
   updateChart() {
     const qtList = this.selected.map(u => u.quantity);
-    const sum = qtList.reduce(
-      (p: Decimal, c: Decimal) => p.plus(c),
-      new Decimal(0)
-    );
+    const sum = qtList
+      .reduce((p: Decimal, c: Decimal) => p.plus(c), new Decimal(0))
+      .max(1);
     const newChartData = qtList.map(u =>
       Math.round(u.div(sum).toNumber() * 100)
     );

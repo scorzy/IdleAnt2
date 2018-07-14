@@ -25,6 +25,7 @@ export class PrestigeBuyComponent implements OnInit {
   constructor(public ms: MainService, private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
+    if (this.prestige) this.prestige.reload();
     this.sub = this.ms.updateEmitter.subscribe(m => {
       this.prestige.reload();
       this.prestige.reloadUserPrices();

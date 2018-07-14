@@ -10,6 +10,7 @@ declare module "*.json" {
 declare class Decimal {
   constructor(any);
 
+  eq: (any) => boolean;
   gte: (any) => boolean;
   gt: (any) => boolean;
   lte: (any) => boolean;

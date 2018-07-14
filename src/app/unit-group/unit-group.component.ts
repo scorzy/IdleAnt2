@@ -53,12 +53,11 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
 
   isSmall = false;
 
-  stop = true;
-
   operativity = 100;
 
   // @ViewChild(BaseChartDirective) chart: BaseChartDirective;
   @ViewChild("chart") chartRef: ElementRef;
+  @ViewChild("pieContainer") pieContainerRef: ElementRef;
   chart: any;
 
   constructor(
@@ -69,18 +68,27 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
 
   ngAfterViewInit() {
     if (!this.unitGroup) this.unitGroup = this.ms.game.unitGroups[0];
-    this.unitGroup.updateChart();
+    this.unitGroup.updateChartLabel();
 
-    const chartCtx = this.chartRef.nativeElement.getContext("2d");
+    setTimeout(this.initChart.bind(this), 0.1);
+  }
+
+  initChart() {
+    this.chartRef.nativeElement.width = this.pieContainerRef.nativeElement.clientWidth;
+    this.chartRef.nativeElement.height = this.pieContainerRef.nativeElement.clientHeight;
+    const canvas = this.chartRef.nativeElement;
+    canvas.width = canvas.height * (canvas.clientWidth / canvas.clientHeight);
 
     Chart.defaults.global.tooltips.enabled = false;
+    const chartCtx = this.chartRef.nativeElement.getContext("2d");
+
     this.chart = new Chart(chartCtx, {
       type: "pie",
       data: {
-        labels: this.unitGroup.chartLabels,
+        labels: [], // this.unitGroup.chartLabels,
         datasets: [
           {
-            data: this.unitGroup.chartData,
+            data: [], // this.unitGroup.chartData,
             backgroundColor: [
               "rgba(255, 99, 132, 0.3)",
               "rgba(54, 162, 235, 0.3)",
@@ -102,18 +110,19 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
         ]
       },
       options: {
-        responsive: true
+        responsive: false,
+        maintainAspectRatio: false
       }
     });
   }
 
   ngOnInit() {
+    this.isSmall = window.innerWidth < 1200;
     this.paramsSub = this.route.params.subscribe(this.getGroup.bind(this));
     this.sub = this.ms.updateEmitter.subscribe(m => {
       this.updateChart();
       this.cd.markForCheck();
     });
-    this.isSmall = window.innerWidth < 1200;
   }
   ngOnDestroy() {
     this.paramsSub.unsubscribe();
@@ -171,20 +180,26 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
       this.teamActionGrp = null;
       this.twinActionGrp = null;
     }
-    // this.doGraph();
+    this.doGraph();
     this.cd.markForCheck();
   }
   selectedChanged(event: any) {
     this.getGroup(this.paramsSave);
   }
   updateChart() {
-    if (this.stop || !this.unitGroup) return;
+    if (!this.unitGroup) return;
     const lastData = this.unitGroup.chartData;
     this.unitGroup.updateChart();
-    if (lastData !== this.unitGroup.chartData) this.doGraph();
+    if (
+      lastData !== this.unitGroup.chartData ||
+      (this.chart &&
+        this.chart.data &&
+        this.chart.data.datasets[0] &&
+        this.chart.data.datasets[0].data.length === 0)
+    )
+      this.doGraph();
   }
   doGraph() {
-    this.stop = true;
     this.unitGroup.updateChartLabel();
 
     if (typeof this.chart !== "undefined" && this.chart) {
@@ -192,7 +207,6 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
       this.chart.data.labels = this.unitGroup.chartLabels;
       this.chart.update();
     }
-    this.stop = false;
   }
   changeOperativity(event: any) {
     this.unitGroup.selected.forEach(u => (u.efficiency = this.operativity));

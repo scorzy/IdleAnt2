@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { MainService } from "../main.service";
 import { Research } from "../model/research";
 
@@ -6,6 +6,7 @@ import { Research } from "../model/research";
   selector: "app-laboratory",
   templateUrl: "./laboratory.component.html",
   styleUrls: ["./laboratory.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     "[class.content-container]": "true"
   }
@@ -21,7 +22,7 @@ export class LaboratoryComponent implements OnInit {
     this.changeList();
     this.sub = this.ms.researchEmitter.subscribe(m => this.changeList());
     this.ms.game.researches.toDo.forEach(r => {
-      r.reloadUserPrices();
+      // r.reloadUserPrices();
       r.reloadAvailableTime();
     });
   }

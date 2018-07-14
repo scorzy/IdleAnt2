@@ -30,6 +30,10 @@ export class ActionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    if (this.action) {
+      this.action.reloadUserPrices();
+      this.action.reloadAvailableTime();
+    }
     this.shape =
       this.action instanceof TeamAction
         ? "angle"

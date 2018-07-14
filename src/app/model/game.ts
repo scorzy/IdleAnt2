@@ -300,7 +300,8 @@ export class Game {
       u.quantity = u.quantity.max(0);
       u.setUiValue();
     });
-    this.researches.researches.filter(r => r.unlocked).forEach(u => u.reload());
+    // this.researches.researches.filter(r => r.unlocked).forEach(u => u.reload());
+    this.researches.toDo.forEach(u => u.reload());
     this.canBuyResearch = !!this.researches.researches.find(
       r => r.unlocked && r.canBuy
     );
@@ -309,8 +310,8 @@ export class Game {
     this.unitGroups.forEach(g => g.setFlags(team, twin));
 
     this.canTravel = this.currentWorld.canTravel();
-    this.actHour.reload();
-    this.actMin.reload();
+    // this.actHour.reload();
+    // this.actMin.reload();
   }
   /**
    * Calculate production per second
