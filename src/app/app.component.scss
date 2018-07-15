@@ -4,7 +4,7 @@ app-material-nav {
 
 $padding: 0.45rem;
 :host /deep/ .content-container .content-area {
-  padding: $padding $padding $padding $padding !important;
+  padding: $padding * 0.5 $padding $padding $padding !important;
 }
 :host /deep/ .clr-row {
   margin-right: -$padding/2 !important;

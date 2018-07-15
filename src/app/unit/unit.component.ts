@@ -33,6 +33,8 @@ export class UnitComponent implements OnInit, OnDestroy {
   activeProduct = new Array<Production>();
   activeProducer = new Array<Production>();
 
+  autoBuyModal = false;
+
   constructor(
     public ms: MainService,
     private route: ActivatedRoute,
@@ -78,5 +80,8 @@ export class UnitComponent implements OnInit, OnDestroy {
   }
   getActId(action: Action) {
     return action.id + this.unit.id;
+  }
+  openAutoBuyModal() {
+    this.autoBuyModal = true;
   }
 }

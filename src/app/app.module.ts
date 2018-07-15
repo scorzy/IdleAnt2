@@ -36,6 +36,8 @@ import { UiOptionsComponent } from "./ui-options/ui-options.component";
 import { PrestigeNavComponent } from "./prestige-nav/prestige-nav.component";
 import { PrestigeGroupComponent } from "./prestige-group/prestige-group.component";
 import { PrestigeBuyComponent } from "./prestige-buy/prestige-buy.component";
+import { AutoBuyComponent } from './auto-buy/auto-buy.component';
+import { UnitAutoBuyComponent } from './unit-auto-buy/unit-auto-buy.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,9 @@ import { PrestigeBuyComponent } from "./prestige-buy/prestige-buy.component";
     UiOptionsComponent,
     PrestigeNavComponent,
     PrestigeGroupComponent,
-    PrestigeBuyComponent
+    PrestigeBuyComponent,
+    AutoBuyComponent,
+    UnitAutoBuyComponent
   ],
   imports: [
     BrowserAnimationsModule,

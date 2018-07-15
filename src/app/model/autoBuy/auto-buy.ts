@@ -21,7 +21,7 @@ export class AutoBuy extends Prestige {
     price: Price[],
     public unit: FullUnit = null
   ) {
-    super("au-" + action.id + (unit ? "_" + unit.id : ""), price, action.name);
+    super("au-" + action.id + (unit ? "_" + unit.id : ""), price, "");
   }
 
   isActive(): boolean {

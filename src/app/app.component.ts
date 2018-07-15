@@ -23,7 +23,8 @@ import {
   ClrShapeExclamationTriangle,
   ClrShapeAngle,
   ClrShapeAngleDouble,
-  ClrShapeInfoStandard
+  ClrShapeInfoStandard,
+  ClrShapeCog
 } from "@clr/icons/shapes/core-shapes";
 import { ClrShapePause } from "@clr/icons/shapes/media-shapes";
 import { ClrShapePaintRoller } from "@clr/icons/shapes/text-edit-shapes";
@@ -44,7 +45,8 @@ export class AppComponent implements OnInit, OnDestroy {
       flask: ClrShapeFlask,
       world: ClrShapeWorld,
       clock: ClrShapeClock,
-      cog: ClrShapeStore,
+      cog: ClrShapeCog,
+      store: ClrShapeStore,
       "exclamation-triangle": ClrShapeExclamationTriangle,
       "angle-double": ClrShapeAngleDouble,
       angle: ClrShapeAngle,
