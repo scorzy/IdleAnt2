@@ -23,6 +23,12 @@ export class MainService {
   // themePrime: HTMLLinkElement;
   themeMy: HTMLLinkElement;
 
+  //#region Unit Tas
+  lastTab = 0;
+  overviewTaActive = false;
+  prestigeTaActive = false;
+  //#endregion
+
   constructor(
     public options: OptionsService,
     private toastr: ToastrService,

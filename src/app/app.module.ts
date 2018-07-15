@@ -2,7 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
-import { ClarityModule } from "@clr/angular";
+import { ClarityModule, ClrFormsNextModule } from "@clr/angular";
 import { HeaderComponent } from "./header/header.component";
 import { APPROUTES } from "./app.routes";
 import { NavComponent } from "./nav/nav.component";
@@ -36,8 +36,11 @@ import { UiOptionsComponent } from "./ui-options/ui-options.component";
 import { PrestigeNavComponent } from "./prestige-nav/prestige-nav.component";
 import { PrestigeGroupComponent } from "./prestige-group/prestige-group.component";
 import { PrestigeBuyComponent } from "./prestige-buy/prestige-buy.component";
-import { AutoBuyComponent } from './auto-buy/auto-buy.component';
-import { UnitAutoBuyComponent } from './unit-auto-buy/unit-auto-buy.component';
+import { AutoBuyComponent } from "./auto-buy/auto-buy.component";
+import { UnitAutoBuyComponent } from "./unit-auto-buy/unit-auto-buy.component";
+import { UnitTabsComponent } from "./unit-tabs/unit-tabs.component";
+import { ButtonsComponent } from "./action/buttons/buttons.component";
+import { ActionHeaderComponent } from "./action/action-header/action-header.component";
 
 @NgModule({
   declarations: [
@@ -69,7 +72,10 @@ import { UnitAutoBuyComponent } from './unit-auto-buy/unit-auto-buy.component';
     PrestigeGroupComponent,
     PrestigeBuyComponent,
     AutoBuyComponent,
-    UnitAutoBuyComponent
+    UnitAutoBuyComponent,
+    UnitTabsComponent,
+    ButtonsComponent,
+    ActionHeaderComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -82,7 +88,8 @@ import { UnitAutoBuyComponent } from './unit-auto-buy/unit-auto-buy.component';
       preventDuplicates: false
     }),
     FormsModule,
-    SliderModule
+    SliderModule,
+    ClrFormsNextModule
   ],
   providers: [ToastrService, OptionsService, MainService],
   bootstrap: [AppComponent]

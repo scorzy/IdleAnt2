@@ -19,38 +19,10 @@ import { Prestige } from "../model/prestige/prestige";
   styleUrls: ["./action.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ActionComponent implements OnInit, OnDestroy {
+export class ActionComponent {
   @Input() action: Action;
-  showTime = true;
-  sub: any;
-  shape: string;
 
-  constructor(private ms: MainService, private cd: ChangeDetectorRef) {
+  constructor() {
     //Nothing
-  }
-
-  ngOnInit() {
-    if (this.action) {
-      this.action.reloadUserPrices();
-      this.action.reloadAvailableTime();
-    }
-    this.shape =
-      this.action instanceof TeamAction
-        ? "angle"
-        : this.action instanceof TwinAction
-          ? "angle-double"
-          : "";
-    this.showTime = !(this.action instanceof Prestige);
-    this.sub = this.ms.updateEmitter.subscribe(() => {
-      this.action.reloadUserPrices();
-      this.action.reloadAvailableTime();
-      this.cd.markForCheck();
-    });
-  }
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  }
-  getPriceId(index, price: Price) {
-    return price.base.id;
   }
 }

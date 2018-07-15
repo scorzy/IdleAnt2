@@ -1,4 +1,27 @@
-<app-action [action]="autoBuy">
+<app-action-header [action]="autoBuy" [quantity]="autoBuy.quantity"></app-action-header>
 
-</app-action>
-<hr/>
+<div class="clr-row">
+  <div class="clr-col-12">
+    <label>Priority:</label>
+    <input clrInput placeholder="Priority" name="name" [(ngModel)]="autoBuy.priority" type="number" placeholder="1" step="1"
+      min="1" size="3" (change)="reload()" />
+
+    <clr-checkbox name="termsCheckbox" id="autoBuy.id" [(ngModel)]="autoBuy.active" [clrInline]="true">
+      Active
+    </clr-checkbox>
+  </div>
+  <div class="clr-col-12">
+    <span>
+      Interval:
+      <span class="monospace">{{autoBuy.max}} </span>
+      s
+    </span>
+    <span *ngIf="autoBuy.multiBuy.gt(1)">
+      Multi Buy:
+      <span class="monospace">{{autoBuy.multiBuy | format:true}} </span>
+    </span>
+  </div>
+
+</div>
+
+<app-buttons [action]="autoBuy"></app-buttons>

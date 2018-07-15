@@ -29,4 +29,7 @@ export class AutoBuyComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
+  reload() {
+    this.ms.game.autoBuyManager.buildActiveList();
+  }
 }

@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { ActionComponent } from "./action.component";
-import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+
+import { ActionHeaderComponent } from "./action-header.component";
 import { ClarityModule } from "@clr/angular";
 import { RouterTestingModule } from "@angular/router/testing";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FormatPipe } from "../format.pipe";
-import { BuyAction } from "../model/actions/buy-action";
-import { FullUnit } from "../model/full-unit";
-import { ToastrModule } from "ngx-toastr";
 import { FormsModule } from "@angular/forms";
-import { EndInPipe } from "../end-in.pipe";
+import { ToastrModule } from "ngx-toastr";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { FormatPipe } from "../../format.pipe";
+import { EndInPipe } from "../../end-in.pipe";
+import { Action } from "../../model/action";
 
-describe("ActionComponent", () => {
-  let component: ActionComponent;
-  let fixture: ComponentFixture<ActionComponent>;
+describe("ActionHeaderComponent", () => {
+  let component: ActionHeaderComponent;
+  let fixture: ComponentFixture<ActionHeaderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -25,14 +25,15 @@ describe("ActionComponent", () => {
         FormsModule,
         BrowserAnimationsModule
       ],
-      declarations: [ActionComponent, FormatPipe, EndInPipe]
+      declarations: [ActionHeaderComponent, FormatPipe, EndInPipe]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ActionComponent);
+    fixture = TestBed.createComponent(ActionHeaderComponent);
     component = fixture.componentInstance;
-    component.action = new BuyAction([], new FullUnit("id", "name", "desc"));
+    component.action = new Action("", "Test", "Test decription", []);
+    component.quantity = new Decimal(10);
     fixture.detectChanges();
   });
 

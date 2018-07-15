@@ -1,22 +1,19 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { AutoBuyComponent } from "./auto-buy.component";
-import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { UnitTabsComponent } from "./unit-tabs.component";
 import { ClarityModule } from "@clr/angular";
 import { ToastrModule } from "ngx-toastr";
-import { FormsModule } from "@angular/forms";
 import { RouterTestingModule } from "@angular/router/testing";
+import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormatPipe } from "../format.pipe";
 import { EndInPipe } from "../end-in.pipe";
-import { AutoBuy } from "../model/autoBuy/auto-buy";
-import { Action } from "../model/action";
-import { AutoBuyManager } from "../model/autoBuy/auto-buy-manager";
+import { FullUnit } from "../model/full-unit";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
-describe("AutoBuyComponent", () => {
-  let component: AutoBuyComponent;
-  let fixture: ComponentFixture<AutoBuyComponent>;
-  const autoBuyManager = new AutoBuyManager();
+describe("UnitTabsComponent", () => {
+  let component: UnitTabsComponent;
+  let fixture: ComponentFixture<UnitTabsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -28,18 +25,14 @@ describe("AutoBuyComponent", () => {
         FormsModule,
         BrowserAnimationsModule
       ],
-      declarations: [AutoBuyComponent, FormatPipe, EndInPipe]
+      declarations: [UnitTabsComponent, FormatPipe, EndInPipe]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AutoBuyComponent);
+    fixture = TestBed.createComponent(UnitTabsComponent);
     component = fixture.componentInstance;
-    component.autoBuy = new AutoBuy(
-      new Action("", "", "", []),
-      [],
-      autoBuyManager
-    );
+    component.unit = new FullUnit("", "", "");
     fixture.detectChanges();
   });
 

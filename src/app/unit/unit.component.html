@@ -2,8 +2,8 @@
   <div class="clr-row">
     <div class="clr-col-xs-12	clr-col-sm-6	clr-col-md-6	clr-col-lg-6	clr-col-xl-6">
 
-      <h1>{{unit.name}}</h1>
-      <p>{{unit.description}}</p>
+      <!-- <h1>{{unit.name}}</h1> -->
+      <h5>{{unit.description}}</h5>
 
       <p *ngIf="ms.game.researches.team1.done && unit.buyAction">
         You bought {{unit.buyAction.quantity | format}} times; bonus: + {{unit.bonus.times(100) | format}}%
@@ -49,9 +49,6 @@
       <app-action *ngIf="unit.teamAction && ms.game.researches.team2.done" [action]="unit.teamAction"></app-action>
       <app-action *ngIf="unit.twinAction && ms.game.researches.twin.done" [action]="unit.twinAction"></app-action>
 
-      <button *ngIf="unit.hasAutoBuyer" class="btn btn-sm" (click)="openAutoBuyModal()">
-        <clr-icon shape="cog"></clr-icon>
-        Configure Auto Buyers</button>
     </div>
     <div class="clr-col-xs-12	clr-col-sm-6 clr-col-md-6	clr-col-lg-6 clr-col-xl-6">
       <div *ngIf="activeProduct?.length > 0">
@@ -128,11 +125,3 @@
     </div>
   </div>
 </div>
-
-
-<clr-modal *ngIf="unit.hasAutoBuyer" [(clrModalOpen)]="autoBuyModal" [clrModalSize]="'xl'">
-  <h3 class="modal-title">{{unit.name}} Auto Buyers</h3>
-  <div class="modal-body">
-    <app-unit-auto-buy [unit]="unit"></app-unit-auto-buy>
-  </div>
-</clr-modal>

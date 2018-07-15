@@ -19,6 +19,7 @@ export class AutoBuyManager {
       const auto = new AutoBuy(
         a,
         game.genExperiencePrice(unit.autoBuyerPrice * a.autoBuyPriceMulti),
+        this,
         unit
       );
       auto.startMax = unit.autoBuyerTime * a.autoBuyTimeMulti;

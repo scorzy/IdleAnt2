@@ -9,6 +9,7 @@ import { PrestigeComponent } from "./prestige/prestige.component";
 import { UiOptionsComponent } from "./ui-options/ui-options.component";
 import { PrestigeGroupComponent } from "./prestige-group/prestige-group.component";
 import { PrestigeNavComponent } from "./prestige-nav/prestige-nav.component";
+import { UnitTabsComponent } from "./unit-tabs/unit-tabs.component";
 
 export const APPROUTES: Routes = [
   {
@@ -21,7 +22,7 @@ export const APPROUTES: Routes = [
     component: NavComponent,
     children: [
       { path: "unit", component: UnitComponent },
-      { path: "unit/:id", component: UnitComponent },
+      { path: "unit/:id", component: UnitTabsComponent },
       { path: "group/:id", component: UnitGroupComponent }
     ]
   },

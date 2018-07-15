@@ -3,7 +3,8 @@ import {
   OnInit,
   OnDestroy,
   ChangeDetectorRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  Input
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { FullUnit } from "../model/full-unit";
@@ -17,15 +18,13 @@ import { Malus } from "../model/malus";
   selector: "app-unit",
   templateUrl: "./unit.component.html",
   styleUrls: ["./unit.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    "[class.content-area]": "true"
-  }
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UnitComponent implements OnInit, OnDestroy {
+  @Input() unit: FullUnit;
+
   paramsSub: any;
   sub: any;
-  unit: FullUnit;
   malus: Malus;
   prodSorter = new ProductionSorter();
   totalProdSorter = new TotalProductionSorter();
@@ -39,25 +38,23 @@ export class UnitComponent implements OnInit, OnDestroy {
     public ms: MainService,
     private route: ActivatedRoute,
     private cd: ChangeDetectorRef
-  ) {}
+  ) {
+    this.ms.lastTab = 0;
+  }
 
   ngOnInit() {
-    this.paramsSub = this.route.params.subscribe(this.getUnit.bind(this));
+    // this.paramsSub = this.route.params.subscribe(this.getUnit.bind(this));
     this.sub = this.ms.updateEmitter.subscribe(() => this.cd.markForCheck());
   }
   ngOnDestroy() {
-    this.paramsSub.unsubscribe();
+    // this.paramsSub.unsubscribe();
     this.sub.unsubscribe();
   }
-  getUnit(params: any) {
-    let id = params.id;
-    if (id === undefined) {
-      id = "fo";
-    }
-    this.malus = null;
-    const b = this.ms.game.units.find(u => u.id === id);
-    if (b instanceof FullUnit) {
-      this.unit = b;
+  ngOnChanges() {
+    this.getUnit();
+  }
+  getUnit() {
+    if (this.unit instanceof FullUnit) {
       this.unit.isNew = false;
       if (this.unit instanceof Malus) {
         this.malus = this.unit;
@@ -72,9 +69,6 @@ export class UnitComponent implements OnInit, OnDestroy {
         this.unit.teamAction.reloadUserPrices();
       if (this.unit.twinAction && this.ms.game.researches.twin.done)
         this.unit.twinAction.reloadUserPrices();
-
-      this.ms.game.lastUnitUrl = "nav/unit/" + b.id;
-      this.unit.getRandomDescription();
     }
     this.cd.markForCheck();
   }

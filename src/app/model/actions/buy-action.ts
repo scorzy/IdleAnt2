@@ -19,6 +19,7 @@ export class BuyAction extends Action {
       }
       this.unit.quantity = this.unit.quantity.plus(toBuy);
       if (this.toUnlock) this.toUnlock.forEach(u => u.unlock());
+      return true;
     } else {
       return false;
     }

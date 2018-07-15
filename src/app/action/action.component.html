@@ -1,35 +1,8 @@
-<h6 *ngIf="action.name !==''">
-  <clr-icon *ngIf="shape" [attr.shape]="shape"></clr-icon>
-  {{action.name}}
-  <span *ngIf="action.limit.gte(2)"> ({{action.quantity | format: true}}) </span>
-</h6>
+<app-action-header [action]="action" [quantity]="action.quantity"></app-action-header>
 <div class="p">
   <span *ngIf="action.description !==''">
     {{action.description}}
     <br/>
   </span>
-  <div *ngIf="!action.complete">
-    <input *ngIf="!action.isLimited || action.limit.gte(2); else one" id="userNum" [(ngModel)]="action.userNum" (change)="action.reloadUserPrices()"
-      type="number" placeholder="1" step="1" min="1" size="3">
-    <ng-template #one>1</ng-template>
-    <span> will cost: </span>
-    <app-price-line *ngFor="let price of action.prices; trackBy:getPriceId" [name]="price.base.name" [canBuy]="price.userCanBuy"
-      [price]="price.priceUser"></app-price-line>
-  </div>
 </div>
-<div *ngIf="!action.complete" class="btn-group">
-  <button *ngIf="!action.canBuy" class="btn btn-sm w-100" disabled>
-    Can't buy.
-    <span *ngIf="showTime">Available in {{action.availableIn | endIn}}</span>
-  </button>
-  <app-cant-buy-signposts *ngIf="showTime && !action.canBuy" [action]="action"></app-cant-buy-signposts>
-  <button *ngIf="action.canBuy" class="btn btn-sm w-100" (click)="action.buy(action.realNum)" [disabled]="!action.canUserBuy">
-    Get {{action.realNum | format: true}}
-  </button>
-  <button *ngIf="action.maxBuy.gt(3)" class="btn btn-sm w-100" (click)="action.buy(action.maxBuy.div(2).floor())">
-    Get {{action.maxBuy.div(2).floor() | format: true}}
-  </button>
-  <button *ngIf="action.maxBuy.gt(2)" class="btn btn-sm w-100" (click)="action.buy(action.maxBuy)">
-    Get {{action.maxBuy | format: true}}
-  </button>
-</div>
+<app-buttons [action]="action"></app-buttons>
