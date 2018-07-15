@@ -1,5 +1,7 @@
 import { BaseUnit } from "./baseUnit";
 import { Price } from "./price";
+import { Research } from "./research";
+import { AutoBuy } from "./autoBuy/auto-buy";
 
 export class Action extends BaseUnit {
   done = false;
@@ -15,6 +17,11 @@ export class Action extends BaseUnit {
   realNum = new Decimal(1);
 
   availableIn = NaN;
+  requiredResearch: Research;
+
+  autoBuyPriceMulti = 1;
+  autoBuyTimeMulti = 1;
+  autoBuyer: AutoBuy;
 
   constructor(
     id: string,
@@ -24,9 +31,11 @@ export class Action extends BaseUnit {
   ) {
     super(id, name, description, new Decimal(0));
   }
-
+  checkResearch() {
+    return !this.requiredResearch || this.requiredResearch.done;
+  }
   reload() {
-    if (this.complete) {
+    if (this.complete && this.checkResearch()) {
       this.maxBuy = new Decimal(0);
       this.canBuy = false;
     } else {
@@ -39,7 +48,6 @@ export class Action extends BaseUnit {
       this.canBuy = this.maxBuy.gte(1);
     }
   }
-
   buy(toBuy = new Decimal(1)): boolean {
     this.reload();
     if (this.canBuy && this.maxBuy.gte(toBuy)) {
@@ -54,7 +62,6 @@ export class Action extends BaseUnit {
       return false;
     }
   }
-
   reloadUserPrices() {
     let real = 1;
     if (!isNaN(this.userNum) && this.userNum >= 1) real = this.userNum;

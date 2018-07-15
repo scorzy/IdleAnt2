@@ -33,11 +33,6 @@ export class MainService {
     this.themeClarity.type = "text/css";
     this.document.querySelector("head").appendChild(this.themeClarity);
 
-    // this.themePrime = this.document.createElement("link");
-    // this.themePrime.rel = "stylesheet";
-    // this.themePrime.type = "text/css";
-    // this.document.querySelector("head").appendChild(this.themePrime);
-
     this.themeMy = this.document.createElement("link");
     this.themeMy.rel = "stylesheet";
     this.themeMy.type = "text/css";
@@ -47,7 +42,7 @@ export class MainService {
 
     this.game = new Game(this.updateEmitter, this.researchEmitter);
     this.last = Date.now();
-    setInterval(this.update.bind(this), 200);
+    setInterval(this.update.bind(this), 250);
   }
   update() {
     const now = Date.now();

@@ -15,6 +15,7 @@ import { WorldMalus } from "./units/world-malus";
 import { MalusKiller } from "./units/malus-killer";
 import { AllPrestige } from "./prestige/all-prestige";
 import { WarpAction } from "./actions/warp-action";
+import { AutoBuyManager } from "./autoBuy/auto-buy-manager";
 
 const STARTING_FOOD = new Decimal(100);
 
@@ -57,15 +58,15 @@ export class Game {
   actMin: WarpAction;
   actHour: WarpAction;
 
+  autoBuyManager: AutoBuyManager;
+
   constructor(
     public updateEmitter: EventEmitter<number>,
     public researchEmitter: EventEmitter<string>
   ) {
     this.tabs = new Tabs();
 
-    //
-    //  Declarations
-    //
+    //#region Declarations
     this.materials = new Materials(this);
     this.unitGroups.push(this.materials);
 
@@ -100,32 +101,24 @@ export class Game {
 
     this.experience = new FullUnit("prest");
     this.time = new FullUnit("time");
-
-    //
-    //  Relations
-    //
+    //#endregion
+    //#region Relations
     this.unitGroups.forEach(g => g.setRelations());
     this.researches.setRelations(this.materials.science, this);
     this.researches.team1.toUnlock.push(this.advWorkers.firstResearch);
     this.advWorkers.firstResearch.toUnlock.push(this.genX2.firstResearch);
     this.genX2.firstResearch.toUnlock.push(this.genX3.firstResearch);
     this.worldBonus.setRelations(this);
-
-    //
-    //  Worlds
-    //
+    //#endregion
+    //#region Worlds
     this.worldBonus.addWorlds();
     this.unitGroups.forEach(g => g.addWorlds());
-
-    //
-    //  Prestige
-    //
+    //#endregion
+    //#region Prwstige
     this.allPrestige = new AllPrestige();
     this.allPrestige.declareStuff(this);
-
-    //
-    //  Debug
-    //
+    //#endregion
+    //#region Debug
     //this.materials.food.quantity = new Decimal(1e100);
     this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
     this.materials.list.forEach(u => (u.unlocked = true));
@@ -134,10 +127,8 @@ export class Game {
     this.worldMalus.foodMalus1.quantity = new Decimal(100);
     this.worldMalus.foodMalus2.quantity = new Decimal(10);
     this.experience.quantity = new Decimal(100);
-
-    //
-    //  Build list
-    //
+    //#endregion
+    //#region Build Lists
     this.unitGroups.forEach(g => g.check(true));
     this.unitGroups
       .map(g => g.list)
@@ -152,9 +143,27 @@ export class Game {
     );
     this.currentWorld.notWinConditions.push(this.worldMalus.crystalMalus1);
     this.generateWorlds();
-
+    //#endregion
+    //#region Time Warp
     this.actMin = new WarpAction(60, this);
     this.actHour = new WarpAction(3600, this);
+    //#endregion
+    //#region Assign team and twin research to actions
+    this.units.forEach(u => {
+      if (u.teamAction) u.teamAction.requiredResearch = this.researches.team2;
+      if (u.twinAction) u.twinAction.requiredResearch = this.researches.twin;
+    });
+    //#endregion
+    //#region Autobuyers
+    this.autoBuyManager = new AutoBuyManager();
+    this.units.filter(u => u.hasAutoBuyer).forEach(u => {
+      if (!!u.buyAction) {
+        this.autoBuyManager.createFromUnit(u, this);
+      } else {
+        u.hasAutoBuyer = false;
+      }
+    });
+    //#endregion
   }
   buildLists() {
     this.unlockedUnits = [];
@@ -296,22 +305,24 @@ export class Game {
     this.worldMalus.scienceMalus1.reloadPriceMulti();
 
     this.unlockedUnits.forEach(u => {
-      u.actions.forEach(a => a.reload());
+      // u.actions.forEach(a => a.reload());
       u.quantity = u.quantity.max(0);
-      u.setUiValue();
     });
-    // this.researches.researches.filter(r => r.unlocked).forEach(u => u.reload());
+
+    this.autoBuyManager.update();
+
     this.researches.toDo.forEach(u => u.reload());
     this.canBuyResearch = !!this.researches.researches.find(
       r => r.unlocked && r.canBuy
     );
+    this.unlockedUnits.forEach(u => {
+      u.actions.forEach(a => a.reload());
+      u.setUiValue();
+    });
     const team = this.researches.team2.done;
     const twin = this.researches.twin.done;
     this.unitGroups.forEach(g => g.setFlags(team, twin));
-
     this.canTravel = this.currentWorld.canTravel();
-    // this.actHour.reload();
-    // this.actMin.reload();
   }
   /**
    * Calculate production per second
@@ -415,7 +426,8 @@ export class Game {
       w: this.currentWorld.getSave(),
       p: this.allPrestige.getSave(),
       m: this.maxLevel,
-      a: this.isPaused
+      a: this.isPaused,
+      abm: this.autoBuyManager.getSave()
     };
   }
   restore(data: any): boolean {
@@ -427,6 +439,7 @@ export class Game {
       if ("p" in data) this.allPrestige.restore(data.p);
       if ("m" in data) this.maxLevel = new Decimal(data.m);
       if ("a" in data) this.isPaused = data.a;
+      if ("abm" in data) this.autoBuyManager.restore(data.abm);
 
       this.unitGroups.forEach(g => g.check());
       this.buildLists();

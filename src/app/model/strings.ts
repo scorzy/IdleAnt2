@@ -117,7 +117,11 @@ export const STRINGS = {
       "Start new worlds with 5 more scientist"
     ],
     tiPr: ["Time Producer", "+0.1 time/s"],
-    tiBa: ["Time Bank", "+1 max hour"]
+    tiBa: ["Time Bank", "+1 max hour"],
+    //  AutoBuy
+    auBQ: ["Hach Auto Buyer", "Unlock Hach Auto Buyer for all units"],
+    auBTeam: ["Team Auto Buyer", "Unlock Team Auto Buyer for all units"],
+    auBTwin: ["Twin Auto Buyer", "Unlock Twin Auto Buyer for all units"]
   },
   actions: {
     warp60: ["Warp minute", "Time warp by minutes"],

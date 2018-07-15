@@ -6,6 +6,10 @@ export class Malus extends FullUnit {
   first = false;
   malusType: FullUnit;
 
+  constructor(id: string) {
+    super(id);
+    this.hasAutoBuyer = false;
+  }
   kill(): boolean {
     if (this.isKilled) return false;
 

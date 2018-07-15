@@ -4,11 +4,13 @@ import { Game } from "../game";
 import { Followers } from "./followers";
 import { Followers2 } from "./followers2";
 import { Time } from "./time";
+import { AutoBuyUnlock } from "./auto-buy-unlock";
 
 export class AllPrestige {
   followers: Followers;
   followers2: Followers2;
   time: Time;
+  autoBuyUnlock: AutoBuyUnlock;
 
   prestigeGroups = new Array<PrestigeGroup>();
   prestigeList = new Array<Action>();
@@ -17,7 +19,13 @@ export class AllPrestige {
     this.followers = new Followers();
     this.followers2 = new Followers2();
     this.time = new Time();
-    this.prestigeGroups.push(this.followers, this.followers2, this.time);
+    this.autoBuyUnlock = new AutoBuyUnlock();
+    this.prestigeGroups.push(
+      this.followers,
+      this.followers2,
+      this.time,
+      this.autoBuyUnlock
+    );
   }
 
   declareStuff(game: Game) {

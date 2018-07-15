@@ -16,6 +16,8 @@ export class TwinAction extends Action {
       "Hatch more " + unit.name + " for the same price",
       prices
     );
+    this.autoBuyPriceMulti = 2;
+    this.autoBuyTimeMulti = 2;
   }
   /**
    * On buy add unit retroactively

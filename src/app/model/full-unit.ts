@@ -10,6 +10,7 @@ import { TeamAction } from "./actions/team-action";
 import { ProductionBonus } from "./production-bonus";
 import { Malus } from "./malus";
 import { Prestige } from "./prestige/prestige";
+import { AutoBuy } from "./autoBuy/auto-buy";
 
 export class FullUnit extends BaseUnit implements IUnlocable {
   unlocked = false;
@@ -51,8 +52,13 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   malus: Malus = null;
   winNonLiner = true;
 
+  //#region Prestige
   follower: Prestige;
   followerQuantity = new Decimal(5);
+  hasAutoBuyer = true;
+  autoBuyerTime = 5;
+  autoBuyerPrice = 10;
+  //#endregion
 
   constructor(
     id: string,
