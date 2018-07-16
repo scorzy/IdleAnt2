@@ -126,7 +126,7 @@ export class Game {
     // this.worldMalus.foodMalus1.quantity = new Decimal(100);
     this.worldMalus.foodMalus1.quantity = new Decimal(100);
     this.worldMalus.foodMalus2.quantity = new Decimal(10);
-    this.experience.quantity = new Decimal(100);
+    this.experience.quantity = new Decimal(1000);
     //#endregion
     //#region Build Lists
     this.unitGroups.forEach(g => g.check(true));

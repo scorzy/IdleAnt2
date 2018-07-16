@@ -18,6 +18,7 @@ export class AutoBuyUnlock extends PrestigeGroup {
     this.list.forEach(a => {
       a.limit = new Decimal(1);
       a.isLimited = true;
+      a.toUnlock = [game.tabs.autoBuy];
     });
   }
 }

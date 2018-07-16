@@ -44,8 +44,11 @@ export class ButtonsComponent implements OnInit {
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
-
   getPriceId(index, price: Price) {
     return price.base.id;
+  }
+  buy(quantity: Decimal) {
+    this.action.buy(quantity);
+    this.ms.updateEmitter.emit(1);
   }
 }

@@ -55,6 +55,16 @@ $padding: 0.45rem;
   padding-top: 0;
 }
 
+:host /deep/ .card {
+  h6 {
+    margin-top: 0.1rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 200;
+    letter-spacing: normal;
+  }
+}
+
 @media screen and (max-width: 768px) {
   app-material-nav {
     display: none;

@@ -4,14 +4,16 @@ export class Tabs {
   lab: Tab;
   travel: Tab;
   prestige: Tab;
+  autoBuy: Tab;
 
   tabList: Tab[];
   constructor() {
     this.lab = new Tab("lab");
     this.travel = new Tab("travel");
     this.prestige = new Tab("prestige");
+    this.autoBuy = new Tab("autoBuy");
 
-    this.tabList = [this.lab, this.travel, this.prestige];
+    this.tabList = [this.lab, this.travel, this.prestige, this.autoBuy];
   }
   getSave(): any {
     return {

@@ -28,9 +28,27 @@ export class UnitAutoBuyComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.autoBuyers = this.autoBuyers = this.unit.actions
-      .filter(a => !!a.autoBuyer)
-      .map(a => a.autoBuyer);
+    this.autoBuyers = [];
+    if (
+      this.unit.buyAction &&
+      this.unit.buyAction.autoBuyer &&
+      this.ms.game.allPrestige.autoBuyUnlock.autoBuyQuantity.done
+    )
+      this.autoBuyers.push(this.unit.buyAction.autoBuyer);
+
+    if (
+      this.unit.teamAction &&
+      this.unit.teamAction.autoBuyer &&
+      this.ms.game.allPrestige.autoBuyUnlock.autoBuyTeam.done
+    )
+      this.autoBuyers.push(this.unit.teamAction.autoBuyer);
+
+    if (
+      this.unit.twinAction &&
+      this.unit.twinAction.autoBuyer &&
+      this.ms.game.allPrestige.autoBuyUnlock.autoBuyTwin.done
+    )
+      this.autoBuyers.push(this.unit.twinAction.autoBuyer);
   }
 
   getAutoBuyId(index: number, autoBuy: AutoBuy) {

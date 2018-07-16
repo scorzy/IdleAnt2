@@ -13,16 +13,16 @@
     <span *ngIf="showTime">Available in {{action.availableIn | endIn}}</span>
   </button>
   <app-cant-buy-signposts *ngIf="showTime && !action.canBuy" [action]="action"></app-cant-buy-signposts>
-  <button *ngIf="action.canBuy" class="btn btn-sm w-100" (click)="action.buy(action.realNum)" [disabled]="!action.canUserBuy">
+  <button *ngIf="action.canBuy" class="btn btn-sm w-100" (click)="buy(action.realNum)" [disabled]="!action.canUserBuy">
     Get
     <span *ngIf="!action.isLimited || action.limit.gte(2)">
       {{action.realNum | format: true}}
     </span>
   </button>
-  <button *ngIf="action.maxBuy.gt(3)" class="btn btn-sm w-100" (click)="action.buy(action.maxBuy.div(2).floor())">
+  <button *ngIf="action.maxBuy.gt(3)" class="btn btn-sm w-100" (click)="buy(action.maxBuy.div(2).floor())">
     Get {{action.maxBuy.div(2).floor() | format: true}}
   </button>
-  <button *ngIf="action.maxBuy.gte(2)" class="btn btn-sm w-100" (click)="action.buy(action.maxBuy)">
+  <button *ngIf="action.maxBuy.gte(2)" class="btn btn-sm w-100" (click)="buy(action.maxBuy)">
     Get {{action.maxBuy | format: true}}
   </button>
 </div>
