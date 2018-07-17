@@ -114,19 +114,22 @@ export class Game {
     this.worldBonus.addWorlds();
     this.unitGroups.forEach(g => g.addWorlds());
     //#endregion
-    //#region Prwstige
+    //#region Prestige
     this.allPrestige = new AllPrestige();
     this.allPrestige.declareStuff(this);
     //#endregion
+    //#region Starting stuff
+    this.materials.food.quantity = new Decimal(STARTING_FOOD);
+    //#endregion
     //#region Debug
     //this.materials.food.quantity = new Decimal(1e100);
-    this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
-    this.materials.list.forEach(u => (u.unlocked = true));
-    this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
+    // this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
+    // this.materials.list.forEach(u => (u.unlocked = true));
+    // this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
+    // // this.worldMalus.foodMalus1.quantity = new Decimal(100);
     // this.worldMalus.foodMalus1.quantity = new Decimal(100);
-    this.worldMalus.foodMalus1.quantity = new Decimal(100);
-    this.worldMalus.foodMalus2.quantity = new Decimal(10);
-    this.experience.quantity = new Decimal(1000);
+    // this.worldMalus.foodMalus2.quantity = new Decimal(10);
+    // this.experience.quantity = new Decimal(1000);
     //#endregion
     //#region Build Lists
     this.unitGroups.forEach(g => g.check(true));

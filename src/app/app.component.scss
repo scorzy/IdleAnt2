@@ -64,6 +64,12 @@ $padding: 0.45rem;
     letter-spacing: normal;
   }
 }
+:host /deep/ .btn {
+  height: auto;
+}
+:host /deep/ app-cant-buy-signposts {
+  height: 1rem;
+}
 
 @media screen and (max-width: 768px) {
   app-material-nav {
