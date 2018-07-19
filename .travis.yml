@@ -2,6 +2,9 @@ language: node_js
 node_js:
   - node
 
+git:
+  depth: false
+
 sudo: required
 dist: trusty
 group: edge
