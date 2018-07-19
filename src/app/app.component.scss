@@ -70,7 +70,9 @@ $padding: 0.45rem;
 :host /deep/ app-cant-buy-signposts {
   height: 1rem;
 }
-
+:host /deep/ h1 {
+  line-height: 1.6rem;
+}
 @media screen and (max-width: 768px) {
   app-material-nav {
     display: none;

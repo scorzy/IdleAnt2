@@ -22,10 +22,10 @@ export class Workers extends UnitGroup {
   }
 
   declareStuff(): void {
-    this.farmer = new FullUnit("farmer");
-    this.carpenter = new FullUnit("carpenter");
-    this.miner = new FullUnit("miner");
-    this.scientist = new FullUnit("scientist");
+    this.farmer = new FullUnit("f");
+    this.carpenter = new FullUnit("c");
+    this.miner = new FullUnit("m");
+    this.scientist = new FullUnit("s");
 
     this.scientificMethod1 = new Research("scie1", this.game.researches);
 

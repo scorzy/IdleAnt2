@@ -45,12 +45,12 @@ export class Malus extends FullUnit {
   //#region Save and Restore
   getSave(): any {
     const save = super.getSave();
-    save.ik = this.isKilled;
+    if (this.isKilled) save.ik = this.isKilled;
     return save;
   }
   restore(data: any): boolean {
     if (super.restore(data)) {
-      if ("ik" in data) this.isKilled = data.ik;
+      this.isKilled = !!data.ik;
 
       return true;
     } else {

@@ -10,13 +10,14 @@ export class Tab implements IUnlocable {
     this.unlocked = true;
   }
   getSave(): any {
-    return {
-      i: this.id,
-      u: this.unlocked
+    const data: any = {
+      i: this.id
     };
+    if (this.unlocked) data.u = this.unlocked;
+    return data;
   }
   restore(data: any): boolean {
     if (!("i" in data && data.i === this.id)) return false;
-    if ("u" in data) this.unlocked = data.u;
+    this.unlocked = !!data.u;
   }
 }

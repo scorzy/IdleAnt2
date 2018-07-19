@@ -97,8 +97,8 @@ export class Action extends BaseUnit {
   //#region Save and Load
   getSave(): any {
     const save = super.getSave();
-    save.d = this.done;
-    save.c = this.complete;
+    if (this.done) save.d = this.done;
+    if (this.complete) save.c = this.complete;
     return save;
   }
 

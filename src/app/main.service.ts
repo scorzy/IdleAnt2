@@ -67,6 +67,7 @@ export class MainService {
       save.o = this.options.getSave();
       save.time = this.last;
       save.ver = GAME_VERSION;
+      // console.log(JSON.stringify(save));
       return LZString.compressToBase64(JSON.stringify(save));
     } catch (ex) {
       this.toastr.error(

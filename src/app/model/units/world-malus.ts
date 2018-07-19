@@ -25,21 +25,21 @@ export class WorldMalus extends UnitGroup {
   }
 
   declareStuff(): void {
-    this.foodMalus1 = new Malus("foMalu1");
-    this.foodMalus2 = new Malus("foMalu2");
-    this.foodMalus3 = new Malus("foMalu3");
+    this.foodMalus1 = new Malus("Mf1");
+    this.foodMalus2 = new Malus("Mf2");
+    this.foodMalus3 = new Malus("Mf3");
 
-    this.woodMalus1 = new Malus("woMalu1");
-    this.woodMalus2 = new Malus("woMalu2");
-    this.woodMalus3 = new Malus("woMalu3");
+    this.woodMalus1 = new Malus("Mw1");
+    this.woodMalus2 = new Malus("Mw2");
+    this.woodMalus3 = new Malus("Mw3");
 
-    this.crystalMalus1 = new Malus("crMalu1");
-    this.crystalMalus2 = new Malus("crMalu2");
-    this.crystalMalus3 = new Malus("crMalu3");
+    this.crystalMalus1 = new Malus("Mc1");
+    this.crystalMalus2 = new Malus("Mc2");
+    this.crystalMalus3 = new Malus("Mc3");
 
-    this.scienceMalus1 = new Malus("scMalu1");
-    this.scienceMalus2 = new Malus("scMalu2");
-    this.scienceMalus3 = new Malus("scMalu3");
+    this.scienceMalus1 = new Malus("Ms1");
+    this.scienceMalus2 = new Malus("Ms2");
+    this.scienceMalus3 = new Malus("Ms3");
 
     this.foodMalus1.first = true;
     this.woodMalus1.first = true;

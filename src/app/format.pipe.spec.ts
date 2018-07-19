@@ -2,9 +2,7 @@ import { FormatPipe } from "./format.pipe";
 import { OptionsService } from "./options.service";
 
 describe("FormatPipe", () => {
-  let options: OptionsService;
-
-  options = new OptionsService();
+  const options = new OptionsService();
   options.generateFormatter();
 
   it("create an instance", () => {

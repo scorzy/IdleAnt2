@@ -136,7 +136,7 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   //#region Save and Restore
   getSave(): any {
     const save = super.getSave();
-    save.u = this.unlocked;
+    if (this.unlocked) save.u = this.unlocked;
     if (this.actions) save.a = this.actions.map(a => a.getSave());
     if (this.efficiency < 100) save.e = this.efficiency;
     if (this.isNew) save.n = true;

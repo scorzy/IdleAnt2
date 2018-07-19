@@ -6,53 +6,53 @@ export const STRINGS = {
     cry: ["Crystal", "crystal"],
     sci: ["Science", "science"],
     //  Ghantering
-    drone: ["Drone", "drone"],
-    geologist: ["Geologist", "geologist"],
-    student: ["Student", "student"],
+    dr: ["Drone", "drone"],
+    ge: ["Geologist", "geologist"],
+    st: ["Student", "student"],
     //  Workers
-    farmer: [
+    f: [
       "Farmer",
       "Hydroponics farmers uses crystals to grow fungi without soil."
     ],
-    carpenter: [
+    c: [
       "Carpenter",
       "Carpenter ants build nests inside wood consisting of galleries."
     ],
-    miner: ["Miner", "miner"],
-    scientist: ["Scientist", "scientist"],
+    m: ["Miner", "miner"],
+    s: ["Scientist", "scientist"],
     // Workers 2
-    farmer_g: ["Farm", "farmer"],
-    carpenter_g: ["Wood Camp", "carpenter"],
-    miner_g: ["Mine", "miner"],
-    scientist_g: ["University", "scientist"],
+    f_g: ["Farm", "farmer"],
+    c_g: ["Wood Camp", "carpenter"],
+    m_g: ["Mine", "miner"],
+    s_g: ["University", "scientist"],
     //  Workers 3
-    farmer_g_g: ["Hydro Eng.", "Hydro Engineer"],
-    carpenter_g_g: ["Wood Eng.", "Wood Engineer"],
-    miner_g_g: ["Mine Eng.", "Mine Engineer"],
-    scientist_g_g: ["Education Dep.", "Department of Education"],
+    f_g_g: ["Hydro Eng.", "Hydro Engineer"],
+    c_g_g: ["Wood Eng.", "Wood Engineer"],
+    m_g_g: ["Mine Eng.", "Mine Engineer"],
+    s_g_g: ["Education Dep.", "Department of Education"],
     //  World Bonus
     foB: ["Food Production Bonus", ""],
     woB: ["Wood Production Bonus", ""],
     crB: ["Crystal Production Bonus", ""],
     scB: ["Science Production Bonus", ""],
     //  Malus
-    foMalu1: ["Poisonous Fungus", "Poisonous Fungus"],
-    foMalu2: ["Ancient Fungus", "Ancient Fungus"],
-    foMalu3: ["Zombie Fungus", "Zombie Fungus"],
-    woMalu1: ["woMalu1", "woMalu1"],
-    woMalu2: ["woMalu2", "woMalu2"],
-    woMalu3: ["woMalu3", "woMalu3"],
-    crMalu1: ["crMalu1", "crMalu1"],
-    crMalu2: ["crMalu2", "crMalu2"],
-    crMalu3: ["crMalu3", "crMalu3"],
-    scMalu1: ["Pseudoscientist", ["1", "2", "3"]],
-    scMalu2: ["Pseudoscientist", "Pseudoscientist"],
-    scMalu3: ["Pseudoscientist", "Pseudoscientist"],
+    Mf1: ["Poisonous Fungus", "Poisonous Fungus"],
+    Mf2: ["Ancient Fungus", "Ancient Fungus"],
+    Mf3: ["Zombie Fungus", "Zombie Fungus"],
+    Mw1: ["woMalu1", "woMalu1"],
+    Mw2: ["woMalu2", "woMalu2"],
+    Mw3: ["woMalu3", "woMalu3"],
+    Mc1: ["crMalu1", "crMalu1"],
+    Mc2: ["crMalu2", "crMalu2"],
+    Mc3: ["crMalu3", "crMalu3"],
+    Ms1: ["Pseudoscientist", ["1", "2", "3"]],
+    Ms2: ["Pseudoscientist", "Pseudoscientist"],
+    Ms3: ["Pseudoscientist", "Pseudoscientist"],
     //  Killers
-    fmki: ["Disinfestation Ant", "Destroy poisonous fungus."],
-    wmki: ["wmki", ""],
-    cmki: ["cmki", ""],
-    smki: ["Popularizers", ""]
+    F: ["Disinfestation Ant", "Destroy poisonous fungus."],
+    M: ["wmki", ""],
+    C: ["cmki", ""],
+    S: ["Popularizers", ""]
   },
   researches: {
     team1: ["Team 1", "Team 1"],

@@ -3,6 +3,7 @@ import { TestBed, inject } from "@angular/core/testing";
 import { Game } from "./game";
 import { FullUnit } from "./full-unit";
 import { EventEmitter } from "@angular/core";
+import uniq from "lodash-es/uniq";
 
 describe("Game", () => {
   const updateEmitter = new EventEmitter<number>();
@@ -37,7 +38,6 @@ describe("Game", () => {
     const game = new Game(updateEmitter, researchEmitter);
     expect(game.restore({})).toBeFalsy();
   });
-
   it("Simple update", () => {
     const game = new Game(updateEmitter, researchEmitter);
     const food = new FullUnit("food", "Food", "Food");
@@ -92,5 +92,12 @@ describe("Game", () => {
     expect(Math.floor(food.quantity.toNumber())).toBe(7);
     expect(consumer.efficiency).toBe(0);
     expect(farmer.efficiency).toBe(100);
+  });
+  it("Unique units ID", () => {
+    const game = new Game(updateEmitter, researchEmitter);
+    const ids = game.units.map(u => u.id);
+    const original = ids.length;
+    const unique = uniq(ids).length;
+    expect(original).toBe(unique);
   });
 });

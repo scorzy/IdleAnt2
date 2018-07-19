@@ -1,7 +1,7 @@
-import { Time } from './time';
+import { Time } from "./time";
 
-describe('Time', () => {
-  it('should create an instance', () => {
+describe("Time", () => {
+  it("should create an instance", () => {
     expect(new Time()).toBeTruthy();
   });
 });

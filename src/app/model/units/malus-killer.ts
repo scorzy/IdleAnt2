@@ -15,10 +15,10 @@ export class MalusKiller extends UnitGroup {
     super("Army", game);
   }
   declareStuff(): void {
-    this.foodMalusKiller = new FullUnit("fmki");
-    this.woodMalusKiller = new FullUnit("wmki");
-    this.crystalMalusKiller = new FullUnit("cmki");
-    this.scienceMalusKiller = new FullUnit("smki");
+    this.foodMalusKiller = new FullUnit("F");
+    this.woodMalusKiller = new FullUnit("W");
+    this.crystalMalusKiller = new FullUnit("C");
+    this.scienceMalusKiller = new FullUnit("S");
 
     this.addUnits([
       this.foodMalusKiller,

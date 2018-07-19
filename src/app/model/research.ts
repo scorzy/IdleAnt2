@@ -49,12 +49,12 @@ export class Research extends Action implements IUnlocable {
   //#region Save and Load
   getSave(): any {
     const save = super.getSave();
-    save.u = this.unlocked;
+    if (this.unlocked) save.u = this.unlocked;
     return save;
   }
   restore(data: any): boolean {
     if (super.restore(data)) {
-      if ("u" in data) this.unlocked = data.u;
+      this.unlocked = !!data.u;
       return true;
     } else {
       return false;

@@ -39,15 +39,15 @@ export class BaseUnit {
 
   //Region Save and Restore
   getSave(): any {
-    return {
-      i: this.id,
-      q: this.quantity
+    const data: any = {
+      i: this.id
     };
+    if (!this.quantity.eq(0)) data.q = this.quantity;
+    return data;
   }
 
   restore(data: any): boolean {
     if (!("i" in data && data.i === this.id)) return false;
-
     if ("q" in data) this.quantity = new Decimal(data.q);
 
     return true;

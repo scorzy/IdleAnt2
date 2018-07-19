@@ -80,11 +80,16 @@ export class Game {
 
     this.genX2 = this.advWorkers.getProducerGroup(
       "Buildings",
-      new Decimal(1e6)
+      new Decimal(1e6),
+      "Bu"
     );
     this.unitGroups.push(this.genX2);
 
-    this.genX3 = this.genX2.getProducerGroup("Engineers", new Decimal(1e10));
+    this.genX3 = this.genX2.getProducerGroup(
+      "Engineers",
+      new Decimal(1e10),
+      "En"
+    );
     this.unitGroups.push(this.genX3);
 
     this.worldMalus = new WorldMalus(this);
@@ -122,10 +127,10 @@ export class Game {
     this.materials.food.quantity = new Decimal(STARTING_FOOD);
     //#endregion
     //#region Debug
-    //this.materials.food.quantity = new Decimal(1e100);
+    this.materials.food.quantity = new Decimal(1e100);
     // this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
     // this.materials.list.forEach(u => (u.unlocked = true));
-    // this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
+    this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
     // // this.worldMalus.foodMalus1.quantity = new Decimal(100);
     // this.worldMalus.foodMalus1.quantity = new Decimal(100);
     // this.worldMalus.foodMalus2.quantity = new Decimal(10);
