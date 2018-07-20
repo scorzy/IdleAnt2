@@ -10,6 +10,7 @@ import { UiOptionsComponent } from "./ui-options/ui-options.component";
 import { PrestigeGroupComponent } from "./prestige-group/prestige-group.component";
 import { PrestigeNavComponent } from "./prestige-nav/prestige-nav.component";
 import { UnitTabsComponent } from "./unit-tabs/unit-tabs.component";
+import { StatsComponent } from "./stats/stats.component";
 
 export const APPROUTES: Routes = [
   {
@@ -44,7 +45,8 @@ export const APPROUTES: Routes = [
     component: OptionsNavComponent,
     children: [
       { path: "save", component: SaveComponent },
-      { path: "ui", component: UiOptionsComponent }
+      { path: "ui", component: UiOptionsComponent },
+      { path: "stats", component: StatsComponent }
     ]
   }
 ];

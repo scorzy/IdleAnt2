@@ -13,9 +13,16 @@ describe("Stats", () => {
     stats.worldStartDate.setFullYear(2017);
     for (let i = 0; i < 10; i++) {
       stats.runs.push(
-        new Run(new Date(), "World " + i, new Decimal(i * 10), i % 2 === 0)
+        new Run(
+          new Date(new Date().getTime() - 2 * 1000 * 3600),
+          new Date(new Date().getTime() - 1 * 1000 * 3600),
+          "World " + i,
+          new Decimal(i * 10),
+          i % 2 === 0
+        )
       );
     }
+    stats.runs.forEach(r => r.reloadExpPerSec());
     const json1 = JSON.stringify(stats);
     const stats2 = new Stats();
     stats2.restore(stats.getSave());

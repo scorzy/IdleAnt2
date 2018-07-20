@@ -2,6 +2,7 @@ import { ClrDatagridComparatorInterface } from "@clr/angular";
 import { Production } from "./production";
 import { BaseUnit } from "./baseUnit";
 import { FullUnit } from "./full-unit";
+import { Run } from "./stats/run";
 
 export class Utility {
   static random(min: Decimal = new Decimal(0), max: Decimal = new Decimal(1)) {
@@ -178,6 +179,7 @@ export class Utility {
   }
 }
 
+//#region Clarity Datagrid custom sorterer
 // tslint:disable-next-line:max-classes-per-file
 export class ProductionSorter
   implements ClrDatagridComparatorInterface<Production> {
@@ -222,3 +224,16 @@ export class UnitTwinSorter
     return a.twinAction.quantity.cmp(b.twinAction.quantity);
   }
 }
+// tslint:disable-next-line:max-classes-per-file
+export class RunExpSorter implements ClrDatagridComparatorInterface<Run> {
+  compare(a: Run, b: Run) {
+    return a.experience.cmp(b.experience);
+  }
+}
+// tslint:disable-next-line:max-classes-per-file
+export class RunExpPerSecSorter implements ClrDatagridComparatorInterface<Run> {
+  compare(a: Run, b: Run) {
+    return a.expPerSec.cmp(b.expPerSec);
+  }
+}
+//#endregion

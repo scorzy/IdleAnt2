@@ -73,6 +73,11 @@ $padding: 0.45rem;
 :host /deep/ h1 {
   line-height: 1.6rem;
 }
+:host /deep/ clr-datagrid {
+  margin-top: 0;
+  padding-top: 0;
+}
+
 @media screen and (max-width: 768px) {
   app-material-nav {
     display: none;

@@ -1,0 +1,50 @@
+<h1>Statistics</h1>
+<div class="clr-row">
+  <div class="clr-col-12	clr-col-sm-12	clr-col-md-12	clr-col-lg-12	clr-col-xl-4">
+    <h6>Total:</h6>
+    <ul class="list">
+      <li>
+        Current experience:
+        <span>{{ms.game.experience | format:true}}</span>
+      </li>
+      <li>
+        Total earned experience:
+        <span>{{ms.game.stats.totalExperience | format:true}}</span>
+      </li>
+      <li>
+        Completed worlds:
+        <span>{{ms.game.stats.completedWorld | format:true}}</span>
+      </li>
+      <li>
+        Words start:
+        <span>{{ms.game.stats.worldStartDate | date:'medium'}}</span>
+      </li>
+    </ul>
+
+  </div>
+  <div class="clr-col-12	clr-col-sm-12	clr-col-md-12	clr-col-lg-12	clr-col-xl-8">
+    <h6>Lasts 10 worlds:</h6>
+    <clr-datagrid class="datagrid-compact">
+      <clr-dg-column [clrDgField]="'startDate'">Start Date</clr-dg-column>
+      <clr-dg-column [clrDgField]="'endDate'">End Date</clr-dg-column>
+      <clr-dg-column [clrDgField]="'worldName'">Name</clr-dg-column>
+      <clr-dg-column [clrDgSortBy]="runExpSorter">Exp</clr-dg-column>
+      <clr-dg-column [clrDgSortBy]="runExpPerSecSorter">Exp/s</clr-dg-column>
+      <clr-dg-column [clrDgField]="'completed'">Completed</clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let run of ms.game.stats.runs">
+        <clr-dg-cell>{{run.startDate | date:'medium'}}</clr-dg-cell>
+        <clr-dg-cell>{{run.endDate | date:'medium'}}</clr-dg-cell>
+        <clr-dg-cell>{{run.worldName}}</clr-dg-cell>
+        <clr-dg-cell>{{run.experience | format:true}}</clr-dg-cell>
+        <clr-dg-cell>{{run.expPerSec | format}}</clr-dg-cell>
+        <clr-dg-cell>{{run.completed}}</clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+  </div>
+  <div class="clr-col-12	clr-col-sm-12	clr-col-md-12	clr-col-lg-12	clr-col-xl-12">
+    <div style="width: 100%">
+      <canvas #chart></canvas>
+    </div>
+  </div>
+</div>

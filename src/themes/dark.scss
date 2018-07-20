@@ -1,20 +1,20 @@
 ::-webkit-scrollbar-thumb {
-  background: #e1e1e1;
+  background: rgb(50, 79, 97);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ffffff;
+  background: rgb(64, 107, 134);
 }
 ::-webkit-scrollbar-thumb:active {
-  background: #000000;
+  background: #49afd9;
 }
 ::-webkit-scrollbar-track {
-  background: #666666;
+  background: rgb(15, 23, 28);
 }
 ::-webkit-scrollbar-track:hover {
-  background: #666666;
+  background: rgb(15, 23, 28);
 }
 ::-webkit-scrollbar-track:active {
-  background: #333333;
+  background: rgb(15, 23, 28);
 }
 .select select option {
   background: #1b2a32;

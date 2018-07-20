@@ -41,6 +41,7 @@ import { UnitAutoBuyComponent } from "./unit-auto-buy/unit-auto-buy.component";
 import { UnitTabsComponent } from "./unit-tabs/unit-tabs.component";
 import { ButtonsComponent } from "./action/buttons/buttons.component";
 import { ActionHeaderComponent } from "./action/action-header/action-header.component";
+import { StatsComponent } from './stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { ActionHeaderComponent } from "./action/action-header/action-header.comp
     UnitAutoBuyComponent,
     UnitTabsComponent,
     ButtonsComponent,
-    ActionHeaderComponent
+    ActionHeaderComponent,
+    StatsComponent
   ],
   imports: [
     BrowserAnimationsModule,
