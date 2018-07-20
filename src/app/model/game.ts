@@ -16,7 +16,7 @@ import { MalusKiller } from "./units/malus-killer";
 import { AllPrestige } from "./prestige/all-prestige";
 import { WarpAction } from "./actions/warp-action";
 import { AutoBuyManager } from "./autoBuy/auto-buy-manager";
-import { Stats } from "./stats";
+import { Stats } from "./stats/stats";
 
 const STARTING_FOOD = new Decimal(100);
 
