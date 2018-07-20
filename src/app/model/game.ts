@@ -16,6 +16,7 @@ import { MalusKiller } from "./units/malus-killer";
 import { AllPrestige } from "./prestige/all-prestige";
 import { WarpAction } from "./actions/warp-action";
 import { AutoBuyManager } from "./autoBuy/auto-buy-manager";
+import { Stats } from "./stats";
 
 const STARTING_FOOD = new Decimal(100);
 
@@ -59,6 +60,7 @@ export class Game {
   actHour: WarpAction;
 
   autoBuyManager: AutoBuyManager;
+  stats: Stats;
 
   constructor(
     public updateEmitter: EventEmitter<number>,
@@ -172,6 +174,7 @@ export class Game {
       }
     });
     //#endregion
+    this.stats = new Stats();
   }
   buildLists() {
     this.unlockedUnits = [];
@@ -365,16 +368,19 @@ export class Game {
    * @param world choosen world
    */
   goToWorld(world: World): boolean {
-    if (!this.canTravel) return false;
+    this.stats.logWorldCompleted(this.currentWorld, !this.canTravel);
 
     const newPrestige = this.experience.quantity.plus(
       this.currentWorld.prestige
     );
+
     this.units.forEach(u => u.reset());
     this.materials.food.quantity = new Decimal(STARTING_FOOD);
     this.gatherers.drone.unlocked = true;
     this.materials.food.unlocked = true;
-    this.experience.quantity = newPrestige;
+
+    if (this.canTravel) this.experience.quantity = newPrestige;
+
     this.currentWorld = world;
     this.applyWorldBonus();
     this.researches.reset();
@@ -435,7 +441,8 @@ export class Game {
       p: this.allPrestige.getSave(),
       m: this.maxLevel,
       a: this.isPaused,
-      abm: this.autoBuyManager.getSave()
+      abm: this.autoBuyManager.getSave(),
+      s: this.stats.getSave()
     };
   }
   restore(data: any): boolean {
@@ -448,6 +455,7 @@ export class Game {
       if ("m" in data) this.maxLevel = new Decimal(data.m);
       if ("a" in data) this.isPaused = data.a;
       if ("abm" in data) this.autoBuyManager.restore(data.abm);
+      if ("s" in data) this.stats.restore(data.s);
 
       this.unitGroups.forEach(g => g.check());
       this.buildLists();
