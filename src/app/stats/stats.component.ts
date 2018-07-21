@@ -1,14 +1,14 @@
 import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
   AfterContentInit,
   AfterViewInit,
-  ViewChild,
-  ElementRef
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild
 } from "@angular/core";
 import { MainService } from "../main.service";
-import { RunExpSorter, RunExpPerSecSorter } from "../model/utility";
+import { RunExpPerSecSorter, RunExpSorter } from "../model/utility";
 declare let Chart;
 
 @Component({

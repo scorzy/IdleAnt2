@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { MainService } from "../main.service";
 import { World } from "../model/world";
 @Component({
@@ -16,5 +16,8 @@ export class ChangeWorldComponent implements OnInit {
 
   getWorldId(index: number, world: World) {
     return world.name + world.level + index;
+  }
+  randomize() {
+    this.ms.game.generateWorlds();
   }
 }

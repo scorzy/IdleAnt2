@@ -1,9 +1,9 @@
-import { TestBed, inject } from "@angular/core/testing";
+import { inject, TestBed } from "@angular/core/testing";
 
-import { Game } from "./game";
-import { FullUnit } from "./full-unit";
 import { EventEmitter } from "@angular/core";
 import uniq from "lodash-es/uniq";
+import { FullUnit } from "./full-unit";
+import { Game } from "./game";
 
 describe("Game", () => {
   const updateEmitter = new EventEmitter<number>();

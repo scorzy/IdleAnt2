@@ -15,7 +15,7 @@
         </div>
       </div>
 
-      <div class="clr-col-12 clr-col-sm-12 clr-col-md-6 clr-col-lg-6 clr-col-xl-6" *ngIf="ms.game.currentWorld.notWinConditions">
+      <div class="clr-col-12 clr-col-sm-12 clr-col-md-6 clr-col-lg-6 clr-col-xl-6" *ngIf="ms.game.currentWorld.notWinConditions?.length > 0">
         <p>You must kill:</p>
         <ul class="list-unstyled">
           <li *ngFor="let malus of ms.game.currentWorld.notWinConditions; trackBy:getMalusId">

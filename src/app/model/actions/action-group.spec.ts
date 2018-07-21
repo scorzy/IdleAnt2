@@ -1,9 +1,9 @@
-import { ActionGroup } from "./action-group";
+import { EventEmitter } from "@angular/core";
 import { Action } from "../action";
-import { Price } from "../price";
 import { FullUnit } from "../full-unit";
 import { Game } from "../game";
-import { EventEmitter } from "@angular/core";
+import { Price } from "../price";
+import { ActionGroup } from "./action-group";
 
 describe("ActionGroup", () => {
   const game = new Game(new EventEmitter<number>(), new EventEmitter<string>());

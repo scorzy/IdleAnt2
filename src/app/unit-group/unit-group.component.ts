@@ -1,23 +1,23 @@
 import {
-  Component,
-  OnInit,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
-  ViewChild,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
   OnDestroy,
-  ElementRef
+  OnInit,
+  ViewChild
 } from "@angular/core";
-import { MainService } from "../main.service";
 import { ActivatedRoute } from "@angular/router";
-import { UnitGroup } from "../model/unit-group";
+import { MainService } from "../main.service";
 import { ActionGroup } from "../model/actions/action-group";
+import { FullUnit } from "../model/full-unit";
+import { UnitGroup } from "../model/unit-group";
 import {
-  UnitQuantitySorter,
   UnitBoughtSorter,
+  UnitQuantitySorter,
   UnitTeamSorter,
   UnitTwinSorter
 } from "../model/utility";
-import { FullUnit } from "../model/full-unit";
 declare let Chart;
 
 @Component({
@@ -196,8 +196,9 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
         this.chart.data &&
         this.chart.data.datasets[0] &&
         this.chart.data.datasets[0].data.length === 0)
-    )
+    ) {
       this.doGraph();
+    }
   }
   doGraph() {
     this.unitGroup.updateChartLabel();

@@ -1,10 +1,10 @@
 import { Action } from "../action";
-import { PrestigeGroup } from "./prestige-group";
 import { Game } from "../game";
+import { AutoBuyUnlock } from "./auto-buy-unlock";
 import { Followers } from "./followers";
 import { Followers2 } from "./followers2";
+import { PrestigeGroup } from "./prestige-group";
 import { Time } from "./time";
-import { AutoBuyUnlock } from "./auto-buy-unlock";
 
 export class AllPrestige {
   followers: Followers;
@@ -43,8 +43,9 @@ export class AllPrestige {
   }
   restore(data: any): boolean {
     if (!("prest" in data)) return false;
-    for (const p of data.prest)
+    for (const p of data.prest) {
       this.prestigeList.find(u => u.id === p.i).restore(p);
+    }
   }
   //#endregion
 }

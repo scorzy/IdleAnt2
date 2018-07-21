@@ -1,14 +1,14 @@
 import {
-  Component,
-  OnInit,
-  Input,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit
 } from "@angular/core";
+import { MainService } from "../../main.service";
 import { Action } from "../../model/action";
 import { Prestige } from "../../model/prestige/prestige";
 import { Price } from "../../model/price";
-import { MainService } from "../../main.service";
 
 @Component({
   selector: "app-buttons",

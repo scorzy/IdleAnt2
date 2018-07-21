@@ -1,9 +1,9 @@
-import { IUnlocable } from "./iunlocable";
 import { Action } from "./action";
-import { Price } from "./price";
-import { Researches } from "./units/researches";
-import { STRINGS } from "./strings";
 import { FullUnit } from "./full-unit";
+import { IUnlocable } from "./iunlocable";
+import { Price } from "./price";
+import { STRINGS } from "./strings";
+import { Researches } from "./units/researches";
 
 export class Research extends Action implements IUnlocable {
   unlocked = false;
@@ -25,8 +25,9 @@ export class Research extends Action implements IUnlocable {
   }
   buy(toBuy = new Decimal(1)): boolean {
     if (super.buy(toBuy)) {
-      if (this.toUnlock)
+      if (this.toUnlock) {
         this.toUnlock.filter(i => !i.unlocked).forEach(u => u.unlock());
+      }
       this.researches.reloadLists();
       return true;
     } else {

@@ -1,14 +1,14 @@
 import {
-  Component,
-  OnInit,
-  Input,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
+  Component,
+  Input,
   OnDestroy,
-  ChangeDetectionStrategy
+  OnInit
 } from "@angular/core";
-import { Research } from "../model/research";
 import { MainService } from "../main.service";
 import { Price } from "../model/price";
+import { Research } from "../model/research";
 
 @Component({
   selector: "app-research",

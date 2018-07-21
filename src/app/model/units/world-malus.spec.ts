@@ -1,6 +1,6 @@
-import { WorldMalus } from "./world-malus";
-import { Game } from "../game";
 import { EventEmitter } from "@angular/core";
+import { Game } from "../game";
+import { WorldMalus } from "./world-malus";
 
 describe("WorldMalus", () => {
   it("should create an instance", () => {

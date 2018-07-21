@@ -1,7 +1,7 @@
-import { TestBed, inject } from "@angular/core/testing";
+import { inject, TestBed } from "@angular/core/testing";
 
+import { ToastrModule, ToastrService } from "ngx-toastr";
 import { MainService } from "./main.service";
-import { ToastrService, ToastrModule } from "ngx-toastr";
 
 describe("MainService", () => {
   beforeEach(() => {

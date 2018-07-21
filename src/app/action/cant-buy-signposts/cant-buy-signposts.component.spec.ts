@@ -1,14 +1,14 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CantBuySignpostsComponent } from "./cant-buy-signposts.component";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterTestingModule } from "@angular/router/testing";
 import { ClarityModule } from "@clr/angular";
 import { ToastrModule } from "ngx-toastr";
-import { FormsModule } from "@angular/forms";
-import { RouterTestingModule } from "@angular/router/testing";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FormatPipe } from "../../format.pipe";
 import { EndInPipe } from "../../end-in.pipe";
+import { FormatPipe } from "../../format.pipe";
+import { CantBuySignpostsComponent } from "./cant-buy-signposts.component";
 
 describe("CantBuySignpostsComponent", () => {
   let component: CantBuySignpostsComponent;

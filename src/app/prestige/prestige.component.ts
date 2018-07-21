@@ -1,13 +1,13 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
   OnDestroy,
-  ChangeDetectorRef
+  OnInit
 } from "@angular/core";
 import { MainService } from "../main.service";
-import { Price } from "../model/price";
 import { Malus } from "../model/malus";
+import { Price } from "../model/price";
 
 @Component({
   selector: "app-prestige",

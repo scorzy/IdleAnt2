@@ -95,7 +95,11 @@ export const STRINGS = {
     foBSuf: "of Food",
     woBSuf: "of Wood",
     crBSuf: "of Crystall",
-    scBSuf: "of Science"
+    scBSuf: "of Science",
+    foBio: "Farm",
+    woBio: "Forest",
+    cryBio: "Mine",
+    sciBio: "University"
   },
   prestige: {
     //  Followers 1

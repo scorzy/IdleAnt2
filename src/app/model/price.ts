@@ -1,5 +1,5 @@
-import { Utility } from "./utility";
 import { FullUnit } from "./full-unit";
+import { Utility } from "./utility";
 
 export class Price {
   canBuy = false;
@@ -31,14 +31,14 @@ export class Price {
   }
   reload(bought: Decimal = new Decimal(0)) {
     this.reloadRealPrice();
-    if (this.growRate !== 1)
+    if (this.growRate !== 1) {
       this.maxBuy = Decimal.affordGeometricSeries(
         this.base.quantity,
         this.realPrice,
         this.growRate,
         bought
       );
-    else this.maxBuy = this.base.quantity.div(this.realPrice).floor();
+    } else this.maxBuy = this.base.quantity.div(this.realPrice).floor();
 
     this.canBuy = this.maxBuy.gte(1);
   }

@@ -1,12 +1,12 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
   Input,
-  ChangeDetectorRef
+  OnInit
 } from "@angular/core";
-import { Prestige } from "../model/prestige/prestige";
 import { MainService } from "../main.service";
+import { Prestige } from "../model/prestige/prestige";
 import { Price } from "../model/price";
 
 @Component({

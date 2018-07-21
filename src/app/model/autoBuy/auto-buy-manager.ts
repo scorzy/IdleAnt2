@@ -1,6 +1,6 @@
-import { AutoBuy } from "./auto-buy";
 import { FullUnit } from "../full-unit";
 import { Game } from "../game";
+import { AutoBuy } from "./auto-buy";
 
 export class AutoBuyManager {
   allAutoBuyer = new Array<AutoBuy>();
@@ -33,8 +33,9 @@ export class AutoBuyManager {
   }
   restore(data: any): boolean {
     if ("autList" in data) {
-      for (const a of data.autList)
+      for (const a of data.autList) {
         this.allAutoBuyer.find(u => u.id === a.i).restore(a);
+      }
       this.buildActiveList();
     } else {
       return false;

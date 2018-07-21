@@ -1,9 +1,9 @@
 import {
-  Component,
-  OnInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
+  Component,
   OnDestroy,
-  ChangeDetectionStrategy
+  OnInit
 } from "@angular/core";
 import { MainService } from "../main.service";
 import { BaseUnit } from "../model/baseUnit";

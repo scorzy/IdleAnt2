@@ -1,15 +1,15 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ProductionSignpostsComponent } from "./production-signposts.component";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { ClarityModule } from "@clr/angular";
-import { RouterTestingModule } from "@angular/router/testing";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterTestingModule } from "@angular/router/testing";
+import { ClarityModule } from "@clr/angular";
 import { ToastrModule } from "ngx-toastr";
-import { Production } from "../model/production";
-import { FullUnit } from "../model/full-unit";
 import { FormatPipe } from "../format.pipe";
+import { FullUnit } from "../model/full-unit";
+import { Production } from "../model/production";
+import { ProductionSignpostsComponent } from "./production-signposts.component";
 
 describe("ProductionSignpostsComponent", () => {
   let component: ProductionSignpostsComponent;

@@ -1,6 +1,6 @@
-import { Materials } from "./materials";
-import { Game } from "../game";
 import { EventEmitter } from "@angular/core";
+import { Game } from "../game";
+import { Materials } from "./materials";
 
 describe("Materials", () => {
   it("should create an instance", () => {

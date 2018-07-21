@@ -1,6 +1,6 @@
-import { Production } from "./production";
 import { BaseUnit } from "./baseUnit";
 import { FullUnit } from "./full-unit";
+import { Production } from "./production";
 import { ProductionBonus } from "./production-bonus";
 
 describe("Production", () => {

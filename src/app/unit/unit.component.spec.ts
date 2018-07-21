@@ -1,14 +1,14 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { UnitComponent } from "./unit.component";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { FormsModule } from "@angular/forms";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ClarityModule } from "@clr/angular";
-import { FormsModule } from "@angular/forms";
-import { FormatPipe } from "../format.pipe";
 import { ToastrModule, ToastrService } from "ngx-toastr";
-import { EndInPipe } from "../end-in.pipe";
-import { MainService } from "../main.service";
 import { SliderModule } from "primeng/slider";
+import { EndInPipe } from "../end-in.pipe";
+import { FormatPipe } from "../format.pipe";
+import { MainService } from "../main.service";
+import { UnitComponent } from "./unit.component";
 
 describe("UnitComponent", () => {
   let component: UnitComponent;

@@ -1,8 +1,8 @@
 import { Action } from "../action";
-import { Price } from "../price";
 import { FullUnit } from "../full-unit";
-import { BuyAction } from "./buy-action";
+import { Price } from "../price";
 import { Research } from "../research";
+import { BuyAction } from "./buy-action";
 
 export class TwinAction extends Action {
   constructor(

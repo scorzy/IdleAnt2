@@ -1,13 +1,13 @@
 import {
-  Component,
-  OnInit,
-  Input,
   ChangeDetectionStrategy,
-  OnChanges
+  Component,
+  Input,
+  OnChanges,
+  OnInit
 } from "@angular/core";
-import { FullUnit } from "../model/full-unit";
-import { AutoBuy } from "../model/autoBuy/auto-buy";
 import { MainService } from "../main.service";
+import { AutoBuy } from "../model/autoBuy/auto-buy";
+import { FullUnit } from "../model/full-unit";
 
 @Component({
   selector: "app-unit-auto-buy",
@@ -33,22 +33,25 @@ export class UnitAutoBuyComponent implements OnInit, OnChanges {
       this.unit.buyAction &&
       this.unit.buyAction.autoBuyer &&
       this.ms.game.allPrestige.autoBuyUnlock.autoBuyQuantity.done
-    )
+    ) {
       this.autoBuyers.push(this.unit.buyAction.autoBuyer);
+    }
 
     if (
       this.unit.teamAction &&
       this.unit.teamAction.autoBuyer &&
       this.ms.game.allPrestige.autoBuyUnlock.autoBuyTeam.done
-    )
+    ) {
       this.autoBuyers.push(this.unit.teamAction.autoBuyer);
+    }
 
     if (
       this.unit.twinAction &&
       this.unit.twinAction.autoBuyer &&
       this.ms.game.allPrestige.autoBuyUnlock.autoBuyTwin.done
-    )
+    ) {
       this.autoBuyers.push(this.unit.twinAction.autoBuyer);
+    }
   }
 
   getAutoBuyId(index: number, autoBuy: AutoBuy) {

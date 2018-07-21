@@ -1,6 +1,6 @@
-import { Gatherers } from "./gatherers";
-import { Game } from "../game";
 import { EventEmitter } from "@angular/core";
+import { Game } from "../game";
+import { Gatherers } from "./gatherers";
 
 describe("Workers", () => {
   it("should create an instance", () => {

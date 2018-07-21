@@ -1,7 +1,7 @@
 import { Action } from "../action";
 import { FullUnit } from "../full-unit";
-import { Price } from "../price";
 import { IUnlocable } from "../iunlocable";
+import { Price } from "../price";
 
 export class BuyAction extends Action {
   constructor(

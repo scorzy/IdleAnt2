@@ -1,32 +1,32 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { MainService } from "./main.service";
 import { World } from "./model/world";
-import { Router } from "@angular/router";
 
 // import { ClarityIcons } from "@clr/icons";
 import { ClarityIcons } from "@clr/icons";
 
 import {
   ClrShapeBug,
-  ClrShapeWorld,
-  ClrShapeClock
+  ClrShapeClock,
+  ClrShapeWorld
 } from "@clr/icons/shapes/essential-shapes";
 
+import { ClrShapeStore } from "@clr/icons/shapes/commerce-shapes";
+import {
+  ClrShapeAngle,
+  ClrShapeAngleDouble,
+  ClrShapeCog,
+  ClrShapeExclamationTriangle,
+  ClrShapeInfoStandard
+} from "@clr/icons/shapes/core-shapes";
+import { ClrShapePause } from "@clr/icons/shapes/media-shapes";
 import {
   ClrShapeFlask,
   ClrShapeFloppy,
   ClrShapeInstall,
   ClrShapeUninstall
 } from "@clr/icons/shapes/technology-shapes";
-import { ClrShapeStore } from "@clr/icons/shapes/commerce-shapes";
-import {
-  ClrShapeExclamationTriangle,
-  ClrShapeAngle,
-  ClrShapeAngleDouble,
-  ClrShapeInfoStandard,
-  ClrShapeCog
-} from "@clr/icons/shapes/core-shapes";
-import { ClrShapePause } from "@clr/icons/shapes/media-shapes";
 import { ClrShapePaintRoller } from "@clr/icons/shapes/text-edit-shapes";
 
 @Component({

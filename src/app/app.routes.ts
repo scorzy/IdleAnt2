@@ -1,16 +1,16 @@
 import { Routes } from "@angular/router";
-import { NavComponent } from "./nav/nav.component";
-import { UnitComponent } from "./unit/unit.component";
-import { SaveComponent } from "./save/save.component";
-import { OptionsNavComponent } from "./options-nav/options-nav.component";
 import { LaboratoryComponent } from "./laboratory/laboratory.component";
-import { UnitGroupComponent } from "./unit-group/unit-group.component";
-import { PrestigeComponent } from "./prestige/prestige.component";
-import { UiOptionsComponent } from "./ui-options/ui-options.component";
+import { NavComponent } from "./nav/nav.component";
+import { OptionsNavComponent } from "./options-nav/options-nav.component";
 import { PrestigeGroupComponent } from "./prestige-group/prestige-group.component";
 import { PrestigeNavComponent } from "./prestige-nav/prestige-nav.component";
-import { UnitTabsComponent } from "./unit-tabs/unit-tabs.component";
+import { PrestigeComponent } from "./prestige/prestige.component";
+import { SaveComponent } from "./save/save.component";
 import { StatsComponent } from "./stats/stats.component";
+import { UiOptionsComponent } from "./ui-options/ui-options.component";
+import { UnitGroupComponent } from "./unit-group/unit-group.component";
+import { UnitTabsComponent } from "./unit-tabs/unit-tabs.component";
+import { UnitComponent } from "./unit/unit.component";
 
 export const APPROUTES: Routes = [
   {

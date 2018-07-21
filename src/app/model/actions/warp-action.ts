@@ -1,7 +1,7 @@
 import { Action } from "../action";
-import { STRINGS } from "../strings";
 import { Game } from "../game";
 import { Price } from "../price";
+import { STRINGS } from "../strings";
 
 export class WarpAction extends Action {
   /**

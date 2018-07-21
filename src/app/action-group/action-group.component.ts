@@ -1,13 +1,13 @@
 import {
-  Component,
-  OnInit,
-  Input,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit
 } from "@angular/core";
+import { MainService } from "../main.service";
 import { ActionGroup } from "../model/actions/action-group";
 import { Price } from "../model/price";
-import { MainService } from "../main.service";
 
 @Component({
   selector: "app-action-group",

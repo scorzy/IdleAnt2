@@ -1,7 +1,7 @@
-import { UnitGroup } from "../unit-group";
-import { Game } from "../game";
 import { FullUnit } from "../full-unit";
+import { Game } from "../game";
 import { Price } from "../price";
+import { UnitGroup } from "../unit-group";
 
 export class MalusKiller extends UnitGroup {
   foodMalusKiller: FullUnit;

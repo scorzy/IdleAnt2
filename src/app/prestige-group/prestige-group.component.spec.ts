@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { PrestigeGroupComponent } from "./prestige-group.component";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { ClarityModule } from "@clr/angular";
-import { ToastrModule } from "ngx-toastr";
-import { RouterTestingModule } from "@angular/router/testing";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterTestingModule } from "@angular/router/testing";
+import { ClarityModule } from "@clr/angular";
+import { ToastrModule } from "ngx-toastr";
+import { PrestigeGroupComponent } from "./prestige-group.component";
 
 describe("PrestigeGroupComponent", () => {
   let component: PrestigeGroupComponent;

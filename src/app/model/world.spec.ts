@@ -1,10 +1,10 @@
-import { World } from "./world";
-import { Game } from "./game";
 import { EventEmitter } from "@angular/core";
 import { FullUnit } from "./full-unit";
+import { Game } from "./game";
+import { Malus } from "./malus";
 import { Price } from "./price";
 import { Research } from "./research";
-import { Malus } from "./malus";
+import { World } from "./world";
 
 describe("World", () => {
   it("should create an instance", () => {

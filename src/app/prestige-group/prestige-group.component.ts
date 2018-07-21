@@ -1,14 +1,14 @@
 import {
-  Component,
-  OnInit,
-  OnDestroy,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
-  ChangeDetectionStrategy
+  Component,
+  OnDestroy,
+  OnInit
 } from "@angular/core";
-import { MainService } from "../main.service";
 import { ActivatedRoute } from "@angular/router";
-import { PrestigeGroup } from "../model/prestige/prestige-group";
+import { MainService } from "../main.service";
 import { Prestige } from "../model/prestige/prestige";
+import { PrestigeGroup } from "../model/prestige/prestige-group";
 
 @Component({
   selector: "app-prestige-group",

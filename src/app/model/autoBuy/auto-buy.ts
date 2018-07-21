@@ -1,8 +1,8 @@
 import { Action } from "../action";
 import { BaseUnit } from "../baseUnit";
 import { FullUnit } from "../full-unit";
-import { Price } from "../price";
 import { Prestige } from "../prestige/prestige";
+import { Price } from "../price";
 import { AutoBuyManager } from "./auto-buy-manager";
 
 const DELAY_LEVEL = 0.7;

@@ -1,5 +1,5 @@
-import { TwinAction } from "./twin-action";
 import { FullUnit } from "../full-unit";
+import { TwinAction } from "./twin-action";
 
 describe("TwinAction", () => {
   const twinRes = jasmine.createSpyObj("Research", ["unlocked"]);

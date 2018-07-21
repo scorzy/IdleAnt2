@@ -1,12 +1,12 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
+  Component,
   Input,
-  OnDestroy
+  OnDestroy,
+  OnInit
 } from "@angular/core";
-import { AutoBuy } from "../model/autoBuy/auto-buy";
 import { MainService } from "../main.service";
+import { AutoBuy } from "../model/autoBuy/auto-buy";
 
 @Component({
   selector: "app-auto-buy",

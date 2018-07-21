@@ -1,15 +1,15 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { UnitTabsComponent } from "./unit-tabs.component";
-import { ClarityModule } from "@clr/angular";
-import { ToastrModule } from "ngx-toastr";
-import { RouterTestingModule } from "@angular/router/testing";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FormatPipe } from "../format.pipe";
+import { RouterTestingModule } from "@angular/router/testing";
+import { ClarityModule } from "@clr/angular";
+import { ToastrModule } from "ngx-toastr";
 import { EndInPipe } from "../end-in.pipe";
+import { FormatPipe } from "../format.pipe";
 import { FullUnit } from "../model/full-unit";
-import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { UnitTabsComponent } from "./unit-tabs.component";
 
 describe("UnitTabsComponent", () => {
   let component: UnitTabsComponent;

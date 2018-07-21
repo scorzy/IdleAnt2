@@ -1,16 +1,16 @@
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
-  OnInit,
   Input,
   OnChanges,
-  SimpleChanges,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef
+  OnInit,
+  SimpleChanges
 } from "@angular/core";
+import { MainService } from "../../main.service";
 import { Action } from "../../model/action";
 import { TeamAction } from "../../model/actions/team-action";
 import { TwinAction } from "../../model/actions/twin-action";
-import { MainService } from "../../main.service";
 
 @Component({
   selector: "app-action-header",

@@ -1,7 +1,7 @@
-import { BuyAction } from "./buy-action";
+import { Action } from "../action";
 import { FullUnit } from "../full-unit";
 import { Price } from "../price";
-import { Action } from "../action";
+import { BuyAction } from "./buy-action";
 import { TwinAction } from "./twin-action";
 
 describe("BuyAction", () => {

@@ -1,18 +1,18 @@
 import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
-  Input
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { FullUnit } from "../model/full-unit";
-import { Action } from "../model/action";
 import { MainService } from "../main.service";
-import { ProductionSorter, TotalProductionSorter } from "../model/utility";
-import { Production } from "../model/production";
+import { Action } from "../model/action";
+import { FullUnit } from "../model/full-unit";
 import { Malus } from "../model/malus";
+import { Production } from "../model/production";
+import { ProductionSorter, TotalProductionSorter } from "../model/utility";
 
 @Component({
   selector: "app-unit",
@@ -65,10 +65,12 @@ export class UnitComponent implements OnInit, OnDestroy {
         p => p.producer.unlocked
       );
       if (this.unit.buyAction) this.unit.buyAction.reloadUserPrices();
-      if (this.unit.teamAction && this.ms.game.researches.team2.done)
+      if (this.unit.teamAction && this.ms.game.researches.team2.done) {
         this.unit.teamAction.reloadUserPrices();
-      if (this.unit.twinAction && this.ms.game.researches.twin.done)
+      }
+      if (this.unit.twinAction && this.ms.game.researches.twin.done) {
         this.unit.twinAction.reloadUserPrices();
+      }
     }
     this.cd.markForCheck();
   }

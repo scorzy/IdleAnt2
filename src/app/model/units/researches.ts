@@ -1,8 +1,8 @@
-import { FullUnit } from "../full-unit";
-import { Research } from "../research";
 import { EventEmitter } from "@angular/core";
+import { FullUnit } from "../full-unit";
 import { Game } from "../game";
 import { ProductionBonus } from "../production-bonus";
+import { Research } from "../research";
 
 export class Researches {
   science: FullUnit;
@@ -82,8 +82,9 @@ export class Researches {
   }
   restore(data: any): boolean {
     if ("res" in data) {
-      for (const r of data.res)
+      for (const r of data.res) {
         this.researches.find(u => u.id === r.i).restore(r);
+      }
       this.reloadLists();
       return true;
     } else {

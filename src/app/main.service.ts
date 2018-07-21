@@ -1,10 +1,10 @@
-import { Injectable, EventEmitter, Inject } from "@angular/core";
-import { Game } from "./model/game";
-import { OptionsService } from "./options.service";
+import { EventEmitter, Inject, Injectable } from "@angular/core";
+import { DOCUMENT } from "@angular/platform-browser";
 import * as LZString from "lz-string";
 import { ToastrService } from "ngx-toastr";
+import { Game } from "./model/game";
 import { World } from "./model/world";
-import { DOCUMENT } from "@angular/platform-browser";
+import { OptionsService } from "./options.service";
 
 const GAME_VERSION = 0;
 
@@ -81,8 +81,9 @@ export class MainService {
       const save = this.getSave();
       if (!!save) {
         localStorage.setItem("save", save);
-        if (!autosave || this.options.autosaveNotification)
+        if (!autosave || this.options.autosaveNotification) {
           this.toastr.success("", "Game Saved");
+        }
       } else this.toastr.error("Unknow error 1", "Save Error");
     } catch (ex) {
       this.toastr.error(
@@ -94,8 +95,9 @@ export class MainService {
   import(raw: string, first = false): boolean {
     try {
       if (!raw) {
-        if (!first)
+        if (!first) {
           setTimeout(() => this.toastr.error("No save found", "Not Loaded"), 0);
+        }
         return false;
       }
       const json = LZString.decompressFromBase64(raw);
@@ -148,15 +150,17 @@ export class MainService {
       ? "/clr-ui-dark.min.css"
       : "/clr-ui.min.css";
 
-    if (this.themeClarity.href !== themeClarity)
+    if (this.themeClarity.href !== themeClarity) {
       this.themeClarity.href = themeClarity;
+    }
 
     // this.themePrime.href =
     //   (this.options.dark ? "/start" : "/start") + "/theme.css";
 
     const myTheme = "/assets/" + (this.options.dark ? "dark.css" : "light.css");
-    if (myTheme !== this.themeMy.href)
+    if (myTheme !== this.themeMy.href) {
       this.themeMy.href =
         "/assets/" + (this.options.dark ? "dark.css" : "light.css");
+    }
   }
 }

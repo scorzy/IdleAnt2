@@ -1,17 +1,17 @@
 import {
-  Component,
-  OnInit,
-  Input,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
   OnDestroy,
-  ChangeDetectorRef
+  OnInit
 } from "@angular/core";
-import { Action } from "../model/action";
-import { Price } from "../model/price";
 import { MainService } from "../main.service";
+import { Action } from "../model/action";
 import { TeamAction } from "../model/actions/team-action";
 import { TwinAction } from "../model/actions/twin-action";
 import { Prestige } from "../model/prestige/prestige";
+import { Price } from "../model/price";
 
 @Component({
   selector: "app-action",

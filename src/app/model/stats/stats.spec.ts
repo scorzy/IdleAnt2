@@ -1,5 +1,5 @@
-import { Stats } from "./stats";
 import { Run } from "./run";
+import { Stats } from "./stats";
 
 describe("Stats", () => {
   it("should create an instance", () => {

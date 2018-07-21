@@ -1,22 +1,22 @@
 import { EventEmitter } from "@angular/core";
-import { FullUnit } from "./full-unit";
-import { UnitGroup } from "./unit-group";
-import { Materials } from "./units/materials";
-import { Utility } from "./utility";
-import { Gatherers } from "./units/gatherers";
-import { Tabs } from "./tabs";
-import { Researches } from "./units/researches";
-import { Price } from "./price";
-import { Workers } from "./units/workers";
-import { World } from "./world";
-import { WorldBonus } from "./units/world-bonus";
-import { Malus } from "./malus";
-import { WorldMalus } from "./units/world-malus";
-import { MalusKiller } from "./units/malus-killer";
-import { AllPrestige } from "./prestige/all-prestige";
 import { WarpAction } from "./actions/warp-action";
 import { AutoBuyManager } from "./autoBuy/auto-buy-manager";
+import { FullUnit } from "./full-unit";
+import { Malus } from "./malus";
+import { AllPrestige } from "./prestige/all-prestige";
+import { Price } from "./price";
 import { Stats } from "./stats/stats";
+import { Tabs } from "./tabs";
+import { UnitGroup } from "./unit-group";
+import { Gatherers } from "./units/gatherers";
+import { MalusKiller } from "./units/malus-killer";
+import { Materials } from "./units/materials";
+import { Researches } from "./units/researches";
+import { Workers } from "./units/workers";
+import { WorldBonus } from "./units/world-bonus";
+import { WorldMalus } from "./units/world-malus";
+import { Utility } from "./utility";
+import { World } from "./world";
 
 const STARTING_FOOD = new Decimal(100);
 
@@ -133,6 +133,7 @@ export class Game {
     // this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
     // this.materials.list.forEach(u => (u.unlocked = true));
     this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
+    this.tabs.tabList.forEach(t => (t.unlocked = true));
     // // this.worldMalus.foodMalus1.quantity = new Decimal(100);
     // this.worldMalus.foodMalus1.quantity = new Decimal(100);
     // this.worldMalus.foodMalus2.quantity = new Decimal(10);
@@ -146,12 +147,13 @@ export class Game {
     this.units.push(this.experience, this.time);
     this.buildLists();
     this.unitGroups.forEach(g => (g.selected = g.list.filter(u => u.unlocked)));
-
-    World.biome.push(new World());
-    this.currentWorld.winContidions.push(
-      new Price(this.genX3.list[0], new Decimal(100))
-    );
-    this.currentWorld.notWinConditions.push(this.worldMalus.crystalMalus1);
+    //#endregion
+    //#region Worlds
+    // World.biome.push(new World());
+    // this.currentWorld.winContidions.push(
+    //   new Price(this.genX3.list[0], new Decimal(100))
+    // );
+    // this.currentWorld.notWinConditions.push(this.worldMalus.crystalMalus1);
     this.generateWorlds();
     //#endregion
     //#region Time Warp
@@ -270,8 +272,9 @@ export class Game {
       .forEach(u => (u.endIn = u.endIn - maxTime));
 
     if (!this.isPaused) {
-      if (maxTime > Number.EPSILON)
+      if (maxTime > Number.EPSILON) {
         this.update2(new Decimal(maxTime).div(1000));
+      }
 
       // Something has ened
       if (unitZero) {
@@ -392,8 +395,9 @@ export class Game {
       );
       if (u.quantity.gt(0.5)) {
         u.unlock();
-        if (u.buyAction && u.buyAction.toUnlock)
+        if (u.buyAction && u.buyAction.toUnlock) {
           u.buyAction.toUnlock.forEach(a => a.unlock());
+        }
       }
     });
 

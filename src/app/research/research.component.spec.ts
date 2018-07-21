@@ -1,16 +1,16 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ResearchComponent } from "./research.component";
 import { CUSTOM_ELEMENTS_SCHEMA, EventEmitter } from "@angular/core";
-import { ClarityModule } from "@clr/angular";
-import { ToastrModule } from "ngx-toastr";
-import { RouterTestingModule } from "@angular/router/testing";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FormatPipe } from "../format.pipe";
+import { RouterTestingModule } from "@angular/router/testing";
+import { ClarityModule } from "@clr/angular";
+import { ToastrModule } from "ngx-toastr";
 import { EndInPipe } from "../end-in.pipe";
+import { FormatPipe } from "../format.pipe";
 import { Research } from "../model/research";
 import { Researches } from "../model/units/researches";
+import { ResearchComponent } from "./research.component";
 
 describe("ResearchComponent", () => {
   let component: ResearchComponent;

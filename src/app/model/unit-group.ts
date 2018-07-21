@@ -138,10 +138,11 @@ export class UnitGroup {
     );
     let toChange = false;
 
-    if (this.chartData.length === newChartData.length)
-      for (let i = 0; i < this.selected.length; i++)
+    if (this.chartData.length === newChartData.length) {
+      for (let i = 0; i < this.selected.length; i++) {
         toChange = toChange || newChartData[i] !== this.chartData[i];
-    else toChange = true;
+      }
+    } else toChange = true;
 
     if (toChange) this.chartData = newChartData;
   }

@@ -1,16 +1,16 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ActionGroupComponent } from "./action-group.component";
 import { CUSTOM_ELEMENTS_SCHEMA, EventEmitter } from "@angular/core";
-import { ClarityModule } from "@clr/angular";
-import { ToastrModule } from "ngx-toastr";
-import { RouterTestingModule } from "@angular/router/testing";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FormatPipe } from "../format.pipe";
+import { RouterTestingModule } from "@angular/router/testing";
+import { ClarityModule } from "@clr/angular";
+import { ToastrModule } from "ngx-toastr";
 import { EndInPipe } from "../end-in.pipe";
+import { FormatPipe } from "../format.pipe";
 import { ActionGroup } from "../model/actions/action-group";
 import { Game } from "../model/game";
+import { ActionGroupComponent } from "./action-group.component";
 
 describe("ActionGroupComponent", () => {
   let component: ActionGroupComponent;

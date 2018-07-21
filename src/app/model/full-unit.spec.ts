@@ -1,5 +1,5 @@
-import { FullUnit } from "./full-unit";
 import { Action } from "./action";
+import { FullUnit } from "./full-unit";
 
 describe("FullUnit", () => {
   it("should create an instance", () => {

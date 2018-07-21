@@ -1,5 +1,5 @@
-import { AutoBuy } from "./auto-buy";
 import { Action } from "../action";
+import { AutoBuy } from "./auto-buy";
 import { AutoBuyManager } from "./auto-buy-manager";
 
 describe("AutoBuy", () => {

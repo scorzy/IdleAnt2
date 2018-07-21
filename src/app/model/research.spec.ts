@@ -1,7 +1,7 @@
+import { EventEmitter } from "@angular/core";
+import { FullUnit } from "./full-unit";
 import { Research } from "./research";
 import { Researches } from "./units/researches";
-import { FullUnit } from "./full-unit";
-import { EventEmitter } from "@angular/core";
 
 describe("Research", () => {
   const researches = new Researches(new EventEmitter<string>());

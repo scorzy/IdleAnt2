@@ -1,11 +1,11 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  OnInit,
   Input,
-  ChangeDetectionStrategy
+  OnInit
 } from "@angular/core";
-import { Production } from "../model/production";
 import { MainService } from "../main.service";
+import { Production } from "../model/production";
 import { ProductionBonus } from "../model/production-bonus";
 
 @Component({

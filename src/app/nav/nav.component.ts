@@ -1,15 +1,15 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  Component,
+  OnInit
 } from "@angular/core";
-import { Game } from "../model/game";
-import { UnitGroup } from "../model/unit-group";
-import { BaseUnit } from "../model/baseUnit";
 import { MainService } from "../main.service";
-import { Malus } from "../model/malus";
+import { BaseUnit } from "../model/baseUnit";
 import { FullUnit } from "../model/full-unit";
+import { Game } from "../model/game";
+import { Malus } from "../model/malus";
+import { UnitGroup } from "../model/unit-group";
 
 @Component({
   selector: "app-nav",

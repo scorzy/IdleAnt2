@@ -1,15 +1,15 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
-  Input
+  Component,
+  Input,
+  OnInit
 } from "@angular/core";
-import { World } from "../model/world";
-import { Price } from "../model/price";
-import { BaseUnit } from "../model/baseUnit";
-import { Research } from "../model/research";
-import { FullUnit } from "../model/full-unit";
 import { MainService } from "../main.service";
+import { BaseUnit } from "../model/baseUnit";
+import { FullUnit } from "../model/full-unit";
+import { Price } from "../model/price";
+import { Research } from "../model/research";
+import { World } from "../model/world";
 
 @Component({
   selector: "app-world",

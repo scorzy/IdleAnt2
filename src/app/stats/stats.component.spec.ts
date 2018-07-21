@@ -1,15 +1,15 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { StatsComponent } from "./stats.component";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { ClarityModule } from "@clr/angular";
-import { RouterTestingModule } from "@angular/router/testing";
 import { FormsModule } from "@angular/forms";
-import { ToastrModule } from "ngx-toastr";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { OptionsService } from "../options.service";
-import { MainService } from "../main.service";
+import { RouterTestingModule } from "@angular/router/testing";
+import { ClarityModule } from "@clr/angular";
+import { ToastrModule } from "ngx-toastr";
 import { FormatPipe } from "../format.pipe";
+import { MainService } from "../main.service";
+import { OptionsService } from "../options.service";
+import { StatsComponent } from "./stats.component";
 
 describe("StatsComponent", () => {
   let component: StatsComponent;

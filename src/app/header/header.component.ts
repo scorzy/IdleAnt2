@@ -1,9 +1,9 @@
 import {
-  Component,
-  OnInit,
-  Input,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { MainService } from "../main.service";

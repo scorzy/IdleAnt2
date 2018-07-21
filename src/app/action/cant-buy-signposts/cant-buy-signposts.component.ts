@@ -1,14 +1,14 @@
 import {
-  Component,
-  OnInit,
-  Input,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
   OnDestroy,
-  ChangeDetectorRef
+  OnInit
 } from "@angular/core";
+import { MainService } from "../../main.service";
 import { Action } from "../../model/action";
 import { Price } from "../../model/price";
-import { MainService } from "../../main.service";
 
 @Component({
   selector: "app-cant-buy-signposts",

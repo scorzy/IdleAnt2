@@ -1,15 +1,17 @@
-import { Price } from "./price";
-import { FullUnit } from "./full-unit";
+import sample from "lodash-es/sample";
+import uniq from "lodash-es/uniq";
 import { BaseUnit } from "./baseUnit";
+import { FullUnit } from "./full-unit";
 import { Game } from "./game";
 import { Malus } from "./malus";
+import { Price } from "./price";
+import { Research } from "./research";
 import { STRINGS } from "./strings";
 import { Utility } from "./utility";
-import { Research } from "./research";
-import uniq from "lodash-es/uniq";
-import sample from "lodash-es/sample";
 
 export class World {
+  static readonly BASE_WIN_CONDITION = new Decimal(100);
+
   static prefix = new Array<World>();
   static biome = new Array<World>();
   static suffix = new Array<World>();
@@ -41,21 +43,29 @@ export class World {
 
   setLevel(level: Decimal) {
     this.level = new Decimal(level);
-    const multi = level.div(10).plus(1);
-    const multiLog = new Decimal(multi.plus(1.1).log(1.1));
+
+    this.level = new Decimal(10);
+
+    const multi = this.level.div(5).plus(1);
     this.productionsBonus.forEach(b => (b[1] = b[1].times(multi)));
     this.productionsEfficienty.forEach(b => (b[1] = b[1].times(multi)));
     this.productionsAll.forEach(b => (b[1] = b[1].times(multi)));
     this.startingUnit.forEach(b => (b[1] = b[1].times(multi)));
+
     this.winContidions.forEach(w => {
-      w.price = w.price.times(w.base.winNonLiner ? multi : multiLog);
+      w.price = w.price.times(multi);
+      if (w.base.winNonLiner) {
+        w.price = w.price.pow(0.9);
+      }
+      w.price = w.price.floor();
     });
-    this.prestige = level
+
+    this.prestige = this.level
       .times(10)
-      .times(level.plus(10).log10())
+      .times(this.level.plus(10).log10())
       .floor();
     this.notWinConditions.forEach(n => {
-      n.quantity = new Decimal(level);
+      n.quantity = new Decimal(this.level);
       n.producedBy.find(u => u.rateo.lt(0)).producer.unlock();
       const n2 = n.producedBy.find(u => u.rateo.gt(0)).producer;
       const n3 = n2.producedBy.find(u => u.rateo.gt(0)).producer;
@@ -136,9 +146,9 @@ export class World {
       });
       w.productionsEfficienty.forEach(a => {
         const prod = retWorld.productionsEfficienty.find(p => p[0] === a[0]);
-        if (!prod)
+        if (!prod) {
           retWorld.productionsEfficienty.push([a[0], new Decimal(a[1])]);
-        else prod[1] = prod[1].plus(a[1]);
+        } else prod[1] = prod[1].plus(a[1]);
       });
       w.productionsAll.forEach(a => {
         const prod = retWorld.productionsAll.find(p => p[0] === a[0]);

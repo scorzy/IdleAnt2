@@ -1,6 +1,6 @@
 import { Action } from "../action";
-import { Price } from "../price";
 import { Game } from "../game";
+import { Price } from "../price";
 
 export class ActionGroup {
   canBuy = false;

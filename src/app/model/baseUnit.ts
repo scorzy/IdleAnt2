@@ -1,7 +1,7 @@
-import { UnitGroup } from "./unit-group";
-import { STRINGS } from "./strings";
 import isArray from "lodash-es/isArray";
 import sample from "lodash-es/sample";
+import { STRINGS } from "./strings";
+import { UnitGroup } from "./unit-group";
 
 export class BaseUnit {
   unlocked = true;
@@ -28,8 +28,9 @@ export class BaseUnit {
   }
 
   setUiValue() {
-    if (this.quantity.cmp(this.uiQuantity) !== 0)
+    if (this.quantity.cmp(this.uiQuantity) !== 0) {
       this.uiQuantity = this.quantity;
+    }
   }
 
   reset() {

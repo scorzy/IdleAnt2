@@ -1,6 +1,6 @@
 import { Action } from "./action";
-import { Price } from "./price";
 import { IUnlocable } from "./iunlocable";
+import { Price } from "./price";
 
 export class UnlockAction extends Action {
   constructor(

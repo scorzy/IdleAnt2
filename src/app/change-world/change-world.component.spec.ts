@@ -1,9 +1,9 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { ChangeWorldComponent } from "./change-world.component";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { ClarityModule } from "@clr/angular";
-import { FormatPipe } from "../format.pipe";
 import { ToastrModule } from "ngx-toastr";
+import { FormatPipe } from "../format.pipe";
+import { ChangeWorldComponent } from "./change-world.component";
 
 describe("ChangeWorldComponent", () => {
   let component: ChangeWorldComponent;

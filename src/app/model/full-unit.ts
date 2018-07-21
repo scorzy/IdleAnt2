@@ -1,16 +1,16 @@
-import { BaseUnit } from "./baseUnit";
 import { Action } from "./action";
-import { IUnlocable } from "./iunlocable";
-import { Price } from "./price";
 import { BuyAction } from "./actions/buy-action";
-import { Production } from "./production";
-import { TwinAction } from "./actions/twin-action";
-import { Research } from "./research";
 import { TeamAction } from "./actions/team-action";
-import { ProductionBonus } from "./production-bonus";
+import { TwinAction } from "./actions/twin-action";
+import { AutoBuy } from "./autoBuy/auto-buy";
+import { BaseUnit } from "./baseUnit";
+import { IUnlocable } from "./iunlocable";
 import { Malus } from "./malus";
 import { Prestige } from "./prestige/prestige";
-import { AutoBuy } from "./autoBuy/auto-buy";
+import { Price } from "./price";
+import { Production } from "./production";
+import { ProductionBonus } from "./production-bonus";
+import { Research } from "./research";
 
 export class FullUnit extends BaseUnit implements IUnlocable {
   unlocked = false;
@@ -109,8 +109,9 @@ export class FullUnit extends BaseUnit implements IUnlocable {
 
     if (teamBonus && this.buyAction) {
       this.bonus = this.buyAction.quantity.times(this.boughtBonus);
-      if (this.teamAction)
+      if (this.teamAction) {
         this.bonus = this.bonus.times(this.teamAction.quantity.plus(1));
+      }
     }
   }
   setUiValue() {
@@ -147,8 +148,9 @@ export class FullUnit extends BaseUnit implements IUnlocable {
 
     if ("q" in data) this.quantity = new Decimal(data.q);
 
-    if (this.actions && "a" in data)
+    if (this.actions && "a" in data) {
       for (const s of data.a) this.actions.find(a => a.id === s.i).restore(s);
+    }
 
     this.unlocked = !!data.u;
 

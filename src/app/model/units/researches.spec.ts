@@ -1,7 +1,7 @@
-import { Researches } from "./researches";
-import { Game } from "../game";
-import { FullUnit } from "../full-unit";
 import { EventEmitter } from "@angular/core";
+import { FullUnit } from "../full-unit";
+import { Game } from "../game";
+import { Researches } from "./researches";
 
 describe("Researches", () => {
   const science = new FullUnit("scie", "Science", "Science");

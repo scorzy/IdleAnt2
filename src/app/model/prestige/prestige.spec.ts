@@ -1,5 +1,5 @@
-import { Prestige } from "./prestige";
 import { FullUnit } from "../full-unit";
+import { Prestige } from "./prestige";
 
 describe("Prestige", () => {
   it("should create an instance", () => {

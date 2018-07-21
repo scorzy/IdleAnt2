@@ -1,11 +1,11 @@
 import {
-  Component,
-  OnInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
-  ChangeDetectionStrategy
+  Component,
+  OnInit
 } from "@angular/core";
-import { MainService } from "../main.service";
 import { ActivatedRoute } from "@angular/router";
+import { MainService } from "../main.service";
 import { FullUnit } from "../model/full-unit";
 
 @Component({

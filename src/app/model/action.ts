@@ -1,7 +1,7 @@
+import { AutoBuy } from "./autoBuy/auto-buy";
 import { BaseUnit } from "./baseUnit";
 import { Price } from "./price";
 import { Research } from "./research";
-import { AutoBuy } from "./autoBuy/auto-buy";
 
 export class Action extends BaseUnit {
   done = false;
@@ -43,8 +43,9 @@ export class Action extends BaseUnit {
       this.maxBuy = this.prices
         .map(p => p.maxBuy)
         .reduce((p, c) => p.min(c), new Decimal(Number.POSITIVE_INFINITY));
-      if (this.isLimited)
+      if (this.isLimited) {
         this.maxBuy = Decimal.min(this.limit.minus(this.quantity), this.maxBuy);
+      }
       this.canBuy = this.maxBuy.gte(1);
     }
   }

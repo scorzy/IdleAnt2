@@ -1,7 +1,7 @@
 import { ClrDatagridComparatorInterface } from "@clr/angular";
-import { Production } from "./production";
 import { BaseUnit } from "./baseUnit";
 import { FullUnit } from "./full-unit";
+import { Production } from "./production";
 import { Run } from "./stats/run";
 
 export class Utility {

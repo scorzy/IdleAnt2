@@ -1,8 +1,8 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
-  Input
+  Component,
+  Input,
+  OnInit
 } from "@angular/core";
 /**
  *  Display polynom

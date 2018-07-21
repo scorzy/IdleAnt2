@@ -1,9 +1,9 @@
 import {
-  Component,
-  OnInit,
-  Input,
   ChangeDetectionStrategy,
-  OnChanges
+  Component,
+  Input,
+  OnChanges,
+  OnInit
 } from "@angular/core";
 import { FullUnit } from "../../model/full-unit";
 

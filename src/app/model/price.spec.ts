@@ -1,6 +1,6 @@
 import { BaseUnit } from "./baseUnit";
-import { Price } from "./price";
 import { FullUnit } from "./full-unit";
+import { Price } from "./price";
 
 describe("Price", () => {
   it("should create an instance", () => {

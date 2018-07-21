@@ -1,10 +1,10 @@
 import {
-  Component,
-  OnInit,
-  Input,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  OnDestroy
+  Component,
+  Input,
+  OnDestroy,
+  OnInit
 } from "@angular/core";
 import { MainService } from "../../main.service";
 

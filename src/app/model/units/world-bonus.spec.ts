@@ -1,6 +1,6 @@
-import { Workers } from "./workers";
-import { Game } from "../game";
 import { EventEmitter } from "@angular/core";
+import { Game } from "../game";
+import { Workers } from "./workers";
 import { WorldBonus } from "./world-bonus";
 
 describe("WorldBonus", () => {

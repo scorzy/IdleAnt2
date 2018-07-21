@@ -5,9 +5,9 @@
     "object-literal-sort-keys": false,
     "no-submodule-imports": false,
     "member-access": [true, "no-public"],
-    "ordered-imports": false,
+    "ordered-imports": true,
     "comment-format": false,
-    "curly": [false, "ignore-same-line"],
+    "curly": [true, "ignore-same-line"],
     "prettier": true
   }
 }

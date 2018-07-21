@@ -1,6 +1,6 @@
-import { PrestigeGroup } from "./prestige-group";
 import { Game } from "../game";
 import { Prestige } from "./prestige";
+import { PrestigeGroup } from "./prestige-group";
 
 export class Time extends PrestigeGroup {
   timeProducer: Prestige;

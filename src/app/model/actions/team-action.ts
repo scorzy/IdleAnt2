@@ -1,6 +1,6 @@
 import { Action } from "../action";
-import { Price } from "../price";
 import { FullUnit } from "../full-unit";
+import { Price } from "../price";
 import { Research } from "../research";
 
 export class TeamAction extends Action {

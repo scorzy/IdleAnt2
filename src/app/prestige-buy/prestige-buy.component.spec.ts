@@ -1,15 +1,15 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { PrestigeBuyComponent } from "./prestige-buy.component";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { ClarityModule } from "@clr/angular";
-import { ToastrModule } from "ngx-toastr";
-import { RouterTestingModule } from "@angular/router/testing";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterTestingModule } from "@angular/router/testing";
+import { ClarityModule } from "@clr/angular";
+import { ToastrModule } from "ngx-toastr";
 import { FormatPipe } from "../format.pipe";
-import { Prestige } from "../model/prestige/prestige";
 import { FullUnit } from "../model/full-unit";
+import { Prestige } from "../model/prestige/prestige";
+import { PrestigeBuyComponent } from "./prestige-buy.component";
 
 describe("PrestigeBuyComponent", () => {
   let component: PrestigeBuyComponent;
