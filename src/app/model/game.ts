@@ -214,35 +214,40 @@ export class Game {
 
     this.reloadProduction();
 
+    //#region get polynom
     for (const unit of this.unlockedUnits) {
-      unit.a = new Decimal(0);
-      unit.b = new Decimal(0);
-      unit.c = new Decimal(0);
+      unit.tempA = new Decimal(0);
+      unit.tempB = new Decimal(0);
+      unit.tempC = new Decimal(0);
       const d = unit.quantity;
 
       for (const prod1 of unit.producedBy.filter(p => p.producer.isActive())) {
         // x
         const prodX = prod1.prodPerSec;
-        unit.c = unit.c.plus(prodX.times(prod1.producer.quantity));
+        unit.tempC = unit.tempC.plus(prodX.times(prod1.producer.quantity));
 
         for (const prod2 of prod1.producer.producedBy.filter(p =>
           p.producer.isActive()
         )) {
           // x^2
           const prodX2 = prod2.prodPerSec.times(prodX);
-          unit.b = unit.b.plus(prodX2.times(prod2.producer.quantity));
+          unit.tempB = unit.tempB.plus(prodX2.times(prod2.producer.quantity));
 
           for (const prod3 of prod2.producer.producedBy.filter(p =>
             p.producer.isActive()
           )) {
             // x^3
             const prodX3 = prod3.prodPerSec.times(prodX2);
-            unit.a = unit.a.plus(prodX3.times(prod3.producer.quantity));
+            unit.tempA = unit.tempA.plus(prodX3.times(prod3.producer.quantity));
           }
         }
       }
-      unit.a = unit.a.div(6);
-      unit.b = unit.b.div(2);
+      unit.tempA = unit.tempA.div(6);
+      unit.tempB = unit.tempB.div(2);
+      if (!unit.tempA.eq(unit.a)) unit.a = unit.tempA;
+      if (!unit.tempB.eq(unit.b)) unit.b = unit.tempB;
+      if (!unit.tempC.eq(unit.c)) unit.c = unit.tempC;
+      //#endregion
 
       if (unit.a.lt(0) || unit.b.lt(0) || unit.c.lt(0) || d.lt(0)) {
         const solution = Utility.solveEquation(
@@ -301,12 +306,14 @@ export class Game {
    * @param seconds time in seconds
    */
   update2(seconds: Decimal) {
-    this.unlockedUnits.forEach(u => {
-      u.quantity = u.quantity
-        .plus(u.a.times(Decimal.pow(seconds, 3)))
-        .plus(u.b.times(Decimal.pow(seconds, 2)))
-        .plus(u.c.times(seconds));
-    });
+    this.unlockedUnits
+      .filter(u => !u.a.eq(0) || !u.b.eq(0) || !u.c.eq(0))
+      .forEach(u => {
+        u.quantity = u.quantity
+          .plus(u.a.times(Decimal.pow(seconds, 3)))
+          .plus(u.b.times(Decimal.pow(seconds, 2)))
+          .plus(u.c.times(seconds));
+      });
   }
   /**
    *  Reload actions costs
@@ -331,7 +338,7 @@ export class Game {
     );
     this.unlockedUnits.forEach(u => {
       u.actions.forEach(a => a.reload());
-      u.setUiValue();
+      // u.setUiValue();
     });
     const team = this.researches.team2.done;
     const twin = this.researches.twin.done;

@@ -7,7 +7,7 @@ export class BaseUnit {
   unlocked = true;
   unitGroup: UnitGroup;
 
-  uiQuantity = new Decimal(0);
+  // uiQuantity = new Decimal(0);
 
   constructor(
     public id: string,
@@ -27,15 +27,15 @@ export class BaseUnit {
       : STRINGS.units[this.id][1];
   }
 
-  setUiValue() {
-    if (this.quantity.cmp(this.uiQuantity) !== 0) {
-      this.uiQuantity = this.quantity;
-    }
-  }
+  // setUiValue() {
+  //   if (this.quantity.cmp(this.uiQuantity) !== 0) {
+  //     this.uiQuantity = this.quantity;
+  //   }
+  // }
 
   reset() {
     this.quantity = new Decimal(0);
-    this.uiQuantity = new Decimal(0);
+    // this.uiQuantity = new Decimal(0);
   }
 
   //Region Save and Restore

@@ -50,7 +50,7 @@ export const STRINGS = {
     Ms3: ["Pseudoscientist", "Pseudoscientist"],
     //  Killers
     F: ["Disinfestation Ant", "Destroy poisonous fungus."],
-    M: ["wmki", ""],
+    W: ["wmki", ""],
     C: ["cmki", ""],
     S: ["Popularizers", ""]
   },

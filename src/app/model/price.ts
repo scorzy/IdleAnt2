@@ -55,7 +55,7 @@ export class Price {
       );
     }
     this.base.quantity = this.base.quantity.minus(price);
-    this.base.setUiValue();
+    // this.base.setUiValue();
   }
   loadPriceUser(num: Decimal, start: Decimal) {
     const tempPrice: Decimal =

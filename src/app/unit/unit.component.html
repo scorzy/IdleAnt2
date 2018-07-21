@@ -11,7 +11,7 @@
 
       <p *ngIf="unit.c.abs().gt(0.01)">
         This is groving at:
-        <app-polynom [a]="unit.uiA" [b]="unit.uiB" [c]="unit.uiC"></app-polynom>
+        <app-polynom [a]="unit.a" [b]="unit.b" [c]="unit.c"></app-polynom>
       </p>
 
       <clr-alert *ngIf="unit.isEnding" [clrAlertType]="malus ? 'alert-sucess':'alert-warning'" [clrAlertClosable]="false" [clrAlertSizeSmall]="false">

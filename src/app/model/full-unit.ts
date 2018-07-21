@@ -43,12 +43,6 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   productionsEfficienty = new Array<ProductionBonus>();
   productionsAll = new Array<ProductionBonus>();
 
-  //#region ui
-  uiA = new Decimal(0);
-  uiB = new Decimal(0);
-  uiC = new Decimal(0);
-  //#endregion
-
   malus: Malus = null;
   winNonLiner = true;
 
@@ -59,6 +53,10 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   autoBuyerTime = 5;
   autoBuyerPrice = 10;
   //#endregion
+
+  tempA = new Decimal(0);
+  tempB = new Decimal(0);
+  tempC = new Decimal(0);
 
   constructor(
     id: string,
@@ -114,12 +112,12 @@ export class FullUnit extends BaseUnit implements IUnlocable {
       }
     }
   }
-  setUiValue() {
-    super.setUiValue();
-    if (this.uiA.cmp(this.a) !== 0) this.uiA = this.a;
-    if (this.uiB.cmp(this.b) !== 0) this.uiB = this.b;
-    if (this.uiC.cmp(this.c) !== 0) this.uiC = this.c;
-  }
+  // setUiValue() {
+  //   super.setUiValue();
+  //   if (this.uiA.cmp(this.a) !== 0) this.uiA = this.a;
+  //   if (this.uiB.cmp(this.b) !== 0) this.uiB = this.b;
+  //   if (this.uiC.cmp(this.c) !== 0) this.uiC = this.c;
+  // }
 
   reset() {
     super.reset();
