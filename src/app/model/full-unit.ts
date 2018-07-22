@@ -1,3 +1,4 @@
+import uniq from "lodash-es/uniq";
 import { Action } from "./action";
 import { BuyAction } from "./actions/buy-action";
 import { TeamAction } from "./actions/team-action";
@@ -89,6 +90,7 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     if (this.unitGroup) {
       this.unitGroup.check();
       this.unitGroup.selected.push(this);
+      this.unitGroup.selected = uniq(this.unitGroup.selected);
     }
   }
   isActive(): boolean {

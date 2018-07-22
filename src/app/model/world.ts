@@ -100,7 +100,9 @@ export class World {
       l: this.level,
       pb: this.productionsBonus.map(b => [b[0].id, b[1]]),
       pe: this.productionsEfficienty.map(b => [b[0].id, b[1]]),
-      pa: this.productionsAll.map(b => [b[0].id, b[1]])
+      pa: this.productionsAll.map(b => [b[0].id, b[1]]),
+      wc: this.winContidions.map(w => [w.base.id, w.price]),
+      nwc: this.notWinConditions.map(n => n.id)
     };
   }
   restore(data: any, game: Game) {
@@ -123,6 +125,17 @@ export class World {
         this.findBonus(b[0], game),
         new Decimal(b[1])
       ]);
+    }
+    if ("wc" in data) {
+      this.winContidions = data.wc.map(
+        w =>
+          new Price(game.units.find(u => u.id === w[0]), new Decimal(w[1]), 1)
+      );
+    }
+    if ("nwc" in data) {
+      this.notWinConditions = data.nwc.map(nwc =>
+        game.units.find(u => u.id === nwc)
+      );
     }
   }
   findBonus(id: string, game: Game): BaseUnit {

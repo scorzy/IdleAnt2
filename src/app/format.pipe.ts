@@ -32,6 +32,6 @@ export class FormatPipe implements PipeTransform {
       if (!this.options.usaFormat) str = str.replace(".", ",");
     }
 
-    return str;
+    return (value.lt(0) ? "-" : "") + str;
   }
 }

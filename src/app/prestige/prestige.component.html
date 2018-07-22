@@ -7,7 +7,9 @@
         <p>You need:</p>
         <div *ngFor="let price of ms.game.currentWorld.winContidions; trackBy:getPriceId">
           <h6>{{price.base.name}}
-            <span class="monospace">{{price.base.quantity | format}}/{{price.price | format}}</span>
+            <span class="monospace">
+              {{price.base.quantity | format:true}}/{{price.price | format:true}}
+            </span>
           </h6>
           <div class="progress-static labeled" [ngClass]="{'success': price.canBuy,'danger': !price.canBuy}">
             <div class="progress-meter" [attr.data-value]="price.completedPercent" [attr.data-displayval]="price.completedPercent"></div>
