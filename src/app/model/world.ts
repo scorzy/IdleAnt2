@@ -44,8 +44,6 @@ export class World {
   setLevel(level: Decimal) {
     this.level = new Decimal(level);
 
-    this.level = new Decimal(10);
-
     const multi = this.level.div(5).plus(1);
     this.productionsBonus.forEach(b => (b[1] = b[1].times(multi)));
     this.productionsEfficienty.forEach(b => (b[1] = b[1].times(multi)));

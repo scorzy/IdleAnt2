@@ -49,7 +49,7 @@ export class Game {
   nextWorlds = new Array<World>();
   canTravel = false;
 
-  maxLevel = new Decimal(1);
+  maxLevel = new Decimal(1e3);
   experience: FullUnit;
   time: FullUnit;
   allPrestige: AllPrestige;
@@ -389,13 +389,16 @@ export class Game {
     this.gatherers.drone.unlocked = true;
     this.materials.food.unlocked = true;
 
-    if (this.canTravel) this.experience.quantity = newPrestige;
+    if (this.canTravel) {
+      this.experience.quantity = newPrestige;
+      this.maxLevel = this.maxLevel.plus(this.currentWorld.level);
+    }
 
     this.currentWorld = world;
     this.applyWorldBonus();
     this.researches.reset();
 
-    //  Followers
+    //#region  Followers
     this.units.filter(u => u.follower).forEach(u => {
       u.quantity = u.quantity.plus(
         u.follower.quantity.times(u.followerQuantity)
@@ -407,6 +410,7 @@ export class Game {
         }
       }
     });
+    //#endregion
 
     this.unitGroups.forEach(g => g.check());
     this.buildLists();
@@ -418,7 +422,7 @@ export class Game {
   }
   generateWorlds(userMin: Decimal = null, userMax: Decimal = null) {
     if (userMin == null) userMin = new Decimal(1);
-    if (userMax == null) userMax = new Decimal(1);
+    if (userMax == null) userMax = this.maxLevel;
 
     userMax = Decimal.min(userMax, this.maxLevel);
 

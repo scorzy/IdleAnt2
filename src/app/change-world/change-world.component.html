@@ -1,6 +1,26 @@
 <div class="content-area">
   <h1>Here you can travel to a new world.</h1>
+
+
   <button class="btn" (click)="randomize()">Randomize</button>
+
+  <span>
+    Min level:
+    <span class="monospace">
+      {{minLevel | format:true}}
+    </span>
+  </span>
+  <span>
+    Max level:
+    <span class="monospace">
+      {{maxLevel | format:true}}
+    </span>
+  </span>
+
+  <p-slider [(ngModel)]="rangeValues" [range]="true" [min]="1" [max]="maxSafeInt" (onChange)="setLevels()"></p-slider>
+
+
+
   <div class="card-columns">
     <app-world [world]="world" *ngFor="let world of ms.game.nextWorlds; trackBy:getWorldId"></app-world>
   </div>

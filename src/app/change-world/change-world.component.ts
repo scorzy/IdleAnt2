@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit
+} from "@angular/core";
 import { MainService } from "../main.service";
 import { World } from "../model/world";
 @Component({
@@ -8,16 +13,33 @@ import { World } from "../model/world";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChangeWorldComponent implements OnInit {
-  constructor(public ms: MainService) {}
+  maxSafeInt = Number.MAX_SAFE_INTEGER;
+  minLevel = new Decimal(1);
+  maxLevel = new Decimal(1);
+  rangeValues: number[] = [1, Number.MAX_SAFE_INTEGER];
+
+  constructor(public ms: MainService, private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
-    //
+    setTimeout(() => {
+      this.setLevels();
+      this.cd.markForCheck();
+    }, 0);
+  }
+  setLevels() {
+    this.maxLevel = this.ms.game.maxLevel
+      .times(this.rangeValues[1] / Number.MAX_SAFE_INTEGER)
+      .ceil();
+    this.minLevel = this.ms.game.maxLevel
+      .times(this.rangeValues[0] / Number.MAX_SAFE_INTEGER)
+      .floor()
+      .min(this.maxLevel);
   }
 
   getWorldId(index: number, world: World) {
     return world.name + world.level + index;
   }
   randomize() {
-    this.ms.game.generateWorlds();
+    this.ms.game.generateWorlds(this.minLevel, this.maxLevel);
   }
 }

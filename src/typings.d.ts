@@ -28,6 +28,7 @@ declare class Decimal {
   ln: () => number;
   log10: () => number;
   floor: () => Decimal;
+  ceil: () => Decimal;
   abs: () => Decimal;
   sqrt: () => Decimal;
   log: (base) => number;
