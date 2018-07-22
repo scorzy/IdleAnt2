@@ -1,3 +1,4 @@
+import { formatNumber, NgLocaleLocalization } from "@angular/common";
 import { Pipe, PipeTransform } from "@angular/core";
 import { OptionsService } from "./options.service";
 
@@ -11,15 +12,25 @@ export class FormatPipe implements PipeTransform {
     value = new Decimal(value);
     if (!formatter) formatter = this.options.formatter;
 
-    let str = value.abs().lessThan(10)
-      ? value.toNumber().toFixed(2)
-      : value.abs().lessThan(100)
-        ? value.toNumber().toFixed(1)
-        : (value.greaterThanOrEqualTo(0) ? "" : "-") +
-          formatter.formatShort(value.abs());
-
-    if (integer && value.abs().lessThan(100)) str = str.replace(/\.0+$/, "");
-    if (!this.options.usaFormat) str = str.replace(".", ",");
+    let str = "";
+    if (value.abs().lt(10000)) {
+      let num = value.abs().toNumber();
+      const digits = integer || num >= 100 ? 0 : num < 10 ? 2 : 1;
+      if (num < 100) {
+        const pow = Math.pow(10, digits + 1);
+        num = Math.floor(num * pow) / pow;
+      } else {
+        num = Math.floor(num);
+      }
+      str = num.toLocaleString(this.options.usaFormat ? "en-US" : "it-IT", {
+        minimumFractionDigits: digits,
+        maximumFractionDigits: digits
+      });
+    } else {
+      str = formatter.formatShort(value.abs());
+      if (integer && value.abs().lessThan(100)) str = str.replace(/\.0+$/, "");
+      if (!this.options.usaFormat) str = str.replace(".", ",");
+    }
 
     return str;
   }
