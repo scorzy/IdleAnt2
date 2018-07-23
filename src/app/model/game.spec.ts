@@ -107,11 +107,18 @@ describe("Game", () => {
       expect(unit.name).not.toBe("");
     }
   });
-  it("researches names", () => {
+  it("Researches names", () => {
     for (const res of game.researches.researches) {
       // tslint:disable-next-line:no-console
       if (res.name === "") console.log("Research without name: " + res.id);
       expect(res.name).not.toBe("");
+    }
+  });
+  it("Prestige names", () => {
+    for (const pre of game.allPrestige.prestigeList) {
+      // tslint:disable-next-line:no-console
+      if (pre.name === "") console.log("Prestige without name: " + pre.id);
+      expect(pre.name).not.toBe("");
     }
   });
 });

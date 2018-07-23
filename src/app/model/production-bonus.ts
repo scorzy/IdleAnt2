@@ -1,7 +1,9 @@
 import { BaseUnit } from "./baseUnit";
 
 export class ProductionBonus {
-  constructor(public unit: BaseUnit, public quantity: Decimal) {}
+  constructor(public unit: BaseUnit, public quantity: Decimal) {
+    unit.usedForProductionBonus.push(this);
+  }
   isActive(): boolean {
     return this.unit.unlocked && this.unit.quantity.gt(0);
   }
@@ -11,5 +13,11 @@ export class ProductionBonus {
   }
   getBonusPercent(): Decimal {
     return this.getBonus().times(100);
+  }
+  getBonusPercentForNum(num: Decimal): Decimal {
+    return this.getForNum(num).times(100);
+  }
+  getForNum(num: Decimal): Decimal {
+    return num.times(this.quantity);
   }
 }

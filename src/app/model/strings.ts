@@ -104,23 +104,14 @@ export const STRINGS = {
   },
   prestige: {
     //  Followers 1
-    drone_fol: ["Drone Follower", "Start new worlds with 5 more drones"],
-    geologist_fol: [
-      "Geologist Follower",
-      "Start new worlds with 5 more geologists"
-    ],
-    student_fol: ["Student Follower", "Start new worlds with 5 more students"],
+    dr_fol: ["Drone Follower", "Start new worlds with 5 more drones"],
+    ge_fol: ["Geologist Follower", "Start new worlds with 5 more geologists"],
+    st_fol: ["Student Follower", "Start new worlds with 5 more students"],
     //  Followers 2
-    farmer_fol2: ["Farmer Follower", "Start new worlds with 5 more farmer"],
-    carpenter_fol2: [
-      "Carpenter Follower",
-      "Start new worlds with 5 more farmer"
-    ],
-    miner_fol2: ["Miner Follower", "Start new worlds with 5 more miner"],
-    scientist_fol2: [
-      "Scientist Follower",
-      "Start new worlds with 5 more scientist"
-    ],
+    f_fol2: ["Farmer Follower", "Start new worlds with 5 more farmer"],
+    c_fol2: ["Carpenter Follower", "Start new worlds with 5 more farmer"],
+    m_fol2: ["Miner Follower", "Start new worlds with 5 more miner"],
+    s_fol2: ["Scientist Follower", "Start new worlds with 5 more scientist"],
     tiPr: ["Time Producer", "+0.1 time/s"],
     tiBa: ["Time Bank", "+1 max hour"],
     //  AutoBuy

@@ -1,7 +1,7 @@
 import { Run } from "./run";
 
 describe("Run", () => {
-  it("should create an instance", () => {
+  it("Should create an instance", () => {
     expect(new Run()).toBeTruthy();
   });
 });

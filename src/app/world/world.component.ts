@@ -7,6 +7,7 @@ import {
 import { MainService } from "../main.service";
 import { BaseUnit } from "../model/baseUnit";
 import { FullUnit } from "../model/full-unit";
+import { Malus } from "../model/malus";
 import { Price } from "../model/price";
 import { Research } from "../model/research";
 import { World } from "../model/world";
@@ -47,5 +48,11 @@ export class WorldComponent implements OnInit {
   }
   getStartId(index, bonus: [FullUnit, Decimal]) {
     return bonus[0].id + bonus[1].toNumber();
+  }
+  getWinId(index, price: Price) {
+    return index + price.base.id + price.price.toString();
+  }
+  getMalusId(index, malus: Malus) {
+    return index + malus.id;
   }
 }

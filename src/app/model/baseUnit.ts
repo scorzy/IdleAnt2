@@ -1,11 +1,14 @@
 import isArray from "lodash-es/isArray";
 import sample from "lodash-es/sample";
+import { ProductionBonus } from "./production-bonus";
 import { STRINGS } from "./strings";
 import { UnitGroup } from "./unit-group";
 
 export class BaseUnit {
   unlocked = true;
   unitGroup: UnitGroup;
+
+  usedForProductionBonus = new Array<ProductionBonus>();
 
   // uiQuantity = new Decimal(0);
 

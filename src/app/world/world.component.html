@@ -1,17 +1,17 @@
 <div class="card-block" *ngIf="world" (click)="openModal()">
   <h3 class="card-title">{{world.name}} ({{world.level |format:true}})</h3>
-  <span>Prestige:
+  <span class="p2">Prestige:
     <span class="monospace">{{world.prestige | format:true}}</span>
   </span>
   <ul class="list">
     <li *ngFor="let bon of world.productionsBonus; trackBy:getBonusId">
-      {{bon[1] | format }} x {{bon[0].name }}
+      {{bon[0].name }} + {{bon[0].usedForProductionBonus[0].getBonusPercentForNum(bon[1]) |format }}%
     </li>
     <li *ngFor="let bon of world.productionsEfficienty; trackBy:getBonusId">
-      {{bon[1] | format }} x {{bon[0].name }}
+      {{bon[0].name }} + {{bon[0].usedForProductionBonus[0].getBonusPercentForNum(bon[1]) |format }}%
     </li>
     <li *ngFor="let bon of world.productionsAll; trackBy:getBonusId">
-      {{bon[1] | format }} x {{bon[0].name }}
+      {{bon[0].name }} + {{bon[0].usedForProductionBonus[0].getBonusPercentForNum(bon[1]) |format }}%
     </li>
     <li *ngFor="let unl of world.startingUnlocked; trackBy:getResearchId">
       {{unl.name}} avaiable.
@@ -20,4 +20,21 @@
       {{start[1] | format}} x {{start[0].name}}
     </li>
   </ul>
+
+  <span class="p2">Win conditions:</span>
+  <ul class="list">
+    <li *ngFor="let win of world.winContidions; trackBy:getWinId">
+      {{win.price | format:true}} x {{win.base.name}}
+    </li>
+  </ul>
+
+  <div *ngIf="world.notWinConditions?.length > 0">
+    <span class="p2">Malus:</span>
+    <ul class="list">
+      <li *ngFor="let mal of world.notWinConditions; trackBy:getMalusId">
+        {{mal.name}}
+      </li>
+    </ul>
+  </div>
+
 </div>

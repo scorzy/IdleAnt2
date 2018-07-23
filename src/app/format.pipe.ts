@@ -13,7 +13,7 @@ export class FormatPipe implements PipeTransform {
     if (!formatter) formatter = this.options.formatter;
 
     let str = "";
-    if (value.abs().lt(10000)) {
+    if (value.abs().lt(100000)) {
       let num = value.abs().toNumber();
       const digits = integer || num >= 100 ? 0 : num < 10 ? 2 : 1;
       if (num < 100) {

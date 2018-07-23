@@ -22,19 +22,19 @@ export class Stats {
     if (!skip) {
       this.completedWorld = this.completedWorld.plus(1);
       this.totalExperience = this.totalExperience.plus(world.prestige);
+      this.runs.unshift(
+        new Run(
+          this.worldStartDate,
+          this.worldStartDate,
+          world.name,
+          world.prestige,
+          !skip
+        )
+      );
     }
-    this.runs.unshift(
-      new Run(
-        this.worldStartDate,
-        this.worldStartDate,
-        world.name,
-        world.prestige,
-        !skip
-      )
-    );
     this.runs[0].reloadExpPerSec();
     this.worldStartDate = new Date();
-    this.runs = this.runs.slice(1, 10);
+    this.runs = this.runs.slice(0, 10);
   }
 
   //#region Save and Load
