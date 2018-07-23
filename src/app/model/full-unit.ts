@@ -114,13 +114,6 @@ export class FullUnit extends BaseUnit implements IUnlocable {
       }
     }
   }
-  // setUiValue() {
-  //   super.setUiValue();
-  //   if (this.uiA.cmp(this.a) !== 0) this.uiA = this.a;
-  //   if (this.uiB.cmp(this.b) !== 0) this.uiB = this.b;
-  //   if (this.uiC.cmp(this.c) !== 0) this.uiC = this.c;
-  // }
-
   reset() {
     super.reset();
     this.unlocked = false;

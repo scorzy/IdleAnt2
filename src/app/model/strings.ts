@@ -62,29 +62,30 @@ export const STRINGS = {
     work_res: ["Workers", "Workers"],
     Buildings_r: ["Buildings", "Buildings"],
     //  Workers
-    farmer_wr: [
+    f_wr: [
       "Farmer",
       "Hydroponics farmers uses crystals to grow fungi without soil."
     ],
-    carpenter_wr: [
+    c_wr: [
       "Carpenter",
       "Carpenter ants build nests inside wood consisting of galleries."
     ],
-    miner_wr: ["Miner", "miner"],
-    scientist_wr: ["Scientist", "scientist"],
+    m_wr: ["Miner", "miner"],
+    s_wr: ["Scientist", "scientist"],
     scie1: ["Scientific method", "+50% science production"],
     // Workers 2
-    farmer_g_r: ["Farm", "farmer"],
-    carpenter_g_r: ["Wood Camp", "carpenter"],
-    miner_g_r: ["Mine", "miner"],
-    scientist_g_r: ["University", "scientist"],
+    Bu_r: ["Buildings", "Buildings"],
+    f_g_r: ["Farm", "farmer"],
+    c_g_r: ["Wood Camp", "carpenter"],
+    m_g_r: ["Mine", "miner"],
+    s_g_r: ["University", "scientist"],
     scie2: ["Scientific Method 2", "+75% science production"],
     //  Workers 3
-    Engineers_r: ["Engineers", "Engineers"],
-    farmer_g_g_r: ["Hydro Engineer", "Hydro Engineer"],
-    carpenter_g_g_r: ["Wood Engineer", "Wood Engineer"],
-    miner_g_g_r: ["Mine Engineer", "Mine Engineer"],
-    scientist_g_g_r: ["Department of Education", "Department of Education"],
+    En_r: ["Engineers", "Engineers"],
+    f_g_g_r: ["Hydro Engineer", "Hydro Engineer"],
+    c_g_g_r: ["Wood Engineer", "Wood Engineer"],
+    m_g_g_r: ["Mine Engineer", "Mine Engineer"],
+    s_g_g_r: ["Department of Education", "Department of Education"],
     scie3: ["Scientific Method 3", "+100% science production"]
   },
   worlds: {

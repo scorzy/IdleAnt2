@@ -27,7 +27,7 @@ module.exports = function(config) {
       //   functions: 80
       // }
     },
-    reporters: ["progress", "spec", "coverage-istanbul"],
+    reporters: ["spec", "coverage-istanbul"], //"progress" ,"spec"
     specReporter: {
       maxLogLines: 5, // limit number of lines logged per test
       suppressErrorSummary: true, // do not print error summary

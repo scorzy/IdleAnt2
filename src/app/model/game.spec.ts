@@ -8,10 +8,13 @@ import { Game } from "./game";
 describe("Game", () => {
   const updateEmitter = new EventEmitter<number>();
   const researchEmitter = new EventEmitter<string>();
+  let game: Game;
+  beforeEach(() => {
+    game = new Game(updateEmitter, researchEmitter);
+  });
   it("should be created", () => {
     expect(new Game(updateEmitter, researchEmitter)).toBeTruthy();
   });
-
   it("Save works", () => {
     const original = new Game(updateEmitter, researchEmitter);
     const second = new Game(updateEmitter, researchEmitter);
@@ -35,11 +38,9 @@ describe("Game", () => {
     expect(second.currentWorld.name).toBe("world name");
   });
   it("Save works 2", () => {
-    const game = new Game(updateEmitter, researchEmitter);
     expect(game.restore({})).toBeFalsy();
   });
   it("Simple update", () => {
-    const game = new Game(updateEmitter, researchEmitter);
     const food = new FullUnit("food", "Food", "Food");
     const farmer = new FullUnit("farmer", "Farmer", "Farmer");
     farmer.quantity = new Decimal(1);
@@ -52,7 +53,6 @@ describe("Game", () => {
     expect(food.quantity.toNumber()).toBe(10);
   });
   it("Simple update 2", () => {
-    const game = new Game(updateEmitter, researchEmitter);
     const food = new FullUnit("food", "Food", "Food");
     const farmer = new FullUnit("farmer", "Farmer-", "Farmer");
     const farmer2 = new FullUnit("farmer2", "Farmer2-", "Farmer2");
@@ -74,7 +74,6 @@ describe("Game", () => {
     expect(Math.floor(farmer2.quantity.toNumber())).toBe(11);
   });
   it("Ending update 2", () => {
-    const game = new Game(updateEmitter, researchEmitter);
     const food = new FullUnit("food", "Food", "Food");
     const consumer = new FullUnit("consumer", "Consumer-", "Consumer");
     const farmer = new FullUnit("farmer", "Farmer-", "Farmer");
@@ -94,10 +93,25 @@ describe("Game", () => {
     expect(farmer.efficiency).toBe(100);
   });
   it("Unique units ID", () => {
-    const game = new Game(updateEmitter, researchEmitter);
     const ids = game.units.map(u => u.id);
     const original = ids.length;
     const unique = uniq(ids).length;
     expect(original).toBe(unique);
+  });
+  it("Units names", () => {
+    for (const unit of game.units.filter(
+      u => u !== game.experience && u !== game.time
+    )) {
+      // tslint:disable-next-line:no-console
+      if (unit.name === "") console.log("Unit without name: " + unit.id);
+      expect(unit.name).not.toBe("");
+    }
+  });
+  it("researches names", () => {
+    for (const res of game.researches.researches) {
+      // tslint:disable-next-line:no-console
+      if (res.name === "") console.log("Research without name: " + res.id);
+      expect(res.name).not.toBe("");
+    }
   });
 });
