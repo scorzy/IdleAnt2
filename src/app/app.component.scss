@@ -77,7 +77,9 @@ $padding: 0.45rem;
   margin-top: 0;
   padding-top: 0;
 }
-
+:host /deep/.clr-vertical-nav .nav-trigger {
+  margin-top: 0;
+}
 @media screen and (max-width: 768px) {
   app-material-nav {
     display: none;

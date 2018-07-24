@@ -42,6 +42,7 @@ import { UnitGroupComponent } from "./unit-group/unit-group.component";
 import { UnitTabsComponent } from "./unit-tabs/unit-tabs.component";
 import { UnitComponent } from "./unit/unit.component";
 import { WorldComponent } from "./world/world.component";
+import { MasteryComponent } from './mastery/mastery.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { WorldComponent } from "./world/world.component";
     UnitTabsComponent,
     ButtonsComponent,
     ActionHeaderComponent,
-    StatsComponent
+    StatsComponent,
+    MasteryComponent
   ],
   imports: [
     BrowserAnimationsModule,

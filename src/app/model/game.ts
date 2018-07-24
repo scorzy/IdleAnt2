@@ -3,6 +3,7 @@ import { WarpAction } from "./actions/warp-action";
 import { AutoBuyManager } from "./autoBuy/auto-buy-manager";
 import { FullUnit } from "./full-unit";
 import { Malus } from "./malus";
+import { AllMasteries } from "./masteries/all-masteries";
 import { AllPrestige } from "./prestige/all-prestige";
 import { Price } from "./price";
 import { Stats } from "./stats/stats";
@@ -61,6 +62,7 @@ export class Game {
 
   autoBuyManager: AutoBuyManager;
   stats: Stats;
+  allMateries: AllMasteries;
 
   constructor(
     public updateEmitter: EventEmitter<number>,
@@ -176,6 +178,7 @@ export class Game {
       }
     });
     //#endregion
+    this.allMateries = new AllMasteries();
     this.stats = new Stats();
   }
   buildLists() {
@@ -457,7 +460,8 @@ export class Game {
       m: this.maxLevel,
       a: this.isPaused,
       abm: this.autoBuyManager.getSave(),
-      s: this.stats.getSave()
+      s: this.stats.getSave(),
+      mas: this.allMateries.getSave()
     };
   }
   restore(data: any): boolean {
@@ -471,6 +475,7 @@ export class Game {
       if ("a" in data) this.isPaused = data.a;
       if ("abm" in data) this.autoBuyManager.restore(data.abm);
       if ("s" in data) this.stats.restore(data.s);
+      if ("mas" in data) this.allMateries.restore(data.mas);
 
       this.unitGroups.forEach(g => g.check());
       this.buildLists();

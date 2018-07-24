@@ -58,6 +58,7 @@
     "primeng": "^6.0.0",
     "rxjs": "^6.2.1",
     "swarm-numberformat": "^0.4.0",
+    "vis": "^4.21.0",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
@@ -68,6 +69,7 @@
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~10.5.2",
+    "@types/vis": "^4.21.5",
     "codelyzer": "~4.4.2",
     "coveralls": "^3.0.1",
     "jasmine-core": "~3.1.0",
