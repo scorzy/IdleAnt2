@@ -28,19 +28,21 @@ export class MasteryComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.networkVis = new Network(
-      this.networkDiv.nativeElement,
-      {
-        nodes: this.ms.game.allMateries.visMasteries,
-        edges: this.ms.game.allMateries.visEdge
-      },
-      {
-        nodes: { borderWidth: 2 },
-        interaction: { hover: true }
-      }
-    );
-    this.networkVis.on("click", params => {
-      this.ms.game.allMateries.buy(params.nodes[0]);
-    });
+    setTimeout(() => {
+      this.networkVis = new Network(
+        this.networkDiv.nativeElement,
+        {
+          nodes: this.ms.game.allMateries.visMasteries,
+          edges: this.ms.game.allMateries.visEdge
+        },
+        {
+          nodes: { borderWidth: 2 },
+          interaction: { hover: true }
+        }
+      );
+      this.networkVis.on("click", params => {
+        this.ms.game.allMateries.buy(params.nodes[0]);
+      });
+    }, 0);
   }
 }
