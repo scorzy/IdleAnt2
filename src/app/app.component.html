@@ -3,9 +3,9 @@
     [travelBadge]="ms.game.canTravel" [prestige]="ms.game.tabs.prestige.unlocked">
   </app-header>
   <app-material-nav></app-material-nav>
-  <div class="content-container">
-    <router-outlet></router-outlet>
-  </div>
+  <!-- <div class="content-container"> -->
+  <router-outlet></router-outlet>
+  <!-- </div> -->
 
   <clr-modal [(clrModalOpen)]="travelMessage">
     <h3 class="modal-title">Change world ?</h3>

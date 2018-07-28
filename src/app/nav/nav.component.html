@@ -1,4 +1,3 @@
-<router-outlet></router-outlet>
 <clr-vertical-nav [clrVerticalNavCollapsible]="false" [clr-nav-level]="2">
 
   <clr-tree-node *ngFor="let unitGroup of ms.game.unlockedGroups; trackBy:getListId">
@@ -26,3 +25,4 @@
   </clr-tree-node>
 
 </clr-vertical-nav>
+<router-outlet></router-outlet>

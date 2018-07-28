@@ -6,6 +6,7 @@ $padding: 0.45rem;
 :host /deep/ .content-container .content-area {
   padding: $padding * 0.5 $padding $padding $padding !important;
 }
+
 :host /deep/ .clr-row {
   margin-right: -$padding/2 !important;
   margin-left: -$padding/2 !important;
@@ -55,6 +56,10 @@ $padding: 0.45rem;
   padding-top: 0;
 }
 
+:host /deep/ clr-tree-node {
+  overflow-y: visible !important;
+}
+
 :host /deep/ .card {
   h6 {
     margin-top: 0.1rem;
@@ -64,27 +69,34 @@ $padding: 0.45rem;
     letter-spacing: normal;
   }
 }
+
 :host /deep/ .btn {
   height: auto;
 }
+
 :host /deep/ app-cant-buy-signposts {
   height: 1rem;
 }
+
 :host /deep/ h1 {
   line-height: 1.6rem;
 }
+
 :host /deep/ clr-datagrid {
   margin-top: 0;
   padding-top: 0;
 }
+
 :host /deep/.clr-vertical-nav .nav-trigger {
   margin-top: 0;
 }
+
 @media screen and (max-width: 768px) {
   app-material-nav {
     display: none;
   }
 }
+
 @media screen and (max-width: 1050px) {
   :host /deep/ {
     .clr-col,
