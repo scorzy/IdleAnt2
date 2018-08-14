@@ -29,6 +29,45 @@
   </div>
 
   <div class="header-actions">
+
+    <form class="search">
+      <label id="multiLabel" for="multi">N:&nbsp;</label>
+      <input class="multiBuy" min="1" id="multi" type="number" name="buyMulti" placeholder="Buy multiplier" [(ngModel)]="buyMulti">
+    </form>
+
+    <clr-dropdown>
+      <button class="nav-icon" clrDropdownTrigger>
+        <clr-icon shape="tools"></clr-icon>
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+
+        <clr-dropdown *ngIf="ms.game.allPrestige.time.timeProducer.quantity.gt(0)">
+          <button type="button" clrDropdownTrigger>Time Warp</button>
+          <clr-dropdown-menu clrPosition="left-top">
+            <a clrDropdownItem (click)="warp(p)" *ngFor="let p of minuteWarps" [ngClass]="{'disabled': !warpAv(p)}">
+              Warp {{p}} minutes
+            </a>
+          </clr-dropdown-menu>
+        </clr-dropdown>
+
+        <a clrDropdownItem (click)="all100()">All 100%</a>
+
+        <clr-dropdown *ngFor="let list of groupNoEnemy; trackBy:getListId">
+          <button type="button" clrDropdownTrigger>{{list.name}}</button>
+          <clr-dropdown-menu clrPosition="left-top">
+            <a clrDropdownItem (click)="list.buyN(buyMulti)">Buy n</a>
+            <a clrDropdownItem (click)="list.buyTeam(buyMulti)" *ngIf="ms.game.researches.team2.done">Team n</a>
+            <a clrDropdownItem (click)="list.buyTwins(buyMulti)" *ngIf="ms.game.researches.twin.done">Twins n</a>
+            <a clrDropdownItem (click)="list.allCustom(p)" *ngFor="let p of percentPreset">
+              {{p}}%
+            </a>
+          </clr-dropdown-menu>
+        </clr-dropdown>
+
+      </clr-dropdown-menu>
+    </clr-dropdown>
+
     <a href="javascript://" class="nav-link nav-icon">
       <clr-icon shape="clock" (click)="openTimeModal()" class="is-solid"></clr-icon>
     </a>

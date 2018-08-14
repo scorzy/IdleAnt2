@@ -66,7 +66,8 @@ export class Game {
 
   constructor(
     public updateEmitter: EventEmitter<number>,
-    public researchEmitter: EventEmitter<string>
+    public researchEmitter: EventEmitter<string>,
+    public unlockGroupEmiter: EventEmitter<number>
   ) {
     this.tabs = new Tabs();
 
@@ -192,7 +193,11 @@ export class Game {
     this.units.forEach(u => {
       if (u instanceof FullUnit && u.unlocked) this.unlockedUnits.push(u);
     });
+    const oldNum = this.unlockedGroups.length;
     this.unlockedGroups = this.unitGroups.filter(g => g.unlocked.length > 0);
+    if (oldNum !== this.unlockedGroups.length) {
+      this.unlockGroupEmiter.emit(this.unlockedGroups.length);
+    }
   }
   /**
    * Update game and add time

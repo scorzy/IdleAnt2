@@ -21,6 +21,7 @@ import { FormatPipe } from "./format.pipe";
 import { HeaderComponent } from "./header/header.component";
 import { LaboratoryComponent } from "./laboratory/laboratory.component";
 import { MainService } from "./main.service";
+import { MasteryComponent } from "./mastery/mastery.component";
 import { MaterialNavComponent } from "./material-nav/material-nav.component";
 import { TabComponent } from "./material-nav/tab/tab.component";
 import { NavComponent } from "./nav/nav.component";
@@ -42,7 +43,6 @@ import { UnitGroupComponent } from "./unit-group/unit-group.component";
 import { UnitTabsComponent } from "./unit-tabs/unit-tabs.component";
 import { UnitComponent } from "./unit/unit.component";
 import { WorldComponent } from "./world/world.component";
-import { MasteryComponent } from './mastery/mastery.component';
 
 @NgModule({
   declarations: [

@@ -18,6 +18,7 @@ export class MainService {
   updateEmitter: EventEmitter<number> = new EventEmitter<number>();
   researchEmitter: EventEmitter<string> = new EventEmitter<string>();
   worldEmitter: EventEmitter<World> = new EventEmitter<World>();
+  unlockGroupEmiter: EventEmitter<number> = new EventEmitter<number>();
 
   themeClarity: HTMLLinkElement;
   // themePrime: HTMLLinkElement;
@@ -46,7 +47,11 @@ export class MainService {
 
     this.setTheme();
 
-    this.game = new Game(this.updateEmitter, this.researchEmitter);
+    this.game = new Game(
+      this.updateEmitter,
+      this.researchEmitter,
+      this.unlockGroupEmiter
+    );
     this.last = Date.now();
     setInterval(this.update.bind(this), 250);
   }
@@ -110,7 +115,11 @@ export class MainService {
         return false;
       }
       this.game = null;
-      this.game = new Game(this.updateEmitter, this.researchEmitter);
+      this.game = new Game(
+        this.updateEmitter,
+        this.researchEmitter,
+        this.unlockGroupEmiter
+      );
       if (!!data.o) this.options.restore(data.o);
       this.setTheme();
       this.last = data.time;

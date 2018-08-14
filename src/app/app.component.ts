@@ -9,6 +9,7 @@ import { ClarityIcons } from "@clr/icons";
 import {
   ClrShapeBug,
   ClrShapeClock,
+  ClrShapeTools,
   ClrShapeWorld
 } from "@clr/icons/shapes/essential-shapes";
 
@@ -55,7 +56,8 @@ export class AppComponent implements OnInit, OnDestroy {
       floppy: ClrShapeFloppy,
       "paint-roller": ClrShapePaintRoller,
       install: ClrShapeInstall,
-      uninstall: ClrShapeUninstall
+      uninstall: ClrShapeUninstall,
+      tools: ClrShapeTools
     });
   }
 

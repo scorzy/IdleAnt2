@@ -1,3 +1,4 @@
+import { isNull } from "@angular/compiler/src/output/output_ast";
 import { FullUnit } from "./full-unit";
 import { Game } from "./game";
 import { Price } from "./price";
@@ -149,5 +150,43 @@ export class UnitGroup {
   updateChartLabel() {
     this.chartLabels = this.selected.map(u => u.name + " %");
     this.updateChart();
+  }
+
+  getReqNum(num: number): Decimal {
+    if (isNaN(num)) return new Decimal(0);
+    if (num < 1) return new Decimal(0);
+    return new Decimal(num);
+  }
+  buyN(num: number) {
+    const n = this.getReqNum(num);
+    if (n.gt(0)) {
+      this.list
+        .filter(u => u.unlocked && u.buyAction && u.buyAction.unlocked)
+        .sort((a, b) => a.quantity.cmp(b.quantity))
+        .forEach(un => un.buyAction.buy(n));
+    }
+  }
+  buyTeam(num: number) {
+    const n = this.getReqNum(num);
+    if (n.gt(0)) {
+      this.list
+        .filter(u => u.unlocked && u.teamAction && u.teamAction.unlocked)
+        .sort((a, b) => a.teamAction.quantity.cmp(b.teamAction.quantity))
+        .forEach(un => un.teamAction.buy(new Decimal(n)));
+    }
+  }
+  buyTwins(num: number) {
+    const n = this.getReqNum(num);
+    if (n.gt(0)) {
+      this.list
+        .filter(u => u.unlocked && u.twinAction && u.twinAction.unlocked)
+        .sort((a, b) => a.twinAction.quantity.cmp(b.twinAction.quantity))
+        .forEach(un => un.twinAction.buy(new Decimal(n)));
+    }
+  }
+  allCustom(eff: number) {
+    this.list.forEach(u => {
+      u.efficiency = eff;
+    });
   }
 }
