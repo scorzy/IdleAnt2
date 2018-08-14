@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   OnInit,
@@ -9,6 +10,7 @@ import {
 import { Data, Network } from "vis";
 import { ChangeWorldComponent } from "../change-world/change-world.component";
 import { MainService } from "../main.service";
+import { Mastery, MasteryTypes } from "../model/masteries/mastery";
 
 @Component({
   selector: "app-mastery",
@@ -19,12 +21,29 @@ import { MainService } from "../main.service";
     "[class.content-container]": "true"
   }
 })
-export class MasteryComponent implements AfterViewInit {
+export class MasteryComponent implements AfterViewInit, OnInit {
   @ViewChild("network") networkDiv: ElementRef;
   networkVis: Network;
+  list = new Array<string>();
 
-  constructor(public ms: MainService) {
+  constructor(public ms: MainService, private cd: ChangeDetectorRef) {
     //
+  }
+
+  rebuildList() {
+    this.list = [];
+    const lenght = Object.keys(MasteryTypes).length / 2;
+    for (let i = 0; i < lenght; i++) {
+      const sum = this.ms.game.allMateries.getSum(i);
+      if (sum > 0) {
+        const desc = Mastery.getDescription(i, sum);
+        this.list.push(desc);
+      }
+    }
+  }
+
+  ngOnInit() {
+    this.rebuildList();
   }
 
   ngAfterViewInit() {
@@ -41,8 +60,14 @@ export class MasteryComponent implements AfterViewInit {
         }
       );
       this.networkVis.on("click", params => {
-        this.ms.game.allMateries.buy(params.nodes[0]);
+        if (this.ms.game.allMateries.buy(params.nodes[0])) {
+          this.rebuildList();
+          this.cd.markForCheck();
+        }
       });
     }, 0);
+  }
+  getDescId(index: number, desc: string) {
+    return index + desc;
   }
 }

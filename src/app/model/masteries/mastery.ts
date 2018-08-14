@@ -8,23 +8,28 @@ export class Mastery {
   static readonly avaiableColor = "green";
   static readonly ownedColor = "red";
 
+  static getDescription(type: MasteryTypes, num = 1): string {
+    let ret = "";
+    switch (type) {
+      case MasteryTypes.MORE_FOLLOWERS: {
+        ret = "+" + 100 * num + "% more followers";
+        break;
+      }
+      case MasteryTypes.MORE_IDLE_8H: {
+        ret = "+" + 30 * num + "% idle time after 8h";
+        break;
+      }
+    }
+    return ret;
+  }
+
   label = "";
   color = "blue";
   avaiable = false;
   owned = false;
 
   constructor(public id: number, public type: MasteryTypes) {
-    switch (type) {
-      case MasteryTypes.MORE_FOLLOWERS: {
-        this.label = "+100% more followers";
-        this.color = Mastery.normalColor;
-        break;
-      }
-      case MasteryTypes.MORE_IDLE_8H: {
-        this.label = "+30% idle time after 8h";
-        this.color = Mastery.normalColor;
-        break;
-      }
-    }
+    this.label = Mastery.getDescription(type);
+    this.color = Mastery.normalColor;
   }
 }

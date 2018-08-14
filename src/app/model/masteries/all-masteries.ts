@@ -2,13 +2,17 @@ import { DataSet, Edge, IdType, Network, Node } from "vis";
 import { Mastery, MasteryTypes } from "./mastery";
 
 export class AllMasteries {
-  masteryPoint = 10;
+  masteryPoint = 0;
+  totalEarned = 0;
   totals = new Array<number>();
 
   visMasteries: DataSet<Mastery>;
   visEdge: DataSet<{ from: number; to: number }>;
 
   constructor() {
+    const lenght = Object.keys(MasteryTypes).length / 2;
+    this.totals = new Array(lenght).fill(0);
+
     const av1 = new Mastery(0, MasteryTypes.MORE_FOLLOWERS);
     const av2 = new Mastery(3, MasteryTypes.MORE_IDLE_8H);
     av1.avaiable = true;
@@ -96,7 +100,8 @@ export class AllMasteries {
           }
         })
         .map(o => o.id),
-      mp: this.masteryPoint
+      mp: this.masteryPoint,
+      to: this.totalEarned
     };
   }
   restore(data: any) {
@@ -105,6 +110,9 @@ export class AllMasteries {
     }
     if ("mp" in data) {
       this.masteryPoint = data.mp;
+    }
+    if ("to" in data) {
+      this.totalEarned = data.to;
     }
   }
   //#endregion

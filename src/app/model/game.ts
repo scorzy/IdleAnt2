@@ -392,6 +392,7 @@ export class Game {
     this.gatherers.drone.unlocked = true;
     this.materials.food.unlocked = true;
 
+    //  Update Mastery and Experience
     if (this.canTravel) {
       this.experience.quantity = newPrestige;
       this.maxLevel = this.maxLevel.plus(this.currentWorld.level);

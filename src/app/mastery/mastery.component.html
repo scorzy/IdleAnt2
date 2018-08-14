@@ -2,7 +2,14 @@
   <div id="network" #network></div>
 </div>
 <clr-vertical-nav [clrVerticalNavCollapsible]="true" class="nav-trigger--bottom">
-  <div>
-    <h1>Mastery</h1>
-  </div>
+
+  <a clrVerticalNavLink>
+    <h6>Mastery
+      <span class="monospace" *ngIf="ms.game.allMateries.masteryPoint > 0">{{ms.game.allMateries.masteryPoint}}</span>
+    </h6>
+  </a>
+  <a clrVerticalNavLink *ngFor="let desc of list; trackBy:getDescId">
+    {{desc}}
+  </a>
+
 </clr-vertical-nav>
