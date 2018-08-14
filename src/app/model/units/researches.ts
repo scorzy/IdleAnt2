@@ -5,8 +5,6 @@ import { ProductionBonus } from "../production-bonus";
 import { Research } from "../research";
 
 export class Researches {
-  science: FullUnit;
-
   researches = new Array<Research>();
   toDo: Research[];
   done: Research[];
@@ -20,6 +18,12 @@ export class Researches {
 
   travel: Research;
 
+  /**
+   *  mastery, a special research
+   *  never reset
+   */
+  mastery: Research;
+
   constructor(public researchEmitter: EventEmitter<string>) {}
 
   declareStuff(): void {
@@ -32,6 +36,8 @@ export class Researches {
 
     this.travel = new Research("travel", this);
 
+    this.mastery = new Research("mastery", this);
+
     this.team1.unlocked = true;
     this.reloadLists();
   }
@@ -40,6 +46,7 @@ export class Researches {
     this.team2.genPrice(new Decimal(100), science);
     this.twin.genPrice(new Decimal(1e3), science);
     this.travel.genPrice(new Decimal(1e6), science);
+    this.mastery.genPrice(new Decimal(1e9), science);
 
     this.team1.toUnlock = [this.team2];
     this.team2.toUnlock = [this.twin];
@@ -53,7 +60,7 @@ export class Researches {
     this.scientificMethod2.genPrice(new Decimal(1e7), science);
     this.scientificMethod3.genPrice(new Decimal(1e11), science);
 
-    this.travel.toUnlock.push(game.tabs.travel);
+    this.travel.toUnlock.push(game.tabs.travel, this.mastery);
 
     science.productionsBonus.push(
       new ProductionBonus(this.scientificMethod2, new Decimal(0.75)),
@@ -61,10 +68,13 @@ export class Researches {
     );
   }
 
-  reset() {
+  reset(science: FullUnit) {
+    this.reloadMasteryPrice(science);
     this.researches.forEach(r => {
       r.reset();
     });
+
+    this.mastery.reload();
     this.team1.unlocked = true;
     this.reloadLists();
   }
@@ -73,6 +83,13 @@ export class Researches {
     this.done = this.researches.filter(r => r.unlocked && r.done);
     this.researchEmitter.emit("");
   }
+  reloadMasteryPrice(science: FullUnit) {
+    const masteryNum = this.mastery.quantity;
+    this.mastery.genPrice(
+      new Decimal(1e9).times(Decimal.pow(2, masteryNum)),
+      science
+    );
+  }
 
   //#region Save and load
   getSave(): any {
@@ -80,11 +97,12 @@ export class Researches {
       res: this.researches.map(r => r.getSave())
     };
   }
-  restore(data: any): boolean {
+  restore(data: any, science: FullUnit): boolean {
     if ("res" in data) {
       for (const r of data.res) {
         this.researches.find(u => u.id === r.i).restore(r);
       }
+      this.reloadMasteryPrice(science);
       this.reloadLists();
       return true;
     } else {

@@ -178,6 +178,12 @@ export class Game {
       }
     });
     //#endregion
+    //#region Special Stuff
+    this.researches.mastery.onBuy = () => {
+      this.allMateries.totalEarned++;
+      this.allMateries.masteryPoint++;
+    };
+    //#endregion
     this.allMateries = new AllMasteries();
     this.stats = new Stats();
   }
@@ -217,8 +223,8 @@ export class Game {
 
     this.reloadProduction();
 
-    //#region get polynom
     for (const unit of this.unlockedUnits) {
+      //#region get polynom
       unit.tempA = new Decimal(0);
       unit.tempB = new Decimal(0);
       unit.tempC = new Decimal(0);
@@ -280,7 +286,7 @@ export class Game {
       .forEach(u => (u.endIn = u.endIn - maxTime));
 
     if (!this.isPaused) {
-      if (maxTime > Number.EPSILON) {
+      if (maxTime > 10) {
         this.update2(new Decimal(maxTime).div(1000));
       }
 
@@ -298,8 +304,8 @@ export class Game {
       }
 
       const remaning = delta - maxTime;
-      if (remaning > Number.EPSILON) {
-        this.reloadProduction();
+      if (remaning > 10) {
+        // this.reloadProduction();
         this.update(remaning);
       }
     }
@@ -317,6 +323,10 @@ export class Game {
           .plus(u.b.times(Decimal.pow(seconds, 2)))
           .plus(u.c.times(seconds));
       });
+    this.unlockedUnits.forEach(u => {
+      // u.actions.forEach(a => a.reload());
+      u.quantity = u.quantity.max(0);
+    });
   }
   /**
    *  Reload actions costs
@@ -400,7 +410,7 @@ export class Game {
 
     this.currentWorld = world;
     this.applyWorldBonus();
-    this.researches.reset();
+    this.researches.reset(this.materials.science);
 
     //#region  Followers
     this.units.filter(u => u.follower).forEach(u => {
@@ -469,7 +479,7 @@ export class Game {
     if ("u" in data) {
       for (const s of data.u) this.units.find(u => u.id === s.i).restore(s);
       if ("t" in data) this.tabs.restore(data.t);
-      if ("r" in data) this.researches.restore(data.r);
+      if ("r" in data) this.researches.restore(data.r, this.materials.science);
       if ("w" in data) this.currentWorld.restore(data.w, this);
       if ("p" in data) this.allPrestige.restore(data.p);
       if ("m" in data) this.maxLevel = new Decimal(data.m);
