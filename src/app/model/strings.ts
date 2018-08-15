@@ -118,7 +118,14 @@ export const STRINGS = {
     //  AutoBuy
     auBQ: ["Hach Auto Buyer", "Unlock Hach Auto Buyer for all units"],
     auBTeam: ["Team Auto Buyer", "Unlock Team Auto Buyer for all units"],
-    auBTwin: ["Twin Auto Buyer", "Unlock Twin Auto Buyer for all units"]
+    auBTwin: ["Twin Auto Buyer", "Unlock Twin Auto Buyer for all units"],
+    //  Tecnology
+    tecFar: ["Farming", "+10% food production"],
+    tecCar: ["Carpentery", "+10% wood production"],
+    tecMin: ["Mining", "+10% crystal production"],
+    tecStu: ["Studing", "+10% science production"],
+    //  Team
+    teamP: ["Team Work", "+30% Team Work Bonus"]
   },
   actions: {
     warp60: ["Warp minute", "Time warp by minutes"],

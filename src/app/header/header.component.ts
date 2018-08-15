@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   @Input() travelBadge = false;
 
   @Input() prestige = false;
+  @Input() mastery = false;
 
   sub: any;
   subGroup: any;

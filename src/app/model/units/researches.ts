@@ -44,9 +44,9 @@ export class Researches {
   setRelations(science: FullUnit, game: Game): void {
     this.team1.genPrice(new Decimal(100), science);
     this.team2.genPrice(new Decimal(1e3), science);
-    this.twin.genPrice(new Decimal(1e3), science);
+    this.twin.genPrice(new Decimal(1e5), science);
     this.travel.genPrice(new Decimal(1e6), science);
-    this.mastery.genPrice(new Decimal(1e15), science);
+    this.mastery.genPrice(new Decimal(1e20), science);
 
     this.team1.toUnlock = [this.team2];
     this.team2.toUnlock = [this.twin];
@@ -61,6 +61,7 @@ export class Researches {
     this.scientificMethod3.genPrice(new Decimal(1e11), science);
 
     this.travel.toUnlock.push(game.tabs.travel, this.mastery);
+    this.mastery.toUnlock.push(game.tabs.mastery);
 
     science.productionsBonus.push(
       new ProductionBonus(this.scientificMethod2, new Decimal(0.75)),

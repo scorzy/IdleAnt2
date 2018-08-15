@@ -104,7 +104,7 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     this.producedBy.push(prod);
     producer.produces.push(prod);
   }
-  reloadTeamBonus(teamBonus = false) {
+  reloadTeamBonus(teamBonus = false, multiBonus: Decimal) {
     this.bonus = new Decimal(0);
 
     if (teamBonus && this.buyAction) {
@@ -112,6 +112,7 @@ export class FullUnit extends BaseUnit implements IUnlocable {
       if (this.teamAction) {
         this.bonus = this.bonus.times(this.teamAction.quantity.plus(1));
       }
+      this.bonus = this.bonus.times(multiBonus);
     }
   }
   reset() {

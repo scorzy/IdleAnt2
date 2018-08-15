@@ -394,8 +394,11 @@ export class Game {
    * Calculate production per second
    */
   reloadProduction() {
+    const teamPrestigeBonus = this.allPrestige.team.betterTeam.quantity
+      .times(0.3)
+      .plus(1);
     this.unlockedUnits.forEach(u => {
-      u.reloadTeamBonus(this.researches.team1.done);
+      u.reloadTeamBonus(this.researches.team1.done, teamPrestigeBonus);
       u.produces.forEach(p => p.reloadProdPerSec(this.researches.team1.done));
     });
   }

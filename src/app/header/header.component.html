@@ -21,7 +21,7 @@
         <clr-icon shape="store" class="is-solid"></clr-icon>
       </span>
     </a>
-    <a [routerLink]='"mast"' class="nav-link" [routerLinkActive]="'active'">
+    <a [routerLink]='"mast"' class="nav-link" *ngIf="mastery" [routerLinkActive]="'active'">
       <span class="nav-text">
         <clr-icon shape="star" class="is-solid"></clr-icon>
       </span>

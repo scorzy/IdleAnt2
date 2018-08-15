@@ -5,6 +5,7 @@ export class Tabs {
   travel: Tab;
   prestige: Tab;
   autoBuy: Tab;
+  mastery: Tab;
 
   tabList: Tab[];
   constructor() {
@@ -12,8 +13,15 @@ export class Tabs {
     this.travel = new Tab("travel");
     this.prestige = new Tab("prestige");
     this.autoBuy = new Tab("autoBuy");
+    this.mastery = new Tab("mastery");
 
-    this.tabList = [this.lab, this.travel, this.prestige, this.autoBuy];
+    this.tabList = [
+      this.lab,
+      this.travel,
+      this.prestige,
+      this.autoBuy,
+      this.mastery
+    ];
   }
   getSave(): any {
     return {

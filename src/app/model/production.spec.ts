@@ -37,6 +37,6 @@ describe("Production", () => {
     const prod = new Production(producer, product, new Decimal(2));
     prod.reloadProdPerSec();
 
-    expect(prod.prodPerSec.toNumber()).toBe(80);
+    expect(prod.prodPerSec.toNumber()).toBe(18);
   });
 });

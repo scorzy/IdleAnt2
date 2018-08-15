@@ -117,15 +117,14 @@ export class UnitGroup {
           ),
           this.game.researches.twin
         );
-
-        //  researches
-        gen.firstResearch.toUnlock = gen.researchList;
-        gen.firstResearch.prices = this.game.genSciencePrice(price);
-
-        gen.researchList.forEach(
-          r => (r.prices = this.game.genSciencePrice(price.times(5)))
-        );
       }
+      //  researches
+      gen.firstResearch.toUnlock = gen.researchList;
+      gen.firstResearch.prices = this.game.genSciencePrice(price);
+
+      gen.researchList.forEach(
+        r => (r.prices = this.game.genSciencePrice(price.times(5)))
+      );
     };
     return gen;
   }

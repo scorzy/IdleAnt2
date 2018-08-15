@@ -21,7 +21,7 @@ export class Production {
 
       // Team Bonus
       if (teamBonus && this.producer.buyAction) {
-        this.prodPerSec = this.prodPerSec.times(this.producer.bonus);
+        this.prodPerSec = this.prodPerSec.times(this.producer.bonus.plus(1));
       }
 
       //  Producer Bonus All
