@@ -6,7 +6,8 @@ describe("Worker2", () => {
   it("should create an instance", () => {
     const game = new Game(
       new EventEmitter<number>(),
-      new EventEmitter<string>()
+      new EventEmitter<string>(),
+      new EventEmitter<number>()
     );
     expect(new Workers(game)).toBeTruthy();
   });

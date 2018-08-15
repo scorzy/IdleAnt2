@@ -13,7 +13,8 @@ describe("World", () => {
   it("FindBonus", () => {
     const game = new Game(
       new EventEmitter<number>(),
-      new EventEmitter<string>()
+      new EventEmitter<string>(),
+      new EventEmitter<number>()
     );
     const world1 = new World();
     expect(world1.findBonus(game.worldBonus.crystalBonus.id, game).id).toBe(
@@ -23,7 +24,8 @@ describe("World", () => {
   it("Save and Load", () => {
     const game = new Game(
       new EventEmitter<number>(),
-      new EventEmitter<string>()
+      new EventEmitter<string>(),
+      new EventEmitter<number>()
     );
     const world1 = new World();
     const world2 = new World();

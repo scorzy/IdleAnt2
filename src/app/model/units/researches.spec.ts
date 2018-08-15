@@ -5,7 +5,11 @@ import { Researches } from "./researches";
 
 describe("Researches", () => {
   const science = new FullUnit("scie", "Science", "Science");
-  const game = new Game(new EventEmitter<number>(), new EventEmitter<string>());
+  const game = new Game(
+    new EventEmitter<number>(),
+    new EventEmitter<string>(),
+    new EventEmitter<number>()
+  );
 
   it("should create an instance", () => {
     const researchEmitter: EventEmitter<string> = new EventEmitter<string>();

@@ -8,16 +8,23 @@ import { Game } from "./game";
 describe("Game", () => {
   const updateEmitter = new EventEmitter<number>();
   const researchEmitter = new EventEmitter<string>();
+  const unlockGroupEmiter = new EventEmitter<number>();
   let game: Game;
   beforeEach(() => {
-    game = new Game(updateEmitter, researchEmitter);
+    game = new Game(updateEmitter, researchEmitter, unlockGroupEmiter);
   });
   it("should be created", () => {
-    expect(new Game(updateEmitter, researchEmitter)).toBeTruthy();
+    expect(
+      new Game(updateEmitter, researchEmitter, unlockGroupEmiter)
+    ).toBeTruthy();
   });
   it("Save works", () => {
-    const original = new Game(updateEmitter, researchEmitter);
-    const second = new Game(updateEmitter, researchEmitter);
+    const original = new Game(
+      updateEmitter,
+      researchEmitter,
+      unlockGroupEmiter
+    );
+    const second = new Game(updateEmitter, researchEmitter, unlockGroupEmiter);
 
     original.units = [
       new FullUnit("id1", "name1", "desc", new Decimal(10)),

@@ -36,7 +36,11 @@ describe("ActionGroupComponent", () => {
     component.actGr = new ActionGroup(
       "",
       [],
-      new Game(new EventEmitter<number>(), new EventEmitter<string>())
+      new Game(
+        new EventEmitter<number>(),
+        new EventEmitter<string>(),
+        new EventEmitter<number>()
+      )
     );
     fixture.detectChanges();
   });

@@ -6,7 +6,11 @@ import { Price } from "../price";
 import { ActionGroup } from "./action-group";
 
 describe("ActionGroup", () => {
-  const game = new Game(new EventEmitter<number>(), new EventEmitter<string>());
+  const game = new Game(
+    new EventEmitter<number>(),
+    new EventEmitter<string>(),
+    new EventEmitter<number>()
+  );
   it("should create an instance", () => {
     expect(new ActionGroup("", [], game)).toBeTruthy();
   });

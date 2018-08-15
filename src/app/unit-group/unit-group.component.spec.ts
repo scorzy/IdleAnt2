@@ -28,7 +28,11 @@ import { UnitGroupComponent } from "./unit-group.component";
 describe("UnitGroupComponent", () => {
   let component: UnitGroupComponent;
   let fixture: ComponentFixture<UnitGroupComponent>;
-  const game = new Game(new EventEmitter<number>(), new EventEmitter<string>());
+  const game = new Game(
+    new EventEmitter<number>(),
+    new EventEmitter<string>(),
+    new EventEmitter<number>()
+  );
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

@@ -6,7 +6,11 @@ describe("WorldMalus", () => {
   it("should create an instance", () => {
     expect(
       new WorldMalus(
-        new Game(new EventEmitter<number>(), new EventEmitter<string>())
+        new Game(
+          new EventEmitter<number>(),
+          new EventEmitter<string>(),
+          new EventEmitter<number>()
+        )
       )
     ).toBeTruthy();
   });
