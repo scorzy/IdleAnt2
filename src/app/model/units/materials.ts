@@ -30,8 +30,8 @@ export class Materials extends UnitGroup {
     for (let i = 0; i < lenght; i++) {
       const world = new World(this.list[i].id + "Bio");
       world.winContidions.push(
-        new Price(this.list[i], World.BASE_WIN_CONDITION),
-        new Price(this.game.genX3.list[i], World.BASE_WIN_CONDITION)
+        new Price(this.list[i], World.BASE_WIN_CONDITION_MATERIALS),
+        new Price(this.game.genX3.list[i], World.BASE_WIN_CONDITION_OTHER)
       );
       World.biome.push(world);
     }

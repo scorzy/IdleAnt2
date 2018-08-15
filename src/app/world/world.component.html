@@ -24,7 +24,7 @@
   <span class="p2">Win conditions:</span>
   <ul class="list">
     <li *ngFor="let win of world.winContidions; trackBy:getWinId">
-      {{win.price | format:true}} x {{win.base.name}}
+      {{win.price | format:true}} {{win.base.name}}
     </li>
   </ul>
 

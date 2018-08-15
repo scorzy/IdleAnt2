@@ -11,7 +11,7 @@ export class TwinAction extends Action {
     public twinRes: Research
   ) {
     super(
-      "W",
+      "w",
       "Twin",
       "Hatch more " + unit.name + " for the same price",
       prices

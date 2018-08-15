@@ -73,7 +73,7 @@ export const STRINGS = {
     ],
     m_wr: ["Miner", "miner"],
     s_wr: ["Scientist", "scientist"],
-    scie1: ["Scientific method", "+50% science production"],
+    scie1: ["Scientific Method", "+50% science production"],
     // Workers 2
     Bu_r: ["Buildings", "Buildings"],
     f_g_r: ["Farm", "farmer"],

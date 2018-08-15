@@ -10,7 +10,8 @@ import { STRINGS } from "./strings";
 import { Utility } from "./utility";
 
 export class World {
-  static readonly BASE_WIN_CONDITION = new Decimal(100);
+  static readonly BASE_WIN_CONDITION_MATERIALS = new Decimal(1e10);
+  static readonly BASE_WIN_CONDITION_OTHER = new Decimal(200);
 
   static prefix = new Array<World>();
   static biome = new Array<World>();
@@ -52,9 +53,11 @@ export class World {
 
     this.winContidions.forEach(w => {
       w.price = w.price.times(multi);
-      if (w.base.winNonLiner) {
-        w.price = w.price.pow(0.9);
-      }
+
+      w.price = w.base.winNonLiner
+        ? w.price.pow(0.8)
+        : w.price.times(Decimal.pow(1.1, multi));
+
       w.price = w.price.floor();
     });
 

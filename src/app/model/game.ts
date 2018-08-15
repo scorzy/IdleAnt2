@@ -51,7 +51,7 @@ export class Game {
   nextWorlds = new Array<World>();
   canTravel = false;
 
-  maxLevel = new Decimal(1e3);
+  maxLevel = new Decimal(5);
   experience: FullUnit;
   time: FullUnit;
   allPrestige: AllPrestige;
@@ -154,6 +154,14 @@ export class Game {
     // );
     // this.currentWorld.notWinConditions.push(this.worldMalus.crystalMalus1);
     this.generateWorlds();
+    this.currentWorld = new World("home");
+    this.currentWorld.name = "Home World";
+    this.currentWorld.level = new Decimal(0);
+    this.currentWorld.winContidions.push(
+      new Price(this.materials.food, World.BASE_WIN_CONDITION_MATERIALS),
+      new Price(this.genX3.list[0], World.BASE_WIN_CONDITION_OTHER)
+    );
+    this.currentWorld.setLevel(new Decimal(0));
     //#endregion
 
     //#region Time Warp
@@ -190,17 +198,17 @@ export class Game {
     this.stats = new Stats();
 
     //#region Debug
-    this.materials.food.quantity = new Decimal(1e100);
+    // this.materials.food.quantity = new Decimal(1e100);
     // this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
     // this.materials.list.forEach(u => (u.unlocked = true));
-    this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
-    this.tabs.tabList.forEach(t => (t.unlocked = true));
+    // this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
+    // this.tabs.tabList.forEach(t => (t.unlocked = true));
     // // this.worldMalus.foodMalus1.quantity = new Decimal(100);
     // this.worldMalus.foodMalus1.quantity = new Decimal(100);
     // this.worldMalus.foodMalus2.quantity = new Decimal(10);
     // this.experience.quantity = new Decimal(1000);
-    this.allMateries.masteryPoint = 3;
-    this.experience.quantity = new Decimal(100);
+    // this.allMateries.masteryPoint = 3;
+    // this.experience.quantity = new Decimal(100);
     //#endregion
   }
   buildLists() {
@@ -425,7 +433,10 @@ export class Game {
     //  Update Experience
     if (this.canTravel) {
       this.experience.quantity = newPrestige;
-      this.maxLevel = this.maxLevel.plus(this.currentWorld.level);
+      this.maxLevel = this.maxLevel
+        .plus(this.currentWorld.level.div(3))
+        .floor()
+        .plus(1);
     }
 
     this.currentWorld = world;

@@ -83,7 +83,7 @@ export class MainService {
       diff = diff + bonus;
     }
 
-    this.game.updateWithTime(diff);
+    this.game.updateWithTime(diff * 10);
 
     this.game.postUpdate();
     this.last = now;
@@ -152,6 +152,8 @@ export class MainService {
       setTimeout(() => this.toastr.success("", "Game Loaded"), 0);
       return true;
     } catch (ex) {
+      // tslint:disable-next-line:no-console
+      console.log(ex);
       setTimeout(
         () =>
           this.toastr.error(

@@ -42,11 +42,11 @@ export class Researches {
     this.reloadLists();
   }
   setRelations(science: FullUnit, game: Game): void {
-    this.team1.genPrice(new Decimal(20), science);
-    this.team2.genPrice(new Decimal(100), science);
+    this.team1.genPrice(new Decimal(100), science);
+    this.team2.genPrice(new Decimal(1e3), science);
     this.twin.genPrice(new Decimal(1e3), science);
     this.travel.genPrice(new Decimal(1e6), science);
-    this.mastery.genPrice(new Decimal(1e9), science);
+    this.mastery.genPrice(new Decimal(1e15), science);
 
     this.team1.toUnlock = [this.team2];
     this.team2.toUnlock = [this.twin];
