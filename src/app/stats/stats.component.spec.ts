@@ -34,6 +34,7 @@ describe("StatsComponent", () => {
     fixture = TestBed.createComponent(StatsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    component.ngAfterViewInit();
   });
 
   it("should create", () => {

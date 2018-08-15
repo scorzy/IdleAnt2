@@ -1,4 +1,8 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  SimpleChange,
+  SimpleChanges
+} from "@angular/core";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
 import { RouterTestingModule } from "@angular/router/testing";
@@ -37,5 +41,18 @@ describe("UnitComponent", () => {
 
   it("should create", () => {
     expect(component).toBeTruthy();
+  });
+  it("unit", () => {
+    spyOn(component, "getUnit").and.callThrough();
+    component.unit = component.ms.game.gatherers.drone;
+    component.ngOnChanges();
+    expect(component.getUnit).toHaveBeenCalled();
+  });
+  it("malus", () => {
+    spyOn(component, "getUnit").and.callThrough();
+    component.unit = component.ms.game.worldMalus.scienceMalus1;
+    component.ngOnChanges();
+    expect(component.getUnit).toHaveBeenCalled();
+    expect(component.malus.id).toBeDefined();
   });
 });

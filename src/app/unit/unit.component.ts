@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit
 } from "@angular/core";
@@ -20,7 +21,7 @@ import { ProductionSorter, TotalProductionSorter } from "../model/utility";
   styleUrls: ["./unit.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UnitComponent implements OnInit, OnDestroy {
+export class UnitComponent implements OnInit, OnDestroy, OnChanges {
   @Input() unit: FullUnit;
 
   paramsSub: any;

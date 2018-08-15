@@ -15,10 +15,10 @@ describe("NavComponent", () => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
+        BrowserAnimationsModule,
         ClarityModule.forRoot(),
         ToastrModule.forRoot(),
-        RouterTestingModule,
-        BrowserAnimationsModule
+        RouterTestingModule
       ],
       declarations: [NavComponent]
     }).compileComponents();

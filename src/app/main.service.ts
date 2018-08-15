@@ -126,6 +126,7 @@ export class MainService {
       this.last = data.time;
       this.game.restore(data.m);
       setTimeout(() => this.toastr.success("", "Game Loaded"), 0);
+      return true;
     } catch (ex) {
       setTimeout(
         () =>
@@ -135,11 +136,12 @@ export class MainService {
           ),
         0
       );
+      return false;
     }
   }
-  load(first = false) {
+  load(first = false): boolean {
     try {
-      this.import(localStorage.getItem("save"), first);
+      return this.import(localStorage.getItem("save"), first);
     } catch (ex) {
       setTimeout(
         () =>
@@ -149,6 +151,7 @@ export class MainService {
           ),
         0
       );
+      return false;
     }
   }
   clear() {
