@@ -33,7 +33,8 @@ export class ChangeWorldComponent implements OnInit {
     this.minLevel = this.ms.game.maxLevel
       .times(this.rangeValues[0] / Number.MAX_SAFE_INTEGER)
       .floor()
-      .min(this.maxLevel);
+      .min(this.maxLevel)
+      .max(1);
   }
 
   getWorldId(index: number, world: World) {

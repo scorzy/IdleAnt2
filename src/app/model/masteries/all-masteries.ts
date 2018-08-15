@@ -1,4 +1,5 @@
 import { DataSet, Edge, IdType, Network, Node } from "vis";
+import { BaseUnit } from "./../baseUnit";
 import { Mastery, MasteryTypes } from "./mastery";
 
 export class AllMasteries {
@@ -9,7 +10,11 @@ export class AllMasteries {
   visMasteries: DataSet<Mastery>;
   visEdge: DataSet<{ from: number; to: number }>;
 
+  scienceBonus: BaseUnit;
+
   constructor() {
+    this.scienceBonus = new BaseUnit("unsPS");
+
     const lenght = Object.keys(MasteryTypes).length / 2;
     this.totals = new Array(lenght).fill(0);
 

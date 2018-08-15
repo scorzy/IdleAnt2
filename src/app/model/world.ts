@@ -43,7 +43,7 @@ export class World {
   }
 
   setLevel(level: Decimal) {
-    this.level = new Decimal(level);
+    this.level = new Decimal(level).floor();
 
     const multi = this.level.div(5).plus(1);
     this.productionsBonus.forEach(b => (b[1] = b[1].times(multi)));
@@ -65,6 +65,7 @@ export class World {
       .times(10)
       .times(this.level.plus(10).log10())
       .floor();
+
     this.notWinConditions.forEach(n => {
       n.quantity = new Decimal(this.level);
       n.producedBy.find(u => u.rateo.lt(0)).producer.unlock();

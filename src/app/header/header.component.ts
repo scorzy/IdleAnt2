@@ -54,9 +54,11 @@ export class HeaderComponent implements OnInit {
   }
   reloadHeader() {
     this.headerClass = "header-" + this.ms.options.header;
-    this.groupNoEnemy = this.ms.game.unlockedGroups.filter(
-      g => g !== this.ms.game.worldMalus && g !== this.ms.game.materials
-    );
+    if (this.ms.game) {
+      this.groupNoEnemy = this.ms.game.unlockedGroups.filter(
+        g => g !== this.ms.game.worldMalus && g !== this.ms.game.materials
+      );
+    }
   }
   ngOnDestroy() {
     this.sub.unsubscribe();

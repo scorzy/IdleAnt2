@@ -7,6 +7,7 @@ import { AllMasteries } from "./masteries/all-masteries";
 import { Mastery, MasteryTypes } from "./masteries/mastery";
 import { AllPrestige } from "./prestige/all-prestige";
 import { Price } from "./price";
+import { ProductionBonus } from "./production-bonus";
 import { Stats } from "./stats/stats";
 import { Tabs } from "./tabs";
 import { UnitGroup } from "./unit-group";
@@ -156,12 +157,12 @@ export class Game {
     this.generateWorlds();
     this.currentWorld = new World("home");
     this.currentWorld.name = "Home World";
-    this.currentWorld.level = new Decimal(0);
+    this.currentWorld.level = new Decimal(1);
     this.currentWorld.winContidions.push(
       new Price(this.materials.food, World.BASE_WIN_CONDITION_MATERIALS),
       new Price(this.genX3.list[0], World.BASE_WIN_CONDITION_OTHER)
     );
-    this.currentWorld.setLevel(new Decimal(0));
+    this.currentWorld.setLevel(new Decimal(1));
     //#endregion
 
     //#region Time Warp
@@ -187,15 +188,18 @@ export class Game {
     });
     //#endregion
 
+    this.allMateries = new AllMasteries();
+    this.stats = new Stats();
+
     //#region Special Stuff
     this.researches.mastery.onBuy = () => {
       this.allMateries.totalEarned++;
       this.allMateries.masteryPoint++;
     };
+    this.materials.science.productionsBonus.push(
+      new ProductionBonus(this.experience, new Decimal(1))
+    );
     //#endregion
-
-    this.allMateries = new AllMasteries();
-    this.stats = new Stats();
 
     //#region Debug
     // this.materials.food.quantity = new Decimal(1e100);

@@ -15,12 +15,13 @@ export class Production {
     if (this.producer.efficiency <= 0) {
       this.prodPerSec = new Decimal(0);
     } else {
+      let bonus = new Decimal(1);
       //  Base Production
       this.prodPerSec = new Decimal(this.rateo);
 
       // Team Bonus
       if (teamBonus && this.producer.buyAction) {
-        this.prodPerSec = this.prodPerSec.times(this.producer.bonus.plus(1));
+        this.prodPerSec = this.prodPerSec.times(this.producer.bonus);
       }
 
       //  Producer Bonus All
@@ -28,7 +29,7 @@ export class Production {
         .filter(bn => bn.isActive())
         .map(prod => prod.getBonus())
         .reduce((p, n) => p.plus(n), new Decimal(0));
-      this.prodPerSec = this.prodPerSec.times(producerAllBonus.plus(1));
+      bonus = bonus.plus(producerAllBonus);
 
       // Producer Efficienty Bonus
       if (this.rateo.gt(0)) {
@@ -36,7 +37,7 @@ export class Production {
           .filter(bn => bn.isActive())
           .map(prod => prod.getBonus())
           .reduce((p, n) => p.plus(n), new Decimal(0));
-        this.prodPerSec = this.prodPerSec.times(producerBonus.plus(1));
+        bonus = bonus.plus(producerBonus);
       }
 
       // Production bonus of product
@@ -44,7 +45,9 @@ export class Production {
         .filter(bn => bn.isActive())
         .map(prod => prod.getBonus())
         .reduce((p, n) => p.plus(n), new Decimal(0));
-      this.prodPerSec = this.prodPerSec.times(productBonus.plus(1));
+      bonus = bonus.plus(productBonus);
+
+      this.prodPerSec = this.prodPerSec.times(bonus);
 
       // Efficienty slider
       this.prodPerSec = this.prodPerSec.times(this.producer.efficiency / 100);
