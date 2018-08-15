@@ -8,7 +8,8 @@ describe("Researches", () => {
   const game = new Game(
     new EventEmitter<number>(),
     new EventEmitter<string>(),
-    new EventEmitter<number>()
+    new EventEmitter<number>(),
+    null
   );
 
   it("should create an instance", () => {

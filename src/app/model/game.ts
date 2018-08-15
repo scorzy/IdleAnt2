@@ -1,4 +1,5 @@
-import { EventEmitter } from "@angular/core";
+import { EventEmitter, ReflectiveInjector } from "@angular/core";
+import { ToastrService } from "ngx-toastr";
 import { WarpAction } from "./actions/warp-action";
 import { AutoBuyManager } from "./autoBuy/auto-buy-manager";
 import { FullUnit } from "./full-unit";
@@ -69,7 +70,8 @@ export class Game {
   constructor(
     public updateEmitter: EventEmitter<number>,
     public researchEmitter: EventEmitter<string>,
-    public unlockGroupEmiter: EventEmitter<number>
+    public unlockGroupEmiter: EventEmitter<number>,
+    private toastr: ToastrService
   ) {
     this.tabs = new Tabs();
 
@@ -331,7 +333,11 @@ export class Game {
 
         //  Kill Malus
         if (unitZero instanceof Malus) {
-          unitZero.kill();
+          if (unitZero.kill()) {
+            this.toastr.success("", unitZero.name + " killed!");
+          }
+        } else {
+          this.toastr.warning(unitZero.name + " ended!");
         }
       }
 

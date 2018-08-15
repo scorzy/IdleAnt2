@@ -9,7 +9,7 @@
   <span class="monospace">{{quantity | format:false:ms.options.formatter}}</span>
 
   <span class="perSecTab  monospace">
-    <span *ngIf="perSec.abs().gt(0.001)">
+    <span *ngIf="perSec.abs().gt(0.001)" [ngClass]="{'noEnought': perSec.lt(0)}">
       {{perSec | format:false:ms.options.formatter}}/s
     </span>
   </span>

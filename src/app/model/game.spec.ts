@@ -2,6 +2,7 @@ import { inject, TestBed } from "@angular/core/testing";
 
 import { EventEmitter } from "@angular/core";
 import uniq from "lodash-es/uniq";
+import { ToastrService } from "ngx-toastr";
 import { FullUnit } from "./full-unit";
 import { Game } from "./game";
 
@@ -10,21 +11,30 @@ describe("Game", () => {
   const researchEmitter = new EventEmitter<string>();
   const unlockGroupEmiter = new EventEmitter<number>();
   let game: Game;
+  let toastr;
+
   beforeEach(() => {
-    game = new Game(updateEmitter, researchEmitter, unlockGroupEmiter);
+    toastr = jasmine.createSpyObj("ToastrService", ["warning", "success"]);
+    game = new Game(updateEmitter, researchEmitter, unlockGroupEmiter, toastr);
   });
   it("should be created", () => {
     expect(
-      new Game(updateEmitter, researchEmitter, unlockGroupEmiter)
+      new Game(updateEmitter, researchEmitter, unlockGroupEmiter, null)
     ).toBeTruthy();
   });
   it("Save works", () => {
     const original = new Game(
       updateEmitter,
       researchEmitter,
-      unlockGroupEmiter
+      unlockGroupEmiter,
+      null
     );
-    const second = new Game(updateEmitter, researchEmitter, unlockGroupEmiter);
+    const second = new Game(
+      updateEmitter,
+      researchEmitter,
+      unlockGroupEmiter,
+      null
+    );
 
     original.units = [
       new FullUnit("id1", "name1", "desc", new Decimal(10)),
@@ -98,6 +108,7 @@ describe("Game", () => {
     expect(Math.floor(food.quantity.toNumber())).toBe(7);
     expect(consumer.efficiency).toBe(0);
     expect(farmer.efficiency).toBe(100);
+    expect(toastr.warning).toHaveBeenCalled();
   });
   it("Unique units ID", () => {
     const ids = game.units.map(u => u.id);

@@ -55,7 +55,8 @@ export class MainService {
     this.game = new Game(
       this.updateEmitter,
       this.researchEmitter,
-      this.unlockGroupEmiter
+      this.unlockGroupEmiter,
+      this.toastr
     );
     this.last = Date.now();
     setInterval(this.update.bind(this), 250);
@@ -143,7 +144,8 @@ export class MainService {
       this.game = new Game(
         this.updateEmitter,
         this.researchEmitter,
-        this.unlockGroupEmiter
+        this.unlockGroupEmiter,
+        this.toastr
       );
       if (!!data.o) this.options.restore(data.o);
       this.setTheme();
