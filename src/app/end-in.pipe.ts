@@ -21,9 +21,7 @@ export class EndInPipe implements PipeTransform {
         return distanceInWordsToNow(new Date(Date.now() + value));
       } else {
         return (
-          "in " +
-          this.pipeFormat.transform(2018 + value / SECONDS_IN_YEAR) +
-          " years"
+          "in " + this.pipeFormat.transform(value / SECONDS_IN_YEAR) + " years"
         );
       }
     } else {

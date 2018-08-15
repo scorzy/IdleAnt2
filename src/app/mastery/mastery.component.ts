@@ -25,6 +25,7 @@ export class MasteryComponent implements AfterViewInit, OnInit {
   @ViewChild("network") networkDiv: ElementRef;
   networkVis: Network;
   list = new Array<string>();
+  node: any;
 
   constructor(public ms: MainService, private cd: ChangeDetectorRef) {
     //
@@ -41,11 +42,9 @@ export class MasteryComponent implements AfterViewInit, OnInit {
       }
     }
   }
-
   ngOnInit() {
     this.rebuildList();
   }
-
   ngAfterViewInit() {
     setTimeout(() => {
       this.networkVis = new Network(
@@ -60,14 +59,19 @@ export class MasteryComponent implements AfterViewInit, OnInit {
         }
       );
       this.networkVis.on("click", params => {
-        if (this.ms.game.allMateries.buy(params.nodes[0])) {
-          this.rebuildList();
-          this.cd.markForCheck();
-        }
+        const masteryBuy = params.nodes[0];
+        this.node = this.ms.game.allMateries.visMasteries.get(masteryBuy);
+        this.cd.markForCheck();
       });
     }, 0);
   }
   getDescId(index: number, desc: string) {
     return index + desc;
+  }
+  buyMastery() {
+    if (this.ms.game.allMateries.buy(this.node.id)) {
+      this.node = null;
+      this.rebuildList();
+    }
   }
 }

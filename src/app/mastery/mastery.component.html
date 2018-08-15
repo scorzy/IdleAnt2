@@ -8,8 +8,17 @@
       <span class="monospace" *ngIf="ms.game.allMateries.masteryPoint > 0">{{ms.game.allMateries.masteryPoint}}</span>
     </h6>
   </a>
-  <a clrVerticalNavLink *ngFor="let desc of list; trackBy:getDescId">
-    {{desc}}
-  </a>
+  <div clrVerticalNavLink *ngIf="!node; else buy">
+    <a *ngFor="let desc of list; trackBy:getDescId">
+      {{desc}}
+    </a>
+  </div>
+  <ng-template #buy>
+    <p clrVerticalNavLink>{{node.label}}</p>
+    <button class="btn" *ngIf="node.avaiable && !node.owned" [disabled]="ms.game.allMateries.masteryPoint <1" (click)="buyMastery()">
+      Buy
+    </button>
+  </ng-template>
+
 
 </clr-vertical-nav>

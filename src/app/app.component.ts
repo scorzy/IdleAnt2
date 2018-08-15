@@ -22,6 +22,7 @@ import {
   ClrShapeInfoStandard
 } from "@clr/icons/shapes/core-shapes";
 import { ClrShapePause } from "@clr/icons/shapes/media-shapes";
+import { ClrShapeStar } from "@clr/icons/shapes/social-shapes";
 import {
   ClrShapeFlask,
   ClrShapeFloppy,
@@ -57,7 +58,8 @@ export class AppComponent implements OnInit, OnDestroy {
       "paint-roller": ClrShapePaintRoller,
       install: ClrShapeInstall,
       uninstall: ClrShapeUninstall,
-      tools: ClrShapeTools
+      tools: ClrShapeTools,
+      star: ClrShapeStar
     });
   }
 

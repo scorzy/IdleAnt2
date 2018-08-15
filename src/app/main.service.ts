@@ -1,12 +1,16 @@
 import { EventEmitter, Inject, Injectable } from "@angular/core";
 import { DOCUMENT } from "@angular/platform-browser";
+import * as distanceInWordsToNow from "date-fns/distance_in_words_to_now";
 import * as LZString from "lz-string";
 import { ToastrService } from "ngx-toastr";
 import { Game } from "./model/game";
+import { MasteryTypes } from "./model/masteries/mastery";
 import { World } from "./model/world";
 import { OptionsService } from "./options.service";
 
 const GAME_VERSION = 0;
+const H8 = 8 * 3600 * 1000;
+const H1 = 3600 * 1000;
 
 @Injectable({
   providedIn: "root"
@@ -58,9 +62,29 @@ export class MainService {
   }
   update() {
     const now = Date.now();
-    const diff = now - this.last;
+    let diff = now - this.last;
+
+    if (diff > H1) {
+      let bonus = 0;
+      if (diff > H8) {
+        bonus =
+          diff *
+          30 *
+          this.game.allMateries.getSum(MasteryTypes.MORE_IDLE_8H) /
+          100;
+      }
+      this.toastr.info(
+        bonus > 0
+          ? "Bonus: " + distanceInWordsToNow(new Date(Date.now() + bonus))
+          : "",
+        "You where offline for: " +
+          distanceInWordsToNow(new Date(Date.now() + diff))
+      );
+      diff = diff + bonus;
+    }
 
     this.game.updateWithTime(diff);
+
     this.game.postUpdate();
     this.last = now;
     this.updateEmitter.emit(diff);

@@ -4,6 +4,7 @@ import { AutoBuyManager } from "./autoBuy/auto-buy-manager";
 import { FullUnit } from "./full-unit";
 import { Malus } from "./malus";
 import { AllMasteries } from "./masteries/all-masteries";
+import { Mastery, MasteryTypes } from "./masteries/mastery";
 import { AllPrestige } from "./prestige/all-prestige";
 import { Price } from "./price";
 import { Stats } from "./stats/stats";
@@ -112,6 +113,7 @@ export class Game {
     this.experience = new FullUnit("prest");
     this.time = new FullUnit("time");
     //#endregion
+
     //#region Relations
     this.unitGroups.forEach(g => g.setRelations());
     this.researches.setRelations(this.materials.science, this);
@@ -120,28 +122,21 @@ export class Game {
     this.genX2.firstResearch.toUnlock.push(this.genX3.firstResearch);
     this.worldBonus.setRelations(this);
     //#endregion
+
     //#region Worlds
     this.worldBonus.addWorlds();
     this.unitGroups.forEach(g => g.addWorlds());
     //#endregion
+
     //#region Prestige
     this.allPrestige = new AllPrestige();
     this.allPrestige.declareStuff(this);
     //#endregion
+
     //#region Starting stuff
     this.materials.food.quantity = new Decimal(STARTING_FOOD);
     //#endregion
-    //#region Debug
-    this.materials.food.quantity = new Decimal(1e100);
-    // this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
-    // this.materials.list.forEach(u => (u.unlocked = true));
-    this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
-    this.tabs.tabList.forEach(t => (t.unlocked = true));
-    // // this.worldMalus.foodMalus1.quantity = new Decimal(100);
-    // this.worldMalus.foodMalus1.quantity = new Decimal(100);
-    // this.worldMalus.foodMalus2.quantity = new Decimal(10);
-    // this.experience.quantity = new Decimal(1000);
-    //#endregion
+
     //#region Build Lists
     this.unitGroups.forEach(g => g.check(true));
     this.unitGroups
@@ -151,6 +146,7 @@ export class Game {
     this.buildLists();
     this.unitGroups.forEach(g => (g.selected = g.list.filter(u => u.unlocked)));
     //#endregion
+
     //#region Worlds
     // World.biome.push(new World());
     // this.currentWorld.winContidions.push(
@@ -159,16 +155,19 @@ export class Game {
     // this.currentWorld.notWinConditions.push(this.worldMalus.crystalMalus1);
     this.generateWorlds();
     //#endregion
+
     //#region Time Warp
     this.actMin = new WarpAction(60, this);
     this.actHour = new WarpAction(3600, this);
     //#endregion
+
     //#region Assign team and twin research to actions
     this.units.forEach(u => {
       if (u.teamAction) u.teamAction.requiredResearch = this.researches.team2;
       if (u.twinAction) u.twinAction.requiredResearch = this.researches.twin;
     });
     //#endregion
+
     //#region Autobuyers
     this.autoBuyManager = new AutoBuyManager();
     this.units.filter(u => u.hasAutoBuyer).forEach(u => {
@@ -179,14 +178,30 @@ export class Game {
       }
     });
     //#endregion
+
     //#region Special Stuff
     this.researches.mastery.onBuy = () => {
       this.allMateries.totalEarned++;
       this.allMateries.masteryPoint++;
     };
     //#endregion
+
     this.allMateries = new AllMasteries();
     this.stats = new Stats();
+
+    //#region Debug
+    this.materials.food.quantity = new Decimal(1e100);
+    // this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
+    // this.materials.list.forEach(u => (u.unlocked = true));
+    this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
+    this.tabs.tabList.forEach(t => (t.unlocked = true));
+    // // this.worldMalus.foodMalus1.quantity = new Decimal(100);
+    // this.worldMalus.foodMalus1.quantity = new Decimal(100);
+    // this.worldMalus.foodMalus2.quantity = new Decimal(10);
+    // this.experience.quantity = new Decimal(1000);
+    this.allMateries.masteryPoint = 3;
+    this.experience.quantity = new Decimal(100);
+    //#endregion
   }
   buildLists() {
     this.unlockedUnits = [];
@@ -407,7 +422,7 @@ export class Game {
     this.gatherers.drone.unlocked = true;
     this.materials.food.unlocked = true;
 
-    //  Update Mastery and Experience
+    //  Update Experience
     if (this.canTravel) {
       this.experience.quantity = newPrestige;
       this.maxLevel = this.maxLevel.plus(this.currentWorld.level);
@@ -418,9 +433,11 @@ export class Game {
     this.researches.reset(this.materials.science);
 
     //#region  Followers
+    const flollowerMulti =
+      this.allMateries.getSum(MasteryTypes.MORE_FOLLOWERS) + 1;
     this.units.filter(u => u.follower).forEach(u => {
       u.quantity = u.quantity.plus(
-        u.follower.quantity.times(u.followerQuantity)
+        u.follower.quantity.times(u.followerQuantity).times(flollowerMulti)
       );
       if (u.quantity.gt(0.5)) {
         u.unlock();

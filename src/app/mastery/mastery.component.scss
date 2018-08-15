@@ -5,3 +5,14 @@
 .clr-vertical-nav {
   width: 15rem;
 }
+.btn {
+  margin: 0;
+  color: #007cbb;
+}
+.clr-vertical-nav.is-collapsed .btn {
+  display: none;
+}
+.clr-vertical-nav .nav-link.active,
+.clr-vertical-nav .nav-link:hover {
+  background-color: transparent;
+}

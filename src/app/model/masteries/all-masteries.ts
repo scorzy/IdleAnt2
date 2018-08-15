@@ -41,6 +41,7 @@ export class AllMasteries {
   getSum(type: MasteryTypes): number {
     return this.totals[type];
   }
+
   buy(id: number, loading = false): boolean {
     if (this.masteryPoint < 1) {
       return false;
