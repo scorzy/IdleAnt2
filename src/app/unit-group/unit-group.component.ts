@@ -32,6 +32,7 @@ declare let Chart;
 export class UnitGroupComponent implements OnInit, OnDestroy {
   paramsSub: any;
   sub: any;
+  subEff: any;
   paramsSave: any;
 
   selected = new Array<FullUnit>();
@@ -121,12 +122,28 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
     this.paramsSub = this.route.params.subscribe(this.getGroup.bind(this));
     this.sub = this.ms.updateEmitter.subscribe(m => {
       this.updateChart();
+      this.getOperativity();
+      this.cd.markForCheck();
+    });
+    this.subEff = this.ms.efficiencyEmitter.subscribe(e => {
+      this.operativity = e;
       this.cd.markForCheck();
     });
   }
   ngOnDestroy() {
     this.paramsSub.unsubscribe();
     this.sub.unsubscribe();
+    this.subEff.unsubscribe();
+  }
+  getOperativity() {
+    if (this.unitGroup.unlocked[0].buyAction) {
+      this.operativity =
+        this.unitGroup.selected.length > 0
+          ? this.unitGroup.selected
+              .map(u => u.efficiency)
+              .reduce((p, c) => p + c, 0) / this.unitGroup.selected.length
+          : 0;
+    }
   }
   getGroup(params: any) {
     this.paramsSave = params;
@@ -142,14 +159,8 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
       .map(u => u.name)
       .reduce((p, c) => p + ", " + c);
 
+    this.getOperativity();
     if (this.unitGroup.unlocked[0].buyAction) {
-      this.operativity =
-        this.unitGroup.selected.length > 0
-          ? this.unitGroup.selected
-              .map(u => u.efficiency)
-              .reduce((p, c) => p + c, 0) / this.unitGroup.selected.length
-          : 0;
-
       this.hatchActionGrp = new ActionGroup(
         "Hatch",
         this.unitGroup.selected.filter(u => u.buyAction).map(u => u.buyAction),

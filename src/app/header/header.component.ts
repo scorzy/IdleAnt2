@@ -75,9 +75,14 @@ export class HeaderComponent implements OnInit {
     this.ms.game.unlockedUnits.forEach(u => {
       u.efficiency = 100;
     });
+    this.ms.efficiencyEmitter.emit(100);
   }
   warp(minute: number) {
     this.ms.game.actMin.buy(new Decimal(minute));
+  }
+  allCustom(eff: number, list: UnitGroup) {
+    list.allCustom(eff);
+    this.ms.efficiencyEmitter.emit(eff);
   }
   getListId(index, list: UnitGroup) {
     return list.name;

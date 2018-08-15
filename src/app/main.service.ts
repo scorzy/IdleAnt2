@@ -19,6 +19,7 @@ export class MainService {
   researchEmitter: EventEmitter<string> = new EventEmitter<string>();
   worldEmitter: EventEmitter<World> = new EventEmitter<World>();
   unlockGroupEmiter: EventEmitter<number> = new EventEmitter<number>();
+  efficiencyEmitter: EventEmitter<number> = new EventEmitter<number>();
 
   themeClarity: HTMLLinkElement;
   // themePrime: HTMLLinkElement;
