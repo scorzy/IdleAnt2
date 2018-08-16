@@ -28,7 +28,7 @@ export class Workers extends UnitGroup {
     this.miner = new FullUnit("m");
     this.scientist = new FullUnit("s");
 
-    this.scientificMethod1 = new Research("scie1", this.game.researches);
+    this.scientificMethod1 = new Research("scie1", this.game.researches, true);
 
     this.addUnits([this.farmer, this.carpenter, this.miner, this.scientist]);
 
@@ -86,7 +86,7 @@ export class Workers extends UnitGroup {
     );
     this.firstResearch.toUnlock = this.researchList;
 
-    this.scientificMethod1.prices = this.game.genSciencePrice(new Decimal(1e3));
+    this.scientificMethod1.prices = this.game.genSciencePrice(1e3, 100);
     this.researchList[3].toUnlock.push(this.scientificMethod1);
     this.game.materials.science.productionsBonus.push(
       new ProductionBonus(this.scientificMethod1, new Decimal(0.5))

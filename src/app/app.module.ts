@@ -43,6 +43,8 @@ import { UnitGroupComponent } from "./unit-group/unit-group.component";
 import { UnitTabsComponent } from "./unit-tabs/unit-tabs.component";
 import { UnitComponent } from "./unit/unit.component";
 import { WorldComponent } from "./world/world.component";
+import { NameComponent } from './research/name/name.component';
+import { RomanPipe } from './roman.pipe';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { WorldComponent } from "./world/world.component";
     ButtonsComponent,
     ActionHeaderComponent,
     StatsComponent,
-    MasteryComponent
+    MasteryComponent,
+    NameComponent,
+    RomanPipe
   ],
   imports: [
     BrowserAnimationsModule,

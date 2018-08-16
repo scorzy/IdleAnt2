@@ -1,6 +1,6 @@
 <div class="card-block">
   <div class="card-title">
-    {{research.name}}
+    <app-name [name]="research.name" [unlimited]="research.unlimited" [quantity]="research.quantity"></app-name>
   </div>
   <div class="card-text p">
     {{research.description}}
@@ -8,7 +8,7 @@
     <div *ngIf="!research.complete">
       <span>Cost: </span>
       <app-price-line *ngFor="let price of research.prices; trackBy:getPriceId" [name]="price.base.name" [canBuy]="price.canBuy"
-        [price]="price.price">
+        [price]="price.priceUser">
       </app-price-line>
     </div>
   </div>

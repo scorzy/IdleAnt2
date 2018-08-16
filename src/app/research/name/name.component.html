@@ -1,0 +1,9 @@
+<span>
+  {{name}}
+</span>
+<span *ngIf="unlimited && quantity.gt(0) && quantity.lte(3999)">
+  {{quantity | roman}}
+</span>
+<span *ngIf="unlimited && quantity.gt(0) && quantity.gt(3999)">
+  {{quantity | format:true}}
+</span>

@@ -1,3 +1,4 @@
+import { FormatPipe } from "./../format.pipe";
 import { Action } from "./action";
 import { FullUnit } from "./full-unit";
 import { IUnlocable } from "./iunlocable";
@@ -9,18 +10,24 @@ export class Research extends Action implements IUnlocable {
   unlocked = false;
   toUnlock = new Array<IUnlocable>();
 
-  constructor(id: string, public researches: Researches) {
+  constructor(
+    id: string,
+    public researches: Researches,
+    public unlimited = false
+  ) {
     super(id, "", "");
     if (id in STRINGS.researches) {
       this.name = STRINGS.researches[id][0];
       this.description = STRINGS.researches[id][1];
     }
-    this.limit = new Decimal(1);
-    this.isLimited = true;
+    if (!this.unlimited) {
+      this.limit = new Decimal(1);
+      this.isLimited = true;
+    }
     this.userNum = 1;
     this.researches.researches.push(this);
   }
-  genPrice(price: Decimal, science: FullUnit) {
+  genPrice(price: Decimal, science: FullUnit, growRate = 1) {
     this.prices = [new Price(science, price, 1)];
   }
   buy(toBuy = new Decimal(1)): boolean {
@@ -30,6 +37,7 @@ export class Research extends Action implements IUnlocable {
       }
       this.onBuy();
       this.researches.reloadLists();
+
       return true;
     } else {
       return false;

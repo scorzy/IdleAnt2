@@ -205,7 +205,7 @@ export class Game {
 
     //#region Debug
     // this.materials.food.quantity = new Decimal(1e100);
-    // this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
+    this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
     // this.materials.list.forEach(u => (u.unlocked = true));
     // this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
     // this.tabs.tabList.forEach(t => (t.unlocked = true));
@@ -499,8 +499,8 @@ export class Game {
   genTwinPrice(price: Decimal | number): Price[] {
     return [new Price(this.materials.science, new Decimal(price), 10)];
   }
-  genSciencePrice(price: Decimal | number): Price[] {
-    return [new Price(this.materials.science, new Decimal(price), 1)];
+  genSciencePrice(price: Decimal | number, growRate = 1): Price[] {
+    return [new Price(this.materials.science, new Decimal(price), growRate)];
   }
   genExperiencePrice(price: Decimal | number): Price[] {
     return [new Price(this.experience, new Decimal(price), 1)];

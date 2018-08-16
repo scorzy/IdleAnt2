@@ -13,9 +13,6 @@ export class Researches {
   team2: Research;
   twin: Research;
 
-  scientificMethod2: Research;
-  scientificMethod3: Research;
-
   travel: Research;
 
   /**
@@ -30,9 +27,6 @@ export class Researches {
     this.team1 = new Research("team1", this);
     this.team2 = new Research("team2", this);
     this.twin = new Research("twin", this);
-
-    this.scientificMethod2 = new Research("scie2", this);
-    this.scientificMethod3 = new Research("scie3", this);
 
     this.travel = new Research("travel", this);
 
@@ -51,24 +45,11 @@ export class Researches {
     this.team1.toUnlock = [this.team2];
     this.team2.toUnlock = [this.twin];
 
-    game.genX2.researchList[3].toUnlock.push(this.scientificMethod2);
-    game.genX3.researchList[3].toUnlock.push(
-      this.scientificMethod3,
-      this.travel
-    );
-
-    this.scientificMethod2.genPrice(new Decimal(1e7), science);
-    this.scientificMethod3.genPrice(new Decimal(1e11), science);
+    game.genX3.researchList[3].toUnlock.push(this.travel);
 
     this.travel.toUnlock.push(game.tabs.travel, this.mastery);
     this.mastery.toUnlock.push(game.tabs.mastery);
-
-    science.productionsBonus.push(
-      new ProductionBonus(this.scientificMethod2, new Decimal(0.75)),
-      new ProductionBonus(this.scientificMethod3, new Decimal(1))
-    );
   }
-
   reset(science: FullUnit) {
     this.reloadMasteryPrice(science);
     this.researches.forEach(r => {
@@ -80,8 +61,12 @@ export class Researches {
     this.reloadLists();
   }
   reloadLists() {
-    this.toDo = this.researches.filter(r => r.unlocked && !r.done);
-    this.done = this.researches.filter(r => r.unlocked && r.done);
+    this.toDo = this.researches.filter(
+      r => r.unlocked && (!r.done || r.unlimited)
+    );
+    this.done = this.researches.filter(
+      r => r.unlocked && r.done && !r.unlimited
+    );
     this.researchEmitter.emit("");
   }
   reloadMasteryPrice(science: FullUnit) {
