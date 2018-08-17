@@ -13,6 +13,8 @@ export class Researches {
   team2: Research;
   twin: Research;
 
+  harvesting: Research;
+
   travel: Research;
 
   /**
@@ -27,10 +29,9 @@ export class Researches {
     this.team1 = new Research("team1", this);
     this.team2 = new Research("team2", this);
     this.twin = new Research("twin", this);
-
     this.travel = new Research("travel", this);
-
     this.mastery = new Research("mastery", this);
+    this.harvesting = new Research("harv", this, true);
 
     this.team1.unlocked = true;
     this.reloadLists();
@@ -41,11 +42,17 @@ export class Researches {
     this.twin.genPrice(new Decimal(1e5), science);
     this.travel.genPrice(new Decimal(1e6), science);
     this.mastery.genPrice(new Decimal(1e20), science);
+    this.harvesting.prices = game.genSciencePrice(1e3, 1e3);
 
     this.team1.toUnlock = [this.team2];
     this.team2.toUnlock = [this.twin];
 
     game.genX3.researchList[3].toUnlock.push(this.travel);
+    game.advWorkers.firstResearch.toUnlock.push(this.harvesting);
+    const bonus = new ProductionBonus(this.harvesting, new Decimal(0.3));
+    game.gatherers.list.forEach(u => {
+      u.productionsEfficienty.push(bonus);
+    });
 
     this.travel.toUnlock.push(game.tabs.travel, this.mastery);
     this.mastery.toUnlock.push(game.tabs.mastery);

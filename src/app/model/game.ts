@@ -118,7 +118,16 @@ export class Game {
     //#endregion
 
     //#region Relations
-    this.unitGroups.forEach(g => g.setRelations());
+    this.unitGroups
+      .filter(g => g !== this.genX3)
+      .forEach(g => g.setRelations());
+    this.genX2.list
+      .filter(u => u.buyAction)
+      .map(u => u.buyAction)
+      .forEach(a => a.prices.push(new Price(this.materials.wood, 1e4)));
+
+    this.genX3.setRelations();
+
     this.researches.setRelations(this.materials.science, this);
     this.researches.team1.toUnlock.push(this.advWorkers.firstResearch);
     this.advWorkers.firstResearch.toUnlock.push(this.genX2.firstResearch);
@@ -190,7 +199,7 @@ export class Game {
     });
     //#endregion
 
-    this.allMateries = new AllMasteries();
+    this.allMateries = new AllMasteries(this);
     this.stats = new Stats();
 
     //#region Special Stuff
@@ -208,13 +217,13 @@ export class Game {
     this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
     // this.materials.list.forEach(u => (u.unlocked = true));
     // this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
-    // this.tabs.tabList.forEach(t => (t.unlocked = true));
+    this.tabs.tabList.forEach(t => (t.unlocked = true));
     // // this.worldMalus.foodMalus1.quantity = new Decimal(100);
     // this.worldMalus.foodMalus1.quantity = new Decimal(100);
     // this.worldMalus.foodMalus2.quantity = new Decimal(10);
     // this.experience.quantity = new Decimal(1000);
-    // this.allMateries.masteryPoint = 3;
-    // this.experience.quantity = new Decimal(100);
+    this.allMateries.masteryPoint = 30;
+    this.experience.quantity = new Decimal(1e4);
     //#endregion
   }
   buildLists() {
@@ -502,8 +511,8 @@ export class Game {
   genSciencePrice(price: Decimal | number, growRate = 1): Price[] {
     return [new Price(this.materials.science, new Decimal(price), growRate)];
   }
-  genExperiencePrice(price: Decimal | number): Price[] {
-    return [new Price(this.experience, new Decimal(price), 1)];
+  genExperiencePrice(price: Decimal | number, growRate = 1.3): Price[] {
+    return [new Price(this.experience, new Decimal(price), growRate)];
   }
   //#endregion
   //#region Save and Load

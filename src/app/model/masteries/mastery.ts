@@ -1,7 +1,8 @@
 export enum MasteryTypes {
   MORE_FOLLOWERS = 0,
   MORE_IDLE_8H,
-  SCIENCE_PRESTIGE
+  SCIENCE_BONUS,
+  HARVEST_BONUS
 }
 
 export class Mastery {
@@ -20,8 +21,12 @@ export class Mastery {
         ret = "+" + 30 * num + "% idle time after 8h";
         break;
       }
-      case MasteryTypes.SCIENCE_PRESTIGE: {
-        ret = "+10*log10(unspent experience)% \n science boost";
+      case MasteryTypes.SCIENCE_BONUS: {
+        ret = "+" + 20 * num + "% science";
+        break;
+      }
+      case MasteryTypes.HARVEST_BONUS: {
+        ret = "+" + 20 * num + "% resource from ghanteres";
         break;
       }
     }

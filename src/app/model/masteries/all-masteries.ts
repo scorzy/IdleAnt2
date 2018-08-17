@@ -1,4 +1,6 @@
 import { DataSet, Edge, IdType, Network, Node } from "vis";
+import { Game } from "../game";
+import { ProductionBonus } from "../production-bonus";
 import { BaseUnit } from "./../baseUnit";
 import { Mastery, MasteryTypes } from "./mastery";
 
@@ -11,36 +13,42 @@ export class AllMasteries {
   visEdge: DataSet<{ from: number; to: number }>;
 
   scienceBonus: BaseUnit;
+  harvestBonus: BaseUnit;
 
-  constructor() {
-    this.scienceBonus = new BaseUnit("unsPS");
+  constructor(game: Game) {
+    this.scienceBonus = new BaseUnit("scieMast");
+    game.materials.science.productionsBonus.push(
+      new ProductionBonus(this.scienceBonus, new Decimal(0.2))
+    );
+    this.harvestBonus = new BaseUnit("harvMast");
+    const harvBon = new ProductionBonus(this.harvestBonus, new Decimal(0.2));
+    game.gatherers.list.forEach(u => {
+      u.productionsEfficienty.push(harvBon);
+    });
 
     const lenght = Object.keys(MasteryTypes).length / 2;
     this.totals = new Array(lenght).fill(0);
 
     const av1 = new Mastery(0, MasteryTypes.MORE_FOLLOWERS);
-    const av2 = new Mastery(3, MasteryTypes.MORE_IDLE_8H);
+    const av2 = new Mastery(5, MasteryTypes.MORE_IDLE_8H);
+    const av3 = new Mastery(10, MasteryTypes.HARVEST_BONUS);
+    const av4 = new Mastery(15, MasteryTypes.SCIENCE_BONUS);
     av1.avaiable = true;
     av1.color = Mastery.avaiableColor;
     av2.avaiable = true;
     av2.color = Mastery.avaiableColor;
+    av3.avaiable = true;
+    av3.color = Mastery.avaiableColor;
+    av4.avaiable = true;
+    av4.color = Mastery.avaiableColor;
 
-    this.visMasteries = new DataSet([
-      av1,
-      new Mastery(1, MasteryTypes.MORE_FOLLOWERS),
-      new Mastery(2, MasteryTypes.MORE_FOLLOWERS),
-      av2,
-      new Mastery(4, MasteryTypes.MORE_IDLE_8H),
-      new Mastery(5, MasteryTypes.MORE_IDLE_8H)
-    ]);
+    this.visMasteries = new DataSet([av1, av2, av3, av4]);
+    this.visEdge = new DataSet([]);
 
-    this.visEdge = new DataSet([
-      { from: 0, to: 1 },
-      { from: 1, to: 2 },
-      { from: 2, to: 3 },
-      { from: 3, to: 4 },
-      { from: 4, to: 5 }
-    ]);
+    this.addMasteryLine(0, 1, MasteryTypes.MORE_FOLLOWERS, 3, 5);
+    this.addMasteryLine(5, 6, MasteryTypes.MORE_IDLE_8H, 3, 10);
+    this.addMasteryLine(10, 11, MasteryTypes.HARVEST_BONUS, 3, 15);
+    this.addMasteryLine(15, 16, MasteryTypes.SCIENCE_BONUS, 3, 0);
   }
 
   getSum(type: MasteryTypes): number {
@@ -48,12 +56,14 @@ export class AllMasteries {
   }
 
   buy(id: number, loading = false): boolean {
-    if (this.masteryPoint < 1) {
+    if (this.masteryPoint < 1 && !loading) {
       return false;
     }
     const node = this.visMasteries.get(id);
-    if (node && node.avaiable && !node.owned) {
-      this.masteryPoint--;
+    if ((node && node.avaiable && !node.owned) || loading) {
+      if (!loading) {
+        this.masteryPoint--;
+      }
       this.totals[node.type]++;
 
       const avEdges = this.visEdge.get({
@@ -90,10 +100,21 @@ export class AllMasteries {
         color: Mastery.ownedColor
       };
       this.visMasteries.update(update);
+      if (!loading) this.reloadBonus();
+
       return true;
     } else {
       return false;
     }
+  }
+
+  reloadBonus() {
+    this.scienceBonus.quantity = new Decimal(
+      this.getSum(MasteryTypes.SCIENCE_BONUS)
+    );
+    this.harvestBonus.quantity = new Decimal(
+      this.getSum(MasteryTypes.HARVEST_BONUS)
+    );
   }
 
   //#region Save and Load
@@ -120,6 +141,26 @@ export class AllMasteries {
     if ("to" in data) {
       this.totalEarned = data.to;
     }
+    this.reloadBonus();
   }
   //#endregion
+
+  private addMasteryLine(
+    fromN: number,
+    startId: number,
+    type: MasteryTypes,
+    quantity = 1,
+    toN = Number.NEGATIVE_INFINITY
+  ) {
+    for (let i = 0; i < quantity; i++) {
+      this.visMasteries.add(new Mastery(startId + i, type));
+    }
+    this.visEdge.add({ from: fromN, to: startId });
+    for (let i = 0; i < quantity - 1; i++) {
+      this.visEdge.add({ from: startId + i, to: startId + i + 1 });
+    }
+    if (toN >= 0) {
+      this.visEdge.add({ from: startId + quantity - 1, to: toN });
+    }
+  }
 }

@@ -62,6 +62,7 @@ export const STRINGS = {
     work_res: ["Workers", "Workers"],
     Buildings_r: ["Buildings", "Buildings"],
     mastery: ["Mastery", "Get one mastery point"],
+    harv: ["Harvesting", "+30% resource from Gatherers"],
     //  Workers
     f_wr: [
       "Farmer",
@@ -80,14 +81,12 @@ export const STRINGS = {
     c_g_r: ["Wood Camp", "carpenter"],
     m_g_r: ["Mine", "miner"],
     s_g_r: ["University", "scientist"],
-    scie2: ["Scientific Method 2", "+75% science production"],
     //  Workers 3
     En_r: ["Engineers", "Engineers"],
     f_g_g_r: ["Hydro Engineer", "Hydro Engineer"],
     c_g_g_r: ["Wood Engineer", "Wood Engineer"],
     m_g_g_r: ["Mine Engineer", "Mine Engineer"],
-    s_g_g_r: ["Department of Education", "Department of Education"],
-    scie3: ["Scientific Method 3", "+100% science production"]
+    s_g_g_r: ["Department of Education", "Department of Education"]
   },
   worlds: {
     foBPre: "Hot",
