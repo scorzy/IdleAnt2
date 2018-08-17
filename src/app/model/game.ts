@@ -66,6 +66,7 @@ export class Game {
   autoBuyManager: AutoBuyManager;
   stats: Stats;
   allMateries: AllMasteries;
+  maxTimeBank = new Decimal(0);
 
   constructor(
     public updateEmitter: EventEmitter<number>,
@@ -170,8 +171,8 @@ export class Game {
     this.currentWorld.name = "Home World";
     this.currentWorld.level = new Decimal(1);
     this.currentWorld.winContidions.push(
-      new Price(this.materials.food, World.BASE_WIN_CONDITION_MATERIALS),
-      new Price(this.genX3.list[0], World.BASE_WIN_CONDITION_OTHER)
+      new Price(this.materials.food, World.BASE_WIN_CONDITION_MATERIALS)
+      // new Price(this.genX3.list[0], World.BASE_WIN_CONDITION_OTHER)
     );
     this.currentWorld.setLevel(new Decimal(1));
     //#endregion
@@ -237,15 +238,25 @@ export class Game {
       this.unlockGroupEmiter.emit(this.unlockedGroups.length);
     }
   }
+  setMaxTimeBank() {
+    this.maxTimeBank = this.allPrestige.time.timeBank.quantity
+      .times(3600)
+      .plus(7200)
+      .times(1 + 0.5 * this.allMateries.getSum(MasteryTypes.TIME_BANK));
+  }
   /**
    * Update game and add time
    * @param delta time passed in milliseconds
    */
   updateWithTime(delta: number) {
-    const timePerSec = this.allPrestige.time.timeProducer.quantity.div(10);
+    const timePerSec = this.allPrestige.time.timeProducer.quantity
+      .div(10)
+      .times(1 + 0.3 * this.allMateries.getSum(MasteryTypes.TIME_GEN));
+
     this.time.quantity = this.time.quantity
       .plus(timePerSec.times(delta / 1000))
-      .min(this.allPrestige.time.timeBank.quantity.times(3600).plus(7200));
+      .min(this.maxTimeBank);
+
     this.time.c = timePerSec;
     this.update(delta);
   }
@@ -411,7 +422,9 @@ export class Game {
   reloadProduction() {
     const teamPrestigeBonus = this.allPrestige.team.betterTeam.quantity
       .times(0.3)
+      .times(1 + this.allMateries.getSum(MasteryTypes.TEAM_PRESTIGE))
       .plus(1);
+
     this.unlockedUnits.forEach(u => {
       u.reloadTeamBonus(this.researches.team1.done, teamPrestigeBonus);
       u.produces.forEach(p => p.reloadProdPerSec(this.researches.team1.done));
@@ -465,9 +478,14 @@ export class Game {
     this.applyWorldBonus();
     this.researches.reset(this.materials.science);
 
-    //#region  Followers
+    //#region Followers
     const flollowerMulti =
       this.allMateries.getSum(MasteryTypes.MORE_FOLLOWERS) + 1;
+    const flollowerMultiGa =
+      this.allMateries.getSum(MasteryTypes.MORE_FOLLOWERS_GA) * 3;
+    const flollowerMultiWo =
+      this.allMateries.getSum(MasteryTypes.MORE_FOLLOWERS_WO) * 3;
+
     this.units.filter(u => u.follower).forEach(u => {
       u.quantity = u.quantity.plus(
         u.follower.quantity.times(u.followerQuantity).times(flollowerMulti)
@@ -479,6 +497,26 @@ export class Game {
         }
       }
     });
+    this.gatherers.list.filter(u => u.follower).forEach(u => {
+      u.quantity = u.quantity.plus(
+        u.follower.quantity.times(u.followerQuantity).times(flollowerMultiGa)
+      );
+    });
+    this.advWorkers.list.filter(u => u.follower).forEach(u => {
+      u.quantity = u.quantity.plus(
+        u.follower.quantity.times(u.followerQuantity).times(flollowerMultiWo)
+      );
+    });
+    //#endregion
+
+    //#region Starting Team
+    const startTeam = this.allMateries.getSum(MasteryTypes.TEAM_START);
+    if (startTeam > 0) {
+      this.units
+        .filter(u => u.teamAction)
+        .map(u => u.teamAction)
+        .forEach(t => (t.quantity = t.quantity.plus(startTeam)));
+    }
     //#endregion
 
     this.unitGroups.forEach(g => g.check());
@@ -551,6 +589,7 @@ export class Game {
 
       this.applyWorldBonus();
       this.reloadProduction();
+      this.setMaxTimeBank();
       return true;
     } else {
       return false;

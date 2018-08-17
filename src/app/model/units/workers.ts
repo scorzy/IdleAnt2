@@ -1,5 +1,6 @@
 import { FullUnit } from "../full-unit";
 import { Game } from "../game";
+import { MasteryTypes } from "../masteries/mastery";
 import { Price } from "../price";
 import { ProductionBonus } from "../production-bonus";
 import { Research } from "../research";
@@ -88,8 +89,16 @@ export class Workers extends UnitGroup {
 
     this.scientificMethod1.prices = this.game.genSciencePrice(1e4, 100);
     this.researchList[3].toUnlock.push(this.scientificMethod1);
-    this.game.materials.science.productionsBonus.push(
-      new ProductionBonus(this.scientificMethod1, new Decimal(0.5))
+
+    const scieMetBon = new ProductionBonus(
+      this.scientificMethod1,
+      new Decimal(0.5)
     );
+    scieMetBon.getMultiplier = () => {
+      return new Decimal(
+        1 + this.game.allMateries.getSum(MasteryTypes.SCIENTIFIC_METHOD)
+      );
+    };
+    this.game.materials.science.productionsBonus.push(scieMetBon);
   }
 }

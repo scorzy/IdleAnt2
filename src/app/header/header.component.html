@@ -84,10 +84,17 @@
 <clr-modal [(clrModalOpen)]="timeModal" [clrModalSize]="'lg'">
   <h3 class="modal-title">Time Warp</h3>
   <div class="modal-body actMinH" *ngIf="ms.game.actMin && ms.game.actHour">
-    <span> You can skip {{ms.game.time.quantity | endIn}}:
+    <span> You can skip {{ms.game.time.quantity.toNumber() | endIn}}:
       <span class="monospace">
         {{ms.game.time.quantity | format}} s
       </span>
+    </span>
+    <br/>
+    <span>
+      You get
+      <span class="monospace">
+        {{ms.game.time.c | format }}s</span>
+      /s Max: <span class="monospace">{{ms.game.maxTimeBank | format}}</span>
     </span>
     <div class="clr-row">
       <div class="clr-col-6">

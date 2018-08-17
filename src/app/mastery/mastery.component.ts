@@ -26,6 +26,7 @@ export class MasteryComponent implements AfterViewInit, OnInit {
   networkVis: Network;
   list = new Array<string>();
   node: any;
+  exp = "";
 
   constructor(public ms: MainService, private cd: ChangeDetectorRef) {
     //
@@ -55,7 +56,21 @@ export class MasteryComponent implements AfterViewInit, OnInit {
         },
         {
           nodes: { borderWidth: 2 },
-          interaction: { hover: true }
+          edges: {
+            smooth: {
+              enabled: true,
+              type: "dynamic",
+              roundness: 0.5
+            }
+          },
+          interaction: { hover: true },
+          physics: {
+            barnesHut: {
+              gravitationalConstant: -6900,
+              avoidOverlap: 0.0
+            },
+            minVelocity: 1
+          }
         }
       );
       this.networkVis.on("click", params => {
@@ -70,8 +85,14 @@ export class MasteryComponent implements AfterViewInit, OnInit {
   }
   buyMastery() {
     if (this.ms.game.allMateries.buy(this.node.id)) {
+      this.ms.game.setMaxTimeBank();
       this.node = null;
       this.rebuildList();
     }
+  }
+
+  export() {
+    this.networkVis.storePositions();
+    this.exp = JSON.stringify(this.networkVis.getPositions());
   }
 }

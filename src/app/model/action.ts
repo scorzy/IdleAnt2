@@ -58,6 +58,7 @@ export class Action extends BaseUnit {
       if (this.isLimited && this.quantity.gte(this.limit)) this.complete = true;
       this.reload();
       this.reloadUserPrices();
+      this.onBuy();
       return true;
     } else {
       return false;
@@ -94,7 +95,9 @@ export class Action extends BaseUnit {
     this.realNum = new Decimal(1);
     this.availableIn = NaN;
   }
-
+  onBuy() {
+    //Do nothing
+  }
   //#region Save and Load
   getSave(): any {
     const save = super.getSave();

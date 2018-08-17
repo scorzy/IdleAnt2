@@ -1,4 +1,5 @@
 import { Game } from "../game";
+import { MasteryTypes } from "../masteries/mastery";
 import { ProductionBonus } from "../production-bonus";
 import { Prestige } from "./prestige";
 import { PrestigeGroup } from "./prestige-group";
@@ -21,17 +22,24 @@ export class Tecnology extends PrestigeGroup {
 
     this.list = [this.farming, this.carpentry, this.mining, this.studing];
 
-    game.materials.food.productionsBonus.push(
-      new ProductionBonus(this.farming, new Decimal(0.1))
-    );
-    game.materials.wood.productionsBonus.push(
-      new ProductionBonus(this.carpentry, new Decimal(0.1))
-    );
-    game.materials.crystal.productionsBonus.push(
-      new ProductionBonus(this.mining, new Decimal(0.1))
-    );
-    game.materials.science.productionsBonus.push(
-      new ProductionBonus(this.studing, new Decimal(0.1))
-    );
+    const foodBon = new ProductionBonus(this.farming, new Decimal(0.1));
+    game.materials.food.productionsBonus.push(foodBon);
+
+    const woodBon = new ProductionBonus(this.carpentry, new Decimal(0.1));
+    game.materials.wood.productionsBonus.push(woodBon);
+
+    const cryBon = new ProductionBonus(this.mining, new Decimal(0.1));
+    game.materials.crystal.productionsBonus.push(cryBon);
+
+    const scieBon = new ProductionBonus(this.studing, new Decimal(0.1));
+    game.materials.science.productionsBonus.push(scieBon);
+
+    [foodBon, woodBon, cryBon, scieBon].forEach(b => {
+      b.getMultiplier = () => {
+        return new Decimal(
+          1 + game.allMateries.getSum(MasteryTypes.THECNOLOGY_PRESTIGE)
+        );
+      };
+    });
   }
 }

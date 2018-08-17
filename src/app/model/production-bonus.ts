@@ -8,8 +8,11 @@ export class ProductionBonus {
     return this.unit.unlocked && this.unit.quantity.gt(0);
   }
   getBonus(): Decimal {
-    if (this.isActive()) return this.unit.quantity.times(this.quantity);
-    else return new Decimal(0);
+    if (this.isActive()) {
+      return this.unit.quantity
+        .times(this.quantity)
+        .times(this.getMultiplier());
+    } else return new Decimal(0);
   }
   getBonusPercent(): Decimal {
     return this.getBonus().times(100);
@@ -19,5 +22,9 @@ export class ProductionBonus {
   }
   getForNum(num: Decimal): Decimal {
     return num.times(this.quantity);
+  }
+
+  getMultiplier() {
+    return new Decimal(1);
   }
 }

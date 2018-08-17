@@ -52,7 +52,14 @@ export const STRINGS = {
     F: ["Disinfestation Ant", "Destroy poisonous fungus."],
     W: ["wmki", ""],
     C: ["cmki", ""],
-    S: ["Popularizers", ""]
+    S: ["Popularizers", ""],
+    //  Mastery Bonus
+    scieMast: ["Science Mastery"],
+    fooMast: ["Food Mastery"],
+    wooMast: ["Wood Mastery"],
+    cryMast: ["Crystall Mastery"],
+    harvMast: ["Harvest Mastery"],
+    matMast: ["Material Mastery"]
   },
   researches: {
     team1: ["Team 1", "Team 1"],
