@@ -65,7 +65,7 @@ export class MasteryComponent implements AfterViewInit, OnInit {
           },
           interaction: { hover: true },
           physics: {
-            enabled: false,
+            enabled: true,
             barnesHut: {
               gravitationalConstant: -6900,
               avoidOverlap: 0.0
@@ -76,7 +76,12 @@ export class MasteryComponent implements AfterViewInit, OnInit {
       );
       this.networkVis.on("click", params => {
         const masteryBuy = params.nodes[0];
-        this.node = this.ms.game.allMateries.visMasteries.get(masteryBuy);
+
+        this.node =
+          masteryBuy || masteryBuy === 0
+            ? this.ms.game.allMateries.visMasteries.get(masteryBuy)
+            : null;
+
         this.cd.markForCheck();
       });
     }, 0);

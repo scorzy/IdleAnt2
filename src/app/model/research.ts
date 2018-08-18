@@ -9,6 +9,7 @@ import { Researches } from "./units/researches";
 export class Research extends Action implements IUnlocable {
   unlocked = false;
   toUnlock = new Array<IUnlocable>();
+  maxAutoBuyLevel = 10;
 
   constructor(
     id: string,
@@ -59,11 +60,13 @@ export class Research extends Action implements IUnlocable {
   getSave(): any {
     const save = super.getSave();
     if (this.unlocked) save.u = this.unlocked;
+    if (this.maxAutoBuyLevel !== 10) save.mabl = this.maxAutoBuyLevel;
     return save;
   }
   restore(data: any): boolean {
     if (super.restore(data)) {
       this.unlocked = !!data.u;
+      if ("mabl" in data) this.maxAutoBuyLevel = data.mabl;
       return true;
     } else {
       return false;

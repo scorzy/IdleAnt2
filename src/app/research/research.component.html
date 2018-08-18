@@ -10,6 +10,12 @@
       <app-price-line *ngFor="let price of research.prices; trackBy:getPriceId" [name]="price.base.name" [canBuy]="price.canBuy"
         [price]="price.priceUser">
       </app-price-line>
+
+      <div *ngIf="research.unlimited">
+        <label for="max">Max AutoBuy level:</label>
+        <input type="text" id="max" class="clr-input" [(ngModel)]="research.maxAutoBuyLevel" min="0" size="3">
+      </div>
+
     </div>
   </div>
 </div>

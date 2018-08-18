@@ -86,12 +86,13 @@ export class AllMasteries {
 
     //  Followers
     this.addMasteryLine(0, 40, MasteryTypes.MORE_FOLLOWERS_GA, 5);
-    this.addMasteryLine(0, 45, MasteryTypes.MORE_FOLLOWERS_WO, 5, 44);
+    this.addMasteryLine(0, 45, MasteryTypes.MORE_FOLLOWERS_WO, 5);
+    this.addMasteryLine(44, 101, MasteryTypes.FREE_WARP_RES, 1, 49);
 
     //  Time
     this.addMasteryLine(5, 50, MasteryTypes.TIME_GEN, 5);
     this.addMasteryLine(5, 55, MasteryTypes.TIME_BANK, 5);
-    this.addMasteryLine(54, 101, MasteryTypes.FREE_WARP_RES, 1, 59);
+    this.addMasteryLine(54, 102, MasteryTypes.TIME_GEN_AND_BANK, 1, 59);
 
     //  Team
     this.addMasteryLine(10, 60, MasteryTypes.TEAM_START, 5);

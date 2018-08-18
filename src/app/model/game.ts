@@ -248,7 +248,11 @@ export class Game {
     this.maxTimeBank = this.allPrestige.time.timeBank.quantity
       .times(3600)
       .plus(7200)
-      .times(1 + 0.5 * this.allMateries.getSum(MasteryTypes.TIME_BANK));
+      .times(
+        1 +
+          0.5 * this.allMateries.getSum(MasteryTypes.TIME_BANK) +
+          2 * this.allMateries.getSum(MasteryTypes.TIME_GEN_AND_BANK)
+      );
   }
   /**
    * Update game and add time
@@ -257,7 +261,11 @@ export class Game {
   updateWithTime(delta: number) {
     const timePerSec = this.allPrestige.time.timeProducer.quantity
       .div(10)
-      .times(1 + 0.3 * this.allMateries.getSum(MasteryTypes.TIME_GEN));
+      .times(
+        1 +
+          0.3 * this.allMateries.getSum(MasteryTypes.TIME_GEN) +
+          2 * this.allMateries.getSum(MasteryTypes.TIME_GEN_AND_BANK)
+      );
 
     this.time.quantity = this.time.quantity
       .plus(timePerSec.times(delta / 1000))
@@ -561,7 +569,7 @@ export class Game {
     //#endregion
 
     //#region Free Warp
-    this.researches.free4hWarp.unlocked =
+    this.researches.free1hWarp.unlocked =
       this.allMateries.getSum(MasteryTypes.FREE_WARP_RES) > 0;
     //#endregion
 

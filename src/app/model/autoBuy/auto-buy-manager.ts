@@ -10,8 +10,11 @@ export class AutoBuyManager {
   minuteAutoBuy: AutoBuy;
   researchAutoBuy: AutoBuy;
 
+  enabled = true;
+  multiBuy = true;
+
   update() {
-    this.activeAutoBuy.forEach(a => a.update());
+    if (this.enabled) this.activeAutoBuy.forEach(a => a.update());
   }
   buildActiveList() {
     this.activeAutoBuy = this.allAutoBuyer
@@ -49,12 +52,20 @@ export class AutoBuyManager {
     );
     this.researchAutoBuy.startMax = 60 * 15;
     this.allAutoBuyer.push(this.researchAutoBuy);
+
+    this.allAutoBuyer.forEach(a => a.reloadLevel());
   }
   //#region Save and Load
   getSave(): any {
-    return { autList: this.allAutoBuyer.map(a => a.getSave()) };
+    return {
+      autList: this.allAutoBuyer.map(a => a.getSave()),
+      ena: this.enabled,
+      multi: this.multiBuy
+    };
   }
   restore(data: any): boolean {
+    if ("ena" in data) this.enabled = data.ena;
+    if ("multi" in data) this.multiBuy = data.multi;
     if ("autList" in data) {
       for (const a of data.autList) {
         this.allAutoBuyer.find(u => u.id === a.i).restore(a);

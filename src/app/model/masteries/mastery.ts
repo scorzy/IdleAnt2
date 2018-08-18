@@ -18,12 +18,14 @@ export enum MasteryTypes {
   SCIENTIFIC_METHOD,
   THECNOLOGY_PRESTIGE,
   START_TWIN,
-  FREE_WARP_RES
+  FREE_WARP_RES,
+  TIME_GEN_AND_BANK
 }
 const notable = [
   MasteryTypes.MATERIAL_GAIN,
   MasteryTypes.START_TWIN,
-  MasteryTypes.FREE_WARP_RES
+  MasteryTypes.FREE_WARP_RES,
+  MasteryTypes.TIME_GEN_AND_BANK
 ];
 
 export class Mastery {
@@ -83,6 +85,10 @@ export class Mastery {
         ret = "+" + 50 * num + "%\n time bank";
         break;
       }
+      case MasteryTypes.TIME_GEN_AND_BANK: {
+        ret = "+" + 200 * num + "%\n time /s and time bank";
+        break;
+      }
       case MasteryTypes.TEAM_START: {
         ret = "start new world with\n" + 1 * num + " team upgrade";
         break;
@@ -104,7 +110,7 @@ export class Mastery {
         break;
       }
       case MasteryTypes.FREE_WARP_RES: {
-        ret = "start new world one\nfree 4h warp research";
+        ret = "start new world \nfree warps (1h 2h 3h)";
         break;
       }
     }

@@ -3,16 +3,27 @@ import { Action } from "./../action";
 
 export class BuyResearch extends Action {
   constructor(private researches: Researches) {
-    super("resAutoBAct", "", "");
+    super("resAutoBAct", "Buy Research", "Buy the less expensive research");
   }
   buy(toBuy = new Decimal(1)): boolean {
-    if (this.researches.toDo.length < 1) return false;
+    const buyList = this.researches.toDo.filter(r =>
+      r.quantity.lt(r.maxAutoBuyLevel)
+    );
+    if (buyList.length < 1) return false;
 
-    const lessExpRes = this.researches.toDo.reduce((res1, res2) => {
-      return res1.prices[0].priceUser.lt(res2.prices[0].priceUser)
-        ? res1
-        : res2;
-    }, this.researches.toDo[0]);
-    return lessExpRes.buy();
+    buyList.sort((res1, res2) =>
+      res1.prices[0].priceUser.cmp(res2.prices[0].priceUser)
+    );
+    const len = toBuy.min(buyList.length).toNumber();
+    let ret = false;
+
+    for (let i = 0; i < len; i++) {
+      if (buyList[i].buy()) {
+        ret = true;
+      } else {
+        break;
+      }
+    }
+    return ret;
   }
 }
