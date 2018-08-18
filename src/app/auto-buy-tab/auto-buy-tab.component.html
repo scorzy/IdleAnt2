@@ -1,0 +1,14 @@
+<div class="content-area">
+  <h1>Auto buyers</h1>
+
+  <div class="clr-row">
+    <div class="clr-col-12	clr-col-sm-12	clr-col-md-10	clr-col-lg-6	clr-col-xl-5" *ngFor="let autoB of unlSpecial; trackBy:getAutoBuyId">
+      <div class="card">
+        <div class="card-block">
+          <app-auto-buy [autoBuy]="autoB"></app-auto-buy>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

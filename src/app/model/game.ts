@@ -202,6 +202,7 @@ export class Game {
         u.hasAutoBuyer = false;
       }
     });
+    this.autoBuyManager.createSpecial(this);
     //#endregion
 
     this.allMateries = new AllMasteries(this);

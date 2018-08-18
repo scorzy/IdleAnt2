@@ -126,6 +126,8 @@ export const STRINGS = {
     auBQ: ["Hach Auto Buyer", "Unlock Hach Auto Buyer for all units"],
     auBTeam: ["Team Auto Buyer", "Unlock Team Auto Buyer for all units"],
     auBTwin: ["Twin Auto Buyer", "Unlock Twin Auto Buyer for all units"],
+    auBMin: ["Time Warp Auto Buyer", "Unlock one minute time warp Auto Buyer"],
+    auBRes: ["Research Auto Buyer", "Unlock Research Auto Buyer"],
     //  Tecnology
     tecFar: ["Farming", "+10% food production"],
     tecCar: ["Carpentery", "+10% wood production"],

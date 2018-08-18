@@ -18,12 +18,11 @@ import { UnitGroup } from "../model/unit-group";
 export class HeaderComponent implements OnInit {
   @Input() lab = false;
   @Input() labBadge = false;
-
   @Input() travel = false;
   @Input() travelBadge = false;
-
   @Input() prestige = false;
   @Input() mastery = false;
+  @Input() autoBuy = false;
 
   sub: any;
   subGroup: any;

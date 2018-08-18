@@ -16,6 +16,11 @@
         <clr-icon shape="world" class="is-solid" [ngClass]="{'has-badge': travelBadge}"></clr-icon>
       </span>
     </a>
+    <a [routerLink]='"auto"' class="nav-link" *ngIf="autoBuy" [routerLinkActive]="'active'">
+      <span class="nav-text">
+        <clr-icon shape="star" class="is-solid"></clr-icon>
+      </span>
+    </a>
     <a [routerLink]='"pre"' class="nav-link" *ngIf="prestige" [routerLinkActive]="'active'">
       <span class="nav-text">
         <clr-icon shape="store" class="is-solid"></clr-icon>

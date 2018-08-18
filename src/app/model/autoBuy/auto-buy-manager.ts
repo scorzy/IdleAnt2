@@ -1,10 +1,14 @@
 import { FullUnit } from "../full-unit";
 import { Game } from "../game";
-import { AutoBuy } from "./auto-buy";
+import { BuyResearch } from "./../actions/buy-research";
+import { AutoBuy, MIN_DELAY } from "./auto-buy";
 
 export class AutoBuyManager {
   allAutoBuyer = new Array<AutoBuy>();
   activeAutoBuy = new Array<AutoBuy>();
+
+  minuteAutoBuy: AutoBuy;
+  researchAutoBuy: AutoBuy;
 
   update() {
     this.activeAutoBuy.forEach(a => a.update());
@@ -26,6 +30,25 @@ export class AutoBuyManager {
       this.allAutoBuyer.push(auto);
       a.autoBuyer = auto;
     });
+  }
+  createSpecial(game: Game) {
+    //  Minute Warp
+    this.minuteAutoBuy = new AutoBuy(
+      game.actMin,
+      game.genExperiencePrice(100),
+      this
+    );
+    this.minuteAutoBuy.startMax = 60 * 10;
+    this.allAutoBuyer.push(this.minuteAutoBuy);
+
+    //  Research
+    this.researchAutoBuy = new AutoBuy(
+      new BuyResearch(game.researches),
+      game.genExperiencePrice(200),
+      this
+    );
+    this.researchAutoBuy.startMax = 60 * 15;
+    this.allAutoBuyer.push(this.researchAutoBuy);
   }
   //#region Save and Load
   getSave(): any {
