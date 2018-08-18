@@ -10,7 +10,8 @@ import { FullUnit } from "../model/full-unit";
 import { Malus } from "../model/malus";
 import { Price } from "../model/price";
 import { Research } from "../model/research";
-import { World } from "../model/world";
+import { STRINGS } from "../model/strings";
+import { Bug, World } from "../model/world";
 
 @Component({
   selector: "app-world",
@@ -39,6 +40,9 @@ export class WorldComponent implements OnInit {
   openModal() {
     this.ms.worldEmitter.emit(this.world);
   }
+  getBugName(bug: Bug) {
+    return bug in STRINGS.bug ? STRINGS.bug[bug] : "";
+  }
 
   getBonusId(index, bonus: [BaseUnit, Decimal]) {
     return bonus[0].id + bonus[1].toNumber();
@@ -54,5 +58,8 @@ export class WorldComponent implements OnInit {
   }
   getMalusId(index, malus: Malus) {
     return index + malus.id;
+  }
+  getBugId(index, bug: Bug) {
+    return index + bug;
   }
 }

@@ -7,6 +7,10 @@ import { Research } from "../research";
 import { UnitGroup } from "../unit-group";
 import { World } from "../world";
 
+export const PRICE = new Decimal(100);
+export const PROD = new Decimal(20);
+export const CONSUME = new Decimal(-15);
+
 export class Workers extends UnitGroup {
   farmer: FullUnit;
   carpenter: FullUnit;
@@ -15,12 +19,8 @@ export class Workers extends UnitGroup {
 
   scientificMethod1: Research;
 
-  private readonly price = new Decimal(100);
-  private readonly prod = new Decimal(20);
-  private readonly consume = new Decimal(-15);
-
   constructor(game: Game) {
-    super("Workers", game);
+    super("Ants", game);
   }
 
   declareStuff(): void {
@@ -42,45 +42,35 @@ export class Workers extends UnitGroup {
   }
   setRelations(): void {
     this.farmer.generateBuyAction([
-      new Price(this.game.materials.food, this.price, 1.1),
-      new Price(this.game.materials.crystal, this.price, 1.1)
+      new Price(this.game.materials.food, PRICE, 1.1),
+      new Price(this.game.materials.crystal, PRICE, 1.1)
     ]);
     this.carpenter.generateBuyAction([
-      new Price(this.game.materials.food, this.price.times(2), 1.1)
+      new Price(this.game.materials.food, PRICE.times(2), 1.1)
     ]);
     this.miner.generateBuyAction([
-      new Price(this.game.materials.food, this.price, 1.1),
-      new Price(this.game.materials.wood, this.price, 1.1)
+      new Price(this.game.materials.food, PRICE, 1.1),
+      new Price(this.game.materials.wood, PRICE, 1.1)
     ]);
     this.scientist.generateBuyAction([
-      new Price(this.game.materials.food, this.price, 1.1),
-      new Price(this.game.materials.crystal, this.price, 1.1)
+      new Price(this.game.materials.food, PRICE, 1.1),
+      new Price(this.game.materials.crystal, PRICE, 1.1)
     ]);
 
-    this.game.materials.food.addProducer(this.farmer, this.prod);
-    this.game.materials.crystal.addProducer(this.farmer, this.consume);
+    this.game.materials.food.addProducer(this.farmer, PROD);
+    this.game.materials.crystal.addProducer(this.farmer, CONSUME);
 
-    this.game.materials.wood.addProducer(this.carpenter, this.prod);
-    this.game.materials.food.addProducer(this.carpenter, this.consume);
+    this.game.materials.wood.addProducer(this.carpenter, PROD);
+    this.game.materials.food.addProducer(this.carpenter, CONSUME);
 
-    this.game.materials.crystal.addProducer(this.miner, this.prod);
-    this.game.materials.wood.addProducer(this.miner, this.consume);
+    this.game.materials.crystal.addProducer(this.miner, PROD);
+    this.game.materials.wood.addProducer(this.miner, CONSUME);
 
-    this.game.materials.science.addProducer(this.scientist, this.prod);
-    this.game.materials.crystal.addProducer(this.scientist, this.consume);
+    this.game.materials.science.addProducer(this.scientist, PROD);
+    this.game.materials.crystal.addProducer(this.scientist, CONSUME);
 
-    this.list.forEach(u => {
-      if (u instanceof FullUnit) {
-        u.generateTeamAction(
-          this.game.genTeamPrice(new Decimal(5e3)),
-          this.game.researches.team2
-        );
-        u.generateTwinAction(
-          this.game.genTwinPrice(new Decimal(1e4)),
-          this.game.researches.twin
-        );
-      }
-    });
+    this.generateStandardActions();
+
     this.firstResearch.prices = this.game.genSciencePrice(new Decimal(1e3));
     this.researchList.forEach(
       r => (r.prices = this.game.genSciencePrice(new Decimal(5e3)))

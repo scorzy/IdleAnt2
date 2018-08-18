@@ -9,6 +9,7 @@ export const STRINGS = {
     dr: ["Drone", "drone"],
     ge: ["Geologist", "geologist"],
     st: ["Student", "student"],
+    forBee: ["Foragging Bee", "Foragging Bee"],
     //  Workers
     f: [
       "Farmer",
@@ -21,10 +22,10 @@ export const STRINGS = {
     m: ["Miner", "miner"],
     s: ["Scientist", "scientist"],
     // Workers 2
-    f_g: ["Farm", "farmer"],
-    c_g: ["Wood Camp", "carpenter"],
-    m_g: ["Mine", "miner"],
-    s_g: ["University", "scientist"],
+    f_g: ["Farm", "Farm"],
+    c_g: ["Wood Camp", "Wood Camp"],
+    m_g: ["Mine", "Mine"],
+    s_g: ["University", "University"],
     //  Workers 3
     f_g_g: ["Hydro Eng.", "Hydro Engineer"],
     c_g_g: ["Wood Eng.", "Wood Engineer"],
@@ -59,7 +60,15 @@ export const STRINGS = {
     wooMast: ["Wood Mastery"],
     cryMast: ["Crystall Mastery"],
     harvMast: ["Harvest Mastery"],
-    matMast: ["Material Mastery"]
+    matMast: ["Material Mastery"],
+    //  Supply
+    fSupp: ["Food Supply", "Never ending food supply"],
+    wSupp: ["Wood Supply", "Never ending wood supply"],
+    cSupp: ["Crystal Supply", "Never ending crystall supply"],
+    //  Bee
+    workBee: ["Worker", ""],
+    workBee_g: ["Queen", ""],
+    workBee_g_g: ["Hive", ""]
   },
   researches: {
     team1: ["Team 1", "Team 1"],
@@ -96,7 +105,14 @@ export const STRINGS = {
     f_g_g_r: ["Hydro Engineer", "Hydro Engineer"],
     c_g_g_r: ["Wood Engineer", "Wood Engineer"],
     m_g_g_r: ["Mine Engineer", "Mine Engineer"],
-    s_g_g_r: ["Department of Education", "Department of Education"]
+    s_g_g_r: ["Department of Education", "Department of Education"],
+    // Bee
+    bee_res: ["Bee", "Bee"],
+    workBee_wr: ["Worker Bee", ""],
+    workBee_g_r: ["Bee Queen", ""],
+    workBee_g_g_r: ["Bee Hive", ""],
+    Be2_r: ["Bee Queen"],
+    Be3_r: ["Bee Hives"]
   },
   worlds: {
     foBPre: "Hot",
@@ -110,7 +126,16 @@ export const STRINGS = {
     foBio: "Farm",
     woBio: "Forest",
     cryBio: "Mine",
-    sciBio: "University"
+    sciBio: "University",
+    fSuppPre: "Food supply",
+    wSuppPre: "Wood supply",
+    cSuppPre: "Crystal supply",
+    fSuppSuff: "with Food",
+    wSuppSuff: "with Wood",
+    cSuppSuff: "with Crystal",
+    beePre: "Apian",
+    beeBio: "Hive",
+    beeSuff: "of bee"
   },
   prestige: {
     //  Followers 1
@@ -141,5 +166,8 @@ export const STRINGS = {
   actions: {
     warp60: ["Warp minute", "Time warp by minutes"],
     warp3600: ["Warp hour", "Time warp by hours"]
+  },
+  bug: {
+    0: "Bee"
   }
 };

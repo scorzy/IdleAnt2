@@ -11,7 +11,7 @@
         [price]="price.priceUser">
       </app-price-line>
 
-      <div *ngIf="research.unlimited">
+      <div *ngIf="research.unlimited && ms.game.autoBuyManager.researchAutoBuy.done">
         <label for="max">Max AutoBuy level:</label>
         <input type="text" id="max" class="clr-input" [(ngModel)]="research.maxAutoBuyLevel" min="0" size="3">
       </div>

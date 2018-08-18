@@ -9,7 +9,7 @@ export class MalusKiller extends UnitGroup {
   crystalMalusKiller: FullUnit;
   scienceMalusKiller: FullUnit;
 
-  private readonly price = new Decimal(100);
+  private readonly price = new Decimal(500);
 
   constructor(game: Game) {
     super("Army", game);
@@ -31,19 +31,19 @@ export class MalusKiller extends UnitGroup {
     //  Production
     this.game.worldMalus.foodMalus1.addProducer(
       this.foodMalusKiller,
-      new Decimal(-1)
+      new Decimal(-0.1)
     );
     this.game.worldMalus.woodMalus1.addProducer(
       this.woodMalusKiller,
-      new Decimal(-1)
+      new Decimal(-0.1)
     );
     this.game.worldMalus.crystalMalus1.addProducer(
       this.crystalMalusKiller,
-      new Decimal(-1)
+      new Decimal(-0.1)
     );
     this.game.worldMalus.scienceMalus1.addProducer(
       this.scienceMalusKiller,
-      new Decimal(-1)
+      new Decimal(-0.1)
     );
 
     //  Buy actions

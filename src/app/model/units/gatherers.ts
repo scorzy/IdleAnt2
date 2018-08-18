@@ -9,6 +9,9 @@ export class Gatherers extends UnitGroup {
   geologist: FullUnit;
   student: FullUnit;
 
+  //  Bee
+  foraggingBee: FullUnit;
+
   constructor(game: Game) {
     super("Gatherers", game);
   }
@@ -16,17 +19,23 @@ export class Gatherers extends UnitGroup {
     this.drone = new FullUnit("dr");
     this.geologist = new FullUnit("ge");
     this.student = new FullUnit("st");
+    this.foraggingBee = new FullUnit("forBee");
 
-    this.addUnits([this.drone, this.geologist, this.student]);
+    this.addUnits([
+      this.drone,
+      this.geologist,
+      this.student,
+      this.foraggingBee
+    ]);
   }
   setRelations(): void {
     this.drone.generateBuyAction(
-      [new Price(this.game.materials.food, new Decimal(20), 1.1)],
+      [new Price(this.game.materials.food, new Decimal(20))],
       [this.geologist]
     );
     this.drone.unlocked = true;
     this.geologist.generateBuyAction(
-      [new Price(this.game.materials.food, new Decimal(20), 1.1)],
+      [new Price(this.game.materials.food, new Decimal(20))],
       [this.student]
     );
     this.game.materials.food.addProducer(this.drone);
@@ -34,11 +43,16 @@ export class Gatherers extends UnitGroup {
     this.game.materials.food.addProducer(this.geologist, new Decimal(-1));
 
     this.student.generateBuyAction(
-      [new Price(this.game.materials.food, new Decimal(20), 1.1)],
+      [new Price(this.game.materials.food, new Decimal(20))],
       [this.game.tabs.lab, this.game.researches.team1]
     );
     this.game.materials.science.addProducer(this.student);
     this.game.materials.crystal.addProducer(this.student, new Decimal(-1));
+
+    this.foraggingBee.generateBuyAction([
+      new Price(this.game.materials.food, new Decimal(25))
+    ]);
+    this.game.materials.food.addProducer(this.foraggingBee, new Decimal(1.2));
 
     this.list.forEach(u => {
       if (u instanceof FullUnit) {

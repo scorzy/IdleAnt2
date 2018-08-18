@@ -28,6 +28,8 @@ export class UnitGroup {
   chartData: number[] = [];
   //#endregion
 
+  additionalBuyPreces: Price[] = [];
+
   constructor(public name: string, public game: Game) {
     this.id = UnitGroup.maxId;
     UnitGroup.maxId++;
@@ -51,6 +53,20 @@ export class UnitGroup {
   }
   addWorlds() {
     //
+  }
+  generateStandardActions() {
+    this.list.forEach(u => {
+      if (u instanceof FullUnit) {
+        u.generateTeamAction(
+          this.game.genTeamPrice(new Decimal(5e3)),
+          this.game.researches.team2
+        );
+        u.generateTwinAction(
+          this.game.genTwinPrice(new Decimal(1e4)),
+          this.game.researches.twin
+        );
+      }
+    });
   }
 
   setFlags(team = false, twin = false) {
@@ -100,7 +116,11 @@ export class UnitGroup {
         });
 
         //  Buy Action
-        producer.generateBuyAction([new Price(original, new Decimal(20))]);
+        let prices = [new Price(original, new Decimal(20))];
+        if (this.additionalBuyPreces.length > 0) {
+          prices = prices.concat(this.additionalBuyPreces);
+        }
+        producer.generateBuyAction(prices);
 
         //  Team Action
         producer.generateTeamAction(

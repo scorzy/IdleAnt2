@@ -23,7 +23,7 @@ export class ResearchComponent implements OnInit, OnDestroy {
   @Input() research: Research;
   sub: any;
 
-  constructor(private ms: MainService, private cd: ChangeDetectorRef) {
+  constructor(public ms: MainService, private cd: ChangeDetectorRef) {
     //Nothing
   }
 

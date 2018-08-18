@@ -14,15 +14,17 @@ import { ProductionBonus } from "./production-bonus";
 import { Stats } from "./stats/stats";
 import { Tabs } from "./tabs";
 import { UnitGroup } from "./unit-group";
+import { Bee } from "./units/bee";
 import { Gatherers } from "./units/gatherers";
 import { MalusKiller } from "./units/malus-killer";
 import { Materials } from "./units/materials";
 import { Researches } from "./units/researches";
+import { Special } from "./units/special";
 import { Workers } from "./units/workers";
 import { WorldBonus } from "./units/world-bonus";
 import { WorldMalus } from "./units/world-malus";
 import { Utility } from "./utility";
-import { World } from "./world";
+import { Bug, World } from "./world";
 
 const STARTING_FOOD = new Decimal(100);
 
@@ -43,10 +45,14 @@ export class Game {
   genX2: UnitGroup;
   genX3: UnitGroup;
   killers: UnitGroup;
+  bee: Bee;
+  beeX2: UnitGroup;
+  beeX3: UnitGroup;
 
   researches: Researches;
   worldBonus: WorldBonus;
   worldMalus: WorldMalus;
+  special: Special;
   //#endregion
 
   lastUnitUrl: string = "nav/unit/fo";
@@ -93,18 +99,27 @@ export class Game {
     this.unitGroups.push(this.advWorkers);
 
     this.genX2 = this.advWorkers.getProducerGroup(
-      "Buildings",
+      "Ants 2",
       new Decimal(1e6),
       "Bu"
     );
     this.unitGroups.push(this.genX2);
 
-    this.genX3 = this.genX2.getProducerGroup(
-      "Engineers",
-      new Decimal(1e10),
-      "En"
-    );
+    this.genX3 = this.genX2.getProducerGroup("Ants 3", new Decimal(1e10), "En");
     this.unitGroups.push(this.genX3);
+
+    this.bee = new Bee(this);
+    this.unitGroups.push(this.bee);
+
+    this.beeX2 = this.bee.getProducerGroup("Bees 2", new Decimal(1e6), "Be2");
+    this.unitGroups.push(this.beeX2);
+
+    this.beeX3 = this.beeX2.getProducerGroup(
+      "Bees 3",
+      new Decimal(1e10),
+      "Be3"
+    );
+    this.unitGroups.push(this.beeX3);
 
     this.worldMalus = new WorldMalus(this);
     this.unitGroups.push(this.worldMalus);
@@ -112,7 +127,12 @@ export class Game {
     this.killers = new MalusKiller(this);
     this.unitGroups.push(this.killers);
 
+    this.special = new Special(this);
+    this.unitGroups.push(this.special);
+
     this.unitGroups.forEach(g => g.declareStuff());
+
+    this.advWorkers.additionalBuyPreces = [new Price(this.materials.wood, 1e4)];
 
     this.researches.declareStuff();
     this.worldBonus = new WorldBonus();
@@ -123,20 +143,17 @@ export class Game {
     //#endregion
 
     //#region Relations
-    this.unitGroups
-      .filter(g => g !== this.genX3)
-      .forEach(g => g.setRelations());
-    this.genX2.list
-      .filter(u => u.buyAction)
-      .map(u => u.buyAction)
-      .forEach(a => a.prices.push(new Price(this.materials.wood, 1e4)));
-
-    this.genX3.setRelations();
+    this.unitGroups.forEach(g => g.setRelations());
 
     this.researches.setRelations(this.materials.science, this);
     this.researches.team1.toUnlock.push(this.advWorkers.firstResearch);
+
     this.advWorkers.firstResearch.toUnlock.push(this.genX2.firstResearch);
     this.genX2.firstResearch.toUnlock.push(this.genX3.firstResearch);
+
+    this.bee.firstResearch.toUnlock.push(this.beeX2.firstResearch);
+    this.beeX2.firstResearch.toUnlock.push(this.beeX3.firstResearch);
+
     this.worldBonus.setRelations(this);
     //#endregion
 
@@ -178,7 +195,7 @@ export class Game {
       new Price(this.materials.food, World.BASE_WIN_CONDITION_MATERIALS)
       // new Price(this.genX3.list[0], World.BASE_WIN_CONDITION_OTHER)
     );
-    this.currentWorld.setLevel(new Decimal(1));
+    this.currentWorld.setLevel(new Decimal(1), this);
     //#endregion
 
     //#region Time Warp
@@ -573,6 +590,15 @@ export class Game {
       this.allMateries.getSum(MasteryTypes.FREE_WARP_RES) > 0;
     //#endregion
 
+    //#region other Bugs
+    if (Bug.BEE in this.currentWorld.additionalBugs) {
+      this.gatherers.foraggingBee.unlocked = true;
+      this.bee.firstResearch.unlocked = true;
+    }
+    //#endregion
+
+    this.currentWorld.setGame();
+
     this.researches.reloadLists();
     this.unitGroups.forEach(g => g.check());
     this.buildLists();
@@ -580,6 +606,7 @@ export class Game {
 
     this.tabs.prestige.unlock();
 
+    this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
     return true;
   }
   generateWorlds(userMin: Decimal = null, userMax: Decimal = null) {
@@ -589,9 +616,9 @@ export class Game {
     userMax = Decimal.min(userMax, this.maxLevel);
 
     this.nextWorlds = [
-      World.getRandomWorld(userMin, userMax),
-      World.getRandomWorld(userMin, userMax),
-      World.getRandomWorld(userMin, userMax)
+      World.getRandomWorld(userMin, userMax, this),
+      World.getRandomWorld(userMin, userMax, this),
+      World.getRandomWorld(userMin, userMax, this)
     ];
   }
   //#region Price Utility
@@ -620,7 +647,8 @@ export class Game {
       a: this.isPaused,
       abm: this.autoBuyManager.getSave(),
       s: this.stats.getSave(),
-      mas: this.allMateries.getSave()
+      mas: this.allMateries.getSave(),
+      wor: this.nextWorlds.map(w => w.getSave())
     };
   }
   restore(data: any): boolean {
@@ -635,6 +663,13 @@ export class Game {
       if ("abm" in data) this.autoBuyManager.restore(data.abm);
       if ("s" in data) this.stats.restore(data.s);
       if ("mas" in data) this.allMateries.restore(data.mas);
+      if ("wor" in data) {
+        this.nextWorlds = data.wor.map(w => {
+          const newW = new World("");
+          newW.restore(w, this);
+          return newW;
+        });
+      }
 
       this.unitGroups.forEach(g => g.check());
       this.buildLists();

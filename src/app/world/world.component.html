@@ -4,6 +4,9 @@
     <span class="monospace">{{world.prestige | format:true}}</span>
   </span>
   <ul class="list">
+    <li *ngFor="let bug of world.additionalBugs; trackBy:getBugId">
+      {{getBugName(bug)}}
+    </li>
     <li *ngFor="let bon of world.productionsBonus; trackBy:getBonusId">
       {{bon[0].name }} + {{bon[0].usedForProductionBonus[0].getBonusPercentForNum(bon[1]) |format }}%
     </li>

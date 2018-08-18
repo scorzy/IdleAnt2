@@ -9,6 +9,10 @@ import { Research } from "./research";
 import { STRINGS } from "./strings";
 import { Utility } from "./utility";
 
+export enum Bug {
+  BEE = 0
+}
+
 export class World {
   static readonly BASE_WIN_CONDITION_MATERIALS = new Decimal(1e10);
   static readonly BASE_WIN_CONDITION_OTHER = new Decimal(200);
@@ -38,11 +42,14 @@ export class World {
   //  This resources must be zero
   notWinConditions = new Array<Malus>();
 
+  //  Additional bug
+  additionalBugs = new Array<Bug>();
+
   constructor(public id = "") {
     if (id !== "") this.name = STRINGS.worlds[this.id];
   }
 
-  setLevel(level: Decimal) {
+  setLevel(level: Decimal, game: Game) {
     this.level = new Decimal(level).floor();
 
     const multi = this.level.div(5).plus(1);
@@ -66,17 +73,37 @@ export class World {
       .times(this.level.plus(10).log10())
       .floor();
 
+    if (this.level.gte(5) && this.notWinConditions.length < 1) {
+      const malus = [
+        game.worldMalus.foodMalus1,
+        game.worldMalus.woodMalus1,
+        game.worldMalus.crystalMalus1,
+        game.worldMalus.scienceMalus1
+      ];
+      this.notWinConditions.push(sample(malus));
+    }
+  }
+  canTravel(): boolean {
+    this.winContidions.forEach(p => {
+      p.canBuy = p.base.quantity.gte(p.price);
+    });
+    return !(
+      this.winContidions.findIndex(p => !p.canBuy) > -1 ||
+      this.notWinConditions.findIndex(n => !n.isKilled) > -1
+    );
+  }
+  setMalus() {
     this.notWinConditions.forEach(n => {
-      n.quantity = new Decimal(this.level);
+      n.quantity = new Decimal(this.level.times(20));
       n.producedBy.find(u => u.rateo.lt(0)).producer.unlock();
       const n2 = n.producedBy.find(u => u.rateo.gt(0)).producer;
       const n3 = n2.producedBy.find(u => u.rateo.gt(0)).producer;
 
-      n2.quantity = n.quantity.div(10);
+      n2.quantity = n.quantity.div(3);
 
       if (n2.quantity.gt(0.1)) {
         n2.unlock();
-        n3.quantity = n.quantity.div(200);
+        n3.quantity = n.quantity.div(5);
         if (n3.quantity.gt(0.1)) {
           n3.unlock();
         } else {
@@ -87,14 +114,12 @@ export class World {
       }
     });
   }
-  canTravel(): boolean {
-    this.winContidions.forEach(p => {
-      p.canBuy = p.base.quantity.gte(p.price);
+  setGame() {
+    this.setMalus();
+    this.startingUnit.forEach(s => {
+      s[0].unlock();
+      s[0].quantity = s[1];
     });
-    return !(
-      this.winContidions.findIndex(p => !p.canBuy) > -1 ||
-      this.notWinConditions.findIndex(n => !n.isKilled) > -1
-    );
   }
 
   //#region Save and Load
@@ -106,7 +131,8 @@ export class World {
       pe: this.productionsEfficienty.map(b => [b[0].id, b[1]]),
       pa: this.productionsAll.map(b => [b[0].id, b[1]]),
       wc: this.winContidions.map(w => [w.base.id, w.price]),
-      nwc: this.notWinConditions.map(n => n.id)
+      nwc: this.notWinConditions.map(n => n.id),
+      adb: this.additionalBugs
     };
   }
   restore(data: any, game: Game) {
@@ -140,6 +166,9 @@ export class World {
       this.notWinConditions = data.nwc.map(nwc =>
         game.units.find(u => u.id === nwc)
       );
+    }
+    if ("adb" in data) {
+      this.additionalBugs = data.adb;
     }
   }
   findBonus(id: string, game: Game): BaseUnit {
@@ -192,18 +221,22 @@ export class World {
     retWorld.notWinConditions = uniq(
       [].concat.apply([], worlds.map(w => w.notWinConditions))
     );
+    //  Bugs
+    retWorld.additionalBugs = uniq(
+      [].concat.apply([], worlds.map(w => w.additionalBugs))
+    );
 
     return retWorld;
   }
   // tslint:disable-next-line:member-ordering
-  static getRandomWorld(min: Decimal, max: Decimal): World {
+  static getRandomWorld(min: Decimal, max: Decimal, game: Game): World {
     const world = World.merge([
       sample(World.prefix),
       sample(World.biome),
       sample(World.suffix)
     ]);
 
-    world.setLevel(Utility.random(min, max));
+    world.setLevel(Utility.random(min, max), game);
 
     return world;
   }
