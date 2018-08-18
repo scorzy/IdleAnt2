@@ -3,6 +3,8 @@ import { DOCUMENT } from "@angular/platform-browser";
 import * as distanceInWordsToNow from "date-fns/distance_in_words_to_now";
 import * as LZString from "lz-string";
 import { ToastrService } from "ngx-toastr";
+import { EndInPipe } from "./end-in.pipe";
+import { FormatPipe } from "./format.pipe";
 import { Game } from "./model/game";
 import { MasteryTypes } from "./model/masteries/mastery";
 import { World } from "./model/world";
@@ -56,7 +58,9 @@ export class MainService {
       this.updateEmitter,
       this.researchEmitter,
       this.unlockGroupEmiter,
-      this.toastr
+      this.toastr,
+      new FormatPipe(this.options),
+      new EndInPipe(this.options)
     );
     this.last = Date.now();
     setInterval(this.update.bind(this), 250);
@@ -145,7 +149,9 @@ export class MainService {
         this.updateEmitter,
         this.researchEmitter,
         this.unlockGroupEmiter,
-        this.toastr
+        this.toastr,
+        new FormatPipe(this.options),
+        new EndInPipe(this.options)
       );
       if (!!data.o) this.options.restore(data.o);
       this.setTheme();

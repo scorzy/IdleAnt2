@@ -16,14 +16,21 @@ export enum MasteryTypes {
   TEAM_START,
   TEAM_PRESTIGE,
   SCIENTIFIC_METHOD,
-  THECNOLOGY_PRESTIGE
+  THECNOLOGY_PRESTIGE,
+  START_TWIN,
+  FREE_WARP_RES
 }
+const notable = [
+  MasteryTypes.MATERIAL_GAIN,
+  MasteryTypes.START_TWIN,
+  MasteryTypes.FREE_WARP_RES
+];
 
 export class Mastery {
-  static readonly normalColor = "#4286f4";
-  static readonly avaiableColor = "green";
-  static readonly ownedColor = "red";
-  static readonly notableColor = "orange";
+  static readonly normalColor = "#4286f4dd";
+  static readonly avaiableColor = "#008000dd";
+  static readonly ownedColor = "#ff0000dd";
+  static readonly notableColor = "#ffa500dd";
 
   static getDescription(type: MasteryTypes, num = 1): string {
     let ret = "";
@@ -92,6 +99,14 @@ export class Mastery {
         ret = "tecnology prestige up\n" + 100 * num + "% more effective";
         break;
       }
+      case MasteryTypes.START_TWIN: {
+        ret = "start new world with\n" + 1 * num + " twin upgrade";
+        break;
+      }
+      case MasteryTypes.FREE_WARP_RES: {
+        ret = "start new world one\nfree 4h warp research";
+        break;
+      }
     }
     return ret;
   }
@@ -108,10 +123,9 @@ export class Mastery {
     public y = 0
   ) {
     this.label = Mastery.getDescription(type);
-    this.color =
-      this.type === MasteryTypes.MATERIAL_GAIN
-        ? Mastery.notableColor
-        : Mastery.normalColor;
+    this.color = notable.find(n => n === this.type)
+      ? Mastery.notableColor
+      : Mastery.normalColor;
 
     if (this.id in positions) {
       this.x = positions[this.id].x;

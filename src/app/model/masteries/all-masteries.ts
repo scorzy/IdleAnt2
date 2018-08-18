@@ -90,11 +90,13 @@ export class AllMasteries {
 
     //  Time
     this.addMasteryLine(5, 50, MasteryTypes.TIME_GEN, 5);
-    this.addMasteryLine(5, 55, MasteryTypes.TIME_BANK, 5, 54);
+    this.addMasteryLine(5, 55, MasteryTypes.TIME_BANK, 5);
+    this.addMasteryLine(54, 101, MasteryTypes.FREE_WARP_RES, 1, 59);
 
     //  Team
     this.addMasteryLine(10, 60, MasteryTypes.TEAM_START, 5);
-    this.addMasteryLine(10, 65, MasteryTypes.TEAM_PRESTIGE, 5, 64);
+    this.addMasteryLine(10, 65, MasteryTypes.TEAM_PRESTIGE, 5);
+    this.addMasteryLine(64, 100, MasteryTypes.START_TWIN, 1, 69);
 
     //  Science && Tecnology
     this.addMasteryLine(15, 70, MasteryTypes.SCIENTIFIC_METHOD, 5);

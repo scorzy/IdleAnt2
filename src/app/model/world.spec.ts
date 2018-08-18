@@ -15,6 +15,8 @@ describe("World", () => {
       new EventEmitter<number>(),
       new EventEmitter<string>(),
       new EventEmitter<number>(),
+      null,
+      null,
       null
     );
     const world1 = new World();
@@ -27,6 +29,8 @@ describe("World", () => {
       new EventEmitter<number>(),
       new EventEmitter<string>(),
       new EventEmitter<number>(),
+      null,
+      null,
       null
     );
     const world1 = new World();

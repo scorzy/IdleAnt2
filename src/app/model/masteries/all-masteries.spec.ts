@@ -10,6 +10,8 @@ describe("AllMasteries", () => {
           new EventEmitter<number>(),
           new EventEmitter<string>(),
           new EventEmitter<number>(),
+          null,
+          null,
           null
         )
       )

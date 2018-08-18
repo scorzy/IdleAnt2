@@ -65,6 +65,7 @@ export class MasteryComponent implements AfterViewInit, OnInit {
           },
           interaction: { hover: true },
           physics: {
+            enabled: false,
             barnesHut: {
               gravitationalConstant: -6900,
               avoidOverlap: 0.0

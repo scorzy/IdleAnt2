@@ -9,6 +9,8 @@ describe("WorldBonus", () => {
       new EventEmitter<number>(),
       new EventEmitter<string>(),
       new EventEmitter<number>(),
+      null,
+      null,
       null
     );
     expect(new WorldBonus()).toBeTruthy();

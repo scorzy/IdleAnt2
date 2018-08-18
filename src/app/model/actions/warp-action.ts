@@ -19,7 +19,7 @@ export class WarpAction extends Action {
     this.unlocked = true;
   }
   buy(toBuy = new Decimal(1)): boolean {
-    if (!super.buy()) return false;
-    this.game.update(toBuy.toNumber() * 1000 * this.warp);
+    if (!super.buy(toBuy)) return false;
+    this.game.warp(toBuy.toNumber() * 1000 * this.warp);
   }
 }

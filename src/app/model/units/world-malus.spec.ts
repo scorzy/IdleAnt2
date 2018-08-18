@@ -10,6 +10,8 @@ describe("WorldMalus", () => {
           new EventEmitter<number>(),
           new EventEmitter<string>(),
           new EventEmitter<number>(),
+          null,
+          null,
           null
         )
       )

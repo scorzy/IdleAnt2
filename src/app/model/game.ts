@@ -1,5 +1,7 @@
 import { EventEmitter, ReflectiveInjector } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
+import { EndInPipe } from "./../end-in.pipe";
+import { FormatPipe } from "./../format.pipe";
 import { WarpAction } from "./actions/warp-action";
 import { AutoBuyManager } from "./autoBuy/auto-buy-manager";
 import { FullUnit } from "./full-unit";
@@ -72,7 +74,9 @@ export class Game {
     public updateEmitter: EventEmitter<number>,
     public researchEmitter: EventEmitter<string>,
     public unlockGroupEmiter: EventEmitter<number>,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public formatPipe: FormatPipe,
+    public endInPipe: EndInPipe
   ) {
     this.tabs = new Tabs();
 
@@ -211,6 +215,7 @@ export class Game {
     this.materials.science.productionsBonus.push(
       new ProductionBonus(this.experience, new Decimal(1))
     );
+    this.setMaxTimeBank();
     //#endregion
 
     //#region Debug
@@ -224,7 +229,7 @@ export class Game {
     // this.worldMalus.foodMalus2.quantity = new Decimal(10);
     // this.experience.quantity = new Decimal(1000);
     this.allMateries.masteryPoint = 30;
-    this.experience.quantity = new Decimal(1e4);
+    this.experience.quantity = new Decimal(1e10);
     //#endregion
   }
   buildLists() {
@@ -397,7 +402,6 @@ export class Game {
     this.worldMalus.scienceMalus1.reloadPriceMulti();
 
     this.unlockedUnits.forEach(u => {
-      // u.actions.forEach(a => a.reload());
       u.quantity = u.quantity.max(0);
     });
 
@@ -409,12 +413,24 @@ export class Game {
     );
     this.unlockedUnits.forEach(u => {
       u.actions.forEach(a => a.reload());
-      // u.setUiValue();
     });
     const team = this.researches.team2.done;
     const twin = this.researches.twin.done;
     this.unitGroups.forEach(g => g.setFlags(team, twin));
     this.canTravel = this.currentWorld.canTravel();
+
+    this.actHour.reload();
+    this.actMin.reload();
+  }
+  /**
+   * Time Warp
+   * @param delta in milliseconds
+   */
+  warp(delta: number) {
+    if (delta > 0) {
+      this.toastr.info(this.endInPipe.transform(delta), "Time Warp");
+      this.update(delta);
+    }
   }
   /**
    * Calculate production per second
@@ -509,16 +525,46 @@ export class Game {
     });
     //#endregion
 
-    //#region Starting Team
+    //#region Starting Team && TWin
     const startTeam = this.allMateries.getSum(MasteryTypes.TEAM_START);
     if (startTeam > 0) {
       this.units
         .filter(u => u.teamAction)
         .map(u => u.teamAction)
         .forEach(t => (t.quantity = t.quantity.plus(startTeam)));
+      this.researches.team1.unlocked = true;
+      this.researches.team1.done = true;
+      this.researches.team1.complete = true;
+      this.researches.team1.quantity = new Decimal(1);
+      this.researches.team1.toUnlock.forEach(u => u.unlock());
+      this.researches.team2.unlocked = true;
+      this.researches.team2.done = true;
+      this.researches.team2.quantity = new Decimal(1);
+      this.researches.team2.complete = true;
+      this.researches.team2.toUnlock.forEach(u => u.unlock());
+      this.materials.science.unlock();
+    }
+    const startTwin = this.allMateries.getSum(MasteryTypes.START_TWIN);
+    if (startTwin > 0) {
+      this.units
+        .filter(u => u.twinAction)
+        .map(u => u.twinAction)
+        .forEach(t => (t.quantity = t.quantity.plus(startTwin)));
+      this.researches.twin.unlocked = true;
+      this.researches.twin.done = true;
+      this.researches.twin.quantity = new Decimal(1);
+      this.researches.twin.complete = true;
+      this.researches.twin.toUnlock.forEach(u => u.unlock());
+      this.materials.science.unlock();
     }
     //#endregion
 
+    //#region Free Warp
+    this.researches.free4hWarp.unlocked =
+      this.allMateries.getSum(MasteryTypes.FREE_WARP_RES) > 0;
+    //#endregion
+
+    this.researches.reloadLists();
     this.unitGroups.forEach(g => g.check());
     this.buildLists();
     this.generateWorlds();

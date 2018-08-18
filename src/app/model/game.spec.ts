@@ -15,11 +15,25 @@ describe("Game", () => {
 
   beforeEach(() => {
     toastr = jasmine.createSpyObj("ToastrService", ["warning", "success"]);
-    game = new Game(updateEmitter, researchEmitter, unlockGroupEmiter, toastr);
+    game = new Game(
+      updateEmitter,
+      researchEmitter,
+      unlockGroupEmiter,
+      toastr,
+      null,
+      null
+    );
   });
   it("should be created", () => {
     expect(
-      new Game(updateEmitter, researchEmitter, unlockGroupEmiter, null)
+      new Game(
+        updateEmitter,
+        researchEmitter,
+        unlockGroupEmiter,
+        null,
+        null,
+        null
+      )
     ).toBeTruthy();
   });
   it("Save works", () => {
@@ -27,12 +41,16 @@ describe("Game", () => {
       updateEmitter,
       researchEmitter,
       unlockGroupEmiter,
+      null,
+      null,
       null
     );
     const second = new Game(
       updateEmitter,
       researchEmitter,
       unlockGroupEmiter,
+      null,
+      null,
       null
     );
 

@@ -70,6 +70,7 @@ export const STRINGS = {
     Buildings_r: ["Buildings", "Buildings"],
     mastery: ["Mastery", "Get one mastery point"],
     harv: ["Harvesting", "+30% resource from Gatherers"],
+    m4hWarp: ["4h Warp", "Free time warp"],
     //  Workers
     f_wr: [
       "Farmer",

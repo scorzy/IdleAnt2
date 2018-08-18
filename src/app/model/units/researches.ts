@@ -17,6 +17,8 @@ export class Researches {
 
   travel: Research;
 
+  free4hWarp: Research;
+
   /**
    *  mastery, a special research
    *  never reset
@@ -32,6 +34,7 @@ export class Researches {
     this.travel = new Research("travel", this);
     this.mastery = new Research("mastery", this);
     this.harvesting = new Research("harv", this, true);
+    this.free4hWarp = new Research("m4hWarp", this);
 
     this.team1.unlocked = true;
     this.reloadLists();
@@ -43,6 +46,7 @@ export class Researches {
     this.travel.genPrice(new Decimal(1e6), science);
     this.mastery.genPrice(new Decimal(1e20), science);
     this.harvesting.prices = game.genSciencePrice(1e3, 1e3);
+    this.free4hWarp.prices = game.genSciencePrice(1);
 
     this.team1.toUnlock = [this.team2];
     this.team2.toUnlock = [this.twin];
@@ -56,6 +60,10 @@ export class Researches {
 
     this.travel.toUnlock.push(game.tabs.travel, this.mastery);
     this.mastery.toUnlock.push(game.tabs.mastery);
+
+    this.free4hWarp.onBuy = () => {
+      game.warp(4 * 3600 * 1000);
+    };
   }
   reset(science: FullUnit) {
     this.reloadMasteryPrice(science);

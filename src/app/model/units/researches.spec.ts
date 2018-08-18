@@ -9,6 +9,8 @@ describe("Researches", () => {
     new EventEmitter<number>(),
     new EventEmitter<string>(),
     new EventEmitter<number>(),
+    null,
+    null,
     null
   );
 

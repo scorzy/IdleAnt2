@@ -35,9 +35,7 @@ export class Research extends Action implements IUnlocable {
       if (this.toUnlock) {
         this.toUnlock.filter(i => !i.unlocked).forEach(u => u.unlock());
       }
-      this.onBuy();
       this.researches.reloadLists();
-
       return true;
     } else {
       return false;
@@ -56,9 +54,7 @@ export class Research extends Action implements IUnlocable {
     super.reset();
     this.unlocked = false;
   }
-  onBuy() {
-    //  Do nothing
-  }
+
   //#region Save and Load
   getSave(): any {
     const save = super.getSave();

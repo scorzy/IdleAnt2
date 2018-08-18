@@ -24,33 +24,33 @@ export class ActionGroup {
   }
 
   reload(game: Game) {
+    let real = 1;
+    if (!isNaN(this.userNum) && this.userNum >= 1) real = this.userNum;
+    this.realNum = new Decimal(real);
+
+    this.pricesTemp = new Array<Price>();
+
+    this.actionList.forEach(a => {
+      a.prices.forEach(p => {
+        p.loadPriceUser(this.realNum, a.quantity);
+        const price = this.pricesTemp.find(k => k.base === p.base);
+        if (price) {
+          price.price = price.price.plus(p.priceUser);
+        } else {
+          const priTemp = new Price(p.base, p.priceUser, 1);
+          this.pricesTemp.push(priTemp);
+        }
+      });
+
+      this.pricesTemp.forEach(p => {
+        p.reloadRealPrice();
+        p.reload(new Decimal(0));
+      });
+      this.canBuy = this.pricesTemp.findIndex(p => !p.canBuy) < 0;
+    });
+
     if (this.actionList.findIndex(a => !a.canBuy) > -1) {
       this.canBuy = false;
-    } else {
-      let real = 1;
-      if (!isNaN(this.userNum) && this.userNum >= 1) real = this.userNum;
-      this.realNum = new Decimal(real);
-
-      this.pricesTemp = new Array<Price>();
-
-      this.actionList.forEach(a => {
-        a.prices.forEach(p => {
-          p.loadPriceUser(this.realNum, a.quantity);
-          const price = this.pricesTemp.find(k => k.base === p.base);
-          if (price) {
-            price.price = price.price.plus(p.priceUser);
-          } else {
-            const priTemp = new Price(p.base, p.priceUser, 1);
-            this.pricesTemp.push(priTemp);
-          }
-        });
-
-        this.pricesTemp.forEach(p => {
-          p.reloadRealPrice();
-          p.reload(new Decimal(0));
-        });
-        this.canBuy = this.pricesTemp.findIndex(p => !p.canBuy) < 0;
-      });
     }
   }
 

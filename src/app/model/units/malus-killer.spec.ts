@@ -7,6 +7,8 @@ describe("MalusKiller", () => {
     new EventEmitter<number>(),
     new EventEmitter<string>(),
     new EventEmitter<number>(),
+    null,
+    null,
     null
   );
   it("should create an instance", () => {
