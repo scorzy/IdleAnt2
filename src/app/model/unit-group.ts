@@ -102,6 +102,10 @@ export class UnitGroup {
         res.toUnlock = [u];
         gen.researchList.push(res);
       });
+      const buy1 = this.list[0].autoBuyerPrice * 1.5;
+      gen.list.forEach(u => {
+        u.autoBuyerPrice = buy1;
+      });
     };
 
     gen.setRelations = () => {

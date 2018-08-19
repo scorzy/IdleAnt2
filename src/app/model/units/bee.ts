@@ -1,5 +1,5 @@
 import { FullUnit } from "../full-unit";
-import { Game } from "../game";
+import { ADDITIONAL_PRICE1, ADDITIONAL_PRICE2, Game } from "../game";
 import { Price } from "../price";
 import { Research } from "../research";
 import { UnitGroup } from "../unit-group";
@@ -8,6 +8,9 @@ import { CONSUME, PRICE, PROD } from "./workers";
 
 export class Bee extends UnitGroup {
   worker: FullUnit;
+
+  private beeX2: UnitGroup;
+  private beeX3: UnitGroup;
 
   constructor(game: Game) {
     super("Bee", game);
@@ -23,11 +26,26 @@ export class Bee extends UnitGroup {
       res.toUnlock = [u];
       this.researchList.push(res);
     });
+
+    this.additionalBuyPreces = [
+      new Price(this.game.materials.food, ADDITIONAL_PRICE1)
+    ];
+    this.beeX2 = this.getProducerGroup("Bees 2", new Decimal(1e6), "Be2");
+    this.beeX3 = this.beeX2.getProducerGroup(
+      "Bees 3",
+      new Decimal(1e10),
+      "Be3"
+    );
+    this.beeX2.additionalBuyPreces = [
+      new Price(this.game.materials.food, ADDITIONAL_PRICE2)
+    ];
+    this.beeX2.declareStuff();
+    this.beeX3.declareStuff();
   }
   setRelations(): void {
     this.worker.generateBuyAction([
-      new Price(this.game.materials.food, PRICE, 1.1),
-      new Price(this.game.materials.crystal, PRICE, 1.1)
+      new Price(this.game.materials.food, PRICE.times(1.5), 1.1),
+      new Price(this.game.materials.crystal, PRICE.times(1.5), 1.1)
     ]);
     this.game.materials.food.addProducer(this.worker, PROD);
     this.game.materials.crystal.addProducer(this.worker, CONSUME);
@@ -39,6 +57,17 @@ export class Bee extends UnitGroup {
       r => (r.prices = this.game.genSciencePrice(new Decimal(5e3)))
     );
     this.firstResearch.toUnlock = this.researchList;
+
+    this.beeX2.setRelations();
+    this.beeX3.setRelations();
+
+    this.firstResearch.toUnlock.push(this.beeX2.firstResearch);
+    this.beeX2.firstResearch.toUnlock.push(this.beeX3.firstResearch);
+
+    this.addUnits(this.beeX3.list.concat(this.beeX2.list).concat(this.list));
+    this.list.forEach(u => {
+      u.boughtBonus = u.boughtBonus * 2;
+    });
   }
   addWorlds() {
     const beePre = new World("beePre");

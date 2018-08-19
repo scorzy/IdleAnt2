@@ -27,6 +27,8 @@ import { Utility } from "./utility";
 import { Bug, World } from "./world";
 
 const STARTING_FOOD = new Decimal(100);
+export const ADDITIONAL_PRICE1 = new Decimal(1e4);
+export const ADDITIONAL_PRICE2 = new Decimal(1e8);
 
 export class Game {
   units = new Array<FullUnit>();
@@ -46,8 +48,6 @@ export class Game {
   genX3: UnitGroup;
   killers: UnitGroup;
   bee: Bee;
-  beeX2: UnitGroup;
-  beeX3: UnitGroup;
 
   researches: Researches;
   worldBonus: WorldBonus;
@@ -111,16 +111,6 @@ export class Game {
     this.bee = new Bee(this);
     this.unitGroups.push(this.bee);
 
-    this.beeX2 = this.bee.getProducerGroup("Bees 2", new Decimal(1e6), "Be2");
-    this.unitGroups.push(this.beeX2);
-
-    this.beeX3 = this.beeX2.getProducerGroup(
-      "Bees 3",
-      new Decimal(1e10),
-      "Be3"
-    );
-    this.unitGroups.push(this.beeX3);
-
     this.worldMalus = new WorldMalus(this);
     this.unitGroups.push(this.worldMalus);
 
@@ -132,7 +122,12 @@ export class Game {
 
     this.unitGroups.forEach(g => g.declareStuff());
 
-    this.advWorkers.additionalBuyPreces = [new Price(this.materials.wood, 1e4)];
+    this.advWorkers.additionalBuyPreces = [
+      new Price(this.materials.wood, ADDITIONAL_PRICE1)
+    ];
+    this.genX2.additionalBuyPreces = [
+      new Price(this.materials.food, ADDITIONAL_PRICE2)
+    ];
 
     this.researches.declareStuff();
     this.worldBonus = new WorldBonus();
@@ -150,9 +145,6 @@ export class Game {
 
     this.advWorkers.firstResearch.toUnlock.push(this.genX2.firstResearch);
     this.genX2.firstResearch.toUnlock.push(this.genX3.firstResearch);
-
-    this.bee.firstResearch.toUnlock.push(this.beeX2.firstResearch);
-    this.beeX2.firstResearch.toUnlock.push(this.beeX3.firstResearch);
 
     this.worldBonus.setRelations(this);
     //#endregion
