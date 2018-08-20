@@ -11,7 +11,8 @@ import { Malus } from "../model/malus";
 import { Price } from "../model/price";
 import { Research } from "../model/research";
 import { STRINGS } from "../model/strings";
-import { Bug, World } from "../model/world";
+import { World } from "../model/world";
+import { BugTypes } from "./../model/bugsTypes";
 
 @Component({
   selector: "app-world",
@@ -40,7 +41,7 @@ export class WorldComponent implements OnInit {
   openModal() {
     this.ms.worldEmitter.emit(this.world);
   }
-  getBugName(bug: Bug) {
+  getBugName(bug: BugTypes) {
     return bug in STRINGS.bug ? STRINGS.bug[bug] : "";
   }
 
@@ -59,7 +60,7 @@ export class WorldComponent implements OnInit {
   getMalusId(index, malus: Malus) {
     return index + malus.id;
   }
-  getBugId(index, bug: Bug) {
+  getBugId(index, bug: BugTypes) {
     return index + bug;
   }
 }

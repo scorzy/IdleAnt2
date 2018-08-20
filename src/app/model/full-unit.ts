@@ -5,6 +5,7 @@ import { TeamAction } from "./actions/team-action";
 import { TwinAction } from "./actions/twin-action";
 import { AutoBuy } from "./autoBuy/auto-buy";
 import { BaseUnit } from "./baseUnit";
+import { Bug, BUGS, BugTypes } from "./bugsTypes";
 import { IUnlocable } from "./iunlocable";
 import { Malus } from "./malus";
 import { Prestige } from "./prestige/prestige";
@@ -16,6 +17,7 @@ import { Research } from "./research";
 export class FullUnit extends BaseUnit implements IUnlocable {
   unlocked = false;
   actions = new Array<Action>();
+  bugType = BugTypes.ANT;
 
   buyAction: BuyAction;
   teamAction: Action;
@@ -127,6 +129,36 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     if (this.buyAction) this.buyAction.reset();
     if (this.teamAction) this.teamAction.reset();
     if (this.twinAction) this.twinAction.reset();
+  }
+  setBugType(bug: BugTypes) {
+    if (!(bug in BUGS)) return;
+    const bugClass = BUGS[bug];
+
+    if (this.buyAction && bugClass.priceMulti !== 1) {
+      this.buyAction.prices.forEach(p => {
+        p.price = p.price.times(bugClass.priceMulti);
+      });
+    }
+    if (this.produces.length > 0 && bugClass.prodMulti !== 1) {
+      this.produces.forEach(p => {
+        p.rateo = p.rateo.times(bugClass.prodMulti);
+      });
+    }
+    if (this.produces.length > 0 && bugClass.efficiencyMulti !== 1) {
+      this.produces.filter(p => p.rateo.gt(0)).forEach(p => {
+        p.rateo = p.rateo.times(bugClass.efficiencyMulti);
+      });
+    }
+    if (this.teamAction && bugClass.teamPriceMulti !== 1) {
+      this.teamAction.prices.forEach(p => {
+        p.price = p.price.times(bugClass.teamPriceMulti);
+      });
+    }
+    if (this.twinAction && bugClass.twinPriceMulti !== 1) {
+      this.twinAction.prices.forEach(p => {
+        p.price = p.price.times(bugClass.twinPriceMulti);
+      });
+    }
   }
   //#region Save and Restore
   getSave(): any {

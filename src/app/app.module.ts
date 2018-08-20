@@ -46,6 +46,7 @@ import { WorldComponent } from "./world/world.component";
 import { NameComponent } from './research/name/name.component';
 import { RomanPipe } from './roman.pipe';
 import { AutoBuyTabComponent } from './auto-buy-tab/auto-buy-tab.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { AutoBuyTabComponent } from './auto-buy-tab/auto-buy-tab.component';
     MasteryComponent,
     NameComponent,
     RomanPipe,
-    AutoBuyTabComponent
+    AutoBuyTabComponent,
+    HomeComponent
   ],
   imports: [
     BrowserAnimationsModule,

@@ -3,7 +3,8 @@ import { ADDITIONAL_PRICE1, ADDITIONAL_PRICE2, Game } from "../game";
 import { Price } from "../price";
 import { Research } from "../research";
 import { UnitGroup } from "../unit-group";
-import { Bug, World } from "../world";
+import { World } from "../world";
+import { BugTypes } from "./../bugsTypes";
 import { CONSUME, PRICE, PROD } from "./workers";
 
 export class Bee extends UnitGroup {
@@ -65,15 +66,13 @@ export class Bee extends UnitGroup {
     this.beeX2.firstResearch.toUnlock.push(this.beeX3.firstResearch);
 
     this.addUnits(this.beeX3.list.concat(this.beeX2.list).concat(this.list));
-    this.list.forEach(u => {
-      u.boughtBonus = u.boughtBonus * 2;
-    });
+    this.setBugType(BugTypes.BEE);
   }
   addWorlds() {
     const beePre = new World("beePre");
     const beeBio = new World("beeBio");
     const beeSuff = new World("beeSuff");
-    [beePre, beeBio, beeSuff].forEach(w => w.additionalBugs.push(Bug.BEE));
+    [beePre, beeBio, beeSuff].forEach(w => w.additionalBugs.push(BugTypes.BEE));
     World.suffix.push(beeSuff);
     World.biome.push(beeBio);
     World.prefix.push(beePre);

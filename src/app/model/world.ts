@@ -1,6 +1,7 @@
 import sample from "lodash-es/sample";
 import uniq from "lodash-es/uniq";
 import { BaseUnit } from "./baseUnit";
+import { Bug, BugTypes } from "./bugsTypes";
 import { FullUnit } from "./full-unit";
 import { Game } from "./game";
 import { Malus } from "./malus";
@@ -8,10 +9,6 @@ import { Price } from "./price";
 import { Research } from "./research";
 import { STRINGS } from "./strings";
 import { Utility } from "./utility";
-
-export enum Bug {
-  BEE = 0
-}
 
 export class World {
   static readonly BASE_WIN_CONDITION_MATERIALS = new Decimal(1e10);
@@ -43,7 +40,7 @@ export class World {
   notWinConditions = new Array<Malus>();
 
   //  Additional bug
-  additionalBugs = new Array<Bug>();
+  additionalBugs = new Array<BugTypes>();
 
   constructor(public id = "") {
     if (id !== "") this.name = STRINGS.worlds[this.id];

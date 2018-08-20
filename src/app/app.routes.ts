@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { AutoBuyTabComponent } from "./auto-buy-tab/auto-buy-tab.component";
+import { HomeComponent } from "./home/home.component";
 import { LaboratoryComponent } from "./laboratory/laboratory.component";
 import { MasteryComponent } from "./mastery/mastery.component";
 import { NavComponent } from "./nav/nav.component";
@@ -57,5 +58,9 @@ export const APPROUTES: Routes = [
   {
     path: "auto",
     component: AutoBuyTabComponent
+  },
+  {
+    path: "home",
+    component: HomeComponent
   }
 ];

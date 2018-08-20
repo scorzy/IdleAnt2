@@ -4,6 +4,7 @@ import { EndInPipe } from "./../end-in.pipe";
 import { FormatPipe } from "./../format.pipe";
 import { WarpAction } from "./actions/warp-action";
 import { AutoBuyManager } from "./autoBuy/auto-buy-manager";
+import { Bug, BugTypes } from "./bugsTypes";
 import { FullUnit } from "./full-unit";
 import { Malus } from "./malus";
 import { AllMasteries } from "./masteries/all-masteries";
@@ -24,11 +25,11 @@ import { Workers } from "./units/workers";
 import { WorldBonus } from "./units/world-bonus";
 import { WorldMalus } from "./units/world-malus";
 import { Utility } from "./utility";
-import { Bug, World } from "./world";
+import { World } from "./world";
 
 const STARTING_FOOD = new Decimal(100);
 export const ADDITIONAL_PRICE1 = new Decimal(1e4);
-export const ADDITIONAL_PRICE2 = new Decimal(1e8);
+export const ADDITIONAL_PRICE2 = new Decimal(1e9);
 
 export class Game {
   units = new Array<FullUnit>();
@@ -583,7 +584,7 @@ export class Game {
     //#endregion
 
     //#region other Bugs
-    if (Bug.BEE in this.currentWorld.additionalBugs) {
+    if (this.currentWorld.additionalBugs.includes(BugTypes.BEE)) {
       this.gatherers.foraggingBee.unlocked = true;
       this.bee.firstResearch.unlocked = true;
     }

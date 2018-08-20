@@ -168,6 +168,7 @@ export const STRINGS = {
     warp3600: ["Warp hour", "Time warp by hours"]
   },
   bug: {
-    0: "Bee"
+    0: "Ant",
+    1: "Bee"
   }
 };
