@@ -9,6 +9,7 @@ import { CONSUME, PRICE, PROD } from "./workers";
 
 export class Bee extends UnitGroup {
   worker: FullUnit;
+  scientist: FullUnit;
 
   private beeX2: UnitGroup;
   private beeX3: UnitGroup;
@@ -19,7 +20,9 @@ export class Bee extends UnitGroup {
 
   declareStuff(): void {
     this.worker = new FullUnit("workBee");
-    this.addUnits([this.worker]);
+    this.scientist = new FullUnit("scieBee");
+
+    this.addUnits([this.worker, this.scientist]);
 
     this.firstResearch = new Research("bee_res", this.game.researches);
     this.list.forEach(u => {
@@ -27,7 +30,6 @@ export class Bee extends UnitGroup {
       res.toUnlock = [u];
       this.researchList.push(res);
     });
-
     this.additionalBuyPreces = [
       new Price(this.game.materials.food, ADDITIONAL_PRICE1)
     ];
@@ -45,10 +47,17 @@ export class Bee extends UnitGroup {
   }
   setRelations(): void {
     this.worker.generateBuyAction([
-      new Price(this.game.materials.food, PRICE.times(1.5), 1.1),
-      new Price(this.game.materials.crystal, PRICE.times(1.5), 1.1)
+      new Price(this.game.materials.food, PRICE, 1.1),
+      new Price(this.game.materials.crystal, PRICE, 1.1)
     ]);
+    this.scientist.generateBuyAction([
+      new Price(this.game.materials.food, PRICE, 1.1),
+      new Price(this.game.materials.crystal, PRICE, 1.1)
+    ]);
+
     this.game.materials.food.addProducer(this.worker, PROD);
+    this.game.materials.crystal.addProducer(this.worker, CONSUME);
+    this.game.materials.science.addProducer(this.worker, PROD);
     this.game.materials.crystal.addProducer(this.worker, CONSUME);
 
     this.generateStandardActions();
@@ -58,14 +67,12 @@ export class Bee extends UnitGroup {
       r => (r.prices = this.game.genSciencePrice(new Decimal(5e3)))
     );
     this.firstResearch.toUnlock = this.researchList;
-
     this.beeX2.setRelations();
     this.beeX3.setRelations();
-
     this.firstResearch.toUnlock.push(this.beeX2.firstResearch);
     this.beeX2.firstResearch.toUnlock.push(this.beeX3.firstResearch);
-
     this.addUnits(this.beeX3.list.concat(this.beeX2.list).concat(this.list));
+
     this.setBugType(BugTypes.BEE);
   }
   addWorlds() {

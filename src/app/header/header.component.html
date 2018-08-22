@@ -11,6 +11,11 @@
         <clr-icon shape="flask" class="is-solid"></clr-icon>
       </span>
     </a>
+    <a [routerLink]='"home"' class="nav-link" [routerLinkActive]="'active'">
+      <span class="nav-text">
+        <clr-icon shape="home" class="is-solid"></clr-icon>
+      </span>
+    </a>
     <a [routerLink]='"travel"' class="nav-link" *ngIf="travel" [routerLinkActive]="'active'">
       <span class="nav-text">
         <clr-icon shape="world" class="is-solid" [ngClass]="{'has-badge': travelBadge}"></clr-icon>

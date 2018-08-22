@@ -11,18 +11,17 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { ClarityModule } from "@clr/angular";
 import { ToastrModule, ToastrService } from "ngx-toastr";
 import { of } from "rxjs/internal/observable/of";
-import { EndInPipe } from "../end-in.pipe";
-import { FormatPipe } from "../format.pipe";
-import { MainService } from "../main.service";
-import { Game } from "../model/game";
+import { EndInPipe } from "../../end-in.pipe";
+import { FormatPipe } from "../../format.pipe";
+import { MainService } from "../../main.service";
+import { Game } from "../../model/game";
 import {
   UnitBoughtSorter,
   UnitQuantitySorter,
   UnitTeamSorter,
   UnitTwinSorter
-} from "../model/utility";
-import { OptionsService } from "../options.service";
-import { UnitComponent } from "../unit/unit.component";
+} from "../../model/utility";
+import { OptionsService } from "../../options.service";
 import { UnitGroupComponent } from "./unit-group.component";
 
 describe("UnitGroupComponent", () => {
@@ -39,7 +38,7 @@ describe("UnitGroupComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [UnitGroupComponent, UnitComponent, FormatPipe, EndInPipe],
+      declarations: [UnitGroupComponent, FormatPipe, EndInPipe],
       imports: [
         ClarityModule.forRoot(),
         ToastrModule.forRoot(),

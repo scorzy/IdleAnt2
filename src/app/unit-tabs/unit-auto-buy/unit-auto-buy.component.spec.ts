@@ -6,9 +6,9 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { ClarityModule } from "@clr/angular";
 import { ToastrModule, ToastrService } from "ngx-toastr";
 import { SliderModule } from "primeng/slider";
-import { EndInPipe } from "../end-in.pipe";
-import { FormatPipe } from "../format.pipe";
-import { MainService } from "../main.service";
+import { EndInPipe } from "../../end-in.pipe";
+import { FormatPipe } from "../../format.pipe";
+import { MainService } from "../../main.service";
 import { UnitAutoBuyComponent } from "./unit-auto-buy.component";
 
 describe("UnitAutoBuyComponent", () => {

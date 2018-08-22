@@ -68,7 +68,10 @@ export const STRINGS = {
     //  Bee
     workBee: ["Worker", ""],
     workBee_g: ["Queen", ""],
-    workBee_g_g: ["Hive", ""]
+    workBee_g_g: ["Hive", ""],
+    scieBee: ["Scientist Bee", ""],
+    scieBee_g: ["Bee University", ""],
+    scieBee_g_g: ["Master Bee", ""]
   },
   researches: {
     team1: ["Team 1", "Team 1"],
@@ -111,6 +114,9 @@ export const STRINGS = {
     workBee_wr: ["Worker Bee", ""],
     workBee_g_r: ["Bee Queen", ""],
     workBee_g_g_r: ["Bee Hive", ""],
+    scieBee_wr: ["Scientist Bee", ""],
+    scieBee_g_r: ["Bee University", ""],
+    scieBee_g_g_r: ["Master Bee", ""],
     Be2_r: ["Bee Queen"],
     Be3_r: ["Bee Hives"]
   },

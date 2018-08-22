@@ -1,5 +1,7 @@
 import { Routes } from "@angular/router";
 import { AutoBuyTabComponent } from "./auto-buy-tab/auto-buy-tab.component";
+import { GroupTabsComponent } from "./group-tabs/group-tabs.component";
+import { UnitGroupComponent } from "./group-tabs/unit-group/unit-group.component";
 import { HomeComponent } from "./home/home.component";
 import { LaboratoryComponent } from "./laboratory/laboratory.component";
 import { MasteryComponent } from "./mastery/mastery.component";
@@ -11,9 +13,8 @@ import { PrestigeComponent } from "./prestige/prestige.component";
 import { SaveComponent } from "./save/save.component";
 import { StatsComponent } from "./stats/stats.component";
 import { UiOptionsComponent } from "./ui-options/ui-options.component";
-import { UnitGroupComponent } from "./unit-group/unit-group.component";
 import { UnitTabsComponent } from "./unit-tabs/unit-tabs.component";
-import { UnitComponent } from "./unit/unit.component";
+import { UnitComponent } from "./unit-tabs/unit/unit.component";
 export const APPROUTES: Routes = [
   {
     path: "",
@@ -26,7 +27,7 @@ export const APPROUTES: Routes = [
     children: [
       { path: "unit", component: UnitComponent },
       { path: "unit/:id", component: UnitTabsComponent },
-      { path: "group/:id", component: UnitGroupComponent }
+      { path: "group/:id", component: GroupTabsComponent }
     ]
   },
   {

@@ -5,9 +5,9 @@ import {
   OnChanges,
   OnInit
 } from "@angular/core";
-import { MainService } from "../main.service";
-import { AutoBuy } from "../model/autoBuy/auto-buy";
-import { FullUnit } from "../model/full-unit";
+import { MainService } from "../../main.service";
+import { AutoBuy } from "../../model/autoBuy/auto-buy";
+import { FullUnit } from "../../model/full-unit";
 
 @Component({
   selector: "app-unit-auto-buy",

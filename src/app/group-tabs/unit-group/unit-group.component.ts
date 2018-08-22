@@ -3,41 +3,40 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  Input,
+  OnChanges,
   OnDestroy,
   OnInit,
+  SimpleChanges,
   ViewChild
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { MainService } from "../main.service";
-import { ActionGroup } from "../model/actions/action-group";
-import { FullUnit } from "../model/full-unit";
-import { UnitGroup } from "../model/unit-group";
+import { MainService } from "../../main.service";
+import { ActionGroup } from "../../model/actions/action-group";
+import { FullUnit } from "../../model/full-unit";
+import { UnitGroup } from "../../model/unit-group";
 import {
   UnitBoughtSorter,
   UnitQuantitySorter,
   UnitTeamSorter,
   UnitTwinSorter
-} from "../model/utility";
+} from "../../model/utility";
 declare let Chart;
 
 @Component({
   selector: "app-unit-group",
   templateUrl: "./unit-group.component.html",
   styleUrls: ["./unit-group.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    "[class.content-area]": "true"
-  }
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UnitGroupComponent implements OnInit, OnDestroy {
-  paramsSub: any;
+export class UnitGroupComponent implements OnInit, OnDestroy, OnChanges {
   sub: any;
   subEff: any;
   paramsSave: any;
 
   selected = new Array<FullUnit>();
 
-  unitGroup: UnitGroup;
+  @Input() unitGroup: UnitGroup;
 
   unitsSpan = "";
   hatchActionGrp: ActionGroup;
@@ -66,6 +65,9 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private cd: ChangeDetectorRef
   ) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    this.getGroup();
+  }
 
   ngAfterViewInit() {
     if (!this.unitGroup) this.unitGroup = this.ms.game.unitGroups[0];
@@ -119,7 +121,6 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isSmall = window.innerWidth < 1200;
-    this.paramsSub = this.route.params.subscribe(this.getGroup.bind(this));
     this.sub = this.ms.updateEmitter.subscribe(m => {
       this.updateChart();
       this.getOperativity();
@@ -131,7 +132,6 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy() {
-    this.paramsSub.unsubscribe();
     this.sub.unsubscribe();
     this.subEff.unsubscribe();
   }
@@ -145,21 +145,11 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
           : 0;
     }
   }
-  getGroup(params: any) {
-    this.paramsSave = params;
-    let id = "" + params.id;
-    if (id === undefined) id = "0";
-    this.unitGroup = this.ms.game.unitGroups.find(g => "" + g.id === id);
-    if (!this.unitGroup) this.unitGroup = this.ms.game.unitGroups[0];
-    if (!this.unitGroup) return;
-
-    this.ms.game.lastUnitUrl = "nav/group/" + this.unitGroup.id;
-
+  getGroup() {
     this.unitsSpan = this.unitGroup.unlocked
       .map(u => u.name)
       .reduce((p, c) => p + ", " + c);
 
-    this.getOperativity();
     if (this.unitGroup.unlocked[0].buyAction) {
       this.hatchActionGrp = new ActionGroup(
         "Hatch",
@@ -191,11 +181,11 @@ export class UnitGroupComponent implements OnInit, OnDestroy {
       this.teamActionGrp = null;
       this.twinActionGrp = null;
     }
-    this.doGraph();
+    // this.doGraph();
     this.cd.markForCheck();
   }
   selectedChanged(event: any) {
-    this.getGroup(this.paramsSave);
+    this.getGroup();
   }
   updateChart() {
     if (!this.unitGroup) return;

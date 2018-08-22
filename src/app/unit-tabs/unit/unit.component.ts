@@ -8,12 +8,12 @@ import {
   OnInit
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { MainService } from "../main.service";
-import { Action } from "../model/action";
-import { FullUnit } from "../model/full-unit";
-import { Malus } from "../model/malus";
-import { Production } from "../model/production";
-import { ProductionSorter, TotalProductionSorter } from "../model/utility";
+import { MainService } from "../../main.service";
+import { Action } from "../../model/action";
+import { FullUnit } from "../../model/full-unit";
+import { Malus } from "../../model/malus";
+import { Production } from "../../model/production";
+import { ProductionSorter, TotalProductionSorter } from "../../model/utility";
 
 @Component({
   selector: "app-unit",

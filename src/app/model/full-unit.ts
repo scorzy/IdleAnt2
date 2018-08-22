@@ -131,6 +131,7 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     if (this.twinAction) this.twinAction.reset();
   }
   setBugType(bug: BugTypes) {
+    this.bugType = bug;
     if (!(bug in BUGS)) return;
     const bugClass = BUGS[bug];
 

@@ -14,11 +14,15 @@ import { CantBuySignpostsComponent } from "./action/cant-buy-signposts/cant-buy-
 import { PriceLineComponent } from "./action/price-line/price-line.component";
 import { AppComponent } from "./app.component";
 import { APPROUTES } from "./app.routes";
+import { AutoBuyTabComponent } from "./auto-buy-tab/auto-buy-tab.component";
 import { AutoBuyComponent } from "./auto-buy/auto-buy.component";
 import { ChangeWorldComponent } from "./change-world/change-world.component";
 import { EndInPipe } from "./end-in.pipe";
 import { FormatPipe } from "./format.pipe";
+import { GroupTabsComponent } from "./group-tabs/group-tabs.component";
+import { UnitGroupComponent } from "./group-tabs/unit-group/unit-group.component";
 import { HeaderComponent } from "./header/header.component";
+import { HomeComponent } from "./home/home.component";
 import { LaboratoryComponent } from "./laboratory/laboratory.component";
 import { MainService } from "./main.service";
 import { MasteryComponent } from "./mastery/mastery.component";
@@ -34,19 +38,16 @@ import { PrestigeGroupComponent } from "./prestige-group/prestige-group.componen
 import { PrestigeNavComponent } from "./prestige-nav/prestige-nav.component";
 import { PrestigeComponent } from "./prestige/prestige.component";
 import { ProductionSignpostsComponent } from "./production-signposts/production-signposts.component";
+import { NameComponent } from "./research/name/name.component";
 import { ResearchComponent } from "./research/research.component";
+import { RomanPipe } from "./roman.pipe";
 import { SaveComponent } from "./save/save.component";
 import { StatsComponent } from "./stats/stats.component";
 import { UiOptionsComponent } from "./ui-options/ui-options.component";
-import { UnitAutoBuyComponent } from "./unit-auto-buy/unit-auto-buy.component";
-import { UnitGroupComponent } from "./unit-group/unit-group.component";
+import { UnitAutoBuyComponent } from "./unit-tabs/unit-auto-buy/unit-auto-buy.component";
 import { UnitTabsComponent } from "./unit-tabs/unit-tabs.component";
-import { UnitComponent } from "./unit/unit.component";
+import { UnitComponent } from "./unit-tabs/unit/unit.component";
 import { WorldComponent } from "./world/world.component";
-import { NameComponent } from './research/name/name.component';
-import { RomanPipe } from './roman.pipe';
-import { AutoBuyTabComponent } from './auto-buy-tab/auto-buy-tab.component';
-import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { HomeComponent } from './home/home.component';
     NameComponent,
     RomanPipe,
     AutoBuyTabComponent,
-    HomeComponent
+    HomeComponent,
+    GroupTabsComponent
   ],
   imports: [
     BrowserAnimationsModule,

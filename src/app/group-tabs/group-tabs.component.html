@@ -1,0 +1,19 @@
+<h1>{{unitGroup.name}}</h1>
+
+<clr-tabs>
+
+  <clr-tab>
+    <button clrTabLink id="link1">Overview</button>
+    <clr-tab-content id="content1" *clrIfActive="ms.overviewTaActive">
+      <app-unit-group *ngIf="unitGroup" [unitGroup]="unitGroup"></app-unit-group>
+    </clr-tab-content>
+  </clr-tab>
+
+  <!-- <clr-tab *ngIf="ms.game.tabs.autoBuy.unlocked && unit.hasAutoBuyer">
+    <button clrTabLink>Auto Buyers</button>
+    <clr-tab-content *clrIfActive="ms.prestigeTaActive">
+      <app-unit-auto-buy [unit]="unit"></app-unit-auto-buy>
+    </clr-tab-content>
+  </clr-tab> -->
+
+</clr-tabs>

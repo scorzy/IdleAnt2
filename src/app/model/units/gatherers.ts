@@ -1,3 +1,4 @@
+import { BugTypes } from "../bugsTypes";
 import { FullUnit } from "../full-unit";
 import { Game } from "../game";
 import { Price } from "../price";
@@ -66,5 +67,7 @@ export class Gatherers extends UnitGroup {
         );
       }
     });
+
+    this.foraggingBee.setBugType(BugTypes.BEE);
   }
 }

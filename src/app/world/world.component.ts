@@ -39,7 +39,7 @@ export class WorldComponent implements OnInit {
   }
 
   openModal() {
-    this.ms.worldEmitter.emit(this.world);
+    if (this.cantTravel) this.ms.worldEmitter.emit(this.world);
   }
   getBugName(bug: BugTypes) {
     return bug in STRINGS.bug ? STRINGS.bug[bug] : "";
