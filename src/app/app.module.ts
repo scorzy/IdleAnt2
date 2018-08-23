@@ -23,6 +23,7 @@ import { GroupTabsComponent } from "./group-tabs/group-tabs.component";
 import { UnitGroupComponent } from "./group-tabs/unit-group/unit-group.component";
 import { HeaderComponent } from "./header/header.component";
 import { HomeComponent } from "./home/home.component";
+import { LabMenuComponent } from "./laboratory/lab-menu/lab-menu.component";
 import { LaboratoryComponent } from "./laboratory/laboratory.component";
 import { MainService } from "./main.service";
 import { MasteryComponent } from "./mastery/mastery.component";
@@ -89,7 +90,8 @@ import { WorldComponent } from "./world/world.component";
     RomanPipe,
     AutoBuyTabComponent,
     HomeComponent,
-    GroupTabsComponent
+    GroupTabsComponent,
+    LabMenuComponent
   ],
   imports: [
     BrowserAnimationsModule,

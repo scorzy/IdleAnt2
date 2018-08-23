@@ -38,7 +38,11 @@ export class Price {
         this.growRate,
         bought
       );
-    } else this.maxBuy = this.base.quantity.div(this.realPrice).floor();
+    } else {
+      this.maxBuy = this.base.quantity.gt(0)
+        ? this.base.quantity.div(this.realPrice).floor()
+        : new Decimal(0);
+    }
 
     this.canBuy = this.maxBuy.gte(1);
   }
