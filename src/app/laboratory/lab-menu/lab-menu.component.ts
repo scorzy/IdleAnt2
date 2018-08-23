@@ -16,7 +16,10 @@ export class LabMenuComponent implements OnInit {
   }
   getResearchArray(repeating = true): Research[] {
     let toDo = this.ms.game.researches.toDo;
-    if (!repeating) toDo = toDo.filter(r => !r.unlimited);
+    toDo = repeating
+      ? toDo.filter(r => !r.unlimited || r.quantity.lt(r.maxAutoBuyLevel))
+      : toDo.filter(r => !r.unlimited);
+
     return toDo.sort((r1, r2) => r1.prices[0].price.cmp(r2.prices[0].price));
   }
   buy1(rep = true) {
