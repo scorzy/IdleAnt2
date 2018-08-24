@@ -58,7 +58,6 @@ export class Researches {
     this.team1.toUnlock = [this.team2];
     this.team2.toUnlock = [this.twin];
 
-    game.genX3.researchList[3].toUnlock.push(this.travel);
     game.advWorkers.firstResearch.toUnlock.push(this.harvesting);
     const bonus = new ProductionBonus(this.harvesting, new Decimal(0.3));
     game.gatherers.list.forEach(u => {

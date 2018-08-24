@@ -20,7 +20,7 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   bugType = BugTypes.ANT;
 
   buyAction: BuyAction;
-  teamAction: Action;
+  teamAction: TeamAction;
   twinAction: TwinAction;
 
   efficiency = 100;
@@ -74,12 +74,12 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     this.buyAction = new BuyAction(prices, this, toUnlock);
     this.actions.push(this.buyAction);
   }
-  generateTeamAction(price: Price[], teamRes: Research) {
-    this.teamAction = new TeamAction(price, teamRes);
+  generateTeamAction(price: Price[]) {
+    this.teamAction = new TeamAction(price);
     this.actions.push(this.teamAction);
   }
-  generateTwinAction(price: Price[], twinRes: Research) {
-    this.twinAction = new TwinAction(price, this, twinRes);
+  generateTwinAction(price: Price[]) {
+    this.twinAction = new TwinAction(price, this);
     this.actions.push(this.twinAction);
   }
 
@@ -101,7 +101,8 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   isStopped(): boolean {
     return this.efficiency < 0.01;
   }
-  addProducer(producer: FullUnit, rateo: Decimal = new Decimal(1)) {
+  addProducer(producer: FullUnit, rateo: Decimal | number = 1) {
+    rateo = new Decimal(rateo);
     const prod = new Production(producer, this, rateo);
     this.producedBy.push(prod);
     producer.produces.push(prod);

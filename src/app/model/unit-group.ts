@@ -58,14 +58,8 @@ export class UnitGroup {
   generateStandardActions() {
     this.list.forEach(u => {
       if (u instanceof FullUnit) {
-        u.generateTeamAction(
-          this.game.genTeamPrice(new Decimal(5e3)),
-          this.game.researches.team2
-        );
-        u.generateTwinAction(
-          this.game.genTwinPrice(new Decimal(1e4)),
-          this.game.researches.twin
-        );
+        u.generateTeamAction(this.game.genTeamPrice(new Decimal(5e3)));
+        u.generateTwinAction(this.game.genTwinPrice(new Decimal(1e4)));
       }
     });
   }
@@ -82,77 +76,6 @@ export class UnitGroup {
       this.unlocked.findIndex(u => u.twinAction && u.twinAction.canBuy) > -1;
   }
 
-  /**
-   * Return a new unitgroup where units are producers of this units
-   * @param name
-   * @param game
-   */
-  getProducerGroup(name: string, price: Decimal, id: string): UnitGroup {
-    const gen = new UnitGroup(name, this.game);
-
-    gen.declareStuff = () => {
-      gen.researchList = [];
-      const list = this.list.map(
-        u => new FullUnit(u.id + "_g", "gen of " + u.name, "")
-      );
-      gen.addUnits(list);
-      gen.firstResearch = new Research(id + "_r", this.game.researches);
-      gen.researchList = [];
-      list.forEach(u => {
-        const res = new Research(u.id + "_r", this.game.researches);
-        res.toUnlock = [u];
-        gen.researchList.push(res);
-      });
-      const buy1 = this.list[0].autoBuyerPrice * 1.5;
-      gen.list.forEach(u => {
-        u.autoBuyerPrice = buy1;
-      });
-    };
-
-    gen.setRelations = () => {
-      for (let i = 0; i < this.list.length; i++) {
-        const original = this.list[i];
-        const producer = gen.list[i];
-
-        //  Production
-        original.addProducer(producer);
-        original.buyAction.prices.forEach(p => {
-          p.base.addProducer(producer, p.price.times(-1));
-        });
-
-        //  Buy Action
-        let prices = [new Price(original, new Decimal(20))];
-        if (this.additionalBuyPreces.length > 0) {
-          prices = prices.concat(this.additionalBuyPreces);
-        }
-        producer.generateBuyAction(prices);
-
-        //  Team Action
-        producer.generateTeamAction(
-          original.teamAction.prices.map(
-            p => new Price(p.base, p.price.times(10), p.growRate)
-          ),
-          this.game.researches.team2
-        );
-
-        //  Twin Action
-        producer.generateTwinAction(
-          original.twinAction.prices.map(
-            p => new Price(p.base, p.price.times(10), p.growRate)
-          ),
-          this.game.researches.twin
-        );
-      }
-      //  researches
-      gen.firstResearch.toUnlock = gen.researchList;
-      gen.firstResearch.prices = this.game.genSciencePrice(price);
-
-      gen.researchList.forEach(
-        r => (r.prices = this.game.genSciencePrice(price.times(5)))
-      );
-    };
-    return gen;
-  }
   setBugType(bug: BugTypes) {
     this.list.forEach(u => u.setBugType(bug));
   }

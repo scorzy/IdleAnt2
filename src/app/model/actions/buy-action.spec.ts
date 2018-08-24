@@ -29,7 +29,7 @@ describe("BuyAction", () => {
   });
   it("twin", () => {
     const unit = new FullUnit("id2", "name2", "desc2", new Decimal(0));
-    unit.twinAction = new TwinAction([], unit, twinRes);
+    unit.twinAction = new TwinAction([], unit);
     unit.twinAction.quantity = new Decimal(10);
     const buyAction = new BuyAction([], unit);
     buyAction.buy(new Decimal(10));

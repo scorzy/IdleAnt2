@@ -5,13 +5,14 @@ describe("TeamAction", () => {
   teamRes.unlocked = true;
 
   it("should create an instance", () => {
-    expect(new TeamAction([], null)).toBeTruthy();
+    expect(new TeamAction([])).toBeTruthy();
   });
 
   describe("Team not researched", () => {
     it("should create an instance", () => {
       teamRes.done = false;
-      const team = new TeamAction([], teamRes);
+      const team = new TeamAction([]);
+      team.teamRes = teamRes;
       team.reload();
       expect(team.canBuy).toBeFalsy();
     });
@@ -19,7 +20,8 @@ describe("TeamAction", () => {
   describe("Team researched", () => {
     it("should create an instance", () => {
       teamRes.done = true;
-      const team = new TeamAction([], teamRes);
+      const team = new TeamAction([]);
+      team.teamRes = teamRes;
       team.reload();
       expect(team.canBuy).toBeTruthy();
     });

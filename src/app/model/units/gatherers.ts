@@ -57,14 +57,8 @@ export class Gatherers extends UnitGroup {
 
     this.list.forEach(u => {
       if (u instanceof FullUnit) {
-        u.generateTeamAction(
-          this.game.genTeamPrice(new Decimal(500)),
-          this.game.researches.team2
-        );
-        u.generateTwinAction(
-          this.game.genTwinPrice(new Decimal(1e3)),
-          this.game.researches.twin
-        );
+        u.generateTeamAction(this.game.genTeamPrice(new Decimal(500)));
+        u.generateTwinAction(this.game.genTwinPrice(new Decimal(1e3)));
       }
     });
 

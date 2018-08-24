@@ -5,11 +5,9 @@ import { Research } from "../research";
 import { BuyAction } from "./buy-action";
 
 export class TwinAction extends Action {
-  constructor(
-    prices: Price[],
-    private unit: FullUnit,
-    public twinRes: Research
-  ) {
+  twinRes: Research;
+
+  constructor(prices: Price[], private unit: FullUnit) {
     super(
       "w",
       "Twin",

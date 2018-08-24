@@ -63,14 +63,8 @@ export class MalusKiller extends UnitGroup {
     //  Team and Twin
     this.list.forEach(u => {
       if (u instanceof FullUnit) {
-        u.generateTeamAction(
-          this.game.genTeamPrice(new Decimal(5e3)),
-          this.game.researches.team2
-        );
-        u.generateTwinAction(
-          this.game.genTwinPrice(new Decimal(1e4)),
-          this.game.researches.twin
-        );
+        u.generateTeamAction(this.game.genTeamPrice(new Decimal(5e3)));
+        u.generateTwinAction(this.game.genTwinPrice(new Decimal(1e4)));
       }
     });
   }

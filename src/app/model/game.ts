@@ -15,7 +15,7 @@ import { ProductionBonus } from "./production-bonus";
 import { Stats } from "./stats/stats";
 import { Tabs } from "./tabs";
 import { UnitGroup } from "./unit-group";
-import { Bee } from "./units/bee";
+import { Ants } from "./units/ants";
 import { Gatherers } from "./units/gatherers";
 import { MalusKiller } from "./units/malus-killer";
 import { Materials } from "./units/materials";
@@ -45,10 +45,8 @@ export class Game {
   materials: Materials;
   gatherers: Gatherers;
   advWorkers: Workers;
-  genX2: UnitGroup;
-  genX3: UnitGroup;
   killers: UnitGroup;
-  bee: Bee;
+  ants: Ants;
 
   researches: Researches;
   worldBonus: WorldBonus;
@@ -93,24 +91,14 @@ export class Game {
 
     this.researches = new Researches(this.researchEmitter);
 
+    this.ants = new Ants(this);
+    this.unitGroups.push(this.ants);
+
     this.gatherers = new Gatherers(this);
     this.unitGroups.push(this.gatherers);
 
     this.advWorkers = new Workers(this);
     this.unitGroups.push(this.advWorkers);
-
-    this.genX2 = this.advWorkers.getProducerGroup(
-      "Ants 2",
-      new Decimal(1e6),
-      "Bu"
-    );
-    this.unitGroups.push(this.genX2);
-
-    this.genX3 = this.genX2.getProducerGroup("Ants 3", new Decimal(1e10), "En");
-    this.unitGroups.push(this.genX3);
-
-    this.bee = new Bee(this);
-    this.unitGroups.push(this.bee);
 
     this.worldMalus = new WorldMalus(this);
     this.unitGroups.push(this.worldMalus);
@@ -126,9 +114,6 @@ export class Game {
     this.advWorkers.additionalBuyPreces = [
       new Price(this.materials.wood, ADDITIONAL_PRICE1)
     ];
-    this.genX2.additionalBuyPreces = [
-      new Price(this.materials.food, ADDITIONAL_PRICE2)
-    ];
 
     this.researches.declareStuff();
     this.worldBonus = new WorldBonus();
@@ -143,9 +128,6 @@ export class Game {
 
     this.researches.setRelations(this.materials.science, this);
     this.researches.team1.toUnlock.push(this.advWorkers.firstResearch);
-
-    this.advWorkers.firstResearch.toUnlock.push(this.genX2.firstResearch);
-    this.genX2.firstResearch.toUnlock.push(this.genX3.firstResearch);
 
     this.worldBonus.setRelations(this);
     //#endregion
@@ -227,20 +209,41 @@ export class Game {
       new ProductionBonus(this.experience, new Decimal(1))
     );
     this.setMaxTimeBank();
+    this.units.forEach(u => {
+      if (u.teamAction) u.teamAction.teamRes = this.researches.team2;
+      if (u.twinAction) u.twinAction.twinRes = this.researches.twin;
+    });
     //#endregion
 
     //#region Debug
-    // this.materials.food.quantity = new Decimal(1e100);
     this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
     // this.materials.list.forEach(u => (u.unlocked = true));
-    // this.unitGroups.forEach(g => g.list.forEach(u => (u.unlocked = true)));
+    this.unitGroups.forEach(g => g.list.forEach(u => u.unlock()));
     this.tabs.tabList.forEach(t => (t.unlocked = true));
-    // // this.worldMalus.foodMalus1.quantity = new Decimal(100);
+    // this.worldMalus.foodMalus1.quantity = new Decimal(100);
     // this.worldMalus.foodMalus1.quantity = new Decimal(100);
     // this.worldMalus.foodMalus2.quantity = new Decimal(10);
     // this.experience.quantity = new Decimal(1000);
     this.allMateries.masteryPoint = 30;
     this.experience.quantity = new Decimal(1e10);
+    this.units.forEach(u => {
+      u.isNew = false;
+    });
+    this.researches.team1.unlocked = true;
+    this.researches.team1.done = true;
+    this.researches.team1.complete = true;
+    this.researches.team1.quantity = new Decimal(1);
+    this.researches.team1.toUnlock.forEach(u => u.unlock());
+    this.researches.team2.unlocked = true;
+    this.researches.team2.done = true;
+    this.researches.team2.quantity = new Decimal(1);
+    this.researches.team2.complete = true;
+    this.researches.team2.toUnlock.forEach(u => u.unlock());
+    this.researches.twin.unlocked = true;
+    this.researches.twin.done = true;
+    this.researches.twin.quantity = new Decimal(1);
+    this.researches.twin.complete = true;
+    this.researches.twin.toUnlock.forEach(u => u.unlock());
     //#endregion
   }
   buildLists() {
@@ -585,8 +588,7 @@ export class Game {
 
     //#region other Bugs
     if (this.currentWorld.additionalBugs.includes(BugTypes.BEE)) {
-      this.gatherers.foraggingBee.unlocked = true;
-      this.bee.firstResearch.unlocked = true;
+      //ToDo
     }
     //#endregion
 

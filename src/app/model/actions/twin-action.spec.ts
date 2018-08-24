@@ -6,12 +6,12 @@ describe("TwinAction", () => {
   twinRes.done = true;
 
   it("should create an instance", () => {
-    expect(new TwinAction([], new FullUnit("id", "", ""), null)).toBeTruthy();
+    expect(new TwinAction([], new FullUnit("id", "", ""))).toBeTruthy();
   });
   describe("Buy more", () => {
     const testUnit = new FullUnit("", "", "");
     testUnit.generateBuyAction([]);
-    testUnit.generateTwinAction([], twinRes);
+    testUnit.generateTwinAction([]);
     testUnit.twinAction.quantity = new Decimal(1);
     testUnit.buyAction.buy();
     it("quantity = 2", () => {
@@ -21,7 +21,8 @@ describe("TwinAction", () => {
   describe("Retroactive", () => {
     const testUnit = new FullUnit("", "", "");
     testUnit.generateBuyAction([]);
-    testUnit.generateTwinAction([], twinRes);
+    testUnit.generateTwinAction([]);
+    testUnit.twinAction.twinRes = twinRes;
     testUnit.quantity = new Decimal(10);
     testUnit.buyAction.quantity = new Decimal(10);
     testUnit.twinAction.buy();

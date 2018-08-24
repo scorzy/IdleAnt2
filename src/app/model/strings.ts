@@ -6,6 +6,10 @@ export const STRINGS = {
     cry: ["Crystal", "crystal"],
     sci: ["Science", "science"],
     //  Ghantering
+    d: ["Drone", "drone"],
+    q: ["Queen", "Queen"],
+    n: ["Nest", "Nest"],
+    //  Ghantering
     dr: ["Drone", "drone"],
     ge: ["Geologist", "geologist"],
     st: ["Student", "student"],
