@@ -1,11 +1,11 @@
-import { CONSTANTS } from "../CONSTATS";
+import { CONSTS } from "../CONSTATS";
 import { FullUnit } from "../full-unit";
 import { Game } from "../game";
 import { Price } from "../price";
 import { UnitGroup } from "../unit-group";
 
 export class Ants extends UnitGroup {
-  drone: FullUnit;
+  larva: FullUnit;
   queen: FullUnit;
   nest: FullUnit;
 
@@ -14,13 +14,13 @@ export class Ants extends UnitGroup {
   }
 
   declareStuff(): void {
-    this.drone = new FullUnit("d");
+    this.larva = new FullUnit("l");
     this.queen = new FullUnit("q");
     this.nest = new FullUnit("n");
-    this.addUnits([this.nest, this.queen, this.drone]);
+    this.addUnits([this.nest, this.queen, this.larva]);
   }
   setRelations(): void {
-    this.drone.generateBuyAction(
+    this.larva.generateBuyAction(
       [new Price(this.game.materials.food, new Decimal(20))],
       [this.queen]
     );
@@ -32,11 +32,17 @@ export class Ants extends UnitGroup {
       new Price(this.game.materials.food, new Decimal(20))
     ]);
 
-    this.game.materials.food.addProducer(this.drone, 0.1);
-    this.drone.addProducer(this.queen, 0.01);
+    this.game.materials.food.addProducer(this.larva, 0.1);
+    this.larva.addProducer(this.queen, 0.01);
     this.queen.addProducer(this.nest, 0.01);
 
-    this.drone.generateTeamAction(this.game.genTeamPrice(CONSTANTS.PRICE_0));
+    this.larva.generateTeamAction(this.game.genTeamPrice(CONSTS.TEAM_PRICE_0));
+    this.queen.generateTeamAction(this.game.genTeamPrice(CONSTS.TEAM_PRICE_2));
+    this.nest.generateTeamAction(this.game.genTeamPrice(CONSTS.TEAM_PRICE_3));
+
+    this.larva.generateTwinAction(this.game.genTeamPrice(CONSTS.TWIN_PRICE_0));
+    this.queen.generateTwinAction(this.game.genTeamPrice(CONSTS.TWIN_PRICE_2));
+    this.nest.generateTwinAction(this.game.genTeamPrice(CONSTS.TWIN_PRICE_3));
   }
   addWorlds() {
     //ToDO

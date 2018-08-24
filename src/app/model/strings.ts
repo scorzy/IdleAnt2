@@ -6,7 +6,7 @@ export const STRINGS = {
     cry: ["Crystal", "crystal"],
     sci: ["Science", "science"],
     //  Ghantering
-    d: ["Drone", "drone"],
+    l: ["Larva", "Larva"],
     q: ["Queen", "Queen"],
     n: ["Nest", "Nest"],
     //  Ghantering

@@ -1,4 +1,4 @@
-export class CONSTANTS {
+export class CONSTS {
   static readonly PRICE_0 = new Decimal(20);
   static readonly PRICE_1 = new Decimal(100);
   static readonly PRICE_2 = new Decimal(1e4);
