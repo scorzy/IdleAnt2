@@ -8,6 +8,7 @@ import { Research } from "./research";
 
 export class UnitGroup {
   static maxId = 0;
+  level = 0;
 
   list: FullUnit[] = new Array<FullUnit>();
   unlocked: FullUnit[] = new Array<FullUnit>();
@@ -27,6 +28,7 @@ export class UnitGroup {
   // Pie
   chartLabels: string[] = [];
   chartData: number[] = [];
+  icon = "";
   //#endregion
 
   additionalBuyPreces: Price[] = [];
@@ -55,13 +57,10 @@ export class UnitGroup {
   addWorlds() {
     //
   }
-  generateStandardActions() {
-    this.list.forEach(u => {
-      if (u instanceof FullUnit) {
-        u.generateTeamAction(this.game.genTeamPrice(new Decimal(5e3)));
-        u.generateTwinAction(this.game.genTwinPrice(new Decimal(1e4)));
-      }
-    });
+
+  generateProducer(products: UnitGroup) {
+    const list = products.list.map(u => new FullUnit(u.id + "_g"));
+    this.addUnits(list);
   }
 
   setFlags(team = false, twin = false) {

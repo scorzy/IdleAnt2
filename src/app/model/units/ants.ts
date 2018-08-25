@@ -11,6 +11,7 @@ export class Ants extends UnitGroup {
 
   constructor(game: Game) {
     super("Ants", game);
+    this.icon = "ant";
   }
 
   declareStuff(): void {
@@ -18,31 +19,35 @@ export class Ants extends UnitGroup {
     this.queen = new FullUnit("q");
     this.nest = new FullUnit("n");
     this.addUnits([this.nest, this.queen, this.larva]);
+    this.larva.unlocked = true;
+    this.queen.unlocked = true;
   }
   setRelations(): void {
     this.larva.generateBuyAction(
-      [new Price(this.game.materials.food, new Decimal(20))],
+      [new Price(this.game.materials.food, CONSTS.PRICE_0)],
       [this.queen]
     );
     this.queen.generateBuyAction(
-      [new Price(this.game.materials.food, new Decimal(20))],
+      [
+        new Price(this.larva, CONSTS.PRICE_LARVAE_1, 1),
+        new Price(this.game.materials.food, CONSTS.PRICE_2)
+      ],
       [this.nest]
     );
     this.nest.generateBuyAction([
-      new Price(this.game.materials.food, new Decimal(20))
+      new Price(this.queen, CONSTS.PRICE_LARVAE_2, 1),
+      new Price(this.game.materials.food, CONSTS.PRICE_3),
+      new Price(this.game.materials.wood, CONSTS.PRICE_3)
     ]);
 
-    this.game.materials.food.addProducer(this.larva, 0.1);
-    this.larva.addProducer(this.queen, 0.01);
-    this.queen.addProducer(this.nest, 0.01);
+    this.larva.addProducer(this.queen, CONSTS.PROD_LARVAE);
+    this.queen.addProducer(this.nest, CONSTS.PROD_LARVAE);
 
-    this.larva.generateTeamAction(this.game.genTeamPrice(CONSTS.TEAM_PRICE_0));
-    this.queen.generateTeamAction(this.game.genTeamPrice(CONSTS.TEAM_PRICE_2));
-    this.nest.generateTeamAction(this.game.genTeamPrice(CONSTS.TEAM_PRICE_3));
+    this.game.addTeamAction(this.queen, CONSTS.TEAM_PRICE_2);
+    this.game.addTeamAction(this.nest, CONSTS.TEAM_PRICE_3);
 
-    this.larva.generateTwinAction(this.game.genTeamPrice(CONSTS.TWIN_PRICE_0));
-    this.queen.generateTwinAction(this.game.genTeamPrice(CONSTS.TWIN_PRICE_2));
-    this.nest.generateTwinAction(this.game.genTeamPrice(CONSTS.TWIN_PRICE_3));
+    this.game.addTwinAction(this.queen, CONSTS.TWIN_PRICE_2);
+    this.game.addTwinAction(this.nest, CONSTS.TWIN_PRICE_3);
   }
   addWorlds() {
     //ToDO

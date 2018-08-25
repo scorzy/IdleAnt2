@@ -34,7 +34,7 @@ export class CantBuySignpostsComponent implements OnInit, OnDestroy {
   }
   getVal(price: Price): number {
     return Math.floor(
-      price.base.quantity.div(price.priceUser).toNumber() * 100
+      Math.min(price.base.quantity.div(price.priceUser).toNumber() * 100, 100)
     );
   }
   getPriceId(index, price: Price) {

@@ -1,3 +1,4 @@
+import { CONSTS } from "../CONSTATS";
 import { FullUnit } from "../full-unit";
 import { Game } from "../game";
 import { Price } from "../price";
@@ -63,8 +64,8 @@ export class MalusKiller extends UnitGroup {
     //  Team and Twin
     this.list.forEach(u => {
       if (u instanceof FullUnit) {
-        u.generateTeamAction(this.game.genTeamPrice(new Decimal(5e3)));
-        u.generateTwinAction(this.game.genTwinPrice(new Decimal(1e4)));
+        this.game.addTeamAction(u, CONSTS.TEAM_PRICE_2);
+        this.game.addTwinAction(u, CONSTS.TWIN_PRICE_2);
       }
     });
   }

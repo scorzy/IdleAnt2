@@ -16,6 +16,7 @@ import { Stats } from "./stats/stats";
 import { Tabs } from "./tabs";
 import { UnitGroup } from "./unit-group";
 import { Ants } from "./units/ants";
+import { Buildings } from "./units/buildings";
 import { Gatherers } from "./units/gatherers";
 import { MalusKiller } from "./units/malus-killer";
 import { Materials } from "./units/materials";
@@ -45,6 +46,7 @@ export class Game {
   materials: Materials;
   gatherers: Gatherers;
   advWorkers: Workers;
+  buildings: Buildings;
   killers: UnitGroup;
   ants: Ants;
 
@@ -100,6 +102,9 @@ export class Game {
     this.advWorkers = new Workers(this);
     this.unitGroups.push(this.advWorkers);
 
+    this.buildings = new Buildings(this);
+    this.unitGroups.push(this.buildings);
+
     this.worldMalus = new WorldMalus(this);
     this.unitGroups.push(this.worldMalus);
 
@@ -144,6 +149,7 @@ export class Game {
 
     //#region Starting stuff
     this.materials.food.quantity = new Decimal(STARTING_FOOD);
+    this.ants.queen.quantity = new Decimal(1);
     //#endregion
 
     //#region Build Lists
@@ -500,6 +506,8 @@ export class Game {
 
     this.units.forEach(u => u.reset());
     this.materials.food.quantity = new Decimal(STARTING_FOOD);
+    this.ants.queen.quantity = new Decimal(1);
+    this.ants.larva.unlocked = true;
     this.gatherers.drone.unlocked = true;
     this.materials.food.unlocked = true;
 
@@ -616,18 +624,17 @@ export class Game {
       World.getRandomWorld(userMin, userMax, this)
     ];
   }
-  //#region Price Utility
-  genTeamPrice(price: Decimal | number): Price[] {
-    return [new Price(this.materials.science, new Decimal(price), 4)];
-  }
-  genTwinPrice(price: Decimal | number): Price[] {
-    return [new Price(this.materials.science, new Decimal(price), 10)];
-  }
   genSciencePrice(price: Decimal | number, growRate = 1): Price[] {
     return [new Price(this.materials.science, new Decimal(price), growRate)];
   }
   genExperiencePrice(price: Decimal | number, growRate = 1.3): Price[] {
     return [new Price(this.experience, new Decimal(price), growRate)];
+  }
+  addTeamAction(unit: FullUnit, price: Decimal | number) {
+    unit.generateTeamAction(this.genTeamPrice(price));
+  }
+  addTwinAction(unit: FullUnit, price: Decimal | number) {
+    unit.generateTwinAction(this.genTwinPrice(price));
   }
   //#endregion
   //#region Save and Load
@@ -679,6 +686,13 @@ export class Game {
     } else {
       return false;
     }
+  }
+  //#region Price Utility
+  private genTeamPrice(price: Decimal | number): Price[] {
+    return [new Price(this.materials.science, new Decimal(price), 4)];
+  }
+  private genTwinPrice(price: Decimal | number): Price[] {
+    return [new Price(this.materials.science, new Decimal(price), 10)];
   }
   //#endregion
 }
