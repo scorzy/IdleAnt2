@@ -11,8 +11,8 @@ export class Time extends PrestigeGroup {
   }
 
   declareStuff(game: Game) {
-    this.timeProducer = new Prestige("tiPr", game.genExperiencePrice(15));
-    this.timeBank = new Prestige("tiBa", game.genExperiencePrice(15));
+    this.timeProducer = new Prestige("P", game.genExperiencePrice(15));
+    this.timeBank = new Prestige("B", game.genExperiencePrice(15));
     this.list = [this.timeProducer, this.timeBank];
 
     this.timeBank.onBuy = () => game.setMaxTimeBank();

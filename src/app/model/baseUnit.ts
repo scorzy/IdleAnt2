@@ -30,12 +30,6 @@ export class BaseUnit {
       : STRINGS.units[this.id][1];
   }
 
-  // setUiValue() {
-  //   if (this.quantity.cmp(this.uiQuantity) !== 0) {
-  //     this.uiQuantity = this.quantity;
-  //   }
-  // }
-
   reset() {
     this.quantity = new Decimal(0);
     // this.uiQuantity = new Decimal(0);

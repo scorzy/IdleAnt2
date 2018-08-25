@@ -135,29 +135,30 @@ export const STRINGS = {
   },
   prestige: {
     //  Followers 1
-    dr_fol: ["Drone Follower", "Start new worlds with 5 more drones"],
-    ge_fol: ["Geologist Follower", "Start new worlds with 5 more geologists"],
-    st_fol: ["Student Follower", "Start new worlds with 5 more students"],
+    e: ["Drone Follower", "Start new worlds with 5 more drones"],
+    h: ["Geologist Follower", "Start new worlds with 5 more geologists"],
+    i: ["Student Follower", "Start new worlds with 5 more students"],
     //  Followers 2
-    f_fol2: ["Farmer Follower", "Start new worlds with 5 more farmer"],
-    c_fol2: ["Carpenter Follower", "Start new worlds with 5 more farmer"],
-    m_fol2: ["Miner Follower", "Start new worlds with 5 more miner"],
-    s_fol2: ["Scientist Follower", "Start new worlds with 5 more scientist"],
-    tiPr: ["Time Producer", "+0.1 time/s"],
-    tiBa: ["Time Bank", "+1 max hour"],
+    a: ["Farmer Follower", "Start new worlds with 5 more farmer"],
+    b: ["Carpenter Follower", "Start new worlds with 5 more farmer"],
+    m: ["Miner Follower", "Start new worlds with 5 more miner"],
+    d: ["Scientist Follower", "Start new worlds with 5 more scientist"],
+    //  Time
+    P: ["Time Producer", "+0.1 time/s"],
+    B: ["Time Bank", "+1 max hour"],
     //  AutoBuy
-    auBQ: ["Hach Auto Buyer", "Unlock Hach Auto Buyer for all units"],
-    auBTeam: ["Team Auto Buyer", "Unlock Team Auto Buyer for all units"],
-    auBTwin: ["Twin Auto Buyer", "Unlock Twin Auto Buyer for all units"],
-    auBMin: ["Time Warp Auto Buyer", "Unlock one minute time warp Auto Buyer"],
-    auBRes: ["Research Auto Buyer", "Unlock Research Auto Buyer"],
+    H: ["Hach Auto Buyer", "Unlock Hach Auto Buyer for all units"],
+    t: ["Team Auto Buyer", "Unlock Team Auto Buyer for all units"],
+    T: ["Twin Auto Buyer", "Unlock Twin Auto Buyer for all units"],
+    M: ["Time Warp Auto Buyer", "Unlock one minute time warp Auto Buyer"],
+    R: ["Research Auto Buyer", "Unlock Research Auto Buyer"],
     //  Tecnology
-    tecFar: ["Farming", "+10% food production"],
-    tecCar: ["Carpentery", "+10% wood production"],
-    tecMin: ["Mining", "+10% crystal production"],
-    tecStu: ["Studing", "+10% science production"],
+    F: ["Farming", "+10% food production"],
+    C: ["Carpentery", "+10% wood production"],
+    p: ["Mining", "+10% crystal production"],
+    s: ["Studing", "+10% science production"],
     //  Team
-    teamP: ["Team Work", "+30% Team Work Bonus"]
+    E: ["Team Work", "+30% Team Work Bonus"]
   },
   actions: {
     warp60: ["Warp minute", "Time warp by minutes"],

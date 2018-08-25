@@ -13,11 +13,11 @@ export class AutoBuyUnlock extends PrestigeGroup {
     super("autoB", "Auto Buyers");
   }
   declareStuff(game: Game) {
-    this.autoBuyQuantity = new Prestige("auBQ", game.genExperiencePrice(50));
-    this.autoBuyTeam = new Prestige("auBTeam", game.genExperiencePrice(100));
-    this.autoBuyTwin = new Prestige("auBTwin", game.genExperiencePrice(200));
-    this.autoBuyMin = new Prestige("auBMin", game.genExperiencePrice(300));
-    this.autoBuyResearch = new Prestige("auBRes", game.genExperiencePrice(400));
+    this.autoBuyQuantity = new Prestige("H", game.genExperiencePrice(50));
+    this.autoBuyTeam = new Prestige("t", game.genExperiencePrice(100));
+    this.autoBuyTwin = new Prestige("T", game.genExperiencePrice(200));
+    this.autoBuyMin = new Prestige("M", game.genExperiencePrice(300));
+    this.autoBuyResearch = new Prestige("R", game.genExperiencePrice(400));
 
     this.list.push(
       this.autoBuyQuantity,

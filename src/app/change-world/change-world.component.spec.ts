@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
 import { ClarityModule } from "@clr/angular";
 import { ToastrModule } from "ngx-toastr";
 import { FormatPipe } from "../format.pipe";
@@ -12,7 +13,11 @@ describe("ChangeWorldComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [ClarityModule.forRoot(), ToastrModule.forRoot()],
+      imports: [
+        ClarityModule.forRoot(),
+        ToastrModule.forRoot(),
+        RouterTestingModule
+      ],
       declarations: [ChangeWorldComponent, FormatPipe]
     }).compileComponents();
   }));

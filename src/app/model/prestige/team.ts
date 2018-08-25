@@ -11,7 +11,7 @@ export class Team extends PrestigeGroup {
   }
 
   declareStuff(game: Game) {
-    this.betterTeam = new Prestige("teamP", game.genExperiencePrice(10));
+    this.betterTeam = new Prestige("E", game.genExperiencePrice(10));
     this.list = [this.betterTeam];
   }
 }
