@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { BugTypes } from "../model/bugsTypes";
 import { MainService } from "./../main.service";
 
 @Component({
@@ -17,5 +18,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     //
+  }
+  getBugId(index: number, bug: BugTypes) {
+    return "" + bug;
   }
 }

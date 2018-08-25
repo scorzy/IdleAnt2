@@ -158,11 +158,6 @@ export class Game {
     this.allPrestige.declareStuff(this);
     //#endregion
 
-    //#region Starting stuff
-    this.materials.food.quantity = new Decimal(STARTING_FOOD);
-    this.ants.queen.quantity = new Decimal(1);
-    //#endregion
-
     //#region Build Lists
     this.unitGroups.forEach(g => g.check(true));
     this.unitGroups
@@ -185,9 +180,9 @@ export class Game {
     this.currentWorld.level = new Decimal(1);
     this.currentWorld.winContidions.push(
       new Price(this.materials.food, CONSTS.BASE_WIN_CONDITION_MATERIALS)
-      // new Price(this.genX3.list[0], World.BASE_WIN_CONDITION_OTHER)
     );
     this.currentWorld.setLevel(new Decimal(1), this);
+    this.setStartingStuff();
     //#endregion
 
     //#region Time Warp
@@ -233,19 +228,21 @@ export class Game {
     //#endregion
 
     //#region Debug
-    this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
+
+    // this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
+    // this.ants.nest.quantity = new Decimal(100);
     // this.materials.list.forEach(u => (u.unlocked = true));
-    this.unitGroups.forEach(g => g.list.forEach(u => u.unlock()));
+    // this.unitGroups.forEach(g => g.list.forEach(u => u.unlock()));
     this.tabs.tabList.forEach(t => (t.unlocked = true));
     // this.worldMalus.foodMalus1.quantity = new Decimal(100);
     // this.worldMalus.foodMalus1.quantity = new Decimal(100);
     // this.worldMalus.foodMalus2.quantity = new Decimal(10);
-    // this.experience.quantity = new Decimal(1000);
-    this.allMateries.masteryPoint = 30;
-    this.experience.quantity = new Decimal(1e10);
-    this.units.forEach(u => {
-      u.isNew = false;
-    });
+    this.experience.quantity = new Decimal(1000);
+    // this.allMateries.masteryPoint = 30;
+    // this.experience.quantity = new Decimal(1e10);
+    // this.units.forEach(u => {
+    //   u.isNew = false;
+    // });
     // this.researches.team1.unlocked = true;
     // this.researches.team1.done = true;
     // this.researches.team1.complete = true;
@@ -261,6 +258,8 @@ export class Game {
     // this.researches.twin.quantity = new Decimal(1);
     // this.researches.twin.complete = true;
     // this.researches.twin.toUnlock.forEach(u => u.unlock());
+    this.time.quantity = new Decimal(100);
+
     //#endregion
   }
   buildLists() {
@@ -309,8 +308,9 @@ export class Game {
    * Works only with resource groving at max rate of x^3
    * When something reach zero consumers are stopped and it will update again
    * @param delta in milliseconds
+   * @param force force update, used for warp in pause
    */
-  update(delta: number) {
+  update(delta: number, force = false) {
     let maxTime = delta;
     let unitZero: FullUnit = null;
 
@@ -383,7 +383,7 @@ export class Game {
       .filter(u => u.endIn > 0)
       .forEach(u => (u.endIn = u.endIn - maxTime));
 
-    if (!this.isPaused) {
+    if (!this.isPaused || force) {
       if (maxTime > 10) {
         this.update2(new Decimal(maxTime).div(1000));
       }
@@ -468,7 +468,7 @@ export class Game {
   warp(delta: number) {
     if (delta > 0) {
       this.toastr.info(this.endInPipe.transform(delta), "Time Warp");
-      this.update(delta);
+      this.update(delta, true);
     }
   }
   /**
@@ -503,6 +503,16 @@ export class Game {
       b[0].unlocked = true;
     });
   }
+  setStartingStuff() {
+    this.materials.food.unlocked = true;
+    this.materials.food.quantity = STARTING_FOOD;
+    this.ants.queen.unlocked = true;
+    this.ants.queen.quantity = new Decimal(1);
+    this.ants.larva.unlocked = true;
+    this.ants.larva.quantity = new Decimal(10);
+    this.gatherers.drone.unlocked = true;
+    this.gatherers.drone.quantity = new Decimal(1);
+  }
   /**
    * Prestige, reset everything except prestige stuff
    * and move to another world
@@ -532,6 +542,7 @@ export class Game {
     }
 
     this.currentWorld = world;
+    this.setStartingStuff();
     this.applyWorldBonus();
     this.researches.reset(this.materials.science);
 
@@ -623,6 +634,8 @@ export class Game {
     this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
     return true;
   }
+
+  //#region Unit Utils
   generateWorlds(userMin: Decimal = null, userMax: Decimal = null) {
     if (userMin == null) userMin = new Decimal(1);
     if (userMax == null) userMax = this.maxLevel;
@@ -647,6 +660,7 @@ export class Game {
   addTwinAction(unit: FullUnit, price: Decimal | number) {
     unit.generateTwinAction(this.genTwinPrice(price));
   }
+  //#endregion
   //#endregion
   //#region Save and Load
   getSave(): any {

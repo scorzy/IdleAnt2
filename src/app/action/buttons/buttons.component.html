@@ -8,9 +8,14 @@
 </div>
 
 <div *ngIf="!action.complete" class="btn-group">
-  <button *ngIf="!action.canBuy" class="btn btn-sm w-100" disabled>
+  <button *ngIf="!action.canBuy && !canSkip" class="btn btn-sm w-100 " disabled>
     Can't buy.
-    <span *ngIf="showTime">Available in {{action.availableIn | endIn}}</span>
+    <span *ngIf="showTime">
+      Available in {{action.availableIn | endIn}}
+    </span>
+  </button>
+  <button *ngIf="!action.canBuy && skippable && showTime && canSkip" class="btn btn-danger btn-sm w-100" (click)="skip()">
+    Can't buy. Skip {{minuteSkip}} minutes
   </button>
   <app-cant-buy-signposts *ngIf="showTime && !action.canBuy" [action]="action"></app-cant-buy-signposts>
   <button *ngIf="action.canBuy" class="btn btn-sm w-100" (click)="buy(action.realNum)" [disabled]="!action.canUserBuy">

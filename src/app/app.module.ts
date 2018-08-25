@@ -49,6 +49,7 @@ import { UnitAutoBuyComponent } from "./unit-tabs/unit-auto-buy/unit-auto-buy.co
 import { UnitTabsComponent } from "./unit-tabs/unit-tabs.component";
 import { UnitComponent } from "./unit-tabs/unit/unit.component";
 import { WorldComponent } from "./world/world.component";
+import { BugCardComponent } from './home/bug-card/bug-card.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { WorldComponent } from "./world/world.component";
     AutoBuyTabComponent,
     HomeComponent,
     GroupTabsComponent,
-    LabMenuComponent
+    LabMenuComponent,
+    BugCardComponent
   ],
   imports: [
     BrowserAnimationsModule,

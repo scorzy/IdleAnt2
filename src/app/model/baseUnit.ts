@@ -14,9 +14,10 @@ export class BaseUnit {
     public id: string,
     public name: string = "",
     public description: string = "",
-    public quantity: Decimal = new Decimal(0)
+    public quantity: Decimal = new Decimal(0),
+    noAutoName = false
   ) {
-    if (id in STRINGS.units) {
+    if (!noAutoName && id in STRINGS.units) {
       this.name = STRINGS.units[id][0];
       this.getRandomDescription();
     }

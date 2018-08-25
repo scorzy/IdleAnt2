@@ -20,8 +20,6 @@ export class Bees extends UnitGroup {
     this.queen = new FullUnit("P");
     this.nest = new FullUnit("N");
     this.addUnits([this.nest, this.queen, this.larva]);
-    this.larva.unlocked = true;
-    this.queen.unlocked = true;
   }
   setRelations(): void {
     this.larva.generateBuyAction(

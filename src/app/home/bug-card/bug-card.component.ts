@@ -1,0 +1,84 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  ViewChild
+} from "@angular/core";
+import { MainService } from "../../main.service";
+import { Bug, BUGS, BugTypes } from "../../model/bugsTypes";
+import { STRINGS } from "../../model/strings";
+declare let Chart;
+
+@Component({
+  selector: "app-bug-card",
+  templateUrl: "./bug-card.component.html",
+  styleUrls: ["./bug-card.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    "[class.card]": "true"
+  }
+})
+export class BugCardComponent implements OnInit {
+  @Input() bug: BugTypes;
+
+  @ViewChild("radar") chartRef: ElementRef;
+  @ViewChild("container") containerRef: ElementRef;
+  chart: any;
+
+  constructor(public ms: MainService) {
+    //Nothing
+  }
+
+  ngOnInit() {
+    //
+  }
+  ngAfterViewInit() {
+    this.chartRef.nativeElement.width = this.containerRef.nativeElement.clientWidth;
+    this.chartRef.nativeElement.height = this.containerRef.nativeElement.clientHeight;
+    const canvas = this.chartRef.nativeElement;
+    canvas.width = canvas.height * (canvas.clientWidth / canvas.clientHeight);
+
+    Chart.defaults.global.tooltips.enabled = true;
+    const chartCtx = this.chartRef.nativeElement.getContext("2d");
+
+    this.chart = new Chart(chartCtx, {
+      type: "radar",
+      data: {
+        labels: [
+          "Price",
+          "Production",
+          "Efficiency",
+          "Team Price",
+          "Twin Price"
+        ],
+        datasets: this.ms.game.currentWorld.additionalBugs.map(b =>
+          this.genDataset(b)
+        )
+      },
+      options: {
+        maintainAspectRatio: true,
+        legend: { position: "right" }
+      }
+    });
+  }
+
+  genDataset(bug: BugTypes): any {
+    const bugClass = BUGS[bug];
+
+    const dataset = {
+      backgroundColor: bugClass.color + "80",
+      borderColor: bugClass.color,
+      data: [
+        bugClass.priceMulti,
+        bugClass.prodMulti,
+        bugClass.efficiencyMulti,
+        bugClass.teamPriceMulti,
+        bugClass.twinPriceMulti
+      ],
+      label: STRINGS.bug[bug]
+    };
+    return dataset;
+  }
+}

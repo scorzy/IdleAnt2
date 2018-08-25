@@ -48,6 +48,7 @@ export class World {
     this.winContidions.push(
       new Price(game.ants.nest, CONSTS.BASE_WIN_CONDITION_OTHER)
     );
+    this.additionalBugs.push(BugTypes.ANT);
 
     this.level = new Decimal(level).floor();
 

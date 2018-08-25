@@ -29,7 +29,7 @@ export class Action extends BaseUnit {
     description: string,
     public prices = new Array<Price>()
   ) {
-    super(id, name, description, new Decimal(0));
+    super(id, name, description, new Decimal(0), true);
   }
   checkResearch() {
     return !this.requiredResearch || this.requiredResearch.done;

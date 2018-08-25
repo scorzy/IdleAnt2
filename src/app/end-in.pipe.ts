@@ -15,7 +15,7 @@ export class EndInPipe implements PipeTransform {
   }
 
   transform(value: number, args?: any): any {
-    if (!isNaN(value) && value > 0) {
+    if (!isNaN(value) && value > 0 && value < Number.POSITIVE_INFINITY) {
       const dateEnd = new Date(Date.now() + value);
       if (isValid(dateEnd)) {
         return distanceInWordsToNow(new Date(Date.now() + value));

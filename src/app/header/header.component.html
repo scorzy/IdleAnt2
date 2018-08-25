@@ -47,7 +47,7 @@
 
     <clr-dropdown>
       <button class="nav-icon" clrDropdownTrigger>
-        <clr-icon shape="tools" class="is-solid"></clr-icon>
+        <clr-icon shape="tools"></clr-icon>
         <clr-icon shape="caret down"></clr-icon>
       </button>
       <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
@@ -79,13 +79,13 @@
     </clr-dropdown>
 
     <a href="javascript://" class="nav-link nav-icon">
-      <clr-icon shape="clock" (click)="openTimeModal()" class="is-solid"></clr-icon>
+      <clr-icon shape="clock" (click)="openTimeModal()"></clr-icon>
     </a>
     <a href="javascript://" class="nav-link nav-icon">
-      <clr-icon [attr.shape]="ms.game.isPaused ? 'play' : 'pause'" (click)="ms.game.isPaused = ! ms.game.isPaused" class="is-solid"></clr-icon>
+      <clr-icon [attr.shape]="ms.game.isPaused ? 'play' : 'pause'" (click)="ms.game.isPaused = ! ms.game.isPaused"></clr-icon>
     </a>
     <a [routerLink]="'opt/save/'" class="nav-link nav-icon" [routerLinkActive]="'active'">
-      <clr-icon shape="cog" class="is-solid"></clr-icon>
+      <clr-icon shape="cog"></clr-icon>
     </a>
   </div>
 

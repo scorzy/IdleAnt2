@@ -20,8 +20,11 @@
   </div>
 </div>
 <div class="card-footer" *ngIf="!research.complete">
-  <button *ngIf="!research.canBuy" class="btn btn-sm btn-link" disabled>
+  <button *ngIf="!research.canBuy && !canSkip" class="btn btn-sm btn-link" disabled>
     Can't buy. Avaiable in {{research.availableIn | endIn}}
+  </button>
+  <button *ngIf="!research.canBuy &&  canSkip" class="btn btn-danger btn-sm" (click)="skip()">
+    Can't buy. Skip {{minuteSkip}} minutes
   </button>
   <button *ngIf="research.canBuy" class="btn btn-sm btn-link" (click)="research.buy(research.realNum)">
     Research
