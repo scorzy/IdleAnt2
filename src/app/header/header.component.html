@@ -65,10 +65,25 @@
 
         <clr-dropdown *ngFor="let list of groupNoEnemy; trackBy:getListId">
           <button type="button" clrDropdownTrigger>{{list.name}}</button>
-          <clr-dropdown-menu clrPosition="left-top">
+          <clr-dropdown-menu clrPosition="left-top" *clrIfOpen>
             <a clrDropdownItem (click)="list.buyN(buyMulti)">Buy n</a>
             <a clrDropdownItem (click)="list.buyTeam(buyMulti)" *ngIf="ms.game.researches.team2.done">Team n</a>
             <a clrDropdownItem (click)="list.buyTwins(buyMulti)" *ngIf="ms.game.researches.twin.done">Twins n</a>
+            <div class="dropdown-divider"></div>
+            <clr-dropdown *ngIf="ms.game.tabs.autoBuy.unlocked && list.hasAutoBuy()">
+              <button type="button" clrDropdownTrigger>AutoBuyer</button>
+              <clr-dropdown-menu *clrIfOpen>
+                <a clrDropdownItem (click)="list.autoBuy(true)">All ON</a>
+                <a clrDropdownItem (click)="list.autoBuy(false)">All OFF</a>
+                <a clrDropdownItem *ngIf="list.hasAutoBuyBuy()" (click)="list.autoBuyBuy(true)">Hatch ON</a>
+                <a clrDropdownItem *ngIf="list.hasAutoBuyBuy()" (click)="list.autoBuyBuy(false)">Hatch OFF</a>
+                <a clrDropdownItem *ngIf="list.hasAutoBuyTeam()" (click)="list.autoBuyTeam(true)">Team ON</a>
+                <a clrDropdownItem *ngIf="list.hasAutoBuyTeam()" (click)="list.autoBuyTeam(false)">Team OFF</a>
+                <a clrDropdownItem *ngIf="list.hasAutoBuyTwin()" (click)="list.autoBuyTwin(true)">Twin ON</a>
+                <a clrDropdownItem *ngIf="list.hasAutoBuyTwin()" (click)="list.autoBuyTwin(false)">Twin OFF</a>
+              </clr-dropdown-menu>
+            </clr-dropdown>
+            <div class="dropdown-divider" *ngIf="ms.game.tabs.autoBuy.unlocked && list.hasAutoBuy()"></div>
             <a clrDropdownItem (click)="allCustom(p, list)" *ngFor="let p of percentPreset">
               {{p}}%
             </a>

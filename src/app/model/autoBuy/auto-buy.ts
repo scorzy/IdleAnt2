@@ -39,6 +39,7 @@ export class AutoBuy extends Prestige {
     const result = super.buy(toBuy);
     this.reloadLevel();
     if (result && original.lt(1)) this.autoBuyManager.buildActiveList();
+
     return result;
   }
   reloadLevel() {
@@ -74,7 +75,9 @@ export class AutoBuy extends Prestige {
     if (!this.active || !this.isActive()) return;
 
     this.current = this.current + MIN_DELAY;
-    if (this.current >= this.max && this.action.buy(this.multiBuy)) {
+    this.action.reload();
+    const max = this.multiBuy.min(this.action.maxBuy);
+    if (this.current >= this.max && this.action.buy(max)) {
       this.current = 0;
     }
   }
