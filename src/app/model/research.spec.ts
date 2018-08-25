@@ -1,10 +1,19 @@
 import { EventEmitter } from "@angular/core";
 import { FullUnit } from "./full-unit";
+import { Game } from "./game";
 import { Research } from "./research";
 import { Researches } from "./units/researches";
 
 describe("Research", () => {
-  const researches = new Researches(new EventEmitter<string>());
+  const game = new Game(
+    new EventEmitter<number>(),
+    new EventEmitter<string>(),
+    new EventEmitter<number>(),
+    null,
+    null,
+    null
+  );
+  const researches = new Researches(new EventEmitter<string>(), game);
   researches.declareStuff();
 
   it("should create an instance", () => {

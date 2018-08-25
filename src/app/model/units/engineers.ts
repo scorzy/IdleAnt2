@@ -48,9 +48,14 @@ export class Engineers extends UnitGroup {
       cryPrice.price = cryPrice.price.plus(CONSTS.PRICE_3);
 
       product.addProducer(producer);
+      product.buyAction.prices.forEach(p =>
+        p.base.addProducer(producer, p.price.times(-1))
+      );
 
       this.game.addTeamAction(producer, CONSTS.TEAM_PRICE_3);
       this.game.addTwinAction(producer, CONSTS.TWIN_PRICE_3);
     }
+
+    this.setTypes();
   }
 }

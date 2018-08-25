@@ -10,8 +10,6 @@ export class BaseUnit {
 
   usedForProductionBonus = new Array<ProductionBonus>();
 
-  // uiQuantity = new Decimal(0);
-
   constructor(
     public id: string,
     public name: string = "",

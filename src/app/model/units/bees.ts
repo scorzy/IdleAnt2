@@ -1,23 +1,24 @@
+import { BugTypes } from "../bugsTypes";
 import { CONSTS } from "../CONSTATS";
 import { FullUnit } from "../full-unit";
 import { Game } from "../game";
 import { Price } from "../price";
 import { UnitGroup } from "../unit-group";
+import { World } from "../world";
 
-export class Ants extends UnitGroup {
+export class Bees extends UnitGroup {
   larva: FullUnit;
   queen: FullUnit;
   nest: FullUnit;
 
   constructor(game: Game) {
-    super("Ants", game);
-    this.icon = "ant";
+    super("Bee", game);
   }
 
   declareStuff(): void {
-    this.larva = new FullUnit("l");
-    this.queen = new FullUnit("q");
-    this.nest = new FullUnit("n");
+    this.larva = new FullUnit("Q");
+    this.queen = new FullUnit("P");
+    this.nest = new FullUnit("N");
     this.addUnits([this.nest, this.queen, this.larva]);
     this.larva.unlocked = true;
     this.queen.unlocked = true;
@@ -48,8 +49,21 @@ export class Ants extends UnitGroup {
 
     this.game.addTwinAction(this.queen, CONSTS.TWIN_PRICE_2);
     this.game.addTwinAction(this.nest, CONSTS.TWIN_PRICE_3);
+
+    this.setBugType(BugTypes.BEE);
   }
   addWorlds() {
-    //ToDO
+    const beePre = new World("beePre");
+    const beeBio = new World("beeBio");
+    const beeSuff = new World("beeSuff");
+    [beeBio, beePre, beeSuff].forEach(w => {
+      w.additionalBugs.push(BugTypes.BEE);
+      w.winContidions.push(
+        new Price(this.nest, CONSTS.BASE_WIN_CONDITION_OTHER)
+      );
+    });
+    World.prefix.push(beePre);
+    World.suffix.push(beeSuff);
+    World.biome.push(beeBio);
   }
 }

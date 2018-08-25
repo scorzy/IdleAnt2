@@ -27,7 +27,10 @@ export class Researches {
    */
   mastery: Research;
 
-  constructor(public researchEmitter: EventEmitter<string>) {}
+  constructor(
+    public researchEmitter: EventEmitter<string>,
+    public game: Game
+  ) {}
 
   declareStuff(): void {
     this.team1 = new Research("t", this);

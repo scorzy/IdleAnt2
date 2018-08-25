@@ -137,7 +137,7 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     const bugClass = BUGS[bug];
 
     if (this.buyAction && bugClass.priceMulti !== 1) {
-      this.buyAction.prices.forEach(p => {
+      this.buyAction.prices.filter(p => p.price.gt(1)).forEach(p => {
         p.price = p.price.times(bugClass.priceMulti);
       });
     }

@@ -29,4 +29,7 @@ export class CONSTS {
   static readonly RES_PRICE_1 = new Decimal(5e3);
   static readonly RES_PRICE_2 = new Decimal(5e6);
   static readonly RES_PRICE_3 = new Decimal(5e9);
+
+  static readonly BASE_WIN_CONDITION_MATERIALS = new Decimal(1e10);
+  static readonly BASE_WIN_CONDITION_OTHER = new Decimal(200);
 }

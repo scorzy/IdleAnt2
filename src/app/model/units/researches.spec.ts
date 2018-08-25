@@ -17,13 +17,13 @@ describe("Researches", () => {
   it("should create an instance", () => {
     const researchEmitter: EventEmitter<string> = new EventEmitter<string>();
 
-    expect(new Researches(researchEmitter)).toBeTruthy();
+    expect(new Researches(researchEmitter, game)).toBeTruthy();
   });
   it("Save", () => {
     // const science = new FullUnit("scie", "Science", "Science");
     const researchEmitter: EventEmitter<string> = new EventEmitter<string>();
 
-    const res1 = new Researches(researchEmitter);
+    const res1 = new Researches(researchEmitter, game);
     res1.declareStuff();
     res1.setRelations(science, game);
     res1.team2.unlocked = true;
@@ -31,7 +31,7 @@ describe("Researches", () => {
     res1.team2.quantity = new Decimal(1);
     res1.team2.complete = true;
 
-    const res2 = new Researches(researchEmitter);
+    const res2 = new Researches(researchEmitter, game);
     res2.declareStuff();
     res2.setRelations(science, game);
 

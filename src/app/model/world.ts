@@ -2,6 +2,7 @@ import sample from "lodash-es/sample";
 import uniq from "lodash-es/uniq";
 import { BaseUnit } from "./baseUnit";
 import { Bug, BugTypes } from "./bugsTypes";
+import { CONSTS } from "./CONSTATS";
 import { FullUnit } from "./full-unit";
 import { Game } from "./game";
 import { Malus } from "./malus";
@@ -11,9 +12,6 @@ import { STRINGS } from "./strings";
 import { Utility } from "./utility";
 
 export class World {
-  static readonly BASE_WIN_CONDITION_MATERIALS = new Decimal(1e10);
-  static readonly BASE_WIN_CONDITION_OTHER = new Decimal(200);
-
   static prefix = new Array<World>();
   static biome = new Array<World>();
   static suffix = new Array<World>();
@@ -47,6 +45,10 @@ export class World {
   }
 
   setLevel(level: Decimal, game: Game) {
+    this.winContidions.push(
+      new Price(game.ants.nest, CONSTS.BASE_WIN_CONDITION_OTHER)
+    );
+
     this.level = new Decimal(level).floor();
 
     const multi = this.level.div(5).plus(1);

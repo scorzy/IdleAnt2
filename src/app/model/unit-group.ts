@@ -59,13 +59,21 @@ export class UnitGroup {
   }
 
   generateProducer(products: UnitGroup) {
-    const list = products.list.map(u => new FullUnit(u.id + "G"));
+    const list = products.list.map(u => {
+      const ret = new FullUnit(u.id + "G");
+      ret.bugType = u.bugType;
+      return ret;
+    });
     this.addUnits(list);
     this.list.forEach(u => {
       const res = new Research(u.id, this.game.researches);
       res.toUnlock = [u];
+      res.bugType = u.bugType;
       this.researchList.push(res);
     });
+  }
+  setTypes() {
+    this.list.forEach(u => u.setBugType(u.bugType));
   }
 
   setFlags(team = false, twin = false) {

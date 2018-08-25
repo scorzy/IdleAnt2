@@ -2,10 +2,10 @@ export const STRINGS = {
   units: {
     //  Materials
     f: ["Food", "Food is used to sustain all units."],
-    w: ["Wood", "Wood is used to build better nest."],
+    w: ["Soil", "Soil is used to build better nest."],
     c: ["Crystal", "crystal"],
     s: ["Science", "science"],
-    //  Ghantering
+    //  Ants
     l: ["Larva", "Larva"],
     q: ["Queen", "Queen"],
     n: ["Nest", "Nest"],
@@ -18,10 +18,7 @@ export const STRINGS = {
       "Farmer",
       "Hydroponics farmers uses crystals to grow fungi without soil."
     ],
-    b: [
-      "Carpenter",
-      "Carpenter ants build nests inside wood consisting of galleries."
-    ],
+    b: ["Carpenter", "Carpenter ants build nests with soil."],
     m: ["Miner", "miner"],
     d: ["Scientist", "scientist"],
     // Buildings
@@ -69,13 +66,23 @@ export const STRINGS = {
     wS: ["Wood Supply", "Never ending wood supply"],
     cS: ["Crystal Supply", "Never ending crystall supply"],
     //  Bee
-    B: ["Foragging Bee", "Foragging Bee"],
-    workBee: ["Worker", ""],
-    workBeeG: ["Queen", ""],
-    workBeeGG: ["Hive", ""],
-    scieBee: ["Scientist Bee", ""],
-    scieBeeG: ["Bee University", ""],
-    scieBeeGG: ["Master Bee", ""]
+    Z: ["Foragging Bee", "Foragging Bee"],
+    Q: ["Bee Larva", ""],
+    P: ["Bee Queen", ""],
+    N: ["Bee Hive", ""],
+    //  Bee
+    A: ["Bee Farmer", ""],
+    B: ["Bee Carpenter", ""],
+    E: ["Bee Miner", ""],
+    D: ["Bee Scientist", ""],
+    AG: ["2Bee Farmer", ""],
+    BG: ["2Bee Carpenter", ""],
+    EG: ["2Bee Miner", ""],
+    DG: ["2Bee Scientist", ""],
+    AGG: ["3Bee Farmer", ""],
+    BGG: ["3Bee Carpenter", ""],
+    EGG: ["3Bee Miner", ""],
+    DGG: ["3Bee Scientist", ""]
   },
   researches: {
     t: ["Team 1", "Team 1"],
@@ -106,12 +113,25 @@ export const STRINGS = {
     bG: ["Wood Camp", "carpenter"],
     mG: ["Mine", "miner"],
     dG: ["University", "scientist"],
-    //  Eng
+    //  Engineers
     e: ["Engineers", "Engineers"],
     aGG: ["Hydro Engineer", "Hydro Engineer"],
     bGG: ["Wood Engineer", "Wood Engineer"],
     mGG: ["Mine Engineer", "Mine Engineer"],
-    dGG: ["Department of Education", "Department of Education"]
+    dGG: ["Department of Education", "Department of Education"],
+    //  Bee
+    A: ["Bee Farmer", ""],
+    B: ["Bee Carpenter", ""],
+    E: ["Bee Miner", ""],
+    D: ["Bee Scientist", ""],
+    AG: ["2Bee Farmer", ""],
+    BG: ["2Bee Carpenter", ""],
+    EG: ["2Bee Miner", ""],
+    DG: ["2Bee Scientist", ""],
+    AGG: ["3Bee Farmer", ""],
+    BGG: ["3Bee Carpenter", ""],
+    EGG: ["3Bee Miner", ""],
+    DGG: ["3Bee Scientist", ""]
   },
   worlds: {
     "1Pre": "Hot",
@@ -131,7 +151,11 @@ export const STRINGS = {
     cSPre: "Crystal supply",
     fSSuff: "with Food",
     wSSuff: "with Wood",
-    cSSuff: "with Crystal"
+    cSSuff: "with Crystal",
+    //  Bee
+    beePre: "Apian",
+    beeBio: "Hive",
+    beeSuff: "of Bee"
   },
   prestige: {
     //  Followers 1

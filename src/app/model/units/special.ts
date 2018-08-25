@@ -24,14 +24,14 @@ export class Special extends UnitGroup {
       new Price(this.game.materials.food, new Decimal(1e3), 2)
     ]);
     this.woodSupply.generateBuyAction([
-      new Price(this.game.materials.wood, new Decimal(1e3), 2)
+      new Price(this.game.materials.soil, new Decimal(1e3), 2)
     ]);
     this.crystallSupply.generateBuyAction([
       new Price(this.game.materials.crystal, new Decimal(1e3), 2)
     ]);
 
     this.game.materials.food.addProducer(this.foodSupply, new Decimal(100));
-    this.game.materials.wood.addProducer(this.woodSupply, new Decimal(100));
+    this.game.materials.soil.addProducer(this.woodSupply, new Decimal(100));
     this.game.materials.crystal.addProducer(
       this.crystallSupply,
       new Decimal(100)

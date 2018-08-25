@@ -26,7 +26,7 @@ export class Tecnology extends PrestigeGroup {
     game.materials.food.productionsBonus.push(foodBon);
 
     const woodBon = new ProductionBonus(this.carpentry, new Decimal(0.1));
-    game.materials.wood.productionsBonus.push(woodBon);
+    game.materials.soil.productionsBonus.push(woodBon);
 
     const cryBon = new ProductionBonus(this.mining, new Decimal(0.1));
     game.materials.crystal.productionsBonus.push(cryBon);

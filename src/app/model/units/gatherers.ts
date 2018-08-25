@@ -21,7 +21,7 @@ export class Gatherers extends UnitGroup {
     this.drone = new FullUnit("e");
     this.geologist = new FullUnit("h");
     this.student = new FullUnit("i");
-    this.foraggingBee = new FullUnit("B");
+    this.foraggingBee = new FullUnit("Z");
 
     this.addUnits([
       this.drone,
@@ -60,13 +60,6 @@ export class Gatherers extends UnitGroup {
     this.game.materials.science.addProducer(this.student, CONSTS.PROD_GAN);
     this.game.materials.crystal.addProducer(this.student, CONSTS.CONSUME_GAN);
 
-    //#region Bee
-    this.foraggingBee.generateBuyAction([
-      new Price(this.game.materials.food, new Decimal(25))
-    ]);
-    this.game.materials.food.addProducer(this.foraggingBee, new Decimal(1.2));
-    //#endregion
-
     this.list.forEach(u => {
       if (u instanceof FullUnit) {
         this.game.addTeamAction(u, CONSTS.TEAM_PRICE_0);
@@ -74,6 +67,11 @@ export class Gatherers extends UnitGroup {
       }
     });
 
+    this.foraggingBee.generateBuyAction([
+      new Price(this.game.bees.larva, CONSTS.PRICE_LARVAE_0, 1),
+      new Price(this.game.materials.food, CONSTS.PRICE_0)
+    ]);
+    this.game.materials.food.addProducer(this.foraggingBee);
     this.foraggingBee.setBugType(BugTypes.BEE);
   }
 }

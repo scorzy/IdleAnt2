@@ -39,18 +39,23 @@ export class Buildings extends UnitGroup {
       ]);
 
       let woodPrice = producer.buyAction.prices.find(
-        p => p.base === this.game.materials.wood
+        p => p.base === this.game.materials.soil
       );
       if (!woodPrice) {
-        woodPrice = new Price(this.game.materials.wood, 0);
+        woodPrice = new Price(this.game.materials.soil, 0);
         producer.buyAction.prices.push(woodPrice);
       }
       woodPrice.price = woodPrice.price.plus(CONSTS.PRICE_2);
 
       product.addProducer(producer);
+      product.buyAction.prices.forEach(p =>
+        p.base.addProducer(producer, p.price.times(-1))
+      );
 
       this.game.addTeamAction(producer, CONSTS.TEAM_PRICE_2);
       this.game.addTwinAction(producer, CONSTS.TWIN_PRICE_2);
     }
+
+    this.setTypes();
   }
 }

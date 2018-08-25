@@ -5,6 +5,7 @@ import { FormatPipe } from "./../format.pipe";
 import { WarpAction } from "./actions/warp-action";
 import { AutoBuyManager } from "./autoBuy/auto-buy-manager";
 import { Bug, BugTypes } from "./bugsTypes";
+import { CONSTS } from "./CONSTATS";
 import { FullUnit } from "./full-unit";
 import { Malus } from "./malus";
 import { AllMasteries } from "./masteries/all-masteries";
@@ -16,6 +17,7 @@ import { Stats } from "./stats/stats";
 import { Tabs } from "./tabs";
 import { UnitGroup } from "./unit-group";
 import { Ants } from "./units/ants";
+import { Bees } from "./units/bees";
 import { Buildings } from "./units/buildings";
 import { Engineers } from "./units/engineers";
 import { Gatherers } from "./units/gatherers";
@@ -51,6 +53,7 @@ export class Game {
   engineers: Engineers;
   killers: UnitGroup;
   ants: Ants;
+  bees: Bees;
 
   researches: Researches;
   worldBonus: WorldBonus;
@@ -58,7 +61,7 @@ export class Game {
   special: Special;
   //#endregion
 
-  lastUnitUrl: string = "nav/unit/fo";
+  lastUnitUrl: string = "nav/unit/f";
 
   currentWorld = new World();
   nextWorlds = new Array<World>();
@@ -93,10 +96,13 @@ export class Game {
     this.materials = new Materials(this);
     this.unitGroups.push(this.materials);
 
-    this.researches = new Researches(this.researchEmitter);
+    this.researches = new Researches(this.researchEmitter, this);
 
     this.ants = new Ants(this);
     this.unitGroups.push(this.ants);
+
+    this.bees = new Bees(this);
+    this.unitGroups.push(this.bees);
 
     this.gatherers = new Gatherers(this);
     this.unitGroups.push(this.gatherers);
@@ -122,7 +128,7 @@ export class Game {
     this.unitGroups.forEach(g => g.declareStuff());
 
     this.advWorkers.additionalBuyPreces = [
-      new Price(this.materials.wood, ADDITIONAL_PRICE1)
+      new Price(this.materials.soil, ADDITIONAL_PRICE1)
     ];
 
     this.researches.declareStuff();
@@ -178,7 +184,7 @@ export class Game {
     this.currentWorld.name = "Home World";
     this.currentWorld.level = new Decimal(1);
     this.currentWorld.winContidions.push(
-      new Price(this.materials.food, World.BASE_WIN_CONDITION_MATERIALS)
+      new Price(this.materials.food, CONSTS.BASE_WIN_CONDITION_MATERIALS)
       // new Price(this.genX3.list[0], World.BASE_WIN_CONDITION_OTHER)
     );
     this.currentWorld.setLevel(new Decimal(1), this);

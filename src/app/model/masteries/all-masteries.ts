@@ -32,7 +32,7 @@ export class AllMasteries {
     );
 
     this.woodBonus = new BaseUnit("wooMast");
-    game.materials.wood.productionsBonus.push(
+    game.materials.soil.productionsBonus.push(
       new ProductionBonus(this.woodBonus, new Decimal(0.1))
     );
 

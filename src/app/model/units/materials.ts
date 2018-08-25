@@ -1,3 +1,4 @@
+import { CONSTS } from "../CONSTATS";
 import { FullUnit } from "../full-unit";
 import { Game } from "../game";
 import { Price } from "../price";
@@ -6,7 +7,7 @@ import { World } from "../world";
 
 export class Materials extends UnitGroup {
   food: FullUnit;
-  wood: FullUnit;
+  soil: FullUnit;
   crystal: FullUnit;
   science: FullUnit;
 
@@ -16,13 +17,13 @@ export class Materials extends UnitGroup {
 
   declareStuff(): void {
     this.food = new FullUnit("f");
-    this.wood = new FullUnit("w");
+    this.soil = new FullUnit("w");
     this.crystal = new FullUnit("c");
     this.science = new FullUnit("s");
 
     this.food.unlocked = true;
 
-    this.addUnits([this.food, this.wood, this.crystal, this.science]);
+    this.addUnits([this.food, this.soil, this.crystal, this.science]);
     this.list.forEach(m => (m.winNonLiner = false));
   }
   addWorlds() {
@@ -30,7 +31,7 @@ export class Materials extends UnitGroup {
     for (let i = 0; i < lenght; i++) {
       const world = new World(this.list[i].id + "Bio");
       world.winContidions.push(
-        new Price(this.list[i], World.BASE_WIN_CONDITION_MATERIALS)
+        new Price(this.list[i], CONSTS.BASE_WIN_CONDITION_MATERIALS)
       );
       World.biome.push(world);
     }

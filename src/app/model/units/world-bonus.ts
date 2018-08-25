@@ -30,7 +30,7 @@ export class WorldBonus {
     game.materials.food.productionsBonus.push(
       new ProductionBonus(this.foodBonus, WorldBonus.bonusValue)
     );
-    game.materials.wood.productionsBonus.push(
+    game.materials.soil.productionsBonus.push(
       new ProductionBonus(this.woodBonus, WorldBonus.bonusValue)
     );
     game.materials.crystal.productionsBonus.push(

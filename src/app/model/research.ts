@@ -1,5 +1,6 @@
 import { FormatPipe } from "./../format.pipe";
 import { Action } from "./action";
+import { BugTypes } from "./bugsTypes";
 import { FullUnit } from "./full-unit";
 import { IUnlocable } from "./iunlocable";
 import { Price } from "./price";
@@ -10,6 +11,7 @@ export class Research extends Action implements IUnlocable {
   unlocked = false;
   toUnlock = new Array<IUnlocable>();
   maxAutoBuyLevel = 10;
+  bugType = BugTypes.ANT;
 
   constructor(
     id: string,
@@ -45,7 +47,11 @@ export class Research extends Action implements IUnlocable {
     }
   }
   unlock() {
-    if (!this.unlocked) {
+    if (
+      !this.unlocked &&
+      (this.bugType === BugTypes.ANT ||
+        this.researches.game.currentWorld.additionalBugs.includes(this.bugType))
+    ) {
       this.unlocked = true;
       this.reload();
       return true;

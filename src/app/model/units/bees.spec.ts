@@ -1,9 +1,8 @@
 import { EventEmitter } from "@angular/core";
 import { Game } from "../game";
-import { Researches } from "../units/researches";
-import { BuyResearch } from "./buy-research";
+import { Bees } from "./bees";
 
-describe("BuyResearch", () => {
+describe("Bees", () => {
   it("should create an instance", () => {
     const game = new Game(
       new EventEmitter<number>(),
@@ -13,8 +12,6 @@ describe("BuyResearch", () => {
       null,
       null
     );
-    expect(
-      new BuyResearch(new Researches(new EventEmitter(), game))
-    ).toBeTruthy();
+    expect(new Bees(game)).toBeTruthy();
   });
 });
