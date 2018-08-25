@@ -25,4 +25,8 @@ export class CONSTS {
   static readonly TWIN_PRICE_1 = new Decimal(1e4);
   static readonly TWIN_PRICE_2 = new Decimal(1e5);
   static readonly TWIN_PRICE_3 = new Decimal(1e6);
+
+  static readonly RES_PRICE_1 = new Decimal(5e3);
+  static readonly RES_PRICE_2 = new Decimal(5e6);
+  static readonly RES_PRICE_3 = new Decimal(5e9);
 }

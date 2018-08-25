@@ -1,40 +1,39 @@
 export const STRINGS = {
   units: {
     //  Materials
-    fo: ["Food", "Food is used to sustain all units."],
-    wo: ["Wood", "Wood is used to build better nest."],
-    cry: ["Crystal", "crystal"],
-    sci: ["Science", "science"],
+    f: ["Food", "Food is used to sustain all units."],
+    w: ["Wood", "Wood is used to build better nest."],
+    c: ["Crystal", "crystal"],
+    s: ["Science", "science"],
     //  Ghantering
     l: ["Larva", "Larva"],
     q: ["Queen", "Queen"],
     n: ["Nest", "Nest"],
     //  Ghantering
-    dr: ["Drone", "drone"],
-    ge: ["Geologist", "geologist"],
-    st: ["Student", "student"],
-    forBee: ["Foragging Bee", "Foragging Bee"],
+    e: ["Drone", "drone"],
+    h: ["Geologist", "geologist"],
+    i: ["Student", "student"],
     //  Workers
-    f: [
+    a: [
       "Farmer",
       "Hydroponics farmers uses crystals to grow fungi without soil."
     ],
-    c: [
+    b: [
       "Carpenter",
       "Carpenter ants build nests inside wood consisting of galleries."
     ],
     m: ["Miner", "miner"],
-    s: ["Scientist", "scientist"],
-    // Workers 2
-    f_g: ["Farm", "Farm"],
-    c_g: ["Wood Camp", "Wood Camp"],
-    m_g: ["Mine", "Mine"],
-    s_g: ["University", "University"],
-    //  Workers 3
-    f_g_g: ["Hydro Eng.", "Hydro Engineer"],
-    c_g_g: ["Wood Eng.", "Wood Engineer"],
-    m_g_g: ["Mine Eng.", "Mine Engineer"],
-    s_g_g: ["Education Dep.", "Department of Education"],
+    d: ["Scientist", "scientist"],
+    // Buildings
+    aG: ["Farm", "Farm"],
+    bG: ["Wood Camp", "Wood Camp"],
+    mG: ["Mine", "Mine"],
+    dG: ["University", "University"],
+    //  Engineers
+    aGG: ["Hydro Eng.", "Hydro Engineer"],
+    bGG: ["Wood Eng.", "Wood Engineer"],
+    mGG: ["Mine Eng.", "Mine Engineer"],
+    dGG: ["Education Dep.", "Department of Education"],
     //  World Bonus
     foB: ["Food Production Bonus", ""],
     woB: ["Wood Production Bonus", ""],
@@ -66,86 +65,73 @@ export const STRINGS = {
     harvMast: ["Harvest Mastery"],
     matMast: ["Material Mastery"],
     //  Supply
-    fSupp: ["Food Supply", "Never ending food supply"],
-    wSupp: ["Wood Supply", "Never ending wood supply"],
-    cSupp: ["Crystal Supply", "Never ending crystall supply"],
+    fS: ["Food Supply", "Never ending food supply"],
+    wS: ["Wood Supply", "Never ending wood supply"],
+    cS: ["Crystal Supply", "Never ending crystall supply"],
     //  Bee
+    B: ["Foragging Bee", "Foragging Bee"],
     workBee: ["Worker", ""],
-    workBee_g: ["Queen", ""],
-    workBee_g_g: ["Hive", ""],
+    workBeeG: ["Queen", ""],
+    workBeeGG: ["Hive", ""],
     scieBee: ["Scientist Bee", ""],
-    scieBee_g: ["Bee University", ""],
-    scieBee_g_g: ["Master Bee", ""]
+    scieBeeG: ["Bee University", ""],
+    scieBeeGG: ["Master Bee", ""]
   },
   researches: {
-    team1: ["Team 1", "Team 1"],
-    team2: ["Team 2", "Team 2"],
-    twin: ["Twin", "Twin"],
-    travel: ["Travel", "Travel to a new world !"],
-    work_res: ["Workers", "Workers"],
-    Buildings_r: ["Buildings", "Buildings"],
-    mastery: ["Mastery", "Get one mastery point"],
-    harv: ["Harvesting", "+30% resource from Gatherers"],
-    m1hWarp: ["1H Warp", "Free time warp"],
-    m2hWarp: ["2H Warp", "Free time warp"],
-    m3hWarp: ["3H Warp", "Free time warp"],
+    t: ["Team 1", "Team 1"],
+    T: ["Team 2", "Team 2"],
+    W: ["Twin", "Twin"],
+    r: ["Travel", "Travel to a new world !"],
+    M: ["Mastery", "Get one mastery point"],
+    h: ["Harvesting", "+30% resource from Gatherers"],
+    1: ["1H Warp", "Free time warp"],
+    2: ["2H Warp", "Free time warp"],
+    3: ["3H Warp", "Free time warp"],
     //  Workers
-    f_wr: [
+    w: ["Workers", "Workers"],
+    a: [
       "Farmer",
       "Hydroponics farmers uses crystals to grow fungi without soil."
     ],
-    c_wr: [
+    b: [
       "Carpenter",
       "Carpenter ants build nests inside wood consisting of galleries."
     ],
-    m_wr: ["Miner", "miner"],
-    s_wr: ["Scientist", "scientist"],
+    m: ["Miner", "miner"],
+    d: ["Scientist", "scientist"],
     scie1: ["Scientific Method", "+50% science production"],
-    // Workers 2
-    Bu_r: ["Buildings", "Buildings"],
-    f_g_r: ["Farm", "farmer"],
-    c_g_r: ["Wood Camp", "carpenter"],
-    m_g_r: ["Mine", "miner"],
-    s_g_r: ["University", "scientist"],
-    //  Workers 3
-    En_r: ["Engineers", "Engineers"],
-    f_g_g_r: ["Hydro Engineer", "Hydro Engineer"],
-    c_g_g_r: ["Wood Engineer", "Wood Engineer"],
-    m_g_g_r: ["Mine Engineer", "Mine Engineer"],
-    s_g_g_r: ["Department of Education", "Department of Education"],
-    // Bee
-    bee_res: ["Bee", "Bee"],
-    workBee_wr: ["Worker Bee", ""],
-    workBee_g_r: ["Bee Queen", ""],
-    workBee_g_g_r: ["Bee Hive", ""],
-    scieBee_wr: ["Scientist Bee", ""],
-    scieBee_g_r: ["Bee University", ""],
-    scieBee_g_g_r: ["Master Bee", ""],
-    Be2_r: ["Bee Queen"],
-    Be3_r: ["Bee Hives"]
+    // Buildings
+    u: ["Buildings", "Buildings"],
+    aG: ["Farm", "farmer"],
+    bG: ["Wood Camp", "carpenter"],
+    mG: ["Mine", "miner"],
+    dG: ["University", "scientist"],
+    //  Eng
+    e: ["Engineers", "Engineers"],
+    aGG: ["Hydro Engineer", "Hydro Engineer"],
+    bGG: ["Wood Engineer", "Wood Engineer"],
+    mGG: ["Mine Engineer", "Mine Engineer"],
+    dGG: ["Department of Education", "Department of Education"]
   },
   worlds: {
-    foBPre: "Hot",
-    woBPre: "Wooded",
-    crBPre: "Crystallized",
-    scBPre: "Scientific",
-    foBSuf: "of Food",
-    woBSuf: "of Wood",
-    crBSuf: "of Crystall",
-    scBSuf: "of Science",
-    foBio: "Farm",
-    woBio: "Forest",
-    cryBio: "Mine",
-    sciBio: "University",
-    fSuppPre: "Food supply",
-    wSuppPre: "Wood supply",
-    cSuppPre: "Crystal supply",
-    fSuppSuff: "with Food",
-    wSuppSuff: "with Wood",
-    cSuppSuff: "with Crystal",
-    beePre: "Apian",
-    beeBio: "Hive",
-    beeSuff: "of bee"
+    "1Pre": "Hot",
+    "2Pre": "Wooded",
+    "3Pre": "Crystallized",
+    "4Pre": "Scientific",
+    "1Suf": "of Food",
+    "2Suf": "of Wood",
+    "3Suf": "of Crystall",
+    "4Suf": "of Science",
+    fBio: "Farm",
+    wBio: "Forest",
+    cBio: "Mine",
+    sBio: "University",
+    fSPre: "Food supply",
+    wSPre: "Wood supply",
+    cSPre: "Crystal supply",
+    fSSuff: "with Food",
+    wSSuff: "with Wood",
+    cSSuff: "with Crystal"
   },
   prestige: {
     //  Followers 1

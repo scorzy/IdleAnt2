@@ -42,7 +42,7 @@ export class UnitTabsComponent implements OnInit {
   getUnit(params: any) {
     let id = params.id;
     if (id === undefined) {
-      id = "fo";
+      id = this.ms.game.materials.food.id;
     }
     const b = this.ms.game.units.find(u => u.id === id);
     if (b instanceof FullUnit) {

@@ -17,6 +17,8 @@ export class Research extends Action implements IUnlocable {
     public unlimited = false
   ) {
     super(id, "", "");
+    this.name = "";
+    this.description = "";
     if (id in STRINGS.researches) {
       this.name = STRINGS.researches[id][0];
       this.description = STRINGS.researches[id][1];

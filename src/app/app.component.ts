@@ -36,12 +36,8 @@ import { ClrShapePaintRoller } from "@clr/icons/shapes/text-edit-shapes";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"]
 })
-export class AppComponent implements OnInit, OnDestroy {
-  travelMessage = false;
-  worldTravel: World;
-  worldSub: any;
-
-  constructor(public ms: MainService, private router: Router) {
+export class AppComponent {
+  constructor(public ms: MainService) {
     ClarityIcons.add({
       bug: ClrShapeBug,
       flask: ClrShapeFlask,
@@ -61,20 +57,5 @@ export class AppComponent implements OnInit, OnDestroy {
       tools: ClrShapeTools,
       star: ClrShapeStar
     });
-  }
-
-  ngOnInit(): void {
-    this.ms.worldEmitter.subscribe(world => {
-      this.worldTravel = world;
-      this.travelMessage = true;
-    });
-  }
-  ngOnDestroy(): void {
-    this.worldSub.unsubscribe();
-  }
-  travel() {
-    this.travelMessage = false;
-    this.ms.game.goToWorld(this.worldTravel);
-    this.router.navigateByUrl("/nav/unit/fo");
   }
 }

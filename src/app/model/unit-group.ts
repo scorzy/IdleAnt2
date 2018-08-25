@@ -59,8 +59,13 @@ export class UnitGroup {
   }
 
   generateProducer(products: UnitGroup) {
-    const list = products.list.map(u => new FullUnit(u.id + "_g"));
+    const list = products.list.map(u => new FullUnit(u.id + "G"));
     this.addUnits(list);
+    this.list.forEach(u => {
+      const res = new Research(u.id, this.game.researches);
+      res.toUnlock = [u];
+      this.researchList.push(res);
+    });
   }
 
   setFlags(team = false, twin = false) {

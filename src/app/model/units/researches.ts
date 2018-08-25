@@ -30,16 +30,16 @@ export class Researches {
   constructor(public researchEmitter: EventEmitter<string>) {}
 
   declareStuff(): void {
-    this.team1 = new Research("team1", this);
-    this.team2 = new Research("team2", this);
-    this.twin = new Research("twin", this);
-    this.travel = new Research("travel", this);
-    this.mastery = new Research("mastery", this);
-    this.harvesting = new Research("harv", this, true);
+    this.team1 = new Research("t", this);
+    this.team2 = new Research("T", this);
+    this.twin = new Research("W", this);
+    this.travel = new Research("r", this);
+    this.mastery = new Research("M", this);
+    this.harvesting = new Research("h", this, true);
 
-    this.free1hWarp = new Research("m1hWarp", this);
-    this.free2hWarp = new Research("m2hWarp", this);
-    this.free3hWarp = new Research("m3hWarp", this);
+    this.free1hWarp = new Research("1", this);
+    this.free2hWarp = new Research("2", this);
+    this.free3hWarp = new Research("3", this);
 
     this.team1.unlocked = true;
     this.reloadLists();

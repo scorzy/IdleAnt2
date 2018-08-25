@@ -18,10 +18,10 @@ export class Gatherers extends UnitGroup {
     super("Gatherers", game);
   }
   declareStuff(): void {
-    this.drone = new FullUnit("dr");
-    this.geologist = new FullUnit("ge");
-    this.student = new FullUnit("st");
-    this.foraggingBee = new FullUnit("forBee");
+    this.drone = new FullUnit("e");
+    this.geologist = new FullUnit("h");
+    this.student = new FullUnit("i");
+    this.foraggingBee = new FullUnit("B");
 
     this.addUnits([
       this.drone,

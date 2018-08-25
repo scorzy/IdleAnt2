@@ -14,10 +14,10 @@ export class WorldBonus {
   bonusList: BaseUnit[];
 
   declareStuff(): void {
-    this.foodBonus = new BaseUnit("foB");
-    this.woodBonus = new BaseUnit("woB");
-    this.crystalBonus = new BaseUnit("crB");
-    this.scienceBonus = new BaseUnit("scB");
+    this.foodBonus = new BaseUnit("1");
+    this.woodBonus = new BaseUnit("2");
+    this.crystalBonus = new BaseUnit("3");
+    this.scienceBonus = new BaseUnit("4");
 
     this.bonusList = [
       this.foodBonus,

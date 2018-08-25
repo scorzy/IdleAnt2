@@ -21,18 +21,18 @@ export class Workers extends UnitGroup {
   }
 
   declareStuff(): void {
-    this.farmer = new FullUnit("f");
-    this.carpenter = new FullUnit("c");
+    this.farmer = new FullUnit("a");
+    this.carpenter = new FullUnit("b");
     this.miner = new FullUnit("m");
-    this.scientist = new FullUnit("s");
+    this.scientist = new FullUnit("d");
 
     this.scientificMethod1 = new Research("scie1", this.game.researches, true);
 
     this.addUnits([this.farmer, this.carpenter, this.miner, this.scientist]);
 
-    this.firstResearch = new Research("work_res", this.game.researches);
+    this.firstResearch = new Research("w", this.game.researches);
     this.list.forEach(u => {
-      const res = new Research(u.id + "_wr", this.game.researches);
+      const res = new Research(u.id, this.game.researches);
       res.toUnlock = [u];
       this.researchList.push(res);
     });
@@ -79,7 +79,7 @@ export class Workers extends UnitGroup {
 
     this.firstResearch.prices = this.game.genSciencePrice(new Decimal(1e3));
     this.researchList.forEach(
-      r => (r.prices = this.game.genSciencePrice(new Decimal(5e3)))
+      r => (r.prices = this.game.genSciencePrice(CONSTS.RES_PRICE_1))
     );
     this.firstResearch.toUnlock = this.researchList;
 

@@ -17,6 +17,7 @@ import { Tabs } from "./tabs";
 import { UnitGroup } from "./unit-group";
 import { Ants } from "./units/ants";
 import { Buildings } from "./units/buildings";
+import { Engineers } from "./units/engineers";
 import { Gatherers } from "./units/gatherers";
 import { MalusKiller } from "./units/malus-killer";
 import { Materials } from "./units/materials";
@@ -47,6 +48,7 @@ export class Game {
   gatherers: Gatherers;
   advWorkers: Workers;
   buildings: Buildings;
+  engineers: Engineers;
   killers: UnitGroup;
   ants: Ants;
 
@@ -104,6 +106,9 @@ export class Game {
 
     this.buildings = new Buildings(this);
     this.unitGroups.push(this.buildings);
+
+    this.engineers = new Engineers(this);
+    this.unitGroups.push(this.engineers);
 
     this.worldMalus = new WorldMalus(this);
     this.unitGroups.push(this.worldMalus);
@@ -235,21 +240,21 @@ export class Game {
     this.units.forEach(u => {
       u.isNew = false;
     });
-    this.researches.team1.unlocked = true;
-    this.researches.team1.done = true;
-    this.researches.team1.complete = true;
-    this.researches.team1.quantity = new Decimal(1);
-    this.researches.team1.toUnlock.forEach(u => u.unlock());
-    this.researches.team2.unlocked = true;
-    this.researches.team2.done = true;
-    this.researches.team2.quantity = new Decimal(1);
-    this.researches.team2.complete = true;
-    this.researches.team2.toUnlock.forEach(u => u.unlock());
-    this.researches.twin.unlocked = true;
-    this.researches.twin.done = true;
-    this.researches.twin.quantity = new Decimal(1);
-    this.researches.twin.complete = true;
-    this.researches.twin.toUnlock.forEach(u => u.unlock());
+    // this.researches.team1.unlocked = true;
+    // this.researches.team1.done = true;
+    // this.researches.team1.complete = true;
+    // this.researches.team1.quantity = new Decimal(1);
+    // this.researches.team1.toUnlock.forEach(u => u.unlock());
+    // this.researches.team2.unlocked = true;
+    // this.researches.team2.done = true;
+    // this.researches.team2.quantity = new Decimal(1);
+    // this.researches.team2.complete = true;
+    // this.researches.team2.toUnlock.forEach(u => u.unlock());
+    // this.researches.twin.unlocked = true;
+    // this.researches.twin.done = true;
+    // this.researches.twin.quantity = new Decimal(1);
+    // this.researches.twin.complete = true;
+    // this.researches.twin.toUnlock.forEach(u => u.unlock());
     //#endregion
   }
   buildLists() {

@@ -18,7 +18,7 @@ import { UnitComponent } from "./unit-tabs/unit/unit.component";
 export const APPROUTES: Routes = [
   {
     path: "",
-    redirectTo: "nav/unit/fo",
+    redirectTo: "nav/unit/f",
     pathMatch: "full"
   },
   {

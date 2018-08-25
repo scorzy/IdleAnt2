@@ -1,9 +1,11 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   OnInit
 } from "@angular/core";
+import { Router } from "@angular/router";
 import { MainService } from "../main.service";
 import { World } from "../model/world";
 @Component({
@@ -12,19 +14,31 @@ import { World } from "../model/world";
   styleUrls: ["./change-world.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ChangeWorldComponent implements OnInit {
+export class ChangeWorldComponent implements OnInit, AfterViewInit {
   maxSafeInt = Number.MAX_SAFE_INTEGER;
   minLevel = new Decimal(1);
   maxLevel = new Decimal(1);
   rangeValues: number[] = [1, Number.MAX_SAFE_INTEGER];
+  travelMessage = false;
+  worldTravel: World;
+  worldSub: any;
 
-  constructor(public ms: MainService, private cd: ChangeDetectorRef) {}
+  constructor(
+    public ms: MainService,
+    private cd: ChangeDetectorRef,
+    private router: Router
+  ) {}
+
+  ngAfterViewInit(): void {
+    this.setLevels();
+    this.cd.markForCheck();
+  }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.setLevels();
-      this.cd.markForCheck();
-    }, 0);
+    this.worldSub = this.ms.worldEmitter.subscribe(world => {
+      this.worldTravel = world;
+      this.travelMessage = true;
+    });
   }
   setLevels() {
     this.maxLevel = this.ms.game.maxLevel
@@ -42,5 +56,13 @@ export class ChangeWorldComponent implements OnInit {
   }
   randomize() {
     this.ms.game.generateWorlds(this.minLevel, this.maxLevel);
+  }
+  ngOnDestroy(): void {
+    this.worldSub.unsubscribe();
+  }
+  travel() {
+    this.travelMessage = false;
+    this.ms.game.goToWorld(this.worldTravel);
+    this.router.navigateByUrl("/");
   }
 }

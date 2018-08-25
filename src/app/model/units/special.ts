@@ -13,9 +13,9 @@ export class Special extends UnitGroup {
     super("Special", game);
   }
   declareStuff(): void {
-    this.foodSupply = new FullUnit("fSupp");
-    this.woodSupply = new FullUnit("wSupp");
-    this.crystallSupply = new FullUnit("cSupp");
+    this.foodSupply = new FullUnit("fS");
+    this.woodSupply = new FullUnit("wS");
+    this.crystallSupply = new FullUnit("cS");
 
     this.addUnits([this.foodSupply, this.woodSupply, this.crystallSupply]);
   }
