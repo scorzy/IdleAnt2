@@ -13,8 +13,8 @@ export class AutoBuyManager {
   enabled = true;
   multiBuy = true;
 
-  update() {
-    if (this.enabled) this.activeAutoBuy.forEach(a => a.update());
+  update(time = 0) {
+    if (this.enabled) this.activeAutoBuy.forEach(a => a.update(time));
   }
   buildActiveList() {
     this.activeAutoBuy = this.allAutoBuyer

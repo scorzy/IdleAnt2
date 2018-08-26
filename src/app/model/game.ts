@@ -434,7 +434,7 @@ export class Game {
    *  Reload actions costs
    *  and eventually fix quantity > 0
    */
-  postUpdate() {
+  postUpdate(time) {
     this.worldMalus.foodMalus1.reloadPriceMulti();
     this.worldMalus.woodMalus1.reloadPriceMulti();
     this.worldMalus.crystalMalus1.reloadPriceMulti();
@@ -443,8 +443,7 @@ export class Game {
     this.unlockedUnits.forEach(u => {
       u.quantity = u.quantity.max(0);
     });
-
-    this.autoBuyManager.update();
+    if (!this.isPaused) this.autoBuyManager.update(time);
 
     this.researches.toDo.forEach(u => u.reload());
     this.canBuyResearch = !!this.researches.researches.find(
@@ -469,6 +468,7 @@ export class Game {
     if (delta > 0) {
       this.toastr.info(this.endInPipe.transform(delta), "Time Warp");
       this.update(delta, true);
+      this.autoBuyManager.update(delta);
     }
   }
   /**

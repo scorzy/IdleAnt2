@@ -5,8 +5,8 @@ import { Prestige } from "../prestige/prestige";
 import { Price } from "../price";
 import { AutoBuyManager } from "./auto-buy-manager";
 
-export const DELAY_LEVEL = 0.7;
-export const MIN_DELAY = 0.25;
+export const DELAY_LEVEL = 0.6;
+export const MIN_DELAY = 1;
 
 export class AutoBuy extends Prestige {
   active = true;
@@ -52,13 +52,13 @@ export class AutoBuy extends Prestige {
         ) / 100;
       if (this.max < MIN_DELAY) {
         this.multiBuy = Decimal.pow(
-          2,
+          1 / DELAY_LEVEL,
           this.quantity.toNumber() -
             1 -
             Math.floor(
               Math.log(MIN_DELAY / this.startMax) / Math.log(DELAY_LEVEL)
             )
-        );
+        ).ceil();
         this.max = MIN_DELAY;
       } else {
         this.multiBuy = new Decimal(1);
@@ -67,14 +67,11 @@ export class AutoBuy extends Prestige {
       this.max = this.startMax;
     }
   }
-  /**
-   * Update to MIN_DELAY seconds
-   * When can buy try to buy each update
-   */
-  update() {
+
+  update(time = 0) {
     if (!this.active || !this.isActive()) return;
 
-    this.current = this.current + MIN_DELAY;
+    this.current = this.current + time / 1000;
     this.action.reload();
     const max = this.multiBuy.min(this.action.maxBuy);
     if (this.current >= this.max && this.action.buy(max)) {

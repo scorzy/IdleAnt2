@@ -17,6 +17,8 @@ import { AutoBuy } from "../model/autoBuy/auto-buy";
 export class AutoBuyComponent implements OnInit, OnDestroy {
   @Input() autoBuy: AutoBuy;
   sub: any;
+  bought = false;
+  progress = 0;
 
   constructor(public ms: MainService) {
     //
@@ -24,7 +26,19 @@ export class AutoBuyComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.autoBuy.reload();
-    this.sub = this.ms.updateEmitter.subscribe(s => this.autoBuy.reload());
+    this.bought = this.autoBuy.quantity.gt(0);
+    if (this.bought) {
+      this.progress = Math.floor(this.autoBuy.current / this.autoBuy.max * 100);
+    }
+    this.sub = this.ms.updateEmitter.subscribe(s => {
+      this.autoBuy.reload();
+      this.bought = this.autoBuy.quantity.gt(0);
+      if (this.bought) {
+        this.progress = Math.floor(
+          this.autoBuy.current / this.autoBuy.max * 100
+        );
+      }
+    });
   }
   ngOnDestroy(): void {
     this.sub.unsubscribe();

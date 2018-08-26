@@ -1,6 +1,9 @@
+<div *ngIf="bought" class="progress-static top">
+  <div class="progress-meter" [attr.data-value]="progress"></div>
+</div>
 <app-action-header [action]="autoBuy" [quantity]="autoBuy.quantity"></app-action-header>
 
-<div class="clr-row clr-align-items-start" *ngIf="autoBuy.quantity.gt(0)">
+<div class="clr-row clr-align-items-start" *ngIf="bought">
   <div class="clr-col">
 
     <label>Priority:</label>
@@ -15,7 +18,7 @@
   </div>
 
 </div>
-<div class="clr-row clr-align-items-start" *ngIf="autoBuy.quantity.gt(0)">
+<div class="clr-row clr-align-items-start" *ngIf="bought">
   <div class="clr-col">
     <span>
       Interval:

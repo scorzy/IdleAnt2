@@ -90,7 +90,7 @@ export class MainService {
 
     this.game.updateWithTime(diff);
 
-    this.game.postUpdate();
+    this.game.postUpdate(diff);
     this.last = now;
     this.updateEmitter.emit(diff);
   }

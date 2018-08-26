@@ -20,18 +20,18 @@ describe("AutoBuy", () => {
 
     auto.quantity = new Decimal(3);
     auto.reloadLevel();
-    expect(auto.max).toBe(2.45);
+    expect(auto.max).toBe(1.8);
     expect(auto.multiBuy.toNumber()).toBe(1);
 
     auto.quantity = new Decimal(10);
     auto.reloadLevel();
-    expect(auto.max).toBe(0.25);
-    expect(auto.multiBuy.toNumber()).toBe(2);
+    expect(auto.max).toBe(1);
+    expect(auto.multiBuy.toNumber()).toBe(22);
 
     auto.quantity = new Decimal(12);
     auto.reloadLevel();
-    expect(auto.max).toBe(0.25);
-    expect(auto.multiBuy.toNumber()).toBe(8);
+    expect(auto.max).toBe(1);
+    expect(auto.multiBuy.toNumber()).toBe(60);
   });
   it("save and load", () => {
     const auto1 = new AutoBuy(new Action("", "", "", []), [], autoBuyManager);
@@ -64,15 +64,19 @@ describe("AutoBuy", () => {
     act.checkResearch = () => {
       return true;
     };
+    act.reload = () => {
+      return true;
+    };
+    act.maxBuy = new Decimal(100);
 
     const auto1 = new AutoBuy(act, [], autoBuyManager);
 
     auto1.active = true;
     auto1.quantity = new Decimal(1);
     auto1.reloadLevel();
-    auto1.update();
+    auto1.update(250);
     expect(act.buy).toHaveBeenCalledTimes(0);
-    for (let i = 0; i < 19; i++) auto1.update();
+    for (let i = 0; i < 19; i++) auto1.update(250);
     expect(act.buy).toHaveBeenCalledTimes(1);
     expect(auto1.current).toBe(0);
   });

@@ -22,6 +22,7 @@ import { FormatPipe } from "./format.pipe";
 import { GroupTabsComponent } from "./group-tabs/group-tabs.component";
 import { UnitGroupComponent } from "./group-tabs/unit-group/unit-group.component";
 import { HeaderComponent } from "./header/header.component";
+import { BugCardComponent } from "./home/bug-card/bug-card.component";
 import { HomeComponent } from "./home/home.component";
 import { LabMenuComponent } from "./laboratory/lab-menu/lab-menu.component";
 import { LaboratoryComponent } from "./laboratory/laboratory.component";
@@ -49,7 +50,6 @@ import { UnitAutoBuyComponent } from "./unit-tabs/unit-auto-buy/unit-auto-buy.co
 import { UnitTabsComponent } from "./unit-tabs/unit-tabs.component";
 import { UnitComponent } from "./unit-tabs/unit/unit.component";
 import { WorldComponent } from "./world/world.component";
-import { BugCardComponent } from './home/bug-card/bug-card.component';
 
 @NgModule({
   declarations: [
