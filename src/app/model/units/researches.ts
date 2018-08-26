@@ -51,7 +51,7 @@ export class Researches {
     this.team1.genPrice(new Decimal(100), science);
     this.team2.genPrice(new Decimal(1e3), science);
     this.twin.genPrice(new Decimal(1e5), science);
-    this.travel.genPrice(new Decimal(1e6), science);
+    this.travel.genPrice(new Decimal(1e12), science);
     this.mastery.genPrice(new Decimal(1e20), science);
     this.harvesting.prices = game.genSciencePrice(1e3, 10);
     this.free1hWarp.prices = game.genSciencePrice(1);
@@ -67,6 +67,7 @@ export class Researches {
       u.productionsEfficienty.push(bonus);
     });
 
+    this.game.engineers.firstResearch.toUnlock.push(this.travel);
     this.travel.toUnlock.push(game.tabs.travel, this.mastery);
     this.mastery.toUnlock.push(game.tabs.mastery);
 
@@ -104,7 +105,7 @@ export class Researches {
   reloadMasteryPrice(science: FullUnit) {
     const masteryNum = this.mastery.quantity;
     this.mastery.genPrice(
-      new Decimal(1e9).times(Decimal.pow(2, masteryNum)),
+      new Decimal(1e18).times(Decimal.pow(2, masteryNum)),
       science
     );
   }

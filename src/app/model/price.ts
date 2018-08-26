@@ -85,11 +85,13 @@ export class Price {
     }
   }
   reloadPercent() {
-    this.completedPercent = this.canBuy
-      ? 100
-      : this.base.quantity
-          .times(100)
-          .div(this.price)
-          .toNumber();
+    this.completedPercent = Math.floor(
+      this.canBuy
+        ? 100
+        : this.base.quantity
+            .times(100)
+            .div(this.price)
+            .toNumber()
+    );
   }
 }

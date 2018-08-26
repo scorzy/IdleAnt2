@@ -107,6 +107,7 @@ export class UnitGroupComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     this.isSmall = window.innerWidth < 1200;
+    this.getOperativity();
     this.sub = this.ms.updateEmitter.subscribe(m => {
       this.updateChart();
       this.getOperativity();

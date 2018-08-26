@@ -618,7 +618,11 @@ export class Game {
 
     //#region other Bugs
     if (this.currentWorld.additionalBugs.includes(BugTypes.BEE)) {
-      //ToDo
+      this.bees.larva.unlocked = true;
+      this.bees.queen.unlocked = true;
+      this.bees.larva.quantity = new Decimal(10);
+      this.bees.queen.quantity = new Decimal(1);
+      this.gatherers.foraggingBee.unlocked = true;
     }
     //#endregion
 
@@ -631,7 +635,7 @@ export class Game {
 
     this.tabs.prestige.unlock();
 
-    this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
+    // this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
     return true;
   }
 

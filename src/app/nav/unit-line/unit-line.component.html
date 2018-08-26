@@ -5,9 +5,9 @@
     <clr-icon class="is-info is-solid" shape="angle-double" *ngIf="!isMalus && twin" (click)="unit.twinAction.buy()"></clr-icon>
 
     <clr-icon class="is-warning is-solid" shape="pause" *ngIf="!isMalus && isStopped" (click)="unit.efficiency = 100"></clr-icon>
-    <clr-icon class="alert-icon is-error is-solid" shape="exclamation-triangle" *ngIf="isEnding"></clr-icon>
+    <clr-icon class="is-error is-error is-solid" shape="exclamation-triangle" *ngIf="isEnding"></clr-icon>
     <clr-icon class="is-info is-solid" shape="info-standard" *ngIf="isNew"></clr-icon>
-    
+
   </span>
   <span class="perSec monospace">
     <span *ngIf="perSec.abs().gt(0.001)" [class.noEnought]="isEnding">

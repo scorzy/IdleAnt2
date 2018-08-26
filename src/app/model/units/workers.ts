@@ -157,6 +157,6 @@ export class Workers extends UnitGroup {
     };
     this.game.materials.science.productionsBonus.push(scieMetBon);
 
-    this.setTypes();
+    this.setBugType();
   }
 }

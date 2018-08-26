@@ -72,7 +72,7 @@ export class UnitGroup {
       this.researchList.push(res);
     });
   }
-  setTypes() {
+  setBugType() {
     this.list.forEach(u => u.setBugType(u.bugType));
   }
 
@@ -86,10 +86,6 @@ export class UnitGroup {
     this.upTwin =
       twin &&
       this.unlocked.findIndex(u => u.twinAction && u.twinAction.canBuy) > -1;
-  }
-
-  setBugType(bug: BugTypes) {
-    this.list.forEach(u => u.setBugType(bug));
   }
 
   updateChart() {

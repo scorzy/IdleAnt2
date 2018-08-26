@@ -23,7 +23,7 @@ import { Mastery, MasteryTypes } from "../model/masteries/mastery";
 })
 export class MasteryComponent implements AfterViewInit, OnInit {
   @ViewChild("network") networkDiv: ElementRef;
-  networkVis: Network;
+  networkVis: any; // Network;
   list = new Array<string>();
   node: any;
   exp = "";
@@ -48,11 +48,13 @@ export class MasteryComponent implements AfterViewInit, OnInit {
   }
   ngAfterViewInit() {
     setTimeout(() => {
+      const myNodes: any = this.ms.game.allMateries.visMasteries;
+      const myEedges: any = this.ms.game.allMateries.visEdge;
       this.networkVis = new Network(
         this.networkDiv.nativeElement,
         {
-          nodes: this.ms.game.allMateries.visMasteries,
-          edges: this.ms.game.allMateries.visEdge
+          nodes: myNodes,
+          edges: myEedges
         },
         {
           nodes: { borderWidth: 2 },

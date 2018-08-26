@@ -90,7 +90,7 @@ export class MainService {
       diff = diff + bonus;
     }
 
-    this.game.updateWithTime(diff * 10);
+    this.game.updateWithTime(diff);
 
     this.game.postUpdate(diff);
     this.last = now;

@@ -56,6 +56,6 @@ export class Buildings extends UnitGroup {
       this.game.addTwinAction(producer, CONSTS.TWIN_PRICE_2);
     }
 
-    this.setTypes();
+    this.setBugType();
   }
 }

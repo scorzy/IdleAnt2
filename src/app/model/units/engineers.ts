@@ -56,6 +56,6 @@ export class Engineers extends UnitGroup {
       this.game.addTwinAction(producer, CONSTS.TWIN_PRICE_3);
     }
 
-    this.setTypes();
+    this.setBugType();
   }
 }
