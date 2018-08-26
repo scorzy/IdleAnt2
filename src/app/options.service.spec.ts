@@ -9,12 +9,12 @@ describe("OptionsService", () => {
     });
   });
 
-  it(
-    "should be created",
-    inject([OptionsService], (service: OptionsService) => {
+  it("should be created", inject(
+    [OptionsService],
+    (service: OptionsService) => {
       expect(service).toBeTruthy();
-    })
-  );
+    }
+  ));
   describe("Save", () => {
     const options1 = new OptionsService();
     const options2 = new OptionsService();

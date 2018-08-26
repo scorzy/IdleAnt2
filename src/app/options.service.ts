@@ -21,7 +21,6 @@ export class OptionsService {
   generateFormatter() {
     this.formatter = new numberformat.Formatter({
       format: this.numFormat,
-      sigfigs: 2,
       flavor: "short"
     });
     if (!!this.formatEmitter) this.formatEmitter.emit(1);
