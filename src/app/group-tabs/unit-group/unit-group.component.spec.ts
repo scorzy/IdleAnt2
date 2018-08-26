@@ -6,6 +6,7 @@ import {
   EventEmitter
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ActivatedRoute } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ClarityModule } from "@clr/angular";
@@ -43,7 +44,8 @@ describe("UnitGroupComponent", () => {
         ClarityModule.forRoot(),
         ToastrModule.forRoot(),
         RouterTestingModule,
-        FormsModule
+        FormsModule,
+        BrowserAnimationsModule
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [

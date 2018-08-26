@@ -50,6 +50,7 @@ import { UnitAutoBuyComponent } from "./unit-tabs/unit-auto-buy/unit-auto-buy.co
 import { UnitTabsComponent } from "./unit-tabs/unit-tabs.component";
 import { UnitComponent } from "./unit-tabs/unit/unit.component";
 import { WorldComponent } from "./world/world.component";
+import { MadeByChartComponent } from './unit-tabs/made-by-chart/made-by-chart.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { WorldComponent } from "./world/world.component";
     HomeComponent,
     GroupTabsComponent,
     LabMenuComponent,
-    BugCardComponent
+    BugCardComponent,
+    MadeByChartComponent
   ],
   imports: [
     BrowserAnimationsModule,

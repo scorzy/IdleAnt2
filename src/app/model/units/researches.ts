@@ -53,7 +53,7 @@ export class Researches {
     this.twin.genPrice(new Decimal(1e5), science);
     this.travel.genPrice(new Decimal(1e6), science);
     this.mastery.genPrice(new Decimal(1e20), science);
-    this.harvesting.prices = game.genSciencePrice(1e3, 1e3);
+    this.harvesting.prices = game.genSciencePrice(1e3, 10);
     this.free1hWarp.prices = game.genSciencePrice(1);
     this.free2hWarp.prices = game.genSciencePrice(1);
     this.free3hWarp.prices = game.genSciencePrice(1);

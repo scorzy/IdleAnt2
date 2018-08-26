@@ -5,6 +5,7 @@ import {
 } from "@angular/core";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ClarityModule } from "@clr/angular";
 import { ToastrModule, ToastrService } from "ngx-toastr";
@@ -26,7 +27,8 @@ describe("UnitComponent", () => {
         ToastrModule.forRoot(),
         RouterTestingModule,
         FormsModule,
-        SliderModule
+        SliderModule,
+        BrowserAnimationsModule
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [ToastrService, MainService]

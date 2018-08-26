@@ -34,6 +34,7 @@ export class UnitComponent implements OnInit, OnDestroy, OnChanges {
   activeProducer = new Array<Production>();
 
   autoBuyModal = false;
+  madeChart = false;
 
   constructor(
     public ms: MainService,
@@ -73,6 +74,7 @@ export class UnitComponent implements OnInit, OnDestroy, OnChanges {
         this.unit.twinAction.reloadUserPrices();
       }
     }
+    this.madeChart = this.ms.game.materials.list.includes(this.unit);
     this.cd.markForCheck();
   }
   getActId(action: Action) {

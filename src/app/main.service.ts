@@ -64,6 +64,8 @@ export class MainService {
     );
     this.last = Date.now();
     setInterval(this.update.bind(this), 250);
+
+    this.load();
   }
   update() {
     const now = Date.now();
@@ -88,7 +90,7 @@ export class MainService {
       diff = diff + bonus;
     }
 
-    this.game.updateWithTime(diff);
+    this.game.updateWithTime(diff * 10);
 
     this.game.postUpdate(diff);
     this.last = now;

@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from "@angular/core";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ClarityModule } from "@clr/angular";
 import { ToastrModule } from "ngx-toastr";
@@ -18,7 +19,8 @@ describe("GroupTabsComponent", () => {
       imports: [
         ClarityModule.forRoot(),
         ToastrModule.forRoot(),
-        RouterTestingModule
+        RouterTestingModule,
+        BrowserAnimationsModule
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();

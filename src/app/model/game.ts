@@ -233,11 +233,11 @@ export class Game {
     // this.ants.nest.quantity = new Decimal(100);
     // this.materials.list.forEach(u => (u.unlocked = true));
     // this.unitGroups.forEach(g => g.list.forEach(u => u.unlock()));
-    this.tabs.tabList.forEach(t => (t.unlocked = true));
+    // this.tabs.tabList.forEach(t => (t.unlocked = true));
     // this.worldMalus.foodMalus1.quantity = new Decimal(100);
     // this.worldMalus.foodMalus1.quantity = new Decimal(100);
     // this.worldMalus.foodMalus2.quantity = new Decimal(10);
-    this.experience.quantity = new Decimal(1000);
+    // this.experience.quantity = new Decimal(1000);
     // this.allMateries.masteryPoint = 30;
     // this.experience.quantity = new Decimal(1e10);
     // this.units.forEach(u => {
@@ -258,7 +258,7 @@ export class Game {
     // this.researches.twin.quantity = new Decimal(1);
     // this.researches.twin.complete = true;
     // this.researches.twin.toUnlock.forEach(u => u.unlock());
-    this.time.quantity = new Decimal(100);
+    // this.time.quantity = new Decimal(100);
 
     //#endregion
   }

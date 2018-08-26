@@ -49,6 +49,11 @@
       <app-action *ngIf="unit.teamAction && ms.game.researches.team2.done" [action]="unit.teamAction"></app-action>
       <app-action *ngIf="unit.twinAction && ms.game.researches.twin.done" [action]="unit.twinAction"></app-action>
 
+      <div *ngIf="madeChart" class="chartDiv">
+        <app-made-by-chart [unit]="unit"></app-made-by-chart>
+        <app-made-by-chart [unit]="unit" [consumers]="true"></app-made-by-chart>
+      </div>
+
     </div>
     <div class="clr-col-xs-12	clr-col-sm-6 clr-col-md-6	clr-col-lg-6 clr-col-xl-6">
       <div *ngIf="activeProduct?.length > 0">

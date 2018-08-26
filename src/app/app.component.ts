@@ -9,6 +9,7 @@ import { ClarityIcons } from "@clr/icons";
 import {
   ClrShapeBug,
   ClrShapeClock,
+  ClrShapeLightbulb,
   ClrShapeTools,
   ClrShapeWorld
 } from "@clr/icons/shapes/essential-shapes";
@@ -40,7 +41,7 @@ export class AppComponent {
   constructor(public ms: MainService) {
     ClarityIcons.add({
       bug: ClrShapeBug,
-      flask: ClrShapeFlask,
+      lightbulb: ClrShapeLightbulb,
       world: ClrShapeWorld,
       clock: ClrShapeClock,
       cog: ClrShapeCog,
