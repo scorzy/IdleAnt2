@@ -13,6 +13,7 @@ import { MadeByChartComponent } from "./made-by-chart.component";
 describe("MadeByChartComponent", () => {
   let component: MadeByChartComponent;
   let fixture: ComponentFixture<MadeByChartComponent>;
+  let ms: MainService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -31,9 +32,10 @@ describe("MadeByChartComponent", () => {
   }));
 
   beforeEach(() => {
+    ms = TestBed.get(MainService);
     fixture = TestBed.createComponent(MadeByChartComponent);
     component = fixture.componentInstance;
-
+    component.unit = ms.game.materials.food;
     fixture.detectChanges();
   });
 
