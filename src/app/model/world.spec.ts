@@ -66,12 +66,12 @@ describe("World", () => {
     const world3 = new World();
     const world2 = new World();
 
-    const unit1 = new FullUnit("");
-    const unit2 = new FullUnit("");
-    const unit3 = new FullUnit("");
-    const unit4 = new FullUnit("");
-    const unit5 = new FullUnit("");
-    const unit6 = new FullUnit("");
+    const unit1 = new FullUnit("1");
+    const unit2 = new FullUnit("2");
+    const unit3 = new FullUnit("3");
+    const unit4 = new FullUnit("4");
+    const unit5 = new FullUnit("5");
+    const unit6 = new FullUnit("6");
 
     world1.name = "1";
     world2.name = "2";

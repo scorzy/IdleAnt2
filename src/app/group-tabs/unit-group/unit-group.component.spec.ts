@@ -28,14 +28,7 @@ import { UnitGroupComponent } from "./unit-group.component";
 describe("UnitGroupComponent", () => {
   let component: UnitGroupComponent;
   let fixture: ComponentFixture<UnitGroupComponent>;
-  const game = new Game(
-    new EventEmitter<number>(),
-    new EventEmitter<string>(),
-    new EventEmitter<number>(),
-    null,
-    null,
-    null
-  );
+  let ms: MainService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -62,8 +55,10 @@ describe("UnitGroupComponent", () => {
   }));
 
   beforeEach(() => {
+    ms = TestBed.get(MainService);
     fixture = TestBed.createComponent(UnitGroupComponent);
     component = fixture.componentInstance;
+    component.unitGroup = ms.game.unitGroups[0];
     fixture.detectChanges();
   });
 
