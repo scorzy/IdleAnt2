@@ -25,6 +25,7 @@ import {
 import { ClrShapePause } from "@clr/icons/shapes/media-shapes";
 import { ClrShapeStar } from "@clr/icons/shapes/social-shapes";
 import {
+  ClrShapeDashboard,
   ClrShapeFlask,
   ClrShapeFloppy,
   ClrShapeInstall,
@@ -56,7 +57,8 @@ export class AppComponent {
       install: ClrShapeInstall,
       uninstall: ClrShapeUninstall,
       tools: ClrShapeTools,
-      star: ClrShapeStar
+      star: ClrShapeStar,
+      dashboard: ClrShapeDashboard
     });
   }
 }

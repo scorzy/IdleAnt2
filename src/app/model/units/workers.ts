@@ -22,6 +22,11 @@ export class Workers extends UnitGroup {
   beeMiner: FullUnit;
   beeScientist: FullUnit;
 
+  waspFarmer: FullUnit;
+  waspCarpenter: FullUnit;
+  waspMiner: FullUnit;
+  waspScientist: FullUnit;
+
   constructor(game: Game) {
     super("Workers", game);
   }
@@ -41,6 +46,15 @@ export class Workers extends UnitGroup {
     this.beeScientist = new FullUnit("D");
     this.beeScientist.bugType = BugTypes.BEE;
 
+    this.waspFarmer = new FullUnit("v");
+    this.waspFarmer.bugType = BugTypes.WASP;
+    this.waspCarpenter = new FullUnit("V");
+    this.waspCarpenter.bugType = BugTypes.WASP;
+    this.waspMiner = new FullUnit("o");
+    this.waspMiner.bugType = BugTypes.WASP;
+    this.waspScientist = new FullUnit("p");
+    this.waspScientist.bugType = BugTypes.WASP;
+
     this.scientificMethod1 = new Research("scie1", this.game.researches, true);
 
     this.addUnits([
@@ -51,7 +65,11 @@ export class Workers extends UnitGroup {
       this.beeFarmer,
       this.beeCarpenter,
       this.beeMiner,
-      this.beeScientist
+      this.beeScientist,
+      this.waspFarmer,
+      this.waspCarpenter,
+      this.waspMiner,
+      this.waspScientist
     ]);
 
     this.firstResearch = new Research("w", this.game.researches);
@@ -126,6 +144,41 @@ export class Workers extends UnitGroup {
     this.game.materials.science.addProducer(this.beeScientist, CONSTS.PROD_1);
     this.game.materials.crystal.addProducer(
       this.beeScientist,
+      CONSTS.CONSUME_1
+    );
+    //#endregion
+    //#region Wasps
+    this.waspFarmer.generateBuyAction([
+      new Price(this.game.wasps.larva, CONSTS.PRICE_LARVAE_0, 1),
+      new Price(this.game.materials.food, CONSTS.PRICE_1),
+      new Price(this.game.materials.crystal, CONSTS.PRICE_1)
+    ]);
+    this.waspCarpenter.generateBuyAction([
+      new Price(this.game.wasps.larva, CONSTS.PRICE_LARVAE_0, 1),
+      new Price(this.game.materials.food, CONSTS.PRICE_1.times(2))
+    ]);
+    this.waspMiner.generateBuyAction([
+      new Price(this.game.wasps.larva, CONSTS.PRICE_LARVAE_0, 1),
+      new Price(this.game.materials.food, CONSTS.PRICE_1),
+      new Price(this.game.materials.soil, CONSTS.PRICE_1)
+    ]);
+    this.waspScientist.generateBuyAction([
+      new Price(this.game.wasps.larva, CONSTS.PRICE_LARVAE_0, 1),
+      new Price(this.game.materials.food, CONSTS.PRICE_1),
+      new Price(this.game.materials.crystal, CONSTS.PRICE_1)
+    ]);
+    this.game.materials.food.addProducer(this.waspFarmer, CONSTS.PROD_1);
+    this.game.materials.soil.addProducer(this.waspFarmer, CONSTS.CONSUME_1);
+
+    this.game.materials.soil.addProducer(this.waspCarpenter, CONSTS.PROD_1);
+    this.game.materials.food.addProducer(this.waspCarpenter, CONSTS.CONSUME_1);
+
+    this.game.materials.crystal.addProducer(this.waspMiner, CONSTS.PROD_1);
+    this.game.materials.food.addProducer(this.waspMiner, CONSTS.CONSUME_1);
+
+    this.game.materials.science.addProducer(this.waspScientist, CONSTS.PROD_1);
+    this.game.materials.crystal.addProducer(
+      this.waspScientist,
       CONSTS.CONSUME_1
     );
     //#endregion

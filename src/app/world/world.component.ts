@@ -12,7 +12,7 @@ import { Price } from "../model/price";
 import { Research } from "../model/research";
 import { STRINGS } from "../model/strings";
 import { World } from "../model/world";
-import { BugTypes } from "./../model/bugsTypes";
+import { BugTypes } from "../model/bugsTypes";
 
 @Component({
   selector: "app-world",
@@ -25,8 +25,10 @@ import { BugTypes } from "./../model/bugsTypes";
   }
 })
 export class WorldComponent implements OnInit {
-  @Input() world: World;
-  @Input() cantTravel = true;
+  @Input()
+  world: World;
+  @Input()
+  cantTravel = true;
 
   travelMessage = false;
 

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { BugTypes } from "../model/bugsTypes";
-import { MainService } from "./../main.service";
+import { MainService } from "../main.service";
 
 @Component({
   selector: "app-home",

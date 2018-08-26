@@ -1,7 +1,7 @@
 import { EventEmitter, ReflectiveInjector } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
-import { EndInPipe } from "./../end-in.pipe";
-import { FormatPipe } from "./../format.pipe";
+import { EndInPipe } from "../end-in.pipe";
+import { FormatPipe } from "../format.pipe";
 import { WarpAction } from "./actions/warp-action";
 import { AutoBuyManager } from "./autoBuy/auto-buy-manager";
 import { Bug, BugTypes } from "./bugsTypes";
@@ -9,7 +9,7 @@ import { CONSTS } from "./CONSTATS";
 import { FullUnit } from "./full-unit";
 import { Malus } from "./malus";
 import { AllMasteries } from "./masteries/all-masteries";
-import { Mastery, MasteryTypes } from "./masteries/mastery";
+import { MasteryTypes } from "./masteries/mastery";
 import { AllPrestige } from "./prestige/all-prestige";
 import { Price } from "./price";
 import { ProductionBonus } from "./production-bonus";
@@ -25,6 +25,7 @@ import { MalusKiller } from "./units/malus-killer";
 import { Materials } from "./units/materials";
 import { Researches } from "./units/researches";
 import { Special } from "./units/special";
+import { Wasps } from "./units/wasps";
 import { Workers } from "./units/workers";
 import { WorldBonus } from "./units/world-bonus";
 import { WorldMalus } from "./units/world-malus";
@@ -54,6 +55,7 @@ export class Game {
   killers: UnitGroup;
   ants: Ants;
   bees: Bees;
+  wasps: Wasps;
 
   researches: Researches;
   worldBonus: WorldBonus;
@@ -103,6 +105,9 @@ export class Game {
 
     this.bees = new Bees(this);
     this.unitGroups.push(this.bees);
+
+    this.wasps = new Wasps(this);
+    this.unitGroups.push(this.wasps);
 
     this.gatherers = new Gatherers(this);
     this.unitGroups.push(this.gatherers);
@@ -229,8 +234,8 @@ export class Game {
 
     //#region Debug
 
-    // this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
-    // this.ants.nest.quantity = new Decimal(100);
+    this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
+    this.ants.nest.quantity = new Decimal(100);
     // this.materials.list.forEach(u => (u.unlocked = true));
     // this.unitGroups.forEach(g => g.list.forEach(u => u.unlock()));
     // this.tabs.tabList.forEach(t => (t.unlocked = true));
@@ -526,6 +531,7 @@ export class Game {
     );
 
     this.units.forEach(u => u.reset());
+    this.worldBonus.reset();
     this.materials.food.quantity = new Decimal(STARTING_FOOD);
     this.ants.queen.quantity = new Decimal(1);
     this.ants.larva.unlocked = true;
@@ -624,6 +630,13 @@ export class Game {
       this.bees.queen.quantity = new Decimal(1);
       this.gatherers.foraggingBee.unlocked = true;
     }
+    if (this.currentWorld.additionalBugs.includes(BugTypes.WASP)) {
+      this.wasps.larva.unlocked = true;
+      this.wasps.queen.unlocked = true;
+      this.wasps.larva.quantity = new Decimal(10);
+      this.wasps.queen.quantity = new Decimal(1);
+      this.gatherers.foraggingWasp.unlocked = true;
+    }
     //#endregion
 
     this.currentWorld.setGame();
@@ -701,6 +714,8 @@ export class Game {
           return newW;
         });
       }
+
+      this.materials.list.forEach(m => (m.quantity = new Decimal(1e100)));
 
       this.unitGroups.forEach(g => g.check());
       this.buildLists();

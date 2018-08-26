@@ -1,6 +1,7 @@
 export enum BugTypes {
   ANT = 0,
-  BEE
+  BEE,
+  WASP
 }
 export class Bug {
   constructor(
@@ -14,5 +15,6 @@ export class Bug {
 }
 export const BUGS = {
   0: new Bug(1, 1, 1, 1, 1, "#36a2eb"),
-  1: new Bug(1.5, 1.1, 1.2, 0.1, 1, "#FFCE56")
+  1: new Bug(1.5, 1.1, 1.2, 0.1, 1, "#FFCE56"),
+  2: new Bug(0.5, 0.9, 1, 10, 0.1, "#ff9f40")
 };

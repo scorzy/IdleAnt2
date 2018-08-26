@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { MainService } from "../main.service";
-import { AutoBuy } from "./../model/autoBuy/auto-buy";
+import { AutoBuy } from "../model/autoBuy/auto-buy";
 
 @Component({
   selector: "app-auto-buy-tab",

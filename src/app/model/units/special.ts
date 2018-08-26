@@ -1,8 +1,8 @@
+import { FullUnit } from "../full-unit";
 import { Game } from "../game";
 import { Price } from "../price";
 import { UnitGroup } from "../unit-group";
 import { World } from "../world";
-import { FullUnit } from "./../full-unit";
 
 export class Special extends UnitGroup {
   foodSupply: FullUnit;

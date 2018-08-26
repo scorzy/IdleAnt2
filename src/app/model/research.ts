@@ -1,4 +1,4 @@
-import { FormatPipe } from "./../format.pipe";
+import { FormatPipe } from "../format.pipe";
 import { Action } from "./action";
 import { BugTypes } from "./bugsTypes";
 import { FullUnit } from "./full-unit";

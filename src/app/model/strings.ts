@@ -3,39 +3,58 @@ export const STRINGS = {
     //  Materials
     f: ["Food", "Food is used to sustain all units."],
     w: ["Soil", "Soil is used to build better nest."],
-    c: ["Crystal", "crystal"],
-    s: ["Science", "science"],
+    c: ["Crystal", "Crystal is used to make science."],
+    s: ["Science", "Science is used to discover new things."],
     //  Ants
     l: ["Larva", "Larva"],
     q: ["Queen", "Queen"],
     n: ["Nest", "Nest"],
     //  Ghantering
-    e: ["Drone", "drone"],
-    h: ["Geologist", "geologist"],
-    i: ["Student", "student"],
+    e: ["Drone", "Drone gather food."],
+    h: ["Geologist", "Geologist will seek for crystals."],
+    i: [
+      "Student",
+      [
+        "Students will try to acquire science.",
+        "Students were used to drink cristal."
+      ]
+    ],
     //  Workers
     a: [
       "Farmer",
       "Hydroponics farmers uses crystals to grow fungi without soil."
     ],
-    b: ["Carpenter", "Carpenter ants build nests with soil."],
-    m: ["Miner", "miner"],
-    d: ["Scientist", "scientist"],
+    b: ["Carpenter", "Carpenter ants builds nests in soil."],
+    m: [
+      "Miner",
+      [
+        "Miners extracts crystal through mining.",
+        "Unsurprisingly, yet another idle game with miners."
+      ]
+    ],
+    d: [
+      "Scientist",
+      [
+        "Scientist gather science.",
+        "Scientist were used to drink cristal.",
+        "Scientist are like students, but betters."
+      ]
+    ],
     // Buildings
-    aG: ["Farm", "Farm"],
-    bG: ["Wood Camp", "Wood Camp"],
+    aG: ["Farm", "An hydroponics farm."],
+    bG: ["Soil Camp", "Soil Camp"],
     mG: ["Mine", "Mine"],
     dG: ["University", "University"],
     //  Engineers
     aGG: ["Hydro Eng.", "Hydro Engineer"],
-    bGG: ["Wood Eng.", "Wood Engineer"],
+    bGG: ["Soil Eng.", "Soil Engineer"],
     mGG: ["Mine Eng.", "Mine Engineer"],
     dGG: ["Education Dep.", "Department of Education"],
     //  World Bonus
-    foB: ["Food Production Bonus", ""],
-    woB: ["Wood Production Bonus", ""],
-    crB: ["Crystal Production Bonus", ""],
-    scB: ["Science Production Bonus", ""],
+    1: ["Food Production Bonus", ""],
+    2: ["Soil Production Bonus", ""],
+    3: ["Crystal Production Bonus", ""],
+    4: ["Science Production Bonus", ""],
     //  Malus
     Mf1: ["Poisonous Fungus", "Poisonous Fungus"],
     Mf2: ["Ancient Fungus", "Ancient Fungus"],
@@ -70,7 +89,6 @@ export const STRINGS = {
     Q: ["Bee Larva", ""],
     P: ["Bee Queen", ""],
     N: ["Bee Hive", ""],
-    //  Bee
     A: ["Bee Farmer", ""],
     B: ["Bee Carpenter", ""],
     E: ["Bee Miner", ""],
@@ -82,7 +100,24 @@ export const STRINGS = {
     AGG: ["3Bee Farmer", ""],
     BGG: ["3Bee Carpenter", ""],
     EGG: ["3Bee Miner", ""],
-    DGG: ["3Bee Scientist", ""]
+    DGG: ["3Bee Scientist", ""],
+    //  Wasp
+    x: ["Foragging Wasp", "Foragging Wasp"],
+    y: ["Wasp Larva", ""],
+    z: ["Wasp Queen", ""],
+    r: ["Wasp Hive", ""],
+    v: ["Wasp Farmer", ""],
+    V: ["Wasp Carpenter", ""],
+    o: ["Wasp Miner", ""],
+    p: ["Wasp Scientist", ""],
+    vG: ["2Wasp Farmer", ""],
+    VG: ["2Wasp Carpenter", ""],
+    oG: ["2Wasp Miner", ""],
+    pG: ["2Wasp Scientist", ""],
+    vGG: ["3Wasp Farmer", ""],
+    VGG: ["3Wasp Carpenter", ""],
+    oGG: ["3Wasp Miner", ""],
+    pGG: ["3Wasp Scientist", ""]
   },
   researches: {
     t: ["Team 1", "Team 1"],
@@ -131,7 +166,20 @@ export const STRINGS = {
     AGG: ["3Bee Farmer", ""],
     BGG: ["3Bee Carpenter", ""],
     EGG: ["3Bee Miner", ""],
-    DGG: ["3Bee Scientist", ""]
+    DGG: ["3Bee Scientist", ""],
+    // Wasp
+    v: ["Wasp Farmer", ""],
+    V: ["Wasp Carpenter", ""],
+    o: ["Wasp Miner", ""],
+    p: ["Wasp Scientist", ""],
+    vG: ["2Wasp Farmer", ""],
+    VG: ["2Wasp Carpenter", ""],
+    oG: ["2Wasp Miner", ""],
+    pG: ["2Wasp Scientist", ""],
+    vGG: ["3Wasp Farmer", ""],
+    VGG: ["3Wasp Carpenter", ""],
+    oGG: ["3Wasp Miner", ""],
+    pGG: ["3Wasp Scientist", ""]
   },
   worlds: {
     "1Pre": "Hot",
@@ -155,7 +203,11 @@ export const STRINGS = {
     //  Bee
     beePre: "Apian",
     beeBio: "Hive",
-    beeSuff: "of Bee"
+    beeSuff: "of Bee",
+    //  Wasp
+    waspPre: "Waspy",
+    waspBio: "Nest",
+    waspSuff: "of Wasp"
   },
   prestige: {
     //  Followers 1
@@ -189,7 +241,8 @@ export const STRINGS = {
     warp3600: ["Warp hour", "Time warp by hours"]
   },
   bug: {
-    0: "Ant",
-    1: "Bee"
+    0: "Ants",
+    1: "Bees",
+    2: "Wasps"
   }
 };

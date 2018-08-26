@@ -1,7 +1,7 @@
-import { DataSet, Edge, IdType, Network, Node } from "vis";
+import { DataSet } from "vis";
+import { BaseUnit } from "../baseUnit";
 import { Game } from "../game";
 import { ProductionBonus } from "../production-bonus";
-import { BaseUnit } from "./../baseUnit";
 import { Mastery, MasteryTypes } from "./mastery";
 
 export class AllMasteries {
@@ -130,7 +130,6 @@ export class AllMasteries {
           return item.from === id || item.to === id;
         }
       });
-      const avNodesIds = new Array<number>();
       avEdges.forEach(avEdge => {
         const nodes = this.visMasteries.get({
           filter(item) {

@@ -37,12 +37,12 @@ export class CONSTS {
 
   static readonly CHART_COLORS = {
     backgroundColor: [
-      "rgba(255, 99, 132, 0.3)",
-      "rgba(54, 162, 235, 0.3)",
-      "rgba(255, 206, 86, 0.3)",
-      "rgba(75, 192, 192, 0.3)",
-      "rgba(153, 102, 255, 0.3)",
-      "rgba(255, 159, 64, 0.3)"
+      "rgba(255, 99, 132, 0.3)", //red
+      "rgba(54, 162, 235, 0.3)", //azure
+      "rgba(255, 206, 86, 0.3)", //yellow
+      "rgba(75, 192, 192, 0.3)", //azzurrino
+      "rgba(153, 102, 255, 0.3)", //viola
+      "rgba(255, 159, 64, 0.3)" // arancio strano
     ],
     borderColor: [
       "rgba(255,99,132,1)",

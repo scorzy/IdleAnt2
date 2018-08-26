@@ -1,5 +1,5 @@
 import { Researches } from "../units/researches";
-import { Action } from "./../action";
+import { Action } from "../action";
 
 export class BuyResearch extends Action {
   constructor(private researches: Researches) {

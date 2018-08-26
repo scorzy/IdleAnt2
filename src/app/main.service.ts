@@ -65,7 +65,7 @@ export class MainService {
     this.last = Date.now();
     setInterval(this.update.bind(this), 250);
 
-    this.load();
+    this.load(true);
   }
   update() {
     const now = Date.now();
@@ -75,9 +75,9 @@ export class MainService {
       let bonus = 0;
       if (diff > H8) {
         bonus =
-          diff *
-          30 *
-          this.game.allMateries.getSum(MasteryTypes.MORE_IDLE_8H) /
+          (diff *
+            30 *
+            this.game.allMateries.getSum(MasteryTypes.MORE_IDLE_8H)) /
           100;
       }
       this.toastr.info(

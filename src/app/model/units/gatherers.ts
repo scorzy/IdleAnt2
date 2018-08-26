@@ -14,6 +14,9 @@ export class Gatherers extends UnitGroup {
   //  Bee
   foraggingBee: FullUnit;
 
+  //  Wasp
+  foraggingWasp: FullUnit;
+
   constructor(game: Game) {
     super("Gatherers", game);
   }
@@ -22,12 +25,14 @@ export class Gatherers extends UnitGroup {
     this.geologist = new FullUnit("h");
     this.student = new FullUnit("i");
     this.foraggingBee = new FullUnit("Z");
+    this.foraggingWasp = new FullUnit("x");
 
     this.addUnits([
       this.drone,
       this.geologist,
       this.student,
-      this.foraggingBee
+      this.foraggingBee,
+      this.foraggingWasp
     ]);
   }
   setRelations(): void {
@@ -73,5 +78,12 @@ export class Gatherers extends UnitGroup {
     ]);
     this.game.materials.food.addProducer(this.foraggingBee);
     this.foraggingBee.setBugType(BugTypes.BEE);
+
+    this.foraggingWasp.generateBuyAction([
+      new Price(this.game.wasps.larva, CONSTS.PRICE_LARVAE_0, 1),
+      new Price(this.game.materials.food, CONSTS.PRICE_0)
+    ]);
+    this.game.materials.food.addProducer(this.foraggingWasp);
+    this.foraggingWasp.setBugType(BugTypes.WASP);
   }
 }
