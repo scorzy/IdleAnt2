@@ -51,7 +51,6 @@
     "lint-staged": "^7.2.2",
     "lodash-es": "^4.17.10",
     "lz-string": "^1.4.4",
-    "moment": "^2.22.2",
     "ngx-toastr": "^9.0.2",
     "normalize.css": "^8.0.0",
     "primeicons": "^1.0.0-beta.10",
