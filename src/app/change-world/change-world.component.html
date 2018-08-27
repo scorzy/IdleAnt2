@@ -1,10 +1,25 @@
 <div class="content-area">
   <h1>Here you can travel to a new world.</h1>
-  <p>You will get
-    <span class="monospace">{{ms.game.currentWorld.prestige}} </span>
-    experience
-  </p>
 
+
+  <clr-alert [clrAlertType]="'alert-success'" [clrAlertClosable]="false" *ngIf="ms.game.canTravel; else warn">
+    <div class="alert-item">
+      <span class="alert-text">
+        You will get
+        <span class="monospace">{{ms.game.currentWorld.prestige}} </span>
+        experience
+      </span>
+    </div>
+  </clr-alert>
+  <ng-template #warn>
+    <clr-alert [clrAlertType]="'alert-danger'" [clrAlertClosable]="false">
+      <div class="alert-item">
+        <span class="alert-text">
+          You are skipping. You will get nothing !
+        </span>
+      </div>
+    </clr-alert>
+  </ng-template>
   <button class="btn" (click)="randomize()">Randomize</button>
 
   <span>

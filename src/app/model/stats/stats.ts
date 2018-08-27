@@ -24,7 +24,7 @@ export class Stats {
       this.totalExperience = this.totalExperience.plus(world.prestige);
       this.runs.unshift(
         new Run(
-          this.worldStartDate,
+          new Date(),
           this.worldStartDate,
           world.name,
           world.prestige,

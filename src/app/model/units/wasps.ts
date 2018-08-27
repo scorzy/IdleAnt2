@@ -20,8 +20,6 @@ export class Wasps extends UnitGroup {
     this.queen = new FullUnit("z");
     this.nest = new FullUnit("r");
     this.addUnits([this.nest, this.queen, this.larva]);
-    this.larva.unlocked = true;
-    this.queen.unlocked = true;
   }
   setRelations(): void {
     this.larva.generateBuyAction(
@@ -69,7 +67,7 @@ export class Wasps extends UnitGroup {
     [waspBio, waspPre, waspSuff].forEach(w => {
       w.additionalBugs.push(BugTypes.WASP);
       w.winContidions.push(
-        new Price(this.nest, CONSTS.BASE_WIN_CONDITION_OTHER)
+        new Price(this.nest, CONSTS.BASE_WIN_CONDITION_OTHER.times(2))
       );
     });
     World.prefix.push(waspPre);

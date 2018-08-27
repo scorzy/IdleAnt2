@@ -1,10 +1,15 @@
 import { ClrDatagridComparatorInterface } from "@clr/angular";
 import { BaseUnit } from "./baseUnit";
+import { BugTypes } from "./bugsTypes";
 import { FullUnit } from "./full-unit";
 import { Production } from "./production";
 import { Run } from "./stats/run";
+import { STRINGS } from "./strings";
 
 export class Utility {
+  static getBugName(bug: BugTypes) {
+    return STRINGS.bug[bug];
+  }
   static random(min: Decimal = new Decimal(0), max: Decimal = new Decimal(1)) {
     return min.plus(max.minus(min).times(Math.random()));
   }

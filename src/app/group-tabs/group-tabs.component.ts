@@ -6,8 +6,11 @@ import {
   OnInit
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import uniq from "lodash-es/uniq";
 import { MainService } from "../main.service";
+import { BugTypes } from "../model/bugsTypes";
 import { UnitGroup } from "../model/unit-group";
+import { Utility } from "../model/utility";
 
 @Component({
   selector: "app-group-tabs",
@@ -23,6 +26,9 @@ export class GroupTabsComponent implements OnInit, OnDestroy {
   paramsSave: any;
 
   unitGroup: UnitGroup;
+
+  bugs = new Array<BugTypes>();
+  utility = Utility;
 
   constructor(
     public ms: MainService,
@@ -46,6 +52,29 @@ export class GroupTabsComponent implements OnInit, OnDestroy {
 
     this.ms.game.lastUnitUrl = "nav/group/" + this.unitGroup.id;
 
+    this.bugs = uniq(this.unitGroup.unlocked.map(u => u.bugType));
+
     this.cd.markForCheck();
+  }
+  select(bug: BugTypes) {
+    this.unitGroup.selected = this.unitGroup.unlocked.filter(
+      u => u.bugType === bug
+    );
+  }
+  selectAdd(bug: BugTypes) {
+    this.unitGroup.selected = uniq(
+      this.unitGroup.selected.concat(
+        this.unitGroup.unlocked.filter(u => u.bugType === bug)
+      )
+    );
+  }
+  selectRemove(bug: BugTypes) {
+    this.unitGroup.selected = this.unitGroup.selected.filter(
+      u => u.bugType !== bug
+    );
+  }
+
+  getBugId(index: number, bug: BugTypes) {
+    return bug;
   }
 }

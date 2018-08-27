@@ -21,10 +21,13 @@ declare let Chart;
   }
 })
 export class BugCardComponent implements OnInit {
-  @Input() bug: BugTypes;
+  @Input()
+  bug: BugTypes;
 
-  @ViewChild("radar") chartRef: ElementRef;
-  @ViewChild("container") containerRef: ElementRef;
+  @ViewChild("radar")
+  chartRef: ElementRef;
+  @ViewChild("container")
+  containerRef: ElementRef;
   chart: any;
 
   constructor(public ms: MainService) {
@@ -41,6 +44,9 @@ export class BugCardComponent implements OnInit {
     canvas.width = canvas.height * (canvas.clientWidth / canvas.clientHeight);
 
     Chart.defaults.global.tooltips.enabled = true;
+    Chart.defaults.scale.ticks.beginAtZero = true;
+    Chart.defaults.scale.ticks.display = false;
+
     const chartCtx = this.chartRef.nativeElement.getContext("2d");
 
     this.chart = new Chart(chartCtx, {
@@ -71,11 +77,11 @@ export class BugCardComponent implements OnInit {
       backgroundColor: bugClass.color + "80",
       borderColor: bugClass.color,
       data: [
-        bugClass.priceMulti,
+        1 / bugClass.priceMulti,
         bugClass.prodMulti,
         bugClass.efficiencyMulti,
-        bugClass.teamPriceMulti,
-        bugClass.twinPriceMulti
+        1 / bugClass.teamPriceMulti,
+        1 / bugClass.twinPriceMulti
       ],
       label: STRINGS.bug[bug]
     };

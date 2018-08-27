@@ -141,6 +141,9 @@ export class Game {
     this.worldBonus.declareStuff();
 
     this.experience = new FullUnit("prest");
+    this.experience.reset = () => {
+      //  Do nothing !
+    };
     this.time = new FullUnit("time");
     //#endregion
 

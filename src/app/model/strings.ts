@@ -22,7 +22,11 @@ export const STRINGS = {
     //  Workers
     a: [
       "Farmer",
-      "Hydroponics farmers uses crystals to grow fungi without soil."
+      [
+        "Hydroponics farmers uses crystals to grow fungi without soil.",
+        "Ants are the World’s Best Fungus Farmers.",
+        "Farming since 10.000 BC."
+      ]
     ],
     b: ["Carpenter", "Carpenter ants builds nests in soil."],
     m: [
@@ -37,42 +41,42 @@ export const STRINGS = {
       [
         "Scientist gather science.",
         "Scientist were used to drink cristal.",
-        "Scientist are like students, but betters."
+        "ScientAnts are like studentAnts, but betters."
       ]
     ],
     // Buildings
     aG: ["Farm", "An hydroponics farm."],
-    bG: ["Soil Camp", "Soil Camp"],
-    mG: ["Mine", "Mine"],
-    dG: ["University", "University"],
+    bG: ["Soil Camp", "Soil Camp is used to get more soil."],
+    mG: ["Mine", "A crystal mine."],
+    dG: ["University", "University yeld scientists."],
     //  Engineers
-    aGG: ["Hydro Eng.", "Hydro Engineer"],
-    bGG: ["Soil Eng.", "Soil Engineer"],
-    mGG: ["Mine Eng.", "Mine Engineer"],
-    dGG: ["Education Dep.", "Department of Education"],
+    aGG: ["Hydro Eng.", "Hydro Engineers yeld Farm."],
+    bGG: ["Soil Eng.", "Soil Engineers yeld Soil Camp."],
+    mGG: ["Mine Eng.", "Mine Engineers yeld Mine."],
+    dGG: ["Education Dep.", "Department of Education yeld University."],
     //  World Bonus
     1: ["Food Production Bonus", ""],
     2: ["Soil Production Bonus", ""],
     3: ["Crystal Production Bonus", ""],
     4: ["Science Production Bonus", ""],
     //  Malus
-    Mf1: ["Poisonous Fungus", "Poisonous Fungus"],
+    Mf1: ["Poisonous Fungus (Food)", "Poisonous Fungus"],
     Mf2: ["Ancient Fungus", "Ancient Fungus"],
     Mf3: ["Zombie Fungus", "Zombie Fungus"],
-    Mw1: ["woMalu1", "woMalu1"],
-    Mw2: ["woMalu2", "woMalu2"],
-    Mw3: ["woMalu3", "woMalu3"],
-    Mc1: ["crMalu1", "crMalu1"],
-    Mc2: ["crMalu2", "crMalu2"],
-    Mc3: ["crMalu3", "crMalu3"],
-    Ms1: ["Pseudoscientist", ["1", "2", "3"]],
-    Ms2: ["Pseudoscientist", "Pseudoscientist"],
-    Ms3: ["Pseudoscientist", "Pseudoscientist"],
+    Mw1: ["Carnivorous plant (Soil)", ""],
+    Mw2: ["Flypaper traps", ""],
+    Mw3: ["Pitcher plant", ""],
+    Mc1: ["Small Mites (Cristal)", ""],
+    Mc2: ["Mites", ""],
+    Mc3: ["Parasitic Mites", ""],
+    Ms1: ["Zombie Fungus Spore (Science)", ""],
+    Ms2: ["Zombie Fungus", ""],
+    Ms3: ["Colony of Zombie Fungus ", ""],
     //  Killers
     F: ["Disinfestation Ant", "Destroy poisonous fungus."],
     W: ["wmki", ""],
     C: ["cmki", ""],
-    S: ["Popularizers", ""],
+    S: ["aaa", ""],
     //  Mastery Bonus
     scieMast: ["Science Mastery"],
     fooMast: ["Food Mastery"],

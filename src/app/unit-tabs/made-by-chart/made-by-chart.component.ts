@@ -22,11 +22,15 @@ declare let Chart;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MadeByChartComponent implements OnInit, OnDestroy, AfterViewInit {
-  @Input() unit: FullUnit;
-  @Input() consumers = false;
+  @Input()
+  unit: FullUnit;
+  @Input()
+  consumers = false;
 
-  @ViewChild("chart") chartRef: ElementRef;
-  @ViewChild("pieContainer") pieContainerRef: ElementRef;
+  @ViewChild("chart")
+  chartRef: ElementRef;
+  @ViewChild("pieContainer")
+  pieContainerRef: ElementRef;
   chart: any;
   sub: any;
   title = "";
@@ -86,9 +90,10 @@ export class MadeByChartComponent implements OnInit, OnDestroy, AfterViewInit {
 
     const activeProducer = this.unit.producedBy.filter(
       p =>
+        p.producer.unlocked &&
+        p.producer.quantity.gt(0) &&
         ((!this.consumers && p.rateo.gt(0)) ||
-          (this.consumers && p.rateo.lt(0))) &&
-        p.producer.unlocked
+          (this.consumers && p.rateo.lt(0)))
     );
 
     const labels = activeProducer.map(p => p.producer.name);

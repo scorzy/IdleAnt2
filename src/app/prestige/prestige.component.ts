@@ -20,6 +20,7 @@ import { Price } from "../model/price";
 })
 export class PrestigeComponent implements OnInit, OnDestroy {
   sub: any;
+  skip = false;
 
   constructor(public ms: MainService, private cd: ChangeDetectorRef) {}
 
