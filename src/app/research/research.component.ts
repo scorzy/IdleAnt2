@@ -20,7 +20,8 @@ import { Research } from "../model/research";
   }
 })
 export class ResearchComponent implements OnInit, OnDestroy {
-  @Input() research: Research;
+  @Input()
+  research: Research;
   sub: any;
 
   minuteSkip = 1;

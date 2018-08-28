@@ -56,14 +56,27 @@ $padding: 0.45rem;
   overflow-y: visible !important;
 }
 
+$cardPad: 0.3rem;
+
 :host /deep/ .card {
-  margin-top: 0.4rem;
+  margin-top: $cardPad;
   h6 {
     margin-top: 0.1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: $cardPad;
     font-size: 0.75rem;
     font-weight: 200;
     letter-spacing: normal;
+  }
+  .card-block .card-title {
+    margin-bottom: $cardPad !important;
+  }
+  :host /deep/ .card-block,
+  .card-footer,
+  .card-header,
+  .card > .list,
+  .card > .list-unstyled {
+    padding-top: $cardPad;
+    padding-bottom: $cardPad;
   }
 }
 
