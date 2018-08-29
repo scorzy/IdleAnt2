@@ -58,8 +58,8 @@ export class Researches {
     this.free2hWarp.prices = game.genSciencePrice(1);
     this.free3hWarp.prices = game.genSciencePrice(1);
 
-    this.team1.toUnlock = [this.team2];
-    this.team2.toUnlock = [this.twin];
+    this.team1.toUnlock.push(this.team2);
+    this.team2.toUnlock.push(this.twin);
 
     game.advWorkers.firstResearch.toUnlock.push(this.harvesting);
     const bonus = new ProductionBonus(this.harvesting, new Decimal(0.3));

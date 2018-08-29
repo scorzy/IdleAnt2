@@ -38,15 +38,14 @@ export class Production {
           .map(prod => prod.getBonus())
           .reduce((p, n) => p.plus(n), new Decimal(0));
         bonus = bonus.plus(producerBonus);
+
+        // Production bonus of product
+        const productBonus = this.product.productionsBonus
+          .filter(bn => bn.isActive())
+          .map(prod => prod.getBonus())
+          .reduce((p, n) => p.plus(n), new Decimal(0));
+        bonus = bonus.plus(productBonus);
       }
-
-      // Production bonus of product
-      const productBonus = this.product.productionsBonus
-        .filter(bn => bn.isActive())
-        .map(prod => prod.getBonus())
-        .reduce((p, n) => p.plus(n), new Decimal(0));
-      bonus = bonus.plus(productBonus);
-
       this.prodPerSec = this.prodPerSec.times(bonus);
 
       // Efficienty slider

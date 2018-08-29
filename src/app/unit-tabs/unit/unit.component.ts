@@ -11,6 +11,7 @@ import { ActivatedRoute } from "@angular/router";
 import { MainService } from "../../main.service";
 import { Action } from "../../model/action";
 import { FullUnit } from "../../model/full-unit";
+import { Helper } from "../../model/helper";
 import { Malus } from "../../model/malus";
 import { Production } from "../../model/production";
 import { ProductionSorter, TotalProductionSorter } from "../../model/utility";
@@ -22,11 +23,13 @@ import { ProductionSorter, TotalProductionSorter } from "../../model/utility";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UnitComponent implements OnInit, OnDestroy, OnChanges {
-  @Input() unit: FullUnit;
+  @Input()
+  unit: FullUnit;
 
   paramsSub: any;
   sub: any;
   malus: Malus;
+  helper: Helper;
   prodSorter = new ProductionSorter();
   totalProdSorter = new TotalProductionSorter();
 
@@ -58,9 +61,8 @@ export class UnitComponent implements OnInit, OnDestroy, OnChanges {
   getUnit() {
     if (this.unit instanceof FullUnit) {
       this.unit.isNew = false;
-      if (this.unit instanceof Malus) {
-        this.malus = this.unit;
-      }
+      this.malus = this.unit instanceof Malus ? this.unit : null;
+      this.helper = this.unit instanceof Helper ? this.unit : null;
 
       this.activeProduct = this.unit.produces.filter(p => p.product.unlocked);
       this.activeProducer = this.unit.producedBy.filter(

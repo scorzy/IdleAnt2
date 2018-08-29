@@ -121,7 +121,9 @@ export const STRINGS = {
     vGG: ["3Wasp Farmer", ""],
     VGG: ["3Wasp Carpenter", ""],
     oGG: ["3Wasp Miner", ""],
-    pGG: ["3Wasp Scientist", ""]
+    pGG: ["3Wasp Scientist", ""],
+    //  Helpers
+    lf: ["Leaf Cutter", "Improve Farming"]
   },
   researches: {
     t: ["Team 1", "Team 1"],
@@ -183,7 +185,9 @@ export const STRINGS = {
     vGG: ["3Wasp Farmer", ""],
     VGG: ["3Wasp Carpenter", ""],
     oGG: ["3Wasp Miner", ""],
-    pGG: ["3Wasp Scientist", ""]
+    pGG: ["3Wasp Scientist", ""],
+    //  Super Major
+    sm: ["Super Major Helpers", ""]
   },
   worlds: {
     "1Pre": "Hot",
@@ -211,7 +215,10 @@ export const STRINGS = {
     //  Wasp
     waspPre: "Waspy",
     waspBio: "Nest",
-    waspSuff: "of Wasp"
+    waspSuff: "of Wasp",
+    //  Super Major
+    majorPre: "Giant",
+    majorSuff: "of Super Major"
   },
   prestige: {
     //  Followers 1
@@ -247,6 +254,7 @@ export const STRINGS = {
   bug: {
     0: "Ants",
     1: "Bees",
-    2: "Wasps"
+    2: "Wasps",
+    3: "Super Major"
   }
 };

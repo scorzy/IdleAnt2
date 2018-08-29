@@ -21,6 +21,7 @@ import { Bees } from "./units/bees";
 import { Buildings } from "./units/buildings";
 import { Engineers } from "./units/engineers";
 import { Gatherers } from "./units/gatherers";
+import { Helpers } from "./units/helpers";
 import { MalusKiller } from "./units/malus-killer";
 import { Materials } from "./units/materials";
 import { Researches } from "./units/researches";
@@ -56,6 +57,7 @@ export class Game {
   ants: Ants;
   bees: Bees;
   wasps: Wasps;
+  helpers: Helpers;
 
   researches: Researches;
   worldBonus: WorldBonus;
@@ -129,6 +131,9 @@ export class Game {
 
     this.special = new Special(this);
     this.unitGroups.push(this.special);
+
+    this.helpers = new Helpers(this);
+    this.unitGroups.push(this.helpers);
 
     this.unitGroups.forEach(g => g.declareStuff());
 
