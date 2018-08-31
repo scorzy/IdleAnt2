@@ -8,6 +8,7 @@
     "ordered-imports": true,
     "comment-format": false,
     "curly": [true, "ignore-same-line"],
-    "prettier": true
+    "prettier": true,
+    "no-unused-variable": true
   }
 }

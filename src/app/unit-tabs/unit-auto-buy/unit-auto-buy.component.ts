@@ -16,7 +16,8 @@ import { FullUnit } from "../../model/full-unit";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UnitAutoBuyComponent implements OnInit, OnChanges {
-  @Input() unit: FullUnit;
+  @Input()
+  unit: FullUnit;
   autoBuyers = Array<AutoBuy>();
 
   constructor(public ms: MainService) {

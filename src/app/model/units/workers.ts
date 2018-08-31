@@ -7,7 +7,6 @@ import { Price } from "../price";
 import { ProductionBonus } from "../production-bonus";
 import { Research } from "../research";
 import { UnitGroup } from "../unit-group";
-import { World } from "../world";
 
 export class Workers extends UnitGroup {
   farmer: FullUnit;

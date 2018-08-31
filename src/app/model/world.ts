@@ -1,7 +1,7 @@
 import sample from "lodash-es/sample";
 import uniq from "lodash-es/uniq";
 import { BaseUnit } from "./baseUnit";
-import { Bug, BugTypes } from "./bugsTypes";
+import { BugTypes } from "./bugsTypes";
 import { CONSTS } from "./CONSTATS";
 import { FullUnit } from "./full-unit";
 import { Game } from "./game";

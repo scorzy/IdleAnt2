@@ -15,7 +15,8 @@ import { AutoBuy } from "../model/autoBuy/auto-buy";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutoBuyComponent implements OnInit, OnDestroy {
-  @Input() autoBuy: AutoBuy;
+  @Input()
+  autoBuy: AutoBuy;
   sub: any;
   bought = false;
   progress = 0;
@@ -28,14 +29,16 @@ export class AutoBuyComponent implements OnInit, OnDestroy {
     this.autoBuy.reload();
     this.bought = this.autoBuy.quantity.gt(0);
     if (this.bought) {
-      this.progress = Math.floor(this.autoBuy.current / this.autoBuy.max * 100);
+      this.progress = Math.floor(
+        (this.autoBuy.current / this.autoBuy.max) * 100
+      );
     }
     this.sub = this.ms.updateEmitter.subscribe(s => {
       this.autoBuy.reload();
       this.bought = this.autoBuy.quantity.gt(0);
       if (this.bought) {
         this.progress = Math.floor(
-          this.autoBuy.current / this.autoBuy.max * 100
+          (this.autoBuy.current / this.autoBuy.max) * 100
         );
       }
     });

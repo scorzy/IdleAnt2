@@ -17,7 +17,8 @@ import { Price } from "../../model/price";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CantBuySignpostsComponent implements OnInit, OnDestroy {
-  @Input() action: Action;
+  @Input()
+  action: Action;
   sub: any;
 
   constructor(private ms: MainService, private cd: ChangeDetectorRef) {

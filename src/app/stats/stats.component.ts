@@ -1,10 +1,8 @@
 import {
-  AfterContentInit,
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  OnInit,
   ViewChild
 } from "@angular/core";
 import { MainService } from "../main.service";
@@ -23,7 +21,8 @@ declare let Chart;
 export class StatsComponent implements AfterViewInit {
   runExpSorter = new RunExpSorter();
   runExpPerSecSorter = new RunExpPerSecSorter();
-  @ViewChild("chart") chartRef: ElementRef;
+  @ViewChild("chart")
+  chartRef: ElementRef;
   chart: any;
 
   constructor(public ms: MainService) {}

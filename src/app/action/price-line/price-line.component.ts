@@ -12,9 +12,12 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PriceLineComponent implements OnInit {
-  @Input() name: string;
-  @Input() canBuy: boolean;
-  @Input() price: Decimal;
+  @Input()
+  name: string;
+  @Input()
+  canBuy: boolean;
+  @Input()
+  price: Decimal;
 
   constructor() {
     //Nothing

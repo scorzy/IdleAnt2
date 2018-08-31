@@ -1,7 +1,6 @@
 import { Game } from "../game";
 import { Malus } from "../malus";
 import { UnitGroup } from "../unit-group";
-import { Materials } from "./materials";
 
 export class WorldMalus extends UnitGroup {
   foodMalus1: Malus;

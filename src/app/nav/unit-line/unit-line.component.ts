@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnChanges,
   OnInit
 } from "@angular/core";
 import { FullUnit } from "../../model/full-unit";
@@ -17,17 +16,28 @@ import { FullUnit } from "../../model/full-unit";
   }
 })
 export class UnitLineComponent implements OnInit {
-  @Input() id: string;
-  @Input() name: string;
-  @Input() quantity: Decimal;
-  @Input() perSec: Decimal;
-  @Input() isNew: boolean;
-  @Input() isEnding: boolean;
-  @Input() isStopped: boolean;
-  @Input() unit: FullUnit;
-  @Input() team: boolean;
-  @Input() twin: boolean;
-  @Input() isMalus = false;
+  @Input()
+  id: string;
+  @Input()
+  name: string;
+  @Input()
+  quantity: Decimal;
+  @Input()
+  perSec: Decimal;
+  @Input()
+  isNew: boolean;
+  @Input()
+  isEnding: boolean;
+  @Input()
+  isStopped: boolean;
+  @Input()
+  unit: FullUnit;
+  @Input()
+  team: boolean;
+  @Input()
+  twin: boolean;
+  @Input()
+  isMalus = false;
 
   constructor() {
     //Nothing

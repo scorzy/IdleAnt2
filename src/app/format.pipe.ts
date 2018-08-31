@@ -1,4 +1,3 @@
-import { formatNumber, NgLocaleLocalization } from "@angular/common";
 import { Pipe, PipeTransform } from "@angular/core";
 import { OptionsService } from "./options.service";
 

@@ -6,9 +6,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ClarityModule } from "@clr/angular";
 import { ToastrModule } from "ngx-toastr";
+import { getGame } from "../app.component.spec";
 import { EndInPipe } from "../end-in.pipe";
 import { FormatPipe } from "../format.pipe";
-import { Game } from "../model/game";
 import { Research } from "../model/research";
 import { Researches } from "../model/units/researches";
 import { ResearchComponent } from "./research.component";
@@ -36,17 +36,7 @@ describe("ResearchComponent", () => {
     component = fixture.componentInstance;
     component.research = new Research(
       "",
-      new Researches(
-        new EventEmitter<string>(),
-        new Game(
-          new EventEmitter<number>(),
-          new EventEmitter<string>(),
-          new EventEmitter<number>(),
-          null,
-          null,
-          null
-        )
-      )
+      new Researches(new EventEmitter<string>(), getGame())
     );
     fixture.detectChanges();
   });

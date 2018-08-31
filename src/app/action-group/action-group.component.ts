@@ -16,7 +16,8 @@ import { Price } from "../model/price";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ActionGroupComponent implements OnInit {
-  @Input() actGr: ActionGroup;
+  @Input()
+  actGr: ActionGroup;
   sub: any;
 
   constructor(public ms: MainService, private cd: ChangeDetectorRef) {

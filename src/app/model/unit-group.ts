@@ -1,6 +1,3 @@
-import { isNull } from "@angular/compiler/src/output/output_ast";
-import { EventEmitter } from "@angular/core";
-import { BugTypes } from "./bugsTypes";
 import { FullUnit } from "./full-unit";
 import { Game } from "./game";
 import { Price } from "./price";

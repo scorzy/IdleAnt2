@@ -17,9 +17,12 @@ import { Price } from "../../model/price";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonsComponent implements OnInit {
-  @Input() action: Action;
-  @Input() buttonsOnly = false;
-  @Input() skippable = true;
+  @Input()
+  action: Action;
+  @Input()
+  buttonsOnly = false;
+  @Input()
+  skippable = true;
 
   showTime = true;
   minuteSkip = 1;

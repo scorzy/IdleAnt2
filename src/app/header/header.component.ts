@@ -16,13 +16,20 @@ import { UnitGroup } from "../model/unit-group";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
-  @Input() lab = false;
-  @Input() labBadge = false;
-  @Input() travel = false;
-  @Input() travelBadge = false;
-  @Input() prestige = false;
-  @Input() mastery = false;
-  @Input() autoBuy = false;
+  @Input()
+  lab = false;
+  @Input()
+  labBadge = false;
+  @Input()
+  travel = false;
+  @Input()
+  travelBadge = false;
+  @Input()
+  prestige = false;
+  @Input()
+  mastery = false;
+  @Input()
+  autoBuy = false;
 
   sub: any;
   subGroup: any;
@@ -45,7 +52,7 @@ export class HeaderComponent implements OnInit {
       this.reloadHeader();
       this.cd.markForCheck();
     });
-    this.subGroup = this.ms.game.unlockGroupEmiter.subscribe(() => {
+    this.subGroup = this.ms.unlockGroupEmiter.subscribe(() => {
       this.reloadHeader();
       this.cd.markForCheck();
     });

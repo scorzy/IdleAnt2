@@ -1,4 +1,3 @@
-import { FullUnit } from "../full-unit";
 import { Prestige } from "./prestige";
 
 describe("Prestige", () => {

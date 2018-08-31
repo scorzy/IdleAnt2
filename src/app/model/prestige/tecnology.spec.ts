@@ -1,7 +1,7 @@
-import { Tecnology } from './tecnology';
+import { Tecnology } from "./tecnology";
 
-describe('Tecnology', () => {
-  it('should create an instance', () => {
+describe("Tecnology", () => {
+  it("should create an instance", () => {
     expect(new Tecnology()).toBeTruthy();
   });
 });

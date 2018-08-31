@@ -1,19 +1,11 @@
-import { EventEmitter } from "@angular/core";
+import { getGame } from "../../app.component.spec";
 import { Action } from "../action";
 import { FullUnit } from "../full-unit";
-import { Game } from "../game";
 import { Price } from "../price";
 import { ActionGroup } from "./action-group";
 
 describe("ActionGroup", () => {
-  const game = new Game(
-    new EventEmitter<number>(),
-    new EventEmitter<string>(),
-    new EventEmitter<number>(),
-    null,
-    null,
-    null
-  );
+  const game = getGame();
   it("should create an instance", () => {
     expect(new ActionGroup("", [], game)).toBeTruthy();
   });

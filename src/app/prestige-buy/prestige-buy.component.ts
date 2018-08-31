@@ -19,7 +19,8 @@ import { Price } from "../model/price";
   }
 })
 export class PrestigeBuyComponent implements OnInit {
-  @Input() prestige: Prestige;
+  @Input()
+  prestige: Prestige;
   sub: any;
 
   constructor(public ms: MainService, private cd: ChangeDetectorRef) {}

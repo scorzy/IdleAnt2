@@ -12,9 +12,12 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NameComponent implements OnInit {
-  @Input() name = "";
-  @Input() unlimited = false;
-  @Input() quantity = new Decimal(0);
+  @Input()
+  name = "";
+  @Input()
+  unlimited = false;
+  @Input()
+  quantity = new Decimal(0);
 
   constructor() {
     //

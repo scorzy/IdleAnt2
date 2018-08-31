@@ -1,18 +1,10 @@
 import { EventEmitter } from "@angular/core";
-import { FullUnit } from "./full-unit";
-import { Game } from "./game";
+import { getGame } from "../app.component.spec";
 import { Research } from "./research";
 import { Researches } from "./units/researches";
 
 describe("Research", () => {
-  const game = new Game(
-    new EventEmitter<number>(),
-    new EventEmitter<string>(),
-    new EventEmitter<number>(),
-    null,
-    null,
-    null
-  );
+  const game = getGame();
   const researches = new Researches(new EventEmitter<string>(), game);
   researches.declareStuff();
 

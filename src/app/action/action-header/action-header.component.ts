@@ -4,7 +4,6 @@ import {
   Component,
   Input,
   OnChanges,
-  OnInit,
   SimpleChanges
 } from "@angular/core";
 import { MainService } from "../../main.service";
@@ -19,8 +18,10 @@ import { TwinAction } from "../../model/actions/twin-action";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ActionHeaderComponent implements OnChanges {
-  @Input() action: Action;
-  @Input() quantity: Decimal;
+  @Input()
+  action: Action;
+  @Input()
+  quantity: Decimal;
   shape: string;
 
   constructor(private ms: MainService, private cd: ChangeDetectorRef) {

@@ -3,7 +3,6 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
-  OnChanges,
   OnDestroy,
   OnInit
 } from "@angular/core";
@@ -16,11 +15,16 @@ import { MainService } from "../../main.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabComponent implements OnInit, OnDestroy {
-  @Input() id = "";
-  @Input() isEnding = false;
-  @Input() name = "";
-  @Input() quantity = new Decimal(0);
-  @Input() perSec = new Decimal(0);
+  @Input()
+  id = "";
+  @Input()
+  isEnding = false;
+  @Input()
+  name = "";
+  @Input()
+  quantity = new Decimal(0);
+  @Input()
+  perSec = new Decimal(0);
   formatSub: any;
 
   constructor(public ms: MainService, private cd: ChangeDetectorRef) {

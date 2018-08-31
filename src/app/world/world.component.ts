@@ -6,13 +6,13 @@ import {
 } from "@angular/core";
 import { MainService } from "../main.service";
 import { BaseUnit } from "../model/baseUnit";
+import { BugTypes } from "../model/bugsTypes";
 import { FullUnit } from "../model/full-unit";
 import { Malus } from "../model/malus";
 import { Price } from "../model/price";
 import { Research } from "../model/research";
 import { STRINGS } from "../model/strings";
 import { World } from "../model/world";
-import { BugTypes } from "../model/bugsTypes";
 
 @Component({
   selector: "app-world",

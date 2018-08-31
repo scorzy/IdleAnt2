@@ -3,7 +3,6 @@ import { CONSTS } from "../CONSTATS";
 import { FullUnit } from "../full-unit";
 import { Game } from "../game";
 import { Price } from "../price";
-import { Research } from "../research";
 import { UnitGroup } from "../unit-group";
 
 export class Gatherers extends UnitGroup {

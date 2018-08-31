@@ -15,7 +15,8 @@ import { ProductionBonus } from "../model/production-bonus";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductionSignpostsComponent implements OnInit {
-  @Input() production: Production;
+  @Input()
+  production: Production;
   open = false;
 
   productionsAll = new Array<ProductionBonus>();

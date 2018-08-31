@@ -1,10 +1,7 @@
-import { EventEmitter, ReflectiveInjector } from "@angular/core";
-import { ToastrService } from "ngx-toastr";
-import { EndInPipe } from "../end-in.pipe";
-import { FormatPipe } from "../format.pipe";
+import { MainService } from "../main.service";
 import { WarpAction } from "./actions/warp-action";
 import { AutoBuyManager } from "./autoBuy/auto-buy-manager";
-import { Bug, BugTypes } from "./bugsTypes";
+import { BugTypes } from "./bugsTypes";
 import { CONSTS } from "./CONSTATS";
 import { FullUnit } from "./full-unit";
 import { Malus } from "./malus";
@@ -86,21 +83,14 @@ export class Game {
   allMateries: AllMasteries;
   maxTimeBank = new Decimal(0);
 
-  constructor(
-    public updateEmitter: EventEmitter<number>,
-    public researchEmitter: EventEmitter<string>,
-    public unlockGroupEmiter: EventEmitter<number>,
-    private toastr: ToastrService,
-    public formatPipe: FormatPipe,
-    public endInPipe: EndInPipe
-  ) {
+  constructor(public ms: MainService) {
     this.tabs = new Tabs();
 
     //#region Declarations
     this.materials = new Materials(this);
     this.unitGroups.push(this.materials);
 
-    this.researches = new Researches(this.researchEmitter, this);
+    this.researches = new Researches(this.ms.researchEmitter, this);
 
     this.ants = new Ants(this);
     this.unitGroups.push(this.ants);
@@ -283,7 +273,7 @@ export class Game {
     const oldNum = this.unlockedGroups.length;
     this.unlockedGroups = this.unitGroups.filter(g => g.unlocked.length > 0);
     if (oldNum !== this.unlockedGroups.length) {
-      this.unlockGroupEmiter.emit(this.unlockedGroups.length);
+      this.ms.unlockGroupEmiter.emit(this.unlockedGroups.length);
     }
   }
   setMaxTimeBank() {
@@ -411,10 +401,10 @@ export class Game {
         //  Kill Malus
         if (unitZero instanceof Malus) {
           if (unitZero.kill()) {
-            this.toastr.success("", unitZero.name + " killed!");
+            this.ms.toastr.success("", unitZero.name + " killed!");
           }
         } else {
-          this.toastr.warning(unitZero.name + " ended!");
+          this.ms.toastr.warning(unitZero.name + " ended!");
         }
       }
 
@@ -479,7 +469,7 @@ export class Game {
    */
   warp(delta: number) {
     if (delta > 0) {
-      this.toastr.info(this.endInPipe.transform(delta), "Time Warp");
+      this.ms.toastr.info(this.ms.endInPipe.transform(delta), "Time Warp");
       this.update(delta, true);
       this.autoBuyManager.update(delta);
     }

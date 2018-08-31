@@ -1,9 +1,7 @@
-import { EventEmitter } from "@angular/core";
+import { getGame } from "../app.component.spec";
 import { FullUnit } from "./full-unit";
-import { Game } from "./game";
 import { Malus } from "./malus";
 import { Price } from "./price";
-import { Research } from "./research";
 import { World } from "./world";
 
 describe("World", () => {
@@ -11,28 +9,14 @@ describe("World", () => {
     expect(new World()).toBeTruthy();
   });
   it("FindBonus", () => {
-    const game = new Game(
-      new EventEmitter<number>(),
-      new EventEmitter<string>(),
-      new EventEmitter<number>(),
-      null,
-      null,
-      null
-    );
+    const game = getGame();
     const world1 = new World();
     expect(world1.findBonus(game.worldBonus.crystalBonus.id, game).id).toBe(
       game.worldBonus.crystalBonus.id
     );
   });
   it("Save and Load", () => {
-    const game = new Game(
-      new EventEmitter<number>(),
-      new EventEmitter<string>(),
-      new EventEmitter<number>(),
-      null,
-      null,
-      null
-    );
+    const game = getGame();
     const world1 = new World();
     const world2 = new World();
 

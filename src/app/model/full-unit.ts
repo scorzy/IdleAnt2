@@ -3,16 +3,14 @@ import { Action } from "./action";
 import { BuyAction } from "./actions/buy-action";
 import { TeamAction } from "./actions/team-action";
 import { TwinAction } from "./actions/twin-action";
-import { AutoBuy } from "./autoBuy/auto-buy";
 import { BaseUnit } from "./baseUnit";
-import { Bug, BUGS, BugTypes } from "./bugsTypes";
+import { BUGS, BugTypes } from "./bugsTypes";
 import { IUnlocable } from "./iunlocable";
 import { Malus } from "./malus";
 import { Prestige } from "./prestige/prestige";
 import { Price } from "./price";
 import { Production } from "./production";
 import { ProductionBonus } from "./production-bonus";
-import { Research } from "./research";
 
 export class FullUnit extends BaseUnit implements IUnlocable {
   unlocked = false;

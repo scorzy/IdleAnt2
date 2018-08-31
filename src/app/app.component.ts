@@ -1,7 +1,5 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Component } from "@angular/core";
 import { MainService } from "./main.service";
-import { World } from "./model/world";
 
 // import { ClarityIcons } from "@clr/icons";
 import { ClarityIcons } from "@clr/icons";
@@ -26,7 +24,6 @@ import { ClrShapePause } from "@clr/icons/shapes/media-shapes";
 import { ClrShapeStar } from "@clr/icons/shapes/social-shapes";
 import {
   ClrShapeDashboard,
-  ClrShapeFlask,
   ClrShapeFloppy,
   ClrShapeInstall,
   ClrShapeUninstall

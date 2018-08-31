@@ -7,8 +7,7 @@ import {
   OnInit,
   ViewChild
 } from "@angular/core";
-import { Data, Network } from "vis";
-import { ChangeWorldComponent } from "../change-world/change-world.component";
+import { Network } from "vis";
 import { MainService } from "../main.service";
 import { Mastery, MasteryTypes } from "../model/masteries/mastery";
 
@@ -22,7 +21,8 @@ import { Mastery, MasteryTypes } from "../model/masteries/mastery";
   }
 })
 export class MasteryComponent implements AfterViewInit, OnInit {
-  @ViewChild("network") networkDiv: ElementRef;
+  @ViewChild("network")
+  networkDiv: ElementRef;
   networkVis: any; // Network;
   list = new Array<string>();
   node: any;

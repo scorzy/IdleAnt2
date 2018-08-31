@@ -7,7 +7,6 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { ClarityModule } from "@clr/angular";
 import { ToastrModule } from "ngx-toastr";
 import { FormatPipe } from "../format.pipe";
-import { FullUnit } from "../model/full-unit";
 import { Prestige } from "../model/prestige/prestige";
 import { PrestigeBuyComponent } from "./prestige-buy.component";
 

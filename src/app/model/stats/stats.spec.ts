@@ -1,4 +1,3 @@
-import { stat } from "fs";
 import { World } from "../world";
 import { Run } from "./run";
 import { Stats } from "./stats";
@@ -12,7 +11,6 @@ describe("Stats", () => {
     expect(new Stats()).toBeTruthy();
   });
   it("Save", () => {
-    const stats = new Stats();
     stats.completedWorld = new Decimal(12);
     stats.totalExperience = new Decimal(100);
     stats.worldStartDate = new Date();

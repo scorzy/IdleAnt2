@@ -37,7 +37,8 @@ export class UnitGroupComponent implements OnInit, OnDestroy, OnChanges {
 
   selected = new Array<FullUnit>();
 
-  @Input() unitGroup: UnitGroup;
+  @Input()
+  unitGroup: UnitGroup;
 
   unitsSpan = "";
   hatchActionGrp: ActionGroup;
@@ -56,8 +57,10 @@ export class UnitGroupComponent implements OnInit, OnDestroy, OnChanges {
 
   operativity = 100;
 
-  @ViewChild("chart") chartRef: ElementRef;
-  @ViewChild("pieContainer") pieContainerRef: ElementRef;
+  @ViewChild("chart")
+  chartRef: ElementRef;
+  @ViewChild("pieContainer")
+  pieContainerRef: ElementRef;
   chart: any;
 
   constructor(

@@ -2,8 +2,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import {
   ChangeDetectorRef,
-  CUSTOM_ELEMENTS_SCHEMA,
-  EventEmitter
+  CUSTOM_ELEMENTS_SCHEMA
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -15,13 +14,6 @@ import { of } from "rxjs/internal/observable/of";
 import { EndInPipe } from "../../end-in.pipe";
 import { FormatPipe } from "../../format.pipe";
 import { MainService } from "../../main.service";
-import { Game } from "../../model/game";
-import {
-  UnitBoughtSorter,
-  UnitQuantitySorter,
-  UnitTeamSorter,
-  UnitTwinSorter
-} from "../../model/utility";
 import { OptionsService } from "../../options.service";
 import { UnitGroupComponent } from "./unit-group.component";
 

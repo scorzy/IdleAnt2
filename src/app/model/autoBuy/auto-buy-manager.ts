@@ -1,7 +1,7 @@
 import { BuyResearch } from "../actions/buy-research";
 import { FullUnit } from "../full-unit";
 import { Game } from "../game";
-import { AutoBuy, MIN_DELAY } from "./auto-buy";
+import { AutoBuy } from "./auto-buy";
 
 export class AutoBuyManager {
   allAutoBuyer = new Array<AutoBuy>();

@@ -4,7 +4,6 @@ import * as distanceInWordsToNow from "date-fns/distance_in_words_to_now";
 import * as LZString from "lz-string";
 import { ToastrService } from "ngx-toastr";
 import { EndInPipe } from "./end-in.pipe";
-import { FormatPipe } from "./format.pipe";
 import { Game } from "./model/game";
 import { MasteryTypes } from "./model/masteries/mastery";
 import { World } from "./model/world";
@@ -27,6 +26,8 @@ export class MainService {
   unlockGroupEmiter: EventEmitter<number> = new EventEmitter<number>();
   efficiencyEmitter: EventEmitter<number> = new EventEmitter<number>();
 
+  endInPipe: EndInPipe;
+
   themeClarity: HTMLLinkElement;
   // themePrime: HTMLLinkElement;
   themeMy: HTMLLinkElement;
@@ -39,9 +40,11 @@ export class MainService {
 
   constructor(
     public options: OptionsService,
-    private toastr: ToastrService,
+    public toastr: ToastrService,
     @Inject(DOCUMENT) private document: Document
   ) {
+    this.endInPipe = new EndInPipe(this.options);
+
     this.themeClarity = this.document.createElement("link");
     this.themeClarity.rel = "stylesheet";
     this.themeClarity.type = "text/css";
@@ -54,14 +57,7 @@ export class MainService {
 
     this.setTheme();
 
-    this.game = new Game(
-      this.updateEmitter,
-      this.researchEmitter,
-      this.unlockGroupEmiter,
-      this.toastr,
-      new FormatPipe(this.options),
-      new EndInPipe(this.options)
-    );
+    this.game = new Game(this);
     this.last = Date.now();
     setInterval(this.update.bind(this), 250);
 
@@ -147,14 +143,7 @@ export class MainService {
         return false;
       }
       this.game = null;
-      this.game = new Game(
-        this.updateEmitter,
-        this.researchEmitter,
-        this.unlockGroupEmiter,
-        this.toastr,
-        new FormatPipe(this.options),
-        new EndInPipe(this.options)
-      );
+      this.game = new Game(this);
       if (!!data.o) this.options.restore(data.o);
       this.setTheme();
       this.last = data.time;

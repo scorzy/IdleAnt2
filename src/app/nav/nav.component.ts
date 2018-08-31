@@ -7,7 +7,6 @@ import {
 import { MainService } from "../main.service";
 import { BaseUnit } from "../model/baseUnit";
 import { FullUnit } from "../model/full-unit";
-import { Game } from "../model/game";
 import { Malus } from "../model/malus";
 import { UnitGroup } from "../model/unit-group";
 

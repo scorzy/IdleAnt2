@@ -1,7 +1,6 @@
 import { Routes } from "@angular/router";
 import { AutoBuyTabComponent } from "./auto-buy-tab/auto-buy-tab.component";
 import { GroupTabsComponent } from "./group-tabs/group-tabs.component";
-import { UnitGroupComponent } from "./group-tabs/unit-group/unit-group.component";
 import { HomeComponent } from "./home/home.component";
 import { LaboratoryComponent } from "./laboratory/laboratory.component";
 import { MasteryComponent } from "./mastery/mastery.component";

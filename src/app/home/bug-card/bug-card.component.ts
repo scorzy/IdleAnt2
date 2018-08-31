@@ -7,7 +7,7 @@ import {
   ViewChild
 } from "@angular/core";
 import { MainService } from "../../main.service";
-import { Bug, BUGS, BugTypes } from "../../model/bugsTypes";
+import { BUGS, BugTypes } from "../../model/bugsTypes";
 import { STRINGS } from "../../model/strings";
 declare let Chart;
 

@@ -19,9 +19,12 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PolynomComponent implements OnInit {
-  @Input() a: Decimal;
-  @Input() b: Decimal;
-  @Input() c: Decimal;
+  @Input()
+  a: Decimal;
+  @Input()
+  b: Decimal;
+  @Input()
+  c: Decimal;
 
   constructor() {
     //Nothing

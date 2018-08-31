@@ -1,17 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit
-} from "@angular/core";
-import { MainService } from "../main.service";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { Action } from "../model/action";
-import { TeamAction } from "../model/actions/team-action";
-import { TwinAction } from "../model/actions/twin-action";
-import { Prestige } from "../model/prestige/prestige";
-import { Price } from "../model/price";
 
 @Component({
   selector: "app-action",
@@ -20,7 +8,8 @@ import { Price } from "../model/price";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ActionComponent {
-  @Input() action: Action;
+  @Input()
+  action: Action;
 
   constructor() {
     //Nothing

@@ -12,28 +12,19 @@ describe("MainService", () => {
     });
   });
 
-  it(
-    "should be created",
-    inject([MainService], (service: MainService) => {
-      expect(service).toBeTruthy();
-    })
-  );
+  it("should be created", inject([MainService], (service: MainService) => {
+    expect(service).toBeTruthy();
+  }));
 
-  it(
-    "load error",
-    inject([MainService], (service: MainService) => {
-      localStorage.clear();
-      const ret = service.load();
-      expect(ret).toBeFalsy();
-    })
-  );
+  it("load error", inject([MainService], (service: MainService) => {
+    localStorage.clear();
+    const ret = service.load();
+    expect(ret).toBeFalsy();
+  }));
 
-  it(
-    "save and load",
-    inject([MainService], (service: MainService) => {
-      service.save();
-      const ret = service.load();
-      expect(ret).toBeTruthy();
-    })
-  );
+  it("save and load", inject([MainService], (service: MainService) => {
+    service.save();
+    const ret = service.load();
+    expect(ret).toBeTruthy();
+  }));
 });
