@@ -24,8 +24,8 @@ header .branding > a,
 header .branding > .nav-link,
 .header .branding > a,
 .header .branding > .nav-link {
-  line-height: $height;
   height: $height;
+  line-height: $height;
 }
 header .branding .title,
 .header .branding .title {
@@ -76,16 +76,18 @@ header .divider,
 .header .divider {
   height: $height;
 }
+
 .actMinH {
   min-height: 8.5rem;
 }
+
 .multiBuy {
-  border: none;
   background: none;
+  border: 0;
   color: #fafafa;
+  max-width: 2.5rem;
   padding: 0;
   vertical-align: middle;
-  max-width: 2.5rem;
 }
 
 #multiLabel:before {

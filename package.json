@@ -7,13 +7,15 @@
     "start-prod": "npm run make-themes && ng serve --open --prod",
     "build": "npm run make-themes && ng build --prod --aot --build-optimizer --base-href ./",
     "test": "ng test --code-coverage",
-    "lint": "ng lint",
+    "lint": "ng lint && sass-lint -v",
     "e2e": "ng e2e",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
-    "lint-fix": "ng lint IdleAnt2 --fix",
+    "lint:fix": "ng lint IdleAnt2 --fix && sass-lint:fix",
     "make-themes": "node-sass ./src/themes --output ./src/assets --output-style compact",
-    "analyze": "ng build --prod --stats-json --build-optimizer=false && webpack-bundle-analyzer dist/IdleAnt2/stats.json"
+    "analyze": "ng build --prod --stats-json --build-optimizer=false && webpack-bundle-analyzer dist/IdleAnt2/stats.json",
+    "sass-lint": "sass-lint -v",
+    "sass-lint:fix": "sass-lint-auto-fix"
   },
   "husky": {
     "hooks": {
@@ -24,7 +26,8 @@
     "*.{js,json,css,md,.ts}": [
       "prettier --write",
       "git add"
-    ]
+    ],
+    "*.scss":["npm run sass-lint:fix","git add"]
   },
   "private": true,
   "dependencies": {
@@ -81,6 +84,8 @@
     "karma-spec-reporter": "0.0.32",
     "prettier": "^1.14.2",
     "protractor": "~5.4.0",
+    "sass-lint": "^1.12.1",
+    "sass-lint-auto-fix": "^0.11.5",
     "ts-node": "^7.0.1",
     "tslint": "~5.11.0",
     "tslint-config-prettier": "^1.15.0",

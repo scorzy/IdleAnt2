@@ -2,14 +2,17 @@
 html {
   font-size: 24px;
 }
+
 ::-webkit-scrollbar {
-  width: 0.2rem;
   height: 0.2rem;
+  width: 0.2rem;
 }
+
 ::-webkit-scrollbar-button {
-  width: 0;
   height: 0;
+  width: 0;
 }
+
 ::-webkit-scrollbar-thumb {
   border-radius: 0.2rem;
 }
@@ -18,9 +21,11 @@ html {
 .ui-slider {
   background-color: transparent !important;
 }
+
 .ui-widget-content {
   border-radius: 0.125rem !important;
 }
+
 .ui-slider-range {
   border-radius: 0.08rem !important;
   height: 101% !important;

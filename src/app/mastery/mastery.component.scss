@@ -2,14 +2,16 @@
   height: 100%;
   width: 100%;
 }
+
 .clr-vertical-nav {
   width: 15rem;
 }
+
 .btn {
-  margin: 0;
   color: #007cbb;
   margin: 1rem;
 }
+
 .clr-vertical-nav.is-collapsed .btn {
   display: none;
 }

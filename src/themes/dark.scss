@@ -1,18 +1,23 @@
 ::-webkit-scrollbar-thumb {
   background: rgb(50, 79, 97);
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(64, 107, 134);
 }
+
 ::-webkit-scrollbar-thumb:active {
   background: #49afd9;
 }
+
 ::-webkit-scrollbar-track {
   background: rgb(15, 23, 28);
 }
+
 ::-webkit-scrollbar-track:hover {
   background: rgb(15, 23, 28);
 }
+
 ::-webkit-scrollbar-track:active {
   background: rgb(15, 23, 28);
 }
@@ -20,6 +25,7 @@
   background: #1b2a32;
   color: #e9ecef;
 }
+
 .ui-widget-content {
   border: 1px solid #49afd9 !important;
 }

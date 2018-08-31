@@ -2,14 +2,16 @@
   line-height: 0.8rem;
 }
 :host /deep/ .matTab {
-  width: 100%;
   max-width: 200px;
   min-width: 130px;
   text-align: left;
+  width: 100%;
 }
+
 ul {
   min-height: fit-content;
 }
+
 li {
   padding-left: 1rem;
 }
