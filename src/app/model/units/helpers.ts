@@ -16,7 +16,7 @@ export class Helpers extends UnitGroup {
     super("Heplers", game);
   }
   declareStuff(): void {
-    this.leafCutter = new Helper("lf");
+    this.leafCutter = new Helper("lf", 0.1);
 
     this.addUnits([this.leafCutter]);
     this.majorHelperRes = new Research("sm", this.game.researches);
@@ -30,11 +30,8 @@ export class Helpers extends UnitGroup {
     this.game.addTwinAction(this.leafCutter, CONSTS.TWIN_PRICE_1);
     this.game.materials.food.addProducer(this.leafCutter, CONSTS.CONSUME_1);
     this.game.materials.soil.addProducer(this.leafCutter, CONSTS.CONSUME_1);
-    const leafBon = new ProductionBonus(this.leafCutter, new Decimal(0.1));
-    leafBon.getMultiplier = () => {
-      return new Decimal(this.leafCutter.efficiency / 100);
-    };
-    this.game.materials.food.productionsBonus.push(leafBon);
+
+    this.game.materials.food.productionsBonus.push(this.leafCutter.helpBonus);
 
     this.leafCutter.setBugType(BugTypes.SUPER_MAJOR);
 
