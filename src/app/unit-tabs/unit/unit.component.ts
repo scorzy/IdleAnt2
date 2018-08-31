@@ -7,7 +7,6 @@ import {
   OnDestroy,
   OnInit
 } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import { MainService } from "../../main.service";
 import { Action } from "../../model/action";
 import { FullUnit } from "../../model/full-unit";
@@ -39,11 +38,7 @@ export class UnitComponent implements OnInit, OnDestroy, OnChanges {
   autoBuyModal = false;
   madeChart = false;
 
-  constructor(
-    public ms: MainService,
-    private route: ActivatedRoute,
-    private cd: ChangeDetectorRef
-  ) {
+  constructor(public ms: MainService, private cd: ChangeDetectorRef) {
     this.ms.lastTab = 0;
   }
 

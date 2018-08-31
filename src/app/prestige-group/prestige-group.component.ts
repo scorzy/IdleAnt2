@@ -1,6 +1,5 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   OnDestroy,
   OnInit
@@ -23,11 +22,7 @@ export class PrestigeGroupComponent implements OnInit, OnDestroy {
   paramsSub: any;
   prestigeGroup: PrestigeGroup;
 
-  constructor(
-    public ms: MainService,
-    private route: ActivatedRoute,
-    private cd: ChangeDetectorRef
-  ) {}
+  constructor(public ms: MainService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.paramsSub = this.route.params.subscribe(this.getGroup.bind(this));

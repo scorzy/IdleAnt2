@@ -1,9 +1,6 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import {
-  ChangeDetectorRef,
-  CUSTOM_ELEMENTS_SCHEMA
-} from "@angular/core";
+import { ChangeDetectorRef, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ActivatedRoute } from "@angular/router";

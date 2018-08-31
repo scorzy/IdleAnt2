@@ -1,14 +1,9 @@
-
-import { EventEmitter } from "@angular/core";
 import uniq from "lodash-es/uniq";
 import { getGame } from "../app.component.spec";
 import { FullUnit } from "./full-unit";
 import { Game } from "./game";
 
 describe("Game", () => {
-  const updateEmitter = new EventEmitter<number>();
-  const researchEmitter = new EventEmitter<string>();
-  const unlockGroupEmiter = new EventEmitter<number>();
   let game: Game;
 
   beforeEach(() => {

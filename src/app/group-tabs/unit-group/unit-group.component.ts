@@ -10,7 +10,6 @@ import {
   SimpleChanges,
   ViewChild
 } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import { MainService } from "../../main.service";
 import { ActionGroup } from "../../model/actions/action-group";
 import { CONSTS } from "../../model/CONSTATS";
@@ -63,11 +62,7 @@ export class UnitGroupComponent implements OnInit, OnDestroy, OnChanges {
   pieContainerRef: ElementRef;
   chart: any;
 
-  constructor(
-    public ms: MainService,
-    private route: ActivatedRoute,
-    private cd: ChangeDetectorRef
-  ) {}
+  constructor(public ms: MainService, private cd: ChangeDetectorRef) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.getGroup();
   }

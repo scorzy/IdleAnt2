@@ -1,12 +1,10 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   Input,
   OnChanges,
   SimpleChanges
 } from "@angular/core";
-import { MainService } from "../../main.service";
 import { Action } from "../../model/action";
 import { TeamAction } from "../../model/actions/team-action";
 import { TwinAction } from "../../model/actions/twin-action";
@@ -24,7 +22,7 @@ export class ActionHeaderComponent implements OnChanges {
   quantity: Decimal;
   shape: string;
 
-  constructor(private ms: MainService, private cd: ChangeDetectorRef) {
+  constructor() {
     //
   }
 
