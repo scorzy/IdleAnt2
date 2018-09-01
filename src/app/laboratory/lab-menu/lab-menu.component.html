@@ -1,17 +1,31 @@
 <clr-dropdown>
-  <button type="button" class="btn btn-outline-primary btn-link" clrDropdownTrigger>
+  <button type="button"
+          class="btn btn-outline-primary btn-link"
+          clrDropdownTrigger>
     Laboratory
     <clr-icon shape="caret down"></clr-icon>
   </button>
   <clr-dropdown-menu *clrIfOpen>
     <label class="dropdown-header">Buy one</label>
-    <button type="button" clrDropdownItem (click)="buy1()">Buy less expensive</button>
-    <button type="button" clrDropdownItem (click)="buy1(false)">Buy less expensive (no repeating)</button>
+    <button type="button"
+            clrDropdownItem
+            (click)="buy1()">Buy less expensive</button>
+    <button type="button"
+            clrDropdownItem
+            (click)="buy1(false)">Buy less expensive (no repeating)</button>
     <div class="dropdown-divider"></div>
     <label class="dropdown-header">Max Buy</label>
-    <button type="button" clrDropdownItem (click)="buyMulti()">Max Buy</button>
-    <button type="button" clrDropdownItem (click)="buyMulti(false)">Max Buy (no repeating)</button>
-    <button type="button" clrDropdownItem (click)="buyMultiR()">Max Buy Recursive</button>
-    <button type="button" clrDropdownItem (click)="buyMultiR(false)">Max Buy Recursive (no repeating)</button>
+    <button type="button"
+            clrDropdownItem
+            (click)="buyMulti()">Max Buy</button>
+    <button type="button"
+            clrDropdownItem
+            (click)="buyMulti(false)">Max Buy (no repeating)</button>
+    <button type="button"
+            clrDropdownItem
+            (click)="buyMultiR()">Max Buy Recursive</button>
+    <button type="button"
+            clrDropdownItem
+            (click)="buyMultiR(false)">Max Buy Recursive (no repeating)</button>
   </clr-dropdown-menu>
 </clr-dropdown>

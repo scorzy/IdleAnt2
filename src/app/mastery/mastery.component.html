@@ -1,29 +1,39 @@
 <div class="content-area">
-  <div id="network" #network></div>
+  <div id="network"
+       #network></div>
 </div>
-<clr-vertical-nav [clrVerticalNavCollapsible]="true" class="nav-trigger--bottom">
+<clr-vertical-nav [clrVerticalNavCollapsible]="true"
+                  class="nav-trigger--bottom">
 
   <a clrVerticalNavLink>
     <h6>Mastery
-      <span class="monospace" *ngIf="ms.game.allMateries.masteryPoint > 0">{{ms.game.allMateries.masteryPoint}}</span>
+      <span class="monospace"
+            *ngIf="ms.game.allMateries.masteryPoint > 0">{{ms.game.allMateries.masteryPoint}}</span>
     </h6>
   </a>
   <div *ngIf="!node; else buy">
-    <a clrVerticalNavLink *ngFor="let desc of list; trackBy:getDescId">
+    <a clrVerticalNavLink
+       *ngFor="let desc of list; trackBy:getDescId">
       {{desc}}
     </a>
   </div>
   <ng-template #buy>
     <p clrVerticalNavLink>{{node.label}}</p>
-    <button class="btn" *ngIf="node.avaiable && !node.owned" [disabled]="ms.game.allMateries.masteryPoint <1" (click)="buyMastery()">
+    <button class="btn"
+            *ngIf="node.avaiable && !node.owned"
+            [disabled]="ms.game.allMateries.masteryPoint <1"
+            (click)="buyMastery()">
       Buy
     </button>
   </ng-template>
 
   <!-- Debug Stuff -->
-  <button class="btn" (click)="export()">
+  <button class="btn"
+          (click)="export()">
     Export positions
   </button>
-  <textarea name="raw" [(ngModel)]="exp" rows="1"></textarea>
+  <textarea name="raw"
+            [(ngModel)]="exp"
+            rows="1"></textarea>
 
 </clr-vertical-nav>

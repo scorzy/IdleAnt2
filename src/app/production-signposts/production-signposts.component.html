@@ -1,5 +1,6 @@
 <clr-signpost>
-  <clr-signpost-content *clrIfOpen="open" [clrPosition]="'left-middle'">
+  <clr-signpost-content *clrIfOpen="open"
+                        [clrPosition]="'left-middle'">
     <h3>{{production.product.name}}:</h3>
     <ul class="list">
       <li [class.noEnought]="production.rateo.lt(0)">

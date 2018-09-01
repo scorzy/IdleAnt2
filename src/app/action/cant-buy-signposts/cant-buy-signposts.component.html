@@ -6,8 +6,10 @@
     <div *ngFor="let cost of action.prices; trackBy getPriceId">
       <h6>{{cost.base.name}} {{getVal(cost)}}% </h6>
       <span *ngIf="!cost.canBuy">Avaiable in {{cost.avIn.times(1000).toNumber() | endIn}}</span>
-      <div class="progress-static danger" [ngClass]="{'success': cost.canBuy, 'danger': !cost.canBuy}">
-        <div class="progress-meter" [attr.data-value]="getVal(cost)"></div>
+      <div class="progress-static danger"
+           [ngClass]="{'success': cost.canBuy, 'danger': !cost.canBuy}">
+        <div class="progress-meter"
+             [attr.data-value]="getVal(cost)"></div>
       </div>
     </div>
 

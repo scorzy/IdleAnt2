@@ -1,8 +1,6 @@
 <h6>
-    <clr-icon
-        *ngIf="shape"
-        [attr.shape]="shape"
-    ></clr-icon>
-    {{action.name}}
-    <span *ngIf="action.limit.gte(2)">({{quantity | format: true}})</span>
+  <clr-icon *ngIf="shape"
+            [attr.shape]="shape"></clr-icon>
+  {{action.name}}
+  <span *ngIf="action.limit.gte(2)">({{quantity | format: true}})</span>
 </h6>

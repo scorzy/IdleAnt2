@@ -1,37 +1,61 @@
-<clr-header class="header" [ngClass]="headerClass">
+<clr-header class="header"
+            [ngClass]="headerClass">
 
-  <div class="header-nav" [clr-nav-level]="1">
-    <a [routerLink]='"nav"' class="nav-link" [routerLinkActive]="'active'" (click)="navigateLast()">
+  <div class="header-nav"
+       [clr-nav-level]="1">
+    <a [routerLink]='"nav"'
+       class="nav-link"
+       [routerLinkActive]="'active'"
+       (click)="navigateLast()">
       <span class="nav-text">
         <clr-icon shape="bug"></clr-icon>
       </span>
     </a>
-    <a [routerLink]='"lab"' class="nav-link" *ngIf="lab" [routerLinkActive]="'active'">
+    <a [routerLink]='"lab"'
+       class="nav-link"
+       *ngIf="lab"
+       [routerLinkActive]="'active'">
       <span class="nav-text">
-        <clr-icon shape="lightbulb" [ngClass]="{'has-badge': labBadge}"></clr-icon>
+        <clr-icon shape="lightbulb"
+                  [ngClass]="{'has-badge': labBadge}"></clr-icon>
       </span>
     </a>
-    <a [routerLink]='"home"' class="nav-link" [routerLinkActive]="'active'">
+    <a [routerLink]='"home"'
+       class="nav-link"
+       [routerLinkActive]="'active'">
       <span class="nav-text">
         <clr-icon shape="dashboard"></clr-icon>
       </span>
     </a>
-    <a [routerLink]='"travel"' class="nav-link" *ngIf="travel" [routerLinkActive]="'active'">
+    <a [routerLink]='"travel"'
+       class="nav-link"
+       *ngIf="travel"
+       [routerLinkActive]="'active'">
       <span class="nav-text">
-        <clr-icon shape="world" [ngClass]="{'has-badge': travelBadge}"></clr-icon>
+        <clr-icon shape="world"
+                  [ngClass]="{'has-badge': travelBadge}"></clr-icon>
       </span>
     </a>
-    <a [routerLink]='"auto"' class="nav-link" *ngIf="autoBuy" [routerLinkActive]="'active'">
+    <a [routerLink]='"auto"'
+       class="nav-link"
+       *ngIf="autoBuy"
+       [routerLinkActive]="'active'">
       <span class="nav-text">
         <clr-icon shape="star"></clr-icon>
       </span>
     </a>
-    <a [routerLink]='"pre"' class="nav-link" *ngIf="prestige" [routerLinkActive]="'active'">
+    <a [routerLink]='"pre"'
+       class="nav-link"
+       *ngIf="prestige"
+       [routerLinkActive]="'active'">
       <span class="nav-text">
         <clr-icon shape="store"></clr-icon>
       </span>
     </a>
-    <a [routerLink]='"mast"' class="nav-link" *ngIf="mastery" [routerLinkActive]="'active'">
+    <a [routerLink]='"mast"'
+       class="nav-link"
+       *ngIf="mastery"
+       [routerLinkActive]="'active'">
       <span class="nav-text">
         <clr-icon shape="star"></clr-icon>
       </span>
@@ -41,50 +65,89 @@
   <div class="header-actions">
 
     <form class="search">
-      <label id="multiLabel" for="multi">N:&nbsp;</label>
-      <input class="multiBuy" min="1" id="multi" type="number" name="buyMulti" placeholder="Buy multiplier" [(ngModel)]="buyMulti">
+      <label id="multiLabel"
+             for="multi">N:&nbsp;</label>
+      <input class="multiBuy"
+             min="1"
+             id="multi"
+             type="number"
+             name="buyMulti"
+             placeholder="Buy multiplier"
+             [(ngModel)]="buyMulti">
     </form>
 
     <clr-dropdown>
-      <button class="nav-icon" clrDropdownTrigger>
+      <button class="nav-icon"
+              clrDropdownTrigger>
         <clr-icon shape="tools"></clr-icon>
         <clr-icon shape="caret down"></clr-icon>
       </button>
-      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+      <clr-dropdown-menu *clrIfOpen
+                         clrPosition="bottom-right">
 
         <clr-dropdown *ngIf="ms.game.allPrestige.time.timeProducer.quantity.gt(0)">
-          <button type="button" clrDropdownTrigger>Time Warp</button>
+          <button type="button"
+                  clrDropdownTrigger>Time Warp</button>
           <clr-dropdown-menu clrPosition="left-top">
-            <a clrDropdownItem (click)="warp(p)" *ngFor="let p of minuteWarps" [ngClass]="{'disabled': !warpAv(p)}">
+            <a clrDropdownItem
+               (click)="warp(p)"
+               *ngFor="let p of minuteWarps"
+               [ngClass]="{'disabled': !warpAv(p)}">
               Warp {{p}} minutes
             </a>
           </clr-dropdown-menu>
         </clr-dropdown>
 
-        <a clrDropdownItem (click)="all100()">All 100%</a>
+        <a clrDropdownItem
+           (click)="all100()">All 100%</a>
 
         <clr-dropdown *ngFor="let list of groupNoEnemy; trackBy:getListId">
-          <button type="button" clrDropdownTrigger>{{list.name}}</button>
-          <clr-dropdown-menu clrPosition="left-top" *clrIfOpen>
-            <a clrDropdownItem (click)="list.buyN(buyMulti)">Buy n</a>
-            <a clrDropdownItem (click)="list.buyTeam(buyMulti)" *ngIf="ms.game.researches.team2.done">Team n</a>
-            <a clrDropdownItem (click)="list.buyTwins(buyMulti)" *ngIf="ms.game.researches.twin.done">Twins n</a>
+          <button type="button"
+                  clrDropdownTrigger>{{list.name}}</button>
+          <clr-dropdown-menu clrPosition="left-top"
+                             *clrIfOpen>
+            <a clrDropdownItem
+               (click)="list.buyN(buyMulti)">Buy n</a>
+            <a clrDropdownItem
+               (click)="list.buyTeam(buyMulti)"
+               *ngIf="ms.game.researches.team2.done">Team n</a>
+            <a clrDropdownItem
+               (click)="list.buyTwins(buyMulti)"
+               *ngIf="ms.game.researches.twin.done">Twins n</a>
             <div class="dropdown-divider"></div>
             <clr-dropdown *ngIf="ms.game.tabs.autoBuy.unlocked && list.hasAutoBuy()">
-              <button type="button" clrDropdownTrigger>AutoBuyer</button>
+              <button type="button"
+                      clrDropdownTrigger>AutoBuyer</button>
               <clr-dropdown-menu *clrIfOpen>
-                <a clrDropdownItem (click)="list.autoBuy(true)">All ON</a>
-                <a clrDropdownItem (click)="list.autoBuy(false)">All OFF</a>
-                <a clrDropdownItem *ngIf="list.hasAutoBuyBuy()" (click)="list.autoBuyBuy(true)">Hatch ON</a>
-                <a clrDropdownItem *ngIf="list.hasAutoBuyBuy()" (click)="list.autoBuyBuy(false)">Hatch OFF</a>
-                <a clrDropdownItem *ngIf="list.hasAutoBuyTeam()" (click)="list.autoBuyTeam(true)">Team ON</a>
-                <a clrDropdownItem *ngIf="list.hasAutoBuyTeam()" (click)="list.autoBuyTeam(false)">Team OFF</a>
-                <a clrDropdownItem *ngIf="list.hasAutoBuyTwin()" (click)="list.autoBuyTwin(true)">Twin ON</a>
-                <a clrDropdownItem *ngIf="list.hasAutoBuyTwin()" (click)="list.autoBuyTwin(false)">Twin OFF</a>
+                <a clrDropdownItem
+                   (click)="list.autoBuy(true)">All ON</a>
+                <a clrDropdownItem
+                   (click)="list.autoBuy(false)">All OFF</a>
+                <a clrDropdownItem
+                   *ngIf="list.hasAutoBuyBuy()"
+                   (click)="list.autoBuyBuy(true)">Hatch ON</a>
+                <a clrDropdownItem
+                   *ngIf="list.hasAutoBuyBuy()"
+                   (click)="list.autoBuyBuy(false)">Hatch OFF</a>
+                <a clrDropdownItem
+                   *ngIf="list.hasAutoBuyTeam()"
+                   (click)="list.autoBuyTeam(true)">Team ON</a>
+                <a clrDropdownItem
+                   *ngIf="list.hasAutoBuyTeam()"
+                   (click)="list.autoBuyTeam(false)">Team OFF</a>
+                <a clrDropdownItem
+                   *ngIf="list.hasAutoBuyTwin()"
+                   (click)="list.autoBuyTwin(true)">Twin ON</a>
+                <a clrDropdownItem
+                   *ngIf="list.hasAutoBuyTwin()"
+                   (click)="list.autoBuyTwin(false)">Twin OFF</a>
               </clr-dropdown-menu>
             </clr-dropdown>
-            <div class="dropdown-divider" *ngIf="ms.game.tabs.autoBuy.unlocked && list.hasAutoBuy()"></div>
-            <a clrDropdownItem (click)="allCustom(p, list)" *ngFor="let p of percentPreset">
+            <div class="dropdown-divider"
+                 *ngIf="ms.game.tabs.autoBuy.unlocked && list.hasAutoBuy()"></div>
+            <a clrDropdownItem
+               (click)="allCustom(p, list)"
+               *ngFor="let p of percentPreset">
               {{p}}%
             </a>
           </clr-dropdown-menu>
@@ -93,22 +156,30 @@
       </clr-dropdown-menu>
     </clr-dropdown>
 
-    <a href="javascript://" class="nav-link nav-icon">
-      <clr-icon shape="clock" (click)="openTimeModal()"></clr-icon>
+    <a href="javascript://"
+       class="nav-link nav-icon">
+      <clr-icon shape="clock"
+                (click)="openTimeModal()"></clr-icon>
     </a>
-    <a href="javascript://" class="nav-link nav-icon">
-      <clr-icon [attr.shape]="ms.game.isPaused ? 'play' : 'pause'" (click)="ms.game.isPaused = ! ms.game.isPaused"></clr-icon>
+    <a href="javascript://"
+       class="nav-link nav-icon">
+      <clr-icon [attr.shape]="ms.game.isPaused ? 'play' : 'pause'"
+                (click)="ms.game.isPaused = ! ms.game.isPaused"></clr-icon>
     </a>
-    <a [routerLink]="'opt/save/'" class="nav-link nav-icon" [routerLinkActive]="'active'">
+    <a [routerLink]="'opt/save/'"
+       class="nav-link nav-icon"
+       [routerLinkActive]="'active'">
       <clr-icon shape="cog"></clr-icon>
     </a>
   </div>
 
 </clr-header>
 
-<clr-modal [(clrModalOpen)]="timeModal" [clrModalSize]="'lg'">
+<clr-modal [(clrModalOpen)]="timeModal"
+           [clrModalSize]="'lg'">
   <h3 class="modal-title">Time Warp</h3>
-  <div class="modal-body actMinH" *ngIf="ms.game.actMin && ms.game.actHour">
+  <div class="modal-body actMinH"
+       *ngIf="ms.game.actMin && ms.game.actHour">
     <span> You can skip {{ms.game.time.quantity.toNumber() | endIn}}:
       <span class="monospace">
         {{ms.game.time.quantity | format}} s

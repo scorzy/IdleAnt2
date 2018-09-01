@@ -1,7 +1,12 @@
-<a [routerLink]="['/nav/unit/'+id]" class="nav-link matLink" routerLinkActive="active" [ngClass]="{'red': isEnding}">
+<a [routerLink]="['/nav/unit/'+id]"
+   class="nav-link matLink"
+   routerLinkActive="active"
+   [ngClass]="{'red': isEnding}">
 
   <span>
-    <clr-icon class="is-error is-solid" shape="exclamation-triangle" *ngIf="isEnding"></clr-icon>
+    <clr-icon class="is-error is-solid"
+              shape="exclamation-triangle"
+              *ngIf="isEnding"></clr-icon>
     <span class="first small">{{name}}</span>
   </span>
   <br/>
@@ -9,7 +14,8 @@
   <span class="monospace">{{quantity | format:false:ms.options.formatter}}</span>
 
   <span class="perSecTab  monospace">
-    <span *ngIf="perSec.abs().gt(0.001)" [ngClass]="{'noEnought': perSec.lt(0)}">
+    <span *ngIf="perSec.abs().gt(0.001)"
+          [ngClass]="{'noEnought': perSec.lt(0)}">
       {{perSec | format:false:ms.options.formatter}}/s
     </span>
   </span>

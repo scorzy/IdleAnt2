@@ -1,32 +1,48 @@
 <div class="card-block">
   <div class="card-title">
-    <app-name [name]="research.name" [unlimited]="research.unlimited" [quantity]="research.quantity"></app-name>
+    <app-name [name]="research.name"
+              [unlimited]="research.unlimited"
+              [quantity]="research.quantity"></app-name>
   </div>
   <div class="card-text p">
     {{research.description}}
     <br/>
     <div *ngIf="!research.complete">
       <span>Cost: </span>
-      <app-price-line *ngFor="let price of research.prices; trackBy:getPriceId" [name]="price.base.name" [canBuy]="price.canBuy"
-        [price]="price.priceUser">
+      <app-price-line *ngFor="let price of research.prices; trackBy:getPriceId"
+                      [name]="price.base.name"
+                      [canBuy]="price.canBuy"
+                      [price]="price.priceUser">
       </app-price-line>
 
       <div *ngIf="research.unlimited ">
         <label for="max">Max level:</label>
-        <input type="text" id="max" class="clr-input" [(ngModel)]="research.maxAutoBuyLevel" min="0" size="3">
+        <input type="text"
+               id="max"
+               class="clr-input"
+               [(ngModel)]="research.maxAutoBuyLevel"
+               min="0"
+               size="3">
       </div>
 
     </div>
   </div>
 </div>
-<div class="card-footer" *ngIf="!research.complete">
-  <button *ngIf="!research.canBuy && !canSkip" class="btn btn-sm btn-link" disabled>
+<div class="card-footer"
+     *ngIf="!research.complete">
+  <button *ngIf="!research.canBuy && !canSkip"
+          class="btn btn-sm btn-link"
+          disabled>
     Can't buy. Avaiable in {{research.availableIn | endIn}}
   </button>
-  <button *ngIf="!research.canBuy &&  canSkip" class="btn btn-danger btn-sm" (click)="skip()">
+  <button *ngIf="!research.canBuy &&  canSkip"
+          class="btn btn-danger btn-sm"
+          (click)="skip()">
     Can't buy. Skip {{minuteSkip}} minutes
   </button>
-  <button *ngIf="research.canBuy" class="btn btn-sm btn-link" (click)="research.buy(research.realNum)">
+  <button *ngIf="research.canBuy"
+          class="btn btn-sm btn-link"
+          (click)="research.buy(research.realNum)">
     Research
   </button>
 </div>

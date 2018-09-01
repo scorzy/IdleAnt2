@@ -2,7 +2,8 @@
 <ng-template #noTravel>
   <div class="content-area">
     <h1>Travel to a new world
-      <button class="btn btn-danger-outline btn-link" (click)="skip = true">Skip</button>
+      <button class="btn btn-danger-outline btn-link"
+              (click)="skip = true">Skip</button>
     </h1>
     <div class="clr-row">
       <div class="clr-col-12 clr-col-sm-12 clr-col-md-6 clr-col-lg-6 clr-col-xl-6">
@@ -13,13 +14,17 @@
               {{price.base.quantity | format:true}}/{{price.price | format:true}}
             </span>
           </h6>
-          <div class="progress-static labeled" [ngClass]="{'success': price.canBuy,'danger': !price.canBuy}">
-            <div class="progress-meter" [attr.data-value]="price.completedPercent" [attr.data-displayval]="price.completedPercent"></div>
+          <div class="progress-static labeled"
+               [ngClass]="{'success': price.canBuy,'danger': !price.canBuy}">
+            <div class="progress-meter"
+                 [attr.data-value]="price.completedPercent"
+                 [attr.data-displayval]="price.completedPercent"></div>
           </div>
         </div>
       </div>
 
-      <div class="clr-col-12 clr-col-sm-12 clr-col-md-6 clr-col-lg-6 clr-col-xl-6" *ngIf="ms.game.currentWorld.notWinConditions?.length > 0">
+      <div class="clr-col-12 clr-col-sm-12 clr-col-md-6 clr-col-lg-6 clr-col-xl-6"
+           *ngIf="ms.game.currentWorld.notWinConditions?.length > 0">
         <p>You must kill:</p>
         <ul class="list-unstyled">
           <li *ngFor="let malus of ms.game.currentWorld.notWinConditions; trackBy:getMalusId">

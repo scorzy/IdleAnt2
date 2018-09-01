@@ -1,17 +1,15 @@
 <clr-main-container>
-    <app-header
-        [lab]="ms.game.tabs.lab.unlocked"
-        [labBadge]="ms.game.canBuyResearch"
-        [travel]="ms.game.tabs.travel.unlocked"
-        [autoBuy]="ms.game.tabs.autoBuy.unlocked"
-        [travelBadge]="ms.game.canTravel"
-        [prestige]="ms.game.tabs.prestige.unlocked"
-        [mastery]="ms.game.tabs.mastery.unlocked"
-    >
-    </app-header>
-    <app-material-nav *ngIf="os.materialPosition != 3"></app-material-nav>
-    <!-- <div class="content-container"> -->
-    <router-outlet></router-outlet>
-    <!-- </div> -->
+  <app-header [lab]="ms.game.tabs.lab.unlocked"
+              [labBadge]="ms.game.canBuyResearch"
+              [travel]="ms.game.tabs.travel.unlocked"
+              [autoBuy]="ms.game.tabs.autoBuy.unlocked"
+              [travelBadge]="ms.game.canTravel"
+              [prestige]="ms.game.tabs.prestige.unlocked"
+              [mastery]="ms.game.tabs.mastery.unlocked">
+  </app-header>
+  <app-material-nav *ngIf="os.materialPosition != 3"></app-material-nav>
+  <!-- <div class="content-container"> -->
+  <router-outlet></router-outlet>
+  <!-- </div> -->
 
 </clr-main-container>

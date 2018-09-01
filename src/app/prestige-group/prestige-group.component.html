@@ -3,6 +3,7 @@
     {{prestigeGroup.name}}
   </h1>
   <div class="card-columns card-columns-3">
-    <app-prestige-buy [prestige]="pre" *ngFor="let pre of prestigeGroup.list ;trackBy:getPretId"></app-prestige-buy>
+    <app-prestige-buy [prestige]="pre"
+                      *ngFor="let pre of prestigeGroup.list ;trackBy:getPretId"></app-prestige-buy>
   </div>
 </div>

@@ -1,32 +1,46 @@
 <h1>{{unitGroup.name}}
 
   <clr-dropdown>
-    <button type="button" class="btn btn-outline-primary btn-link" clrDropdownTrigger>
+    <button type="button"
+            class="btn btn-outline-primary btn-link"
+            clrDropdownTrigger>
       Actions
       <clr-icon shape="caret down"></clr-icon>
     </button>
     <clr-dropdown-menu *clrIfOpen>
       <label class="dropdown-header">Selections</label>
       <clr-dropdown>
-        <button type="button" clrDropdownTrigger>Select</button>
+        <button type="button"
+                clrDropdownTrigger>Select</button>
         <clr-dropdown-menu>
-          <button type="button" (click)="select(bug)" clrDropdownItem *ngFor="let bug of bugs;trackBy getBugId">
+          <button type="button"
+                  (click)="select(bug)"
+                  clrDropdownItem
+                  *ngFor="let bug of bugs;trackBy getBugId">
             {{utility.getBugName(bug) }}
           </button>
         </clr-dropdown-menu>
       </clr-dropdown>
       <clr-dropdown>
-        <button type="button" clrDropdownTrigger>Add to selection</button>
+        <button type="button"
+                clrDropdownTrigger>Add to selection</button>
         <clr-dropdown-menu>
-          <button type="button" (click)="selectAdd(bug)" clrDropdownItem *ngFor="let bug of bugs;trackBy getBugId">
+          <button type="button"
+                  (click)="selectAdd(bug)"
+                  clrDropdownItem
+                  *ngFor="let bug of bugs;trackBy getBugId">
             {{utility.getBugName(bug) }}
           </button>
         </clr-dropdown-menu>
       </clr-dropdown>
       <clr-dropdown>
-        <button type="button" clrDropdownTrigger>Deselect</button>
+        <button type="button"
+                clrDropdownTrigger>Deselect</button>
         <clr-dropdown-menu>
-          <button type="button" (click)="selectRemove(bug)" clrDropdownItem *ngFor="let bug of bugs;trackBy getBugId">
+          <button type="button"
+                  (click)="selectRemove(bug)"
+                  clrDropdownItem
+                  *ngFor="let bug of bugs;trackBy getBugId">
             {{utility.getBugName(bug) }}
           </button>
         </clr-dropdown-menu>
@@ -39,9 +53,12 @@
 <clr-tabs>
 
   <clr-tab>
-    <button clrTabLink id="link1">Overview</button>
-    <clr-tab-content id="content1" *clrIfActive="ms.overviewTaActive">
-      <app-unit-group *ngIf="unitGroup" [unitGroup]="unitGroup"></app-unit-group>
+    <button clrTabLink
+            id="link1">Overview</button>
+    <clr-tab-content id="content1"
+                     *clrIfActive="ms.overviewTaActive">
+      <app-unit-group *ngIf="unitGroup"
+                      [unitGroup]="unitGroup"></app-unit-group>
     </clr-tab-content>
   </clr-tab>
 

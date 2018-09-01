@@ -1,4 +1,6 @@
-<div class="card-block" *ngIf="world" (click)="openModal()">
+<div class="card-block"
+     *ngIf="world"
+     (click)="openModal()">
   <h3 class="card-title">{{world.name}} ({{world.level |format:true}})</h3>
   <span class="p2">Prestige:
     <span class="monospace">{{world.prestige | format:true}}</span>

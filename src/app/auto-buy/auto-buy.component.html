@@ -1,24 +1,40 @@
-<div *ngIf="bought" class="progress-static top">
-  <div class="progress-meter" [attr.data-value]="progress"></div>
+<div *ngIf="bought"
+     class="progress-static top">
+  <div class="progress-meter"
+       [attr.data-value]="progress"></div>
 </div>
-<app-action-header [action]="autoBuy" [quantity]="autoBuy.quantity"></app-action-header>
+<app-action-header [action]="autoBuy"
+                   [quantity]="autoBuy.quantity"></app-action-header>
 
-<div class="clr-row clr-align-items-start" *ngIf="bought">
+<div class="clr-row clr-align-items-start"
+     *ngIf="bought">
   <div class="clr-col">
 
     <label>Priority:</label>
-    <input clrInput placeholder="Priority" name="name" [(ngModel)]="autoBuy.priority" type="number" placeholder="1" step="1"
-      min="1" size="3" (change)="reload()" />
+    <input clrInput
+           placeholder="Priority"
+           name="name"
+           [(ngModel)]="autoBuy.priority"
+           type="number"
+           placeholder="1"
+           step="1"
+           min="1"
+           size="3"
+           (change)="reload()" />
 
   </div>
   <div class="clr-col">
-    <clr-checkbox [name]="autoBuy.id" [id]="autoBuy.id" [(clrChecked)]="autoBuy.active" [clrInline]="true">
+    <clr-checkbox [name]="autoBuy.id"
+                  [id]="autoBuy.id"
+                  [(clrChecked)]="autoBuy.active"
+                  [clrInline]="true">
       Active
     </clr-checkbox>
   </div>
 
 </div>
-<div class="clr-row clr-align-items-start" *ngIf="bought">
+<div class="clr-row clr-align-items-start"
+     *ngIf="bought">
   <div class="clr-col">
     <span>
       Interval:

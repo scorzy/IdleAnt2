@@ -3,8 +3,10 @@
 <clr-tabs>
 
   <clr-tab>
-    <button clrTabLink id="link1">Overview</button>
-    <clr-tab-content id="content1" *clrIfActive="ms.overviewTaActive">
+    <button clrTabLink
+            id="link1">Overview</button>
+    <clr-tab-content id="content1"
+                     *clrIfActive="ms.overviewTaActive">
       <app-unit [unit]="unit"></app-unit>
     </clr-tab-content>
   </clr-tab>

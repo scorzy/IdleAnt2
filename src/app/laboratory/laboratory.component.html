@@ -2,7 +2,10 @@
   <h1>Here, scientists discuss things no one has seen before.</h1>
 
   <div class="toggle-switch">
-    <input type="checkbox" id="t1" [(ngModel)]="resDone" (change)="changeList()">
+    <input type="checkbox"
+           id="t1"
+           [(ngModel)]="resDone"
+           (change)="changeList()">
     <label for="t1">Show research done</label>
   </div>
   <span>
@@ -13,6 +16,7 @@
   </span>
   <app-lab-menu></app-lab-menu>
   <div class="card-columns card-columns-3">
-    <app-research [research]="res" *ngFor="let res of resList ;trackBy:getRestId"></app-research>
+    <app-research [research]="res"
+                  *ngFor="let res of resList ;trackBy:getRestId"></app-research>
   </div>
 </div>

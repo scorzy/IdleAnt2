@@ -2,7 +2,9 @@
   <h1>Here you can travel to a new world.</h1>
 
 
-  <clr-alert [clrAlertType]="'alert-success'" [clrAlertClosable]="false" *ngIf="ms.game.canTravel; else warn">
+  <clr-alert [clrAlertType]="'alert-success'"
+             [clrAlertClosable]="false"
+             *ngIf="ms.game.canTravel; else warn">
     <div class="alert-item">
       <span class="alert-text">
         You will get
@@ -12,7 +14,8 @@
     </div>
   </clr-alert>
   <ng-template #warn>
-    <clr-alert [clrAlertType]="'alert-danger'" [clrAlertClosable]="false">
+    <clr-alert [clrAlertType]="'alert-danger'"
+               [clrAlertClosable]="false">
       <div class="alert-item">
         <span class="alert-text">
           You are skipping. You will get nothing !
@@ -20,7 +23,8 @@
       </div>
     </clr-alert>
   </ng-template>
-  <button class="btn" (click)="randomize()">Randomize</button>
+  <button class="btn"
+          (click)="randomize()">Randomize</button>
 
   <span>
     Min level:
@@ -35,10 +39,15 @@
     </span>
   </span>
 
-  <p-slider [(ngModel)]="rangeValues" [range]="true" [min]="1" [max]="maxSafeInt" (onChange)="setLevels()"></p-slider>
+  <p-slider [(ngModel)]="rangeValues"
+            [range]="true"
+            [min]="1"
+            [max]="maxSafeInt"
+            (onChange)="setLevels()"></p-slider>
 
   <div class="card-columns">
-    <app-world [world]="world" *ngFor="let world of ms.game.nextWorlds; trackBy:getWorldId"></app-world>
+    <app-world [world]="world"
+               *ngFor="let world of ms.game.nextWorlds; trackBy:getWorldId"></app-world>
   </div>
 
 </div>
@@ -50,7 +59,11 @@
     <p>You will lose everything except prestige upgrade, continue ?</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline" (click)="travelMessage = false">Cancel</button>
-    <button type="button" class="btn btn-primary" (click)="travel()">Ok</button>
+    <button type="button"
+            class="btn btn-outline"
+            (click)="travelMessage = false">Cancel</button>
+    <button type="button"
+            class="btn btn-primary"
+            (click)="travel()">Ok</button>
   </div>
 </clr-modal>

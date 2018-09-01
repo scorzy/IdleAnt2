@@ -11,10 +11,15 @@
 
       <p *ngIf="unit.c.abs().gt(0.01)">
         This is groving at:
-        <app-polynom [a]="unit.a" [b]="unit.b" [c]="unit.c"></app-polynom>
+        <app-polynom [a]="unit.a"
+                     [b]="unit.b"
+                     [c]="unit.c"></app-polynom>
       </p>
 
-      <clr-alert *ngIf="unit.isEnding" [clrAlertType]="malus ? 'alert-sucess':'alert-warning'" [clrAlertClosable]="false" [clrAlertSizeSmall]="false">
+      <clr-alert *ngIf="unit.isEnding"
+                 [clrAlertType]="malus ? 'alert-sucess':'alert-warning'"
+                 [clrAlertClosable]="false"
+                 [clrAlertSizeSmall]="false">
         <clr-alert-item>
           <span class="alert-text">
             End in {{unit.endIn | endIn}}
@@ -22,7 +27,10 @@
         </clr-alert-item>
       </clr-alert>
 
-      <clr-alert *ngIf="malus && malus.first && malus.isActive()" [clrAlertType]="'alert-danger'" [clrAlertSizeSmall]="false" [clrAlertClosable]="false">
+      <clr-alert *ngIf="malus && malus.first && malus.isActive()"
+                 [clrAlertType]="'alert-danger'"
+                 [clrAlertSizeSmall]="false"
+                 [clrAlertClosable]="false">
         <clr-alert-item>
           <span>
             {{malus.name}} is causing
@@ -42,16 +50,25 @@
         <!-- <div class="slidecontainer">
           <input type="range" min="1" max="100" [(ngModel)]="unit.efficiency" class="slider">
         </div> -->
-        <p-slider [min]="0" [max]="100" [step]="0.01" [(ngModel)]="unit.efficiency" animate="true"></p-slider>
+        <p-slider [min]="0"
+                  [max]="100"
+                  [step]="0.01"
+                  [(ngModel)]="unit.efficiency"
+                  animate="true"></p-slider>
       </div>
 
-      <app-action *ngIf="unit.buyAction" [action]="unit.buyAction"></app-action>
-      <app-action *ngIf="unit.teamAction && ms.game.researches.team2.done" [action]="unit.teamAction"></app-action>
-      <app-action *ngIf="unit.twinAction && ms.game.researches.twin.done" [action]="unit.twinAction"></app-action>
+      <app-action *ngIf="unit.buyAction"
+                  [action]="unit.buyAction"></app-action>
+      <app-action *ngIf="unit.teamAction && ms.game.researches.team2.done"
+                  [action]="unit.teamAction"></app-action>
+      <app-action *ngIf="unit.twinAction && ms.game.researches.twin.done"
+                  [action]="unit.twinAction"></app-action>
 
-      <div *ngIf="madeChart" class="chartDiv">
+      <div *ngIf="madeChart"
+           class="chartDiv">
         <app-made-by-chart [unit]="unit"></app-made-by-chart>
-        <app-made-by-chart [unit]="unit" [consumers]="true"></app-made-by-chart>
+        <app-made-by-chart [unit]="unit"
+                           [consumers]="true"></app-made-by-chart>
       </div>
 
     </div>
@@ -72,19 +89,22 @@
               </a>
             </clr-dg-cell>
             <clr-dg-cell>
-              <span [class.noEnought]="product.rateo.lt(0)" class="monospace">
+              <span [class.noEnought]="product.rateo.lt(0)"
+                    class="monospace">
                 {{product.prodPerSec | format}}</span>
               <app-production-signposts [production]="product"></app-production-signposts>
             </clr-dg-cell>
             <clr-dg-cell>
-              <span [class.noEnought]="product.rateo.lt(0)" class="monospace">
+              <span [class.noEnought]="product.rateo.lt(0)"
+                    class="monospace">
                 {{product.prodPerSec.times(unit.quantity) | format}}
               </span>
             </clr-dg-cell>
           </clr-dg-row>
 
           <clr-dg-footer>
-            <clr-dg-pagination #pagination [clrDgPageSize]="10">
+            <clr-dg-pagination #pagination
+                               [clrDgPageSize]="10">
               {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}}
             </clr-dg-pagination>
           </clr-dg-footer>
@@ -108,18 +128,21 @@
               </a>
             </clr-dg-cell>
             <clr-dg-cell>
-              <span [class.noEnought]="producer.rateo.lt(0)" class="monospace">
+              <span [class.noEnought]="producer.rateo.lt(0)"
+                    class="monospace">
                 {{producer.prodPerSec | format}}
               </span>
             </clr-dg-cell>
             <clr-dg-cell>
-              <span [class.noEnought]="producer.rateo.lt(0)" class="monospace">
+              <span [class.noEnought]="producer.rateo.lt(0)"
+                    class="monospace">
                 {{producer.prodPerSec.times(producer.producer.quantity) | format}}</span>
             </clr-dg-cell>
           </clr-dg-row>
 
           <clr-dg-footer>
-            <clr-dg-pagination #pagination [clrDgPageSize]="10">
+            <clr-dg-pagination #pagination
+                               [clrDgPageSize]="10">
               {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}}
             </clr-dg-pagination>
           </clr-dg-footer>

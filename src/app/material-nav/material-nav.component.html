@@ -1,7 +1,14 @@
-<ul class="nav navMat" role="tablist">
-  <li class="nav-item" class="matTab" *ngFor="let g of ms.game.materials.unlocked ; trackBy:getUnitId">
+<ul class="nav navMat"
+    role="tablist">
+  <li class="nav-item"
+      class="matTab"
+      *ngFor="let g of ms.game.materials.unlocked ; trackBy:getUnitId">
 
-    <app-tab [id]="g.id" [isEnding]="g.isEnding" [name]="g.name" [quantity]="g.quantity" [perSec]="g.c"></app-tab>
+    <app-tab [id]="g.id"
+             [isEnding]="g.isEnding"
+             [name]="g.name"
+             [quantity]="g.quantity"
+             [perSec]="g.c"></app-tab>
 
   </li>
 </ul>

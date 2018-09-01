@@ -1,14 +1,17 @@
 <router-outlet></router-outlet>
 
-<clr-vertical-nav [clrVerticalNavCollapsible]="false" [clr-nav-level]="2">
+<clr-vertical-nav [clrVerticalNavCollapsible]="false"
+                  [clr-nav-level]="2">
 
   <a clrVerticalNavLink>
     Experience:
     <span class="monospace">{{ms.game.experience.quantity | format}}</span>
   </a>
 
-  <a clrVerticalNavLink *ngFor="let gr of ms.game.allPrestige.prestigeGroups; trackBy:getGroupId" [routerLink]="'/pre/'+gr.id"
-    routerLinkActive="active">
+  <a clrVerticalNavLink
+     *ngFor="let gr of ms.game.allPrestige.prestigeGroups; trackBy:getGroupId"
+     [routerLink]="'/pre/'+gr.id"
+     routerLinkActive="active">
     <!-- <clr-icon shape="floppy"></clr-icon> -->
     {{gr.name}}
   </a>
