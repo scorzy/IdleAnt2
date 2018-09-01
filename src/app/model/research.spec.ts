@@ -11,28 +11,22 @@ describe("Research", () => {
   it("should create an instance", () => {
     expect(new Research("id", researches)).toBeTruthy();
   });
-  describe("Unlock", () => {
+  it("Unlock", () => {
     const res = new Research("id", researches);
     res.unlocked = false;
     res.unlock();
 
-    it("Should be unlocked", () => {
-      expect(res.unlocked).toBeTruthy();
-    });
+    expect(res.unlocked).toBeTruthy();
   });
-  describe("Unlock already unlocked", () => {
+  it("Unlock already unlocked", () => {
     const resUnlocked = new Research("idUnl", researches);
     resUnlocked.unlocked = true;
     const result = resUnlocked.unlock();
 
-    it("Should be unlocked", () => {
-      expect(resUnlocked.unlocked).toBeTruthy();
-    });
-    it("Should return false", () => {
-      expect(result).toBeFalsy();
-    });
+    expect(resUnlocked.unlocked).toBeTruthy();
+    expect(result).toBeFalsy();
   });
-  describe("Buy", () => {
+  it("Buy", () => {
     const toUnlock = jasmine.createSpyObj("IUnlocable", ["unlock"]);
     toUnlock.unlocked = false;
 
@@ -44,17 +38,11 @@ describe("Research", () => {
     res.toUnlock = [alreadyUnlocked, toUnlock];
     const result = res.buy();
 
-    it("Buy", () => {
-      expect(result).toBeTruthy();
-    });
-    it("Unlock", () => {
-      expect(toUnlock.unlock).toHaveBeenCalled();
-    });
-    it("Already Unlocked", () => {
-      expect(alreadyUnlocked.unlock).toHaveBeenCalledTimes(0);
-    });
+    expect(result).toBeTruthy();
+    expect(toUnlock.unlock).toHaveBeenCalled();
+    expect(alreadyUnlocked.unlock).toHaveBeenCalledTimes(0);
   });
-  describe("Save", () => {
+  it("Save", () => {
     const res1 = new Research("id", researches);
     res1.unlocked = true;
     const res2 = new Research("id", researches);
@@ -62,14 +50,10 @@ describe("Research", () => {
 
     const result = res2.restore(res1.getSave());
 
-    it("Return true", () => {
-      expect(result).toBeTruthy();
-    });
-    it("Restored", () => {
-      expect(res2.unlocked).toBeTruthy();
-    });
+    expect(result).toBeTruthy();
+    expect(res2.unlocked).toBeTruthy();
   });
-  describe("Save different", () => {
+  it("Save different", () => {
     const resOrig = new Research("id1", researches);
     resOrig.unlocked = true;
     const resDiff = new Research("id2", researches);
@@ -77,11 +61,7 @@ describe("Research", () => {
 
     const result = resOrig.restore(resDiff.getSave());
 
-    it("Return false", () => {
-      expect(result).toBeFalsy();
-    });
-    it("Not modified", () => {
-      expect(resOrig.unlocked).toBeFalsy();
-    });
+    expect(result).toBeFalsy();
+    expect(resOrig.unlocked).toBeFalsy();
   });
 });

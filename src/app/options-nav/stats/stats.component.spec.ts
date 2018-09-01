@@ -6,9 +6,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ClarityModule } from "@clr/angular";
 import { ToastrModule } from "ngx-toastr";
-import { FormatPipe } from "../format.pipe";
-import { MainService } from "../main.service";
-import { OptionsService } from "../options.service";
+import { FormatPipe } from "../../format.pipe";
+import { MainService } from "../../main.service";
+import { OptionsService } from "../../options.service";
 import { StatsComponent } from "./stats.component";
 
 describe("StatsComponent", () => {

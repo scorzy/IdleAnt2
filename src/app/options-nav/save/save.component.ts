@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { MainService } from "../main.service";
+import { MainService } from "../../main.service";
 
 @Component({
   selector: "app-save",

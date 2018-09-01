@@ -10,6 +10,7 @@ export class OptionsService {
   autosaveNotification = true;
   dark = false;
   header = 6;
+  materialPosition = 1;
 
   formatter: any;
   formatEmitter: EventEmitter<number> = new EventEmitter<number>();
@@ -33,7 +34,8 @@ export class OptionsService {
       n: this.numFormat,
       s: this.autosaveNotification,
       d: this.dark,
-      h: this.header
+      h: this.header,
+      m: this.materialPosition
     };
   }
   restore(data: any) {
@@ -42,6 +44,7 @@ export class OptionsService {
     if ("s" in data) this.autosaveNotification = data.s;
     if ("d" in data) this.dark = data.d;
     if ("h" in data) this.header = data.h;
+    if ("m" in data) this.materialPosition = data.m;
     this.generateFormatter();
   }
   //#endregion

@@ -6,12 +6,12 @@ import { LaboratoryComponent } from "./laboratory/laboratory.component";
 import { MasteryComponent } from "./mastery/mastery.component";
 import { NavComponent } from "./nav/nav.component";
 import { OptionsNavComponent } from "./options-nav/options-nav.component";
+import { SaveComponent } from "./options-nav/save/save.component";
+import { StatsComponent } from "./options-nav/stats/stats.component";
+import { UiOptionsComponent } from "./options-nav/ui-options/ui-options.component";
 import { PrestigeGroupComponent } from "./prestige-group/prestige-group.component";
 import { PrestigeNavComponent } from "./prestige-nav/prestige-nav.component";
 import { PrestigeComponent } from "./prestige/prestige.component";
-import { SaveComponent } from "./save/save.component";
-import { StatsComponent } from "./stats/stats.component";
-import { UiOptionsComponent } from "./ui-options/ui-options.component";
 import { UnitTabsComponent } from "./unit-tabs/unit-tabs.component";
 import { UnitComponent } from "./unit-tabs/unit/unit.component";
 export const APPROUTES: Routes = [

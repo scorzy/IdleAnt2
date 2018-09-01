@@ -10,7 +10,7 @@ describe("ActionGroup", () => {
     expect(new ActionGroup("", [], game)).toBeTruthy();
   });
 
-  describe("Reload", () => {
+  it("Reload", () => {
     const act1 = new Action("", "", "", []);
     const act2 = new Action("", "", "", []);
 
@@ -19,12 +19,10 @@ describe("ActionGroup", () => {
     const group = new ActionGroup("", [act1, act2], game);
     group.reload(game);
 
-    it("Cannot buy", () => {
-      expect(group.canBuy).toBeFalsy();
-    });
+    expect(group.canBuy).toBeFalsy();
   });
 
-  describe("Reload prices", () => {
+  it("Reload prices", () => {
     const unit = new FullUnit("", "", "", new Decimal(100));
     const act1 = new Action("", "", "", [
       new Price(unit, new Decimal(20), 1.1)
@@ -37,11 +35,7 @@ describe("ActionGroup", () => {
     const group = new ActionGroup("", [act1, act2], game);
     group.reload(game);
 
-    it("Can buy", () => {
-      expect(group.canBuy).toBeTruthy();
-    });
-    it("Cost = 50", () => {
-      expect(group.pricesTemp[0].price.toNumber()).toBe(50);
-    });
+    expect(group.canBuy).toBeTruthy();
+    expect(group.pricesTemp[0].price.toNumber()).toBe(50);
   });
 });

@@ -8,22 +8,18 @@ describe("TeamAction", () => {
     expect(new TeamAction([])).toBeTruthy();
   });
 
-  describe("Team not researched", () => {
-    it("should create an instance", () => {
-      teamRes.done = false;
-      const team = new TeamAction([]);
-      team.teamRes = teamRes;
-      team.reload();
-      expect(team.canBuy).toBeFalsy();
-    });
+  it("Team not researched", () => {
+    teamRes.done = false;
+    const team = new TeamAction([]);
+    team.teamRes = teamRes;
+    team.reload();
+    expect(team.canBuy).toBeFalsy();
   });
-  describe("Team researched", () => {
-    it("should create an instance", () => {
-      teamRes.done = true;
-      const team = new TeamAction([]);
-      team.teamRes = teamRes;
-      team.reload();
-      expect(team.canBuy).toBeTruthy();
-    });
+  it("Team researched", () => {
+    teamRes.done = true;
+    const team = new TeamAction([]);
+    team.teamRes = teamRes;
+    team.reload();
+    expect(team.canBuy).toBeTruthy();
   });
 });

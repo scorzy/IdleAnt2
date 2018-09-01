@@ -5,8 +5,8 @@ import {
   ElementRef,
   ViewChild
 } from "@angular/core";
-import { MainService } from "../main.service";
-import { RunExpPerSecSorter, RunExpSorter } from "../model/utility";
+import { MainService } from "../../main.service";
+import { RunExpPerSecSorter, RunExpSorter } from "../../model/utility";
 declare let Chart;
 
 @Component({

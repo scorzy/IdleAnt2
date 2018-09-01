@@ -4,6 +4,7 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { AppComponent } from "./app.component";
 import { Game } from "./model/game";
 import { World } from "./model/world";
+import { OptionsService } from "./options.service";
 
 export function getGame() {
   const ms = jasmine.createSpyObj("MainService", ["update"]);
@@ -13,7 +14,7 @@ export function getGame() {
   ms.unlockGroupEmiter = new EventEmitter<number>();
   ms.efficiencyEmitter = new EventEmitter<number>();
   ms.endInPipe = jasmine.createSpyObj("EndInPipe", ["transform"]);
-
+  ms.options = new OptionsService();
   return new Game(ms);
 }
 

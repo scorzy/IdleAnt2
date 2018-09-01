@@ -272,6 +272,10 @@ export class Game {
     });
     const oldNum = this.unlockedGroups.length;
     this.unlockedGroups = this.unitGroups.filter(g => g.unlocked.length > 0);
+    // tslint:disable-next-line:triple-equals
+    if (this.ms.options.materialPosition == 2) {
+      this.unitGroups = this.unlockedGroups.filter(m => m !== this.materials);
+    }
     if (oldNum !== this.unlockedGroups.length) {
       this.ms.unlockGroupEmiter.emit(this.unlockedGroups.length);
     }

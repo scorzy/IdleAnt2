@@ -1,8 +1,11 @@
-<app-action-header [action]="action" [quantity]="action.quantity"></app-action-header>
+<app-action-header
+    [action]="action"
+    [quantity]="action.quantity"
+></app-action-header>
 <div class="p">
-  <span *ngIf="action.description !==''">
-    {{action.description}}
-    <br/>
-  </span>
+    <span *ngIf="action.description !==''">
+        {{action.description}}
+        <br>
+    </span>
 </div>
 <app-buttons [action]="action"></app-buttons>

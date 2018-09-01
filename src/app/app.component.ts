@@ -29,6 +29,7 @@ import {
   ClrShapeUninstall
 } from "@clr/icons/shapes/technology-shapes";
 import { ClrShapePaintRoller } from "@clr/icons/shapes/text-edit-shapes";
+import { OptionsService } from "./options.service";
 
 @Component({
   selector: "app-root",
@@ -36,7 +37,7 @@ import { ClrShapePaintRoller } from "@clr/icons/shapes/text-edit-shapes";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  constructor(public ms: MainService) {
+  constructor(public ms: MainService, public os: OptionsService) {
     ClarityIcons.add({
       bug: ClrShapeBug,
       lightbulb: ClrShapeLightbulb,

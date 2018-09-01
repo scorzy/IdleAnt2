@@ -15,7 +15,7 @@ describe("OptionsService", () => {
       expect(service).toBeTruthy();
     }
   ));
-  describe("Save", () => {
+  it("Save", () => {
     const options1 = new OptionsService();
     const options2 = new OptionsService();
     options1.numFormat = "engineering";
@@ -24,16 +24,13 @@ describe("OptionsService", () => {
 
     options2.restore(options1.getSave());
 
-    it("equal", () => {
-      expect(JSON.stringify(options1)).toBe(JSON.stringify(options1));
-    });
+    expect(JSON.stringify(options1)).toBe(JSON.stringify(options1));
   });
-  describe("Load empty", () => {
+  it("Load empty", () => {
     const options1 = new OptionsService();
     const json1 = JSON.stringify(options1);
     options1.restore({});
-    it("equal", () => {
-      expect(json1).toBe(JSON.stringify(options1));
-    });
+
+    expect(json1).toBe(JSON.stringify(options1));
   });
 });

@@ -9,46 +9,32 @@ describe("FormatPipe", () => {
     const pipe = new FormatPipe(options);
     expect(pipe).toBeTruthy();
   });
-  describe("Euro format", () => {
+  it("Euro format", () => {
     const optionsEu = new OptionsService();
     optionsEu.usaFormat = false;
     const pipeEuro = new FormatPipe(optionsEu);
 
-    it("1,23", () => {
-      expect(pipeEuro.transform(1.23)).toBe("1,23");
-    });
-    it("12,3", () => {
-      expect(pipeEuro.transform(12.3)).toBe("12,3");
-    });
-    it("123,4", () => {
-      expect(pipeEuro.transform(123.4)).toBe("123");
-    });
-    it("1", () => {
-      expect(pipeEuro.transform(1, true)).toBe("1");
-    });
-    it("1.234", () => {
-      expect(pipeEuro.transform(1234, true)).toBe("1.234");
-    });
+    expect(pipeEuro.transform(1.23)).toBe("1,23");
+    expect(pipeEuro.transform(12.3)).toBe("12,3");
+    expect(pipeEuro.transform(123.4)).toBe("123");
+    expect(pipeEuro.transform(1, true)).toBe("1");
+    expect(pipeEuro.transform(1234, true)).toBe("1.234");
   });
-  describe("Usa format", () => {
+  it("Usa format", () => {
     const optionsUs = new OptionsService();
     optionsUs.usaFormat = true;
     const pipeUsa = new FormatPipe(optionsUs);
 
-    it("4.56", () => {
-      expect(pipeUsa.transform(4.56)).toBe("4.56");
-    });
-    it("45.6", () => {
-      expect(pipeUsa.transform(45.6)).toBe("45.6");
-    });
-    it("456.7", () => {
-      expect(pipeUsa.transform(456.7)).toBe("456");
-    });
-    it("2", () => {
-      expect(pipeUsa.transform(2, true)).toBe("2");
-    });
-    it("4,567", () => {
-      expect(pipeUsa.transform(4567, true)).toBe("4,567");
-    });
+    expect(pipeUsa.transform(4.56)).toBe("4.56");
+    expect(pipeUsa.transform(45.6)).toBe("45.6");
+    expect(pipeUsa.transform(456.7)).toBe("456");
+    expect(pipeUsa.transform(2, true)).toBe("2");
+    expect(pipeUsa.transform(4567, true)).toBe("4,567");
+  });
+  it("Standard format", () => {
+    const pipe = new FormatPipe(options);
+    options.numFormat = "standard";
+    options.generateFormatter();
+    expect(pipe.transform(1e100, true)).toBe("10,0DTg");
   });
 });
