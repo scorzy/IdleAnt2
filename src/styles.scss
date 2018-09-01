@@ -31,3 +31,11 @@ html {
   height: 101% !important;
 }
 //#endregion
+
+.header .header-nav .nav-link:first-of-type::before,
+.header .header-nav .nav-link:last-of-type::after,
+header .header-nav .nav-link:first-of-type::before,
+header .header-nav .nav-link:last-of-type::after {
+  height: 1.5rem !important;
+  top: 0 !important;
+}
