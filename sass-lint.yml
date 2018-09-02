@@ -47,3 +47,7 @@ rules:
     - properties:
         - margin
         - content
+  leading-zero:
+    - 1
+    - include: true
+

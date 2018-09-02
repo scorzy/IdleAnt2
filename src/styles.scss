@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+
 html {
   font-size: 24px;
 }
@@ -18,6 +19,7 @@ html {
 }
 
 //#region slider
+
 .ui-slider {
   background-color: transparent !important;
 }
@@ -30,12 +32,21 @@ html {
   border-radius: 0.08rem !important;
   height: 101% !important;
 }
+
 //#endregion
 
-.header .header-nav .nav-link:first-of-type::before,
-.header .header-nav .nav-link:last-of-type::after,
-header .header-nav .nav-link:first-of-type::before,
-header .header-nav .nav-link:last-of-type::after {
-  height: 1.5rem !important;
-  top: 0 !important;
+.header .header-nav .nav-link {
+  &:first-of-type::before,
+  &:last-of-type::after {
+    height: 1.5rem !important;
+    top: 0 !important;
+  }
+}
+
+header .header-nav .nav-link {
+  &:first-of-type::before,
+  &:last-of-type::after {
+    height: 1.5rem !important;
+    top: 0 !important;
+  }
 }

@@ -1,9 +1,16 @@
+export enum Tags {
+  FARMER,
+  MINER,
+  SOIL_G
+}
+
 export enum BugTypes {
   ANT = 0,
   BEE,
   WASP,
   SUPER_MAJOR
 }
+
 export class Bug {
   constructor(
     public priceMulti: number,

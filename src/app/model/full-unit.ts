@@ -4,7 +4,7 @@ import { BuyAction } from "./actions/buy-action";
 import { TeamAction } from "./actions/team-action";
 import { TwinAction } from "./actions/twin-action";
 import { BaseUnit } from "./baseUnit";
-import { BUGS, BugTypes } from "./bugsTypes";
+import { BUGS, BugTypes, Tags } from "./bugsTypes";
 import { IUnlocable } from "./iunlocable";
 import { Malus } from "./malus";
 import { Prestige } from "./prestige/prestige";
@@ -58,6 +58,8 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   tempA = new Decimal(0);
   tempB = new Decimal(0);
   tempC = new Decimal(0);
+
+  tags = new Array<Tags>();
 
   constructor(
     id: string,

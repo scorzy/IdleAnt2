@@ -1,4 +1,4 @@
-import { BugTypes } from "../bugsTypes";
+import { BugTypes, Tags } from "../bugsTypes";
 import { CONSTS } from "../CONSTATS";
 import { FullUnit } from "../full-unit";
 import { Game } from "../game";
@@ -32,25 +32,34 @@ export class Workers extends UnitGroup {
 
   declareStuff(): void {
     this.farmer = new FullUnit("a");
+    this.farmer.tags.push(Tags.FARMER);
     this.carpenter = new FullUnit("b");
+    this.carpenter.tags.push(Tags.SOIL_G);
     this.miner = new FullUnit("m");
+    this.miner.tags.push(Tags.MINER);
     this.scientist = new FullUnit("d");
 
     this.beeFarmer = new FullUnit("A");
     this.beeFarmer.bugType = BugTypes.BEE;
+    this.beeFarmer.tags.push(Tags.FARMER);
     this.beeCarpenter = new FullUnit("B");
     this.beeCarpenter.bugType = BugTypes.BEE;
+    this.beeCarpenter.tags.push(Tags.SOIL_G);
     this.beeMiner = new FullUnit("E");
     this.beeMiner.bugType = BugTypes.BEE;
+    this.beeMiner.tags.push(Tags.MINER);
     this.beeScientist = new FullUnit("D");
     this.beeScientist.bugType = BugTypes.BEE;
 
     this.waspFarmer = new FullUnit("v");
     this.waspFarmer.bugType = BugTypes.WASP;
+    this.waspFarmer.tags.push(Tags.FARMER);
     this.waspCarpenter = new FullUnit("V");
     this.waspCarpenter.bugType = BugTypes.WASP;
+    this.waspCarpenter.tags.push(Tags.SOIL_G);
     this.waspMiner = new FullUnit("o");
     this.waspMiner.bugType = BugTypes.WASP;
+    this.waspMiner.tags.push(Tags.MINER);
     this.waspScientist = new FullUnit("p");
     this.waspScientist.bugType = BugTypes.WASP;
 

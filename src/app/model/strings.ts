@@ -123,7 +123,9 @@ export const STRINGS = {
     oGG: ["3Wasp Miner", ""],
     pGG: ["3Wasp Scientist", ""],
     //  Helpers
-    lf: ["Leaf Cutter", "Improve Farming"]
+    lf: ["Leaf Cutter", "Improve Farming."],
+    mh: ["Big Miner", "Improve Mining."],
+    sh: ["Big Carpenter", "Improve soil gathering."]
   },
   researches: {
     t: ["Team 1", "Team 1"],
