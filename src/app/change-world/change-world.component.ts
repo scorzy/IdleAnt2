@@ -30,11 +30,11 @@ export class ChangeWorldComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngAfterViewInit(): void {
-    this.setLevels();
     this.cd.markForCheck();
   }
 
   ngOnInit() {
+    this.setLevels();
     this.worldSub = this.ms.worldEmitter.subscribe(world => {
       this.worldTravel = world;
       this.travelMessage = true;

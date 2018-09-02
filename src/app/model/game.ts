@@ -141,26 +141,6 @@ export class Game {
     };
     this.time = new FullUnit("time");
     //#endregion
-
-    //#region Relations
-    this.unitGroups.forEach(g => g.setRelations());
-
-    this.researches.setRelations(this.materials.science, this);
-    this.researches.team1.toUnlock.push(this.advWorkers.firstResearch);
-
-    this.worldBonus.setRelations(this);
-    //#endregion
-
-    //#region Worlds
-    this.worldBonus.addWorlds();
-    this.unitGroups.forEach(g => g.addWorlds());
-    //#endregion
-
-    //#region Prestige
-    this.allPrestige = new AllPrestige();
-    this.allPrestige.declareStuff(this);
-    //#endregion
-
     //#region Build Lists
     this.unitGroups.forEach(g => g.check(true));
     this.unitGroups
@@ -169,6 +149,22 @@ export class Game {
     this.units.push(this.experience, this.time);
     this.buildLists();
     this.unitGroups.forEach(g => (g.selected = g.list.filter(u => u.unlocked)));
+    //#endregion
+    //#region Relations
+    this.unitGroups.forEach(g => g.setRelations());
+
+    this.researches.setRelations(this.materials.science, this);
+    this.researches.team1.toUnlock.push(this.advWorkers.firstResearch);
+
+    this.worldBonus.setRelations(this);
+    //#endregion
+    //#region Worlds
+    this.worldBonus.addWorlds();
+    this.unitGroups.forEach(g => g.addWorlds());
+    //#endregion
+    //#region Prestige
+    this.allPrestige = new AllPrestige();
+    this.allPrestige.declareStuff(this);
     //#endregion
 
     //#region Worlds
@@ -192,14 +188,12 @@ export class Game {
     this.actMin = new WarpAction(60, this);
     this.actHour = new WarpAction(3600, this);
     //#endregion
-
     //#region Assign team and twin research to actions
     this.units.forEach(u => {
       if (u.teamAction) u.teamAction.requiredResearch = this.researches.team2;
       if (u.twinAction) u.twinAction.requiredResearch = this.researches.twin;
     });
     //#endregion
-
     //#region Autobuyers
     this.autoBuyManager = new AutoBuyManager();
     this.units.filter(u => u.hasAutoBuyer).forEach(u => {
@@ -229,7 +223,6 @@ export class Game {
       if (u.twinAction) u.twinAction.twinRes = this.researches.twin;
     });
     //#endregion
-
     //#region Debug
 
     this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
@@ -638,6 +631,9 @@ export class Game {
       this.wasps.larva.quantity = new Decimal(10);
       this.wasps.queen.quantity = new Decimal(1);
       this.gatherers.foraggingWasp.unlocked = true;
+    }
+    if (this.currentWorld.additionalBugs.includes(BugTypes.SUPER_MAJOR)) {
+      this.gatherers.hunter.unlocked = true;
     }
     //#endregion
 

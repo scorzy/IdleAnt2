@@ -5,6 +5,7 @@ import {
   OnInit
 } from "@angular/core";
 import { FullUnit } from "../../model/full-unit";
+import { OptionsService } from "../../options.service";
 
 @Component({
   selector: "app-unit-line",
@@ -39,7 +40,7 @@ export class UnitLineComponent implements OnInit {
   @Input()
   isMalus = false;
 
-  constructor() {
+  constructor(public os: OptionsService) {
     //Nothing
   }
   ngOnInit() {

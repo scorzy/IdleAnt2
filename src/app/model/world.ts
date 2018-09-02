@@ -103,7 +103,8 @@ export class World {
 
       if (n2.quantity.gt(0.1)) {
         n2.unlock();
-        n3.quantity = n.quantity.div(5);
+        // tslint:disable-next-line:prettier
+        n3.quantity = n.quantity.div(10).pow(0.9);
         if (n3.quantity.gt(0.1)) {
           n3.unlock();
         } else {

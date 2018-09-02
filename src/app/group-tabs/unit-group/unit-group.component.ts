@@ -141,7 +141,10 @@ export class UnitGroupComponent implements OnInit, OnDestroy, OnChanges {
         this.unitGroup.selected.filter(u => u.buyAction).map(u => u.buyAction),
         this.ms.game
       );
-      if (this.ms.game.researches.team2.done) {
+      if (
+        this.ms.game.researches.team2.done &&
+        this.unitGroup.unlocked[0].teamAction
+      ) {
         this.team = true;
         this.teamActionGrp = new ActionGroup(
           "Teamwork",
@@ -151,7 +154,10 @@ export class UnitGroupComponent implements OnInit, OnDestroy, OnChanges {
           this.ms.game
         );
       }
-      if (this.ms.game.researches.twin.done) {
+      if (
+        this.ms.game.researches.twin.done &&
+        this.unitGroup.unlocked[0].twinAction
+      ) {
         this.twin = true;
         this.twinActionGrp = new ActionGroup(
           "Twin",

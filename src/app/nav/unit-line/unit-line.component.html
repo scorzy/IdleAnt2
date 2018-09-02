@@ -11,7 +11,6 @@
               shape="angle-double"
               *ngIf="!isMalus && twin"
               (click)="unit.twinAction.buy()"></clr-icon>
-
     <clr-icon class="is-warning is-solid"
               shape="pause"
               *ngIf="!isMalus && isStopped"
@@ -21,7 +20,7 @@
               *ngIf="isEnding"></clr-icon>
     <clr-icon class="is-info is-solid"
               shape="info-standard"
-              *ngIf="isNew"></clr-icon>
+              *ngIf="os.showI && isNew"></clr-icon>
 
   </span>
   <span class="perSec monospace">

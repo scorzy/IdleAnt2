@@ -16,6 +16,10 @@ export class Gatherers extends UnitGroup {
   //  Wasp
   foraggingWasp: FullUnit;
 
+  //  Super Major
+  hunter: FullUnit;
+  majorWorker: FullUnit;
+
   constructor(game: Game) {
     super("Gatherers", game);
   }
@@ -25,13 +29,17 @@ export class Gatherers extends UnitGroup {
     this.student = new FullUnit("i");
     this.foraggingBee = new FullUnit("Z");
     this.foraggingWasp = new FullUnit("x");
+    this.hunter = new FullUnit("hu");
+    this.majorWorker = new FullUnit("mw");
 
     this.addUnits([
       this.drone,
       this.geologist,
       this.student,
       this.foraggingBee,
-      this.foraggingWasp
+      this.foraggingWasp,
+      this.hunter,
+      this.majorWorker
     ]);
   }
   setRelations(): void {
@@ -84,5 +92,30 @@ export class Gatherers extends UnitGroup {
     ]);
     this.game.materials.food.addProducer(this.foraggingWasp);
     this.foraggingWasp.setBugType(BugTypes.WASP);
+
+    this.hunter.generateBuyAction(
+      [
+        new Price(this.game.ants.larva, CONSTS.PRICE_LARVAE_0, 1),
+        new Price(this.game.materials.food, CONSTS.PRICE_0)
+      ],
+      [this.majorWorker]
+    );
+    this.game.materials.food.addProducer(this.hunter, CONSTS.PROD_GAN);
+    this.hunter.setBugType(BugTypes.SUPER_MAJOR);
+
+    this.majorWorker.generateBuyAction([
+      new Price(this.game.ants.larva, CONSTS.PRICE_LARVAE_0, 1),
+      new Price(this.game.materials.food, CONSTS.PRICE_0)
+    ]);
+    this.game.materials.soil.addProducer(
+      this.majorWorker,
+      CONSTS.PROD_GAN.times(0.7)
+    );
+    this.game.materials.soil.addProducer(
+      this.majorWorker,
+      CONSTS.PROD_GAN.times(0.3)
+    );
+    this.game.materials.food.addProducer(this.majorWorker, CONSTS.CONSUME_GAN);
+    this.majorWorker.setBugType(BugTypes.SUPER_MAJOR);
   }
 }

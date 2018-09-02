@@ -11,6 +11,7 @@ export class OptionsService {
   dark = false;
   header = 6;
   materialPosition = 1;
+  showI = true;
 
   formatter: any;
   formatEmitter: EventEmitter<number> = new EventEmitter<number>();
@@ -35,7 +36,8 @@ export class OptionsService {
       s: this.autosaveNotification,
       d: this.dark,
       h: this.header,
-      m: this.materialPosition
+      m: this.materialPosition,
+      i: this.showI
     };
   }
   restore(data: any) {
@@ -45,6 +47,7 @@ export class OptionsService {
     if ("d" in data) this.dark = data.d;
     if ("h" in data) this.header = data.h;
     if ("m" in data) this.materialPosition = data.m;
+    if ("i" in data) this.showI = data.i;
     this.generateFormatter();
   }
   //#endregion

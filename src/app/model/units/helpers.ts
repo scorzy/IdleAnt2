@@ -40,7 +40,6 @@ export class Helpers extends UnitGroup {
       .forEach(u => u.productionsEfficienty.push(this.leafCutter.helpBonus));
     this.leafCutter.setBugType(BugTypes.SUPER_MAJOR);
     //#endregion
-
     //#region Miner Helper
     this.minerHelper.generateBuyAction([
       new Price(this.game.ants.larva, CONSTS.PRICE_LARVAE_0, 1),
@@ -50,13 +49,11 @@ export class Helpers extends UnitGroup {
     this.game.addTwinAction(this.minerHelper, CONSTS.TWIN_PRICE_1);
     this.game.materials.food.addProducer(this.minerHelper, CONSTS.CONSUME_1);
     this.game.materials.soil.addProducer(this.minerHelper, CONSTS.CONSUME_1);
-    this.game.materials.food.productionsBonus.push(this.minerHelper.helpBonus);
     this.game.units
       .filter(u => u.tags.includes(Tags.MINER))
       .forEach(u => u.productionsEfficienty.push(this.minerHelper.helpBonus));
     this.minerHelper.setBugType(BugTypes.SUPER_MAJOR);
     //#endregion
-
     //#region Soil Helper
     this.soilHelper.generateBuyAction([
       new Price(this.game.ants.larva, CONSTS.PRICE_LARVAE_0, 1),
@@ -73,11 +70,16 @@ export class Helpers extends UnitGroup {
     //#endregion
 
     this.game.buildings.firstResearch.toUnlock.push(this.majorHelperRes);
-    this.majorHelperRes.prices = this.game.genSciencePrice(5e6);
-    this.majorHelperRes.toUnlock = this.list.filter(
-      u => u.bugType === BugTypes.SUPER_MAJOR
+    this.majorHelperRes.prices = this.game.genSciencePrice(
+      CONSTS.RES_PRICE_2.times(5)
     );
     this.majorHelperRes.bugType = BugTypes.SUPER_MAJOR;
+    [this.leafCutter, this.minerHelper, this.soilHelper].forEach(u => {
+      const res = new Research(u.id, this.game.researches);
+      res.toUnlock.push(u);
+      res.prices = this.game.genSciencePrice(CONSTS.RES_PRICE_2.times(10));
+      this.majorHelperRes.toUnlock.push(res);
+    });
   }
   addWorlds() {
     const majorPre = new World("majorPre");

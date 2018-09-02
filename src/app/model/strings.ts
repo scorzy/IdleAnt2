@@ -124,6 +124,8 @@ export const STRINGS = {
     pGG: ["3Wasp Scientist", ""],
     //  Helpers
     lf: ["Leaf Cutter", "Improve Farming."],
+    hu: ["Hunter", ""],
+    mw: ["Major Worker", ""],
     mh: ["Big Miner", "Improve Mining."],
     sh: ["Big Carpenter", "Improve soil gathering."]
   },
@@ -189,7 +191,10 @@ export const STRINGS = {
     oGG: ["3Wasp Miner", ""],
     pGG: ["3Wasp Scientist", ""],
     //  Super Major
-    sm: ["Super Major Helpers", ""]
+    sm: ["Super Major Helpers", ""],
+    lf: ["Leaf Cutter", "Improve Farming."],
+    mh: ["Big Miner", "Improve Mining."],
+    sh: ["Big Carpenter", "Improve soil gathering."]
   },
   worlds: {
     "1Pre": "Hot",

@@ -38,36 +38,38 @@ export class BugCardComponent implements OnInit {
     //
   }
   ngAfterViewInit() {
-    this.chartRef.nativeElement.width = this.containerRef.nativeElement.clientWidth;
-    this.chartRef.nativeElement.height = this.containerRef.nativeElement.clientHeight;
-    const canvas = this.chartRef.nativeElement;
-    canvas.width = canvas.height * (canvas.clientWidth / canvas.clientHeight);
+    setTimeout(() => {
+      this.chartRef.nativeElement.width = this.containerRef.nativeElement.clientWidth;
+      this.chartRef.nativeElement.height = this.containerRef.nativeElement.clientHeight;
+      const canvas = this.chartRef.nativeElement;
+      canvas.width = canvas.height * (canvas.clientWidth / canvas.clientHeight);
 
-    Chart.defaults.global.tooltips.enabled = true;
-    Chart.defaults.scale.ticks.beginAtZero = true;
-    Chart.defaults.scale.ticks.display = false;
+      Chart.defaults.global.tooltips.enabled = true;
+      Chart.defaults.scale.ticks.beginAtZero = true;
+      Chart.defaults.scale.ticks.display = false;
 
-    const chartCtx = this.chartRef.nativeElement.getContext("2d");
+      const chartCtx = this.chartRef.nativeElement.getContext("2d");
 
-    this.chart = new Chart(chartCtx, {
-      type: "radar",
-      data: {
-        labels: [
-          "Price",
-          "Production",
-          "Efficiency",
-          "Team Price",
-          "Twin Price"
-        ],
-        datasets: this.ms.game.currentWorld.additionalBugs.map(b =>
-          this.genDataset(b)
-        )
-      },
-      options: {
-        maintainAspectRatio: true,
-        legend: { position: "right" }
-      }
-    });
+      this.chart = new Chart(chartCtx, {
+        type: "radar",
+        data: {
+          labels: [
+            "Price",
+            "Production",
+            "Efficiency",
+            "Team Price",
+            "Twin Price"
+          ],
+          datasets: this.ms.game.currentWorld.additionalBugs.map(b =>
+            this.genDataset(b)
+          )
+        },
+        options: {
+          maintainAspectRatio: true,
+          legend: { position: "right" }
+        }
+      });
+    }, 0);
   }
 
   genDataset(bug: BugTypes): any {
