@@ -117,7 +117,7 @@ export class UnitGroup {
     const n = this.getReqNum(num);
     if (n.gt(0)) {
       this.unlocked
-        .filter(u => u.unlocked && u.buyAction && u.buyAction.unlocked)
+        .filter(u => u.unlocked && u.buyAction)
         .sort((a, b) => a.quantity.cmp(b.quantity))
         .forEach(un => un.buyAction.buy(n));
     }
@@ -126,7 +126,7 @@ export class UnitGroup {
     const n = this.getReqNum(num);
     if (n.gt(0)) {
       this.unlocked
-        .filter(u => u.unlocked && u.teamAction && u.teamAction.unlocked)
+        .filter(u => u.unlocked && u.teamAction)
         .sort((a, b) => a.teamAction.quantity.cmp(b.teamAction.quantity))
         .forEach(un => un.teamAction.buy(new Decimal(n)));
     }
@@ -135,7 +135,7 @@ export class UnitGroup {
     const n = this.getReqNum(num);
     if (n.gt(0)) {
       this.unlocked
-        .filter(u => u.unlocked && u.twinAction && u.twinAction.unlocked)
+        .filter(u => u.unlocked && u.twinAction)
         .sort((a, b) => a.twinAction.quantity.cmp(b.twinAction.quantity))
         .forEach(un => un.twinAction.buy(new Decimal(n)));
     }
@@ -152,17 +152,17 @@ export class UnitGroup {
   }
   autoBuyBuy(set: boolean) {
     this.unlocked
-      .filter(u => u.hasAutoBuyer)
+      .filter(u => u.buyAction.autoBuyer)
       .forEach(u => (u.buyAction.autoBuyer.active = set));
   }
   autoBuyTeam(set: boolean) {
     this.unlocked
-      .filter(u => u.hasAutoBuyer)
+      .filter(u => u.teamAction.autoBuyer)
       .forEach(u => (u.teamAction.autoBuyer.active = set));
   }
   autoBuyTwin(set: boolean) {
     this.unlocked
-      .filter(u => u.hasAutoBuyer)
+      .filter(u => u.twinAction.autoBuyer)
       .forEach(u => (u.twinAction.autoBuyer.active = set));
   }
   hasAutoBuy(): boolean {
