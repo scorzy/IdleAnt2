@@ -10,7 +10,8 @@ describe("Game", () => {
     game = getGame();
     game.ms.toastr = jasmine.createSpyObj("ToastrService", [
       "warning",
-      "success"
+      "success",
+      "info"
     ]);
   });
   it("should be created", () => {
@@ -122,5 +123,17 @@ describe("Game", () => {
       if (pre.name === "") console.log("Prestige without name: " + pre.id);
       expect(pre.name).not.toBe("");
     }
+  });
+  it("Warp", () => {
+    spyOn(game, "update");
+    spyOn(game.autoBuyManager, "update");
+    game.warp(-10);
+    expect(game.update).toHaveBeenCalledTimes(0);
+    expect(game.autoBuyManager.update).toHaveBeenCalledTimes(0);
+    expect(game.ms.toastr.info).toHaveBeenCalledTimes(0);
+    game.warp(10);
+    expect(game.update).toHaveBeenCalled();
+    expect(game.autoBuyManager.update).toHaveBeenCalled();
+    expect(game.ms.toastr.info).toHaveBeenCalled();
   });
 });
