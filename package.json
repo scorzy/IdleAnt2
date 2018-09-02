@@ -6,7 +6,7 @@
     "start": "npm run make-themes && ng serve --open",
     "start-prod": "npm run make-themes && ng serve --open --prod",
     "build": "npm run make-themes && ng build --prod --aot --build-optimizer --base-href ./",
-    "test": "ng test --code-coverage",
+    "test": "ng test --source-map --code-coverage",
     "test:watch": "ng test --watch",
     "lint": "ng lint && sass-lint -v",
     "e2e": "ng e2e",
