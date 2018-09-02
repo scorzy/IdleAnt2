@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
   percentPreset = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0];
   minuteWarps = [1, 5, 10, 20, 30, 60, 90, 120, 240];
   groupNoEnemy = new Array<UnitGroup>();
-  buyMulti = 0;
+  buyMulti = 1;
 
   constructor(
     private router: Router,
