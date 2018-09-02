@@ -68,7 +68,7 @@ export class Utility {
     return Utility.solveCubic(a, b, c, d);
   }
 
-  static convertToRoman(num): string {
+  static convertToRoman(num: number): string {
     const roman = {
       M: 1000,
       CM: 900,

@@ -1,7 +1,9 @@
 import uniq from "lodash-es/uniq";
 import { getGame } from "../app.component.spec";
+import { CONSTS } from "./CONSTATS";
 import { FullUnit } from "./full-unit";
 import { Game } from "./game";
+import { World } from "./world";
 
 describe("Game", () => {
   let game: Game;
@@ -135,5 +137,32 @@ describe("Game", () => {
     expect(game.update).toHaveBeenCalled();
     expect(game.autoBuyManager.update).toHaveBeenCalled();
     expect(game.ms.toastr.info).toHaveBeenCalled();
+  });
+  it("goToWorld", () => {
+    spyOn(game.stats, "logWorldCompleted");
+    spyOn(game, "setStartingStuff");
+    spyOn(game, "applyWorldBonus");
+
+    game.materials.food.quantity = new Decimal(1e500);
+    game.ants.nest.quantity = new Decimal(1e500);
+    game.currentWorld.prestige = new Decimal(23);
+    const world = new World("a");
+    game.canTravel = false;
+    world.prestige = new Decimal(20);
+    game.experience.quantity = new Decimal(1);
+
+    game.goToWorld(world);
+
+    expect(game.materials.food.quantity.toNumber()).toBe(100);
+    expect(game.experience.quantity.toNumber()).toBe(1);
+    expect(game.ants.nest.quantity.toNumber()).toBe(0);
+    expect(game.stats.logWorldCompleted).toHaveBeenCalled();
+    expect(game.currentWorld).toBe(world);
+    expect(game.setStartingStuff).toHaveBeenCalled();
+    expect(game.applyWorldBonus).toHaveBeenCalled();
+
+    game.canTravel = true;
+    game.goToWorld(world);
+    expect(game.experience.quantity.toNumber()).toBe(21);
   });
 });

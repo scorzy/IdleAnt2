@@ -577,7 +577,6 @@ export class Game {
       );
     });
     //#endregion
-
     //#region Starting Team && TWin
     const startTeam = this.allMateries.getSum(MasteryTypes.TEAM_START);
     if (startTeam > 0) {
@@ -611,12 +610,10 @@ export class Game {
       this.materials.science.unlock();
     }
     //#endregion
-
     //#region Free Warp
     this.researches.free1hWarp.unlocked =
       this.allMateries.getSum(MasteryTypes.FREE_WARP_RES) > 0;
     //#endregion
-
     //#region other Bugs
     if (this.currentWorld.additionalBugs.includes(BugTypes.BEE)) {
       this.bees.larva.unlocked = true;
@@ -646,7 +643,6 @@ export class Game {
 
     this.tabs.prestige.unlock();
 
-    // this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
     return true;
   }
 
