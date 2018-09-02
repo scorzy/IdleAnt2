@@ -142,13 +142,11 @@ export class Game {
     this.time = new FullUnit("time");
     //#endregion
     //#region Build Lists
-    this.unitGroups.forEach(g => g.check(true));
     this.unitGroups
       .map(g => g.list)
       .forEach(l => l.forEach(u => this.units.push(u)));
     this.units.push(this.experience, this.time);
-    this.buildLists();
-    this.unitGroups.forEach(g => (g.selected = g.list.filter(u => u.unlocked)));
+
     //#endregion
     //#region Relations
     this.unitGroups.forEach(g => g.setRelations());
@@ -166,13 +164,7 @@ export class Game {
     this.allPrestige = new AllPrestige();
     this.allPrestige.declareStuff(this);
     //#endregion
-
     //#region Worlds
-    // World.biome.push(new World());
-    // this.currentWorld.winContidions.push(
-    //   new Price(this.genX3.list[0], new Decimal(100))
-    // );
-    // this.currentWorld.notWinConditions.push(this.worldMalus.crystalMalus1);
     this.generateWorlds();
     this.currentWorld = new World("home");
     this.currentWorld.name = "Home World";
@@ -183,7 +175,6 @@ export class Game {
     this.currentWorld.setLevel(new Decimal(1), this);
     this.setStartingStuff();
     //#endregion
-
     //#region Time Warp
     this.actMin = new WarpAction(60, this);
     this.actHour = new WarpAction(3600, this);
@@ -224,9 +215,6 @@ export class Game {
     });
     //#endregion
     //#region Debug
-
-    this.materials.list.forEach(u => (u.quantity = new Decimal(1e100)));
-    this.ants.nest.quantity = new Decimal(100);
     // this.materials.list.forEach(u => (u.unlocked = true));
     // this.unitGroups.forEach(g => g.list.forEach(u => u.unlock()));
     // this.tabs.tabList.forEach(t => (t.unlocked = true));
@@ -257,6 +245,10 @@ export class Game {
     // this.time.quantity = new Decimal(100);
 
     //#endregion
+
+    this.unitGroups.forEach(g => g.check(true));
+    this.unitGroups.forEach(g => (g.selected = g.list.filter(u => u.unlocked)));
+    this.buildLists();
   }
   buildLists() {
     this.unlockedUnits = [];

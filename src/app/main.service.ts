@@ -55,13 +55,14 @@ export class MainService {
     this.themeMy.type = "text/css";
     this.document.querySelector("head").appendChild(this.themeMy);
 
-    this.setTheme();
-
-    this.game = new Game(this);
     this.last = Date.now();
-    setInterval(this.update.bind(this), 250);
 
     this.load(true);
+    this.setTheme();
+
+    if (!this.game) this.game = new Game(this);
+
+    setInterval(this.update.bind(this), 250);
   }
   update() {
     const now = Date.now();
@@ -187,13 +188,9 @@ export class MainService {
     const themeClarity = this.options.dark
       ? "/clr-ui-dark.min.css"
       : "/clr-ui.min.css";
-
     if (this.themeClarity.href !== themeClarity) {
       this.themeClarity.href = themeClarity;
     }
-
-    // this.themePrime.href =
-    //   (this.options.dark ? "/start" : "/start") + "/theme.css";
 
     const myTheme = "/assets/" + (this.options.dark ? "dark.css" : "light.css");
     if (myTheme !== this.themeMy.href) {
