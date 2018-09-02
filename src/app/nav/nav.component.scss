@@ -22,3 +22,6 @@
 .clr-vertical-nav .nav-link {
   padding-left: 0.35rem !important;
 }
+:host /deep/.nav-text {
+  overflow: visible !important;
+}

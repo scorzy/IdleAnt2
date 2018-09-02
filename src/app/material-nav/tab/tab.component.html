@@ -1,5 +1,5 @@
 <a [routerLink]="['/nav/unit/'+id]"
-   class="nav-link matLink"
+   class="nav-link matLink clr-row clr-justify-content-between"
    routerLinkActive="active"
    [ngClass]="{'red': isEnding}">
 
@@ -8,12 +8,11 @@
               shape="exclamation-triangle"
               *ngIf="isEnding"></clr-icon>
     <span class="first small">{{name}}</span>
+    <br/>
+    <span class="monospace">{{quantity | format:false:ms.options.formatter}}</span>
   </span>
-  <br/>
 
-  <span class="monospace">{{quantity | format:false:ms.options.formatter}}</span>
-
-  <span class="perSecTab  monospace">
+  <span class="perSecTab  monospace clr-col clr-align-self-end">
     <span *ngIf="perSec.abs().gt(0.001)"
           [ngClass]="{'noEnought': perSec.lt(0)}">
       {{perSec | format:false:ms.options.formatter}}/s

@@ -1,35 +1,40 @@
 <a [routerLink]="['./unit/'+id]"
    clrVerticalNavLink
    routerLinkActive="active">
-  <span class="resName">
-    {{name}}
-    <clr-icon class="is-info is-solid"
-              shape="angle"
-              *ngIf="!isMalus && team"
-              (click)="unit.teamAction.buy()"></clr-icon>
-    <clr-icon class="is-info is-solid"
-              shape="angle-double"
-              *ngIf="!isMalus && twin"
-              (click)="unit.twinAction.buy()"></clr-icon>
-    <clr-icon class="is-warning is-solid"
-              shape="pause"
-              *ngIf="!isMalus && isStopped"
-              (click)="unit.efficiency = 100"></clr-icon>
-    <clr-icon class="is-error is-error is-solid"
-              shape="exclamation-triangle"
-              *ngIf="isEnding"></clr-icon>
-    <clr-icon class="is-info is-solid"
-              shape="info-standard"
-              *ngIf="os.showI && isNew"></clr-icon>
 
-  </span>
-  <span class="perSec monospace">
-    <span *ngIf="perSec.abs().gt(0.001)"
-          [class.noEnought]="isEnding">
-      {{perSec | format}}/s
+  <span class="clr-row clr-justify-content-between">
+    <span class="resName">
+      {{name}}
+      <clr-icon class="is-info is-solid"
+                shape="angle"
+                *ngIf="!isMalus && team"
+                (click)="unit.teamAction.buy()"></clr-icon>
+      <clr-icon class="is-info is-solid"
+                shape="angle-double"
+                *ngIf="!isMalus && twin"
+                (click)="unit.twinAction.buy()"></clr-icon>
+      <clr-icon class="is-warning is-solid"
+                shape="pause"
+                *ngIf="!isMalus && isStopped"
+                (click)="unit.efficiency = 100"></clr-icon>
+      <clr-icon class="is-error is-error is-solid"
+                shape="exclamation-triangle"
+                *ngIf="isEnding"></clr-icon>
+      <clr-icon class="is-info is-solid"
+                shape="info-standard"
+                *ngIf="os.showI && isNew"></clr-icon>
+
     </span>
-    &nbsp;
+    <span *ngIf="quantity.abs().gt(0.001)"
+          class="qta monospace">
+      {{quantity | format}}
+    </span>
+    <span class="perSec monospace">
+      <span *ngIf="perSec.abs().gt(0.001)"
+            [class.noEnought]="isEnding">
+        {{perSec | format}}/s
+      </span>
+      &nbsp;
+    </span>
   </span>
-  <span *ngIf="quantity.abs().gt(0.001)"
-        class="qta monospace">{{quantity | format}}</span>
 </a>
