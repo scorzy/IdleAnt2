@@ -12,9 +12,13 @@ export class Gatherers extends UnitGroup {
 
   //  Bee
   foraggingBee: FullUnit;
+  carpenterBee: FullUnit;
+  studentBee: FullUnit;
 
   //  Wasp
   foraggingWasp: FullUnit;
+  hornetWasp: FullUnit;
+  smartWasp: FullUnit;
 
   //  Super Major
   hunter: FullUnit;
@@ -27,8 +31,15 @@ export class Gatherers extends UnitGroup {
     this.drone = new FullUnit("e");
     this.geologist = new FullUnit("h");
     this.student = new FullUnit("i");
+
     this.foraggingBee = new FullUnit("Z");
+    this.carpenterBee = new FullUnit("cb");
+    this.studentBee = new FullUnit("sb");
+
     this.foraggingWasp = new FullUnit("x");
+    this.hornetWasp = new FullUnit("hw");
+    this.smartWasp = new FullUnit("sw");
+
     this.hunter = new FullUnit("hu");
     this.majorWorker = new FullUnit("mw");
 
@@ -37,12 +48,32 @@ export class Gatherers extends UnitGroup {
       this.geologist,
       this.student,
       this.foraggingBee,
+      this.carpenterBee,
+      this.studentBee,
       this.foraggingWasp,
+      this.hornetWasp,
+      this.smartWasp,
       this.hunter,
       this.majorWorker
     ]);
   }
   setRelations(): void {
+    this.list.forEach(u => {
+      if (u instanceof FullUnit) {
+        this.game.addTeamAction(u, CONSTS.TEAM_PRICE_0);
+        this.game.addTwinAction(u, CONSTS.TWIN_PRICE_0);
+      }
+    });
+
+    this.setAntsRelations();
+    this.setBeeRelations();
+    this.setMajorRelations();
+    this.setWaspRelations();
+
+    this.majorWorker.setBugType(BugTypes.SUPER_MAJOR);
+  }
+
+  private setAntsRelations(): void {
     this.drone.generateBuyAction(
       [
         new Price(this.game.ants.larva, CONSTS.PRICE_LARVAE_0, 1),
@@ -71,28 +102,80 @@ export class Gatherers extends UnitGroup {
     );
     this.game.materials.science.addProducer(this.student, CONSTS.PROD_GAN);
     this.game.materials.crystal.addProducer(this.student, CONSTS.CONSUME_GAN);
-
-    this.list.forEach(u => {
-      if (u instanceof FullUnit) {
-        this.game.addTeamAction(u, CONSTS.TEAM_PRICE_0);
-        this.game.addTwinAction(u, CONSTS.TWIN_PRICE_0);
-      }
-    });
-
-    this.foraggingBee.generateBuyAction([
-      new Price(this.game.bees.larva, CONSTS.PRICE_LARVAE_0, 1),
-      new Price(this.game.materials.food, CONSTS.PRICE_0)
-    ]);
+  }
+  private setBeeRelations(): void {
+    this.foraggingBee.generateBuyAction(
+      [
+        new Price(this.game.bees.larva, CONSTS.PRICE_LARVAE_0, 1),
+        new Price(this.game.materials.food, CONSTS.PRICE_0)
+      ],
+      [this.carpenterBee]
+    );
     this.game.materials.food.addProducer(this.foraggingBee);
     this.foraggingBee.setBugType(BugTypes.BEE);
 
-    this.foraggingWasp.generateBuyAction([
+    this.carpenterBee.generateBuyAction(
+      [
+        new Price(this.game.bees.larva, CONSTS.PRICE_LARVAE_0, 1),
+        new Price(this.game.materials.food, CONSTS.PRICE_0)
+      ],
+      [this.studentBee]
+    );
+    this.game.materials.food.addProducer(this.carpenterBee, CONSTS.CONSUME_GAN);
+    this.game.materials.soil.addProducer(
+      this.carpenterBee,
+      CONSTS.PROD_GAN.times(0.4)
+    );
+    this.game.materials.crystal.addProducer(
+      this.carpenterBee,
+      CONSTS.PROD_GAN.times(0.6)
+    );
+    this.carpenterBee.setBugType(BugTypes.BEE);
+
+    this.studentBee.generateBuyAction(
+      [
+        new Price(this.game.bees.larva, CONSTS.PRICE_LARVAE_0, 1),
+        new Price(this.game.materials.food, CONSTS.PRICE_0)
+      ],
+      [this.game.tabs.lab, this.game.researches.team1]
+    );
+    this.game.materials.science.addProducer(this.studentBee, CONSTS.PROD_GAN);
+    this.game.materials.crystal.addProducer(
+      this.studentBee,
+      CONSTS.CONSUME_GAN
+    );
+  }
+  private setWaspRelations(): void {
+    this.foraggingWasp.generateBuyAction(
+      [
+        new Price(this.game.wasps.larva, CONSTS.PRICE_LARVAE_0, 1),
+        new Price(this.game.materials.food, CONSTS.PRICE_0)
+      ],
+      [this.hornetWasp]
+    );
+    this.game.materials.food.addProducer(this.foraggingWasp, CONSTS.PROD_GAN);
+    this.foraggingWasp.setBugType(BugTypes.WASP);
+
+    this.hornetWasp.generateBuyAction(
+      [
+        new Price(this.game.wasps.larva, CONSTS.PRICE_LARVAE_0, 1),
+        new Price(this.game.materials.food, CONSTS.PRICE_0)
+      ],
+      [this.smartWasp]
+    );
+    this.game.materials.crystal.addProducer(this.hornetWasp, CONSTS.PROD_GAN);
+    this.game.materials.food.addProducer(this.hornetWasp, CONSTS.CONSUME_GAN);
+    this.hornetWasp.setBugType(BugTypes.WASP);
+
+    this.smartWasp.generateBuyAction([
       new Price(this.game.wasps.larva, CONSTS.PRICE_LARVAE_0, 1),
       new Price(this.game.materials.food, CONSTS.PRICE_0)
     ]);
-    this.game.materials.food.addProducer(this.foraggingWasp);
-    this.foraggingWasp.setBugType(BugTypes.WASP);
-
+    this.game.materials.science.addProducer(this.smartWasp, CONSTS.PROD_GAN);
+    this.game.materials.crystal.addProducer(this.smartWasp, CONSTS.CONSUME_GAN);
+    this.smartWasp.setBugType(BugTypes.WASP);
+  }
+  private setMajorRelations(): void {
     this.hunter.generateBuyAction(
       [
         new Price(this.game.ants.larva, CONSTS.PRICE_LARVAE_0, 1),
@@ -116,6 +199,5 @@ export class Gatherers extends UnitGroup {
       CONSTS.PROD_GAN.times(0.3)
     );
     this.game.materials.food.addProducer(this.majorWorker, CONSTS.CONSUME_GAN);
-    this.majorWorker.setBugType(BugTypes.SUPER_MAJOR);
   }
 }

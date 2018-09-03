@@ -90,6 +90,8 @@ export const STRINGS = {
     cS: ["Crystal Supply", "Never ending crystall supply"],
     //  Bee
     Z: ["Foragging Bee", "Foragging Bee"],
+    cb: ["Carpenter Bee", "Foragging Bee"],
+    sb: ["Student Bee", "Foragging Bee"],
     Q: ["Bee Larva", ""],
     P: ["Bee Queen", ""],
     N: ["Bee Hive", ""],
@@ -107,6 +109,8 @@ export const STRINGS = {
     DGG: ["3Bee Scientist", ""],
     //  Wasp
     x: ["Foragging Wasp", "Foragging Wasp"],
+    hw: ["Hornet", ["Hornet", "A wasp on steroids."]],
+    sw: ["Smart Wasp", ""],
     y: ["Wasp Larva", ""],
     z: ["Wasp Queen", ""],
     r: ["Wasp Hive", ""],
