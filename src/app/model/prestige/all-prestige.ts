@@ -53,7 +53,12 @@ export class AllPrestige {
   restore(data: any): boolean {
     if (!("prest" in data)) return false;
     for (const p of data.prest) {
-      this.prestigeList.find(u => u.id === p.i).restore(p);
+      const prest = this.prestigeList.find(u => u.id === p.i);
+      if (prest) {
+        prest.restore(p);
+      } else {
+        console.log(p);
+      }
     }
   }
   //#endregion

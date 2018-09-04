@@ -1,55 +1,58 @@
-<div class="content-area">
-  <h1>Here you can travel to a new world.</h1>
+<h1>Here you can travel to a new world.</h1>
 
-
-  <clr-alert [clrAlertType]="'alert-success'"
-             [clrAlertClosable]="false"
-             *ngIf="ms.game.canTravel; else warn">
+<clr-alert [clrAlertType]="'alert-success'"
+           [clrAlertClosable]="false"
+           *ngIf="ms.game.canTravel; else warn">
+  <div class="alert-item">
+    <span class="alert-text">
+      You will get
+      <span class="monospace">{{ms.game.currentWorld.prestige}} </span>
+      experience
+    </span>
+  </div>
+</clr-alert>
+<ng-template #warn>
+  <clr-alert [clrAlertType]="'alert-danger'"
+             [clrAlertClosable]="false">
     <div class="alert-item">
       <span class="alert-text">
-        You will get
-        <span class="monospace">{{ms.game.currentWorld.prestige}} </span>
-        experience
+        You are skipping. You will get nothing !
       </span>
     </div>
   </clr-alert>
-  <ng-template #warn>
-    <clr-alert [clrAlertType]="'alert-danger'"
-               [clrAlertClosable]="false">
-      <div class="alert-item">
-        <span class="alert-text">
-          You are skipping. You will get nothing !
-        </span>
-      </div>
-    </clr-alert>
-  </ng-template>
-  <button class="btn"
-          (click)="randomize()">Randomize</button>
+</ng-template>
+<button class="btn"
+        (click)="randomize()">Randomize</button>
 
-  <span>
-    Min level:
-    <span class="monospace">
-      {{minLevel | format:true}}
-    </span>
+<span>
+  Min level:
+  <span class="monospace">
+    {{minLevel | format:true}}
   </span>
-  <span>
-    Max level:
-    <span class="monospace">
-      {{maxLevel | format:true}}
-    </span>
+</span>
+<span>
+  Max level:
+  <span class="monospace">
+    {{maxLevel | format:true}}
   </span>
+</span>
 
-  <p-slider [(ngModel)]="rangeValues"
-            [range]="true"
-            [min]="1"
-            [max]="maxSafeInt"
-            (onChange)="setLevels()"></p-slider>
+<p-slider [(ngModel)]="rangeValues"
+          [range]="true"
+          [min]="1"
+          [max]="maxSafeInt"
+          (onChange)="setLevels()"></p-slider>
 
-  <div class="card-columns">
+<!-- <div class="card-columns">
     <app-world [world]="world"
                *ngFor="let world of ms.game.nextWorlds; trackBy:getWorldId"></app-world>
-  </div>
+  </div> -->
 
+<div class="clr-row clr-justify-content-center">
+  <div *ngFor="let world of ms.game.nextWorlds; trackBy:getWorldId"
+       class="worldMaxWidt clr-col-sm-12 clr-col-md-4">
+    <app-world [world]="world"></app-world>
+  </div>
 </div>
 
 

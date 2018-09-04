@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: RobotoMono;
-  src: url('assets/RobotoMono-Regular.ttf');
+  src: url("assets/RobotoMono-Regular.ttf");
 }
 
 html {
@@ -54,4 +54,8 @@ header .header-nav .nav-link {
     height: 1.5rem !important;
     top: 0 !important;
   }
+}
+
+.datagrid-body {
+  padding-bottom: 0.5rem;
 }

@@ -144,6 +144,7 @@ export class Gatherers extends UnitGroup {
       this.studentBee,
       CONSTS.CONSUME_GAN
     );
+    this.studentBee.setBugType(BugTypes.BEE);
   }
   private setWaspRelations(): void {
     this.foraggingWasp.generateBuyAction(
@@ -190,6 +191,7 @@ export class Gatherers extends UnitGroup {
       new Price(this.game.ants.larva, CONSTS.PRICE_LARVAE_0, 1),
       new Price(this.game.materials.food, CONSTS.PRICE_0)
     ]);
+    this.majorWorker.setBugType(BugTypes.SUPER_MAJOR);
     this.game.materials.soil.addProducer(
       this.majorWorker,
       CONSTS.PROD_GAN.times(0.7)

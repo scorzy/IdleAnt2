@@ -1,6 +1,8 @@
-<app-change-world *ngIf="skip || ms.game.canTravel; else noTravel"></app-change-world>
-<ng-template #noTravel>
-  <div class="content-area">
+<div class="content-area">
+
+  <app-change-world *ngIf="skip || ms.game.canTravel; else noTravel"></app-change-world>
+  <ng-template #noTravel>
+
     <h1>Travel to a new world
       <button class="btn btn-danger-outline btn-link"
               (click)="skip = true">Skip</button>
@@ -36,5 +38,5 @@
 
     </div>
 
-  </div>
-</ng-template>
+  </ng-template>
+</div>

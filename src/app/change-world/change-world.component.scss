@@ -4,3 +4,9 @@
     margin-right: 1rem;
   }
 }
+
+@media screen and (min-width: 57rem) {
+  .worldMaxWidt {
+    max-width: 19rem;
+  }
+}
