@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { AfterViewInit, Component, OnInit } from "@angular/core";
 import { MainService } from "./main.service";
 
 // import { ClarityIcons } from "@clr/icons";
@@ -12,6 +12,7 @@ import {
   ClrShapeWorld
 } from "@clr/icons/shapes/essential-shapes";
 
+import { animate, style, transition, trigger } from "@angular/animations";
 import { ClrShapeStore } from "@clr/icons/shapes/commerce-shapes";
 import {
   ClrShapeAngle,
@@ -34,9 +35,19 @@ import { OptionsService } from "./options.service";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  styleUrls: ["./app.component.scss"],
+  animations: [
+    trigger("fadeInOut", [
+      transition(":enter", [
+        style({ opacity: 0 }),
+        animate(500, style({ opacity: 1 }))
+      ]),
+      transition(":leave", [animate(500, style({ opacity: 0 }))])
+    ])
+  ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit, AfterViewInit {
+  show = false;
   constructor(public ms: MainService, public os: OptionsService) {
     ClarityIcons.add({
       bug: ClrShapeBug,
@@ -58,5 +69,11 @@ export class AppComponent {
       star: ClrShapeStar,
       dashboard: ClrShapeDashboard
     });
+  }
+  ngOnInit(): void {
+    //
+  }
+  ngAfterViewInit() {
+    //
   }
 }

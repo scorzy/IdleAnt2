@@ -19,6 +19,7 @@ const H1 = 3600 * 1000;
 export class MainService {
   game: Game;
   last: number;
+  show = false;
 
   updateEmitter: EventEmitter<number> = new EventEmitter<number>();
   researchEmitter: EventEmitter<string> = new EventEmitter<string>();
@@ -58,11 +59,15 @@ export class MainService {
     this.last = Date.now();
 
     this.load(true);
-    this.setTheme();
 
-    if (!this.game) this.game = new Game(this);
-
-    setInterval(this.update.bind(this), 250);
+    if (!this.game) {
+      this.setTheme();
+      this.game = new Game(this);
+    }
+    setTimeout(() => {
+      this.show = true;
+      setInterval(this.update.bind(this), 250);
+    }, 30);
   }
   update() {
     const now = Date.now();

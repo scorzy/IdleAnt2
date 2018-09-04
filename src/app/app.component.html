@@ -1,4 +1,5 @@
-<clr-main-container>
+<clr-main-container *ngIf="ms.show"
+                    [@fadeInOut]>
   <app-header [lab]="ms.game.tabs.lab.unlocked"
               [labBadge]="ms.game.canBuyResearch"
               [travel]="ms.game.tabs.travel.unlocked"
@@ -8,8 +9,7 @@
               [mastery]="ms.game.tabs.mastery.unlocked">
   </app-header>
   <app-material-nav *ngIf="os.materialPosition != 3"></app-material-nav>
-  <!-- <div class="content-container"> -->
+
   <router-outlet></router-outlet>
-  <!-- </div> -->
 
 </clr-main-container>

@@ -12,10 +12,15 @@
         type="image/x-icon"
         href="favicon.ico">
 
-  <!--
-    Loader URL:
-    https://icons8.com/cssload/en/spinners/2
-  -->
+  <link href="/clr-ui.min.css"
+        as="style">
+  <link href="/clr-ui-dark.min.css"
+        as="style">
+  <link href="/assets/dark.css"
+        as="style">
+  <link href="/assets/light.css"
+        as="style">
+
   <style>
     body {
       margin: 0;
@@ -37,18 +42,19 @@
 
 <body>
   <app-root>
-    <div class="flexCont">
-      <div class="loaderC">
-        <h1>
-          Idle Ant 2
-        </h1>
-
-        <p>
-          Loading<br/>Optimized for lastest Chromium and Firefox
-        </p>
-      </div>
-    </div>
   </app-root>
+
+  <div id="preload"
+       class="flexCont">
+    <div class="loaderC">
+      <h1>
+        Idle Ant 2
+      </h1>
+      <p>
+        Loading<br/>Optimized for lastest Chromium and Firefox
+      </p>
+    </div>
+  </div>
 </body>
 
 </html>
