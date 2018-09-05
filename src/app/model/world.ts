@@ -82,6 +82,22 @@ export class World {
       ];
       this.notWinConditions.push(sample(malus));
     }
+
+    //  Apply Prestige bonus
+    const multiBonus = game.allPrestige.worldPrestige.betterWorlds.quantity
+      .times(0.1)
+      .plus(1);
+    if (multiBonus.gt(1)) {
+      [
+        this.productionsBonus,
+        this.productionsEfficienty,
+        this.productionsAll
+      ].forEach(prod => {
+        prod.forEach(p => {
+          p[1] = p[1].times(multiBonus);
+        });
+      });
+    }
   }
   canTravel(): boolean {
     this.winContidions.forEach(p => {

@@ -256,7 +256,10 @@ export const STRINGS = {
     p: ["Mining", "+10% crystal production"],
     s: ["Studing", "+10% science production"],
     //  Team
-    E: ["Team Work", "+30% Team Work Bonus"]
+    E: ["Team Work", "+30% Team Work Bonus"],
+    //  Worlds
+    w: ["Better World", "+10% World Bonus"],
+    r: ["Better Army", "+10% Army killing stuff"]
   },
   actions: {
     warp60: ["Warp minute", "Time warp by minutes"],

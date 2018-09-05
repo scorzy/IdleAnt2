@@ -701,7 +701,15 @@ export class Game {
         });
       }
 
+      //
+      //  Debug
+      //
       this.materials.list.forEach(m => (m.quantity = new Decimal(1e100)));
+      this.ants.nest.quantity = new Decimal(70);
+      this.experience.quantity = new Decimal(1e10);
+      //
+      //
+      //
 
       this.unitGroups.forEach(g => g.check());
       this.buildLists();

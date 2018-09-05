@@ -7,6 +7,7 @@ import { PrestigeGroup } from "./prestige-group";
 import { Team } from "./team";
 import { Tecnology } from "./tecnology";
 import { Time } from "./time";
+import { WorldPrestige } from "./world-prestige";
 
 export class AllPrestige {
   followers: Followers;
@@ -15,6 +16,7 @@ export class AllPrestige {
   autoBuyUnlock: AutoBuyUnlock;
   tecnology: Tecnology;
   team: Team;
+  worldPrestige: WorldPrestige;
 
   prestigeGroups = new Array<PrestigeGroup>();
   prestigeList = new Array<Action>();
@@ -26,6 +28,7 @@ export class AllPrestige {
     this.autoBuyUnlock = new AutoBuyUnlock();
     this.tecnology = new Tecnology();
     this.team = new Team();
+    this.worldPrestige = new WorldPrestige();
 
     this.prestigeGroups.push(
       this.followers,
@@ -33,7 +36,8 @@ export class AllPrestige {
       this.tecnology,
       this.team,
       this.time,
-      this.autoBuyUnlock
+      this.autoBuyUnlock,
+      this.worldPrestige
     );
   }
 

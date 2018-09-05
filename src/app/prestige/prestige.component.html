@@ -9,31 +9,50 @@
     </h1>
     <div class="clr-row">
       <div class="clr-col-12 clr-col-sm-12 clr-col-md-6 clr-col-lg-6 clr-col-xl-6">
-        <p>You need:</p>
-        <div *ngFor="let price of ms.game.currentWorld.winContidions; trackBy:getPriceId">
-          <h6>{{price.base.name}}
-            <span class="monospace">
-              {{price.base.quantity | format:true}}/{{price.price | format:true}}
-            </span>
-          </h6>
-          <div class="progress-static labeled"
-               [ngClass]="{'success': price.canBuy,'danger': !price.canBuy}">
-            <div class="progress-meter"
-                 [attr.data-value]="price.completedPercent"
-                 [attr.data-displayval]="price.completedPercent"></div>
+        <div class="card">
+          <div class="card-block">
+            <h3 class="card-title">
+              You need:
+            </h3>
+            <div *ngFor="let price of ms.game.currentWorld.winContidions; trackBy:getPriceId">
+              <div class="winLabel">
+                {{price.base.name}}
+                <span class="monospace">
+                  {{price.base.quantity | format:true}}/{{price.price | format:true}}
+                </span>
+              </div>
+
+              <div class="progress-static"
+                   [ngClass]="{'success': price.canBuy,'danger': !price.canBuy}">
+                <div class="progress-meter"
+                     [attr.data-value]="price.completedPercent"
+                     [attr.data-displayval]="price.completedPercent"></div>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
 
       <div class="clr-col-12 clr-col-sm-12 clr-col-md-6 clr-col-lg-6 clr-col-xl-6"
            *ngIf="ms.game.currentWorld.notWinConditions?.length > 0">
-        <p>You must kill:</p>
-        <ul class="list-unstyled">
-          <li *ngFor="let malus of ms.game.currentWorld.notWinConditions; trackBy:getMalusId">
-            <clr-icon [attr.shape]="malus.isKilled ? 'check' : 'times'"></clr-icon>
-            {{malus.name}}
-          </li>
-        </ul>
+        <div class="card">
+          <div class="card-block">
+            <h3 class="card-title">
+              You must kill:
+            </h3>
+            <ul class="list-unstyled">
+              <li *ngFor="let malus of ms.game.currentWorld.notWinConditions; trackBy:getMalusId">
+                <span>
+                  <clr-icon class="malusIcon"
+                            [ngClass]="malus.isKilled ? 'ok':'no'"
+                            [attr.shape]="malus.isKilled ? 'check' : 'times'"></clr-icon>
+                  {{malus.name}}
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
 
     </div>
