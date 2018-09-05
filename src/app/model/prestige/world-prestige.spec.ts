@@ -1,7 +1,7 @@
-import { WorldPrestige } from './world-prestige';
+import { WorldPrestige } from "./world-prestige";
 
-describe('WorldPrestige', () => {
-  it('should create an instance', () => {
+describe("WorldPrestige", () => {
+  it("should create an instance", () => {
     expect(new WorldPrestige()).toBeTruthy();
   });
 });
