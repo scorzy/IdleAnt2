@@ -22,7 +22,8 @@
       {{unl.name}} avaiable.
     </li>
     <li *ngFor="let start of world.startingUnit; trackBy:getStartId">
-      {{start[1] | format}} x {{start[0].name}}
+      <ng-container *ngIf="start[1].gt(0);else zero">{{start[1] | format}} x {{start[0].name}}</ng-container>
+      <ng-template #zero>{{start[0].name}} avaiable.</ng-template>
     </li>
   </ul>
 

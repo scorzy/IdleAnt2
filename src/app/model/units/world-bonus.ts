@@ -10,6 +10,7 @@ export class WorldBonus {
   woodBonus: BaseUnit;
   crystalBonus: BaseUnit;
   scienceBonus: BaseUnit;
+  killBonus: BaseUnit;
 
   bonusList: BaseUnit[];
 
@@ -18,12 +19,14 @@ export class WorldBonus {
     this.woodBonus = new BaseUnit("2");
     this.crystalBonus = new BaseUnit("3");
     this.scienceBonus = new BaseUnit("4");
+    this.killBonus = new BaseUnit("5");
 
     this.bonusList = [
       this.foodBonus,
       this.woodBonus,
       this.crystalBonus,
-      this.scienceBonus
+      this.scienceBonus,
+      this.killBonus
     ];
   }
   setRelations(game: Game): void {
@@ -46,15 +49,19 @@ export class WorldBonus {
       b.quantity = new Decimal(0);
     });
   }
-
   addWorlds(): void {
-    this.bonusList.forEach(b => {
+    [
+      this.foodBonus,
+      this.woodBonus,
+      this.crystalBonus,
+      this.scienceBonus
+    ].forEach(b => {
       const pre = new World(b.id + "Pre");
-      pre.productionsBonus = [[b, new Decimal(1.3)]];
+      pre.productionsBonus = [[b, new Decimal(1)]];
       World.prefix.push(pre);
 
       const suff = new World(b.id + "Suf");
-      suff.productionsBonus = [[b, new Decimal(1.3)]];
+      suff.productionsBonus = [[b, new Decimal(1)]];
       World.suffix.push(suff);
     });
   }

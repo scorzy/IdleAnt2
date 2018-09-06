@@ -51,7 +51,7 @@ export class WorldComponent implements OnInit {
     return bonus[0].id + bonus[1].toNumber();
   }
   getResearchId(index, resarch: Research) {
-    return resarch.id;
+    return index + resarch.id;
   }
   getStartId(index, bonus: [FullUnit, Decimal]) {
     return bonus[0].id + bonus[1].toNumber();

@@ -59,6 +59,7 @@ export const STRINGS = {
     2: ["Soil Production Bonus", ""],
     3: ["Crystal Production Bonus", ""],
     4: ["Science Production Bonus", ""],
+    5: ["Kill Bonus", ""],
     //  Malus
     Mf1: ["Poisonous Fungus (Food)", "Poisonous Fungus"],
     Mf2: ["Ancient Fungus", "Ancient Fungus"],
@@ -77,6 +78,8 @@ export const STRINGS = {
     W: ["wmki", ""],
     C: ["cmki", ""],
     S: ["aaa", ""],
+    HB: ["General", "+10% killing."],
+    HQ: ["Headquarter", "+10% killing."],
     //  Mastery Bonus
     scieMast: ["Science Mastery"],
     fooMast: ["Food Mastery"],
@@ -198,7 +201,9 @@ export const STRINGS = {
     sm: ["Super Major Helpers", ""],
     lf: ["Leaf Cutter", "Improve Farming."],
     mh: ["Big Miner", "Improve Mining."],
-    sh: ["Big Carpenter", "Improve soil gathering."]
+    sh: ["Big Carpenter", "Improve soil gathering."],
+    //  Kill World
+    aow: ["Art of War", ["1", "2"]]
   },
   worlds: {
     "1Pre": "Hot",
@@ -229,7 +234,11 @@ export const STRINGS = {
     waspSuff: "of Wasp",
     //  Super Major
     majorPre: "Giant",
-    majorSuff: "of Super Major"
+    majorSuff: "of Super Major",
+    //  Malus Bonus
+    mkPre: "Hostile",
+    mkBio: "Battlefield",
+    mkSuff: "of War"
   },
   prestige: {
     //  Followers 1

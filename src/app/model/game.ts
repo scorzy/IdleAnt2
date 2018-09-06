@@ -245,6 +245,10 @@ export class Game {
     // this.researches.twin.toUnlock.forEach(u => u.unlock());
     // this.time.quantity = new Decimal(100);
 
+    // console.log("World Prefix: " + World.prefix.length);
+    // console.log("World Biomes: " + World.biome.length);
+    // console.log("World Suffix: " + World.suffix.length);
+
     //#endregion
 
     this.unitGroups.forEach(g => g.check(true));

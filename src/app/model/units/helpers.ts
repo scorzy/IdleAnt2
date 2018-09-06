@@ -14,6 +14,9 @@ export class Helpers extends UnitGroup {
 
   majorHelperRes: Research;
 
+  general: Helper;
+  headquarter: Helper;
+
   constructor(game: Game) {
     super("Heplers", game);
   }
@@ -21,8 +24,16 @@ export class Helpers extends UnitGroup {
     this.leafCutter = new Helper("lf", 0.1);
     this.minerHelper = new Helper("mh", 0.1);
     this.soilHelper = new Helper("sh", 0.1);
+    this.general = new Helper("HB", 0.1);
+    this.headquarter = new Helper("HQ", 0.1);
 
-    this.addUnits([this.leafCutter, this.minerHelper, this.soilHelper]);
+    this.addUnits([
+      this.leafCutter,
+      this.minerHelper,
+      this.soilHelper,
+      this.general,
+      this.headquarter
+    ]);
     this.majorHelperRes = new Research("sm", this.game.researches);
   }
   setRelations(): void {
@@ -80,6 +91,17 @@ export class Helpers extends UnitGroup {
       res.prices = this.game.genSciencePrice(CONSTS.RES_PRICE_2.times(10));
       this.majorHelperRes.toUnlock.push(res);
     });
+
+    this.general.generateBuyAction([
+      new Price(this.game.ants.larva, CONSTS.PRICE_LARVAE_0, 1),
+      new Price(this.game.materials.food, CONSTS.PRICE_2)
+    ]);
+    this.headquarter.generateBuyAction([
+      new Price(this.game.materials.soil, CONSTS.PRICE_2)
+    ]);
+    this.game.killers.list.forEach(k =>
+      k.productionsAll.push(this.general.helpBonus, this.headquarter.helpBonus)
+    );
   }
   addWorlds() {
     const majorPre = new World("majorPre");
