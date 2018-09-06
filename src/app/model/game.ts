@@ -69,6 +69,7 @@ export class Game {
   canTravel = false;
 
   maxLevel = new Decimal(5);
+  realMaxLevel = new Decimal(5);
   experience: FullUnit;
   time: FullUnit;
   allPrestige: AllPrestige;
@@ -640,10 +641,12 @@ export class Game {
 
   //#region Unit Utils
   generateWorlds(userMin: Decimal = null, userMax: Decimal = null) {
-    if (userMin == null) userMin = new Decimal(1);
-    if (userMax == null) userMax = this.maxLevel;
+    this.reloadMaxLevel();
 
-    userMax = Decimal.min(userMax, this.maxLevel);
+    if (userMin == null) userMin = new Decimal(1);
+    if (userMax == null) userMax = this.realMaxLevel;
+
+    userMax = Decimal.min(userMax, this.realMaxLevel);
 
     this.nextWorlds = [
       World.getRandomWorld(userMin, userMax, this),
@@ -662,6 +665,11 @@ export class Game {
   }
   addTwinAction(unit: FullUnit, price: Decimal | number) {
     unit.generateTwinAction(this.genTwinPrice(price));
+  }
+  reloadMaxLevel() {
+    this.realMaxLevel = this.maxLevel.times(
+      this.allPrestige.worldPrestige.maxLevel.quantity.times(0.1).plus(1)
+    );
   }
   //#endregion
   //#endregion

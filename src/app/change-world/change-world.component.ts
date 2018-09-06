@@ -27,7 +27,9 @@ export class ChangeWorldComponent implements OnInit, AfterViewInit {
     public ms: MainService,
     private cd: ChangeDetectorRef,
     private router: Router
-  ) {}
+  ) {
+    this.ms.game.reloadMaxLevel();
+  }
 
   ngAfterViewInit(): void {
     this.cd.markForCheck();
@@ -41,10 +43,10 @@ export class ChangeWorldComponent implements OnInit, AfterViewInit {
     });
   }
   setLevels() {
-    this.maxLevel = this.ms.game.maxLevel
+    this.maxLevel = this.ms.game.realMaxLevel
       .times(this.rangeValues[1] / Number.MAX_SAFE_INTEGER)
       .ceil();
-    this.minLevel = this.ms.game.maxLevel
+    this.minLevel = this.ms.game.realMaxLevel
       .times(this.rangeValues[0] / Number.MAX_SAFE_INTEGER)
       .floor()
       .min(this.maxLevel)

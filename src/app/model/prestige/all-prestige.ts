@@ -36,8 +36,8 @@ export class AllPrestige {
       this.tecnology,
       this.team,
       this.time,
-      this.autoBuyUnlock,
-      this.worldPrestige
+      this.worldPrestige,
+      this.autoBuyUnlock
     );
   }
 
