@@ -1,3 +1,4 @@
+import { random } from "lodash-es";
 import sample from "lodash-es/sample";
 import uniq from "lodash-es/uniq";
 import { BaseUnit } from "./baseUnit";
@@ -6,6 +7,7 @@ import { CONSTS } from "./CONSTATS";
 import { FullUnit } from "./full-unit";
 import { Game } from "./game";
 import { Malus } from "./malus";
+import { MasteryTypes } from "./masteries/mastery";
 import { Price } from "./price";
 import { Research } from "./research";
 import { STRINGS } from "./strings";
@@ -84,9 +86,14 @@ export class World {
     }
 
     //  Apply Prestige bonus
-    const multiBonus = game.allPrestige.worldPrestige.betterWorlds.quantity
-      .times(0.1)
-      .plus(1);
+    let multiBonus = game.allPrestige.worldPrestige.betterWorlds.quantity.times(
+      0.1
+    );
+    multiBonus = multiBonus.times(
+      1 + game.allMateries.getSum(MasteryTypes.BETTER_WORLD) * 0.2
+    );
+    multiBonus = multiBonus.plus(1);
+
     if (multiBonus.gt(1)) {
       [
         this.productionsBonus,
@@ -249,12 +256,25 @@ export class World {
   }
   // tslint:disable-next-line:member-ordering
   static getRandomWorld(min: Decimal, max: Decimal, game: Game): World {
-    const world = World.merge([
+    const toMerge: World[] = [];
+    if (
+      game.allMateries.getSum(MasteryTypes.DOUBLE_PREFIX) > 0 &&
+      Math.random() > 0.3
+    ) {
+      toMerge.push(sample(World.prefix));
+    }
+    toMerge.push(
       sample(World.prefix),
       sample(World.biome),
       sample(World.suffix)
-    ]);
-
+    );
+    if (
+      game.allMateries.getSum(MasteryTypes.DOUBLE_SUFFIX) > 0 &&
+      Math.random() > 0.3
+    ) {
+      toMerge.push(sample(World.suffix));
+    }
+    const world = World.merge(toMerge);
     world.setLevel(Utility.random(min, max), game);
 
     return world;

@@ -16,6 +16,7 @@ export class AllMasteries {
   foodBonus: BaseUnit;
   woodBonus: BaseUnit;
   crystallBonus: BaseUnit;
+  armyBonus: BaseUnit;
 
   harvestBonus: BaseUnit;
   materialBonus: BaseUnit;
@@ -51,6 +52,12 @@ export class AllMasteries {
     const matBon = new ProductionBonus(this.materialBonus, new Decimal(0.1));
     game.materials.list.forEach(u => {
       u.productionsBonus.push(matBon);
+    });
+
+    this.armyBonus = new BaseUnit("armyMast");
+    const armyBon = new ProductionBonus(this.armyBonus, new Decimal(2));
+    game.killers.list.forEach(u => {
+      u.productionsAll.push(armyBon);
     });
 
     const lenght = Object.keys(MasteryTypes).length / 2;
@@ -101,13 +108,26 @@ export class AllMasteries {
 
     //  Science && Tecnology
     this.addMasteryLine(15, 70, MasteryTypes.SCIENTIFIC_METHOD, 5);
-    this.addMasteryLine(15, 75, MasteryTypes.THECNOLOGY_PRESTIGE, 5, 74);
+    this.addMasteryLine(15, 75, MasteryTypes.THECNOLOGY_PRESTIGE, 5);
+    this.addMasteryLine(74, 103, MasteryTypes.START_RESEARCHS, 1, 79);
 
     //  Single material bonus
     this.addMasteryLine(matGain.id, 80, MasteryTypes.SCIENCE_BONUS, 3);
     this.addMasteryLine(matGain.id, 85, MasteryTypes.FOOD_BONUS, 3);
     this.addMasteryLine(matGain.id, 90, MasteryTypes.WOOD_BONUS, 3);
     this.addMasteryLine(matGain.id, 95, MasteryTypes.CRYSTALL_BONUS, 3);
+
+    //  World Bonus
+    this.addMasteryLine(17, 105, MasteryTypes.BETTER_WORLD, 4);
+    this.addMasteryLine(108, 110, MasteryTypes.DOUBLE_PREFIX, 1);
+    this.addMasteryLine(7, 111, MasteryTypes.BETTER_WORLD_EXPERIENCE, 4);
+    this.addMasteryLine(114, 116, MasteryTypes.DOUBLE_SUFFIX, 1);
+    this.addMasteryLine(12, 117, MasteryTypes.WORLD_LEVEL_PRESTIGE, 4);
+    this.addMasteryLine(120, 121, MasteryTypes.WORLD_LEVEL, 1);
+
+    //  Helpers
+    this.addMasteryLine(2, 122, MasteryTypes.BETTER_HELPERS, 4);
+    this.addMasteryLine(125, 126, MasteryTypes.DOUBLE_ARMY, 1);
   }
 
   getSum(type: MasteryTypes): number {
@@ -181,6 +201,9 @@ export class AllMasteries {
     );
     this.materialBonus.quantity = new Decimal(
       this.getSum(MasteryTypes.MATERIAL_GAIN)
+    );
+    this.armyBonus.quantity = new Decimal(
+      this.getSum(MasteryTypes.DOUBLE_ARMY)
     );
   }
 

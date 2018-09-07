@@ -87,6 +87,7 @@ export const STRINGS = {
     cryMast: ["Crystall Mastery"],
     harvMast: ["Harvest Mastery"],
     matMast: ["Material Mastery"],
+    armyMast: ["Army Mastery"],
     //  Supply
     fS: ["Food Supply", "Never ending food supply"],
     wS: ["Wood Supply", "Never ending wood supply"],

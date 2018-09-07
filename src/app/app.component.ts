@@ -74,6 +74,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     //
   }
   ngAfterViewInit() {
-    //
+    setTimeout(() => {
+      this.ms.start();
+    }, 1);
   }
 }

@@ -64,10 +64,10 @@ export class MainService {
       this.setTheme();
       this.game = new Game(this);
     }
-    setTimeout(() => {
-      this.show = true;
-      setInterval(this.update.bind(this), 250);
-    }, 30);
+  }
+  start() {
+    this.show = true;
+    setInterval(this.update.bind(this), 250);
   }
   update() {
     const now = Date.now();

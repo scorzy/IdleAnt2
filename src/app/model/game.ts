@@ -165,17 +165,6 @@ export class Game {
     this.allPrestige = new AllPrestige();
     this.allPrestige.declareStuff(this);
     //#endregion
-    //#region Worlds
-    this.generateWorlds();
-    this.currentWorld = new World("home");
-    this.currentWorld.name = "Home World";
-    this.currentWorld.level = new Decimal(1);
-    this.currentWorld.winContidions.push(
-      new Price(this.materials.food, CONSTS.BASE_WIN_CONDITION_MATERIALS)
-    );
-    this.currentWorld.setLevel(new Decimal(1), this);
-    this.setStartingStuff();
-    //#endregion
     //#region Time Warp
     this.actMin = new WarpAction(60, this);
     this.actHour = new WarpAction(3600, this);
@@ -200,6 +189,18 @@ export class Game {
 
     this.allMateries = new AllMasteries(this);
     this.stats = new Stats();
+
+    //#region Worlds
+    this.generateWorlds();
+    this.currentWorld = new World("home");
+    this.currentWorld.name = "Home World";
+    this.currentWorld.level = new Decimal(1);
+    this.currentWorld.winContidions.push(
+      new Price(this.materials.food, CONSTS.BASE_WIN_CONDITION_MATERIALS)
+    );
+    this.currentWorld.setLevel(new Decimal(1), this);
+    this.setStartingStuff();
+    //#endregion
 
     //#region Special Stuff
     this.researches.mastery.onBuy = () => {
@@ -607,9 +608,15 @@ export class Game {
       this.materials.science.unlock();
     }
     //#endregion
-    //#region Free Warp
+    //#region Mastery && Free Warp
     this.researches.free1hWarp.unlocked =
       this.allMateries.getSum(MasteryTypes.FREE_WARP_RES) > 0;
+    if (this.allMateries.getSum(MasteryTypes.START_RESEARCHS) > 0) {
+      this.advWorkers.scientificMethod1.unlocked = true;
+      this.advWorkers.scientificMethod1.quantity = new Decimal(4);
+      this.researches.harvesting.unlocked = true;
+      this.researches.harvesting.quantity = new Decimal(4);
+    }
     //#endregion
     //#region other Bugs
     if (this.currentWorld.additionalBugs.includes(BugTypes.BEE)) {
@@ -672,8 +679,15 @@ export class Game {
   }
   reloadMaxLevel() {
     this.realMaxLevel = this.maxLevel.times(
-      this.allPrestige.worldPrestige.maxLevel.quantity.times(0.1).plus(1)
+      this.allPrestige.worldPrestige.maxLevel.quantity
+        .times(0.1)
+        .times(
+          1 + 0.5 * this.allMateries.getSum(MasteryTypes.WORLD_LEVEL_PRESTIGE)
+        )
+        .plus(1)
     );
+    const masteryMulti = this.allMateries.getSum(MasteryTypes.WORLD_LEVEL);
+    this.realMaxLevel = this.realMaxLevel.times(1 + masteryMulti / 2).floor();
   }
   //#endregion
   //#endregion
@@ -719,6 +733,7 @@ export class Game {
       this.materials.list.forEach(m => (m.quantity = new Decimal(1e100)));
       this.ants.nest.quantity = new Decimal(70);
       this.experience.quantity = new Decimal(1e10);
+      this.allMateries.masteryPoint = 100;
       //
       //
       //

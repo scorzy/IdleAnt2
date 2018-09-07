@@ -21,11 +21,11 @@ export class Helpers extends UnitGroup {
     super("Heplers", game);
   }
   declareStuff(): void {
-    this.leafCutter = new Helper("lf", 0.1);
-    this.minerHelper = new Helper("mh", 0.1);
-    this.soilHelper = new Helper("sh", 0.1);
-    this.general = new Helper("HB", 0.1);
-    this.headquarter = new Helper("HQ", 0.1);
+    this.leafCutter = new Helper("lf", 0.1, this.game);
+    this.minerHelper = new Helper("mh", 0.1, this.game);
+    this.soilHelper = new Helper("sh", 0.1, this.game);
+    this.general = new Helper("HB", 0.1, this.game);
+    this.headquarter = new Helper("HQ", 0.1, this.game);
 
     this.addUnits([
       this.leafCutter,

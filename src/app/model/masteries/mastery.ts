@@ -19,13 +19,27 @@ export enum MasteryTypes {
   THECNOLOGY_PRESTIGE,
   START_TWIN,
   FREE_WARP_RES,
-  TIME_GEN_AND_BANK
+  TIME_GEN_AND_BANK,
+  START_RESEARCHS,
+  DOUBLE_PREFIX,
+  DOUBLE_SUFFIX,
+  WORLD_LEVEL,
+  WORLD_LEVEL_PRESTIGE,
+  BETTER_WORLD,
+  BETTER_WORLD_EXPERIENCE,
+  BETTER_HELPERS,
+  DOUBLE_ARMY
 }
 const notable = [
   MasteryTypes.MATERIAL_GAIN,
   MasteryTypes.START_TWIN,
   MasteryTypes.FREE_WARP_RES,
-  MasteryTypes.TIME_GEN_AND_BANK
+  MasteryTypes.TIME_GEN_AND_BANK,
+  MasteryTypes.START_RESEARCHS,
+  MasteryTypes.DOUBLE_PREFIX,
+  MasteryTypes.DOUBLE_SUFFIX,
+  MasteryTypes.WORLD_LEVEL,
+  MasteryTypes.DOUBLE_ARMY
 ];
 
 export class Mastery {
@@ -113,6 +127,42 @@ export class Mastery {
         ret = "start new world \nfree warps (1h 2h 3h)";
         break;
       }
+      case MasteryTypes.START_RESEARCHS: {
+        ret = "start new world\n4 scientific method and harvesting";
+        break;
+      }
+      case MasteryTypes.DOUBLE_PREFIX: {
+        ret = "30% chance of\ndouble Prefix";
+        break;
+      }
+      case MasteryTypes.DOUBLE_SUFFIX: {
+        ret = "30% chance of\ndouble Suffix";
+        break;
+      }
+      case MasteryTypes.WORLD_LEVEL: {
+        ret = "+50% max World Level";
+        break;
+      }
+      case MasteryTypes.BETTER_WORLD: {
+        ret = "+20%\nWorld Bonus";
+        break;
+      }
+      case MasteryTypes.BETTER_WORLD_EXPERIENCE: {
+        ret = "Better World Prestige up are\n50% more effective";
+        break;
+      }
+      case MasteryTypes.WORLD_LEVEL_PRESTIGE: {
+        ret = "Max Level Prestige are\n50% more effective";
+        break;
+      }
+      case MasteryTypes.BETTER_HELPERS: {
+        ret = "+100% Bonus\nfrom Helpers";
+        break;
+      }
+      case MasteryTypes.DOUBLE_ARMY: {
+        ret = "+200%\nArmy killing";
+        break;
+      }
     }
     return ret;
   }
@@ -128,7 +178,7 @@ export class Mastery {
     public x = 0,
     public y = 0
   ) {
-    this.label = Mastery.getDescription(type);
+    this.label = id + " " + Mastery.getDescription(type);
     this.color = notable.find(n => n === this.type)
       ? Mastery.notableColor
       : Mastery.normalColor;
