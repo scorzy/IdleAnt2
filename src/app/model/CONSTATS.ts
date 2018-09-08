@@ -16,15 +16,15 @@ export class CONSTS {
   static readonly PROD_1 = new Decimal(20);
   static readonly CONSUME_1 = new Decimal(-15);
 
-  static readonly TEAM_PRICE_0 = new Decimal(500);
+  static readonly TEAM_PRICE_0 = new Decimal(5e2);
   static readonly TEAM_PRICE_1 = new Decimal(5e3);
-  static readonly TEAM_PRICE_2 = new Decimal(5e6);
-  static readonly TEAM_PRICE_3 = new Decimal(5e10);
+  static readonly TEAM_PRICE_2 = new Decimal(5e5);
+  static readonly TEAM_PRICE_3 = new Decimal(5e8);
 
   static readonly TWIN_PRICE_0 = new Decimal(1e3);
   static readonly TWIN_PRICE_1 = new Decimal(1e4);
-  static readonly TWIN_PRICE_2 = new Decimal(1e7);
-  static readonly TWIN_PRICE_3 = new Decimal(1e11);
+  static readonly TWIN_PRICE_2 = new Decimal(1e6);
+  static readonly TWIN_PRICE_3 = new Decimal(1e9);
 
   static readonly RES_PRICE_1 = new Decimal(5e3);
   static readonly RES_PRICE_2 = new Decimal(5e6);

@@ -11,4 +11,17 @@
              [perSec]="g.c"></app-tab>
 
   </li>
+  <li *ngIf="ms.game.firstEndigUnit">
+
+    <clr-alert [clrAlertClosable]="false"
+               [clrAlertType]="ms.game.firstEndigUnit.endIn < 3600000 ? 'alert-danger':'alert-warning'">
+      <div clr-alert-item
+           class="alert-item">
+        <span class="alert-text">
+          {{ms.game.firstEndigUnit.name}} is endig in {{ms.game.firstEndigUnit.endIn | endIn}}
+        </span>
+      </div>
+    </clr-alert>
+
+  </li>
 </ul>

@@ -18,6 +18,10 @@ li {
 :host /deep/ .navMat {
   padding-left: 0 !important;
 }
+
 .nav {
   height: auto;
+}
+:host /deep/ .alert {
+  margin-top: auto;
 }

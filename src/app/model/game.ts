@@ -83,6 +83,7 @@ export class Game {
   stats: Stats;
   allMateries: AllMasteries;
   maxTimeBank = new Decimal(0);
+  firstEndigUnit: FullUnit;
 
   constructor(public ms: MainService) {
     this.tabs = new Tabs();
@@ -313,6 +314,7 @@ export class Game {
   update(delta: number, force = false) {
     let maxTime = delta;
     let unitZero: FullUnit = null;
+    this.firstEndigUnit = null;
 
     this.unlockedUnits.forEach(u => {
       u.isEnding = false;
@@ -375,6 +377,12 @@ export class Game {
           }
           unit.endIn = Math.min(min.times(1000).toNumber(), unit.endIn);
           unit.isEnding = true;
+          if (
+            !(unit instanceof Malus) &&
+            (!this.firstEndigUnit || this.firstEndigUnit.endIn > unit.endIn)
+          ) {
+            this.firstEndigUnit = unit;
+          }
         }
       }
     }

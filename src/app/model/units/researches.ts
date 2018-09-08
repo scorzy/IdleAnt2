@@ -61,7 +61,7 @@ export class Researches {
     this.free1hWarp.prices = game.genSciencePrice(1);
     this.free2hWarp.prices = game.genSciencePrice(1);
     this.free3hWarp.prices = game.genSciencePrice(1);
-    this.spawn.prices = game.genSciencePrice(1e6, 5);
+    this.spawn.prices = game.genSciencePrice(1e6, 4);
 
     this.team1.toUnlock.push(this.team2);
     this.team2.toUnlock.push(this.twin);
