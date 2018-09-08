@@ -114,7 +114,7 @@ export class AllMasteries {
     //  Single material bonus
     this.addMasteryLine(matGain.id, 80, MasteryTypes.SCIENCE_BONUS, 3);
     this.addMasteryLine(matGain.id, 85, MasteryTypes.FOOD_BONUS, 3);
-    this.addMasteryLine(matGain.id, 90, MasteryTypes.WOOD_BONUS, 3);
+    this.addMasteryLine(matGain.id, 90, MasteryTypes.SOIL_BONUS, 3);
     this.addMasteryLine(matGain.id, 95, MasteryTypes.CRYSTALL_BONUS, 3);
 
     //  World Bonus
@@ -191,7 +191,7 @@ export class AllMasteries {
       this.getSum(MasteryTypes.SCIENCE_BONUS)
     );
     this.foodBonus.quantity = new Decimal(this.getSum(MasteryTypes.FOOD_BONUS));
-    this.woodBonus.quantity = new Decimal(this.getSum(MasteryTypes.WOOD_BONUS));
+    this.woodBonus.quantity = new Decimal(this.getSum(MasteryTypes.SOIL_BONUS));
     this.crystallBonus.quantity = new Decimal(
       this.getSum(MasteryTypes.CRYSTALL_BONUS)
     );
