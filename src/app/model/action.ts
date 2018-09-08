@@ -74,15 +74,15 @@ export class Action extends BaseUnit {
     );
   }
   reloadAvailableTime() {
-    if (this.prices.findIndex(p => p.base.isEnding) > -1) {
-      this.availableIn = NaN;
-    } else {
-      this.availableIn =
-        this.prices
-          .map(p => p.getTime())
-          .reduce((p, c) => p.max(c), new Decimal(0))
-          .toNumber() * 1000;
-    }
+    // if (this.prices.findIndex(p => p.base.isEnding) > -1) {
+    //   this.availableIn = NaN;
+    // } else {
+    this.availableIn =
+      this.prices
+        .map(p => p.getTime())
+        .reduce((p, c) => p.max(c), new Decimal(0))
+        .toNumber() * 1000;
+    // }
   }
   reset() {
     super.reset();

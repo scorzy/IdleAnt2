@@ -204,7 +204,7 @@ export class Workers extends UnitGroup {
     );
     this.firstResearch.toUnlock = this.researchList;
 
-    this.scientificMethod1.prices = this.game.genSciencePrice(1e4, 100);
+    this.scientificMethod1.prices = this.game.genSciencePrice(1e4, 10);
     this.researchList[3].toUnlock.push(this.scientificMethod1);
 
     const scieMetBon = new ProductionBonus(

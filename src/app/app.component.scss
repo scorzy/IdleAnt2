@@ -23,6 +23,13 @@ $padding: 0.45rem;
 }
 :host /deep/ .noEnought {
   color: #c92100;
+  a:link {
+    color: #c92100;
+  }
+
+  a:visited {
+    color: #c92100;
+  }
 }
 
 :host /deep/ h6 {
@@ -35,7 +42,7 @@ $padding: 0.45rem;
 
 :host /deep/ clr-signpost-content {
   h3 {
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.3rem;
     margin-top: 0;
   }
 }

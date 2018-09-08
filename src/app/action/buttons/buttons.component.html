@@ -9,9 +9,9 @@
          min="1"
          size="3">
   <ng-template #one>1</ng-template>
-  <span>will cost:</span>
+  <span>will cost: </span>
   <app-price-line *ngFor="let price of action.prices; trackBy:getPriceId"
-                  [name]="price.base.name"
+                  [unit]="price.base"
                   [canBuy]="price.userCanBuy"
                   [price]="price.priceUser"></app-price-line>
 </div>

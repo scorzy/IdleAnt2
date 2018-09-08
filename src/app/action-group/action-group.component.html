@@ -12,7 +12,7 @@
   <ng-template #one>1</ng-template>
   <span> will cost: </span>
   <app-price-line *ngFor="let price of actGr.pricesTemp; trackBy:getPriceId"
-                  [name]="price.base.name"
+                  [unit]="price.base"
                   [canBuy]="price.canBuy"
                   [price]="price.price"></app-price-line>
 

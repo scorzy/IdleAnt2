@@ -143,10 +143,11 @@ export const STRINGS = {
     W: ["Twin", "Twin"],
     r: ["Travel", "Travel to a new world !"],
     M: ["Mastery", "Get one mastery point"],
-    h: ["Harvesting", "+30% resource from Gatherers"],
+    h: ["Harvesting", "+100% resource from Gatherers"],
     1: ["1H Warp", "Free time warp"],
     2: ["2H Warp", "Free time warp"],
     3: ["3H Warp", "Free time warp"],
+    SP: ["Spawn", "+50% larvae production"],
     //  Workers
     w: ["Workers", "Workers"],
     a: [

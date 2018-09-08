@@ -4,6 +4,8 @@ import {
   Input,
   OnInit
 } from "@angular/core";
+import { BaseUnit } from "../../model/baseUnit";
+import { FullUnit } from "../../model/full-unit";
 
 @Component({
   selector: "app-price-line",
@@ -13,7 +15,7 @@ import {
 })
 export class PriceLineComponent implements OnInit {
   @Input()
-  name: string;
+  unit: FullUnit;
   @Input()
   canBuy: boolean;
   @Input()

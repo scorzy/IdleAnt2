@@ -21,6 +21,8 @@ export class Researches {
   free2hWarp: Research;
   free3hWarp: Research;
 
+  spawn: Research;
+
   /**
    *  mastery, a special research
    *  never reset
@@ -44,29 +46,32 @@ export class Researches {
     this.free2hWarp = new Research("2", this);
     this.free3hWarp = new Research("3", this);
 
+    this.spawn = new Research("SP", this, true);
+
     this.team1.unlocked = true;
     this.reloadLists();
   }
   setRelations(science: FullUnit, game: Game): void {
     this.team1.genPrice(new Decimal(100), science);
     this.team2.genPrice(new Decimal(1e3), science);
-    this.twin.genPrice(new Decimal(1e5), science);
+    this.twin.genPrice(new Decimal(1e6), science);
     this.travel.genPrice(new Decimal(1e12), science);
     this.mastery.genPrice(new Decimal(1e20), science);
-    this.harvesting.prices = game.genSciencePrice(1e3, 10);
+    this.harvesting.prices = game.genSciencePrice(1e3, 4);
     this.free1hWarp.prices = game.genSciencePrice(1);
     this.free2hWarp.prices = game.genSciencePrice(1);
     this.free3hWarp.prices = game.genSciencePrice(1);
+    this.spawn.prices = game.genSciencePrice(1e6, 5);
 
     this.team1.toUnlock.push(this.team2);
     this.team2.toUnlock.push(this.twin);
 
     game.advWorkers.firstResearch.toUnlock.push(this.harvesting);
-    const bonus = new ProductionBonus(this.harvesting, new Decimal(0.3));
+    const bonus = new ProductionBonus(this.harvesting, new Decimal(1));
     game.gatherers.list.forEach(u => {
       u.productionsEfficienty.push(bonus);
     });
-
+    this.game.buildings.firstResearch.toUnlock.push(this.spawn);
     this.game.engineers.firstResearch.toUnlock.push(this.travel);
     this.travel.toUnlock.push(game.tabs.travel, this.mastery);
     this.mastery.toUnlock.push(game.tabs.mastery);
@@ -82,6 +87,11 @@ export class Researches {
     this.free3hWarp.onBuy = () => {
       game.warp(3 * 3600 * 1000);
     };
+
+    const larvaeBon = new ProductionBonus(this.spawn, new Decimal(0.5));
+    [this.game.ants.larva, this.game.bees.larva, this.game.wasps.larva].forEach(
+      l => l.productionsBonus.push(larvaeBon)
+    );
   }
   reset(science: FullUnit) {
     this.reloadMasteryPrice(science);
@@ -119,7 +129,8 @@ export class Researches {
   restore(data: any, science: FullUnit): boolean {
     if ("res" in data) {
       for (const r of data.res) {
-        this.researches.find(u => u.id === r.i).restore(r);
+        const res = this.researches.find(u => u.id === r.i);
+        if (res) res.restore(r);
       }
       this.reloadMasteryPrice(science);
       this.reloadLists();

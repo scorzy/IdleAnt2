@@ -6,11 +6,11 @@
   </div>
   <div class="card-text p">
     {{research.description}}
-    <br/>
+    <br />
     <div *ngIf="!research.complete">
       <span>Cost: </span>
       <app-price-line *ngFor="let price of research.prices; trackBy:getPriceId"
-                      [name]="price.base.name"
+                      [unit]="price.base"
                       [canBuy]="price.canBuy"
                       [price]="price.priceUser">
       </app-price-line>

@@ -265,7 +265,9 @@ export class Game {
     this.unlockedGroups = this.unitGroups.filter(g => g.unlocked.length > 0);
     // tslint:disable-next-line:triple-equals
     if (this.ms.options.materialPosition == 2) {
-      this.unitGroups = this.unlockedGroups.filter(m => m !== this.materials);
+      this.unlockedGroups = this.unlockedGroups.filter(
+        m => m !== this.materials
+      );
     }
     if (oldNum !== this.unlockedGroups.length) {
       this.ms.unlockGroupEmiter.emit(this.unlockedGroups.length);
@@ -730,10 +732,11 @@ export class Game {
       //
       //  Debug
       //
-      this.materials.list.forEach(m => (m.quantity = new Decimal(1e100)));
-      this.ants.nest.quantity = new Decimal(70);
-      this.experience.quantity = new Decimal(1e10);
-      this.allMateries.masteryPoint = 100;
+      // this.materials.list.forEach(m => (m.quantity = new Decimal(1e100)));
+      // this.ants.nest.quantity = new Decimal(70);
+      // this.experience.quantity = new Decimal(1e10);
+      // this.allMateries.masteryPoint = 100;
+      // this.researches.spawn.unlocked = true;
       //
       //
       //
