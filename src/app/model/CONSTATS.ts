@@ -3,6 +3,9 @@ export class CONSTS {
   static readonly PRICE_LARVAE_1 = new Decimal(20);
   static readonly PRICE_LARVAE_2 = new Decimal(100);
 
+  static readonly PRICE_QUEEN = new Decimal(1e5);
+  static readonly PRICE_NEST = new Decimal(1e9);
+
   static readonly PRICE_0 = new Decimal(20);
   static readonly PRICE_1 = new Decimal(1e3);
   static readonly PRICE_2 = new Decimal(1e6);

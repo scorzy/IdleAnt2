@@ -37,17 +37,17 @@ export class Ants extends UnitGroup {
       [
         new Price(
           this.larva,
-          CONSTS.PRICE_LARVAE_1,
+          CONSTS.PRICE_LARVAE_1.div(2),
           CONSTS.SWARM_PRICE_GROWRATE
         ),
-        new Price(this.game.materials.food, CONSTS.PRICE_2)
+        new Price(this.game.materials.food, CONSTS.PRICE_QUEEN)
       ],
       [this.nest]
     );
     this.nest.generateBuyAction([
       new Price(this.queen, CONSTS.PRICE_LARVAE_2, CONSTS.SWARM_PRICE_GROWRATE),
-      new Price(this.game.materials.food, CONSTS.PRICE_3),
-      new Price(this.game.materials.soil, CONSTS.PRICE_3)
+      new Price(this.game.materials.food, CONSTS.PRICE_NEST),
+      new Price(this.game.materials.soil, CONSTS.PRICE_NEST)
     ]);
 
     this.larva.addProducer(this.queen, CONSTS.PROD_LARVAE);
