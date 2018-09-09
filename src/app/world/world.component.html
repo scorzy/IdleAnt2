@@ -19,11 +19,11 @@
       {{bon[0].name }} + {{bon[0].usedForProductionBonus[0].getBonusPercentForNum(bon[1]) |format }}%
     </li>
     <li *ngFor="let unl of world.startingUnlocked; trackBy:getResearchId">
-      {{unl.name}} avaiable.
+      {{unl.name}} available.
     </li>
     <li *ngFor="let start of world.startingUnit; trackBy:getStartId">
       <ng-container *ngIf="start[1].gt(0);else zero">{{start[1] | format}} x {{start[0].name}}</ng-container>
-      <ng-template #zero>{{start[0].name}} avaiable.</ng-template>
+      <ng-template #zero>{{start[0].name}} available.</ng-template>
     </li>
   </ul>
 

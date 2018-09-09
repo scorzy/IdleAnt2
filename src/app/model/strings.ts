@@ -170,7 +170,7 @@ export const STRINGS = {
     aG: ["Farm", "Hydroponics farm of Fungus."],
     bG: ["Soil Camp", "A fertile soil source."],
     mG: ["Mine", "A crystal mine."],
-    dG: ["University", "Yeld students."],
+    dG: ["University", "University Yelds students."],
     //  Engineers
     e: ["Engineers", "Engineers yields Buildings."],
     aGG: ["Hydro Eng.", "Hydro Engineer yields Farm."],
