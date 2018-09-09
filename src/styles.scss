@@ -40,7 +40,8 @@ html {
 
 //#endregion
 
-.header .header-nav .nav-link {
+.header .header-nav .nav-link,
+.main-container .header-overflow-trigger::after {
   &:first-of-type::before,
   &:last-of-type::after {
     height: 1.5rem !important;
@@ -48,7 +49,8 @@ html {
   }
 }
 
-header .header-nav .nav-link {
+header .header-nav .nav-link,
+.main-container .header-overflow-trigger::after {
   &:first-of-type::before,
   &:last-of-type::after {
     height: 1.5rem !important;
@@ -58,4 +60,10 @@ header .header-nav .nav-link {
 
 .datagrid-body {
   padding-bottom: 0.5rem;
+}
+@media screen and (max-width: 600px) {
+  .main-container .header-hamburger-trigger,
+  .main-container .header-overflow-trigger {
+    width: 1.5rem !important;
+  }
 }
