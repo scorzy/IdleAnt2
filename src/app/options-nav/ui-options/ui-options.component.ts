@@ -1,6 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  OnInit
+} from "@angular/core";
 import { MainService } from "../../main.service";
 import { OptionsService } from "../../options.service";
+declare let preventScroll;
 
 @Component({
   selector: "app-ui-options",
@@ -11,11 +17,13 @@ import { OptionsService } from "../../options.service";
     "[class.content-area]": "true"
   }
 })
-export class UiOptionsComponent implements OnInit {
+export class UiOptionsComponent implements OnInit, AfterViewInit {
   constructor(public ms: MainService, public os: OptionsService) {
     //
   }
-
+  ngAfterViewInit(): void {
+    if (typeof preventScroll === typeof Function) preventScroll();
+  }
   ngOnInit() {
     //
   }

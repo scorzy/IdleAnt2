@@ -8,6 +8,8 @@ import {
 import { Router } from "@angular/router";
 import { MainService } from "../main.service";
 import { World } from "../model/world";
+declare let preventScroll;
+
 @Component({
   selector: "app-change-world",
   templateUrl: "./change-world.component.html",
@@ -32,6 +34,7 @@ export class ChangeWorldComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    if (typeof preventScroll === typeof Function) preventScroll();
     this.cd.markForCheck();
   }
 

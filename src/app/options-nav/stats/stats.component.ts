@@ -8,6 +8,7 @@ import {
 import { MainService } from "../../main.service";
 import { RunExpPerSecSorter, RunExpSorter } from "../../model/utility";
 declare let Chart;
+declare let preventScroll;
 
 @Component({
   selector: "app-stats",
@@ -28,6 +29,7 @@ export class StatsComponent implements AfterViewInit {
   constructor(public ms: MainService) {}
 
   ngAfterViewInit() {
+    if (typeof preventScroll === typeof Function) preventScroll();
     setTimeout(() => {
       const chartCtx = this.chartRef.nativeElement.getContext("2d");
       const totalExp = this.ms.game.stats.runs

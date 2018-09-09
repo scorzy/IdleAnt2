@@ -1,6 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  OnInit
+} from "@angular/core";
 import { MainService } from "../main.service";
 import { Research } from "../model/research";
+declare let preventScroll;
 
 @Component({
   selector: "app-laboratory",
@@ -11,13 +17,16 @@ import { Research } from "../model/research";
     "[class.content-container]": "true"
   }
 })
-export class LaboratoryComponent implements OnInit {
+export class LaboratoryComponent implements OnInit, AfterViewInit {
   resDone = false;
   resList: Research[];
   sub: any;
 
   constructor(public ms: MainService) {}
 
+  ngAfterViewInit(): void {
+    if (typeof preventScroll === typeof Function) preventScroll();
+  }
   ngOnInit() {
     this.changeList();
     this.sub = this.ms.researchEmitter.subscribe(m => this.changeList());

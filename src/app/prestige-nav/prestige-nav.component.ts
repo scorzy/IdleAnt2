@@ -1,7 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  OnInit
+} from "@angular/core";
 import { MainService } from "../main.service";
 import { PrestigeGroup } from "../model/prestige/prestige-group";
-
+declare let preventScroll;
 @Component({
   selector: "app-prestige-nav",
   templateUrl: "./prestige-nav.component.html",
@@ -11,11 +16,13 @@ import { PrestigeGroup } from "../model/prestige/prestige-group";
     "[class.content-container]": "true"
   }
 })
-export class PrestigeNavComponent implements OnInit {
+export class PrestigeNavComponent implements OnInit, AfterViewInit {
   constructor(public ms: MainService) {
     //
   }
-
+  ngAfterViewInit(): void {
+    if (typeof preventScroll === typeof Function) preventScroll();
+  }
   ngOnInit() {
     //
   }

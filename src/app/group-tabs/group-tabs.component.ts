@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -11,6 +12,7 @@ import { MainService } from "../main.service";
 import { BugTypes } from "../model/bugsTypes";
 import { UnitGroup } from "../model/unit-group";
 import { Utility } from "../model/utility";
+declare let preventScroll;
 
 @Component({
   selector: "app-group-tabs",
@@ -21,7 +23,7 @@ import { Utility } from "../model/utility";
     "[class.content-area]": "true"
   }
 })
-export class GroupTabsComponent implements OnInit, OnDestroy {
+export class GroupTabsComponent implements OnInit, OnDestroy, AfterViewInit {
   paramsSub: any;
   paramsSave: any;
 
@@ -36,6 +38,9 @@ export class GroupTabsComponent implements OnInit, OnDestroy {
     private cd: ChangeDetectorRef
   ) {}
 
+  ngAfterViewInit(): void {
+    if (typeof preventScroll === typeof Function) preventScroll();
+  }
   ngOnInit() {
     this.paramsSub = this.route.params.subscribe(this.getGroup.bind(this));
   }

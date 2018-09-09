@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  OnInit
+} from "@angular/core";
+declare let preventScroll;
 
 @Component({
   selector: "app-options-nav",
@@ -9,11 +15,13 @@ import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
     "[class.content-container]": "true"
   }
 })
-export class OptionsNavComponent implements OnInit {
+export class OptionsNavComponent implements OnInit, AfterViewInit {
   constructor() {
     //Nothig
   }
-
+  ngAfterViewInit(): void {
+    if (typeof preventScroll === typeof Function) preventScroll();
+  }
   ngOnInit() {
     //Nothig
   }

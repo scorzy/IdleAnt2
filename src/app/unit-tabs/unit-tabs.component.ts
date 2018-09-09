@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -7,6 +8,7 @@ import {
 import { ActivatedRoute } from "@angular/router";
 import { MainService } from "../main.service";
 import { FullUnit } from "../model/full-unit";
+declare let preventScroll;
 
 @Component({
   selector: "app-unit-tabs",
@@ -17,7 +19,7 @@ import { FullUnit } from "../model/full-unit";
     "[class.content-area]": "true"
   }
 })
-export class UnitTabsComponent implements OnInit {
+export class UnitTabsComponent implements OnInit, AfterViewInit {
   overviewActive = true;
   paramsSub: any;
   sub: any;
@@ -30,7 +32,9 @@ export class UnitTabsComponent implements OnInit {
     this.ms.overviewTaActive = this.ms.lastTab === 0;
     this.ms.prestigeTaActive = this.ms.lastTab !== 0;
   }
-
+  ngAfterViewInit(): void {
+    if (typeof preventScroll === typeof Function) preventScroll();
+  }
   ngOnInit() {
     this.paramsSub = this.route.params.subscribe(this.getUnit.bind(this));
     this.sub = this.ms.updateEmitter.subscribe(() => this.cd.markForCheck());

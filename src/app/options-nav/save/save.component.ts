@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -6,6 +7,7 @@ import {
   OnInit
 } from "@angular/core";
 import { MainService } from "../../main.service";
+declare let preventScroll;
 
 @Component({
   selector: "app-save",
@@ -16,7 +18,7 @@ import { MainService } from "../../main.service";
     "[class.content-area]": "true"
   }
 })
-export class SaveComponent implements OnInit, OnDestroy {
+export class SaveComponent implements OnInit, OnDestroy, AfterViewInit {
   clearModal = false;
   exp = "";
   saveSub: any;
@@ -24,7 +26,9 @@ export class SaveComponent implements OnInit, OnDestroy {
   constructor(public serv: MainService, private cd: ChangeDetectorRef) {
     //Nothig
   }
-
+  ngAfterViewInit(): void {
+    if (typeof preventScroll === typeof Function) preventScroll();
+  }
   ngOnInit() {
     this.saveSub = this.serv.saveEmitter.subscribe(s => this.cd.markForCheck());
   }

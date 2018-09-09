@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   OnDestroy,
@@ -8,6 +9,7 @@ import { ActivatedRoute } from "@angular/router";
 import { MainService } from "../main.service";
 import { Prestige } from "../model/prestige/prestige";
 import { PrestigeGroup } from "../model/prestige/prestige-group";
+declare let preventScroll;
 
 @Component({
   selector: "app-prestige-group",
@@ -18,12 +20,15 @@ import { PrestigeGroup } from "../model/prestige/prestige-group";
     "[class.content-area]": "true"
   }
 })
-export class PrestigeGroupComponent implements OnInit, OnDestroy {
+export class PrestigeGroupComponent
+  implements OnInit, OnDestroy, AfterViewInit {
   paramsSub: any;
   prestigeGroup: PrestigeGroup;
 
   constructor(public ms: MainService, private route: ActivatedRoute) {}
-
+  ngAfterViewInit(): void {
+    if (typeof preventScroll === typeof Function) preventScroll();
+  }
   ngOnInit() {
     this.paramsSub = this.route.params.subscribe(this.getGroup.bind(this));
   }
