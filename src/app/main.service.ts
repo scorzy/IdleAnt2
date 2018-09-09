@@ -224,16 +224,16 @@ export class MainService {
   }
   setTheme() {
     const themeClarity = this.options.dark
-      ? "/clr-ui-dark.min.css"
-      : "/clr-ui.min.css";
+      ? "clr-ui-dark.min.css"
+      : "clr-ui.min.css";
     if (this.themeClarity.href !== themeClarity) {
       this.themeClarity.href = themeClarity;
     }
 
-    const myTheme = "/assets/" + (this.options.dark ? "dark.css" : "light.css");
+    const myTheme = "assets/" + (this.options.dark ? "dark.css" : "light.css");
     if (myTheme !== this.themeMy.href) {
       this.themeMy.href =
-        "/assets/" + (this.options.dark ? "dark.css" : "light.css");
+        "assets/" + (this.options.dark ? "dark.css" : "light.css");
     }
   }
   sendKong() {
