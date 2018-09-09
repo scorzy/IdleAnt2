@@ -13,4 +13,9 @@ https://www.kongregate.com/games/scorzy88/idle-ants-2
 
 https://scorzy.github.io/IdleAnt2/
 
+# Planned Updates:
+- Game balance
+- PlayFab cloud save
+- Achievements
+- Challenges
 
