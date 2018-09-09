@@ -16,7 +16,8 @@
     "make-themes": "node-sass ./src/themes --output ./src/assets --output-style compact",
     "analyze": "ng build --prod --stats-json --build-optimizer=false && webpack-bundle-analyzer dist/IdleAnt2/stats.json",
     "sass-lint": "sass-lint -v",
-    "sass-lint:fix": "sass-lint-auto-fix"
+    "sass-lint:fix": "sass-lint-auto-fix",
+    "release":"ngh --dir=dist/IdleAnt2"
   },
   "husky": {
     "hooks": {
@@ -55,6 +56,7 @@
     "@webcomponents/custom-elements": "^1.2.0",
     "break_infinity.js": "^1.0.5",
     "chart.js": "^2.7.2",
+    "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.7",
     "date-fns": "^1.29.0",
     "husky": "^1.0.0-rc.13",
