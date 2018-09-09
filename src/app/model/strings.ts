@@ -269,7 +269,7 @@ export const STRINGS = {
     P: ["Time Producer", "+0.1 time/s"],
     B: ["Time Bank", "+1 max hour"],
     //  AutoBuy
-    H: ["Hach Auto Buyer", "Unlock Hach Auto Buyer for all units"],
+    H: ["Hatch Auto Buyer", "Unlock Hatch Auto Buyer for all units"],
     t: ["Team Auto Buyer", "Unlock Team Auto Buyer for all units"],
     T: ["Twin Auto Buyer", "Unlock Twin Auto Buyer for all units"],
     M: ["Time Warp Auto Buyer", "Unlock one minute time warp Auto Buyer"],

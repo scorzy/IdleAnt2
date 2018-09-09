@@ -10,7 +10,7 @@ export class BuyAction extends Action {
     public toUnlock: IUnlocable[] = null,
     id = ""
   ) {
-    super(id === "" ? "B" : id, "Hach", "", prices);
+    super(id === "" ? "B" : id, "Hatch", "", prices);
     this.autoBuyPriceMulti = 1;
   }
   buy(toBuy = new Decimal(1)): boolean {
