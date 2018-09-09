@@ -122,12 +122,12 @@ export class World {
       const n2 = n.producedBy.find(u => u.rateo.gt(0)).producer;
       const n3 = n2.producedBy.find(u => u.rateo.gt(0)).producer;
 
-      n2.quantity = n.quantity.div(3);
+      n2.quantity = n.quantity.div(3.5);
 
       if (n2.quantity.gt(0.1)) {
         n2.unlock();
         // tslint:disable-next-line:prettier
-        n3.quantity = n.quantity.div(10).pow(0.9);
+        n3.quantity = n.quantity.div(1.5).pow(0.9);
         if (n3.quantity.gt(0.1)) {
           n3.unlock();
         } else {

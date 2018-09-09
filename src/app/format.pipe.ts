@@ -14,7 +14,14 @@ export class FormatPipe implements PipeTransform {
     let str = "";
     if (value.abs().lt(100000)) {
       let num = value.abs().toNumber();
-      const digits = integer || num >= 100 ? 0 : num < 10 ? 2 : 1;
+      const digits =
+        integer || num >= 100
+          ? 0
+          : num < 10
+            ? num < 0.001 && num !== 0
+              ? 6
+              : 2
+            : 1;
       if (num < 100) {
         const pow = Math.pow(10, digits + 1);
         num = Math.floor(num * pow) / pow;
