@@ -33,6 +33,7 @@ describe("FormatPipe", () => {
   });
   it("Standard format", () => {
     const pipe = new FormatPipe(options);
+    options.usaFormat = false;
     options.numFormat = "standard";
     options.generateFormatter();
     expect(pipe.transform(1e100, true)).toBe("10,0DTg");

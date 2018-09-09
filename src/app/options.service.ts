@@ -5,7 +5,7 @@ declare let numberformat;
   providedIn: "root"
 })
 export class OptionsService {
-  usaFormat = false;
+  usaFormat = true;
   numFormat = "scientific";
   autosaveNotification = true;
   dark = false;
@@ -18,6 +18,12 @@ export class OptionsService {
   headerEmitter: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() {
+    try {
+      const n = 1.1;
+      const separator = n.toLocaleString().substring(1, 2);
+      if (separator === ",") this.usaFormat = false;
+    } catch (ex) {}
+
     this.generateFormatter();
   }
   generateFormatter() {
