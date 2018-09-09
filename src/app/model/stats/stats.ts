@@ -7,16 +7,7 @@ export class Stats {
   worldStartDate = new Date();
   runs = new Array<Run>();
 
-  constructor() {
-    //  Debug sample data
-    // this.runs.push(new Run());
-    // this.runs.push(new Run());
-    // this.runs[0].completed = true;
-    // this.runs[0].experience = new Decimal(10);
-    // this.runs[0].startDate = new Date(new Date().getTime() - 1 * 1000 * 3600);
-    // this.runs[0].worldName = "Prova";
-    // this.runs[1].experience = new Decimal(11);
-  }
+  constructor() {}
 
   logWorldCompleted(world: World, skip = false) {
     if (!skip) {
@@ -31,8 +22,8 @@ export class Stats {
           !skip
         )
       );
+      this.runs[0].reloadExpPerSec();
     }
-    this.runs[0].reloadExpPerSec();
     this.worldStartDate = new Date();
     this.runs = this.runs.slice(0, 10);
   }

@@ -1,7 +1,10 @@
 export enum Tags {
   FARMER,
   MINER,
-  SOIL_G
+  SOIL_G,
+  LARVA,
+  QUEEN,
+  NEST
 }
 
 export enum BugTypes {

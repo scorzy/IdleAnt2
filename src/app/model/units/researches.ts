@@ -1,4 +1,5 @@
 import { EventEmitter } from "@angular/core";
+import { Tags } from "../bugsTypes";
 import { FullUnit } from "../full-unit";
 import { Game } from "../game";
 import { ProductionBonus } from "../production-bonus";
@@ -89,9 +90,9 @@ export class Researches {
     };
 
     const larvaeBon = new ProductionBonus(this.spawn, new Decimal(0.5));
-    [this.game.ants.larva, this.game.bees.larva, this.game.wasps.larva].forEach(
-      l => l.productionsBonus.push(larvaeBon)
-    );
+    this.game.units
+      .filter(u => u.tags.includes(Tags.LARVA))
+      .forEach(l => l.productionsBonus.push(larvaeBon));
   }
   reset(science: FullUnit) {
     this.reloadMasteryPrice(science);

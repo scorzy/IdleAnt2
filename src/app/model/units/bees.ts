@@ -1,4 +1,4 @@
-import { BugTypes } from "../bugsTypes";
+import { BugTypes, Tags } from "../bugsTypes";
 import { CONSTS } from "../CONSTATS";
 import { FullUnit } from "../full-unit";
 import { Game } from "../game";
@@ -20,6 +20,9 @@ export class Bees extends UnitGroup {
     this.queen = new FullUnit("P");
     this.nest = new FullUnit("N");
     this.addUnits([this.nest, this.queen, this.larva]);
+    this.larva.tags.push(Tags.LARVA);
+    this.queen.tags.push(Tags.QUEEN);
+    this.nest.tags.push(Tags.NEST);
   }
   setRelations(): void {
     this.larva.generateBuyAction(

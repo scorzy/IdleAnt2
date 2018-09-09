@@ -60,6 +60,8 @@ export const STRINGS = {
     3: ["Crystal Production Bonus", ""],
     4: ["Science Production Bonus", ""],
     5: ["Kill Bonus", ""],
+    larvaBon: ["Larvae Production Bonus", ""],
+    queenBon: ["Queen Production Bonus", ""],
     //  Malus
     Mf1: ["Poisonous Fungus (Food)", "Poisonous Fungus"],
     Mf2: ["Ancient Fungus", "Ancient Fungus"],
@@ -240,7 +242,13 @@ export const STRINGS = {
     //  Malus Bonus
     mkPre: "Hostile",
     mkBio: "Battlefield",
-    mkSuff: "of War"
+    mkSuff: "of War",
+    //  Larva
+    larvaPre: "Swarming",
+    larvaSuff: "of Larvae",
+    //  Queen
+    queenPre: "Queenly",
+    queenSuff: "of Queen"
   },
   prestige: {
     //  Followers 1
