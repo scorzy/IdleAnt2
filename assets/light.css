@@ -1,0 +1,13 @@
+::-webkit-scrollbar-thumb { background: #d9e4ea; }
+
+::-webkit-scrollbar-thumb:hover { background: #8dc3d8; }
+
+::-webkit-scrollbar-thumb:active { background: #007cbb; }
+
+::-webkit-scrollbar-track { background: #fafafa; }
+
+::-webkit-scrollbar-track:hover { background: #fafafa; }
+
+::-webkit-scrollbar-track:active { background: #fafafa; }
+
+.ui-widget-content { border: 1px solid #0077b7 !important; }
