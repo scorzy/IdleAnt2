@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit
+} from "@angular/core";
 import { MainService } from "../../main.service";
 
 @Component({
@@ -10,18 +16,21 @@ import { MainService } from "../../main.service";
     "[class.content-area]": "true"
   }
 })
-export class SaveComponent implements OnInit {
+export class SaveComponent implements OnInit, OnDestroy {
   clearModal = false;
   exp = "";
+  saveSub: any;
 
-  constructor(public serv: MainService) {
+  constructor(public serv: MainService, private cd: ChangeDetectorRef) {
     //Nothig
   }
 
   ngOnInit() {
-    //Nothig
+    this.saveSub = this.serv.saveEmitter.subscribe(s => this.cd.markForCheck());
   }
-
+  ngOnDestroy(): void {
+    this.saveSub.unsubscribe();
+  }
   export() {
     this.exp = this.serv.getSave();
   }

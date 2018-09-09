@@ -28,16 +28,22 @@ export class ProductionSignpostsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.productionsAll = new Array<ProductionBonus>();
+    this.productionsEfficienty = new Array<ProductionBonus>();
+    this.productionsBonus = new Array<ProductionBonus>();
+
     if (this.production) {
       this.productionsAll = this.production.producer.productionsAll.filter(bn =>
         bn.isActive()
       );
-      this.productionsEfficienty = this.production.producer.productionsEfficienty.filter(
-        bn => bn.isActive()
-      );
-      this.productionsBonus = this.production.product.productionsBonus.filter(
-        bn => bn.isActive()
-      );
+      if (this.production.rateo.gt(0)) {
+        this.productionsEfficienty = this.production.producer.productionsEfficienty.filter(
+          bn => bn.isActive()
+        );
+        this.productionsBonus = this.production.product.productionsBonus.filter(
+          bn => bn.isActive()
+        );
+      }
     }
   }
 

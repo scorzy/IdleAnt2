@@ -4,6 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ClarityModule } from "@clr/angular";
+import { getGame } from "../../app.component.spec";
 import { FormatPipe } from "../../format.pipe";
 import { PriceLineComponent } from "./price-line.component";
 
@@ -26,6 +27,7 @@ describe("PriceLineComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PriceLineComponent);
     component = fixture.componentInstance;
+    component.unit = getGame().materials.food;
     fixture.detectChanges();
   });
 

@@ -745,6 +745,8 @@ export class Game {
       // this.experience.quantity = new Decimal(1e10);
       // this.allMateries.masteryPoint = 100;
       // this.researches.spawn.unlocked = true;
+      // this.advWorkers.betterWorkers.unlocked = true;
+      // this.advWorkers.efficientWorkers.unlocked = true;
       //
       //
       //

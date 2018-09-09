@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ClarityModule } from "@clr/angular";
 import { ToastrModule } from "ngx-toastr";
+import { EndInPipe } from "../end-in.pipe";
 import { FormatPipe } from "../format.pipe";
 import { MaterialNavComponent } from "./material-nav.component";
 
@@ -21,7 +22,7 @@ describe("MaterialNavComponent", () => {
         RouterTestingModule,
         BrowserAnimationsModule
       ],
-      declarations: [MaterialNavComponent, FormatPipe]
+      declarations: [MaterialNavComponent, FormatPipe, EndInPipe]
     }).compileComponents();
   }));
 

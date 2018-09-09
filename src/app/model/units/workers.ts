@@ -26,6 +26,9 @@ export class Workers extends UnitGroup {
   waspMiner: FullUnit;
   waspScientist: FullUnit;
 
+  betterWorkers: Research;
+  efficientWorkers: Research;
+
   constructor(game: Game) {
     super("Workers", game);
   }
@@ -87,6 +90,9 @@ export class Workers extends UnitGroup {
       res.bugType = u.bugType;
       this.researchList.push(res);
     });
+
+    this.betterWorkers = new Research("wo", this.game.researches, true);
+    this.efficientWorkers = new Research("we", this.game.researches, true);
   }
   setRelations(): void {
     this.farmer.generateBuyAction([
@@ -217,6 +223,23 @@ export class Workers extends UnitGroup {
       );
     };
     this.game.materials.science.productionsBonus.push(scieMetBon);
+
+    this.betterWorkers.prices = this.game.genSciencePrice(1e4, 4);
+    this.efficientWorkers.prices = this.game.genSciencePrice(5e4, 5);
+
+    const bonusWo = new ProductionBonus(this.betterWorkers, new Decimal(0.3));
+    this.list.forEach(u => {
+      u.productionsAll.push(bonusWo);
+    });
+    const bonusEff = new ProductionBonus(
+      this.efficientWorkers,
+      new Decimal(0.1)
+    );
+    this.list.forEach(u => {
+      u.productionsEfficienty.push(bonusEff);
+    });
+
+    this.firstResearch.toUnlock.push(this.betterWorkers, this.efficientWorkers);
 
     this.setBugType();
   }

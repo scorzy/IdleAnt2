@@ -12,6 +12,8 @@ import { OptionsService } from "./options.service";
 const GAME_VERSION = 0;
 const H8 = 8 * 3600 * 1000;
 const H1 = 3600 * 1000;
+const SAVE_INTERVAL = 5 * 60 * 1000;
+const UP_INTERVAL = 250; // 4 fps
 
 @Injectable({
   providedIn: "root"
@@ -19,6 +21,7 @@ const H1 = 3600 * 1000;
 export class MainService {
   game: Game;
   last: number;
+  lastSave: Date;
   show = false;
 
   updateEmitter: EventEmitter<number> = new EventEmitter<number>();
@@ -26,6 +29,7 @@ export class MainService {
   worldEmitter: EventEmitter<World> = new EventEmitter<World>();
   unlockGroupEmiter: EventEmitter<number> = new EventEmitter<number>();
   efficiencyEmitter: EventEmitter<number> = new EventEmitter<number>();
+  saveEmitter: EventEmitter<Date> = new EventEmitter<Date>();
 
   endInPipe: EndInPipe;
 
@@ -67,7 +71,8 @@ export class MainService {
   }
   start() {
     this.show = true;
-    setInterval(this.update.bind(this), 250);
+    setInterval(this.update.bind(this), UP_INTERVAL);
+    setInterval(this.save.bind(this, true), SAVE_INTERVAL);
   }
   update() {
     const now = Date.now();
@@ -122,6 +127,9 @@ export class MainService {
         localStorage.setItem("save", save);
         if (!autosave || this.options.autosaveNotification) {
           this.toastr.success("", "Game Saved");
+          console.log("Game Saved");
+          this.lastSave = new Date();
+          this.saveEmitter.emit(this.lastSave);
         }
       } else this.toastr.error("Unknow error 1", "Save Error");
     } catch (ex) {
@@ -153,6 +161,7 @@ export class MainService {
       if (!!data.o) this.options.restore(data.o);
       this.setTheme();
       this.last = data.time;
+      this.lastSave = new Date(this.last);
       this.game.restore(data.m);
       setTimeout(() => this.toastr.success("", "Game Loaded"), 0);
       return true;

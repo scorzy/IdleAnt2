@@ -103,5 +103,4 @@ describe("Mastery", () => {
     game.update(1);
     expect(game.materials.food.c.toNumber()).toBe(2);
   });
-  it("", () => {});
 });

@@ -20,6 +20,10 @@
                      [c]="unit.c">
         </app-polynom>
       </p>
+      <a [routerLink]="'/nav/unit/'+unit.id"
+         class="noRed">
+        Go to {{unit.name}}
+      </a>
     </clr-signpost-content>
   </clr-signpost>
 

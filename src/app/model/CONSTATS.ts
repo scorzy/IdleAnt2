@@ -11,7 +11,7 @@ export class CONSTS {
   static readonly PRICE_2 = new Decimal(1e6);
   static readonly PRICE_3 = new Decimal(1e10);
 
-  static readonly PROD_LARVAE = new Decimal(0.1);
+  static readonly PROD_LARVAE = new Decimal(0.2);
 
   static readonly PROD_GAN = new Decimal(1);
   static readonly CONSUME_GAN = new Decimal(-1);

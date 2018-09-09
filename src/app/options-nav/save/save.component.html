@@ -16,6 +16,10 @@
     Clear
   </button>
 </div>
+<p>
+  <br />
+  Last save: {{serv.lastSave | date:'medium' }}
+</p>
 <h2>Export / Import Save</h2>
 <textarea name="raw"
           [(ngModel)]="exp"

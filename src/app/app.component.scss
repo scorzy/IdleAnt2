@@ -23,11 +23,11 @@ $padding: 0.45rem;
 }
 :host /deep/ .noEnought {
   color: #c92100;
-  a:link {
+
+  a:link :not(.noRed) {
     color: #c92100;
   }
-
-  a:visited {
+  a:visited :not(.noRed) {
     color: #c92100;
   }
 }

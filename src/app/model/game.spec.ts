@@ -165,4 +165,11 @@ describe("Game", () => {
     game.goToWorld(world);
     expect(game.experience.quantity.toNumber()).toBe(21);
   });
+  it("No Debug", () => {
+    game.restore(game.getSave());
+    game.materials.list.filter(m => m !== game.materials.food).forEach(d => {
+      expect(d.unlocked).toBeFalsy();
+      expect(d.quantity.toNumber()).toBe(0);
+    });
+  });
 });
