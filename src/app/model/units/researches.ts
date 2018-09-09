@@ -56,7 +56,7 @@ export class Researches {
     this.team1.genPrice(new Decimal(100), science);
     this.team2.genPrice(new Decimal(1e3), science);
     this.twin.genPrice(new Decimal(1e6), science);
-    this.travel.genPrice(new Decimal(1e12), science);
+    this.travel.genPrice(new Decimal(1e13), science);
     this.mastery.genPrice(new Decimal(1e20), science);
     this.harvesting.prices = game.genSciencePrice(1e3, 4);
     this.free1hWarp.prices = game.genSciencePrice(1);

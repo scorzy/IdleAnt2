@@ -8,6 +8,7 @@ import { Game } from "./model/game";
 import { MasteryTypes } from "./model/masteries/mastery";
 import { World } from "./model/world";
 import { OptionsService } from "./options.service";
+declare let kongregateAPI;
 
 const GAME_VERSION = 0;
 const H8 = 8 * 3600 * 1000;
@@ -23,6 +24,7 @@ export class MainService {
   last: number;
   lastSave: Date;
   show = false;
+  kongregate: any;
 
   updateEmitter: EventEmitter<number> = new EventEmitter<number>();
   researchEmitter: EventEmitter<string> = new EventEmitter<string>();
@@ -68,6 +70,28 @@ export class MainService {
       this.setTheme();
       this.game = new Game(this);
     }
+
+    //  Kong Api
+    const url =
+      window.location !== window.parent.location
+        ? document.referrer
+        : document.location.href;
+
+    if (url.includes("kongregate") && typeof kongregateAPI !== "undefined") {
+      kongregateAPI.loadAPI(() => {
+        this.kongregate = kongregateAPI.getAPI();
+        console.log("KongregateAPI Loaded");
+
+        setTimeout(() => {
+          try {
+            console.log("Kongregate build");
+            this.sendKong();
+          } catch (e) {
+            console.log("Error: " + e.message);
+          }
+        }, 5 * 1000);
+      });
+    } else console.log("Github build");
   }
   start() {
     this.show = true;
@@ -210,6 +234,30 @@ export class MainService {
     if (myTheme !== this.themeMy.href) {
       this.themeMy.href =
         "/assets/" + (this.options.dark ? "dark.css" : "light.css");
+    }
+  }
+  sendKong() {
+    try {
+      if (this.kongregate) {
+        this.kongregate.stats.submit(
+          "LogExperience",
+          this.game.experience.quantity.log10()
+        );
+        this.kongregate.stats.submit(
+          "Mastery",
+          this.game.allMateries.totalEarned
+        );
+        this.kongregate.stats.submit(
+          "WorldCompleted",
+          this.game.stats.completedWorld.toNumber()
+        );
+        this.kongregate.stats.submit(
+          "LogBestExp",
+          this.game.stats.bestExpS.log10()
+        );
+      }
+    } catch (e) {
+      console.log("Error: " + e.message);
     }
   }
 }

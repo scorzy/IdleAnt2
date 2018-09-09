@@ -10,6 +10,7 @@ export class CONSTS {
   static readonly PRICE_1 = new Decimal(1e3);
   static readonly PRICE_2 = new Decimal(1e6);
   static readonly PRICE_3 = new Decimal(1e10);
+  static readonly PRICE_ENG = new Decimal(100);
 
   static readonly PROD_LARVAE = new Decimal(0.2);
 
@@ -22,19 +23,19 @@ export class CONSTS {
   static readonly TEAM_PRICE_0 = new Decimal(5e2);
   static readonly TEAM_PRICE_1 = new Decimal(5e3);
   static readonly TEAM_PRICE_2 = new Decimal(5e5);
-  static readonly TEAM_PRICE_3 = new Decimal(5e8);
+  static readonly TEAM_PRICE_3 = new Decimal(5e9);
 
   static readonly TWIN_PRICE_0 = new Decimal(1e3);
   static readonly TWIN_PRICE_1 = new Decimal(1e4);
   static readonly TWIN_PRICE_2 = new Decimal(1e6);
-  static readonly TWIN_PRICE_3 = new Decimal(1e9);
+  static readonly TWIN_PRICE_3 = new Decimal(1e10);
 
   static readonly RES_PRICE_1 = new Decimal(5e3);
   static readonly RES_PRICE_2 = new Decimal(5e6);
   static readonly RES_PRICE_3 = new Decimal(5e9);
 
   static readonly BASE_WIN_CONDITION_MATERIALS = new Decimal(1e12);
-  static readonly BASE_WIN_CONDITION_OTHER = new Decimal(400);
+  static readonly BASE_WIN_CONDITION_OTHER = new Decimal(600);
 
   static readonly SWARM_PRICE_GROWRATE = 1.01;
 

@@ -3,17 +3,25 @@
   <div class="clr-col-12	clr-col-sm-12	clr-col-md-12	clr-col-lg-12	clr-col-xl-4">
     <h6>Total:</h6>
     <ul class="list">
-      <li>
+      <!-- <li>
         Current experience:
         <span>{{ms.game.experience | format:true}}</span>
+      </li> -->
+      <li>
+        Total earned Experience:
+        <span>{{ms.game.stats.totalExperience | format:true}}</span>
       </li>
       <li>
-        Total earned experience:
-        <span>{{ms.game.stats.totalExperience | format:true}}</span>
+        Total earned Mastery:
+        <span>{{ms.game.allMateries.totalEarned}}</span>
       </li>
       <li>
         Completed worlds:
         <span>{{ms.game.stats.completedWorld | format:true}}</span>
+      </li>
+      <li>
+        Best Experience/s:
+        <span>{{ms.game.stats.bestExpS}}</span>
       </li>
       <li>
         Words start:

@@ -30,7 +30,7 @@ export class Engineers extends UnitGroup {
       this.firstResearch.toUnlock.push(research);
 
       producer.generateBuyAction([
-        new Price(product, CONSTS.PRICE_1),
+        new Price(product, CONSTS.PRICE_ENG),
         new Price(
           product.buyAction.prices[product.buyAction.prices.length - 1].base,
           CONSTS.PRICE_3

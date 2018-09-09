@@ -6,6 +6,7 @@ export class Stats {
   totalExperience = new Decimal(0);
   worldStartDate = new Date();
   runs = new Array<Run>();
+  bestExpS = new Decimal(0);
 
   constructor() {}
 
@@ -13,16 +14,19 @@ export class Stats {
     if (!skip) {
       this.completedWorld = this.completedWorld.plus(1);
       this.totalExperience = this.totalExperience.plus(world.prestige);
-      this.runs.unshift(
-        new Run(
-          new Date(),
-          this.worldStartDate,
-          world.name,
-          world.prestige,
-          !skip
-        )
+      const run = new Run(
+        new Date(),
+        this.worldStartDate,
+        world.name,
+        world.prestige,
+        !skip
       );
+      run.reloadExpPerSec();
+      this.runs.unshift(run);
       this.runs[0].reloadExpPerSec();
+      if (run.expPerSec.gt(this.bestExpS)) {
+        this.bestExpS = new Decimal(run.expPerSec);
+      }
     }
     this.worldStartDate = new Date();
     this.runs = this.runs.slice(0, 10);
@@ -34,7 +38,8 @@ export class Stats {
       w: this.completedWorld,
       e: this.totalExperience,
       d: this.worldStartDate,
-      r: this.runs.map(r => r.getSave())
+      r: this.runs.map(r => r.getSave()),
+      b: this.bestExpS
     };
   }
   restore(data: any) {
@@ -42,6 +47,7 @@ export class Stats {
     if ("e" in data) this.totalExperience = new Decimal(data.e);
     if ("d" in data) this.worldStartDate = new Date(data.d);
     if ("r" in data) this.runs = data.r.map(r => Run.getRun(r));
+    if ("b" in data) this.bestExpS = new Decimal(data.d);
   }
   //#endregion
 }
