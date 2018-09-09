@@ -657,7 +657,7 @@ export class Game {
 
     this.tabs.prestige.unlock();
 
-    setTimeout(this.ms.sendKong.bind(this.ms), 10);
+    if (this.ms.kongregate) setTimeout(this.ms.sendKong.bind(this.ms), 10);
     return true;
   }
 
