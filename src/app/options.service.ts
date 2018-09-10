@@ -27,10 +27,14 @@ export class OptionsService {
     this.generateFormatter();
   }
   generateFormatter() {
-    this.formatter = new numberformat.Formatter({
-      format: this.numFormat,
-      flavor: "short"
-    });
+    try {
+      this.formatter = new numberformat.Formatter({
+        format: this.numFormat,
+        flavor: "short"
+      });
+    } catch (ex) {
+      console.log("Error generateFormatter:" + ex);
+    }
     if (!!this.formatEmitter) this.formatEmitter.emit(1);
   }
 
