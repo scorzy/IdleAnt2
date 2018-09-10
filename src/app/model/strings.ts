@@ -274,7 +274,7 @@ export const STRINGS = {
     T: ["Twin Auto Buyer", "Unlock Twin Auto Buyer for all units"],
     M: ["Time Warp Auto Buyer", "Unlock one minute time warp Auto Buyer"],
     R: ["Research Auto Buyer", "Unlock Research Auto Buyer"],
-    //  Tecnology
+    //  Technology
     F: ["Farming", "+10% food production"],
     C: ["Carpentery", "+10% wood production"],
     p: ["Mining", "+10% crystal production"],

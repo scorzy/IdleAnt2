@@ -106,7 +106,7 @@ export class AllMasteries {
     this.addMasteryLine(10, 65, MasteryTypes.TEAM_PRESTIGE, 5);
     this.addMasteryLine(64, 100, MasteryTypes.START_TWIN, 1, 69);
 
-    //  Science && Tecnology
+    //  Science && Technology
     this.addMasteryLine(15, 70, MasteryTypes.SCIENTIFIC_METHOD, 5);
     this.addMasteryLine(15, 75, MasteryTypes.THECNOLOGY_PRESTIGE, 5);
     this.addMasteryLine(74, 103, MasteryTypes.START_RESEARCHS, 1, 79);

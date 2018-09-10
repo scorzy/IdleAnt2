@@ -91,7 +91,8 @@ export class MainService {
           }
         }, 5 * 1000);
       });
-    } else console.log("Github build");
+    }
+    //else console.log("Github build");
   }
   start() {
     this.show = true;
