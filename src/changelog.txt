@@ -1,0 +1,6 @@
+10-09-2018
+- Fixed loading error
+- Fixed some typos
+
+09-09-2018
+- Initial release

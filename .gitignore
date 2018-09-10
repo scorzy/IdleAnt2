@@ -39,4 +39,4 @@ testem.log
 Thumbs.db
 
 # Idle Ant2
-src/assets/*
+src/assets/*.css
