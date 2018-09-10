@@ -18,6 +18,8 @@
 </div>
 <p>
   <br />
+  Autosave every 5 minutes.
+  <br />
   Last save: {{serv.lastSave | date:'medium' }}
 </p>
 <h2>Export / Import Save</h2>
@@ -41,6 +43,10 @@
          [(ngModel)]="serv.options.autosaveNotification">
   <label for="t1">Autosave Notification</label>
 </div>
+<br />
+<a href="https://scorzy.github.io/IdleAnt2/asset/changelog.txt"
+   target="_blank">Changelog link
+</a>
 
 <clr-modal [(clrModalOpen)]="clearModal">
   <h3 class="modal-title">Clear</h3>
