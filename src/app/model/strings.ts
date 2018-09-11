@@ -277,7 +277,7 @@ export const STRINGS = {
     //  Technology
     F: ["Farming", "+10% food production"],
     C: ["Carpentery", "+10% wood production"],
-    p: ["Mining", "+10% crystal production"],
+    n: ["Mining", "+10% crystal production"],
     s: ["Studing", "+10% science production"],
     //  Team
     E: ["Team Work", "+30% Team Work Bonus"],

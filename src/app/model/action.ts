@@ -46,10 +46,12 @@ export class Action extends BaseUnit {
       if (this.isLimited) {
         this.maxBuy = Decimal.min(this.limit.minus(this.quantity), this.maxBuy);
       }
+      this.maxBuy = this.maxBuy.floor();
       this.canBuy = this.maxBuy.gte(1);
     }
   }
   buy(toBuy = new Decimal(1)): boolean {
+    toBuy = toBuy.floor();
     this.reload();
     if (this.canBuy && this.maxBuy.gte(toBuy)) {
       this.prices.forEach(p => p.buy(toBuy, this.quantity));

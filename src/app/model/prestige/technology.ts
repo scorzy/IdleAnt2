@@ -17,7 +17,7 @@ export class Technology extends PrestigeGroup {
   declareStuff(game: Game) {
     this.farming = new Prestige("F", game.genExperiencePrice(10));
     this.carpentry = new Prestige("C", game.genExperiencePrice(10));
-    this.mining = new Prestige("i", game.genExperiencePrice(10));
+    this.mining = new Prestige("n", game.genExperiencePrice(10));
     this.studing = new Prestige("s", game.genExperiencePrice(10));
 
     this.list = [this.farming, this.carpentry, this.mining, this.studing];

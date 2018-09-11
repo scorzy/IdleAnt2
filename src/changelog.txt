@@ -1,5 +1,6 @@
 11-09-2018
 - Fixed world not saving experience
+- Fixed Student Followers/Mining confusion
 
 10-09-2018
 - Fixed loading error
