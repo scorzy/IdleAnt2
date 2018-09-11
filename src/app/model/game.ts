@@ -454,8 +454,11 @@ export class Game {
     if (!this.isPaused) this.autoBuyManager.update(time);
 
     this.researches.toDo.forEach(u => u.reload());
-    this.canBuyResearch = !!this.researches.researches.find(
-      r => r.unlocked && r.canBuy
+    this.canBuyResearch = !!this.researches.toDo.find(
+      r =>
+        r.unlocked &&
+        r.canBuy &&
+        (!r.unlimited || r.quantity.lt(r.maxAutoBuyLevel))
     );
     this.unlockedUnits.forEach(u => {
       u.actions.forEach(a => a.reload());

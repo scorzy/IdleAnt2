@@ -2,7 +2,8 @@
 - Fixed world not saving experience
 - Fixed Student Followers/Mining confusion
 - Fixed Twin rounding
-- Fixed group chatrs not updating
+- Fixed group charts not updating
+- Light bulb ignore repeatable research, if quantity > max buy
 
 10-09-2018
 - Fixed loading error
