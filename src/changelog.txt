@@ -1,3 +1,6 @@
+11-09-2018
+- Fixed world not saving experience
+
 10-09-2018
 - Fixed loading error
 - Fixed some typos

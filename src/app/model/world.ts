@@ -156,7 +156,8 @@ export class World {
       pa: this.productionsAll.map(b => [b[0].id, b[1]]),
       wc: this.winContidions.map(w => [w.base.id, w.price]),
       nwc: this.notWinConditions.map(n => n.id),
-      adb: this.additionalBugs
+      adb: this.additionalBugs,
+      k: this.prestige
     };
   }
   restore(data: any, game: Game) {
@@ -194,6 +195,13 @@ export class World {
     if ("adb" in data) {
       this.additionalBugs = data.adb;
     }
+    this.prestige =
+      "k" in data
+        ? new Decimal(data.k)
+        : this.level
+            .times(10)
+            .times(this.level.plus(10).log10())
+            .floor();
   }
   findBonus(id: string, game: Game): BaseUnit {
     return game.worldBonus.bonusList.find(b => b.id === id);
