@@ -76,7 +76,7 @@ export class Mastery {
         break;
       }
       case MasteryTypes.HARVEST_BONUS: {
-        ret = "+" + 20 * num + "% resource\nfrom ghanteres";
+        ret = "+" + 20 * num + "% resource\nfrom Gatherers";
         break;
       }
       case MasteryTypes.MATERIAL_GAIN: {

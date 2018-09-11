@@ -61,9 +61,11 @@ export class UnitGroupComponent implements OnInit, OnDestroy, OnChanges {
   @ViewChild("pieContainer")
   pieContainerRef: ElementRef;
   chart: any;
+  forceChange = false;
 
   constructor(public ms: MainService, private cd: ChangeDetectorRef) {}
   ngOnChanges(changes: SimpleChanges): void {
+    this.forceChange = true;
     this.getGroup();
   }
 
@@ -183,13 +185,19 @@ export class UnitGroupComponent implements OnInit, OnDestroy, OnChanges {
     const lastData = this.unitGroup.chartData;
     this.unitGroup.updateChart();
     if (
+      this.forceChange ||
       lastData !== this.unitGroup.chartData ||
       (this.chart &&
         this.chart.data &&
         this.chart.data.datasets[0] &&
-        this.chart.data.datasets[0].data.length === 0)
+        this.chart.data.datasets[0].data.length === 0) ||
+      (this.chart &&
+        this.chart.labels &&
+        this.chart.labels[0] !== this.unitGroup.chartLabels[0])
     ) {
       this.doGraph();
+      this.forceChange = false;
+      console.log("up");
     }
   }
   doGraph() {
