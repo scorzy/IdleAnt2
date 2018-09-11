@@ -5,6 +5,7 @@ import { HomeComponent } from "./home/home.component";
 import { LaboratoryComponent } from "./laboratory/laboratory.component";
 import { MasteryComponent } from "./mastery/mastery.component";
 import { NavComponent } from "./nav/nav.component";
+import { CreditsComponent } from "./options-nav/credits/credits.component";
 import { OptionsNavComponent } from "./options-nav/options-nav.component";
 import { SaveComponent } from "./options-nav/save/save.component";
 import { StatsComponent } from "./options-nav/stats/stats.component";
@@ -48,7 +49,8 @@ export const APPROUTES: Routes = [
     children: [
       { path: "save", component: SaveComponent },
       { path: "ui", component: UiOptionsComponent },
-      { path: "stats", component: StatsComponent }
+      { path: "stats", component: StatsComponent },
+      { path: "credits", component: CreditsComponent }
     ]
   },
   {

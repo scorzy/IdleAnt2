@@ -32,6 +32,7 @@ import { MaterialNavComponent } from "./material-nav/material-nav.component";
 import { TabComponent } from "./material-nav/tab/tab.component";
 import { NavComponent } from "./nav/nav.component";
 import { UnitLineComponent } from "./nav/unit-line/unit-line.component";
+import { CreditsComponent } from "./options-nav/credits/credits.component";
 import { OptionsNavComponent } from "./options-nav/options-nav.component";
 import { SaveComponent } from "./options-nav/save/save.component";
 import { StatsComponent } from "./options-nav/stats/stats.component";
@@ -95,7 +96,8 @@ import { WorldComponent } from "./world/world.component";
     GroupTabsComponent,
     LabMenuComponent,
     BugCardComponent,
-    MadeByChartComponent
+    MadeByChartComponent,
+    CreditsComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -112,6 +114,7 @@ import { WorldComponent } from "./world/world.component";
     ClrFormsNextModule
   ],
   providers: [ToastrService, OptionsService, MainService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [CreditsComponent]
 })
 export class AppModule {}

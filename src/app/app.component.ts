@@ -24,6 +24,7 @@ import {
 import { ClrShapePause } from "@clr/icons/shapes/media-shapes";
 import { ClrShapeStar } from "@clr/icons/shapes/social-shapes";
 import {
+  ClrShapeCertificate,
   ClrShapeDashboard,
   ClrShapeFloppy,
   ClrShapeInstall,
@@ -67,7 +68,8 @@ export class AppComponent implements OnInit, AfterViewInit {
       uninstall: ClrShapeUninstall,
       tools: ClrShapeTools,
       star: ClrShapeStar,
-      dashboard: ClrShapeDashboard
+      dashboard: ClrShapeDashboard,
+      certificate: ClrShapeCertificate
     });
   }
   ngOnInit(): void {
