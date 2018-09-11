@@ -85,19 +85,19 @@ export const STRINGS = {
     //  Mastery Bonus
     scieMast: ["Science Mastery"],
     fooMast: ["Food Mastery"],
-    wooMast: ["Wood Mastery"],
-    cryMast: ["Crystall Mastery"],
+    wooMast: ["Soil Mastery"],
+    cryMast: ["Crystal Mastery"],
     harvMast: ["Harvest Mastery"],
     matMast: ["Material Mastery"],
     armyMast: ["Army Mastery"],
     //  Supply
     fS: ["Food Supply", "Never ending food supply"],
-    wS: ["Wood Supply", "Never ending wood supply"],
-    cS: ["Crystal Supply", "Never ending crystall supply"],
+    wS: ["Soil Supply", "Never ending soil supply"],
+    cS: ["Crystal Supply", "Never ending crystal supply"],
     //  Bee
-    Z: ["Foragging Bee", "Foragging Bee"],
-    cb: ["Carpenter Bee", "Foragging Bee"],
-    sb: ["Student Bee", "Foragging Bee"],
+    Z: ["Foraging Bee", "Foraging Bee"],
+    cb: ["Carpenter Bee", "Foraging Bee"],
+    sb: ["Student Bee", "Foraging Bee"],
     Q: ["Bee Larva", "Bee Larva"],
     P: ["Bee Queen", ""],
     N: ["Bee Hive", ""],
@@ -114,7 +114,7 @@ export const STRINGS = {
     EGG: ["3Bee Miner", ""],
     DGG: ["3Bee Scientist", ""],
     //  Wasp
-    x: ["Foragging Wasp", "Foragging Wasp"],
+    x: ["Foraging Wasp", "Foraging Wasp"],
     hw: ["Hornet", ["Hornet", "A wasp on steroids."]],
     sw: ["Smart Wasp", ""],
     y: ["Wasp Larva", ""],
@@ -158,10 +158,7 @@ export const STRINGS = {
       "Farmer",
       "Hydroponics farmers uses crystals to grow fungi without soil."
     ],
-    b: [
-      "Carpenter",
-      "Carpenter ants build nests inside wood consisting of galleries."
-    ],
+    b: ["Carpenter", "Carpenter ants build nests consisting of galleries."],
     m: ["Miner", "miner"],
     d: ["Scientist", "scientist"],
     scie1: ["Scientific Method", "+50% science production"],
@@ -216,22 +213,22 @@ export const STRINGS = {
   },
   worlds: {
     "1Pre": "Hot",
-    "2Pre": "Wooded",
+    "2Pre": "Soil",
     "3Pre": "Crystallized",
     "4Pre": "Scientific",
     "1Suf": "of Food",
-    "2Suf": "of Wood",
-    "3Suf": "of Crystall",
+    "2Suf": "of Soil",
+    "3Suf": "of Crystal",
     "4Suf": "of Science",
     fBio: "Farm",
     wBio: "Forest",
     cBio: "Mine",
     sBio: "University",
     fSPre: "Food supply",
-    wSPre: "Wood supply",
+    wSPre: "Soil supply",
     cSPre: "Crystal supply",
     fSSuff: "with Food",
-    wSSuff: "with Wood",
+    wSSuff: "with Soil",
     cSSuff: "with Crystal",
     //  Bee
     beePre: "Apian",
@@ -261,10 +258,10 @@ export const STRINGS = {
     h: ["Geologist Follower", "Start new worlds with 5 more geologists"],
     i: ["Student Follower", "Start new worlds with 5 more students"],
     //  Followers 2
-    a: ["Farmer Follower", "Start new worlds with 5 more farmer"],
-    b: ["Carpenter Follower", "Start new worlds with 5 more farmer"],
-    m: ["Miner Follower", "Start new worlds with 5 more miner"],
-    d: ["Scientist Follower", "Start new worlds with 5 more scientist"],
+    a: ["Farmer Follower", "Start new worlds with 5 more farmers"],
+    b: ["Carpenter Follower", "Start new worlds with 5 more carpenters"],
+    m: ["Miner Follower", "Start new worlds with 5 more miners"],
+    d: ["Scientist Follower", "Start new worlds with 5 more scientists"],
     //  Time
     P: ["Time Producer", "+0.1 time/s"],
     B: ["Time Bank", "+1 max hour"],
@@ -276,9 +273,9 @@ export const STRINGS = {
     R: ["Research Auto Buyer", "Unlock Research Auto Buyer"],
     //  Technology
     F: ["Farming", "+10% food production"],
-    C: ["Carpentery", "+10% wood production"],
+    C: ["Carpentry", "+10% soil production"],
     n: ["Mining", "+10% crystal production"],
-    s: ["Studing", "+10% science production"],
+    s: ["Studying", "+10% science production"],
     //  Team
     E: ["Team Work", "+30% Team Work Bonus"],
     //  Worlds
