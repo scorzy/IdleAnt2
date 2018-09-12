@@ -1,5 +1,6 @@
 12-09-2018
 - Added infinite loop check
+- Fixed infinite loop
 - Fixed group buy prices
 - Fixed no more bonus from Malus
 - Fixed: Time not reset after changing world
