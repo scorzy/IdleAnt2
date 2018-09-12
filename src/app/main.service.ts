@@ -174,7 +174,7 @@ export class MainService {
       }
       const json = LZString.decompressFromBase64(raw);
       const data = JSON.parse(json);
-      if (!data.m) {
+      if (!("m" in data)) {
         setTimeout(
           () => this.toastr.error("Save is not valid", "Not Loaded"),
           0

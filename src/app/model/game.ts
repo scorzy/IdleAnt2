@@ -33,6 +33,7 @@ import { World } from "./world";
 const STARTING_FOOD = new Decimal(100);
 export const ADDITIONAL_PRICE1 = new Decimal(1e4);
 export const ADDITIONAL_PRICE2 = new Decimal(1e9);
+const MAX_UPDATE_TRY = 20;
 
 export class Game {
   units = new Array<FullUnit>();
@@ -84,6 +85,8 @@ export class Game {
   allMateries: AllMasteries;
   maxTimeBank = new Decimal(0);
   firstEndigUnit: FullUnit;
+
+  upNumber = 0;
 
   constructor(public ms: MainService) {
     this.tabs = new Tabs();
@@ -312,6 +315,15 @@ export class Game {
    * @param force force update, used for warp in pause
    */
   update(delta: number, force = false) {
+    this.upNumber++;
+    if (this.upNumber > MAX_UPDATE_TRY) {
+      this.ms.toastr.error(
+        "Error: infinite loop.",
+        "Please report to developer."
+      );
+      return;
+    }
+
     let maxTime = delta;
     let unitZero: FullUnit = null;
     this.firstEndigUnit = null;
@@ -396,12 +408,12 @@ export class Game {
         this.update2(new Decimal(maxTime).div(1000));
       }
 
-      // Something has ened
+      // Something has ended
       if (unitZero) {
         //  Stop consumers
-        unitZero.producedBy
-          .filter(p => p.rateo.lt(0))
-          .forEach(p => (p.producer.efficiency = 0));
+        unitZero.producedBy.filter(p => p.rateo.lt(0)).forEach(p => {
+          p.producer.efficiency = 0;
+        });
 
         //  Kill Malus
         if (unitZero instanceof Malus) {
@@ -443,6 +455,7 @@ export class Game {
    *  and eventually fix quantity > 0
    */
   postUpdate(time) {
+    this.upNumber = 0;
     this.worldMalus.foodMalus1.reloadPriceMulti();
     this.worldMalus.woodMalus1.reloadPriceMulti();
     this.worldMalus.crystalMalus1.reloadPriceMulti();

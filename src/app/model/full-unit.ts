@@ -96,7 +96,9 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     }
   }
   isActive(): boolean {
-    return this.unlocked && this.efficiency > 0 && this.quantity.gt(0);
+    return (
+      this.unlocked && this.efficiency > Number.EPSILON && this.quantity.gt(0)
+    );
   }
   isStopped(): boolean {
     return this.efficiency < 0.01;
