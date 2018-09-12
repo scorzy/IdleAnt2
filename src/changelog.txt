@@ -1,3 +1,7 @@
+12-09-2018
+- Fixed group buy prices
+- Fixed no more bonus from Malus
+
 11-09-2018
 - Fixed world not saving experience
 - Fixed Student Followers/Mining confusion

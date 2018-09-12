@@ -25,6 +25,7 @@ export class ActionGroup {
 
   reload(game: Game) {
     let real = 1;
+
     if (!isNaN(this.userNum) && this.userNum >= 1) real = this.userNum;
     this.realNum = new Decimal(real);
 
@@ -41,16 +42,16 @@ export class ActionGroup {
           this.pricesTemp.push(priTemp);
         }
       });
-
-      this.pricesTemp.forEach(p => {
-        p.reloadRealPrice();
-        p.reload(new Decimal(0));
-      });
-      this.canBuy = this.pricesTemp.findIndex(p => !p.canBuy) < 0;
     });
-
+    this.pricesTemp.forEach(p => {
+      // p.reloadRealPrice();
+      // p.reload(new Decimal(0));
+      p.canBuy = p.base.quantity.gt(p.price);
+    });
+    this.canBuy = this.pricesTemp.findIndex(p => !p.canBuy) < 0;
     if (this.actionList.findIndex(a => !a.canBuy) > -1) {
       this.canBuy = false;
+      return;
     }
   }
 

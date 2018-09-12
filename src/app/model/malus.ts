@@ -29,10 +29,10 @@ export class Malus extends FullUnit {
   reloadPriceMulti() {
     if (!this.first) return;
 
-    this.priceMultiplier =
-      this.quantity.gte(1) && this.isActive()
-        ? new Decimal(this.quantity.log(20))
-        : (this.priceMultiplier = new Decimal(1));
+    this.priceMultiplier = (this.quantity.gte(1) && this.isActive()
+      ? new Decimal(this.quantity.log(20))
+      : (this.priceMultiplier = new Decimal(1))
+    ).max(1);
   }
   isActive(): boolean {
     return !this.isKilled && super.isActive();
