@@ -96,4 +96,7 @@ export class HeaderComponent implements OnInit {
   getListId(index, list: UnitGroup) {
     return list.name;
   }
+  warpAv(minutes) {
+    return this.ms.game.time.quantity.gt(minutes * 60);
+  }
 }

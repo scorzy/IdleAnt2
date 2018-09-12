@@ -143,8 +143,14 @@ export class Game {
     this.experience = new FullUnit("prest");
     this.experience.reset = () => {
       //  Do nothing !
+      //  Intended
     };
     this.time = new FullUnit("time");
+    this.time.reset = () => {
+      //  Do nothing !
+      //  Intended
+    };
+
     //#endregion
     //#region Build Lists
     this.unitGroups

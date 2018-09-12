@@ -150,6 +150,7 @@ describe("Game", () => {
     game.canTravel = false;
     world.prestige = new Decimal(20);
     game.experience.quantity = new Decimal(1);
+    game.time.quantity = new Decimal(100);
 
     game.goToWorld(world);
 
@@ -160,6 +161,7 @@ describe("Game", () => {
     expect(game.currentWorld).toBe(world);
     expect(game.setStartingStuff).toHaveBeenCalled();
     expect(game.applyWorldBonus).toHaveBeenCalled();
+    expect(game.time.quantity.toNumber()).toBe(100);
 
     game.canTravel = true;
     game.goToWorld(world);

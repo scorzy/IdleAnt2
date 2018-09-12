@@ -2,6 +2,8 @@
 - Added infinite loop check
 - Fixed group buy prices
 - Fixed no more bonus from Malus
+- Fixed: Time not reset after changing world
+- Changed UI headers
 
 11-09-2018
 - Fixed world not saving experience
