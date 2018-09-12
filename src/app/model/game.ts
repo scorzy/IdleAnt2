@@ -420,6 +420,11 @@ export class Game {
         unitZero.producedBy.filter(p => p.rateo.lt(0)).forEach(p => {
           p.producer.efficiency = 0;
         });
+        unitZero.producedBy.filter(p => p.rateo.gt(0)).forEach(p => {
+          p.producer.producedBy.filter(p2 => p2.rateo.lt(0)).forEach(p2 => {
+            p2.producer.efficiency = 0;
+          });
+        });
 
         //  Kill Malus
         if (unitZero instanceof Malus) {
@@ -452,7 +457,6 @@ export class Game {
           .plus(u.c.times(seconds));
       });
     this.unlockedUnits.forEach(u => {
-      // u.actions.forEach(a => a.reload());
       u.quantity = u.quantity.max(0);
     });
   }
@@ -764,6 +768,7 @@ export class Game {
       //  Debug
       //
       // this.materials.list.forEach(m => (m.quantity = new Decimal(1e100)));
+      // this.materials.food.quantity = new Decimal(100);
       // this.ants.nest.quantity = new Decimal(70);
       // this.experience.quantity = new Decimal(1e10);
       // this.allMateries.masteryPoint = 100;
