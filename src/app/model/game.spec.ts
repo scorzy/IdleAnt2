@@ -135,7 +135,7 @@ describe("Game", () => {
     expect(game.ms.toastr.info).toHaveBeenCalledTimes(0);
     game.warp(10);
     expect(game.update).toHaveBeenCalled();
-    expect(game.autoBuyManager.update).toHaveBeenCalled();
+    expect(game.autoBuyManager.update).toHaveBeenCalledTimes(0);
     expect(game.ms.toastr.info).toHaveBeenCalled();
   });
   it("goToWorld", () => {
