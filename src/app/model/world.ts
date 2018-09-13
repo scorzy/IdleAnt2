@@ -65,7 +65,7 @@ export class World {
 
       w.price = w.base.winNonLiner
         ? w.price.pow(0.7)
-        : w.price.times(Decimal.pow(5, multi));
+        : w.price.times(Decimal.pow(4, multi)).pow(0.95);
 
       w.price = w.price.floor();
     });

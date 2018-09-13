@@ -29,6 +29,7 @@ export class Researches {
    *  never reset
    */
   mastery: Research;
+  masteryResDone = 0;
 
   constructor(
     public researchEmitter: EventEmitter<string>,
@@ -106,17 +107,21 @@ export class Researches {
   }
   reloadLists() {
     this.toDo = this.researches.filter(
-      r => r.unlocked && (!r.done || r.unlimited)
+      r =>
+        r.unlocked &&
+        (!r.done || (r.unlimited && r.quantity.lt(r.maxAutoBuyLevel)))
     );
     this.done = this.researches.filter(
-      r => r.unlocked && r.done && !r.unlimited
+      r =>
+        r.unlocked &&
+        r.done &&
+        (!r.unlimited || r.quantity.gte(r.maxAutoBuyLevel))
     );
     this.researchEmitter.emit("");
   }
   reloadMasteryPrice(science: FullUnit) {
-    const masteryNum = this.mastery.quantity;
     this.mastery.genPrice(
-      new Decimal(1e18).times(Decimal.pow(2, masteryNum)),
+      new Decimal(1e18).times(Decimal.pow(2, this.masteryResDone)),
       science
     );
   }
@@ -124,7 +129,8 @@ export class Researches {
   //#region Save and load
   getSave(): any {
     return {
-      res: this.researches.map(r => r.getSave())
+      res: this.researches.map(r => r.getSave()),
+      mrd: this.masteryResDone
     };
   }
   restore(data: any, science: FullUnit): boolean {
@@ -133,6 +139,9 @@ export class Researches {
         const res = this.researches.find(u => u.id === r.i);
         if (res) res.restore(r);
       }
+      this.masteryResDone =
+        "mrd" in data ? data.mrd : this.game.allMateries.totalEarned;
+
       this.reloadMasteryPrice(science);
       this.reloadLists();
       return true;

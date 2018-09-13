@@ -216,6 +216,7 @@ export class Game {
     this.researches.mastery.onBuy = () => {
       this.allMateries.totalEarned++;
       this.allMateries.masteryPoint++;
+      this.researches.masteryResDone++;
     };
     this.materials.science.productionsBonus.push(
       new ProductionBonus(this.experience, new Decimal(1))
@@ -748,6 +749,7 @@ export class Game {
     if ("u" in data) {
       for (const s of data.u) this.units.find(u => u.id === s.i).restore(s);
       if ("t" in data) this.tabs.restore(data.t);
+      if ("mas" in data) this.allMateries.restore(data.mas);
       if ("r" in data) this.researches.restore(data.r, this.materials.science);
       if ("w" in data) this.currentWorld.restore(data.w, this);
       if ("p" in data) this.allPrestige.restore(data.p);
@@ -755,7 +757,6 @@ export class Game {
       if ("a" in data) this.isPaused = data.a;
       if ("abm" in data) this.autoBuyManager.restore(data.abm);
       if ("s" in data) this.stats.restore(data.s);
-      if ("mas" in data) this.allMateries.restore(data.mas);
       if ("wor" in data) {
         this.nextWorlds = data.wor.map(w => {
           const newW = new World("");
