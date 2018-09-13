@@ -1,3 +1,4 @@
+import sample from "lodash-es/sample";
 import { MainService } from "../main.service";
 import { WarpAction } from "./actions/warp-action";
 import { AutoBuyManager } from "./autoBuy/auto-buy-manager";
@@ -211,7 +212,6 @@ export class Game {
     this.currentWorld.setLevel(new Decimal(1), this);
     this.setStartingStuff();
     //#endregion
-
     //#region Special Stuff
     this.researches.mastery.onBuy = () => {
       this.allMateries.totalEarned++;
@@ -226,7 +226,43 @@ export class Game {
       if (u.teamAction) u.teamAction.teamRes = this.researches.team2;
       if (u.twinAction) u.twinAction.twinRes = this.researches.twin;
     });
+    // Extreme
+    this.researches.overNineThousand.onBuy = () => {
+      const malus = [
+        this.worldMalus.foodMalus1,
+        this.worldMalus.woodMalus1,
+        this.worldMalus.crystalMalus1,
+        this.worldMalus.scienceMalus1
+      ].filter(m => !this.currentWorld.notWinConditions.includes(m));
+      this.currentWorld.notWinConditions.push(sample(malus));
+
+      this.currentWorld.setMalus();
+      this.currentWorld.name = "Extreme " + this.currentWorld.name;
+
+      this.currentWorld.prestige = this.currentWorld.prestige
+        .times(1.1)
+        .floor();
+      this.currentWorld.winContidions.forEach(w => {
+        w.price = w.price.times(1.2).floor();
+      });
+      this.worldMalus.unlocked.forEach(m => {
+        if (m instanceof Malus) {
+          m.isKilled = false;
+          m.efficiency = 100;
+          m.quantity = m.quantity.times(10);
+          if (m.produces.length === 1 && m.producedBy.length === 1) {
+            m.quantity = m.quantity.times(20);
+          }
+          if (m.produces.length === 0) m.quantity = m.quantity.times(200);
+        }
+      });
+      this.buildLists();
+      this.killers.unlocked.forEach(k => {
+        k.efficiency = 100;
+      });
+    };
     //#endregion
+
     //#region Debug
     // this.materials.list.forEach(u => (u.unlocked = true));
     // this.unitGroups.forEach(g => g.list.forEach(u => u.unlock()));
@@ -558,6 +594,15 @@ export class Game {
   goToWorld(world: World): boolean {
     this.stats.logWorldCompleted(this.currentWorld, !this.canTravel);
 
+    if (
+      this.canTravel &&
+      this.researches.overNineThousand.done &&
+      this.currentWorld.level.gt(this.maxLevel.times(0.9))
+    ) {
+      this.allMateries.totalEarned++;
+      this.allMateries.masteryPoint++;
+    }
+
     const newPrestige = this.experience.quantity.plus(
       this.currentWorld.prestige
     );
@@ -770,7 +815,7 @@ export class Game {
       //
       //  Debug
       //
-      this.materials.list.forEach(m => (m.quantity = new Decimal(1e100)));
+      // this.materials.list.forEach(m => (m.quantity = new Decimal(1e100)));
       // this.materials.food.quantity = new Decimal(100);
       // this.ants.nest.quantity = new Decimal(70);
       // this.experience.quantity = new Decimal(1e10);

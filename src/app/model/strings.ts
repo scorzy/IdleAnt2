@@ -40,7 +40,7 @@ export const STRINGS = {
       "Scientist",
       [
         "Scientist gather science.",
-        "Scientist were used to drink crystal.",
+        "Scientist were used to drink cristal.",
         "ScientAnts are like studentAnts, but betters."
       ]
     ],
@@ -153,6 +153,10 @@ export const STRINGS = {
     2: ["2H Warp", "Free time warp."],
     3: ["3H Warp", "Free time warp."],
     SP: ["Spawn", "+50% larvae production."],
+    ont: [
+      "Extreme",
+      "+10% world level and prestige;+20% requirements; add random malus and increase malus;if level > 0.9 * max grant one mastery point on travel"
+    ],
     //  Workers
     wo: ["Better Workers", "+30% production from workers."],
     we: ["Efficient Workers", "+10% resource gain."],

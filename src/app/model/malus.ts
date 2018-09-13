@@ -22,8 +22,6 @@ export class Malus extends FullUnit {
       if (p.producer instanceof Malus) p.producer.kill();
     });
 
-    //  ToDo
-
     return true;
   }
   reloadPriceMulti() {

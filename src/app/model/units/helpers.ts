@@ -18,7 +18,7 @@ export class Helpers extends UnitGroup {
   headquarter: Helper;
 
   constructor(game: Game) {
-    super("Heplers", game);
+    super("Helpers", game);
   }
   declareStuff(): void {
     this.leafCutter = new Helper("lf", 0.1, this.game);

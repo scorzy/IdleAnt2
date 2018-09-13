@@ -9,6 +9,11 @@
       You will get
       <span class="monospace">{{ms.game.currentWorld.prestige}} </span>
       experience
+
+      <span *ngIf="ms.game.researches.overNineThousand.done
+      && ms.game.currentWorld.level.gt(this.maxLevel.times(0.9))">
+        and one mastery point
+      </span>
     </span>
   </div>
 </clr-alert>

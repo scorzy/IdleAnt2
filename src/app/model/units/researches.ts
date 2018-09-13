@@ -30,6 +30,7 @@ export class Researches {
    */
   mastery: Research;
   masteryResDone = 0;
+  overNineThousand: Research;
 
   constructor(
     public researchEmitter: EventEmitter<string>,
@@ -49,6 +50,7 @@ export class Researches {
     this.free3hWarp = new Research("3", this);
 
     this.spawn = new Research("SP", this, true);
+    this.overNineThousand = new Research("ont", this);
 
     this.team1.unlocked = true;
     this.reloadLists();
@@ -59,6 +61,7 @@ export class Researches {
     this.twin.genPrice(new Decimal(1e6), science);
     this.travel.genPrice(new Decimal(1e13), science);
     this.mastery.genPrice(new Decimal(1e20), science);
+    this.overNineThousand.genPrice(new Decimal(1e20), science);
     this.harvesting.prices = game.genSciencePrice(1e3, 4);
     this.free1hWarp.prices = game.genSciencePrice(1);
     this.free2hWarp.prices = game.genSciencePrice(1);
@@ -76,7 +79,7 @@ export class Researches {
     this.game.buildings.firstResearch.toUnlock.push(this.spawn);
     this.game.engineers.firstResearch.toUnlock.push(this.travel);
     this.travel.toUnlock.push(game.tabs.travel, this.mastery);
-    this.mastery.toUnlock.push(game.tabs.mastery);
+    this.mastery.toUnlock.push(game.tabs.mastery, this.overNineThousand);
 
     this.free1hWarp.toUnlock.push(this.free2hWarp);
     this.free1hWarp.onBuy = () => {
@@ -122,6 +125,10 @@ export class Researches {
   reloadMasteryPrice(science: FullUnit) {
     this.mastery.genPrice(
       new Decimal(1e18).times(Decimal.pow(2, this.masteryResDone)),
+      science
+    );
+    this.mastery.genPrice(
+      new Decimal(1e20).times(Decimal.pow(2, this.masteryResDone)),
       science
     );
   }

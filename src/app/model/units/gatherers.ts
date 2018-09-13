@@ -196,7 +196,7 @@ export class Gatherers extends UnitGroup {
       this.majorWorker,
       CONSTS.PROD_GAN.times(0.7)
     );
-    this.game.materials.soil.addProducer(
+    this.game.materials.crystal.addProducer(
       this.majorWorker,
       CONSTS.PROD_GAN.times(0.3)
     );
