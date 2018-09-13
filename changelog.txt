@@ -5,6 +5,7 @@
 - Extreme research
 - Fixed Major workers double soil production
 - Fixed Time Warp Autobuyer
+- Less expensive researches for buildings and engineer
 
 12-09-2018
 - Added infinite loop check
