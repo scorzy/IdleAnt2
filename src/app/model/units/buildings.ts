@@ -16,7 +16,7 @@ export class Buildings extends UnitGroup {
   setRelations(): void {
     this.game.advWorkers.firstResearch.toUnlock.push(this.firstResearch);
     this.firstResearch.prices = this.game.genSciencePrice(
-      CONSTS.RES_PRICE_2.div(2)
+      CONSTS.RES_PRICE_2.div(50)
     );
 
     const len = this.list.length;

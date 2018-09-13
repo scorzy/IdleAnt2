@@ -197,7 +197,6 @@ export class UnitGroupComponent implements OnInit, OnDestroy, OnChanges {
     ) {
       this.doGraph();
       this.forceChange = false;
-      console.log("up");
     }
   }
   doGraph() {
