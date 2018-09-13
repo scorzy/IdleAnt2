@@ -1,3 +1,10 @@
+13-09-2018
+- Added missing names and descriptions
+- Team and Twin up on groups show up when the SUM of the individual team costs are available
+- Lowered material required for travel
+- Extreme research
+- Fixed Major workers double soil production
+
 12-09-2018
 - Added infinite loop check
 - Fixed infinite loop
