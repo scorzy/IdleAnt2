@@ -541,7 +541,7 @@ export class Game {
     if (delta > 0) {
       this.ms.toastr.info(this.ms.endInPipe.transform(delta), "Time Warp");
       this.update(delta, true);
-      this.autoBuyManager.update(delta);
+      //this.autoBuyManager.update(delta);
     }
   }
   /**

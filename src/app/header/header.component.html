@@ -180,12 +180,12 @@
   <h3 class="modal-title">Time Warp</h3>
   <div class="modal-body actMinH"
        *ngIf="ms.game.actMin && ms.game.actHour">
-    <span> You can skip {{ms.game.time.quantity.toNumber() | endIn}}:
+    <span> You can skip {{ms.game.time.quantity.toNumber() *1000| endIn}}:
       <span class="monospace">
         {{ms.game.time.quantity | format}} s
       </span>
     </span>
-    <br/>
+    <br />
     <span>
       You get
       <span class="monospace">

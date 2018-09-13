@@ -21,5 +21,6 @@ export class WarpAction extends Action {
   buy(toBuy = new Decimal(1)): boolean {
     if (!super.buy(toBuy)) return false;
     this.game.warp(toBuy.toNumber() * 1000 * this.warp);
+    return true;
   }
 }
