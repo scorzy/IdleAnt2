@@ -60,4 +60,11 @@ describe("Price", () => {
     price.reloadPercent();
     expect(price.completedPercent).toBe(30);
   });
+  it("getPriceForOne", () => {
+    const unit = new FullUnit("");
+    const price = new Price(unit, new Decimal(100), 2);
+    expect(price.getPriceForOne(new Decimal(0)).toNumber()).toBe(100);
+    expect(price.getPriceForOne(new Decimal(1)).toNumber()).toBe(200);
+    expect(price.getPriceForOne(new Decimal(2)).toNumber()).toBe(400);
+  });
 });

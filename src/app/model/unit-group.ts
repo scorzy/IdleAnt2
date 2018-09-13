@@ -76,13 +76,33 @@ export class UnitGroup {
   setFlags(team = false, twin = false) {
     this.isEnding = this.unlocked.findIndex(u => u.isEnding) > -1;
 
-    this.upTeam =
-      team &&
-      this.unlocked.findIndex(u => u.teamAction && u.teamAction.canBuy) > -1;
+    if (team) {
+      const teamList = this.unlocked.filter(u => u.teamAction);
+      this.upTeam =
+        teamList.length > 0 &&
+        teamList
+          .map(u =>
+            u.teamAction.prices[0].getPriceForOne(u.teamAction.quantity)
+          )
+          .reduce((p, n) => p.plus(n), new Decimal(0))
+          .lte(this.game.materials.science.quantity);
+    } else {
+      this.upTeam = false;
+    }
 
-    this.upTwin =
-      twin &&
-      this.unlocked.findIndex(u => u.twinAction && u.twinAction.canBuy) > -1;
+    if (twin) {
+      const twinList = this.unlocked.filter(u => u.twinAction);
+      this.upTwin =
+        twinList.length > 0 &&
+        twinList
+          .map(u =>
+            u.twinAction.prices[0].getPriceForOne(u.twinAction.quantity)
+          )
+          .reduce((p, n) => p.plus(n), new Decimal(0))
+          .lte(this.game.materials.science.quantity);
+    } else {
+      this.upTwin = false;
+    }
   }
 
   updateChart() {

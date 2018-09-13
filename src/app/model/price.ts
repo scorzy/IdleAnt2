@@ -70,6 +70,12 @@ export class Price {
     this.userCanBuy = tempPrice.lte(this.base.quantity);
     if (this.priceUser.cmp(tempPrice) !== 0) this.priceUser = tempPrice;
   }
+  getPriceForOne(start: Decimal) {
+    const num = new Decimal(1);
+    return this.growRate > 1
+      ? Decimal.sumGeometricSeries(num, this.realPrice, this.growRate, start)
+      : this.realPrice.times(num);
+  }
   getTime(): Decimal {
     if (this.priceUser.lte(this.base.quantity)) return new Decimal(0);
     else {
