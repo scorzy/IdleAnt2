@@ -21,6 +21,7 @@
                id="max"
                class="clr-input"
                [(ngModel)]="research.maxAutoBuyLevel"
+               (change)="ms.game.researches.reloadLists()"
                min="0"
                size="3">
       </div>
