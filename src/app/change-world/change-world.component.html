@@ -1,5 +1,6 @@
 <h1>Here you can travel to a new world.</h1>
 
+
 <clr-alert [clrAlertType]="'alert-success'"
            [clrAlertClosable]="false"
            *ngIf="ms.game.canTravel; else warn">
@@ -11,6 +12,7 @@
     </span>
   </div>
 </clr-alert>
+
 <ng-template #warn>
   <clr-alert [clrAlertType]="'alert-danger'"
              [clrAlertClosable]="false">
@@ -21,6 +23,18 @@
     </div>
   </clr-alert>
 </ng-template>
+
+
+<clr-alert [clrAlertType]="'alert-warning'"
+           [clrAlertClosable]="false"
+           *ngIf="!ms.game.researches.mastery.done">
+  <div class="alert-item ">
+    <span class="alert-text">
+      Mastery research not done.
+    </span>
+  </div>
+</clr-alert>
+
 <button class="btn"
         (click)="randomize()">Randomize</button>
 

@@ -7,6 +7,17 @@
       <button class="btn btn-danger-outline btn-link"
               (click)="skip = true">Skip</button>
     </h1>
+
+    <clr-alert [clrAlertType]="'alert-danger'"
+               [clrAlertClosable]="false"
+               *ngIf="!ms.game.researches.travel.done">
+      <div class="alert-item">
+        <span class="alert-text">
+          Travel research is needed to travel.
+        </span>
+      </div>
+    </clr-alert>
+
     <div class="clr-row">
       <div class="clr-col-12 clr-col-sm-12 clr-col-md-6 clr-col-lg-6 clr-col-xl-6">
         <div class="card">

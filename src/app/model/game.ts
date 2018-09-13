@@ -490,7 +490,9 @@ export class Game {
     const team = this.researches.team2.done;
     const twin = this.researches.twin.done;
     this.unitGroups.forEach(g => g.setFlags(team, twin));
+
     this.canTravel = this.currentWorld.canTravel();
+    if (!this.researches.travel.done) this.canTravel = false;
 
     this.actHour.reload();
     this.actMin.reload();
@@ -768,7 +770,7 @@ export class Game {
       //
       //  Debug
       //
-      // this.materials.list.forEach(m => (m.quantity = new Decimal(1e100)));
+      this.materials.list.forEach(m => (m.quantity = new Decimal(1e100)));
       // this.materials.food.quantity = new Decimal(100);
       // this.ants.nest.quantity = new Decimal(70);
       // this.experience.quantity = new Decimal(1e10);
