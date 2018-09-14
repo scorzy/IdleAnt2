@@ -1,3 +1,6 @@
+14-09-2018
+- Disabled mastery physics
+
 13-09-2018
 - Added missing names and descriptions
 - Team and Twin up on groups show up when the SUM of the individual team costs are available

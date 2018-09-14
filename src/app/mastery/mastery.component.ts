@@ -65,9 +65,9 @@ export class MasteryComponent implements AfterViewInit, OnInit {
               roundness: 0.5
             }
           },
-          interaction: { hover: true },
+          interaction: { dragNodes: false, hover: true },
           physics: {
-            enabled: true,
+            enabled: false,
             barnesHut: {
               gravitationalConstant: -6900,
               avoidOverlap: 0.0

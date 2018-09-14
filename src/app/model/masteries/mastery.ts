@@ -178,7 +178,7 @@ export class Mastery {
     public x = 0,
     public y = 0
   ) {
-    this.label = id + " " + Mastery.getDescription(type);
+    this.label = Mastery.getDescription(type);
     this.color = notable.find(n => n === this.type)
       ? Mastery.notableColor
       : Mastery.normalColor;
