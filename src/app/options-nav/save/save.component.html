@@ -16,6 +16,24 @@
     Clear
   </button>
 </div>
+<div class="btn-group btn-primary"
+     *ngIf="serv.testing">
+  <button class="btn btn-success"
+          (click)="serv.playFabLogin()">
+    <clr-icon shape="floppy"></clr-icon>
+    Log PlayFab
+  </button>
+  <button class="btn btn-success"
+          (click)="serv.savePlayFab()">
+    <clr-icon shape="floppy"></clr-icon>
+    Cloud Save
+  </button>
+  <button class="btn"
+          (click)="serv.loadPlayFab()">
+    <clr-icon shape="install"></clr-icon>
+    Cloud Load
+  </button>
+</div>
 <p>
   <br />
   Autosave every 5 minutes.
