@@ -26,9 +26,11 @@ import { ClrShapeStar } from "@clr/icons/shapes/social-shapes";
 import {
   ClrShapeCertificate,
   ClrShapeDashboard,
+  ClrShapeDownloadCloud,
   ClrShapeFloppy,
   ClrShapeInstall,
-  ClrShapeUninstall
+  ClrShapeUninstall,
+  ClrShapeUploadCloud
 } from "@clr/icons/shapes/technology-shapes";
 import { ClrShapePaintRoller } from "@clr/icons/shapes/text-edit-shapes";
 import { OptionsService } from "./options.service";
@@ -69,7 +71,9 @@ export class AppComponent implements OnInit, AfterViewInit {
       tools: ClrShapeTools,
       star: ClrShapeStar,
       dashboard: ClrShapeDashboard,
-      certificate: ClrShapeCertificate
+      certificate: ClrShapeCertificate,
+      "upload-cloud": ClrShapeUploadCloud,
+      "download-cloud": ClrShapeDownloadCloud
     });
   }
   ngOnInit(): void {

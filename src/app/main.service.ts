@@ -51,6 +51,7 @@ export class MainService {
   readonly titleId = "E86B";
   playFabId = -1;
   testing = false;
+  playFabLogged = false;
 
   constructor(
     public options: OptionsService,
@@ -186,9 +187,7 @@ export class MainService {
         }
         return false;
       }
-      const json = playFab
-        ? LZString.decompressFromEncodedURIComponent(raw)
-        : LZString.decompressFromBase64(raw);
+      const json = LZString.decompressFromBase64(raw);
       const data = JSON.parse(json);
       if (!("m" in data)) {
         setTimeout(
@@ -303,6 +302,7 @@ export class MainService {
         );
       } catch (e) {
         console.log("Unable to send login request to PlayFab.");
+        this.toastr.error("Unable to send login request to PlayFab.");
       }
     } catch (e) {
       console.log(e);
@@ -319,7 +319,11 @@ export class MainService {
     }
     if (data) {
       this.playFabId = data.data.PlayFabId;
+      PlayFab.settings.titleId = "E86B";
+      this.playFabLogged = true;
+      this.saveEmitter.emit();
       console.log("Logged in to playFab");
+      this.toastr.info("Logged in to PlayFab");
     }
   }
   savePlayFab() {
@@ -332,9 +336,7 @@ export class MainService {
     }
 
     // Cut compressed object into strings of 10,000 bytes for PlayFab
-    const chunks = LZString.compressToEncodedURIComponent(
-      JSON.stringify(this.game.getSave())
-    ).match(/.{1,10000}/g);
+    const chunks = this.getSave().match(/.{1,10000}/g);
     if (chunks.length > 10) {
       this.toastr.error("size limit exceeded", "Error saving to cloud");
     }
@@ -392,20 +394,21 @@ export class MainService {
   loadFromPlayFabCallback(data, error) {
     try {
       console.log("loading callback fired");
-      console.log(data, error);
+      // console.log(data, error);
       if (error) {
         console.log(error);
         return;
       }
 
       if (data) {
-        if (data.data.Data.save) {
+        if (data.data.Data) {
           const raw = Object.values(data.data.Data)
             .map((val: any) => {
               return val.Value;
             })
             .join("");
-          this.import(raw);
+          console.log(raw);
+          this.import(raw, false, true);
         }
       }
     } catch (e) {

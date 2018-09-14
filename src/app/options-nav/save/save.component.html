@@ -1,4 +1,18 @@
 <h1>Save</h1>
+
+<ng-container *ngIf="serv.kongregate">
+  <clr-alert [clrAlertClosable]="false"
+             [clrAlertType]="'alert-warning'">
+    <div clr-alert-item
+         class="alert-item">
+      <span class="alert-text">
+        Cloud Save are experimental! Exporting a backup is recommended.
+      </span>
+    </div>
+  </clr-alert>
+  <br />
+</ng-container>
+
 <div class="btn-group btn-primary">
   <button class="btn btn-success"
           (click)="serv.save()">
@@ -16,21 +30,24 @@
     Clear
   </button>
 </div>
+
 <div class="btn-group btn-primary"
-     *ngIf="serv.testing">
-  <button class="btn btn-success"
+     *ngIf="serv.kongregate">
+  <button class="btn btn-info"
           (click)="serv.playFabLogin()">
-    <clr-icon shape="floppy"></clr-icon>
+    <clr-icon shape="user"></clr-icon>
     Log PlayFab
   </button>
-  <button class="btn btn-success"
+  <button *ngIf="serv.playFabLogged"
+          class="btn btn-success"
           (click)="serv.savePlayFab()">
-    <clr-icon shape="floppy"></clr-icon>
+    <clr-icon shape="upload-cloud"></clr-icon>
     Cloud Save
   </button>
-  <button class="btn"
+  <button *ngIf="serv.playFabLogged"
+          class="btn"
           (click)="serv.loadPlayFab()">
-    <clr-icon shape="install"></clr-icon>
+    <clr-icon shape="download-cloud"></clr-icon>
     Cloud Load
   </button>
 </div>
