@@ -116,7 +116,7 @@ export class Mastery {
         break;
       }
       case MasteryTypes.THECNOLOGY_PRESTIGE: {
-        ret = "technology prestige up\n" + 100 * num + "% more effective";
+        ret = "technology experience up\n" + 100 * num + "% more effective";
         break;
       }
       case MasteryTypes.START_TWIN: {

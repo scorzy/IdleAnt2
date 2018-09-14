@@ -594,11 +594,7 @@ export class Game {
   goToWorld(world: World): boolean {
     this.stats.logWorldCompleted(this.currentWorld, !this.canTravel);
 
-    if (
-      this.canTravel &&
-      this.researches.overNineThousand.done &&
-      this.currentWorld.level.gt(this.maxLevel.times(0.9))
-    ) {
+    if (this.canTravel && this.hasSecondMastery()) {
       this.allMateries.totalEarned++;
       this.allMateries.masteryPoint++;
     }
@@ -734,7 +730,13 @@ export class Game {
     if (this.ms.kongregate) setTimeout(this.ms.sendKong.bind(this.ms), 10);
     return true;
   }
-
+  hasSecondMastery(): boolean {
+    return (
+      this.researches.overNineThousand.done &&
+      this.currentWorld.level.gt(15) &&
+      this.currentWorld.level.gt(this.maxLevel.times(0.5))
+    );
+  }
   //#region Unit Utils
   generateWorlds(userMin: Decimal = null, userMax: Decimal = null) {
     this.reloadMaxLevel();

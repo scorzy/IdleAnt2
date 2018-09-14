@@ -1,5 +1,7 @@
 14-09-2018
 - Disabled mastery physics
+- PlayFab
+- Extreme now require worlds level > 15 and current world level > 50% MAX_LEVEL instead of 90%
 
 13-09-2018
 - Added missing names and descriptions

@@ -155,7 +155,7 @@ export const STRINGS = {
     SP: ["Spawn", "+50% larvae production."],
     ont: [
       "Extreme",
-      "+10% world level and prestige;+20% requirements; add random malus and increase malus;if level > 0.9 * max grant one mastery point on travel"
+      "+10% world level and prestige;+20% requirements; add random malus and increase malus;if current world level is higher than 15 and higher than 50% Max Level, grant one mastery point on travel"
     ],
     //  Workers
     wo: ["Better Workers", "+30% production from workers."],
