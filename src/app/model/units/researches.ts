@@ -48,9 +48,13 @@ export class Researches {
     this.free1hWarp = new Research("1", this);
     this.free2hWarp = new Research("2", this);
     this.free3hWarp = new Research("3", this);
+    this.free1hWarp.autoBuyable = false;
+    this.free2hWarp.autoBuyable = false;
+    this.free3hWarp.autoBuyable = false;
 
     this.spawn = new Research("SP", this, true);
     this.overNineThousand = new Research("ont", this);
+    this.overNineThousand.autoBuyable = false;
 
     this.team1.unlocked = true;
     this.reloadLists();

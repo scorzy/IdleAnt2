@@ -1,19 +1,24 @@
 <div class="content-area">
   <h1>Auto buyers</h1>
+  <p>
+    Other AutoBuyer can be found on sigle unit page.
+    AutoBuer execution is orderer by priority, ascending (es: -5 priority execute before 100 priority).
+    Min interval is 1 sec, after that you get multibuy.
+  </p>
   <form>
     <section class="form-block">
       <div class="form-group">
         <label>Options:</label>
         <clr-checkbox [name]="'on'"
-                      [id]="'on1'"
-                      [(clrChecked)]="ms.game.autoBuyManager.enabled"
-                      [clrInline]="true">
+          [id]="'on1'"
+          [(clrChecked)]="ms.game.autoBuyManager.enabled"
+          [clrInline]="true">
           ON
         </clr-checkbox>
         <clr-checkbox [name]="'multi'"
-                      [id]="'multi1'"
-                      [(clrChecked)]="ms.game.autoBuyManager.multiBuy"
-                      [clrInline]="true">
+          [id]="'multi1'"
+          [(clrChecked)]="ms.game.autoBuyManager.multiBuy"
+          [clrInline]="true">
           Multi Buy
         </clr-checkbox>
       </div>
@@ -22,7 +27,7 @@
 
   <div class="clr-row">
     <div class="clr-col-12	clr-col-sm-12	clr-col-md-10	clr-col-lg-6	clr-col-xl-5"
-         *ngFor="let autoB of unlSpecial; trackBy:getAutoBuyId">
+      *ngFor="let autoB of unlSpecial; trackBy:getAutoBuyId">
       <div class="card">
         <div class="card-block">
           <app-auto-buy [autoBuy]="autoB"></app-auto-buy>

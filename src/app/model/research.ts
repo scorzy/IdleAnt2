@@ -11,6 +11,7 @@ export class Research extends Action implements IUnlocable {
   toUnlock = new Array<IUnlocable>();
   maxAutoBuyLevel = 10;
   bugType = BugTypes.ANT;
+  autoBuyable = true;
 
   constructor(
     id: string,

@@ -6,8 +6,8 @@ export class BuyResearch extends Action {
     super("resAutoBAct", "Buy Research", "Buy the less expensive research");
   }
   buy(toBuy = new Decimal(1)): boolean {
-    const buyList = this.researches.toDo.filter(r =>
-      r.quantity.lt(r.maxAutoBuyLevel)
+    const buyList = this.researches.toDo.filter(
+      r => r.autoBuyable && r.quantity.lt(r.maxAutoBuyLevel)
     );
     if (buyList.length < 1) return false;
 

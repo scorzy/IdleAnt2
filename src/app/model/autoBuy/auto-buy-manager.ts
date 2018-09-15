@@ -50,7 +50,7 @@ export class AutoBuyManager {
       game.genExperiencePrice(200),
       this
     );
-    this.researchAutoBuy.startMax = 60 * 15;
+    this.researchAutoBuy.startMax = 60 * 10;
     this.allAutoBuyer.push(this.researchAutoBuy);
 
     this.allAutoBuyer.forEach(a => a.reloadLevel());
