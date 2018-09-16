@@ -342,6 +342,9 @@ export class Game {
           0.3 * this.allMateries.getSum(MasteryTypes.TIME_GEN) +
           2 * this.allMateries.getSum(MasteryTypes.TIME_GEN_AND_BANK)
       );
+    if (isNaN(this.time.quantity.toNumber())) {
+      this.time.quantity = new Decimal(0);
+    }
 
     this.time.quantity = this.time.quantity
       .plus(timePerSec.times(delta / 1000))
