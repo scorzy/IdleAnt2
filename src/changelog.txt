@@ -2,6 +2,7 @@
 - Swarm prestige
 - Wood -> soil
 - Fixed minor ui bugs
+- Added options to disable resource end notification
 
 15-09-2018
 - Research AutoBuyer ignore warps and Extreme

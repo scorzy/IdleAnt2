@@ -469,7 +469,9 @@ export class Game {
             this.ms.toastr.success("", unitZero.name + " killed!");
           }
         } else {
-          this.ms.toastr.warning(unitZero.name + " ended!");
+          if (!this.ms.options.noResourceEndPopUp) {
+            this.ms.toastr.warning(unitZero.name + " ended!");
+          }
         }
       }
 

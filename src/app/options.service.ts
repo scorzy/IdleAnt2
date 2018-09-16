@@ -12,6 +12,7 @@ export class OptionsService {
   header = 6;
   materialPosition = 1;
   showI = true;
+  noResourceEndPopUp = false;
 
   formatter: any;
   formatEmitter: EventEmitter<number> = new EventEmitter<number>();
@@ -47,7 +48,8 @@ export class OptionsService {
       d: this.dark,
       h: this.header,
       m: this.materialPosition,
-      i: this.showI
+      i: this.showI,
+      p: this.noResourceEndPopUp
     };
   }
   restore(data: any) {
@@ -58,6 +60,7 @@ export class OptionsService {
     if ("h" in data) this.header = data.h;
     if ("m" in data) this.materialPosition = data.m;
     if ("i" in data) this.showI = data.i;
+    if ("p" in data) this.noResourceEndPopUp = data.p;
     this.generateFormatter();
   }
   //#endregion
