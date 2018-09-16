@@ -1,3 +1,8 @@
+16-09-2018
+- Swarm prestige
+- Wood -> soil
+- Fixed minor ui bugs
+
 15-09-2018
 - Research AutoBuyer ignore warps and Extreme
 - Reduced Research AutoBuyer initial timeout from 900s to 600s

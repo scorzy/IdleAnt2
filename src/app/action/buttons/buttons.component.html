@@ -27,7 +27,7 @@
     </span>
   </button>
   <button *ngIf="!action.canBuy && skippable && showTime && canSkip"
-          class="btn btn-danger btn-sm w-100"
+          class="btn btn-primary btn-sm w-100"
           (click)="skip()">
     Can't buy. Skip {{minuteSkip}} minutes
   </button>

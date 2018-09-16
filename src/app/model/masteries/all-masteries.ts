@@ -14,8 +14,8 @@ export class AllMasteries {
 
   scienceBonus: BaseUnit;
   foodBonus: BaseUnit;
-  woodBonus: BaseUnit;
-  crystallBonus: BaseUnit;
+  soilBonus: BaseUnit;
+  crystalBonus: BaseUnit;
   armyBonus: BaseUnit;
 
   harvestBonus: BaseUnit;
@@ -32,14 +32,14 @@ export class AllMasteries {
       new ProductionBonus(this.foodBonus, new Decimal(0.1))
     );
 
-    this.woodBonus = new BaseUnit("wooMast");
+    this.soilBonus = new BaseUnit("wooMast");
     game.materials.soil.productionsBonus.push(
-      new ProductionBonus(this.woodBonus, new Decimal(0.1))
+      new ProductionBonus(this.soilBonus, new Decimal(0.1))
     );
 
-    this.crystallBonus = new BaseUnit("cryMast");
+    this.crystalBonus = new BaseUnit("cryMast");
     game.materials.crystal.productionsBonus.push(
-      new ProductionBonus(this.crystallBonus, new Decimal(0.1))
+      new ProductionBonus(this.crystalBonus, new Decimal(0.1))
     );
 
     this.harvestBonus = new BaseUnit("harvMast");
@@ -191,8 +191,8 @@ export class AllMasteries {
       this.getSum(MasteryTypes.SCIENCE_BONUS)
     );
     this.foodBonus.quantity = new Decimal(this.getSum(MasteryTypes.FOOD_BONUS));
-    this.woodBonus.quantity = new Decimal(this.getSum(MasteryTypes.SOIL_BONUS));
-    this.crystallBonus.quantity = new Decimal(
+    this.soilBonus.quantity = new Decimal(this.getSum(MasteryTypes.SOIL_BONUS));
+    this.crystalBonus.quantity = new Decimal(
       this.getSum(MasteryTypes.CRYSTALL_BONUS)
     );
 

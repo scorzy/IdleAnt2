@@ -25,8 +25,8 @@ export class Technology extends PrestigeGroup {
     const foodBon = new ProductionBonus(this.farming, new Decimal(0.1));
     game.materials.food.productionsBonus.push(foodBon);
 
-    const woodBon = new ProductionBonus(this.carpentry, new Decimal(0.1));
-    game.materials.soil.productionsBonus.push(woodBon);
+    const soilBon = new ProductionBonus(this.carpentry, new Decimal(0.1));
+    game.materials.soil.productionsBonus.push(soilBon);
 
     const cryBon = new ProductionBonus(this.mining, new Decimal(0.1));
     game.materials.crystal.productionsBonus.push(cryBon);
@@ -34,7 +34,7 @@ export class Technology extends PrestigeGroup {
     const scieBon = new ProductionBonus(this.studing, new Decimal(0.1));
     game.materials.science.productionsBonus.push(scieBon);
 
-    [foodBon, woodBon, cryBon, scieBon].forEach(b => {
+    [foodBon, soilBon, cryBon, scieBon].forEach(b => {
       b.getMultiplier = () => {
         return new Decimal(
           1 + game.allMateries.getSum(MasteryTypes.THECNOLOGY_PRESTIGE)

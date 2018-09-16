@@ -137,6 +137,10 @@ export class UnitGroupComponent implements OnInit, OnDestroy, OnChanges {
       .map(u => u.name)
       .reduce((p, c) => p + ", " + c);
 
+    this.hatchActionGrp = null;
+    this.teamActionGrp = null;
+    this.twinActionGrp = null;
+
     if (this.unitGroup.unlocked[0].buyAction) {
       this.hatchActionGrp = new ActionGroup(
         "Hatch",

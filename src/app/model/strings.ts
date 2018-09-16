@@ -288,7 +288,10 @@ export const STRINGS = {
     //  Worlds
     w: ["Better World", "+10% World Bonus"],
     r: ["Better Army", "+10% Army killing stuff"],
-    L: ["Max Level", "+10% Max World Level"]
+    L: ["Max Level", "+10% Max World Level"],
+    //  Swarm
+    sl: ["Larva Bonus", "+10% Larvae production"],
+    sq: ["Queen Bonus", "+10% Queen production"]
   },
   actions: {
     warp60: ["Warp minute", "Time warp by minutes"],

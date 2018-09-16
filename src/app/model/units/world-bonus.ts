@@ -7,7 +7,7 @@ export class WorldBonus {
   static bonusValue = new Decimal(0.3);
 
   foodBonus: BaseUnit;
-  woodBonus: BaseUnit;
+  soilBonus: BaseUnit;
   crystalBonus: BaseUnit;
   scienceBonus: BaseUnit;
   killBonus: BaseUnit;
@@ -16,14 +16,14 @@ export class WorldBonus {
 
   declareStuff(): void {
     this.foodBonus = new BaseUnit("1");
-    this.woodBonus = new BaseUnit("2");
+    this.soilBonus = new BaseUnit("2");
     this.crystalBonus = new BaseUnit("3");
     this.scienceBonus = new BaseUnit("4");
     this.killBonus = new BaseUnit("5");
 
     this.bonusList = [
       this.foodBonus,
-      this.woodBonus,
+      this.soilBonus,
       this.crystalBonus,
       this.scienceBonus,
       this.killBonus
@@ -34,7 +34,7 @@ export class WorldBonus {
       new ProductionBonus(this.foodBonus, WorldBonus.bonusValue)
     );
     game.materials.soil.productionsBonus.push(
-      new ProductionBonus(this.woodBonus, WorldBonus.bonusValue)
+      new ProductionBonus(this.soilBonus, WorldBonus.bonusValue)
     );
     game.materials.crystal.productionsBonus.push(
       new ProductionBonus(this.crystalBonus, WorldBonus.bonusValue)
@@ -52,7 +52,7 @@ export class WorldBonus {
   addWorlds(): void {
     [
       this.foodBonus,
-      this.woodBonus,
+      this.soilBonus,
       this.crystalBonus,
       this.scienceBonus
     ].forEach(b => {

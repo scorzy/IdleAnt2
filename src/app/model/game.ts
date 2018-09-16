@@ -230,7 +230,7 @@ export class Game {
     this.researches.overNineThousand.onBuy = () => {
       const malus = [
         this.worldMalus.foodMalus1,
-        this.worldMalus.woodMalus1,
+        this.worldMalus.soilMalus1,
         this.worldMalus.crystalMalus1,
         this.worldMalus.scienceMalus1
       ].filter(m => !this.currentWorld.notWinConditions.includes(m));
@@ -504,7 +504,7 @@ export class Game {
   postUpdate(time) {
     this.upNumber = 0;
     this.worldMalus.foodMalus1.reloadPriceMulti();
-    this.worldMalus.woodMalus1.reloadPriceMulti();
+    this.worldMalus.soilMalus1.reloadPriceMulti();
     this.worldMalus.crystalMalus1.reloadPriceMulti();
     this.worldMalus.scienceMalus1.reloadPriceMulti();
 

@@ -11,7 +11,7 @@ import { World } from "../world";
 
 export class MalusKiller extends UnitGroup {
   foodMalusKiller: FullUnit;
-  woodMalusKiller: FullUnit;
+  soilMalusKiller: FullUnit;
   crystalMalusKiller: FullUnit;
   scienceMalusKiller: FullUnit;
 
@@ -24,13 +24,13 @@ export class MalusKiller extends UnitGroup {
   }
   declareStuff(): void {
     this.foodMalusKiller = new FullUnit("F");
-    this.woodMalusKiller = new FullUnit("W");
+    this.soilMalusKiller = new FullUnit("W");
     this.crystalMalusKiller = new FullUnit("C");
     this.scienceMalusKiller = new FullUnit("S");
 
     this.addUnits([
       this.foodMalusKiller,
-      this.woodMalusKiller,
+      this.soilMalusKiller,
       this.crystalMalusKiller,
       this.scienceMalusKiller
     ]);
@@ -43,8 +43,8 @@ export class MalusKiller extends UnitGroup {
       this.foodMalusKiller,
       new Decimal(-0.1)
     );
-    this.game.worldMalus.woodMalus1.addProducer(
-      this.woodMalusKiller,
+    this.game.worldMalus.soilMalus1.addProducer(
+      this.soilMalusKiller,
       new Decimal(-0.1)
     );
     this.game.worldMalus.crystalMalus1.addProducer(
@@ -60,7 +60,7 @@ export class MalusKiller extends UnitGroup {
     this.foodMalusKiller.generateBuyAction([
       new Price(this.game.materials.food, this.price, 1.1)
     ]);
-    this.woodMalusKiller.generateBuyAction([
+    this.soilMalusKiller.generateBuyAction([
       new Price(this.game.materials.food, this.price, 1.1)
     ]);
     this.crystalMalusKiller.generateBuyAction([

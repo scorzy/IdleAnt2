@@ -68,11 +68,11 @@ export class Mastery {
         break;
       }
       case MasteryTypes.SOIL_BONUS: {
-        ret = "+" + 10 * num + "%\nwood";
+        ret = "+" + 10 * num + "%\nsoil";
         break;
       }
       case MasteryTypes.CRYSTALL_BONUS: {
-        ret = "+" + 10 * num + "%\ncrystall";
+        ret = "+" + 10 * num + "%\ncrystal";
         break;
       }
       case MasteryTypes.HARVEST_BONUS: {

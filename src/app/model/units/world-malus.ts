@@ -7,9 +7,9 @@ export class WorldMalus extends UnitGroup {
   foodMalus2: Malus;
   foodMalus3: Malus;
 
-  woodMalus1: Malus;
-  woodMalus2: Malus;
-  woodMalus3: Malus;
+  soilMalus1: Malus;
+  soilMalus2: Malus;
+  soilMalus3: Malus;
 
   crystalMalus1: Malus;
   crystalMalus2: Malus;
@@ -28,9 +28,9 @@ export class WorldMalus extends UnitGroup {
     this.foodMalus2 = new Malus("Mf2");
     this.foodMalus3 = new Malus("Mf3");
 
-    this.woodMalus1 = new Malus("Mw1");
-    this.woodMalus2 = new Malus("Mw2");
-    this.woodMalus3 = new Malus("Mw3");
+    this.soilMalus1 = new Malus("Mw1");
+    this.soilMalus2 = new Malus("Mw2");
+    this.soilMalus3 = new Malus("Mw3");
 
     this.crystalMalus1 = new Malus("Mc1");
     this.crystalMalus2 = new Malus("Mc2");
@@ -41,7 +41,7 @@ export class WorldMalus extends UnitGroup {
     this.scienceMalus3 = new Malus("Ms3");
 
     this.foodMalus1.first = true;
-    this.woodMalus1.first = true;
+    this.soilMalus1.first = true;
     this.crystalMalus1.first = true;
     this.scienceMalus1.first = true;
 
@@ -49,9 +49,9 @@ export class WorldMalus extends UnitGroup {
       this.foodMalus3,
       this.foodMalus2,
       this.foodMalus1,
-      this.woodMalus3,
-      this.woodMalus2,
-      this.woodMalus1,
+      this.soilMalus3,
+      this.soilMalus2,
+      this.soilMalus1,
       this.crystalMalus3,
       this.crystalMalus2,
       this.crystalMalus1,
@@ -64,8 +64,8 @@ export class WorldMalus extends UnitGroup {
     this.foodMalus1.addProducer(this.foodMalus2, new Decimal(0.01));
     this.foodMalus2.addProducer(this.foodMalus3, new Decimal(0.01));
 
-    this.woodMalus1.addProducer(this.woodMalus2, new Decimal(0.01));
-    this.woodMalus2.addProducer(this.woodMalus3, new Decimal(0.01));
+    this.soilMalus1.addProducer(this.soilMalus2, new Decimal(0.01));
+    this.soilMalus2.addProducer(this.soilMalus3, new Decimal(0.01));
 
     this.crystalMalus1.addProducer(this.crystalMalus2, new Decimal(0.01));
     this.crystalMalus2.addProducer(this.crystalMalus3, new Decimal(0.01));
@@ -74,12 +74,12 @@ export class WorldMalus extends UnitGroup {
     this.scienceMalus2.addProducer(this.scienceMalus3, new Decimal(0.01));
 
     this.foodMalus1.malusType = this.game.materials.food;
-    this.woodMalus1.malusType = this.game.materials.soil;
+    this.soilMalus1.malusType = this.game.materials.soil;
     this.crystalMalus1.malusType = this.game.materials.crystal;
     this.scienceMalus1.malusType = this.game.materials.science;
 
     this.game.materials.food.malus = this.foodMalus1;
-    this.game.materials.soil.malus = this.woodMalus1;
+    this.game.materials.soil.malus = this.soilMalus1;
     this.game.materials.crystal.malus = this.crystalMalus1;
     this.game.materials.science.malus = this.scienceMalus1;
   }

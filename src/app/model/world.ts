@@ -78,7 +78,7 @@ export class World {
     if (this.level.gte(5) && this.notWinConditions.length < 1) {
       const malus = [
         game.worldMalus.foodMalus1,
-        game.worldMalus.woodMalus1,
+        game.worldMalus.soilMalus1,
         game.worldMalus.crystalMalus1,
         game.worldMalus.scienceMalus1
       ];
