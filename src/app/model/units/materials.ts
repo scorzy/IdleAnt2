@@ -30,9 +30,6 @@ export class Materials extends UnitGroup {
     const lenght = this.list.length;
     for (let i = 0; i < lenght; i++) {
       const world = new World(this.list[i].id + "Bio");
-      world.winContidions.push(
-        new Price(this.list[i], CONSTS.BASE_WIN_CONDITION_MATERIALS)
-      );
       World.biome.push(world);
     }
   }

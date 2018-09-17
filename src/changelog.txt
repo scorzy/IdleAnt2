@@ -1,3 +1,8 @@
+17-09-2018
+- Removed materials from worlds travel requirements (new worlds only)
+- Reduced wasps and bee nest requirements
+
+
 16-09-2018
 - Swarm prestige
 - Wood -> soil

@@ -70,7 +70,7 @@ export class Bees extends UnitGroup {
     [beeBio, beePre, beeSuff].forEach(w => {
       w.additionalBugs.push(BugTypes.BEE);
       w.winContidions.push(
-        new Price(this.nest, CONSTS.BASE_WIN_CONDITION_OTHER)
+        new Price(this.nest, CONSTS.BASE_WIN_CONDITION_OTHER.times(0.8))
       );
     });
     World.prefix.push(beePre);
