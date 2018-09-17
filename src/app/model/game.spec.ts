@@ -133,6 +133,13 @@ describe("Game", () => {
     expect(game.update).toHaveBeenCalledTimes(0);
     expect(game.autoBuyManager.update).toHaveBeenCalledTimes(0);
     expect(game.ms.toastr.info).toHaveBeenCalledTimes(0);
+
+    game.warp(10);
+    expect(game.update).toHaveBeenCalled();
+    expect(game.autoBuyManager.update).toHaveBeenCalledTimes(0);
+    expect(game.ms.toastr.info).toHaveBeenCalledTimes(0);
+
+    game.ms.options.noWarpNotification = false;
     game.warp(10);
     expect(game.update).toHaveBeenCalled();
     expect(game.autoBuyManager.update).toHaveBeenCalledTimes(0);

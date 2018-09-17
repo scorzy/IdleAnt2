@@ -21,20 +21,20 @@ export class Special extends UnitGroup {
   }
   setRelations(): void {
     this.foodSupply.generateBuyAction([
-      new Price(this.game.materials.food, new Decimal(1e3), 2)
+      new Price(this.game.materials.food, new Decimal(1e3), 1.5)
     ]);
     this.soilSupply.generateBuyAction([
-      new Price(this.game.materials.soil, new Decimal(1e3), 2)
+      new Price(this.game.materials.soil, new Decimal(1e3), 1.5)
     ]);
     this.crystallSupply.generateBuyAction([
-      new Price(this.game.materials.crystal, new Decimal(1e3), 2)
+      new Price(this.game.materials.crystal, new Decimal(1e3), 1.5)
     ]);
 
-    this.game.materials.food.addProducer(this.foodSupply, new Decimal(20));
-    this.game.materials.soil.addProducer(this.soilSupply, new Decimal(20));
+    this.game.materials.food.addProducer(this.foodSupply, new Decimal(30));
+    this.game.materials.soil.addProducer(this.soilSupply, new Decimal(30));
     this.game.materials.crystal.addProducer(
       this.crystallSupply,
-      new Decimal(20)
+      new Decimal(30)
     );
   }
   addWorlds() {
