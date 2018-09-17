@@ -544,7 +544,9 @@ export class Game {
    */
   warp(delta: number) {
     if (delta > 0) {
-      this.ms.toastr.info(this.ms.endInPipe.transform(delta), "Time Warp");
+      if (!this.ms.options.noWarpNotification) {
+        this.ms.toastr.info(this.ms.endInPipe.transform(delta), "Time Warp");
+      }
       this.update(delta, true);
       //this.autoBuyManager.update(delta);
     }
