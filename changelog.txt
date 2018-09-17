@@ -5,7 +5,6 @@
 - Reduced wasps and bee nest requirements
 - Buffed supply worlds
 
-
 16-09-2018
 - Swarm prestige
 - Wood -> soil
