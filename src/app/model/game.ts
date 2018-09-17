@@ -780,8 +780,8 @@ export class Game {
         )
         .plus(1)
     );
-    const masteryMulti = this.allMateries.getSum(MasteryTypes.WORLD_LEVEL);
-    this.realMaxLevel = this.realMaxLevel.times(1 + masteryMulti / 2).floor();
+    // const masteryMulti = this.allMateries.getSum(MasteryTypes.WORLD_LEVEL);
+    // this.realMaxLevel = this.realMaxLevel.times(1 + masteryMulti / 2).floor();
   }
   //#endregion
   //#endregion
