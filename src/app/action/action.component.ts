@@ -22,6 +22,6 @@ export class ActionComponent implements OnInit {
     //Nothing
   }
   ngOnInit(): void {
-    this.skippable = this.action instanceof WarpAction;
+    this.skippable = !(this.action instanceof WarpAction);
   }
 }

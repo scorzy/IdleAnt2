@@ -37,7 +37,7 @@
     Can't buy. Available in {{research.availableIn | endIn}}
   </button>
   <button *ngIf="!research.canBuy &&  canSkip"
-          class="btn btn-danger btn-sm"
+          class="btn btn-primary btn-sm"
           (click)="skip()">
     Can't buy. Skip {{minuteSkip}} minutes
   </button>
