@@ -60,11 +60,14 @@ export class World {
     this.productionsAll.forEach(b => (b[1] = b[1].times(multi)));
     this.startingUnit.forEach(b => (b[1] = b[1].times(multi)));
 
+    const masteryReduction =
+      game.allMateries.getSum(MasteryTypes.WORLD_LEVEL) * 0.015;
+
     this.winContidions.forEach(w => {
       w.price = w.price.times(multi);
 
       w.price = w.base.winNonLiner
-        ? w.price.pow(0.7)
+        ? w.price.pow(0.7 - masteryReduction)
         : w.price.times(Decimal.pow(4, multi)).pow(0.95);
 
       w.price = w.price.floor();

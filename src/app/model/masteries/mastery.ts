@@ -140,7 +140,7 @@ export class Mastery {
         break;
       }
       case MasteryTypes.WORLD_LEVEL: {
-        ret = "+50% max World Level";
+        ret = "reduce world travel requirements";
         break;
       }
       case MasteryTypes.BETTER_WORLD: {

@@ -85,13 +85,24 @@
   </div>
 
   <div class="form-group">
-    <label for="si">Disable notification for unit ending:</label>
+    <label for="nr">Disable notification for unit ending:</label>
     <div class="toggle-switch">
       <input name="nr"
              type="checkbox"
              id="nr"
              [(ngModel)]="os.noResourceEndPopUp">
       <label for="nr"></label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="wn">Disable warp notification:</label>
+    <div class="toggle-switch">
+      <input name="wn"
+             type="checkbox"
+             id="wn"
+             [(ngModel)]="os.noWarpNotification">
+      <label for="wn"></label>
     </div>
   </div>
 

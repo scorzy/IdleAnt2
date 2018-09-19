@@ -342,6 +342,9 @@ export class Game {
           0.3 * this.allMateries.getSum(MasteryTypes.TIME_GEN) +
           2 * this.allMateries.getSum(MasteryTypes.TIME_GEN_AND_BANK)
       );
+    if (isNaN(this.time.quantity.toNumber())) {
+      this.time.quantity = new Decimal(0);
+    }
 
     this.time.quantity = this.time.quantity
       .plus(timePerSec.times(delta / 1000))
@@ -541,7 +544,9 @@ export class Game {
    */
   warp(delta: number) {
     if (delta > 0) {
-      this.ms.toastr.info(this.ms.endInPipe.transform(delta), "Time Warp");
+      if (!this.ms.options.noWarpNotification) {
+        this.ms.toastr.info(this.ms.endInPipe.transform(delta), "Time Warp");
+      }
       this.update(delta, true);
       //this.autoBuyManager.update(delta);
     }
@@ -775,8 +780,8 @@ export class Game {
         )
         .plus(1)
     );
-    const masteryMulti = this.allMateries.getSum(MasteryTypes.WORLD_LEVEL);
-    this.realMaxLevel = this.realMaxLevel.times(1 + masteryMulti / 2).floor();
+    // const masteryMulti = this.allMateries.getSum(MasteryTypes.WORLD_LEVEL);
+    // this.realMaxLevel = this.realMaxLevel.times(1 + masteryMulti / 2).floor();
   }
   //#endregion
   //#endregion

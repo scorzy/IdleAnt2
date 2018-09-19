@@ -13,6 +13,7 @@ export class OptionsService {
   materialPosition = 1;
   showI = true;
   noResourceEndPopUp = false;
+  noWarpNotification = true;
 
   formatter: any;
   formatEmitter: EventEmitter<number> = new EventEmitter<number>();
@@ -49,7 +50,8 @@ export class OptionsService {
       h: this.header,
       m: this.materialPosition,
       i: this.showI,
-      p: this.noResourceEndPopUp
+      p: this.noResourceEndPopUp,
+      w: this.noWarpNotification
     };
   }
   restore(data: any) {
@@ -61,6 +63,7 @@ export class OptionsService {
     if ("m" in data) this.materialPosition = data.m;
     if ("i" in data) this.showI = data.i;
     if ("p" in data) this.noResourceEndPopUp = data.p;
+    if ("w" in data) this.noWarpNotification = data.w;
     this.generateFormatter();
   }
   //#endregion
