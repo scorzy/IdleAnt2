@@ -1,4 +1,5 @@
 19-09-2018
+- Fixed skip buttons (colors and not displaying)
 - Fixed typos
 
 17-09-2018
