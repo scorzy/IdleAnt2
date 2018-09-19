@@ -1,10 +1,12 @@
+19-09-2018
+- Fixed typos
+
 17-09-2018
 - +50% world level mastery changed to: reduce world travel requirements (es:~-10% on lv 1, ~-15% on lv 600)
 - Added option to remove warp notification
 - Removed materials from worlds travel requirements (new worlds only)
 - Reduced wasps and bee nest requirements
 - Buffed supply worlds
-
 
 16-09-2018
 - Swarm prestige
