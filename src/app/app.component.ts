@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from "@angular/core";
+import { AfterViewInit, Component, HostListener, OnInit } from "@angular/core";
 import { MainService } from "./main.service";
 
 // import { ClarityIcons } from "@clr/icons";
@@ -33,6 +33,7 @@ import {
   ClrShapeUploadCloud
 } from "@clr/icons/shapes/technology-shapes";
 import { ClrShapePaintRoller } from "@clr/icons/shapes/text-edit-shapes";
+import { Game } from "./model/game";
 import { OptionsService } from "./options.service";
 
 @Component({
@@ -83,5 +84,17 @@ export class AppComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.ms.start();
     }, 1);
+  }
+
+  @HostListener("window:keyup", ["$event"])
+  onKey(event: KeyboardEvent) {
+    // with type info
+    switch (event.key) {
+      case "m":
+        this.ms.game.actMin.buy();
+        break;
+      case "h":
+        this.ms.game.actHour.buy();
+    }
   }
 }

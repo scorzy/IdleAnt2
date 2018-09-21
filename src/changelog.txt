@@ -1,3 +1,6 @@
+21-09-2018
+- Added key m and h to warp minute and hour
+
 19-09-2018
 - Fixed skip buttons (colors and not displaying)
 - Fixed typos
