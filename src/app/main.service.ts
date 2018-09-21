@@ -340,12 +340,15 @@ export class MainService {
     if (chunks.length > 10) {
       this.toastr.error("size limit exceeded", "Error saving to cloud");
     }
+    // convert array into object with numbers as keys
+    // const data = $.extend({}, chunks);
+    const data: any = {};
+    for (let i = 0; i < chunks.length; i++) data[i] = chunks[i];
 
     const requestData = {
       TitleId: this.titleId,
       PlayFabId: this.playFabId,
-      // convert array into object with numbers as keys
-      Data: $.extend({}, chunks)
+      Data: data
     };
     try {
       PlayFab.ClientApi.UpdateUserData(
