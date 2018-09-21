@@ -10,6 +10,7 @@ import {
 import { Network } from "vis";
 import { MainService } from "../main.service";
 import { Mastery, MasteryTypes } from "../model/masteries/mastery";
+import { World } from "../model/world";
 
 @Component({
   selector: "app-mastery",
@@ -27,6 +28,7 @@ export class MasteryComponent implements AfterViewInit, OnInit {
   list = new Array<string>();
   node: any;
   exp = "";
+  showReset = false;
 
   constructor(public ms: MainService, private cd: ChangeDetectorRef) {
     //
@@ -102,5 +104,19 @@ export class MasteryComponent implements AfterViewInit, OnInit {
   export() {
     this.networkVis.storePositions();
     this.exp = JSON.stringify(this.networkVis.getPositions());
+  }
+  reset() {
+    this.ms.game.allMateries.reset();
+    this.rebuildList();
+    this.cd.markForCheck();
+
+    const baseWorld = new World("base");
+    baseWorld.setLevel(new Decimal(1), this.ms.game);
+    this.ms.game.generateWorlds();
+    baseWorld.name = "Home World";
+    this.ms.game.canTravel = false;
+    this.ms.game.goToWorld(baseWorld);
+
+    this.showReset = false;
   }
 }

@@ -30,7 +30,7 @@ export enum MasteryTypes {
   BETTER_HELPERS,
   DOUBLE_ARMY
 }
-const notable = [
+export const notable = [
   MasteryTypes.MATERIAL_GAIN,
   MasteryTypes.START_TWIN,
   MasteryTypes.FREE_WARP_RES,

@@ -2,7 +2,7 @@ import { DataSet } from "vis";
 import { BaseUnit } from "../baseUnit";
 import { Game } from "../game";
 import { ProductionBonus } from "../production-bonus";
-import { Mastery, MasteryTypes } from "./mastery";
+import { Mastery, MasteryTypes, notable } from "./mastery";
 
 export class AllMasteries {
   masteryPoint = 0;
@@ -11,6 +11,7 @@ export class AllMasteries {
 
   visMasteries: DataSet<Mastery>;
   visEdge: DataSet<{ from: number; to: number }>;
+  starting: Mastery[];
 
   scienceBonus: BaseUnit;
   foodBonus: BaseUnit;
@@ -75,6 +76,7 @@ export class AllMasteries {
     av3.color = Mastery.avaiableColor;
     av4.avaiable = true;
     av4.color = Mastery.avaiableColor;
+    this.starting = [av1, av2, av3, av4];
 
     const matGain = new Mastery(20, MasteryTypes.MATERIAL_GAIN);
 
@@ -205,6 +207,28 @@ export class AllMasteries {
     this.armyBonus.quantity = new Decimal(
       this.getSum(MasteryTypes.DOUBLE_ARMY)
     );
+  }
+
+  reset() {
+    this.masteryPoint = this.totalEarned;
+    for (let i = 0; i < this.totals.length; i++) {
+      this.totals[i] = 0;
+    }
+    this.reloadBonus();
+    const update = this.visMasteries.get();
+    update.forEach(m => {
+      m.owned = false;
+      m.avaiable = false;
+      m.color = notable.find(n => n === m.type)
+        ? Mastery.notableColor
+        : Mastery.normalColor;
+    });
+    this.visMasteries.update(update);
+    this.starting.forEach(m => {
+      m.avaiable = true;
+      m.color = Mastery.avaiableColor;
+    });
+    this.visMasteries.update(this.starting);
   }
 
   //#region Save and Load

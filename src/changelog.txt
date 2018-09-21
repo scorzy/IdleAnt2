@@ -1,4 +1,5 @@
 21-09-2018
+- Added Mastery reset
 - Added key m and h to warp minute and hour
 
 19-09-2018

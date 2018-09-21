@@ -26,6 +26,13 @@
       Buy
     </button>
   </ng-template>
+  <button class="btn"
+          *ngIf="ms.game.allMateries.totalEarned > 0"
+          (click)="showReset = true">
+    Reset
+  </button>
+
+
 
   <!-- Debug Stuff -->
   <!-- <button class="btn"
@@ -37,3 +44,24 @@
             rows="1"></textarea> -->
 
 </clr-vertical-nav>
+
+
+<clr-modal [(clrModalOpen)]="showReset"
+           [clrModalClosable]="true">
+  <h3 class="modal-title">Mastery Reset</h3>
+  <div class="modal-body">
+    <p>
+      Reset Mastery, you available Mastery points will be {{ms.game.allMateries.totalEarned}}
+      <br />
+      You will move to base world with no reward.
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button"
+            class="btn btn-outline"
+            (click)="showReset = false">Cancel</button>
+    <button type="button"
+            class="btn btn-primary"
+            (click)="reset()">Reset</button>
+  </div>
+</clr-modal>

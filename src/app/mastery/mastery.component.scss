@@ -7,11 +7,12 @@
   width: 15rem;
 }
 
-.btn {
-  color: #007cbb;
-  margin: 1rem;
+clr-vertical-nav {
+  .btn {
+    color: #007cbb;
+    margin: 1rem;
+  }
 }
-
 .clr-vertical-nav.is-collapsed .btn {
   display: none;
 }
