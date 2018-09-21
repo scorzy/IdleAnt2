@@ -29,8 +29,8 @@
   <script type="text/javascript"
           src="https://download.playfab.com/PlayFabClientApi.js"></script>
   <script src='https://cdn1.kongregate.com/javascripts/kongregate_api.js'></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-          integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
           crossorigin="anonymous"></script>
   <style>
     body {
@@ -81,7 +81,7 @@
   <script>
     preventScroll = function () {
       setTimeout(function () {
-        $('.nav-content, .content-area').on('DOMMouseScroll mousewheel', function (ev) {
+        $('.nav-content, .content-area, .app-header').on('DOMMouseScroll mousewheel', function (ev) {
           body = $('body')[0]
           var $this = $(this),
             scrollTop = this.scrollTop,
