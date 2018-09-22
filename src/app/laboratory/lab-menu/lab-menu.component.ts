@@ -20,7 +20,14 @@ export class LabMenuComponent implements OnInit {
       ? toDo.filter(r => !r.unlimited || r.quantity.lt(r.maxAutoBuyLevel))
       : toDo.filter(r => !r.unlimited);
 
-    return toDo.sort((r1, r2) => r1.prices[0].price.cmp(r2.prices[0].price));
+    toDo.forEach(r => {
+      r.reload();
+      r.reloadUserPrices();
+    });
+
+    return toDo.sort((r1, r2) =>
+      r1.prices[0].priceUser.cmp(r2.prices[0].priceUser)
+    );
   }
   buy1(rep = true) {
     const res = this.getResearchArray(rep);
