@@ -41,6 +41,10 @@ export class Research extends Action implements IUnlocable {
         this.toUnlock.filter(i => !i.unlocked).forEach(u => u.unlock());
       }
       this.researches.reloadLists();
+      this.researches.game.autoBuyManager.buildActiveList();
+      this.researches.toDo.forEach(r => {
+        r.reloadAvailableTime();
+      });
       return true;
     } else {
       return false;
