@@ -1,3 +1,7 @@
+26-09-2018
+- New strict options for formatting time
+- Fixed minor ui bugs
+
 22-09-2018
 - Fixed Recursive Max Buy
 - Fixed AutoBuyers not active after travel
