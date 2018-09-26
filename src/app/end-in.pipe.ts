@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
+import * as distanceInWordsStrict from "date-fns/distance_in_words_strict";
 import * as distanceInWordsToNow from "date-fns/distance_in_words_to_now";
 import * as isValid from "date-fns/is_valid";
 import { FormatPipe } from "./format.pipe";
@@ -18,7 +19,9 @@ export class EndInPipe implements PipeTransform {
     if (!isNaN(value) && value > 0 && value < Number.POSITIVE_INFINITY) {
       const dateEnd = new Date(Date.now() + value);
       if (isValid(dateEnd)) {
-        return distanceInWordsToNow(new Date(Date.now() + value));
+        return this.options.timeFormatDetail
+          ? distanceInWordsStrict(0, value)
+          : distanceInWordsToNow(new Date(Date.now() + value));
       } else {
         return (
           "in " + this.pipeFormat.transform(value / SECONDS_IN_YEAR) + " years"

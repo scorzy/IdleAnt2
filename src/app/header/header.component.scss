@@ -85,11 +85,15 @@ header .divider,
   background: none;
   border: 0;
   color: #fafafa;
-  max-width: 2.5rem;
+  max-width: 2rem;
   padding: 0;
   vertical-align: middle;
 }
 
 #multiLabel:before {
   display: none;
+}
+
+.search {
+  margin-right: 1.2rem;
 }
