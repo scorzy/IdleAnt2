@@ -6,10 +6,9 @@
 <app-action-header [action]="autoBuy"
                    [quantity]="autoBuy.quantity"></app-action-header>
 
-<div class="clr-row clr-align-items-start"
+<div class="clr-row clr-justify-content-between"
      *ngIf="bought">
-  <div class="clr-col">
-
+  <div>
     <label>Priority:</label>
     <input placeholder="Priority"
            name="name"
@@ -17,11 +16,39 @@
            type="number"
            placeholder="1"
            step="1"
-           size="3"
+           size="2"
            (change)="reload()" />
 
   </div>
-  <div class="clr-col">
+  <div>
+    <label>MaxBuy multi:</label>
+    <clr-signpost>
+      <clr-signpost-content *clrIfOpen>
+        <h3 style="margin-top: 0">MaxBuy Multiplier</h3>
+        <p>
+          Multiply max available buy. (Es. 0.5 => half max).
+          Use this to prevent production failure and/or save valuable resources.
+          Range is 0 - 1
+        </p>
+      </clr-signpost-content>
+    </clr-signpost>
+    <div class="clr-control-container"
+         [ngClass]="{'clr-error' : autoBuy.priceSavePercent <0 || autoBuy.priceSavePercent >1}">
+      <input class="clr-input"
+             placeholder="Priority"
+             name="price_m"
+             [(ngModel)]="autoBuy.priceSavePercent"
+             type="number"
+             placeholder="1"
+             min="0"
+             max="1"
+             step="0.01"
+             size="2" />
+      <clr-icon class="clr-validate-icon"
+                shape="exclamation-circle"></clr-icon>
+    </div>
+  </div>
+  <div>
     <clr-checkbox [name]="autoBuy.id"
                   [id]="autoBuy.id"
                   [(clrChecked)]="autoBuy.active"

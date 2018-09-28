@@ -1,3 +1,4 @@
+import { isNumber } from "lodash-es";
 import { Action } from "../action";
 import { FullUnit } from "../full-unit";
 import { Prestige } from "../prestige/prestige";
@@ -15,6 +16,7 @@ export class AutoBuy extends Prestige {
   startMax = 5;
   max = 5;
   multiBuy = new Decimal(1);
+  priceSavePercent = 1;
 
   constructor(
     public action: Action,
@@ -72,8 +74,18 @@ export class AutoBuy extends Prestige {
 
     this.current = this.current + time / 1000;
     this.action.reload();
+    if (
+      isNumber(this.priceSavePercent) &&
+      this.priceSavePercent <= 1 &&
+      this.priceSavePercent > 0
+    ) {
+      this.action.maxBuy = this.action.maxBuy.times(this.priceSavePercent);
+      this.canBuy = this.action.maxBuy.gte(1);
+    } else {
+      this.canBuy = false;
+    }
     const max = this.multiBuy.min(this.action.maxBuy);
-    if (this.current >= this.max && this.action.buy(max)) {
+    if (this.current >= this.max && this.canBuy && this.action.buy(max)) {
       this.current = 0;
     }
   }
@@ -84,6 +96,7 @@ export class AutoBuy extends Prestige {
     save.a_p = this.active;
     save.a_i = this.priority;
     save.a_c = this.current;
+    if (this.priceSavePercent > 0) save.a_s = this.priceSavePercent;
     return save;
   }
 
@@ -92,6 +105,7 @@ export class AutoBuy extends Prestige {
       this.active = !!data.a_p;
       if ("a_i" in data) this.priority = data.a_i;
       if ("a_c" in data) this.current = data.a_c;
+      if ("a_s" in data) this.priceSavePercent = data.a_s;
 
       this.reloadLevel();
       return true;

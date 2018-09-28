@@ -1,5 +1,7 @@
 export const STRINGS = {
   units: {
+    prest: ["Experience", ""],
+    time: ["Time", ""],
     //  Materials
     f: ["Food", "Food is used to sustain all units."],
     w: ["Soil", "Soil is used to build better nest."],
