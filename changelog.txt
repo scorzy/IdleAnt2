@@ -1,3 +1,7 @@
+28-09-2018
+- Added AutoBuyer MaxBuy multiplier
+- Added Time and Experience to prices
+
 26-09-2018
 - New strict options for formatting time
 - Fixed minor ui bugs
