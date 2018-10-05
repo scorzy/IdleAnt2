@@ -14,11 +14,7 @@ describe("PrestigeComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [PrestigeComponent, FormatPipe],
-      imports: [
-        ClarityModule,
-        ToastrModule.forRoot(),
-        BrowserAnimationsModule
-      ],
+      imports: [ClarityModule, ToastrModule.forRoot(), BrowserAnimationsModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));

@@ -13,11 +13,7 @@ describe("BugCardComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [BugCardComponent],
-      imports: [
-        ClarityModule,
-        ToastrModule.forRoot(),
-        BrowserAnimationsModule
-      ],
+      imports: [ClarityModule, ToastrModule.forRoot(), BrowserAnimationsModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));

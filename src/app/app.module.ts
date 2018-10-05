@@ -19,6 +19,7 @@ import { AutoBuyComponent } from "./auto-buy/auto-buy.component";
 import { ChangeWorldComponent } from "./change-world/change-world.component";
 import { EndInPipe } from "./end-in.pipe";
 import { FormatPipe } from "./format.pipe";
+import { GroupAutoBuyComponent } from "./group-tabs/group-auto-buy/group-auto-buy.component";
 import { GroupTabsComponent } from "./group-tabs/group-tabs.component";
 import { UnitGroupComponent } from "./group-tabs/unit-group/unit-group.component";
 import { HeaderComponent } from "./header/header.component";
@@ -52,7 +53,6 @@ import { UnitAutoBuyComponent } from "./unit-tabs/unit-auto-buy/unit-auto-buy.co
 import { UnitTabsComponent } from "./unit-tabs/unit-tabs.component";
 import { UnitComponent } from "./unit-tabs/unit/unit.component";
 import { WorldComponent } from "./world/world.component";
-import { GroupAutoBuyComponent } from './group-tabs/group-auto-buy/group-auto-buy.component';
 
 @NgModule({
   declarations: [

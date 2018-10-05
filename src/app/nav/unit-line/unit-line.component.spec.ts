@@ -14,11 +14,7 @@ describe("UnitLineComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [
-        ClarityModule,
-        RouterTestingModule,
-        BrowserAnimationsModule
-      ],
+      imports: [ClarityModule, RouterTestingModule, BrowserAnimationsModule],
       declarations: [UnitLineComponent, FormatPipe]
     }).compileComponents();
   }));

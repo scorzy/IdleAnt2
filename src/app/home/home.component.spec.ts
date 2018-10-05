@@ -13,11 +13,7 @@ describe("HomeComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [HomeComponent],
-      imports: [
-        ClarityModule,
-        ToastrModule.forRoot(),
-        BrowserAnimationsModule
-      ],
+      imports: [ClarityModule, ToastrModule.forRoot(), BrowserAnimationsModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
