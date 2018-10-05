@@ -15,7 +15,7 @@ describe("PrestigeComponent", () => {
     TestBed.configureTestingModule({
       declarations: [PrestigeComponent, FormatPipe],
       imports: [
-        ClarityModule.forRoot(),
+        ClarityModule,
         ToastrModule.forRoot(),
         BrowserAnimationsModule
       ],

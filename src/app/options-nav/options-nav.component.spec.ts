@@ -14,7 +14,7 @@ describe("OptionsNavComponent", () => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
-        ClarityModule.forRoot(),
+        ClarityModule,
         RouterTestingModule,
         BrowserAnimationsModule
       ],

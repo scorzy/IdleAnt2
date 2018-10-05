@@ -16,7 +16,7 @@ describe("CreditsComponent", () => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
-        ClarityModule.forRoot(),
+        ClarityModule,
         RouterTestingModule,
         FormsModule,
         ToastrModule.forRoot(),

@@ -17,7 +17,7 @@ describe("GroupTabsComponent", () => {
     TestBed.configureTestingModule({
       declarations: [GroupTabsComponent],
       imports: [
-        ClarityModule.forRoot(),
+        ClarityModule,
         ToastrModule.forRoot(),
         RouterTestingModule,
         BrowserAnimationsModule

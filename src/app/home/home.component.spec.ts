@@ -14,7 +14,7 @@ describe("HomeComponent", () => {
     TestBed.configureTestingModule({
       declarations: [HomeComponent],
       imports: [
-        ClarityModule.forRoot(),
+        ClarityModule,
         ToastrModule.forRoot(),
         BrowserAnimationsModule
       ],

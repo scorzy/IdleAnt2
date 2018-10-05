@@ -14,7 +14,7 @@ describe("BugCardComponent", () => {
     TestBed.configureTestingModule({
       declarations: [BugCardComponent],
       imports: [
-        ClarityModule.forRoot(),
+        ClarityModule,
         ToastrModule.forRoot(),
         BrowserAnimationsModule
       ],

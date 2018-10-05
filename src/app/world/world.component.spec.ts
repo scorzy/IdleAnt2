@@ -13,7 +13,7 @@ describe("WorldComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [WorldComponent, FormatPipe],
-      imports: [ClarityModule.forRoot(), ToastrModule.forRoot()],
+      imports: [ClarityModule, ToastrModule.forRoot()],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));

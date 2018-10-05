@@ -19,7 +19,7 @@ describe("ActionHeaderComponent", () => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
-        ClarityModule.forRoot(),
+        ClarityModule,
         ToastrModule.forRoot(),
         RouterTestingModule,
         FormsModule,

@@ -23,7 +23,7 @@ describe("UnitGroupComponent", () => {
     TestBed.configureTestingModule({
       declarations: [UnitGroupComponent, FormatPipe, EndInPipe],
       imports: [
-        ClarityModule.forRoot(),
+        ClarityModule,
         ToastrModule.forRoot(),
         RouterTestingModule,
         FormsModule,

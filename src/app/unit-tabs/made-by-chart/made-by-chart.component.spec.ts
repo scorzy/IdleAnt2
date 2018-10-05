@@ -19,7 +19,7 @@ describe("MadeByChartComponent", () => {
     TestBed.configureTestingModule({
       declarations: [MadeByChartComponent],
       imports: [
-        ClarityModule.forRoot(),
+        ClarityModule,
         ToastrModule.forRoot(),
         RouterTestingModule,
         FormsModule,

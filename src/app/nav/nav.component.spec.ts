@@ -16,7 +16,7 @@ describe("NavComponent", () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
         BrowserAnimationsModule,
-        ClarityModule.forRoot(),
+        ClarityModule,
         ToastrModule.forRoot(),
         RouterTestingModule
       ],

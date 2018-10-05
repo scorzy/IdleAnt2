@@ -12,7 +12,7 @@
 //   beforeEach(async(() => {
 //     TestBed.configureTestingModule({
 //       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-//       imports: [ClarityModule.forRoot(), RouterTestingModule],
+//       imports: [ClarityModule, RouterTestingModule],
 //       declarations: [HeaderComponent]
 //     }).compileComponents();
 //   }));

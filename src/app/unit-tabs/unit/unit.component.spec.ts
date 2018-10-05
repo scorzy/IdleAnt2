@@ -19,7 +19,7 @@ describe("UnitComponent", () => {
     TestBed.configureTestingModule({
       declarations: [UnitComponent, FormatPipe, EndInPipe],
       imports: [
-        ClarityModule.forRoot(),
+        ClarityModule,
         ToastrModule.forRoot(),
         RouterTestingModule,
         FormsModule,
