@@ -9,7 +9,7 @@
     <clr-signpost-content *clrIfOpen>
       <h3 style="margin-top: 0">{{unit.name}}</h3>
       <p>
-        Qauantity:
+        Quantity:
         <span *ngIf="unit.quantity.abs().gt(0.001)"
               class="qta monospace">
           {{unit.quantity | format}}
