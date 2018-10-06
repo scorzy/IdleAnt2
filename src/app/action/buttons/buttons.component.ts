@@ -40,13 +40,13 @@ export class ButtonsComponent implements OnInit {
     if (this.action) {
       this.action.reloadUserPrices();
       this.action.reloadAvailableTime();
-      this.ceckSkip();
+      this.checkSkip();
     }
 
     this.sub = this.ms.updateEmitter.subscribe(() => {
       this.action.reloadUserPrices();
       this.action.reloadAvailableTime();
-      this.ceckSkip();
+      this.checkSkip();
       this.cd.markForCheck();
     });
   }
@@ -60,7 +60,7 @@ export class ButtonsComponent implements OnInit {
     this.action.buy(quantity);
     this.ms.updateEmitter.emit(1);
   }
-  ceckSkip() {
+  checkSkip() {
     this.canSkip = false;
     if (!this.action.canBuy && this.skippable && this.showTime) {
       this.minuteSkip = Math.ceil(Math.max(this.action.availableIn / 60000, 1));
