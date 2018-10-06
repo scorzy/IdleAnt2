@@ -596,7 +596,7 @@ export class Game {
   /**
    * Prestige, reset everything except prestige stuff
    * and move to another world
-   * @param world choosen world
+   * @param world chosen world
    */
   goToWorld(world: World): boolean {
     this.stats.logWorldCompleted(this.currentWorld, !this.canTravel);
