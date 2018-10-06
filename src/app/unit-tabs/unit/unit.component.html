@@ -16,7 +16,7 @@
       </p>
 
       <clr-alert *ngIf="unit.isEnding"
-                 [clrAlertType]="malus ? 'alert-sucess': (ms.game.firstEndigUnit.endIn < 3600000 ? 'alert-danger':'alert-warning')"
+                 [clrAlertType]="malus ? 'alert-sucess': (ms.game.firstEndingUnit.endIn < 3600000 ? 'alert-danger':'alert-warning')"
                  [clrAlertClosable]="false"
                  [clrAlertSizeSmall]="false">
         <clr-alert-item>

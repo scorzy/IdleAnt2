@@ -85,7 +85,7 @@ export class Game {
   stats: Stats;
   allMateries: AllMasteries;
   maxTimeBank = new Decimal(0);
-  firstEndigUnit: FullUnit;
+  firstEndingUnit: FullUnit;
 
   upNumber = 0;
 
@@ -372,7 +372,7 @@ export class Game {
 
     let maxTime = delta;
     let unitZero: FullUnit = null;
-    this.firstEndigUnit = null;
+    this.firstEndingUnit = null;
 
     this.unlockedUnits.forEach(u => {
       u.isEnding = false;
@@ -437,9 +437,9 @@ export class Game {
           unit.isEnding = true;
           if (
             !(unit instanceof Malus) &&
-            (!this.firstEndigUnit || this.firstEndigUnit.endIn > unit.endIn)
+            (!this.firstEndingUnit || this.firsEndingUnit.endIn > unit.endIn)
           ) {
-            this.firstEndigUnit = unit;
+            this.firstEndingUnit = unit;
           }
         }
       }
