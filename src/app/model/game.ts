@@ -633,16 +633,16 @@ export class Game {
     this.researches.reset(this.materials.science);
 
     //#region Followers
-    const flollowerMulti =
+    const followerMulti =
       this.allMateries.getSum(MasteryTypes.MORE_FOLLOWERS) + 1;
-    const flollowerMultiGa =
+    const followerMultiGa =
       this.allMateries.getSum(MasteryTypes.MORE_FOLLOWERS_GA) * 3;
-    const flollowerMultiWo =
+    const followerMultiWo =
       this.allMateries.getSum(MasteryTypes.MORE_FOLLOWERS_WO) * 3;
 
     this.units.filter(u => u.follower).forEach(u => {
       u.quantity = u.quantity.plus(
-        u.follower.quantity.times(u.followerQuantity).times(flollowerMulti)
+        u.follower.quantity.times(u.followerQuantity).times(followerMulti)
       );
       if (u.quantity.gt(0.5)) {
         u.unlock();
@@ -653,12 +653,12 @@ export class Game {
     });
     this.gatherers.list.filter(u => u.follower).forEach(u => {
       u.quantity = u.quantity.plus(
-        u.follower.quantity.times(u.followerQuantity).times(flollowerMultiGa)
+        u.follower.quantity.times(u.followerQuantity).times(followerMultiGa)
       );
     });
     this.advWorkers.list.filter(u => u.follower).forEach(u => {
       u.quantity = u.quantity.plus(
-        u.follower.quantity.times(u.followerQuantity).times(flollowerMultiWo)
+        u.follower.quantity.times(u.followerQuantity).times(followerMultiWo)
       );
     });
     //#endregion
