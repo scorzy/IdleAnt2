@@ -71,10 +71,10 @@ describe("Mastery", () => {
     game.update(1);
     expect(game.materials.science.c.toNumber()).toBe(2);
   });
-  it("CRYSTALL_BONUS", () => {
+  it("CRYSTAL_BONUS", () => {
     game.gatherers.geologist.quantity = new Decimal(1);
     game.allMateries.getSum = (type: MasteryTypes) =>
-      type === MasteryTypes.CRYSTALL_BONUS ? 10 : 0;
+      type === MasteryTypes.CRYSTAL_BONUS ? 10 : 0;
     game.allMateries.reloadBonus();
     game.update(1);
     expect(game.materials.crystal.c.toNumber()).toBe(2);

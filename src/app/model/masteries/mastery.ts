@@ -5,7 +5,7 @@ export enum MasteryTypes {
   MORE_IDLE_8H,
   FOOD_BONUS,
   SCIENCE_BONUS,
-  CRYSTALL_BONUS,
+  CRYSTAL_BONUS,
   SOIL_BONUS,
   HARVEST_BONUS,
   MATERIAL_GAIN,
@@ -71,7 +71,7 @@ export class Mastery {
         ret = "+" + 10 * num + "%\nsoil";
         break;
       }
-      case MasteryTypes.CRYSTALL_BONUS: {
+      case MasteryTypes.CRYSTAL_BONUS: {
         ret = "+" + 10 * num + "%\ncrystal";
         break;
       }
