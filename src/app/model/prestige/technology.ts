@@ -37,7 +37,7 @@ export class Technology extends PrestigeGroup {
     [foodBon, soilBon, cryBon, scieBon].forEach(b => {
       b.getMultiplier = () => {
         return new Decimal(
-          1 + game.allMateries.getSum(MasteryTypes.THECNOLOGY_PRESTIGE)
+          1 + game.allMateries.getSum(MasteryTypes.TECHNOLOGY_PRESTIGE)
         );
       };
     });

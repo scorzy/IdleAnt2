@@ -16,7 +16,7 @@ export enum MasteryTypes {
   TEAM_START,
   TEAM_PRESTIGE,
   SCIENTIFIC_METHOD,
-  THECNOLOGY_PRESTIGE,
+  TECHNOLOGY_PRESTIGE,
   START_TWIN,
   FREE_WARP_RES,
   TIME_GEN_AND_BANK,
@@ -115,7 +115,7 @@ export class Mastery {
         ret = "scientific method research\n" + 100 * num + "% more effective";
         break;
       }
-      case MasteryTypes.THECNOLOGY_PRESTIGE: {
+      case MasteryTypes.TECHNOLOGY_PRESTIGE: {
         ret = "technology experience up\n" + 100 * num + "% more effective";
         break;
       }
