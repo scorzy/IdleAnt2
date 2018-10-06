@@ -7,7 +7,7 @@ import { World } from "../world";
 export class Special extends UnitGroup {
   foodSupply: FullUnit;
   soilSupply: FullUnit;
-  crystallSupply: FullUnit;
+  crystalSupply: FullUnit;
 
   constructor(game: Game) {
     super("Special", game);
@@ -15,9 +15,9 @@ export class Special extends UnitGroup {
   declareStuff(): void {
     this.foodSupply = new FullUnit("fS");
     this.soilSupply = new FullUnit("wS");
-    this.crystallSupply = new FullUnit("cS");
+    this.crystalSupply = new FullUnit("cS");
 
-    this.addUnits([this.foodSupply, this.soilSupply, this.crystallSupply]);
+    this.addUnits([this.foodSupply, this.soilSupply, this.crystalSupply]);
   }
   setRelations(): void {
     this.foodSupply.generateBuyAction([
@@ -26,19 +26,19 @@ export class Special extends UnitGroup {
     this.soilSupply.generateBuyAction([
       new Price(this.game.materials.soil, new Decimal(1e3), 1.5)
     ]);
-    this.crystallSupply.generateBuyAction([
+    this.crystalSupply.generateBuyAction([
       new Price(this.game.materials.crystal, new Decimal(1e3), 1.5)
     ]);
 
     this.game.materials.food.addProducer(this.foodSupply, new Decimal(30));
     this.game.materials.soil.addProducer(this.soilSupply, new Decimal(30));
     this.game.materials.crystal.addProducer(
-      this.crystallSupply,
+      this.crystalSupply,
       new Decimal(30)
     );
   }
   addWorlds() {
-    [this.foodSupply, this.soilSupply, this.crystallSupply].forEach(supp => {
+    [this.foodSupply, this.soilSupply, this.crystalSupply].forEach(supp => {
       const pre = new World(supp.id + "Pre");
       const suff = new World(supp.id + "Suff");
       [pre, suff].forEach(w => w.startingUnit.push([supp, new Decimal(1)]));
