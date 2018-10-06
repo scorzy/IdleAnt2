@@ -256,7 +256,7 @@ describe("Action", () => {
     expect(action.done).toBeTruthy();
     expect(action.complete).toBeTruthy();
   });
-  it("Buy all exepct one", () => {
+  it("Buy all except one", () => {
     const unit1 = new FullUnit("qwe", "", "");
 
     action.prices = [new Price(unit1, new Decimal(10), 1.1)];
