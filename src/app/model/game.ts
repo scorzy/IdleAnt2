@@ -355,7 +355,7 @@ export class Game {
   }
   /**
    * Update function.
-   * Works only with resource groving at max rate of x^3
+   * Works only with resource growing at max rate of x^3
    * When something reach zero consumers are stopped and it will update again
    * @param delta in milliseconds
    * @param force force update, used for warp in pause
