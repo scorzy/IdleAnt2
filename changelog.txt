@@ -1,3 +1,6 @@
+7-10-2018
+- Lots of Spelling fixes
+
 28-09-2018
 - Added AutoBuyer MaxBuy multiplier
 - Added Time and Experience to prices
