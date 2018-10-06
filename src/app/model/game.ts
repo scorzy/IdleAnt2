@@ -478,10 +478,10 @@ export class Game {
         }
       }
 
-      const remaning = delta - maxTime;
-      if (remaning > 10) {
+      const remaining = delta - maxTime;
+      if (remaining > 10) {
         // this.reloadProduction();
-        this.update(remaning);
+        this.update(remaining);
       }
     }
   }
