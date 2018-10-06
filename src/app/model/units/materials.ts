@@ -27,8 +27,8 @@ export class Materials extends UnitGroup {
     this.list.forEach(m => (m.winNonLiner = false));
   }
   addWorlds() {
-    const lenght = this.list.length;
-    for (let i = 0; i < lenght; i++) {
+    const length = this.list.length;
+    for (let i = 0; i < length; i++) {
       const world = new World(this.list[i].id + "Bio");
       World.biome.push(world);
     }

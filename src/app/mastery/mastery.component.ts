@@ -36,8 +36,8 @@ export class MasteryComponent implements AfterViewInit, OnInit {
 
   rebuildList() {
     this.list = [];
-    const lenght = Object.keys(MasteryTypes).length / 2;
-    for (let i = 0; i < lenght; i++) {
+    const length = Object.keys(MasteryTypes).length / 2;
+    for (let i = 0; i < length; i++) {
       const sum = this.ms.game.allMateries.getSum(i);
       if (sum > 0) {
         const desc = Mastery.getDescription(i, sum);

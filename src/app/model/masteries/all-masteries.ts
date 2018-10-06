@@ -61,8 +61,8 @@ export class AllMasteries {
       u.productionsAll.push(armyBon);
     });
 
-    const lenght = Object.keys(MasteryTypes).length / 2;
-    this.totals = new Array(lenght).fill(0);
+    const length = Object.keys(MasteryTypes).length / 2;
+    this.totals = new Array(length).fill(0);
 
     const av1 = new Mastery(0, MasteryTypes.MORE_FOLLOWERS);
     const av2 = new Mastery(5, MasteryTypes.MORE_IDLE_8H);
