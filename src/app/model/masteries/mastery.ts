@@ -169,7 +169,7 @@ export class Mastery {
 
   label = "";
   color = "blue";
-  avaiable = false;
+  available = false;
   owned = false;
 
   constructor(

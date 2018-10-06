@@ -20,7 +20,7 @@
   <ng-template #buy>
     <p clrVerticalNavLink>{{node.label}}</p>
     <button class="btn"
-            *ngIf="node.avaiable && !node.owned"
+            *ngIf="node.available && !node.owned"
             [disabled]="ms.game.allMateries.masteryPoint <1"
             (click)="buyMastery()">
       Buy

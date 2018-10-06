@@ -68,13 +68,13 @@ export class AllMasteries {
     const av2 = new Mastery(5, MasteryTypes.MORE_IDLE_8H);
     const av3 = new Mastery(10, MasteryTypes.HARVEST_BONUS);
     const av4 = new Mastery(15, MasteryTypes.SCIENCE_BONUS);
-    av1.avaiable = true;
+    av1.available = true;
     av1.color = Mastery.availableColor;
-    av2.avaiable = true;
+    av2.available = true;
     av2.color = Mastery.availableColor;
-    av3.avaiable = true;
+    av3.available = true;
     av3.color = Mastery.availableColor;
-    av4.avaiable = true;
+    av4.available = true;
     av4.color = Mastery.availableColor;
     this.starting = [av1, av2, av3, av4];
 
@@ -141,7 +141,7 @@ export class AllMasteries {
       return false;
     }
     const node = this.visMasteries.get(id);
-    if ((node && node.avaiable && !node.owned) || loading) {
+    if ((node && node.available && !node.owned) || loading) {
       if (!loading) {
         this.masteryPoint--;
       }
@@ -157,7 +157,7 @@ export class AllMasteries {
           filter(item) {
             return (
               (item.id === avEdge.from || item.id === avEdge.to) &&
-              !item.avaiable &&
+              !item.available &&
               !item.owned
             );
           }
@@ -165,7 +165,7 @@ export class AllMasteries {
         if (nodes.length > 0) {
           nodes.forEach(n => {
             {
-              n.avaiable = true;
+              n.available = true;
               n.color = Mastery.availableColor;
             }
           });
@@ -176,7 +176,7 @@ export class AllMasteries {
       const update: any = {
         id,
         owned: true,
-        avaiable: true,
+        available: true,
         color: Mastery.ownedColor
       };
       this.visMasteries.update(update);
@@ -218,14 +218,14 @@ export class AllMasteries {
     const update = this.visMasteries.get();
     update.forEach(m => {
       m.owned = false;
-      m.avaiable = false;
+      m.available = false;
       m.color = notable.find(n => n === m.type)
         ? Mastery.notableColor
         : Mastery.normalColor;
     });
     this.visMasteries.update(update);
     this.starting.forEach(m => {
-      m.avaiable = true;
+      m.available = true;
       m.color = Mastery.availableColor;
     });
     this.visMasteries.update(this.starting);
