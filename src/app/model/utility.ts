@@ -163,7 +163,7 @@ export class Utility {
         const second = D.sqrt();
         const q3 = first.minus(second);
 
-        //  workaround for aprossimation
+        //  workaround for aproximation
         if (q3.toNumber() === 0) {
           // q3 = new Decimal(1).div(
           //   Decimal.max(a.abs(), b.abs())
@@ -183,12 +183,12 @@ export class Utility {
         acos = acos.div(p);
         acos = acos.div(u);
         acos = acos.times(3);
-        //  workaround for aprossimation
+        //  workaround for aproximation
         if (acos.lt(-1)) {
           return [];
         }
 
-        //  workaround for aprossimation 2
+        //  workaround for aproximation 2
         const acos2 = Decimal.max(Decimal.min(acos, 1), -1).toNumber();
         const t = new Decimal(Math.acos(acos2) / 3);
 
