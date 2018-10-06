@@ -1,3 +1,25 @@
-<p>
-  group-auto-buy works!
-</p>
+<div class="clr-row">
+  <div *ngIf="unitGroup"
+       class="clr-col-xs-12	clr-col-sm-6	clr-col-md-6	clr-col-lg-6	clr-col-xl-6">
+
+    <app-action-group *ngIf="hatchActionGrp"
+                      [actGr]="hatchActionGrp"></app-action-group>
+    <app-action-group *ngIf="teamActionGrp && ms.game.researches.team2.done"
+                      [actGr]="teamActionGrp"></app-action-group>
+    <app-action-group *ngIf="twinActionGrp && ms.game.researches.twin.done"
+                      [actGr]="twinActionGrp"></app-action-group>
+
+  </div>
+  <div *ngIf="unitGroup"
+       class="clr-col-xs-12	clr-col-sm-6	clr-col-md-6	clr-col-lg-6	clr-col-xl-6">
+
+    <clr-datagrid *ngIf="unitGroup"
+                  class="datagrid-compact"
+                  [(clrDgSelected)]="unitGroup.selected"
+                  (clrDgSelectedChange)="selectedChanged($event)">
+
+
+    </clr-datagrid>
+
+  </div>
+</div>
