@@ -36,7 +36,7 @@ export class ProductionSignpostsComponent implements OnInit {
       this.productionsAll = this.production.producer.productionsAll.filter(bn =>
         bn.isActive()
       );
-      if (this.production.rateo.gt(0)) {
+      if (this.production.ratio.gt(0)) {
         this.productionsEfficienty = this.production.producer.productionsEfficienty.filter(
           bn => bn.isActive()
         );

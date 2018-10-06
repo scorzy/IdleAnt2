@@ -6,7 +6,7 @@ export class Production {
   constructor(
     public producer: FullUnit,
     public product: FullUnit,
-    public rateo = new Decimal(1)
+    public ratio = new Decimal(1)
   ) {
     this.reloadProdPerSec();
   }
@@ -17,7 +17,7 @@ export class Production {
     } else {
       let bonus = new Decimal(1);
       //  Base Production
-      this.prodPerSec = new Decimal(this.rateo);
+      this.prodPerSec = new Decimal(this.ratio);
 
       // Team Bonus
       if (teamBonus && this.producer.buyAction) {
@@ -32,7 +32,7 @@ export class Production {
       bonus = bonus.plus(producerAllBonus);
 
       // Producer Efficienty Bonus
-      if (this.rateo.gt(0)) {
+      if (this.ratio.gt(0)) {
         const producerBonus = this.producer.productionsEfficienty
           .filter(bn => bn.isActive())
           .map(prod => prod.getBonus())

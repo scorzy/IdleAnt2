@@ -103,9 +103,9 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   isStopped(): boolean {
     return this.efficiency < 0.01;
   }
-  addProducer(producer: FullUnit, rateo: Decimal | number = 1) {
-    rateo = new Decimal(rateo);
-    const prod = new Production(producer, this, rateo);
+  addProducer(producer: FullUnit, ratio: Decimal | number = 1) {
+    ratio = new Decimal(ratio);
+    const prod = new Production(producer, this, ratio);
     this.producedBy.push(prod);
     producer.produces.push(prod);
   }
@@ -145,12 +145,12 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     }
     if (this.produces.length > 0 && bugClass.prodMulti !== 1) {
       this.produces.forEach(p => {
-        p.rateo = p.rateo.times(bugClass.prodMulti);
+        p.ratio = p.ratio.times(bugClass.prodMulti);
       });
     }
     if (this.produces.length > 0 && bugClass.efficiencyMulti !== 1) {
-      this.produces.filter(p => p.rateo.gt(0)).forEach(p => {
-        p.rateo = p.rateo.times(bugClass.efficiencyMulti);
+      this.produces.filter(p => p.ratio.gt(0)).forEach(p => {
+        p.ratio = p.ratio.times(bugClass.efficiencyMulti);
       });
     }
     if (this.teamAction && bugClass.teamPriceMulti !== 1) {

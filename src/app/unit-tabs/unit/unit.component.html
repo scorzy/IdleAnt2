@@ -86,13 +86,13 @@
               </a>
             </clr-dg-cell>
             <clr-dg-cell>
-              <span [class.notEnough]="product.rateo.lt(0)"
+              <span [class.notEnough]="product.ratio.lt(0)"
                     class="monospace">
                 {{product.prodPerSec | format}}</span>
               <app-production-signposts [production]="product"></app-production-signposts>
             </clr-dg-cell>
             <clr-dg-cell>
-              <span [class.notEnough]="product.rateo.lt(0)"
+              <span [class.notEnough]="product.ratio.lt(0)"
                     class="monospace">
                 {{product.prodPerSec.times(unit.quantity) | format}}
               </span>
@@ -125,13 +125,13 @@
               </a>
             </clr-dg-cell>
             <clr-dg-cell>
-              <span [class.notEnough]="producer.rateo.lt(0)"
+              <span [class.notEnough]="producer.ratio.lt(0)"
                     class="monospace">
                 {{producer.prodPerSec | format}}
               </span>
             </clr-dg-cell>
             <clr-dg-cell>
-              <span [class.notEnough]="producer.rateo.lt(0)"
+              <span [class.notEnough]="producer.ratio.lt(0)"
                     class="monospace">
                 {{producer.prodPerSec.times(producer.producer.quantity) | format}}</span>
             </clr-dg-cell>

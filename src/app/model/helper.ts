@@ -6,9 +6,9 @@ import { ProductionBonus } from "./production-bonus";
 export class Helper extends FullUnit {
   helpBonus: ProductionBonus;
 
-  constructor(id: string, rateo: Decimal | number, private game: Game) {
+  constructor(id: string, ratio: Decimal | number, private game: Game) {
     super(id);
-    this.helpBonus = new ProductionBonus(this, new Decimal(rateo));
+    this.helpBonus = new ProductionBonus(this, new Decimal(ratio));
     this.helpBonus.getMultiplier = () => {
       if (this.efficiency <= 0) return new Decimal(0);
 

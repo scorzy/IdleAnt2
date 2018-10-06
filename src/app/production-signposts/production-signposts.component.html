@@ -3,8 +3,8 @@
                         [clrPosition]="'left-middle'">
     <h3>{{production.product.name}}:</h3>
     <ul class="list">
-      <li [class.notEnough]="production.rateo.lt(0)">
-        Base production: {{production.rateo | format}}
+      <li [class.notEnough]="production.ratio.lt(0)">
+        Base production: {{production.ratio | format}}
       </li>
       <li>
         Operativity: {{production.producer.efficiency}}%

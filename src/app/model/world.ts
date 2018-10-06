@@ -121,9 +121,9 @@ export class World {
   setMalus() {
     this.notWinConditions.forEach(n => {
       n.quantity = new Decimal(this.level.times(5));
-      n.producedBy.find(u => u.rateo.lt(0)).producer.unlock();
-      const n2 = n.producedBy.find(u => u.rateo.gt(0)).producer;
-      const n3 = n2.producedBy.find(u => u.rateo.gt(0)).producer;
+      n.producedBy.find(u => u.ratio.lt(0)).producer.unlock();
+      const n2 = n.producedBy.find(u => u.ratio.gt(0)).producer;
+      const n3 = n2.producedBy.find(u => u.ratio.gt(0)).producer;
 
       n2.quantity = n.quantity.div(3.5);
 

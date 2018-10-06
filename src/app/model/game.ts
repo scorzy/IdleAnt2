@@ -457,11 +457,11 @@ export class Game {
       // Something has ended
       if (unitZero) {
         //  Stop consumers
-        unitZero.producedBy.filter(p => p.rateo.lt(0)).forEach(p => {
+        unitZero.producedBy.filter(p => p.ratio.lt(0)).forEach(p => {
           p.producer.efficiency = 0;
         });
-        unitZero.producedBy.filter(p => p.rateo.gt(0)).forEach(p => {
-          p.producer.producedBy.filter(p2 => p2.rateo.lt(0)).forEach(p2 => {
+        unitZero.producedBy.filter(p => p.ratio.gt(0)).forEach(p => {
+          p.producer.producedBy.filter(p2 => p2.ratio.lt(0)).forEach(p2 => {
             p2.producer.efficiency = 0;
           });
         });

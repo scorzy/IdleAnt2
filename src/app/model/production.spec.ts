@@ -20,7 +20,7 @@ describe("Production", () => {
   it("should create an instance", () => {
     expect(new Production(producerSpy, productSpy)).toBeTruthy();
   });
-  it("should create an instance with rateo", () => {
+  it("should create an instance with ratio", () => {
     expect(
       new Production(producerSpy, productSpy, new Decimal(10))
     ).toBeTruthy();
