@@ -11,7 +11,7 @@ export const STRINGS = {
     l: ["Larva", "Larva"],
     q: ["Queen", "Queen"],
     n: ["Nest", "Nest"],
-    //  Ghantering
+    //  Gathering
     e: ["Drone", "Drone gather food."],
     h: ["Geologist", "Geologist will seek for crystals."],
     i: [
