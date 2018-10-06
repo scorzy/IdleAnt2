@@ -437,7 +437,7 @@ export class Game {
           unit.isEnding = true;
           if (
             !(unit instanceof Malus) &&
-            (!this.firstEndingUnit || this.firsEndingUnit.endIn > unit.endIn)
+            (!this.firstEndingUnit || this.firstEndingUnit.endIn > unit.endIn)
           ) {
             this.firstEndingUnit = unit;
           }
