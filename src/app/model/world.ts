@@ -24,7 +24,7 @@ export class World {
 
   //  Productions Bonus/Malus
   productionsBonus = new Array<[BaseUnit, Decimal]>();
-  productionsEfficienty = new Array<[BaseUnit, Decimal]>();
+  productionsEfficiency = new Array<[BaseUnit, Decimal]>();
   productionsAll = new Array<[BaseUnit, Decimal]>();
 
   // Unlocked stuff
@@ -35,7 +35,7 @@ export class World {
   startingUnit = new Array<[FullUnit, Decimal]>();
 
   //  Wining condition
-  winContidions = new Array<Price>();
+  winConditions = new Array<Price>();
   //  This resources must be zero
   notWinConditions = new Array<Malus>();
 
@@ -47,7 +47,7 @@ export class World {
   }
 
   setLevel(level: Decimal, game: Game) {
-    this.winContidions.push(
+    this.winConditions.push(
       new Price(game.ants.nest, CONSTS.BASE_WIN_CONDITION_OTHER)
     );
     this.additionalBugs.push(BugTypes.ANT);
@@ -56,14 +56,14 @@ export class World {
 
     const multi = this.level.div(5).plus(1);
     this.productionsBonus.forEach(b => (b[1] = b[1].times(multi)));
-    this.productionsEfficienty.forEach(b => (b[1] = b[1].times(multi)));
+    this.productionsEfficiency.forEach(b => (b[1] = b[1].times(multi)));
     this.productionsAll.forEach(b => (b[1] = b[1].times(multi)));
     this.startingUnit.forEach(b => (b[1] = b[1].times(multi)));
 
     const masteryReduction =
       game.allMateries.getSum(MasteryTypes.WORLD_LEVEL) * 0.015;
 
-    this.winContidions.forEach(w => {
+    this.winConditions.forEach(w => {
       w.price = w.price.times(multi);
 
       w.price = w.base.winNonLiner
@@ -100,7 +100,7 @@ export class World {
     if (multiBonus.gt(1)) {
       [
         this.productionsBonus,
-        this.productionsEfficienty,
+        this.productionsEfficiency,
         this.productionsAll
       ].forEach(prod => {
         prod.forEach(p => {
@@ -110,20 +110,20 @@ export class World {
     }
   }
   canTravel(): boolean {
-    this.winContidions.forEach(p => {
+    this.winConditions.forEach(p => {
       p.canBuy = p.base.quantity.gte(p.price);
     });
     return !(
-      this.winContidions.findIndex(p => !p.canBuy) > -1 ||
+      this.winConditions.findIndex(p => !p.canBuy) > -1 ||
       this.notWinConditions.findIndex(n => !n.isKilled) > -1
     );
   }
   setMalus() {
     this.notWinConditions.forEach(n => {
       n.quantity = new Decimal(this.level.times(5));
-      n.producedBy.find(u => u.rateo.lt(0)).producer.unlock();
-      const n2 = n.producedBy.find(u => u.rateo.gt(0)).producer;
-      const n3 = n2.producedBy.find(u => u.rateo.gt(0)).producer;
+      n.producedBy.find(u => u.ratio.lt(0)).producer.unlock();
+      const n2 = n.producedBy.find(u => u.ratio.gt(0)).producer;
+      const n3 = n2.producedBy.find(u => u.ratio.gt(0)).producer;
 
       n2.quantity = n.quantity.div(3.5);
 
@@ -155,9 +155,9 @@ export class World {
       n: this.name,
       l: this.level,
       pb: this.productionsBonus.map(b => [b[0].id, b[1]]),
-      pe: this.productionsEfficienty.map(b => [b[0].id, b[1]]),
+      pe: this.productionsEfficiency.map(b => [b[0].id, b[1]]),
       pa: this.productionsAll.map(b => [b[0].id, b[1]]),
-      wc: this.winContidions.map(w => [w.base.id, w.price]),
+      wc: this.winConditions.map(w => [w.base.id, w.price]),
       nwc: this.notWinConditions.map(n => n.id),
       adb: this.additionalBugs,
       k: this.prestige
@@ -173,7 +173,7 @@ export class World {
       ]);
     }
     if ("pe" in data) {
-      this.productionsEfficienty = data.pe.map(b => [
+      this.productionsEfficiency = data.pe.map(b => [
         this.findBonus(b[0], game),
         new Decimal(b[1])
       ]);
@@ -185,7 +185,7 @@ export class World {
       ]);
     }
     if ("wc" in data) {
-      this.winContidions = data.wc.map(
+      this.winConditions = data.wc.map(
         w =>
           new Price(game.units.find(u => u.id === w[0]), new Decimal(w[1]), 1)
       );
@@ -223,12 +223,12 @@ export class World {
         if (!prod) retWorld.productionsBonus.push([a[0], new Decimal(a[1])]);
         else prod[1] = prod[1].plus(a[1]);
       });
-      w.productionsEfficienty.forEach(a => {
-        const prod = retWorld.productionsEfficienty.find(
+      w.productionsEfficiency.forEach(a => {
+        const prod = retWorld.productionsEfficiency.find(
           p => p[0].id === a[0].id
         );
         if (!prod) {
-          retWorld.productionsEfficienty.push([a[0], new Decimal(a[1])]);
+          retWorld.productionsEfficiency.push([a[0], new Decimal(a[1])]);
         } else prod[1] = prod[1].plus(a[1]);
       });
       w.productionsAll.forEach(a => {
@@ -243,9 +243,9 @@ export class World {
         else un[1] = un[1].plus(a[1]);
       });
       //  Win
-      w.winContidions.forEach(a => {
-        const win = retWorld.winContidions.find(p => p.base.id === a.base.id);
-        if (!win) retWorld.winContidions.push(new Price(a.base, a.price, 1));
+      w.winConditions.forEach(a => {
+        const win = retWorld.winConditions.find(p => p.base.id === a.base.id);
+        if (!win) retWorld.winConditions.push(new Price(a.base, a.price, 1));
         else win.price = win.price.plus(a.price.div(3));
       });
     });

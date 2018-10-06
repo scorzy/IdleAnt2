@@ -17,12 +17,12 @@ declare let preventScroll;
 })
 export class OptionsNavComponent implements OnInit, AfterViewInit {
   constructor() {
-    //Nothig
+    //Nothing
   }
   ngAfterViewInit(): void {
     if (typeof preventScroll === typeof Function) preventScroll();
   }
   ngOnInit() {
-    //Nothig
+    //Nothing
   }
 }

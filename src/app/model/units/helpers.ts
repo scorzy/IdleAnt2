@@ -48,7 +48,7 @@ export class Helpers extends UnitGroup {
     this.game.materials.soil.addProducer(this.leafCutter, CONSTS.CONSUME_1);
     this.game.units
       .filter(u => u.tags.includes(Tags.FARMER))
-      .forEach(u => u.productionsEfficienty.push(this.leafCutter.helpBonus));
+      .forEach(u => u.productionsEfficiency.push(this.leafCutter.helpBonus));
     this.leafCutter.setBugType(BugTypes.SUPER_MAJOR);
     //#endregion
     //#region Miner Helper
@@ -62,7 +62,7 @@ export class Helpers extends UnitGroup {
     this.game.materials.soil.addProducer(this.minerHelper, CONSTS.CONSUME_1);
     this.game.units
       .filter(u => u.tags.includes(Tags.MINER))
-      .forEach(u => u.productionsEfficienty.push(this.minerHelper.helpBonus));
+      .forEach(u => u.productionsEfficiency.push(this.minerHelper.helpBonus));
     this.minerHelper.setBugType(BugTypes.SUPER_MAJOR);
     //#endregion
     //#region Soil Helper
@@ -76,7 +76,7 @@ export class Helpers extends UnitGroup {
     this.game.materials.soil.addProducer(this.soilHelper, CONSTS.CONSUME_1);
     this.game.units
       .filter(u => u.tags.includes(Tags.SOIL_G))
-      .forEach(u => u.productionsEfficienty.push(this.soilHelper.helpBonus));
+      .forEach(u => u.productionsEfficiency.push(this.soilHelper.helpBonus));
     this.soilHelper.setBugType(BugTypes.SUPER_MAJOR);
     //#endregion
 

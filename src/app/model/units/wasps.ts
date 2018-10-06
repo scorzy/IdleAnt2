@@ -69,7 +69,7 @@ export class Wasps extends UnitGroup {
     const waspSuff = new World("waspSuff");
     [waspBio, waspPre, waspSuff].forEach(w => {
       w.additionalBugs.push(BugTypes.WASP);
-      w.winContidions.push(
+      w.winConditions.push(
         new Price(this.nest, CONSTS.BASE_WIN_CONDITION_OTHER.times(1.75))
       );
     });

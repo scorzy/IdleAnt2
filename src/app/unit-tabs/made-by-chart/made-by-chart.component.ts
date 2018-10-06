@@ -91,12 +91,12 @@ export class MadeByChartComponent implements OnInit, OnDestroy, AfterViewInit {
       p =>
         p.producer.unlocked &&
         p.producer.quantity.gt(0) &&
-        ((!this.consumers && p.rateo.gt(0)) ||
-          (this.consumers && p.rateo.lt(0)))
+        ((!this.consumers && p.ratio.gt(0)) ||
+          (this.consumers && p.ratio.lt(0)))
     );
 
     const labels = activeProducer.map(p => p.producer.name);
-    if (this.chart.data.labels.lenght !== labels.length) {
+    if (this.chart.data.labels.length !== labels.length) {
       this.chart.data.labels = labels;
     }
     const total = activeProducer

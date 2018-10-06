@@ -25,7 +25,7 @@ describe("World", () => {
 
     world1.productionsAll = [[game.worldBonus.foodBonus, new Decimal(2)]];
     world1.productionsBonus = [[game.worldBonus.soilBonus, new Decimal(3)]];
-    world1.productionsEfficienty = [
+    world1.productionsEfficiency = [
       [game.worldBonus.scienceBonus, new Decimal(4)]
     ];
 
@@ -40,10 +40,10 @@ describe("World", () => {
     expect(world2.productionsBonus[0][0].id).toBe(game.worldBonus.soilBonus.id);
     expect(world2.productionsBonus[0][1].toNumber()).toBe(3);
 
-    expect(world2.productionsEfficienty[0][0].id).toBe(
+    expect(world2.productionsEfficiency[0][0].id).toBe(
       game.worldBonus.scienceBonus.id
     );
-    expect(world2.productionsEfficienty[0][1].toNumber()).toBe(4);
+    expect(world2.productionsEfficiency[0][1].toNumber()).toBe(4);
   });
   it("Merge", () => {
     const world1 = new World();
@@ -74,16 +74,16 @@ describe("World", () => {
       [unit5, new Decimal(2)]
     ];
 
-    world1.productionsEfficienty = [
+    world1.productionsEfficiency = [
       [unit1, new Decimal(1)],
       [unit6, new Decimal(2)]
     ];
-    world2.productionsEfficienty = [
+    world2.productionsEfficiency = [
       [unit1, new Decimal(1)],
       [unit4, new Decimal(1)],
       [unit3, new Decimal(2)]
     ];
-    world3.productionsEfficienty = [
+    world3.productionsEfficiency = [
       [unit2, new Decimal(1)],
       [unit5, new Decimal(2)]
     ];
@@ -95,8 +95,8 @@ describe("World", () => {
     world1.startingUnit = [[unit1, new Decimal(1)], [unit2, new Decimal(2)]];
     world2.startingUnit = [[unit2, new Decimal(1)], [unit3, new Decimal(2)]];
 
-    world1.winContidions = [new Price(unit1, new Decimal(2))];
-    world2.winContidions = [
+    world1.winConditions = [new Price(unit1, new Decimal(2))];
+    world2.winConditions = [
       new Price(unit1, new Decimal(2)),
       new Price(unit2, new Decimal(2))
     ];
@@ -124,12 +124,12 @@ describe("World", () => {
 
     expect(merged.startingUnlocked.length).toBe(0);
 
-    expect(merged.winContidions.length).toBe(2);
+    expect(merged.winConditions.length).toBe(2);
   });
   it("CanTravel", () => {
     const world1 = new World("");
     const unit = new FullUnit("");
-    world1.winContidions = [new Price(unit, new Decimal(20))];
+    world1.winConditions = [new Price(unit, new Decimal(20))];
     let canTravel = world1.canTravel();
     expect(canTravel).toBeFalsy();
     unit.quantity = new Decimal(20);

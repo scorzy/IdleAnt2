@@ -46,7 +46,7 @@ export class AllMasteries {
     this.harvestBonus = new BaseUnit("harvMast");
     const harvBon = new ProductionBonus(this.harvestBonus, new Decimal(0.2));
     game.gatherers.list.forEach(u => {
-      u.productionsEfficienty.push(harvBon);
+      u.productionsEfficiency.push(harvBon);
     });
 
     this.materialBonus = new BaseUnit("matMast");
@@ -61,21 +61,21 @@ export class AllMasteries {
       u.productionsAll.push(armyBon);
     });
 
-    const lenght = Object.keys(MasteryTypes).length / 2;
-    this.totals = new Array(lenght).fill(0);
+    const length = Object.keys(MasteryTypes).length / 2;
+    this.totals = new Array(length).fill(0);
 
     const av1 = new Mastery(0, MasteryTypes.MORE_FOLLOWERS);
     const av2 = new Mastery(5, MasteryTypes.MORE_IDLE_8H);
     const av3 = new Mastery(10, MasteryTypes.HARVEST_BONUS);
     const av4 = new Mastery(15, MasteryTypes.SCIENCE_BONUS);
-    av1.avaiable = true;
-    av1.color = Mastery.avaiableColor;
-    av2.avaiable = true;
-    av2.color = Mastery.avaiableColor;
-    av3.avaiable = true;
-    av3.color = Mastery.avaiableColor;
-    av4.avaiable = true;
-    av4.color = Mastery.avaiableColor;
+    av1.available = true;
+    av1.color = Mastery.availableColor;
+    av2.available = true;
+    av2.color = Mastery.availableColor;
+    av3.available = true;
+    av3.color = Mastery.availableColor;
+    av4.available = true;
+    av4.color = Mastery.availableColor;
     this.starting = [av1, av2, av3, av4];
 
     const matGain = new Mastery(20, MasteryTypes.MATERIAL_GAIN);
@@ -110,14 +110,14 @@ export class AllMasteries {
 
     //  Science && Technology
     this.addMasteryLine(15, 70, MasteryTypes.SCIENTIFIC_METHOD, 5);
-    this.addMasteryLine(15, 75, MasteryTypes.THECNOLOGY_PRESTIGE, 5);
+    this.addMasteryLine(15, 75, MasteryTypes.TECHNOLOGY_PRESTIGE, 5);
     this.addMasteryLine(74, 103, MasteryTypes.START_RESEARCHS, 1, 79);
 
     //  Single material bonus
     this.addMasteryLine(matGain.id, 80, MasteryTypes.SCIENCE_BONUS, 3);
     this.addMasteryLine(matGain.id, 85, MasteryTypes.FOOD_BONUS, 3);
     this.addMasteryLine(matGain.id, 90, MasteryTypes.SOIL_BONUS, 3);
-    this.addMasteryLine(matGain.id, 95, MasteryTypes.CRYSTALL_BONUS, 3);
+    this.addMasteryLine(matGain.id, 95, MasteryTypes.CRYSTAL_BONUS, 3);
 
     //  World Bonus
     this.addMasteryLine(17, 105, MasteryTypes.BETTER_WORLD, 4);
@@ -141,7 +141,7 @@ export class AllMasteries {
       return false;
     }
     const node = this.visMasteries.get(id);
-    if ((node && node.avaiable && !node.owned) || loading) {
+    if ((node && node.available && !node.owned) || loading) {
       if (!loading) {
         this.masteryPoint--;
       }
@@ -157,7 +157,7 @@ export class AllMasteries {
           filter(item) {
             return (
               (item.id === avEdge.from || item.id === avEdge.to) &&
-              !item.avaiable &&
+              !item.available &&
               !item.owned
             );
           }
@@ -165,8 +165,8 @@ export class AllMasteries {
         if (nodes.length > 0) {
           nodes.forEach(n => {
             {
-              n.avaiable = true;
-              n.color = Mastery.avaiableColor;
+              n.available = true;
+              n.color = Mastery.availableColor;
             }
           });
           this.visMasteries.update(nodes);
@@ -176,7 +176,7 @@ export class AllMasteries {
       const update: any = {
         id,
         owned: true,
-        avaiable: true,
+        available: true,
         color: Mastery.ownedColor
       };
       this.visMasteries.update(update);
@@ -195,7 +195,7 @@ export class AllMasteries {
     this.foodBonus.quantity = new Decimal(this.getSum(MasteryTypes.FOOD_BONUS));
     this.soilBonus.quantity = new Decimal(this.getSum(MasteryTypes.SOIL_BONUS));
     this.crystalBonus.quantity = new Decimal(
-      this.getSum(MasteryTypes.CRYSTALL_BONUS)
+      this.getSum(MasteryTypes.CRYSTAL_BONUS)
     );
 
     this.harvestBonus.quantity = new Decimal(
@@ -218,15 +218,15 @@ export class AllMasteries {
     const update = this.visMasteries.get();
     update.forEach(m => {
       m.owned = false;
-      m.avaiable = false;
+      m.available = false;
       m.color = notable.find(n => n === m.type)
         ? Mastery.notableColor
         : Mastery.normalColor;
     });
     this.visMasteries.update(update);
     this.starting.forEach(m => {
-      m.avaiable = true;
-      m.color = Mastery.avaiableColor;
+      m.available = true;
+      m.color = Mastery.availableColor;
     });
     this.visMasteries.update(this.starting);
   }

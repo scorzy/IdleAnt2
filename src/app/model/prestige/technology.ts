@@ -8,7 +8,7 @@ export class Technology extends PrestigeGroup {
   farming: Prestige;
   carpentry: Prestige;
   mining: Prestige;
-  studing: Prestige;
+  studying: Prestige;
 
   constructor() {
     super("tecno", "Technology");
@@ -18,9 +18,9 @@ export class Technology extends PrestigeGroup {
     this.farming = new Prestige("F", game.genExperiencePrice(10));
     this.carpentry = new Prestige("C", game.genExperiencePrice(10));
     this.mining = new Prestige("n", game.genExperiencePrice(10));
-    this.studing = new Prestige("s", game.genExperiencePrice(10));
+    this.studying = new Prestige("s", game.genExperiencePrice(10));
 
-    this.list = [this.farming, this.carpentry, this.mining, this.studing];
+    this.list = [this.farming, this.carpentry, this.mining, this.studying];
 
     const foodBon = new ProductionBonus(this.farming, new Decimal(0.1));
     game.materials.food.productionsBonus.push(foodBon);
@@ -31,13 +31,13 @@ export class Technology extends PrestigeGroup {
     const cryBon = new ProductionBonus(this.mining, new Decimal(0.1));
     game.materials.crystal.productionsBonus.push(cryBon);
 
-    const scieBon = new ProductionBonus(this.studing, new Decimal(0.1));
+    const scieBon = new ProductionBonus(this.studying, new Decimal(0.1));
     game.materials.science.productionsBonus.push(scieBon);
 
     [foodBon, soilBon, cryBon, scieBon].forEach(b => {
       b.getMultiplier = () => {
         return new Decimal(
-          1 + game.allMateries.getSum(MasteryTypes.THECNOLOGY_PRESTIGE)
+          1 + game.allMateries.getSum(MasteryTypes.TECHNOLOGY_PRESTIGE)
         );
       };
     });

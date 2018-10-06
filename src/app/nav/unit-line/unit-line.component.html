@@ -31,7 +31,7 @@
     </span>
     <span class="perSec monospace">
       <span *ngIf="perSec.abs().gt(0.001)"
-            [class.noEnought]="isEnding">
+            [class.notEnough]="isEnding">
         {{perSec | format}}/s
       </span>
       &nbsp;

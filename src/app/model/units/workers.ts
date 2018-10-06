@@ -236,7 +236,7 @@ export class Workers extends UnitGroup {
       new Decimal(0.1)
     );
     this.list.forEach(u => {
-      u.productionsEfficienty.push(bonusEff);
+      u.productionsEfficiency.push(bonusEff);
     });
 
     this.firstResearch.toUnlock.push(this.betterWorkers, this.efficientWorkers);

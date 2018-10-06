@@ -14,7 +14,7 @@
 
   <span class="perSecTab  monospace clr-col clr-align-self-end">
     <span *ngIf="perSec.abs().gt(0.001)"
-          [ngClass]="{'noEnought': perSec.lt(0)}">
+          [ngClass]="{'notEnough': perSec.lt(0)}">
       {{perSec | format:false:ms.options.formatter}}/s
     </span>
   </span>

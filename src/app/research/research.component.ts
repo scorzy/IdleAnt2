@@ -32,11 +32,11 @@ export class ResearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.ceckSkip();
+    this.checkSkip();
     this.sub = this.ms.updateEmitter.subscribe(m => {
       this.research.reloadUserPrices();
       this.research.reloadAvailableTime();
-      this.ceckSkip();
+      this.checkSkip();
       this.cd.markForCheck();
     });
   }
@@ -46,7 +46,7 @@ export class ResearchComponent implements OnInit, OnDestroy {
   getPriceId(index, price: Price) {
     return price.base.id;
   }
-  ceckSkip() {
+  checkSkip() {
     this.canSkip = false;
 
     if (!this.research.canBuy) {

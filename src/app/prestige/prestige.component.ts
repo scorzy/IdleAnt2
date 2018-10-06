@@ -31,7 +31,7 @@ export class PrestigeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   ngOnInit() {
     this.sub = this.ms.updateEmitter.subscribe(() => {
-      this.ms.game.currentWorld.winContidions.forEach(w => w.reloadPercent());
+      this.ms.game.currentWorld.winConditions.forEach(w => w.reloadPercent());
       this.cd.markForCheck();
     });
   }

@@ -5,7 +5,7 @@ export enum MasteryTypes {
   MORE_IDLE_8H,
   FOOD_BONUS,
   SCIENCE_BONUS,
-  CRYSTALL_BONUS,
+  CRYSTAL_BONUS,
   SOIL_BONUS,
   HARVEST_BONUS,
   MATERIAL_GAIN,
@@ -16,7 +16,7 @@ export enum MasteryTypes {
   TEAM_START,
   TEAM_PRESTIGE,
   SCIENTIFIC_METHOD,
-  THECNOLOGY_PRESTIGE,
+  TECHNOLOGY_PRESTIGE,
   START_TWIN,
   FREE_WARP_RES,
   TIME_GEN_AND_BANK,
@@ -44,7 +44,7 @@ export const notable = [
 
 export class Mastery {
   static readonly normalColor = "#4286f4dd";
-  static readonly avaiableColor = "#008000dd";
+  static readonly availableColor = "#008000dd";
   static readonly ownedColor = "#ff0000dd";
   static readonly notableColor = "#ffa500dd";
 
@@ -71,7 +71,7 @@ export class Mastery {
         ret = "+" + 10 * num + "%\nsoil";
         break;
       }
-      case MasteryTypes.CRYSTALL_BONUS: {
+      case MasteryTypes.CRYSTAL_BONUS: {
         ret = "+" + 10 * num + "%\ncrystal";
         break;
       }
@@ -115,7 +115,7 @@ export class Mastery {
         ret = "scientific method research\n" + 100 * num + "% more effective";
         break;
       }
-      case MasteryTypes.THECNOLOGY_PRESTIGE: {
+      case MasteryTypes.TECHNOLOGY_PRESTIGE: {
         ret = "technology experience up\n" + 100 * num + "% more effective";
         break;
       }
@@ -169,7 +169,7 @@ export class Mastery {
 
   label = "";
   color = "blue";
-  avaiable = false;
+  available = false;
   owned = false;
 
   constructor(

@@ -20,7 +20,7 @@ export class ProductionSignpostsComponent implements OnInit {
   open = false;
 
   productionsAll = new Array<ProductionBonus>();
-  productionsEfficienty = new Array<ProductionBonus>();
+  productionsEfficiency = new Array<ProductionBonus>();
   productionsBonus = new Array<ProductionBonus>();
 
   constructor(public ms: MainService) {
@@ -29,15 +29,15 @@ export class ProductionSignpostsComponent implements OnInit {
 
   ngOnInit() {
     this.productionsAll = new Array<ProductionBonus>();
-    this.productionsEfficienty = new Array<ProductionBonus>();
+    this.productionsEfficiency = new Array<ProductionBonus>();
     this.productionsBonus = new Array<ProductionBonus>();
 
     if (this.production) {
       this.productionsAll = this.production.producer.productionsAll.filter(bn =>
         bn.isActive()
       );
-      if (this.production.rateo.gt(0)) {
-        this.productionsEfficienty = this.production.producer.productionsEfficienty.filter(
+      if (this.production.ratio.gt(0)) {
+        this.productionsEfficiency = this.production.producer.productionsEfficiency.filter(
           bn => bn.isActive()
         );
         this.productionsBonus = this.production.product.productionsBonus.filter(

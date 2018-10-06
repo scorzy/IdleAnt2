@@ -24,7 +24,7 @@ export class SaveComponent implements OnInit, OnDestroy, AfterViewInit {
   saveSub: any;
 
   constructor(public serv: MainService, private cd: ChangeDetectorRef) {
-    //Nothig
+    //Nothing
   }
   ngAfterViewInit(): void {
     if (typeof preventScroll === typeof Function) preventScroll();

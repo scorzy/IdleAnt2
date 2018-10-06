@@ -85,7 +85,7 @@ export class Game {
   stats: Stats;
   allMateries: AllMasteries;
   maxTimeBank = new Decimal(0);
-  firstEndigUnit: FullUnit;
+  firstEndingUnit: FullUnit;
 
   upNumber = 0;
 
@@ -206,7 +206,7 @@ export class Game {
     this.currentWorld = new World("home");
     this.currentWorld.name = "Home World";
     this.currentWorld.level = new Decimal(1);
-    this.currentWorld.winContidions.push(
+    this.currentWorld.winConditions.push(
       new Price(this.materials.food, CONSTS.BASE_WIN_CONDITION_MATERIALS)
     );
     this.currentWorld.setLevel(new Decimal(1), this);
@@ -242,7 +242,7 @@ export class Game {
       this.currentWorld.prestige = this.currentWorld.prestige
         .times(1.1)
         .floor();
-      this.currentWorld.winContidions.forEach(w => {
+      this.currentWorld.winConditions.forEach(w => {
         w.price = w.price.times(1.2).floor();
       });
       this.worldMalus.unlocked.forEach(m => {
@@ -355,7 +355,7 @@ export class Game {
   }
   /**
    * Update function.
-   * Works only with resource groving at max rate of x^3
+   * Works only with resource growing at max rate of x^3
    * When something reach zero consumers are stopped and it will update again
    * @param delta in milliseconds
    * @param force force update, used for warp in pause
@@ -372,7 +372,7 @@ export class Game {
 
     let maxTime = delta;
     let unitZero: FullUnit = null;
-    this.firstEndigUnit = null;
+    this.firstEndingUnit = null;
 
     this.unlockedUnits.forEach(u => {
       u.isEnding = false;
@@ -437,9 +437,9 @@ export class Game {
           unit.isEnding = true;
           if (
             !(unit instanceof Malus) &&
-            (!this.firstEndigUnit || this.firstEndigUnit.endIn > unit.endIn)
+            (!this.firstEndingUnit || this.firstEndingUnit.endIn > unit.endIn)
           ) {
-            this.firstEndigUnit = unit;
+            this.firstEndingUnit = unit;
           }
         }
       }
@@ -457,11 +457,11 @@ export class Game {
       // Something has ended
       if (unitZero) {
         //  Stop consumers
-        unitZero.producedBy.filter(p => p.rateo.lt(0)).forEach(p => {
+        unitZero.producedBy.filter(p => p.ratio.lt(0)).forEach(p => {
           p.producer.efficiency = 0;
         });
-        unitZero.producedBy.filter(p => p.rateo.gt(0)).forEach(p => {
-          p.producer.producedBy.filter(p2 => p2.rateo.lt(0)).forEach(p2 => {
+        unitZero.producedBy.filter(p => p.ratio.gt(0)).forEach(p => {
+          p.producer.producedBy.filter(p2 => p2.ratio.lt(0)).forEach(p2 => {
             p2.producer.efficiency = 0;
           });
         });
@@ -478,10 +478,10 @@ export class Game {
         }
       }
 
-      const remaning = delta - maxTime;
-      if (remaning > 10) {
+      const remaining = delta - maxTime;
+      if (remaining > 10) {
         // this.reloadProduction();
-        this.update(remaning);
+        this.update(remaining);
       }
     }
   }
@@ -578,7 +578,7 @@ export class Game {
       b[0].quantity = new Decimal(b[1]);
       b[0].unlocked = true;
     });
-    this.currentWorld.productionsEfficienty.forEach(b => {
+    this.currentWorld.productionsEfficiency.forEach(b => {
       b[0].quantity = new Decimal(b[1]);
       b[0].unlocked = true;
     });
@@ -596,7 +596,7 @@ export class Game {
   /**
    * Prestige, reset everything except prestige stuff
    * and move to another world
-   * @param world choosen world
+   * @param world chosen world
    */
   goToWorld(world: World): boolean {
     this.stats.logWorldCompleted(this.currentWorld, !this.canTravel);
@@ -633,16 +633,16 @@ export class Game {
     this.researches.reset(this.materials.science);
 
     //#region Followers
-    const flollowerMulti =
+    const followerMulti =
       this.allMateries.getSum(MasteryTypes.MORE_FOLLOWERS) + 1;
-    const flollowerMultiGa =
+    const followerMultiGa =
       this.allMateries.getSum(MasteryTypes.MORE_FOLLOWERS_GA) * 3;
-    const flollowerMultiWo =
+    const followerMultiWo =
       this.allMateries.getSum(MasteryTypes.MORE_FOLLOWERS_WO) * 3;
 
     this.units.filter(u => u.follower).forEach(u => {
       u.quantity = u.quantity.plus(
-        u.follower.quantity.times(u.followerQuantity).times(flollowerMulti)
+        u.follower.quantity.times(u.followerQuantity).times(followerMulti)
       );
       if (u.quantity.gt(0.5)) {
         u.unlock();
@@ -653,12 +653,12 @@ export class Game {
     });
     this.gatherers.list.filter(u => u.follower).forEach(u => {
       u.quantity = u.quantity.plus(
-        u.follower.quantity.times(u.followerQuantity).times(flollowerMultiGa)
+        u.follower.quantity.times(u.followerQuantity).times(followerMultiGa)
       );
     });
     this.advWorkers.list.filter(u => u.follower).forEach(u => {
       u.quantity = u.quantity.plus(
-        u.follower.quantity.times(u.followerQuantity).times(flollowerMultiWo)
+        u.follower.quantity.times(u.followerQuantity).times(followerMultiWo)
       );
     });
     //#endregion
