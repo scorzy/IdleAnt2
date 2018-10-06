@@ -95,8 +95,8 @@ describe("World", () => {
     world1.startingUnit = [[unit1, new Decimal(1)], [unit2, new Decimal(2)]];
     world2.startingUnit = [[unit2, new Decimal(1)], [unit3, new Decimal(2)]];
 
-    world1.winContidions = [new Price(unit1, new Decimal(2))];
-    world2.winContidions = [
+    world1.winConditions = [new Price(unit1, new Decimal(2))];
+    world2.winConditions = [
       new Price(unit1, new Decimal(2)),
       new Price(unit2, new Decimal(2))
     ];
@@ -124,12 +124,12 @@ describe("World", () => {
 
     expect(merged.startingUnlocked.length).toBe(0);
 
-    expect(merged.winContidions.length).toBe(2);
+    expect(merged.winConditions.length).toBe(2);
   });
   it("CanTravel", () => {
     const world1 = new World("");
     const unit = new FullUnit("");
-    world1.winContidions = [new Price(unit, new Decimal(20))];
+    world1.winConditions = [new Price(unit, new Decimal(20))];
     let canTravel = world1.canTravel();
     expect(canTravel).toBeFalsy();
     unit.quantity = new Decimal(20);

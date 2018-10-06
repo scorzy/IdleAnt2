@@ -25,7 +25,7 @@
             <h3 class="card-title">
               You need:
             </h3>
-            <div *ngFor="let price of ms.game.currentWorld.winContidions; trackBy:getPriceId">
+            <div *ngFor="let price of ms.game.currentWorld.winConditions; trackBy:getPriceId">
               <div class="winLabel">
                 {{price.base.name}}
                 <span class="monospace">

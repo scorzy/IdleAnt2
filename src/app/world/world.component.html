@@ -29,7 +29,7 @@
 
   <span class="p2">Win conditions:</span>
   <ul class="list">
-    <li *ngFor="let win of world.winContidions; trackBy:getWinId">
+    <li *ngFor="let win of world.winConditions; trackBy:getWinId">
       {{win.price | format:true}} {{win.base.name}}
     </li>
   </ul>

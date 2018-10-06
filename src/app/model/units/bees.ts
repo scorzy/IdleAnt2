@@ -69,7 +69,7 @@ export class Bees extends UnitGroup {
     const beeSuff = new World("beeSuff");
     [beeBio, beePre, beeSuff].forEach(w => {
       w.additionalBugs.push(BugTypes.BEE);
-      w.winContidions.push(
+      w.winConditions.push(
         new Price(this.nest, CONSTS.BASE_WIN_CONDITION_OTHER.times(0.8))
       );
     });

@@ -206,7 +206,7 @@ export class Game {
     this.currentWorld = new World("home");
     this.currentWorld.name = "Home World";
     this.currentWorld.level = new Decimal(1);
-    this.currentWorld.winContidions.push(
+    this.currentWorld.winConditions.push(
       new Price(this.materials.food, CONSTS.BASE_WIN_CONDITION_MATERIALS)
     );
     this.currentWorld.setLevel(new Decimal(1), this);
@@ -242,7 +242,7 @@ export class Game {
       this.currentWorld.prestige = this.currentWorld.prestige
         .times(1.1)
         .floor();
-      this.currentWorld.winContidions.forEach(w => {
+      this.currentWorld.winConditions.forEach(w => {
         w.price = w.price.times(1.2).floor();
       });
       this.worldMalus.unlocked.forEach(m => {
