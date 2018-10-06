@@ -4,58 +4,58 @@ export const STRINGS = {
     time: ["Time", ""],
     //  Materials
     f: ["Food", "Food is used to sustain all units."],
-    w: ["Soil", "Soil is used to build better nest."],
-    c: ["Crystal", "Crystal is used to make science."],
+    w: ["Soil", "Soil is used to build better a nest."],
+    c: ["Crystal", "Crystal is used for scientific research."],
     s: ["Science", "Science is used to discover new things."],
     //  Ants
     l: ["Larva", "Larva"],
     q: ["Queen", "Queen"],
     n: ["Nest", "Nest"],
     //  Gathering
-    e: ["Drone", "Drone gather food."],
-    h: ["Geologist", "Geologist will seek for crystals."],
+    e: ["Drone", "Drones gather food."],
+    h: ["Geologist", "Geologists will search for crystals."],
     i: [
       "Student",
       [
-        "Students will try to acquire science.",
-        "Students were used to drink crystal."
+        "Students will try to research science.",
+        "Students need to drink crystal."
       ]
     ],
     //  Workers
     a: [
       "Farmer",
       [
-        "Hydroponics farmers uses crystals to grow fungi without soil.",
+        "Hydroponics farmers use crystals to grow fungi without soil.",
         "Ants are the World’s Best Fungus Farmers.",
         "Farming since 10.000 BC."
       ]
     ],
-    b: ["Carpenter", "Carpenter ants builds nests in soil."],
+    b: ["Carpenter", "Carpenter ants build nests in soil."],
     m: [
       "Miner",
       [
-        "Miners extracts crystal through mining.",
+        "Miners extract crystals through mining.",
         "Unsurprisingly, yet another idle game with miners."
       ]
     ],
     d: [
       "Scientist",
       [
-        "Scientist gather science.",
-        "Scientist were used to drink cristal.",
-        "ScientAnts are like studentAnts, but betters."
+        "Scientists gather science.",
+        "Scientists need to drink crystal.",
+        "Scientists are like students, but better."
       ]
     ],
     // Buildings
-    aG: ["Farm", "An hydroponics farm."],
-    bG: ["Soil Camp", "Soil Camp is used to get more soil."],
+    aG: ["Farm", "A hydroponics farm."],
+    bG: ["Soil Camp", "A soil camp is used to get more soil."],
     mG: ["Mine", "A crystal mine."],
-    dG: ["University", "University yield scientists."],
+    dG: ["University", "A university trains Scientists."],
     //  Engineers
-    aGG: ["Hydro Eng.", "Hydro Engineers yield Farm."],
-    bGG: ["Soil Eng.", "Soil Engineers yield Soil Camp."],
-    mGG: ["Mine Eng.", "Mine Engineers yield Mine."],
-    dGG: ["Education Dep.", "Department of Education yield University."],
+    aGG: ["Hydro Eng.", "Hydro Engineers make Farms."],
+    bGG: ["Soil Eng.", "Soil Engineers make Soil Camps."],
+    mGG: ["Mine Eng.", "Mine Engineers make Mines."],
+    dGG: ["Education Dep.", "The Department of Education makes Universities."],
     //  World Bonus
     1: ["Food Production Bonus", ""],
     2: ["Soil Production Bonus", ""],
@@ -79,7 +79,7 @@ export const STRINGS = {
     Ms3: ["Colony of Zombie Fungus ", ""],
     //  Killers
     F: ["Disinfestation Ant", "Destroy poisonous fungus."],
-    W: ["Fire Ant", ["Burn Carnivorous plant", "Fire ant actually exists."]],
+    W: ["Fire Ant", ["Burn Carnivorous plant", "Fire ants actually exist."]],
     C: ["Black garden ant", "Kill Mites."],
     S: ["Yellow crazy Ant", "Kill Zombie Fungus."],
     HB: ["General", "+10% killing."],
@@ -103,22 +103,22 @@ export const STRINGS = {
     Q: ["Bee Larva", "Bee Larva"],
     P: ["Bee Queen", "Bee Queen"],
     N: ["Bee Hive", "Bee Hive"],
-    A: ["Bee Farmer", "Farm flowers."],
+    A: ["Bee Farmer", "Farms flowers."],
     B: ["Bee Carpenter", "Carpenter Bee."],
-    E: ["Bee Miner", "miner Bee."],
-    D: ["Bee Scientist", "scientist Bee."],
+    E: ["Bee Miner", "Miner Bee."],
+    D: ["Bee Scientist", "Scientist Bee."],
     AG: ["Flowers Farm", "Farm of flowers."],
     BG: ["Bee Soil Camp", "Bee Soil Camp"],
     EG: ["Bee Mine", "Bee Mine"],
     DG: ["Bee University", "Bee University"],
-    AGG: ["Florists Eng. ", "Florists Engineer yields Flowers Farms."],
-    BGG: ["Bee Soil Eng.", "Bee Soil Engineer yields Bee Soil Camp."],
-    EGG: ["Bee Mine Eng.", "Bee Mine Engineer yields Bee Mine."],
+    AGG: ["Florists Eng. ", "Florists Engineers make Flowers Farms."],
+    BGG: ["Bee Soil Eng.", "Bee Soil Engineers make Bee Soil Camps."],
+    EGG: ["Bee Mine Eng.", "Bee Mine Engineers make Bee Mines."],
     DGG: ["Bee's Dep. of Education", "Bee's Department of Education"],
     //  Wasp
     x: ["Foraging Wasp", "Foraging Wasp"],
     hw: ["Hornet", ["Hornet", "A wasp on steroids."]],
-    sw: ["Smart Wasp", "mart Wasp"],
+    sw: ["Smart Wasp", "Smart Wasp"],
     y: ["Wasp Larva", "Wasp Larva"],
     z: ["Wasp Queen", "Wasp Queen"],
     r: ["Wasp Hive", "Wasp Hive"],
@@ -130,12 +130,12 @@ export const STRINGS = {
     VG: ["Wasp Soil Camp", "Waspy Soil Camp."],
     oG: ["Wasp Mine", "Waspy Mine."],
     pG: ["Wasp University", "Waspy University"],
-    vGG: ["Wasp Hydro Eng.", "Wasp Hydro Engineer yields Wasp Farm."],
-    VGG: ["Wasp Soil Eng.", "Wasp Soil Engineer yields Wasp Soil Camp Farm."],
-    oGG: ["Wasp Mine Eng.", "Wasp Mine Engineer yields Wasp Mine."],
+    vGG: ["Wasp Hydro Eng.", "Wasp Hydro Engineer makes Wasp Farms."],
+    VGG: ["Wasp Soil Eng.", "Wasp Soil Engineer makes Wasp Soil Camp Farms."],
+    oGG: ["Wasp Mine Eng.", "Wasp Mine Engineer makes Wasp Mines."],
     pGG: [
       "Wasp's Dep. of Education",
-      "Wasp's Department of Education yields Wasp University."
+      "Wasp's Department of Education makes Wasp Universities."
     ],
     //  Helpers
     lf: ["Leaf Cutter", "Improve Farming."],
@@ -148,7 +148,7 @@ export const STRINGS = {
     t: ["Team Work", "Get production bonus based on manually bought."],
     T: ["Team Work 2", "Make team bonus upgradable."], // upgradable ?
     W: ["Twin", "Multiple units for same price."],
-    r: ["Travel", "Travel to a new world !"],
+    r: ["Travel", "Travel to a new world!"],
     M: ["Mastery", "Get one mastery point."],
     h: ["Harvesting", "+100% resource from Gatherers."],
     1: ["1H Warp", "Free time warp."],
@@ -157,7 +157,7 @@ export const STRINGS = {
     SP: ["Spawn", "+50% larvae production."],
     ont: [
       "Extreme",
-      "+10% world level and prestige;+20% requirements; add random malus and increase malus;if current world level is higher than 15 and higher than 50% Max Level, grant one mastery point on travel"
+      "+10% world level and prestige; +20% requirements; add random malus and increase malus; if current world level is higher than 15 and higher than 50% Max Level, grant one mastery point on travel"
     ],
     //  Workers
     wo: ["Better Workers", "+30% production from workers."],
@@ -165,24 +165,24 @@ export const STRINGS = {
     w: ["Workers", "Workers"],
     a: [
       "Farmer",
-      "Hydroponics farmers uses crystals to grow fungi without soil."
+      "Hydroponics farmers use crystals to grow fungi without soil."
     ],
     b: ["Carpenter", "Carpenter ants build nests consisting of galleries."],
     m: ["Miner", "miner"],
     d: ["Scientist", "scientist"],
     scie1: ["Scientific Method", "+50% science production"],
     // Buildings
-    u: ["Buildings", "Buildings yields workers."],
+    u: ["Buildings", "Buildings make workers."],
     aG: ["Farm", "Hydroponics farm of Fungus."],
     bG: ["Soil Camp", "A fertile soil source."],
     mG: ["Mine", "A crystal mine."],
-    dG: ["University", "University yields scientists."],
+    dG: ["University", "A university trains scientists."],
     //  Engineers
-    e: ["Engineers", "Engineers yields Buildings."],
-    aGG: ["Hydro Eng.", "Hydro Engineer yields Farm."],
-    bGG: ["Soil Eng.", "Soil Engineer yields Soil Camp."],
-    mGG: ["Mine Eng.", "Mine Engineer yields Mine."],
-    dGG: ["Dep. of Education", "Department of Education yields University"],
+    e: ["Engineers", "Engineers make Buildings."],
+    aGG: ["Hydro Eng.", "Hydro Engineers make Farms."],
+    bGG: ["Soil Eng.", "Soil Engineers make Soil Camps."],
+    mGG: ["Mine Eng.", "Mine Engineers make Mines."],
+    dGG: ["Dep. of Education", "Department of Education makes Universities."],
     //  Bee
     A: ["Bee Farmer", "Farm flowers."],
     B: ["Bee Carpenter", "Carpenter Bee."],
@@ -192,9 +192,9 @@ export const STRINGS = {
     BG: ["Bee Soil Camp", "Bee Soil Camp"],
     EG: ["Bee Mine", "Bee Mine"],
     DG: ["Bee University", "Bee University"],
-    AGG: ["Florists Eng. ", "Florists Engineer yields Flowers Farms."],
-    BGG: ["Bee Soil Eng.", "Bee Soil Engineer yields Bee Soil Camp."],
-    EGG: ["Bee Mine Eng.", "Bee Mine Engineer yields Bee Mine."],
+    AGG: ["Florists Eng. ", "Florists Engineers make Flowers Farms."],
+    BGG: ["Bee Soil Eng.", "Bee Soil Engineers make Bee Soil Camps."],
+    EGG: ["Bee Mine Eng.", "Bee Mine Engineers make Bee Mines."],
     DGG: ["Bee's Dep. of Education", "Bee's Department of Education"],
     // Wasp
     v: ["Wasp Farmer", "A Farming wasp."],
@@ -205,20 +205,20 @@ export const STRINGS = {
     VG: ["Wasp Soil Camp", "Waspy Soil Camp."],
     oG: ["Wasp Mine", "Waspy Mine."],
     pG: ["Wasp University", "Waspy University"],
-    vGG: ["Wasp Hydro Eng.", "Wasp Hydro Engineer yields Wasp Farm."],
-    VGG: ["Wasp Soil Eng.", "Wasp Soil Engineer yields Wasp Soil Camp Farm."],
-    oGG: ["Wasp Mine Eng.", "Wasp Mine Engineer yields Wasp Mine."],
+    vGG: ["Wasp Hydro Eng.", "Wasp Hydro Engineers make Wasp Farms."],
+    VGG: ["Wasp Soil Eng.", "Wasp Soil Engineers make Wasp Soil Camp Farms."],
+    oGG: ["Wasp Mine Eng.", "Wasp Mine Engineers make Wasp Mines."],
     pGG: [
       "Wasp's Dep. of Education",
-      "Wasp's Department of Education yields Wasp University."
+      "Wasp's Department of Education make Wasp Universities."
     ],
     //  Super Major
     sm: ["Super Major Helpers", ""],
     lf: ["Leaf Cutter", "Improve Farming."],
     mh: ["Big Miner", "Improve Mining."],
-    sh: ["Big Carpenter", "Improve soil gathering."],
+    sh: ["Big Carpenter", "Improve Soil Gathering."],
     //  Kill World
-    aow: ["Art of War", "Improve killers by 10%"]
+    aow: ["Art of War", "Improve Killers by 10%"]
   },
   worlds: {
     "1Pre": "Hot",
