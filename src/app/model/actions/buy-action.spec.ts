@@ -18,9 +18,9 @@ describe("BuyAction", () => {
   });
   it("not buy", () => {
     const unit = new FullUnit("id", "name", "desc", new Decimal(0));
-    const cuerency = new FullUnit("id2", "name2", "desc2", new Decimal(0));
+    const currency = new FullUnit("id2", "name2", "desc2", new Decimal(0));
     const buyAction = new BuyAction(
-      [new Price(cuerency, new Decimal(1e50), 1.1)],
+      [new Price(currency, new Decimal(1e50), 1.1)],
       unit
     );
     buyAction.buy(new Decimal(10));
