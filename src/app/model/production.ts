@@ -31,9 +31,9 @@ export class Production {
         .reduce((p, n) => p.plus(n), new Decimal(0));
       bonus = bonus.plus(producerAllBonus);
 
-      // Producer Efficienty Bonus
+      // Producer Efficiency Bonus
       if (this.ratio.gt(0)) {
-        const producerBonus = this.producer.productionsEfficienty
+        const producerBonus = this.producer.productionsEfficiency
           .filter(bn => bn.isActive())
           .map(prod => prod.getBonus())
           .reduce((p, n) => p.plus(n), new Decimal(0));
@@ -48,7 +48,7 @@ export class Production {
       }
       this.prodPerSec = this.prodPerSec.times(bonus);
 
-      // Efficienty slider
+      // Efficiency slider
       this.prodPerSec = this.prodPerSec.times(this.producer.efficiency / 100);
     }
   }

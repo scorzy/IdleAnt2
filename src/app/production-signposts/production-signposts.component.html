@@ -13,13 +13,13 @@
         Teamwork bonus: +{{production.producer.bonus.times(100) | format}}%
       </li>
     </ul>
-    <div *ngIf="productionsAll.length +productionsEfficienty.length +  productionsBonus.length >0">
+    <div *ngIf="productionsAll.length +productionsEfficiency.length +  productionsBonus.length >0">
       <h6>Additive Bonus:</h6>
       <ul class="list">
         <li *ngFor="let bon of productionsAll; trackBy getProdID">
           {{bon.unit.name}}: +{{bon.getBonusPercent() | format }}%
         </li>
-        <li *ngFor="let bon of productionsEfficienty; trackBy getProdID">
+        <li *ngFor="let bon of productionsEfficiency; trackBy getProdID">
           {{bon.unit.name}}: +{{bon.getBonusPercent() | format }}%
         </li>
         <li *ngFor="let bon of productionsBonus; trackBy getProdID">

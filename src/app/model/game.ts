@@ -578,7 +578,7 @@ export class Game {
       b[0].quantity = new Decimal(b[1]);
       b[0].unlocked = true;
     });
-    this.currentWorld.productionsEfficienty.forEach(b => {
+    this.currentWorld.productionsEfficiency.forEach(b => {
       b[0].quantity = new Decimal(b[1]);
       b[0].unlocked = true;
     });

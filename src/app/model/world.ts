@@ -24,7 +24,7 @@ export class World {
 
   //  Productions Bonus/Malus
   productionsBonus = new Array<[BaseUnit, Decimal]>();
-  productionsEfficienty = new Array<[BaseUnit, Decimal]>();
+  productionsEfficiency = new Array<[BaseUnit, Decimal]>();
   productionsAll = new Array<[BaseUnit, Decimal]>();
 
   // Unlocked stuff
@@ -56,7 +56,7 @@ export class World {
 
     const multi = this.level.div(5).plus(1);
     this.productionsBonus.forEach(b => (b[1] = b[1].times(multi)));
-    this.productionsEfficienty.forEach(b => (b[1] = b[1].times(multi)));
+    this.productionsEfficiency.forEach(b => (b[1] = b[1].times(multi)));
     this.productionsAll.forEach(b => (b[1] = b[1].times(multi)));
     this.startingUnit.forEach(b => (b[1] = b[1].times(multi)));
 
@@ -100,7 +100,7 @@ export class World {
     if (multiBonus.gt(1)) {
       [
         this.productionsBonus,
-        this.productionsEfficienty,
+        this.productionsEfficiency,
         this.productionsAll
       ].forEach(prod => {
         prod.forEach(p => {
@@ -155,7 +155,7 @@ export class World {
       n: this.name,
       l: this.level,
       pb: this.productionsBonus.map(b => [b[0].id, b[1]]),
-      pe: this.productionsEfficienty.map(b => [b[0].id, b[1]]),
+      pe: this.productionsEfficiency.map(b => [b[0].id, b[1]]),
       pa: this.productionsAll.map(b => [b[0].id, b[1]]),
       wc: this.winConditions.map(w => [w.base.id, w.price]),
       nwc: this.notWinConditions.map(n => n.id),
@@ -173,7 +173,7 @@ export class World {
       ]);
     }
     if ("pe" in data) {
-      this.productionsEfficienty = data.pe.map(b => [
+      this.productionsEfficiency = data.pe.map(b => [
         this.findBonus(b[0], game),
         new Decimal(b[1])
       ]);
@@ -223,12 +223,12 @@ export class World {
         if (!prod) retWorld.productionsBonus.push([a[0], new Decimal(a[1])]);
         else prod[1] = prod[1].plus(a[1]);
       });
-      w.productionsEfficienty.forEach(a => {
-        const prod = retWorld.productionsEfficienty.find(
+      w.productionsEfficiency.forEach(a => {
+        const prod = retWorld.productionsEfficiency.find(
           p => p[0].id === a[0].id
         );
         if (!prod) {
-          retWorld.productionsEfficienty.push([a[0], new Decimal(a[1])]);
+          retWorld.productionsEfficiency.push([a[0], new Decimal(a[1])]);
         } else prod[1] = prod[1].plus(a[1]);
       });
       w.productionsAll.forEach(a => {

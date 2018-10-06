@@ -46,7 +46,7 @@ export class AllMasteries {
     this.harvestBonus = new BaseUnit("harvMast");
     const harvBon = new ProductionBonus(this.harvestBonus, new Decimal(0.2));
     game.gatherers.list.forEach(u => {
-      u.productionsEfficienty.push(harvBon);
+      u.productionsEfficiency.push(harvBon);
     });
 
     this.materialBonus = new BaseUnit("matMast");

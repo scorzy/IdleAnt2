@@ -12,7 +12,7 @@
     <li *ngFor="let bon of world.productionsBonus; trackBy:getBonusId">
       {{bon[0].name }} + {{bon[0].usedForProductionBonus[0].getBonusPercentForNum(bon[1]) |format }}%
     </li>
-    <li *ngFor="let bon of world.productionsEfficienty; trackBy:getBonusId">
+    <li *ngFor="let bon of world.productionsEfficiency; trackBy:getBonusId">
       {{bon[0].name }} + {{bon[0].usedForProductionBonus[0].getBonusPercentForNum(bon[1]) |format }}%
     </li>
     <li *ngFor="let bon of world.productionsAll; trackBy:getBonusId">

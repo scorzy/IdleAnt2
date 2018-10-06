@@ -41,7 +41,7 @@ export class FullUnit extends BaseUnit implements IUnlocable {
   //  Increase production of this unit by other unit
   productionsBonus = new Array<ProductionBonus>();
 
-  productionsEfficienty = new Array<ProductionBonus>();
+  productionsEfficiency = new Array<ProductionBonus>();
   productionsAll = new Array<ProductionBonus>();
 
   malus: Malus = null;

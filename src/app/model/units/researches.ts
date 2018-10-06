@@ -78,7 +78,7 @@ export class Researches {
     game.advWorkers.firstResearch.toUnlock.push(this.harvesting);
     const bonus = new ProductionBonus(this.harvesting, new Decimal(1));
     game.gatherers.list.forEach(u => {
-      u.productionsEfficienty.push(bonus);
+      u.productionsEfficiency.push(bonus);
     });
     this.game.buildings.firstResearch.toUnlock.push(this.spawn);
     this.game.engineers.firstResearch.toUnlock.push(this.travel);

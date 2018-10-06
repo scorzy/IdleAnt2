@@ -25,7 +25,7 @@ describe("World", () => {
 
     world1.productionsAll = [[game.worldBonus.foodBonus, new Decimal(2)]];
     world1.productionsBonus = [[game.worldBonus.soilBonus, new Decimal(3)]];
-    world1.productionsEfficienty = [
+    world1.productionsEfficiency = [
       [game.worldBonus.scienceBonus, new Decimal(4)]
     ];
 
@@ -40,10 +40,10 @@ describe("World", () => {
     expect(world2.productionsBonus[0][0].id).toBe(game.worldBonus.soilBonus.id);
     expect(world2.productionsBonus[0][1].toNumber()).toBe(3);
 
-    expect(world2.productionsEfficienty[0][0].id).toBe(
+    expect(world2.productionsEfficiency[0][0].id).toBe(
       game.worldBonus.scienceBonus.id
     );
-    expect(world2.productionsEfficienty[0][1].toNumber()).toBe(4);
+    expect(world2.productionsEfficiency[0][1].toNumber()).toBe(4);
   });
   it("Merge", () => {
     const world1 = new World();
@@ -74,16 +74,16 @@ describe("World", () => {
       [unit5, new Decimal(2)]
     ];
 
-    world1.productionsEfficienty = [
+    world1.productionsEfficiency = [
       [unit1, new Decimal(1)],
       [unit6, new Decimal(2)]
     ];
-    world2.productionsEfficienty = [
+    world2.productionsEfficiency = [
       [unit1, new Decimal(1)],
       [unit4, new Decimal(1)],
       [unit3, new Decimal(2)]
     ];
-    world3.productionsEfficienty = [
+    world3.productionsEfficiency = [
       [unit2, new Decimal(1)],
       [unit5, new Decimal(2)]
     ];

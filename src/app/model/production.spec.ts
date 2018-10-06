@@ -7,7 +7,7 @@ describe("Production", () => {
   const producerSpy = jasmine.createSpyObj("FullUnit", ["id"]);
   const productSpy = jasmine.createSpyObj("FullUnit", ["id"]);
   productSpy.productionsBonus = new Array<[BaseUnit, Decimal]>();
-  producerSpy.productionsEfficienty = new Array<[BaseUnit, Decimal]>();
+  producerSpy.productionsEfficiency = new Array<[BaseUnit, Decimal]>();
   producerSpy.productionsAll = new Array<[BaseUnit, Decimal]>();
 
   let producer: FullUnit;
@@ -29,7 +29,7 @@ describe("Production", () => {
     const base1 = new BaseUnit("");
     base1.quantity = new Decimal(1);
     producer.productionsAll.push(new ProductionBonus(base1, new Decimal(3)));
-    producer.productionsEfficienty.push(
+    producer.productionsEfficiency.push(
       new ProductionBonus(base1, new Decimal(1))
     );
     product.productionsBonus.push(new ProductionBonus(base1, new Decimal(4)));
