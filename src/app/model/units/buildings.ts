@@ -1,4 +1,4 @@
-import { CONSTS } from "../CONSTATS";
+import { CONSTS } from "../CONSTANTS";
 import { Game } from "../game";
 import { Price } from "../price";
 import { Research } from "../research";

@@ -12,7 +12,7 @@ import {
 } from "@angular/core";
 import { MainService } from "../../main.service";
 import { ActionGroup } from "../../model/actions/action-group";
-import { CONSTS } from "../../model/CONSTATS";
+import { CONSTS } from "../../model/CONSTANTS";
 import { FullUnit } from "../../model/full-unit";
 import { UnitGroup } from "../../model/unit-group";
 import {

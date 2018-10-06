@@ -1,5 +1,5 @@
 import { BugTypes, Tags } from "../bugsTypes";
-import { CONSTS } from "../CONSTATS";
+import { CONSTS } from "../CONSTANTS";
 import { Game } from "../game";
 import { Helper } from "../helper";
 import { Price } from "../price";

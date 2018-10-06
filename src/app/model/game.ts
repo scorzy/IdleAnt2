@@ -3,7 +3,7 @@ import { MainService } from "../main.service";
 import { WarpAction } from "./actions/warp-action";
 import { AutoBuyManager } from "./autoBuy/auto-buy-manager";
 import { BugTypes } from "./bugsTypes";
-import { CONSTS } from "./CONSTATS";
+import { CONSTS } from "./CONSTANTS";
 import { FullUnit } from "./full-unit";
 import { Malus } from "./malus";
 import { AllMasteries } from "./masteries/all-masteries";

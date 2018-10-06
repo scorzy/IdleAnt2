@@ -10,7 +10,7 @@ import {
   ViewChild
 } from "@angular/core";
 import { MainService } from "../../main.service";
-import { CONSTS } from "../../model/CONSTATS";
+import { CONSTS } from "../../model/CONSTANTS";
 import { FullUnit } from "../../model/full-unit";
 declare let Chart;
 

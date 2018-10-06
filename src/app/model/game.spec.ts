@@ -1,6 +1,6 @@
 import uniq from "lodash-es/uniq";
 import { getGame } from "../app.component.spec";
-import { CONSTS } from "./CONSTATS";
+import { CONSTS } from "./CONSTANTS";
 import { FullUnit } from "./full-unit";
 import { Game } from "./game";
 import { World } from "./world";

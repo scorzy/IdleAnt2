@@ -1,6 +1,6 @@
 import { BaseUnit } from "../baseUnit";
 import { Tags } from "../bugsTypes";
-import { CONSTS } from "../CONSTATS";
+import { CONSTS } from "../CONSTANTS";
 import { FullUnit } from "../full-unit";
 import { Game } from "../game";
 import { Price } from "../price";
