@@ -148,7 +148,7 @@ export class MainService {
       return LZString.compressToBase64(JSON.stringify(save));
     } catch (ex) {
       this.toastr.error(
-        ex && ex.message ? ex.message : "unknow error",
+        ex && ex.message ? ex.message : "unknown error",
         "Save Error"
       );
     }
@@ -167,7 +167,7 @@ export class MainService {
       } else this.toastr.error("Unknow error 1", "Save Error");
     } catch (ex) {
       this.toastr.error(
-        ex && ex.message ? ex.message : "unknow error",
+        ex && ex.message ? ex.message : "unknown error",
         "Save Error"
       );
     }
@@ -211,7 +211,7 @@ export class MainService {
       setTimeout(
         () =>
           this.toastr.error(
-            ex && ex.message ? ex.message : "unknow error",
+            ex && ex.message ? ex.message : "unknown error",
             "Load Error"
           ),
         0
@@ -226,7 +226,7 @@ export class MainService {
       setTimeout(
         () =>
           this.toastr.error(
-            ex && ex.message ? ex.message : "unknow error",
+            ex && ex.message ? ex.message : "unknown error",
             "Load Error"
           ),
         0
