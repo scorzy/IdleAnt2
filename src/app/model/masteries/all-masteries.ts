@@ -69,13 +69,13 @@ export class AllMasteries {
     const av3 = new Mastery(10, MasteryTypes.HARVEST_BONUS);
     const av4 = new Mastery(15, MasteryTypes.SCIENCE_BONUS);
     av1.avaiable = true;
-    av1.color = Mastery.avaiableColor;
+    av1.color = Mastery.availableColor;
     av2.avaiable = true;
-    av2.color = Mastery.avaiableColor;
+    av2.color = Mastery.availableColor;
     av3.avaiable = true;
-    av3.color = Mastery.avaiableColor;
+    av3.color = Mastery.availableColor;
     av4.avaiable = true;
-    av4.color = Mastery.avaiableColor;
+    av4.color = Mastery.availableColor;
     this.starting = [av1, av2, av3, av4];
 
     const matGain = new Mastery(20, MasteryTypes.MATERIAL_GAIN);
@@ -166,7 +166,7 @@ export class AllMasteries {
           nodes.forEach(n => {
             {
               n.avaiable = true;
-              n.color = Mastery.avaiableColor;
+              n.color = Mastery.availableColor;
             }
           });
           this.visMasteries.update(nodes);
@@ -226,7 +226,7 @@ export class AllMasteries {
     this.visMasteries.update(update);
     this.starting.forEach(m => {
       m.avaiable = true;
-      m.color = Mastery.avaiableColor;
+      m.color = Mastery.availableColor;
     });
     this.visMasteries.update(this.starting);
   }

@@ -44,7 +44,7 @@ export const notable = [
 
 export class Mastery {
   static readonly normalColor = "#4286f4dd";
-  static readonly avaiableColor = "#008000dd";
+  static readonly availableColor = "#008000dd";
   static readonly ownedColor = "#ff0000dd";
   static readonly notableColor = "#ffa500dd";
 
