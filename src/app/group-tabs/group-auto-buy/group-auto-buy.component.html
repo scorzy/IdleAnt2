@@ -40,9 +40,12 @@
               <select name="sel"
                       [(ngModel)]="autoBuyType">
                 <option value="0">All Types</option>
-                <option value="1">Hatch</option>
-                <option value="2">Team</option>
-                <option value="3">Twin</option>
+                <option value="1"
+                        *ngIf="ms.game.allPrestige.autoBuyUnlock.autoBuyQuantity.done">Hatch</option>
+                <option value="2"
+                        *ngIf="ms.game.allPrestige.autoBuyUnlock.autoBuyTeam.done">Team</option>
+                <option value="3"
+                        *ngIf="ms.game.allPrestige.autoBuyUnlock.autoBuyTwin.done">Twin</option>
               </select>
             </div>
           </div>
