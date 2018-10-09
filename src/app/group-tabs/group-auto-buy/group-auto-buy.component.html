@@ -2,6 +2,67 @@
   <div *ngIf="unitGroup"
        class="clr-col-xs-12	clr-col-sm-6	clr-col-md-6	clr-col-lg-6	clr-col-xl-6">
 
+    <h5>
+      Aggregate group for AutoBuyers.
+    </h5>
+
+    <button class="btn btn-success-outline"
+            (click)="allOn(true)">All ON</button>
+    <button class="btn btn-danger-outline"
+            (click)="allOn(false)">All OFF</button>
+    <button class="btn btn-outline"
+            (click)="multiModal = true">MaxBuy multi</button>
+
+    <clr-modal [(clrModalOpen)]="multiModal">
+      <h3 class="modal-title">Set MaxBuy multi</h3>
+      <div class="modal-body">
+        <form clrForm
+              class="clr-form clr-form-compact">
+
+          <div class="form-group">
+            <label for="price_m">MaxBuy multi:</label>
+            <input class="clr-input"
+                   placeholder="Priority"
+                   name="price_m"
+                   [(ngModel)]="reqMulti"
+                   type="number"
+                   placeholder="1"
+                   min="0"
+                   max="1"
+                   step="0.01"
+                   size="2" />
+          </div>
+
+          <!-- <label>AutoBuyer type:</label> -->
+          <div class="form-group">
+            <label for="sel">AutoBuyer type:</label>
+            <div class="select">
+              <select name="sel"
+                      [(ngModel)]="autoBuyType">
+                <option value="0">All Types</option>
+                <option value="1">Hatch</option>
+                <option value="2">Team</option>
+                <option value="3">Twin</option>
+              </select>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button"
+                class="btn btn-outline"
+                (click)="multiModal = false">Cancel</button>
+        <button type="button"
+                class="btn btn-primary"
+                (click)="setMulti(false)">Selected</button>
+        <button type="button"
+                class="btn btn-primary"
+                (click)="setMulti(true)">All</button>
+      </div>
+    </clr-modal>
+
     <app-action-group *ngIf="hatchActionGrp"
                       [actGr]="hatchActionGrp"></app-action-group>
     <app-action-group *ngIf="teamActionGrp && ms.game.researches.team2.done"
@@ -12,11 +73,76 @@
   </div>
   <div *ngIf="unitGroup"
        class="clr-col-xs-12	clr-col-sm-6	clr-col-md-6	clr-col-lg-6	clr-col-xl-6">
+    <h6> Auto Buyers: </h6>
 
     <clr-datagrid *ngIf="unitGroup"
                   class="datagrid-compact"
                   [(clrDgSelected)]="unitGroup.selected"
                   (clrDgSelectedChange)="selectedChanged($event)">
+
+      <clr-dg-column [clrDgField]="'unit.name'">Name</clr-dg-column>
+
+      <clr-dg-column [clrDgSortBy]="unitAutoHatchSorter"
+                     *ngIf="ms.game.allPrestige.autoBuyUnlock.autoBuyQuantity.done">
+        Hatch - multi
+      </clr-dg-column>
+      <clr-dg-column [clrDgSortBy]="unitAutoTeamSorter"
+                     *ngIf="ms.game.allPrestige.autoBuyUnlock.autoBuyTeam.done">
+        Team - multi
+      </clr-dg-column>
+      <clr-dg-column [clrDgSortBy]="unitAutoTwinSorter"
+                     *ngIf="ms.game.allPrestige.autoBuyUnlock.autoBuyTwin.done">
+        Twin - multi
+      </clr-dg-column>
+      <clr-dg-row *clrDgItems="let unit of unitGroup.unlocked"
+                  [clrDgItem]="unit">
+        <clr-dg-cell>
+          <a [routerLink]="'/nav/unit/'+unit.id">
+            {{unit.name}}
+          </a>
+        </clr-dg-cell>
+
+        <clr-dg-cell *ngIf="ms.game.allPrestige.autoBuyUnlock.autoBuyQuantity.done && unit.buyAction?.autoBuyer"
+                     class="monospace">
+          <clr-checkbox *ngIf="unit.buyAction?.autoBuyer?.quantity.gt(0)"
+                        name="chkH"
+                        [attr.id]="unit.id+ 'chkH'"
+                        (change)="reload()"
+                        [(ngModel)]="unit.buyAction.autoBuyer.active">
+            <span class="monospace">
+              {{unit.buyAction?.autoBuyer?.quantity | format: true}}
+              {{unit.buyAction?.autoBuyer?.priceSavePercent | format: false}}
+            </span>
+          </clr-checkbox>
+        </clr-dg-cell>
+        <clr-dg-cell *ngIf="ms.game.allPrestige.autoBuyUnlock.autoBuyTeam.done"
+                     class="monospace">
+          <clr-checkbox *ngIf="unit.teamAction?.autoBuyer?.quantity.gt(0)"
+                        name="chkT"
+                        [attr.id]="unit.id+ 'chkT'"
+                        (change)="reload()"
+                        [(ngModel)]="unit.teamAction.autoBuyer.active">
+            <span class="monospace">
+              {{unit.teamAction?.autoBuyer?.quantity | format: true}}
+              {{unit.teamAction?.autoBuyer?.priceSavePercent | format: false}}
+            </span>
+          </clr-checkbox>
+        </clr-dg-cell>
+        <clr-dg-cell *ngIf="ms.game.allPrestige.autoBuyUnlock.autoBuyTwin.done"
+                     class="monospace">
+          <clr-checkbox *ngIf="unit.twinAction?.autoBuyer?.quantity.gt(0)"
+                        name="chkW"
+                        [attr.id]="unit.id+ 'chkW'"
+                        (change)="reload()"
+                        [(ngModel)]="unit.twinAction.autoBuyer.active">
+            <span class="monospace">
+              {{unit.twinAction?.autoBuyer?.quantity | format: true}}
+              {{unit.twinAction?.autoBuyer?.priceSavePercent | format: false}}
+            </span>
+          </clr-checkbox>
+        </clr-dg-cell>
+
+      </clr-dg-row>
 
 
     </clr-datagrid>

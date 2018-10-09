@@ -1,3 +1,7 @@
+9-10-2018
+- Group AutoBuy page
+- Removed team bonus from larvae
+
 7-10-2018
 - Lots of Spelling fixes
 

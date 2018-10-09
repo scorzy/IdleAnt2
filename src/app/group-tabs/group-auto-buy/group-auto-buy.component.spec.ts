@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ClarityModule } from "@clr/angular";
 import { ToastrModule, ToastrService } from "ngx-toastr";
+import { EndInPipe } from "../../end-in.pipe";
+import { FormatPipe } from "../../format.pipe";
 import { MainService } from "../../main.service";
 import { OptionsService } from "../../options.service";
 import { GroupAutoBuyComponent } from "./group-auto-buy.component";
@@ -16,7 +18,7 @@ describe("GroupAutoBuyComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [GroupAutoBuyComponent],
+      declarations: [GroupAutoBuyComponent, FormatPipe, EndInPipe],
       imports: [
         ClarityModule,
         ToastrModule.forRoot(),

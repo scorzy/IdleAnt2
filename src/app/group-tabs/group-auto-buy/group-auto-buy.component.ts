@@ -10,6 +10,11 @@ import {
 import { MainService } from "../../main.service";
 import { ActionGroup } from "../../model/actions/action-group";
 import { UnitGroup } from "../../model/unit-group";
+import {
+  UnitAutoHatchSorter,
+  UnitAutoTeamSorter,
+  UnitAutoTwinSorter
+} from "../../model/utility";
 
 @Component({
   selector: "app-group-auto-buy",
@@ -25,6 +30,14 @@ export class GroupAutoBuyComponent implements OnInit, OnDestroy {
   hatchActionGrp: ActionGroup;
   teamActionGrp: ActionGroup;
   twinActionGrp: ActionGroup;
+
+  unitAutoHatchSorter = new UnitAutoHatchSorter();
+  unitAutoTeamSorter = new UnitAutoTeamSorter();
+  unitAutoTwinSorter = new UnitAutoTwinSorter();
+
+  multiModal = false;
+  reqMulti = 1;
+  autoBuyType = "0";
 
   constructor(public ms: MainService, private cd: ChangeDetectorRef) {}
 
@@ -95,5 +108,51 @@ export class GroupAutoBuyComponent implements OnInit, OnDestroy {
       this.teamActionGrp = null;
       this.twinActionGrp = null;
     }
+  }
+  reload() {
+    this.ms.game.autoBuyManager.buildActiveList();
+  }
+  allOn(status = true) {
+    this.unitGroup.unlocked.forEach(u => {
+      if (u.buyAction && u.buyAction.autoBuyer) {
+        u.buyAction.autoBuyer.active = status;
+      }
+      if (u.teamAction && u.teamAction.autoBuyer) {
+        u.teamAction.autoBuyer.active = status;
+      }
+      if (u.twinAction && u.twinAction.autoBuyer) {
+        u.twinAction.autoBuyer.active = status;
+      }
+    });
+    this.reload();
+  }
+  setMulti(all = true) {
+    if (this.reqMulti <= 1 && this.reqMulti > 0) {
+      const selection = all ? this.unitGroup.unlocked : this.unitGroup.selected;
+      selection.forEach(u => {
+        switch (this.autoBuyType) {
+          case "0": {
+            u.buyAction.autoBuyer.priceSavePercent = this.reqMulti;
+            u.teamAction.autoBuyer.priceSavePercent = this.reqMulti;
+            u.twinAction.autoBuyer.priceSavePercent = this.reqMulti;
+            break;
+          }
+          case "1": {
+            u.buyAction.autoBuyer.priceSavePercent = this.reqMulti;
+            break;
+          }
+          case "2": {
+            u.teamAction.autoBuyer.priceSavePercent = this.reqMulti;
+            break;
+          }
+          case "3": {
+            u.twinAction.autoBuyer.priceSavePercent = this.reqMulti;
+            break;
+          }
+        }
+      });
+    }
+
+    this.multiModal = false;
   }
 }

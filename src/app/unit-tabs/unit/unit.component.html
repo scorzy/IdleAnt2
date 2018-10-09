@@ -4,7 +4,7 @@
 
       <h5>{{unit.description}}</h5>
 
-      <p *ngIf="ms.game.researches.team1.done && unit.buyAction && unit.bonus.gt(0)">
+      <p *ngIf="ms.game.researches.team1.done && unit.buyAction && unit.bonus.gt(0) && unit.produces.length > 0">
         You bought this {{unit.buyAction.quantity | format}} times; bonus: + {{unit.bonus.times(100) | format}}%
       </p>
 

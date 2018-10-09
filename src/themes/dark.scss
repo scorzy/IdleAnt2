@@ -21,14 +21,19 @@
 ::-webkit-scrollbar-track:active {
   background: rgb(15, 23, 28);
 }
-.select select option {
-  background: #1b2a32;
-  color: #e9ecef;
+select option {
+  background: #1b2a32 !important;
+  color: #e9ecef !important;
+}
+
+select {
+  color: #e9ecef !important;
 }
 
 .ui-widget-content {
   border: 1px solid #49afd9 !important;
 }
+
 .nav-group-content {
   background: #404e60 !important;
 }

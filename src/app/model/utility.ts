@@ -256,6 +256,29 @@ export class UnitTwinSorter
     return a.twinAction.quantity.cmp(b.twinAction.quantity);
   }
 }
+
+// tslint:disable-next-line:max-classes-per-file
+export class UnitAutoHatchSorter
+  implements ClrDatagridComparatorInterface<FullUnit> {
+  compare(a: FullUnit, b: FullUnit) {
+    return a.buyAction.autoBuyer.quantity.cmp(b.buyAction.autoBuyer.quantity);
+  }
+}
+// tslint:disable-next-line:max-classes-per-file
+export class UnitAutoTeamSorter
+  implements ClrDatagridComparatorInterface<FullUnit> {
+  compare(a: FullUnit, b: FullUnit) {
+    return a.teamAction.autoBuyer.quantity.cmp(b.teamAction.autoBuyer.quantity);
+  }
+}
+// tslint:disable-next-line:max-classes-per-file
+export class UnitAutoTwinSorter
+  implements ClrDatagridComparatorInterface<FullUnit> {
+  compare(a: FullUnit, b: FullUnit) {
+    return a.twinAction.autoBuyer.quantity.cmp(b.twinAction.autoBuyer.quantity);
+  }
+}
+
 // tslint:disable-next-line:max-classes-per-file
 export class RunExpSorter implements ClrDatagridComparatorInterface<Run> {
   compare(a: Run, b: Run) {
