@@ -144,7 +144,7 @@ export class Mastery {
         break;
       }
       case MasteryTypes.BETTER_WORLD: {
-        ret = "+20%\nWorld Bonus";
+        ret = "+" + 20 * num + "%\nWorld Bonus";
         break;
       }
       case MasteryTypes.BETTER_WORLD_EXPERIENCE: {

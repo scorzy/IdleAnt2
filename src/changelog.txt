@@ -1,6 +1,7 @@
 9-10-2018
 - Group AutoBuy page
 - Removed team bonus from larvae
+- Fixed Mastery "World Bonus" label not showing correct quantity
 
 7-10-2018
 - Lots of Spelling fixes
