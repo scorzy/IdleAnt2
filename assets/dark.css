@@ -10,7 +10,9 @@
 
 ::-webkit-scrollbar-track:active { background: #0f171c; }
 
-.select select option { background: #1b2a32; color: #e9ecef; }
+select option { background: #1b2a32 !important; color: #e9ecef !important; }
+
+select { color: #e9ecef !important; }
 
 .ui-widget-content { border: 1px solid #49afd9 !important; }
 
