@@ -5,6 +5,7 @@ import {
   Component,
   ElementRef,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   ViewChild
@@ -20,7 +21,8 @@ declare let Chart;
   styleUrls: ["./made-by-chart.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MadeByChartComponent implements OnInit, OnDestroy, AfterViewInit {
+export class MadeByChartComponent
+  implements OnInit, OnDestroy, AfterViewInit, OnChanges {
   @Input()
   unit: FullUnit;
   @Input()
@@ -48,7 +50,7 @@ export class MadeByChartComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnChanges() {
     this.title =
       (this.consumers ? "Consumer" : "Producers") + " % of " + this.unit.name;
-    this.updateData();
+    this.updateData(true);
   }
 
   ngAfterViewInit() {
@@ -84,7 +86,7 @@ export class MadeByChartComponent implements OnInit, OnDestroy, AfterViewInit {
     this.updateData();
   }
 
-  updateData() {
+  updateData(force = false) {
     if (!this.chart) return;
 
     const activeProducer = this.unit.producedBy.filter(
@@ -96,7 +98,7 @@ export class MadeByChartComponent implements OnInit, OnDestroy, AfterViewInit {
     );
 
     const labels = activeProducer.map(p => p.producer.name);
-    if (this.chart.data.labels.length !== labels.length) {
+    if (this.chart.data.labels.length !== labels.length || force) {
       this.chart.data.labels = labels;
     }
     const total = activeProducer
@@ -112,7 +114,7 @@ export class MadeByChartComponent implements OnInit, OnDestroy, AfterViewInit {
       )
     );
 
-    if (data.length !== this.chart.data.datasets[0].data) {
+    if (data.length !== this.chart.data.datasets[0].data || force) {
       this.chart.data.datasets[0].data = data;
       this.chart.update();
       this.cd.markForCheck();

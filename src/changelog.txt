@@ -2,6 +2,7 @@
 - Group AutoBuy page
 - Removed team bonus from larvae
 - Fixed Mastery "World Bonus" label not showing correct quantity
+- Fixed chart label not updating
 
 7-10-2018
 - Lots of Spelling fixes
