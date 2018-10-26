@@ -2,13 +2,26 @@
 // https://www.typescriptlang.org/docs/handbook/writing-declaration-files.html
 /* SystemJS module definition */
 
-declare module "*.json" {
-  const value: any;
-  export default value;
-}
+// declare module "*.json" {
+//   const value: any;
+//   export default value;
+// }
 
 declare class Decimal {
-  constructor(any);
+  static min: (any, any2) => Decimal;
+  static max: (any, any2) => Decimal;
+  static pow: (any, any2) => Decimal;
+  static sumGeometricSeries: (any, any2, any3, any4) => Decimal;
+  static affordGeometricSeries: (
+    resourcesAvailable,
+    priceStart,
+    priceRatio,
+    currentOwned
+  ) => Decimal;
+  static ln: (any) => number;
+  static log10: (any) => number;
+  static sqrt: (any) => Decimal;
+  static cbrt: (any) => Decimal;
 
   eq: (any) => boolean;
   gte: (any) => boolean;
@@ -35,19 +48,5 @@ declare class Decimal {
   cbrt: () => Decimal;
 
   toNumber: () => number;
-
-  static min: (any, any2) => Decimal;
-  static max: (any, any2) => Decimal;
-  static pow: (any, any2) => Decimal;
-  static sumGeometricSeries: (any, any2, any3, any4) => Decimal;
-  static affordGeometricSeries: (
-    resourcesAvailable,
-    priceStart,
-    priceRatio,
-    currentOwned
-  ) => Decimal;
-  static ln: (any) => number;
-  static log10: (any) => number;
-  static sqrt: (any) => Decimal;
-  static cbrt: (any) => Decimal;
+  constructor(any);
 }

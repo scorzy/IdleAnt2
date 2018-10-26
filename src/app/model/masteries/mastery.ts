@@ -1,4 +1,4 @@
-import * as positions from "./positions.json";
+import positions from "./positions.json";
 
 export enum MasteryTypes {
   MORE_FOLLOWERS = 0,

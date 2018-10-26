@@ -1,6 +1,6 @@
 import { EventEmitter, Inject, Injectable } from "@angular/core";
 import { DOCUMENT } from "@angular/platform-browser";
-import * as distanceInWordsToNow from "date-fns/distance_in_words_to_now";
+import distanceInWordsToNow from "date-fns/distance_in_words_to_now";
 import * as LZString from "lz-string";
 import { ToastrService } from "ngx-toastr";
 import { EndInPipe } from "./end-in.pipe";

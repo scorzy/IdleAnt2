@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import * as distanceInWordsStrict from "date-fns/distance_in_words_strict";
-import * as distanceInWordsToNow from "date-fns/distance_in_words_to_now";
-import * as isValid from "date-fns/is_valid";
+import distanceInWordsStrict from "date-fns/distance_in_words_strict";
+import distanceInWordsToNow from "date-fns/distance_in_words_to_now";
+import isValid from "date-fns/is_valid";
 import { FormatPipe } from "./format.pipe";
 import { OptionsService } from "./options.service";
 
