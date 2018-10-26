@@ -20,7 +20,7 @@
     "release": "ngh --dir=dist/IdleAnt2"
   },
   "husky": {
-    "hooks": {
+    "hooks --no-verify": {
       "pre-commit": "lint-staged"
     }
   },
