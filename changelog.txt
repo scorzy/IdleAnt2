@@ -1,3 +1,7 @@
+29-10-2018
+- Mastery UI update
+- Update to Angular 7
+
 9-10-2018
 - Group AutoBuy page
 - Removed team bonus from larvae
