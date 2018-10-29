@@ -13,21 +13,33 @@
   </a>
   <div *ngIf="!node; else buy">
     <a clrVerticalNavLink
+       id="infoStart"
+       *ngIf="list.length ==0">
+      <clr-alert [clrAlertType]="'alert-success'"
+                 [clrAlertClosable]="false">
+        <clr-alert-item>
+          <span class="alert-text">
+            Start on one green node.
+          </span>
+        </clr-alert-item>
+      </clr-alert>
+    </a>
+    <a clrVerticalNavLink
        *ngFor="let desc of list; trackBy:getDescId">
       {{desc}}
     </a>
   </div>
   <ng-template #buy>
     <p clrVerticalNavLink>{{node.label}}</p>
-    <button class="btn"
+    <button class="btn btn-success-outline"
             *ngIf="node.available && !node.owned"
             [disabled]="ms.game.allMateries.masteryPoint <1"
             (click)="buyMastery()">
       Buy
     </button>
   </ng-template>
-  <button class="btn"
-          *ngIf="ms.game.allMateries.totalEarned > 0"
+  <button class="btn btn-warning-outline"
+          *ngIf="ms.game.allMateries.totalEarned > 0 && (ms.game.allMateries.totalEarned != ms.game.allMateries.masteryPoint )"
           (click)="showReset = true">
     Reset
   </button>

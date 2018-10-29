@@ -9,7 +9,7 @@
 
 clr-vertical-nav {
   .btn {
-    color: #007cbb;
+    // color: #007cbb;
     margin: 1rem;
   }
 }
@@ -19,4 +19,7 @@ clr-vertical-nav {
 .clr-vertical-nav .nav-link.active,
 .clr-vertical-nav .nav-link:hover {
   background-color: transparent;
+}
+#infoStart {
+  height: 2.5rem !important;
 }
