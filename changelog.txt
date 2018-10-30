@@ -1,3 +1,6 @@
+30-10-2018
+- Fixed "+100% Bonus from Helpers" mastery description not updating
+
 29-10-2018
 - Mastery UI update
 - Update to Angular 7
