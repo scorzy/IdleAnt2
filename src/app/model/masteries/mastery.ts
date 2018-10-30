@@ -156,7 +156,7 @@ export class Mastery {
         break;
       }
       case MasteryTypes.BETTER_HELPERS: {
-        ret = "+100% Bonus\nfrom Helpers";
+        ret = "+" + 100 * num + "% Bonus\nfrom Helpers";
         break;
       }
       case MasteryTypes.DOUBLE_ARMY: {

@@ -64,6 +64,7 @@
     "lodash-es": "^4.17.11",
     "lz-string": "^1.4.4",
     "ngx-toastr": "^9.1.1",
+    "node-sass": "^4.9.4",
     "normalize.css": "^8.0.0",
     "primeicons": "^1.0.0",
     "primeng": "^6.1.5",
