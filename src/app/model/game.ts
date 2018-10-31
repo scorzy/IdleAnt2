@@ -52,7 +52,7 @@ export class Game {
   advWorkers: Workers;
   buildings: Buildings;
   engineers: Engineers;
-  killers: UnitGroup;
+  killers: MalusKiller;
   ants: Ants;
   bees: Bees;
   wasps: Wasps;

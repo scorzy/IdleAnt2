@@ -103,4 +103,32 @@ describe("Mastery", () => {
     game.update(1);
     expect(game.materials.food.c.toNumber()).toBe(2);
   });
+  it("BETTER_HELPERS", () => {
+    game.helpers.leafCutter.quantity = new Decimal(1);
+    expect(game.helpers.leafCutter.helpBonus.getMultiplier().toNumber()).toBe(
+      1
+    );
+    game.allMateries.getSum = (type: MasteryTypes) =>
+      type === MasteryTypes.BETTER_HELPERS ? 10 : 0;
+    game.allMateries.reloadBonus();
+    expect(game.helpers.leafCutter.helpBonus.getMultiplier().toNumber()).toBe(
+      11
+    );
+  });
+  it("DOUBLE_ARMY", () => {
+    game.unlockedUnits.push(game.killers.crystalMalusKiller);
+    game.killers.crystalMalusKiller.quantity = new Decimal(1);
+    expect(
+      game.killers.crystalMalusKiller.produces[0].prodPerSec.toNumber()
+    ).toBe(-0.1);
+    game.allMateries.getSum = (type: MasteryTypes) =>
+      type === MasteryTypes.DOUBLE_ARMY ? 1 : 0;
+    game.allMateries.reloadBonus();
+    game.reloadProduction();
+    expect(
+      Math.ceil(
+        game.killers.crystalMalusKiller.produces[0].prodPerSec.toNumber() * 10
+      ) / 10
+    ).toBe(-0.3);
+  });
 });
