@@ -65,6 +65,8 @@ export class GroupTabsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.unitGroup.selected = this.unitGroup.unlocked.filter(
       u => u.bugType === bug
     );
+    this.ms.selectedEmitter.emit(1);
+    this.cd.markForCheck();
   }
   selectAdd(bug: BugTypes) {
     this.unitGroup.selected = uniq(
@@ -72,11 +74,15 @@ export class GroupTabsComponent implements OnInit, OnDestroy, AfterViewInit {
         this.unitGroup.unlocked.filter(u => u.bugType === bug)
       )
     );
+    this.ms.selectedEmitter.emit(1);
+    this.cd.markForCheck();
   }
   selectRemove(bug: BugTypes) {
     this.unitGroup.selected = this.unitGroup.selected.filter(
       u => u.bugType !== bug
     );
+    this.ms.selectedEmitter.emit(1);
+    this.cd.markForCheck();
   }
 
   getBugId(index: number, bug: BugTypes) {

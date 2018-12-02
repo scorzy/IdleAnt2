@@ -35,6 +35,7 @@ export class MainService {
   unlockGroupEmiter: EventEmitter<number> = new EventEmitter<number>();
   efficiencyEmitter: EventEmitter<number> = new EventEmitter<number>();
   saveEmitter: EventEmitter<Date> = new EventEmitter<Date>();
+  selectedEmitter: EventEmitter<number> = new EventEmitter<number>();
 
   endInPipe: EndInPipe;
 

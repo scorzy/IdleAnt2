@@ -31,6 +31,7 @@ declare let Chart;
 })
 export class UnitGroupComponent implements OnInit, OnDestroy, OnChanges {
   sub: any;
+  subSelected: any;
   subEff: any;
   paramsSave: any;
 
@@ -108,6 +109,10 @@ export class UnitGroupComponent implements OnInit, OnDestroy, OnChanges {
   ngOnInit() {
     this.isSmall = window.innerWidth < 1200;
     this.getOperativity();
+    this.subSelected = this.ms.selectedEmitter.subscribe(m => {
+      this.getGroup();
+      this.cd.markForCheck();
+    });
     this.sub = this.ms.updateEmitter.subscribe(m => {
       this.updateChart();
       this.getOperativity();
@@ -121,6 +126,7 @@ export class UnitGroupComponent implements OnInit, OnDestroy, OnChanges {
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.subEff.unsubscribe();
+    this.subSelected.subEff.unsubscribe();
   }
   getOperativity() {
     if (this.unitGroup.unlocked[0].buyAction) {
