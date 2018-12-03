@@ -1,3 +1,6 @@
+0.-12-2018
+- Fixed freezing bug (unsubscrive)
+
 02-12-2018
 - Fixed Unit group selection action not updating costs
 
