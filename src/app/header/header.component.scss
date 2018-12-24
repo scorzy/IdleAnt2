@@ -1,5 +1,5 @@
 $height: 1.5rem;
-
+:host /deep/ .main-container .header-overflow-trigger::after,
 :host /deep/ .header-hamburger-trigger,
 :host /deep/ .header-overflow-trigger {
   height: $height !important;
@@ -20,6 +20,7 @@ header .header-nav .nav-link.nav-text,
 .header .header-nav .nav-link.nav-text {
   line-height: $height;
 }
+:host /deep/ .main-container .header-overflow-trigger::after,
 header .branding > a,
 header .branding > .nav-link,
 .header .branding > a,
@@ -96,4 +97,11 @@ header .divider,
 
 .search {
   margin-right: 1.2rem;
+}
+
+@media screen and (max-width: 768px) {
+  :host /deep/ .header-overflow-trigger::after {
+    height: 1.5rem !important;
+    top: 0 !important;
+  }
 }
