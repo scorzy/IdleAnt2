@@ -6,8 +6,21 @@
   [quantity]="autoBuy.quantity"
 ></app-action-header>
 
+<div class="active-wrap">
+  <clr-checkbox-wrapper>
+    <input
+      type="checkbox"
+      clrCheckbox
+      name="Active"
+      [(ngModel)]="autoBuy.active"
+      (change)="reload()"
+    />
+    <label>Active</label>
+  </clr-checkbox-wrapper>
+</div>
+
 <div class="clr-row clr-justify-content-between" *ngIf="bought">
-  <div>
+  <div class="clr-col">
     <label>Priority:</label>
     <input
       placeholder="Priority"
@@ -20,7 +33,7 @@
       (change)="reload()"
     />
   </div>
-  <div>
+  <div class="clr-col">
     <label>MaxBuy multi:</label>
     <clr-signpost>
       <clr-signpost-content *clrIfOpen>
@@ -52,18 +65,6 @@
       />
       <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
     </div>
-  </div>
-  <div>
-    <clr-checkbox-wrapper>
-      <input
-        type="checkbox"
-        clrCheckbox
-        name="Active"
-        [(ngModel)]="autoBuy.active"
-        (change)="reload()"
-      />
-      <label>Active</label>
-    </clr-checkbox-wrapper>
   </div>
 </div>
 <div class="clr-row clr-align-items-start" *ngIf="bought">
