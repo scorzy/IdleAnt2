@@ -41,6 +41,7 @@ describe("AutoBuy", () => {
     auto1.priority = 100;
     auto1.current = 2;
     auto1.quantity = new Decimal(5);
+    auto1.priceSavePercent = 0.5;
     auto1.reloadLevel();
 
     const result = auto2.restore(auto1.getSave());
@@ -51,6 +52,8 @@ describe("AutoBuy", () => {
     expect(auto1.current).toBe(auto2.current);
     expect(auto1.quantity.toNumber()).toBe(auto2.quantity.toNumber());
     expect(auto1.max).toBe(auto2.max);
+    expect(auto1.priceSavePercent).toBe(auto2.priceSavePercent);
+    expect(auto2.priceSavePercent).toBe(0.5);
   });
   it("save and load 2", () => {
     const auto1 = new AutoBuy(new Action("1", "", "", []), [], autoBuyManager);

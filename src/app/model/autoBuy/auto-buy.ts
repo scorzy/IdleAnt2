@@ -96,7 +96,7 @@ export class AutoBuy extends Prestige {
     save.a_p = this.active;
     save.a_i = this.priority;
     save.a_c = this.current;
-    if (this.priceSavePercent > 0) save.a_s = this.priceSavePercent;
+    if (this.priceSavePercent !== 1) save.a_s = this.priceSavePercent;
     return save;
   }
 
