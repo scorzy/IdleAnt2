@@ -1,5 +1,3 @@
 {
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "editor.mouseWheelZoom": true,
-    "window.zoomLevel": 0.55
+    "typescript.tsdk": "node_modules/typescript/lib"
 }
