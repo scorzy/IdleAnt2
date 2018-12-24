@@ -11,4 +11,14 @@ export class Prestige extends BuyAction {
       this.description = STRINGS.prestige[id][1];
     }
   }
+  getTotalExperience(): Decimal {
+    return this.prices.length > 0
+      ? Decimal.sumGeometricSeries(
+          this.quantity,
+          this.prices[0].price,
+          this.prices[0].growRate,
+          0
+        )
+      : new Decimal(0);
+  }
 }
