@@ -126,7 +126,7 @@ export class UnitGroupComponent implements OnInit, OnDestroy, OnChanges {
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.subEff.unsubscribe();
-    this.subSelected.subEff.unsubscribe();
+    this.subSelected.unsubscribe();
   }
   getOperativity() {
     if (this.unitGroup.unlocked[0].buyAction) {

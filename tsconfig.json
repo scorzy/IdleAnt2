@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "importHelpers": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "baseUrl": "./",

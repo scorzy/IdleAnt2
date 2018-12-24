@@ -72,6 +72,7 @@ export class GroupAutoBuyComponent implements OnInit, OnDestroy {
           this.ms.game
         );
         this.hatchActionGrp.actionList.forEach(a => a.reload());
+        this.hatchActionGrp.reload(this.ms.game);
       }
       if (
         this.ms.game.allPrestige.autoBuyUnlock.autoBuyTeam.done &&
@@ -87,6 +88,7 @@ export class GroupAutoBuyComponent implements OnInit, OnDestroy {
           this.ms.game
         );
         this.teamActionGrp.actionList.forEach(a => a.reload());
+        this.teamActionGrp.reload(this.ms.game);
       }
       if (
         this.ms.game.allPrestige.autoBuyUnlock.autoBuyTwin.done &&
@@ -102,6 +104,7 @@ export class GroupAutoBuyComponent implements OnInit, OnDestroy {
           this.ms.game
         );
         this.twinActionGrp.actionList.forEach(a => a.reload());
+        this.twinActionGrp.reload(this.ms.game);
       }
     } else {
       this.hatchActionGrp = null;

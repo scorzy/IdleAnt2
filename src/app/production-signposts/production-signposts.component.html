@@ -1,31 +1,38 @@
-<clr-signpost>
-  <clr-signpost-content *clrIfOpen="open"
-                        [clrPosition]="'left-middle'">
-    <h3>{{production.product.name}}:</h3>
+<div class="clr-row">
+  <div class="clr-col-sm-12 clr-col-md-6">
+    <h6>Base:</h6>
     <ul class="list">
       <li [class.notEnough]="production.ratio.lt(0)">
-        Base production: {{production.ratio | format}}
+        Base production: {{ production.ratio | format }}
       </li>
-      <li>
-        Operativity: {{production.producer.efficiency}}%
-      </li>
-      <li *ngIf="ms.game.researches.team1.done && production.producer.buyAction">
-        Teamwork bonus: +{{production.producer.bonus.times(100) | format}}%
+      <li>Operativity: {{ production.producer.efficiency }}%</li>
+      <li
+        *ngIf="ms.game.researches.team1.done && production.producer.buyAction"
+      >
+        Teamwork bonus: +{{ production.producer.bonus.times(100) | format }}%
       </li>
     </ul>
-    <div *ngIf="productionsAll.length +productionsEfficiency.length +  productionsBonus.length >0">
-      <h6>Additive Bonus:</h6>
-      <ul class="list">
-        <li *ngFor="let bon of productionsAll; trackBy getProdID">
-          {{bon.unit.name}}: +{{bon.getBonusPercent() | format }}%
-        </li>
-        <li *ngFor="let bon of productionsEfficiency; trackBy getProdID">
-          {{bon.unit.name}}: +{{bon.getBonusPercent() | format }}%
-        </li>
-        <li *ngFor="let bon of productionsBonus; trackBy getProdID">
-          {{bon.unit.name}}: +{{bon.getBonusPercent() | format }}%
-        </li>
-      </ul>
-    </div>
-  </clr-signpost-content>
-</clr-signpost>
+  </div>
+  <div
+    class="clr-col-sm-12 clr-col-md-6"
+    *ngIf="
+      productionsAll.length +
+        productionsEfficiency.length +
+        productionsBonus.length >
+      0
+    "
+  >
+    <h6>Additive Bonus:</h6>
+    <ul class="list">
+      <li *ngFor="let bon of productionsAll; trackBy: getProdID">
+        {{ bon.unit.name }}: +{{ bon.getBonusPercent() | format }}%
+      </li>
+      <li *ngFor="let bon of productionsEfficiency; trackBy: getProdID">
+        {{ bon.unit.name }}: +{{ bon.getBonusPercent() | format }}%
+      </li>
+      <li *ngFor="let bon of productionsBonus; trackBy: getProdID">
+        {{ bon.unit.name }}: +{{ bon.getBonusPercent() | format }}%
+      </li>
+    </ul>
+  </div>
+</div>

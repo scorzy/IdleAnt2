@@ -1,43 +1,57 @@
 <div *ngIf="unit">
   <div class="clr-row">
     <div class="clr-col-xs-12	clr-col-sm-6	clr-col-md-6	clr-col-lg-6	clr-col-xl-6">
+      <h5>{{ unit.description }}</h5>
 
-      <h5>{{unit.description}}</h5>
-
-      <p *ngIf="ms.game.researches.team1.done && unit.buyAction && unit.bonus.gt(0) && unit.produces.length > 0">
-        You bought this {{unit.buyAction.quantity | format}} times; bonus: + {{unit.bonus.times(100) | format}}%
+      <p
+        *ngIf="
+          ms.game.researches.team1.done &&
+          unit.buyAction &&
+          unit.bonus.gt(0) &&
+          unit.produces.length > 0
+        "
+      >
+        You bought this {{ unit.buyAction.quantity | format }} times; bonus: +
+        {{ unit.bonus.times(100) | format }}%
       </p>
 
       <p *ngIf="unit.c.abs().gt(0.01)">
         This is growing at:
-        <app-polynom [a]="unit.a"
-                     [b]="unit.b"
-                     [c]="unit.c"></app-polynom>
+        <app-polynom [a]="unit.a" [b]="unit.b" [c]="unit.c"></app-polynom>
       </p>
 
-      <clr-alert *ngIf="unit.isEnding"
-                 [clrAlertType]="malus ? 'alert-success': (ms.game.firstEndingUnit.endIn < 3600000 ? 'alert-danger':'alert-warning')"
-                 [clrAlertClosable]="false"
-                 [clrAlertSizeSmall]="false">
+      <clr-alert
+        *ngIf="unit.isEnding"
+        [clrAlertType]="
+          malus
+            ? 'alert-success'
+            : ms.game.firstEndingUnit.endIn < 3600000
+            ? 'alert-danger'
+            : 'alert-warning'
+        "
+        [clrAlertClosable]="false"
+        [clrAlertSizeSmall]="false"
+      >
         <clr-alert-item>
-          <span class="alert-text">
-            End in {{unit.endIn | endIn}}
-          </span>
+          <span class="alert-text"> End in {{ unit.endIn | endIn }} </span>
         </clr-alert-item>
       </clr-alert>
 
-      <clr-alert *ngIf="malus && malus.first && malus.isActive()"
-                 [clrAlertType]="'alert-danger'"
-                 [clrAlertSizeSmall]="false"
-                 [clrAlertClosable]="false">
+      <clr-alert
+        *ngIf="malus && malus.first && malus.isActive()"
+        [clrAlertType]="'alert-danger'"
+        [clrAlertSizeSmall]="false"
+        [clrAlertClosable]="false"
+      >
         <clr-alert-item>
           <span>
-            {{malus.name}} is causing
-            <span class="monospace"> {{malus.priceMultiplier.minus(1).times(100) | format}} %
+            {{ malus.name }} is causing
+            <span class="monospace">
+              {{ malus.priceMultiplier.minus(1).times(100) | format }} %
             </span>
             increased
-            <a [routerLink]="'/nav/unit/'+malus.malusType.id">
-              {{malus.malusType.name}}
+            <a [routerLink]="'/nav/unit/' + malus.malusType.id">
+              {{ malus.malusType.name }}
             </a>
             prices.
           </span>
@@ -45,108 +59,112 @@
       </clr-alert>
 
       <div *ngIf="unit.produces.length > 0 && !malus">
-        <span>Unit operativity: {{unit.efficiency | format}} %</span>
+        <span>Unit operativity: {{ unit.efficiency | format }} %</span>
 
-        <p-slider [min]="0"
-                  [max]="100"
-                  [step]="0.01"
-                  [(ngModel)]="unit.efficiency"
-                  animate="true"></p-slider>
+        <p-slider
+          [min]="0"
+          [max]="100"
+          [step]="0.01"
+          [(ngModel)]="unit.efficiency"
+          animate="true"
+        ></p-slider>
       </div>
 
-      <app-action *ngIf="unit.buyAction"
-                  [action]="unit.buyAction"></app-action>
-      <app-action *ngIf="unit.teamAction && ms.game.researches.team2.done"
-                  [action]="unit.teamAction"></app-action>
-      <app-action *ngIf="unit.twinAction && ms.game.researches.twin.done"
-                  [action]="unit.twinAction"></app-action>
+      <app-action *ngIf="unit.buyAction" [action]="unit.buyAction"></app-action>
+      <app-action
+        *ngIf="unit.teamAction && ms.game.researches.team2.done"
+        [action]="unit.teamAction"
+      ></app-action>
+      <app-action
+        *ngIf="unit.twinAction && ms.game.researches.twin.done"
+        [action]="unit.twinAction"
+      ></app-action>
 
-      <div *ngIf="madeChart"
-           class="chartDiv">
+      <div *ngIf="madeChart" class="chartDiv">
         <app-made-by-chart [unit]="unit"></app-made-by-chart>
-        <app-made-by-chart [unit]="unit"
-                           [consumers]="true"></app-made-by-chart>
+        <app-made-by-chart [unit]="unit" [consumers]="true"></app-made-by-chart>
       </div>
-
     </div>
-    <div class="clr-col-xs-12	clr-col-sm-6 clr-col-md-6	clr-col-lg-6 clr-col-xl-6">
+    <div
+      class="clr-col-xs-12	clr-col-sm-6 clr-col-md-6	clr-col-lg-6 clr-col-xl-6"
+    >
       <div *ngIf="activeProduct?.length > 0">
-        <h6>
-          {{unit.name}} produces:
-        </h6>
+        <h6>{{ unit.name }} produces:</h6>
         <clr-datagrid class="datagrid-compact">
           <clr-dg-column [clrDgField]="'product.name'">Name</clr-dg-column>
           <clr-dg-column [clrDgSortBy]="prodSorter">Ratio</clr-dg-column>
-          <clr-dg-column [clrDgSortBy]="totalProdSorter">Total production</clr-dg-column>
-
+          <clr-dg-column [clrDgSortBy]="totalProdSorter"
+            >Total production</clr-dg-column
+          >
           <clr-dg-row *clrDgItems="let product of activeProduct">
             <clr-dg-cell>
-              <a [routerLink]="'/nav/unit/'+product.product.id">
-                {{product.product.name}}
+              <a [routerLink]="'/nav/unit/' + product.product.id">
+                {{ product.product.name }}
               </a>
             </clr-dg-cell>
             <clr-dg-cell>
-              <span [class.notEnough]="product.ratio.lt(0)"
-                    class="monospace">
-                {{product.prodPerSec | format}}</span>
-              <app-production-signposts [production]="product"></app-production-signposts>
+              <span [class.notEnough]="product.ratio.lt(0)" class="monospace">
+                {{ product.prodPerSec | format }}</span
+              >
             </clr-dg-cell>
             <clr-dg-cell>
-              <span [class.notEnough]="product.ratio.lt(0)"
-                    class="monospace">
-                {{product.prodPerSec.times(unit.quantity) | format}}
+              <span [class.notEnough]="product.ratio.lt(0)" class="monospace">
+                {{ product.prodPerSec.times(unit.quantity) | format }}
               </span>
             </clr-dg-cell>
+            <clr-dg-row-detail *clrIfExpanded>
+              <app-production-signposts
+                [production]="product"
+              ></app-production-signposts>
+            </clr-dg-row-detail>
           </clr-dg-row>
 
           <clr-dg-footer>
-            <clr-dg-pagination #pagination
-                               [clrDgPageSize]="10">
-              {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}}
+            <clr-dg-pagination #pagination [clrDgPageSize]="10">
+              {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of
+              {{ pagination.totalItems }}
             </clr-dg-pagination>
           </clr-dg-footer>
-
         </clr-datagrid>
       </div>
 
       <div *ngIf="activeProducer?.length > 0">
-        <h6>
-          {{unit.name}} is made by:
-        </h6>
+        <h6>{{ unit.name }} is made by:</h6>
         <clr-datagrid class="datagrid-compact">
           <clr-dg-column [clrDgField]="'producer.name'">Name</clr-dg-column>
           <clr-dg-column [clrDgSortBy]="prodSorter">Ratio</clr-dg-column>
-          <clr-dg-column [clrDgSortBy]="totalProdSorter">Total production</clr-dg-column>
+          <clr-dg-column [clrDgSortBy]="totalProdSorter"
+            >Total production</clr-dg-column
+          >
 
           <clr-dg-row *clrDgItems="let producer of activeProducer">
             <clr-dg-cell>
-              <a [routerLink]="'/nav/unit/'+producer.producer.id">
-                {{producer.producer.name}}
+              <a [routerLink]="'/nav/unit/' + producer.producer.id">
+                {{ producer.producer.name }}
               </a>
             </clr-dg-cell>
             <clr-dg-cell>
-              <span [class.notEnough]="producer.ratio.lt(0)"
-                    class="monospace">
-                {{producer.prodPerSec | format}}
+              <span [class.notEnough]="producer.ratio.lt(0)" class="monospace">
+                {{ producer.prodPerSec | format }}
               </span>
             </clr-dg-cell>
             <clr-dg-cell>
-              <span [class.notEnough]="producer.ratio.lt(0)"
-                    class="monospace">
-                {{producer.prodPerSec.times(producer.producer.quantity) | format}}</span>
+              <span [class.notEnough]="producer.ratio.lt(0)" class="monospace">
+                {{
+                  producer.prodPerSec.times(producer.producer.quantity) | format
+                }}</span
+              >
             </clr-dg-cell>
           </clr-dg-row>
 
           <clr-dg-footer>
-            <clr-dg-pagination #pagination
-                               [clrDgPageSize]="10">
-              {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}}
+            <clr-dg-pagination #pagination [clrDgPageSize]="10">
+              {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of
+              {{ pagination.totalItems }}
             </clr-dg-pagination>
           </clr-dg-footer>
-
         </clr-datagrid>
       </div>
-
     </div>
   </div>
 </div>

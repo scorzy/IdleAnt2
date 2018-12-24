@@ -3,7 +3,7 @@ import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from "@angular/router";
-import { ClarityModule, ClrFormsNextModule } from "@clr/angular";
+import { ClarityModule } from "@clr/angular";
 import { ToastrModule, ToastrService } from "ngx-toastr";
 import { SliderModule } from "primeng/slider";
 import { ActionGroupComponent } from "./action-group/action-group.component";
@@ -112,8 +112,7 @@ import { WorldComponent } from "./world/world.component";
       preventDuplicates: false
     }),
     FormsModule,
-    SliderModule,
-    ClrFormsNextModule
+    SliderModule
   ],
   providers: [ToastrService, OptionsService, MainService],
   bootstrap: [AppComponent],
