@@ -532,9 +532,6 @@ DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
 @angular/core
 MIT
 
-@angular/compiler
-MIT
-
 @angular/common
 MIT
 
