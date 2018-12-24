@@ -1,3 +1,7 @@
+24-12-2018
+- Fixed MaxBuy multi on save #30
+- Angular and clarity update, css fixes
+
 02-12-2018
 - Fixed Unit group selection action not updating costs
 
