@@ -1,5 +1,5 @@
+import { solveEquation } from "ant-utils";
 import { FullUnit } from "./full-unit";
-import { Utility } from "./utility";
 
 export class Price {
   canBuy = false;
@@ -79,7 +79,7 @@ export class Price {
   getTime(): Decimal {
     if (this.priceUser.lte(this.base.quantity)) return new Decimal(0);
     else {
-      this.avIn = Utility.solveEquation(
+      this.avIn = solveEquation(
         this.base.a,
         this.base.b,
         this.base.c,

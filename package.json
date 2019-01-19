@@ -54,6 +54,7 @@
     "@types/chart.js": "^2.7.40",
     "@types/lodash-es": "^4.17.1",
     "@webcomponents/custom-elements": "^1.2.1",
+    "ant-utils": "^1.2.0",
     "break_infinity.js": "^1.0.5",
     "chart.js": "^2.7.3",
     "classlist.js": "^1.1.20150312",
