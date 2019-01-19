@@ -1,3 +1,6 @@
+19-01-2019
+- Added AutoBuyers refund options
+
 24-12-2018
 - Fixed MaxBuy multi on save #30
 - Angular and clarity update, css fixes
