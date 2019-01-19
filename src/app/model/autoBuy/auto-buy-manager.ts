@@ -55,6 +55,26 @@ export class AutoBuyManager {
 
     this.allAutoBuyer.forEach(a => a.reloadLevel());
   }
+
+  getTotalSkillSpent(): Decimal {
+    return this.allAutoBuyer
+      .map(autoBuyer =>
+        Decimal.sumGeometricSeries(
+          autoBuyer.quantity,
+          autoBuyer.prices[0].price,
+          autoBuyer.prices[0].growRate,
+          new Decimal(0)
+        )
+      )
+      .reduce((p, c) => p.plus(c), new Decimal(0));
+  }
+  reset() {
+    this.allAutoBuyer.forEach(auto => {
+      auto.reset();
+    });
+    this.buildActiveList();
+  }
+
   //#region Save and Load
   getSave(): any {
     return {

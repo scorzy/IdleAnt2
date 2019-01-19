@@ -746,6 +746,11 @@ export class Game {
       this.currentWorld.level.gt(this.maxLevel.times(0.5))
     );
   }
+  refoundAutoBuyers() {
+    const refExp = this.autoBuyManager.getTotalSkillSpent();
+    this.experience.quantity = this.experience.quantity.plus(refExp);
+    this.autoBuyManager.reset();
+  }
   //#region Unit Utils
   generateWorlds(userMin: Decimal = null, userMax: Decimal = null) {
     this.reloadMaxLevel();
@@ -852,6 +857,8 @@ export class Game {
       return false;
     }
   }
+  //#endregion
+
   //#region Price Utility
   private genTeamPrice(price: Decimal | number): Price[] {
     return [new Price(this.materials.science, new Decimal(price), 4)];
@@ -859,5 +866,4 @@ export class Game {
   private genTwinPrice(price: Decimal | number): Price[] {
     return [new Price(this.materials.science, new Decimal(price), 10)];
   }
-  //#endregion
 }

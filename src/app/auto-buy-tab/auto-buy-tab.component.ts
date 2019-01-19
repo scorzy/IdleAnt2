@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit
+} from "@angular/core";
 import { MainService } from "../main.service";
 import { AutoBuy } from "../model/autoBuy/auto-buy";
 
@@ -13,8 +18,10 @@ import { AutoBuy } from "../model/autoBuy/auto-buy";
 })
 export class AutoBuyTabComponent implements OnInit {
   unlSpecial = new Array<AutoBuy>();
+  swowRefoundModal = false;
+  totalRefSkill = new Decimal(0);
 
-  constructor(public ms: MainService) {
+  constructor(public ms: MainService, private cd: ChangeDetectorRef) {
     //
   }
 
@@ -29,5 +36,14 @@ export class AutoBuyTabComponent implements OnInit {
   }
   getAutoBuyId(index: number, autoBuy: AutoBuy) {
     return autoBuy.id;
+  }
+  openRefoundModal() {
+    this.totalRefSkill = this.ms.game.autoBuyManager.getTotalSkillSpent();
+    // this.cd.markForCheck();
+    this.swowRefoundModal = true;
+  }
+  refound() {
+    this.ms.game.refoundAutoBuyers();
+    this.swowRefoundModal = false;
   }
 }

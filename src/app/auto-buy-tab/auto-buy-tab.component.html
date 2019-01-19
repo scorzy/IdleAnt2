@@ -8,6 +8,10 @@
   <form>
     <section class="form-block">
       <div class="form-group">
+        <button class="btn btn-danger-outline" (click)="openRefoundModal()">
+          Refound
+        </button>
+
         <label>Options:</label>
 
         <clr-checkbox-wrapper>
@@ -46,3 +50,26 @@
     </div>
   </div>
 </div>
+
+<clr-modal [(clrModalOpen)]="swowRefoundModal">
+  <h3 class="modal-title">Refound autobuyers</h3>
+  <div class="modal-body">
+    <p>
+      Refound all autobuyers
+      <span class="monospace">{{ totalRefSkill | format }}</span> skill
+      experience?
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline"
+      (click)="swowRefoundModal = false"
+    >
+      Cancel
+    </button>
+    <button type="button" class="btn btn-primary" (click)="refound()">
+      Ok
+    </button>
+  </div>
+</clr-modal>
