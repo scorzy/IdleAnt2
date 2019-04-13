@@ -1,10 +1,8 @@
 <h1>Save</h1>
 
 <ng-container *ngIf="serv.kongregate">
-  <clr-alert [clrAlertClosable]="false"
-             [clrAlertType]="'alert-warning'">
-    <div clr-alert-item
-         class="alert-item">
+  <clr-alert [clrAlertClosable]="false" [clrAlertType]="'alert-warning'">
+    <div clr-alert-item class="alert-item">
       <span class="alert-text">
         Cloud Save are experimental! Exporting a backup is recommended.
       </span>
@@ -14,39 +12,34 @@
 </ng-container>
 
 <div class="btn-group btn-primary">
-  <button class="btn btn-success"
-          (click)="serv.save()">
+  <button class="btn btn-success" (click)="serv.save()">
     <clr-icon shape="floppy"></clr-icon>
     Save
   </button>
-  <button class="btn"
-          (click)="serv.load()">
+  <button class="btn" (click)="serv.load()">
     <clr-icon shape="install"></clr-icon>
     Load
   </button>
-  <button class="btn btn-danger"
-          (click)="clearModal = true">
+  <button class="btn btn-danger" (click)="clearModal = true">
     <clr-icon shape="uninstall"></clr-icon>
     Clear
   </button>
 </div>
 
-<div class="btn-group btn-primary"
-     *ngIf="serv.kongregate">
-  <button class="btn btn-info"
-          (click)="serv.playFabLogin()">
+<div class="btn-group btn-primary" *ngIf="serv.kongregate">
+  <button class="btn btn-info" (click)="serv.playFabLogin()">
     <clr-icon shape="user"></clr-icon>
     Log PlayFab
   </button>
-  <button *ngIf="serv.playFabLogged"
-          class="btn btn-success"
-          (click)="serv.savePlayFab()">
+  <button
+    *ngIf="serv.playFabLogged"
+    class="btn btn-success"
+    (click)="serv.savePlayFab()"
+  >
     <clr-icon shape="upload-cloud"></clr-icon>
     Cloud Save
   </button>
-  <button *ngIf="serv.playFabLogged"
-          class="btn"
-          (click)="serv.loadPlayFab()">
+  <button *ngIf="serv.playFabLogged" class="btn" (click)="serv.loadPlayFab()">
     <clr-icon shape="download-cloud"></clr-icon>
     Cloud Load
   </button>
@@ -55,32 +48,34 @@
   <br />
   Autosave every 5 minutes.
   <br />
-  Last save: {{serv.lastSave | date:'medium' }}
+  Last save: {{ serv.lastSave | date: "medium" }}
 </p>
 <h2>Export / Import Save</h2>
-<textarea name="raw"
-          [(ngModel)]="exp"
-          rows="3"></textarea>
+<textarea name="raw" [(ngModel)]="exp" rows="3"></textarea>
 <div class="btn-group btn-primary">
-  <button class="btn btn-success"
-          (click)="export()">
+  <button class="btn btn-success" (click)="export()">
     Export
   </button>
-  <button class="btn"
-          (click)="import()">
+  <button class="btn" (click)="import()">
     Import
   </button>
 </div>
 <h2>Autosave Options</h2>
 <div class="toggle-switch">
-  <input type="checkbox"
-         id="t1"
-         [(ngModel)]="serv.options.autosaveNotification">
+  <input
+    type="checkbox"
+    id="t1"
+    [(ngModel)]="serv.options.autosaveNotification"
+  />
   <label for="t1">Autosave Notification</label>
 </div>
+<div class="toggle-switch">
+  <input type="checkbox" id="autoSave" [(ngModel)]="serv.options.autoSave" />
+  <label for="autoSave">Autosave</label>
+</div>
 <br />
-<a href="https://scorzy.github.io/IdleAnt2/changelog.txt"
-   target="_blank">Changelog link
+<a href="https://scorzy.github.io/IdleAnt2/changelog.txt" target="_blank"
+  >Changelog link
 </a>
 
 <clr-modal [(clrModalOpen)]="clearModal">
@@ -89,11 +84,15 @@
     <p>Are you sure you want to delete everything ?</p>
   </div>
   <div class="modal-footer">
-    <button type="button"
-            class="btn btn-outline"
-            (click)="clearModal = false">Cancel</button>
-    <button type="button"
-            class="btn btn-danger"
-            (click)="this.serv.clear(); clearModal = false">Clear</button>
+    <button type="button" class="btn btn-outline" (click)="clearModal = false">
+      Cancel
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="this.serv.clear(); clearModal = false"
+    >
+      Clear
+    </button>
   </div>
 </clr-modal>

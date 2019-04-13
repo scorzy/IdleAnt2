@@ -15,6 +15,7 @@ export class OptionsService {
   noResourceEndPopUp = false;
   noWarpNotification = true;
   timeFormatDetail = false;
+  autoSave = true;
 
   formatter: any;
   formatEmitter: EventEmitter<number> = new EventEmitter<number>();
@@ -53,7 +54,8 @@ export class OptionsService {
       i: this.showI,
       p: this.noResourceEndPopUp,
       w: this.noWarpNotification,
-      t: this.timeFormatDetail
+      t: this.timeFormatDetail,
+      a: this.autoSave
     };
   }
   restore(data: any) {
@@ -67,6 +69,7 @@ export class OptionsService {
     if ("p" in data) this.noResourceEndPopUp = data.p;
     if ("w" in data) this.noWarpNotification = data.w;
     if ("t" in data) this.timeFormatDetail = data.t;
+    if ("a" in data) this.autoSave = data.a;
     this.generateFormatter();
   }
   //#endregion

@@ -1,3 +1,6 @@
+13-04-2019
+- Added a flag to disable auto saving
+
 19-01-2019
 - Added AutoBuyers refund options
 

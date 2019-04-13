@@ -156,6 +156,8 @@ export class MainService {
   }
   save(autosave = false) {
     try {
+      if (autosave && !this.options.autoSave) return false;
+
       const save = this.getSave();
       if (!!save) {
         localStorage.setItem("save", save);
