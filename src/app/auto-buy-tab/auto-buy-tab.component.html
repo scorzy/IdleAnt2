@@ -8,8 +8,8 @@
   <form>
     <section class="form-block">
       <div class="form-group">
-        <button class="btn btn-danger-outline" (click)="openRefoundModal()">
-          Refound
+        <button class="btn btn-danger-outline" (click)="openRefundModal()">
+          Refund
         </button>
 
         <label>Options:</label>
@@ -51,11 +51,11 @@
   </div>
 </div>
 
-<clr-modal [(clrModalOpen)]="swowRefoundModal">
-  <h3 class="modal-title">Refound autobuyers</h3>
+<clr-modal [(clrModalOpen)]="swowRefundModal">
+  <h3 class="modal-title">Refund autobuyers</h3>
   <div class="modal-body">
     <p>
-      Refound all autobuyers
+      Refund all autobuyers
       <span class="monospace">{{ totalRefSkill | format }}</span> skill
       experience?
     </p>
@@ -64,11 +64,11 @@
     <button
       type="button"
       class="btn btn-outline"
-      (click)="swowRefoundModal = false"
+      (click)="swowRefundModal = false"
     >
       Cancel
     </button>
-    <button type="button" class="btn btn-primary" (click)="refound()">
+    <button type="button" class="btn btn-primary" (click)="refund()">
       Ok
     </button>
   </div>
