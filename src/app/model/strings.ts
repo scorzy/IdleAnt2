@@ -214,9 +214,9 @@ export const STRINGS = {
     ],
     //  Super Major
     sm: ["Super Major Helpers", ""],
-    lf: ["Leaf Cutter", "Improve Farming."],
-    mh: ["Big Miner", "Improve Mining."],
-    sh: ["Big Carpenter", "Improve Soil Gathering."],
+    lf: ["Leaf Cutter", "Increase Food production by 10% (additive)."],
+    mh: ["Big Miner", "Increase Crystal production by 10% (additive)."],
+    sh: ["Big Carpenter", "Increase Soil production by 10% (additive)."],
     //  Kill World
     aow: ["Art of War", "Improve Killers by 10%"]
   },

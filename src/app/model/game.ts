@@ -743,7 +743,7 @@ export class Game {
       this.currentWorld.level.gt(this.maxLevel.times(0.5))
     );
   }
-  refoundAutoBuyers() {
+  refundAutoBuyers() {
     const refExp = this.autoBuyManager.getTotalSkillSpent();
     this.experience.quantity = this.experience.quantity.plus(refExp);
     this.autoBuyManager.reset();

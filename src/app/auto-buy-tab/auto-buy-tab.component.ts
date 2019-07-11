@@ -18,7 +18,7 @@ import { AutoBuy } from "../model/autoBuy/auto-buy";
 })
 export class AutoBuyTabComponent implements OnInit {
   unlSpecial = new Array<AutoBuy>();
-  swowRefoundModal = false;
+  swowRefundModal = false;
   totalRefSkill = new Decimal(0);
 
   constructor(public ms: MainService, private cd: ChangeDetectorRef) {
@@ -37,13 +37,13 @@ export class AutoBuyTabComponent implements OnInit {
   getAutoBuyId(index: number, autoBuy: AutoBuy) {
     return autoBuy.id;
   }
-  openRefoundModal() {
+  openRefundModal() {
     this.totalRefSkill = this.ms.game.autoBuyManager.getTotalSkillSpent();
     // this.cd.markForCheck();
-    this.swowRefoundModal = true;
+    this.swowRefundModal = true;
   }
-  refound() {
-    this.ms.game.refoundAutoBuyers();
-    this.swowRefoundModal = false;
+  refund() {
+    this.ms.game.refundAutoBuyers();
+    this.swowRefundModal = false;
   }
 }
