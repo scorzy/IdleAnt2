@@ -22,7 +22,7 @@ import { World } from "../model/world";
   }
 })
 export class MasteryComponent implements AfterViewInit, OnInit {
-  @ViewChild("network")
+  @ViewChild("network", { static: true })
   networkDiv: ElementRef;
   networkVis: any; // Network;
   list = new Array<string>();

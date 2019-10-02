@@ -1,6 +1,4 @@
 import { getGame } from "../app.component.spec";
-import { BuyAction } from "./actions/buy-action";
-import { AutoBuy } from "./autoBuy/auto-buy";
 import { BugTypes } from "./bugsTypes";
 import { FullUnit } from "./full-unit";
 import { Game } from "./game";

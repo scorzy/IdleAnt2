@@ -61,18 +61,19 @@
   </button>
 </div>
 <h2>Autosave Options</h2>
-<div class="toggle-switch">
+<clr-toggle-wrapper>
   <input
     type="checkbox"
+    clrToggle 
     id="t1"
     [(ngModel)]="serv.options.autosaveNotification"
   />
   <label for="t1">Autosave Notification</label>
-</div>
-<div class="toggle-switch">
-  <input type="checkbox" id="autoSave" [(ngModel)]="serv.options.autoSave" />
+</clr-toggle-wrapper>
+<clr-toggle-wrapper>
+  <input type="checkbox" clrToggle  id="autoSave" [(ngModel)]="serv.options.autoSave" />
   <label for="autoSave">Autosave</label>
-</div>
+</clr-toggle-wrapper>
 <br />
 <a href="https://scorzy.github.io/IdleAnt2/changelog.txt" target="_blank"
   >Changelog link

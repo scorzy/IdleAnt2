@@ -24,9 +24,9 @@ export class BugCardComponent implements OnInit {
   @Input()
   bug: BugTypes;
 
-  @ViewChild("radar")
+  @ViewChild("radar", { static: true })
   chartRef: ElementRef;
-  @ViewChild("container")
+  @ViewChild("container", { static: true })
   containerRef: ElementRef;
   chart: any;
 

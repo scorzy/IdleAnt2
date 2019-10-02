@@ -3,21 +3,22 @@
       class="clr-form clr-form-compact">
 
   <div class="form-group">
-    <label for="t1">Theme:</label>
-    <div class="toggle-switch">
+    
+    <clr-toggle-wrapper>
       <input name="dark"
              type="checkbox"
+             clrToggle 
              id="dark"
              [(ngModel)]="ms.options.dark"
              (change)="ms.setTheme()">
-      <label for="dark">Dark</label>
-    </div>
+             <label for="t1">Dark Theme</label>
+    </clr-toggle-wrapper>
   </div>
 
-  <div class="form-group">
+  <clr-select-container>
     <label for="selects_1">Header color</label>
-    <div class="select">
       <select name="header"
+      clrSelect 
               id="selects_1"
               [(ngModel)]="ms.options.header"
               (change)="ms.options.headerEmitter.emit(ms.options.header)">
@@ -28,26 +29,26 @@
         <option>5</option>
         <option>6</option>
         <option>7</option>
-      </select>
-    </div>
-  </div>
+
+  </select>
+  </clr-select-container>
 
   <div class="form-group">
-    <label for="t1">Alternative number format:</label>
-    <div class="toggle-switch">
+    
+    <clr-toggle-wrapper>
       <input type="checkbox"
+      clrToggle
              id="format"
              name="format"
              [(ngModel)]="ms.options.usaFormat"
              (change)="ms.options.generateFormatter()">
-      <label for="format">On</label>
-    </div>
+             <label for="t1">Alternative number format</label>
+    </clr-toggle-wrapper>
   </div>
 
-  <div class="form-group">
+  <clr-select-container>
     <label for="numFormat">Number format:</label>
-    <div class="select">
-      <select id="numFormat"
+      <select id="numFormat" clrSelect 
               name="numFormat"
               [(ngModel)]="ms.options.numFormat"
               (change)="ms.options.generateFormatter()">
@@ -56,13 +57,13 @@
         <option value="engineering">Engineering</option>
         <option value="longScale">Long Scale</option>
       </select>
-    </div>
-  </div>
 
-  <div class="form-group">
+    </clr-select-container>
+
+    <clr-select-container>
     <label for="matPos">Materials position:</label>
-    <div class="select">
-      <select id="matPos"
+
+      <select id="matPos" clrSelect 
               name="matPos"
               [(ngModel)]="os.materialPosition"
               (change)="onChangeMaterialPos()">
@@ -70,51 +71,54 @@
         <option value="2">Top</option>
         <option value="3">Side</option>
       </select>
-    </div>
-  </div>
+    </clr-select-container>
 
   <div class="form-group">
-    <label for="si">Show I on new units:</label>
-    <div class="toggle-switch">
+    
+    <clr-toggle-wrapper>
       <input name="si"
              type="checkbox"
+             clrToggle
              id="si"
              [(ngModel)]="ms.options.showI">
-      <label for="si"></label>
-    </div>
+             <label for="si">Show I on new units</label>
+    </clr-toggle-wrapper>
   </div>
 
   <div class="form-group">
-    <label for="nr">Disable notification for unit ending:</label>
-    <div class="toggle-switch">
+    
+    <clr-toggle-wrapper>
       <input name="nr"
              type="checkbox"
+             clrToggle
              id="nr"
              [(ngModel)]="os.noResourceEndPopUp">
-      <label for="nr"></label>
-    </div>
+             <label for="nr">Disable notification for unit ending</label>
+    </clr-toggle-wrapper>
   </div>
 
   <div class="form-group">
-    <label for="wn">Disable warp notification:</label>
-    <div class="toggle-switch">
+    
+    <clr-toggle-wrapper>
       <input name="wn"
              type="checkbox"
+             clrToggle
              id="wn"
              [(ngModel)]="os.noWarpNotification">
-      <label for="wn"></label>
-    </div>
+             <label for="wn">Disable warp notification</label>
+    </clr-toggle-wrapper>
   </div>
 
   <div class="form-group">
-    <label for="wn">Time in strict units:</label>
-    <div class="toggle-switch">
+    
+    <clr-toggle-wrapper>
       <input name="time"
              type="checkbox"
+             clrToggle
              id="time"
              [(ngModel)]="os.timeFormatDetail">
-      <label for="time"></label>
-    </div>
+             <label for="wn">Time in strict units</label>
+    </clr-toggle-wrapper>
   </div>
 
 </form>

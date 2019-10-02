@@ -1,3 +1,11 @@
+@import "../../node_modules/@clr/ui/src/utils/theme.dark.clarity"; // Dark theme variables
+
+// Your Application Theme File
+@import "../theme.scss";
+
+// Clarity Component SCSS
+@import "../../node_modules/@clr/ui/src/utils/components.clarity";
+
 ::-webkit-scrollbar-thumb {
   background: rgb(50, 79, 97);
 }

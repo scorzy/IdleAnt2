@@ -28,9 +28,9 @@ export class MadeByChartComponent
   @Input()
   consumers = false;
 
-  @ViewChild("chart")
+  @ViewChild("chart", { static: true })
   chartRef: ElementRef;
-  @ViewChild("pieContainer")
+  @ViewChild("pieContainer", { static: true })
   pieContainerRef: ElementRef;
   chart: any;
   sub: any;

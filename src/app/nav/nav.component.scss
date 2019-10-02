@@ -1,4 +1,4 @@
-:host /deep/ app-unit-line .nav-link {
+:host ::ng-deep app-unit-line .nav-link {
   padding-left: 0.5rem !important;
   padding-right: 0.35rem !important;
 }
@@ -10,7 +10,7 @@
 .fullWidth {
   width: 100% !important;
 }
-:host /deep/ .clr-treenode-children {
+:host ::ng-deep .clr-treenode-children {
   margin-left: 0;
 }
 @media only screen and (min-width: 768px) {
@@ -18,10 +18,10 @@
     width: 330px;
   }
 }
-:host /deep/ .clr-vertical-nav .nav-group-content .nav-text,
+:host ::ng-deep .clr-vertical-nav .nav-group-content .nav-text,
 .clr-vertical-nav .nav-link {
   padding-left: 0.35rem !important;
 }
-:host /deep/.nav-text {
+:host ::ng-deep.nav-text {
   overflow: visible !important;
 }

@@ -33,7 +33,6 @@ import {
   ClrShapeUploadCloud
 } from "@clr/icons/shapes/technology-shapes";
 import { ClrShapePaintRoller } from "@clr/icons/shapes/text-edit-shapes";
-import { Game } from "./model/game";
 import { OptionsService } from "./options.service";
 
 @Component({

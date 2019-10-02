@@ -57,9 +57,9 @@ export class UnitGroupComponent implements OnInit, OnDestroy, OnChanges {
 
   operativity = 100;
 
-  @ViewChild("chart")
+  @ViewChild("chart", { static: false })
   chartRef: ElementRef;
-  @ViewChild("pieContainer")
+  @ViewChild("pieContainer", { static: false })
   pieContainerRef: ElementRef;
   chart: any;
   forceChange = false;

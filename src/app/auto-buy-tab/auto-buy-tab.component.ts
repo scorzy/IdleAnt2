@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnInit
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { MainService } from "../main.service";
 import { AutoBuy } from "../model/autoBuy/auto-buy";
 
@@ -21,7 +16,7 @@ export class AutoBuyTabComponent implements OnInit {
   swowRefundModal = false;
   totalRefSkill = new Decimal(0);
 
-  constructor(public ms: MainService, private cd: ChangeDetectorRef) {
+  constructor(public ms: MainService) {
     //
   }
 

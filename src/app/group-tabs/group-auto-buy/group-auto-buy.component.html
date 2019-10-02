@@ -36,9 +36,9 @@
           </div>
 
           <!-- <label>AutoBuyer type:</label> -->
-          <div class="form-group">
+          <clr-select-container>
             <label for="sel">AutoBuyer type:</label>
-            <div class="select">
+            
               <select name="sel" [(ngModel)]="autoBuyType">
                 <option value="0">All Types</option>
                 <option
@@ -57,8 +57,7 @@
                   >Twin</option
                 >
               </select>
-            </div>
-          </div>
+            </clr-select-container>
         </form>
       </div>
       <div class="modal-footer">

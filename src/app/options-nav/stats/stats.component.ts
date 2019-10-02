@@ -22,7 +22,7 @@ declare let preventScroll;
 export class StatsComponent implements AfterViewInit {
   runExpSorter = new RunExpSorter();
   runExpPerSecSorter = new RunExpPerSecSorter();
-  @ViewChild("chart")
+  @ViewChild("chart", { static: true })
   chartRef: ElementRef;
   chart: any;
 

@@ -1,7 +1,7 @@
-:host /deep/ .nav .nav-link {
+:host ::ng-deep .nav .nav-link {
   line-height: 0.8rem;
 }
-:host /deep/ .matTab {
+:host ::ng-deep .matTab {
   max-width: 200px;
   min-width: 130px;
   text-align: left;
@@ -15,13 +15,13 @@ ul {
 li {
   padding-left: 1rem;
 }
-:host /deep/ .navMat {
+:host ::ng-deep .navMat {
   padding-left: 0 !important;
 }
 
 .nav {
   height: auto;
 }
-:host /deep/ .alert {
+:host ::ng-deep .alert {
   margin-top: auto;
 }

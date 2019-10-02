@@ -4,7 +4,6 @@ import {
   Input,
   OnInit
 } from "@angular/core";
-import { BaseUnit } from "../../model/baseUnit";
 import { FullUnit } from "../../model/full-unit";
 
 @Component({

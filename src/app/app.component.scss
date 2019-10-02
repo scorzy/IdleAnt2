@@ -3,25 +3,25 @@ app-material-nav {
 }
 
 $padding: 0.45rem;
-:host /deep/ .content-container .content-area {
+:host ::ng-deep .content-container .content-area {
   padding: $padding * 0.5 $padding $padding $padding !important;
 }
-:host /deep/ .clr-row {
+:host ::ng-deep .clr-row {
   margin-left: -$padding/2 !important;
   margin-right: -$padding/2 !important;
 }
-:host /deep/ h1 {
+:host ::ng-deep h1 {
   line-height: 1.6rem;
   margin-top: 0;
 }
-:host /deep/ p {
+:host ::ng-deep p {
   margin-top: 0;
 }
-:host /deep/ .monospace {
+:host ::ng-deep .monospace {
   font-family: RobotoMono, Consolas, Monaco, Courier, monospace !important;
   font-size: 90%;
 }
-:host /deep/ .notEnough {
+:host ::ng-deep .notEnough {
   color: #c92100;
 
   a:link :not(.noRed) {
@@ -32,33 +32,33 @@ $padding: 0.45rem;
   }
 }
 
-:host /deep/ h6 {
+:host ::ng-deep h6 {
   margin-top: 0.6rem;
 }
 
-:host /deep/ .w-100 {
+:host ::ng-deep .w-100 {
   max-width: 100% !important;
 }
 
-:host /deep/ clr-signpost-content {
+:host ::ng-deep clr-signpost-content {
   h3 {
     margin-bottom: 0.3rem;
     margin-top: 0;
   }
 }
 
-:host /deep/ .nav-content {
+:host ::ng-deep .nav-content {
   padding-bottom: 1rem;
 }
-:host /deep/.clr-vertical-nav {
+:host ::ng-deep.clr-vertical-nav {
   padding-top: 0;
 }
-:host /deep/ clr-tree-node {
+:host ::ng-deep clr-tree-node {
   overflow-y: visible !important;
 }
 $cardPad: 0.4rem;
 
-:host /deep/ .card {
+:host ::ng-deep .card {
   margin-top: $cardPad;
   h6 {
     font-size: 0.75rem;
@@ -70,7 +70,7 @@ $cardPad: 0.4rem;
   .card-block .card-title {
     margin-bottom: $cardPad !important;
   }
-  :host /deep/ .card-block,
+  :host ::ng-deep .card-block,
   .card-footer,
   .card-header,
   .card > .list,
@@ -80,20 +80,20 @@ $cardPad: 0.4rem;
   }
 }
 
-:host /deep/ .btn {
+:host ::ng-deep .btn {
   height: auto;
 }
 
-:host /deep/ app-cant-buy-signposts {
+:host ::ng-deep app-cant-buy-signposts {
   height: 1rem;
 }
 
-:host /deep/ clr-datagrid {
+:host ::ng-deep clr-datagrid {
   margin-top: 0;
   padding-top: 0;
 }
 
-:host /deep/.clr-vertical-nav .nav-trigger {
+:host ::ng-deep.clr-vertical-nav .nav-trigger {
   margin-top: 0;
 }
 
@@ -104,7 +104,7 @@ $cardPad: 0.4rem;
 }
 
 @media screen and (max-width: 1050px) {
-  :host /deep/ {
+  :host ::ng-deep {
     .clr-col,
     .clr-col-1,
     .clr-col-2,

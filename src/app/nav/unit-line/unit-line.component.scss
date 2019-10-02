@@ -35,7 +35,7 @@
   text-align: right;
   width: 25%;
 }
-:host /deep/ .nav-link {
+:host ::ng-deep .nav-link {
   height: 1.1rem;
   line-height: 1.1rem;
 }

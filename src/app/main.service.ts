@@ -1,5 +1,5 @@
+import { DOCUMENT } from "@angular/common";
 import { EventEmitter, Inject, Injectable } from "@angular/core";
-import { DOCUMENT } from "@angular/platform-browser";
 import distanceInWordsToNow from "date-fns/distance_in_words_to_now";
 import * as LZString from "lz-string";
 import { ToastrService } from "ngx-toastr";
@@ -11,7 +11,7 @@ import { OptionsService } from "./options.service";
 
 declare let kongregateAPI;
 declare let PlayFab;
-declare let $;
+// declare let $;
 
 const GAME_VERSION = 0;
 const H8 = 8 * 3600 * 1000;
@@ -38,9 +38,6 @@ export class MainService {
   selectedEmitter: EventEmitter<number> = new EventEmitter<number>();
 
   endInPipe: EndInPipe;
-
-  themeClarity: HTMLLinkElement;
-  // themePrime: HTMLLinkElement;
   themeMy: HTMLLinkElement;
 
   //#region Unit Tas
@@ -61,15 +58,17 @@ export class MainService {
   ) {
     this.endInPipe = new EndInPipe(this.options);
 
-    this.themeClarity = this.document.createElement("link");
-    this.themeClarity.rel = "stylesheet";
-    this.themeClarity.type = "text/css";
-    this.document.querySelector("head").appendChild(this.themeClarity);
-
     this.themeMy = this.document.createElement("link");
     this.themeMy.rel = "stylesheet";
     this.themeMy.type = "text/css";
-    this.document.querySelector("head").appendChild(this.themeMy);
+    this.document
+      .querySelector("head")
+      .insertBefore(
+        this.themeMy,
+        document
+          .getElementsByTagName("head")[0]
+          .getElementsByTagName("style")[0]
+      );
 
     this.last = Date.now();
 
@@ -242,13 +241,6 @@ export class MainService {
     window.location.reload();
   }
   setTheme() {
-    const themeClarity = this.options.dark
-      ? "clr-ui-dark.min.css"
-      : "clr-ui.min.css";
-    if (this.themeClarity.href !== themeClarity) {
-      this.themeClarity.href = themeClarity;
-    }
-
     const myTheme = "assets/" + (this.options.dark ? "dark.css" : "light.css");
     if (myTheme !== this.themeMy.href) {
       this.themeMy.href =

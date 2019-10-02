@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
 import { convertToRoman } from "ant-utils";
-import { Utility } from "./model/utility";
 
 @Pipe({
   name: "roman"

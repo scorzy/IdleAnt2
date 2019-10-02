@@ -1,5 +1,7 @@
 <div *ngIf="!action.complete">
-  <input *ngIf="!action.isLimited || action.limit.gte(2); else one"
+  <input 
+  clrInput 
+  *ngIf="!action.isLimited || action.limit.gte(2); else one"
          id="userNum"
          [(ngModel)]="action.userNum"
          (change)="action.reloadUserPrices()"

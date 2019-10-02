@@ -1,13 +1,16 @@
 <div class="content-area">
   <h1>Here, scientists discuss things no one has seen before.</h1>
 
-  <div class="toggle-switch">
+  <clr-toggle-wrapper>
+
     <input type="checkbox"
+    clrToggle 
            id="t1"
            [(ngModel)]="resDone"
            (change)="changeList()">
     <label for="t1">Show research done</label>
-  </div>
+  </clr-toggle-wrapper>
+
   <span>
     Science:
     <span class="monospace">
