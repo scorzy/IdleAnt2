@@ -175,9 +175,11 @@ describe("Game", () => {
   });
   it("No Debug", () => {
     game.restore(game.getSave());
-    game.materials.list.filter(m => m !== game.materials.food).forEach(d => {
-      expect(d.unlocked).toBeFalsy();
-      expect(d.quantity.toNumber()).toBe(0);
-    });
+    game.materials.list
+      .filter(m => m !== game.materials.food)
+      .forEach(d => {
+        expect(d.unlocked).toBeFalsy();
+        expect(d.quantity.toNumber()).toBe(0);
+      });
   });
 });

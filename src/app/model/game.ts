@@ -188,13 +188,15 @@ export class Game {
     //#endregion
     //#region Autobuyers
     this.autoBuyManager = new AutoBuyManager();
-    this.units.filter(u => u.hasAutoBuyer).forEach(u => {
-      if (!!u.buyAction) {
-        this.autoBuyManager.createFromUnit(u, this);
-      } else {
-        u.hasAutoBuyer = false;
-      }
-    });
+    this.units
+      .filter(u => u.hasAutoBuyer)
+      .forEach(u => {
+        if (!!u.buyAction) {
+          this.autoBuyManager.createFromUnit(u, this);
+        } else {
+          u.hasAutoBuyer = false;
+        }
+      });
     this.autoBuyManager.createSpecial(this);
     //#endregion
 
@@ -454,14 +456,20 @@ export class Game {
       // Something has ended
       if (unitZero) {
         //  Stop consumers
-        unitZero.producedBy.filter(p => p.ratio.lt(0)).forEach(p => {
-          p.producer.efficiency = 0;
-        });
-        unitZero.producedBy.filter(p => p.ratio.gt(0)).forEach(p => {
-          p.producer.producedBy.filter(p2 => p2.ratio.lt(0)).forEach(p2 => {
-            p2.producer.efficiency = 0;
+        unitZero.producedBy
+          .filter(p => p.ratio.lt(0))
+          .forEach(p => {
+            p.producer.efficiency = 0;
           });
-        });
+        unitZero.producedBy
+          .filter(p => p.ratio.gt(0))
+          .forEach(p => {
+            p.producer.producedBy
+              .filter(p2 => p2.ratio.lt(0))
+              .forEach(p2 => {
+                p2.producer.efficiency = 0;
+              });
+          });
 
         //  Kill Malus
         if (unitZero instanceof Malus) {
@@ -637,27 +645,33 @@ export class Game {
     const followerMultiWo =
       this.allMateries.getSum(MasteryTypes.MORE_FOLLOWERS_WO) * 3;
 
-    this.units.filter(u => u.follower).forEach(u => {
-      u.quantity = u.quantity.plus(
-        u.follower.quantity.times(u.followerQuantity).times(followerMulti)
-      );
-      if (u.quantity.gt(0.5)) {
-        u.unlock();
-        if (u.buyAction && u.buyAction.toUnlock) {
-          u.buyAction.toUnlock.forEach(a => a.unlock());
+    this.units
+      .filter(u => u.follower)
+      .forEach(u => {
+        u.quantity = u.quantity.plus(
+          u.follower.quantity.times(u.followerQuantity).times(followerMulti)
+        );
+        if (u.quantity.gt(0.5)) {
+          u.unlock();
+          if (u.buyAction && u.buyAction.toUnlock) {
+            u.buyAction.toUnlock.forEach(a => a.unlock());
+          }
         }
-      }
-    });
-    this.gatherers.list.filter(u => u.follower).forEach(u => {
-      u.quantity = u.quantity.plus(
-        u.follower.quantity.times(u.followerQuantity).times(followerMultiGa)
-      );
-    });
-    this.advWorkers.list.filter(u => u.follower).forEach(u => {
-      u.quantity = u.quantity.plus(
-        u.follower.quantity.times(u.followerQuantity).times(followerMultiWo)
-      );
-    });
+      });
+    this.gatherers.list
+      .filter(u => u.follower)
+      .forEach(u => {
+        u.quantity = u.quantity.plus(
+          u.follower.quantity.times(u.followerQuantity).times(followerMultiGa)
+        );
+      });
+    this.advWorkers.list
+      .filter(u => u.follower)
+      .forEach(u => {
+        u.quantity = u.quantity.plus(
+          u.follower.quantity.times(u.followerQuantity).times(followerMultiWo)
+        );
+      });
     //#endregion
     //#region Starting Team && TWin
     const startTeam = this.allMateries.getSum(MasteryTypes.TEAM_START);

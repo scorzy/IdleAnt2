@@ -31,7 +31,7 @@ export class ActionHeaderComponent implements OnChanges {
       this.action instanceof TeamAction
         ? "angle"
         : this.action instanceof TwinAction
-          ? "angle-double"
-          : "";
+        ? "angle-double"
+        : "";
   }
 }

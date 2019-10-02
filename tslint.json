@@ -1,6 +1,9 @@
 {
   "rulesDirectory": ["node_modules/codelyzer", "tslint-plugin-prettier"],
   "extends": ["tslint:latest", "tslint-config-prettier"],
+  "linterOptions": {
+    "exclude": ["node_modules/**", "positions.json"]
+  },
   "rules": {
     "class-name": true,
     "curly": [true, "ignore-same-line"],

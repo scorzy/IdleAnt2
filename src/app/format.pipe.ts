@@ -18,10 +18,10 @@ export class FormatPipe implements PipeTransform {
         integer || num >= 100
           ? 0
           : num < 10
-            ? num < 0.001 && num !== 0
-              ? 6
-              : 2
-            : 1;
+          ? num < 0.001 && num !== 0
+            ? 6
+            : 2
+          : 1;
       if (num < 100) {
         const pow = Math.pow(10, digits + 1);
         num = Math.floor(num * pow) / pow;

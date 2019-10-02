@@ -139,9 +139,11 @@ export class FullUnit extends BaseUnit implements IUnlocable {
     const bugClass = BUGS[bug];
 
     if (this.buyAction && bugClass.priceMulti !== 1) {
-      this.buyAction.prices.filter(p => p.price.gt(1)).forEach(p => {
-        p.price = p.price.times(bugClass.priceMulti);
-      });
+      this.buyAction.prices
+        .filter(p => p.price.gt(1))
+        .forEach(p => {
+          p.price = p.price.times(bugClass.priceMulti);
+        });
     }
     if (this.produces.length > 0 && bugClass.prodMulti !== 1) {
       this.produces.forEach(p => {
@@ -149,9 +151,11 @@ export class FullUnit extends BaseUnit implements IUnlocable {
       });
     }
     if (this.produces.length > 0 && bugClass.efficiencyMulti !== 1) {
-      this.produces.filter(p => p.ratio.gt(0)).forEach(p => {
-        p.ratio = p.ratio.times(bugClass.efficiencyMulti);
-      });
+      this.produces
+        .filter(p => p.ratio.gt(0))
+        .forEach(p => {
+          p.ratio = p.ratio.times(bugClass.efficiencyMulti);
+        });
     }
     if (this.teamAction && bugClass.teamPriceMulti !== 1) {
       this.teamAction.prices.forEach(p => {

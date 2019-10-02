@@ -9,10 +9,12 @@ export class Followers extends PrestigeGroup {
   }
 
   declareStuff(game: Game) {
-    game.gatherers.list.filter(u => u.bugType === BugTypes.ANT).forEach(ga => {
-      const follower = new Prestige(ga.id, game.genExperiencePrice(5));
-      ga.follower = follower;
-      this.list.push(follower);
-    });
+    game.gatherers.list
+      .filter(u => u.bugType === BugTypes.ANT)
+      .forEach(ga => {
+        const follower = new Prestige(ga.id, game.genExperiencePrice(5));
+        ga.follower = follower;
+        this.list.push(follower);
+      });
   }
 }
