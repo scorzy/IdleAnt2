@@ -10,10 +10,7 @@ $padding: 0.45rem;
   margin-left: -$padding/2 !important;
   margin-right: -$padding/2 !important;
 }
-:host ::ng-deep h1 {
-  line-height: 1.6rem;
-  margin-top: 0;
-}
+
 :host ::ng-deep p {
   margin-top: 0;
 }
@@ -34,10 +31,6 @@ $padding: 0.45rem;
 
 :host ::ng-deep h6 {
   margin-top: 0.6rem;
-}
-
-:host ::ng-deep .w-100 {
-  max-width: 100% !important;
 }
 
 :host ::ng-deep clr-signpost-content {
