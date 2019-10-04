@@ -67,7 +67,12 @@ export class MasteryComponent implements AfterViewInit, OnInit {
               roundness: 0.5
             }
           },
-          interaction: { dragNodes: false, hover: true },
+          interaction: {
+            dragNodes: false,
+            hover: true,
+            navigationButtons: true,
+            keyboard: true
+          },
           physics: {
             enabled: false,
             barnesHut: {
