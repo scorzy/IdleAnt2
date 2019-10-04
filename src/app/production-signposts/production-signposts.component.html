@@ -34,5 +34,12 @@
         {{ bon.unit.name }}: +{{ bon.getBonusPercent() | format }}%
       </li>
     </ul>
+
+    <h6>Multiplicative Bonus:</h6>
+    <ul class="list">
+      <li *ngFor="let bon of productionsAll; trackBy: getProdID">
+        {{ bon.unit.name }}: +{{ bon.getBonusPercent() | format }}%
+      </li>
+    </ul>
   </div>
 </div>

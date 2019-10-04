@@ -1,4 +1,5 @@
 import { FullUnit } from "./full-unit";
+import { ONE } from "./game";
 
 export class Production {
   prodPerSec = new Decimal(1);
@@ -15,7 +16,7 @@ export class Production {
     if (this.producer.efficiency <= 0) {
       this.prodPerSec = new Decimal(0);
     } else {
-      let bonus = new Decimal(1);
+      let bonus = ONE;
       //  Base Production
       this.prodPerSec = new Decimal(this.ratio);
 
@@ -25,11 +26,14 @@ export class Production {
       }
 
       //  Producer Bonus All
+      //  Stack Multi
       const producerAllBonus = this.producer.productionsAll
         .filter(bn => bn.isActive())
         .map(prod => prod.getBonus())
-        .reduce((p, n) => p.plus(n), new Decimal(0));
-      bonus = bonus.plus(producerAllBonus);
+        .reduce((p, n) => p.plus(n), ONE);
+      this.prodPerSec = this.prodPerSec.times(producerAllBonus);
+      bonus = ONE;
+      // bonus = bonus.plus(producerAllBonus);
 
       // Producer Efficiency Bonus
       if (this.ratio.gt(0)) {

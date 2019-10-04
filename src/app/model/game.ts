@@ -35,6 +35,7 @@ const STARTING_FOOD = new Decimal(100);
 export const ADDITIONAL_PRICE1 = new Decimal(1e4);
 export const ADDITIONAL_PRICE2 = new Decimal(1e9);
 const MAX_UPDATE_TRY = 20;
+export const ONE = new Decimal(1);
 
 export class Game {
   units = new Array<FullUnit>();
