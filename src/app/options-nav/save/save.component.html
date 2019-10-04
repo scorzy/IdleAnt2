@@ -51,7 +51,7 @@
   Last save: {{ serv.lastSave | date: "medium" }}
 </p>
 <h2>Export / Import Save</h2>
-<textarea name="raw" [(ngModel)]="exp" rows="3"></textarea>
+<textarea clrTextarea name="raw" [(ngModel)]="exp" rows="3"></textarea>
 <div class="btn-group btn-primary">
   <button class="btn btn-success" (click)="export()">
     Export
@@ -64,14 +64,19 @@
 <clr-toggle-wrapper>
   <input
     type="checkbox"
-    clrToggle 
+    clrToggle
     id="t1"
     [(ngModel)]="serv.options.autosaveNotification"
   />
   <label for="t1">Autosave Notification</label>
 </clr-toggle-wrapper>
 <clr-toggle-wrapper>
-  <input type="checkbox" clrToggle  id="autoSave" [(ngModel)]="serv.options.autoSave" />
+  <input
+    type="checkbox"
+    clrToggle
+    id="autoSave"
+    [(ngModel)]="serv.options.autoSave"
+  />
   <label for="autoSave">Autosave</label>
 </clr-toggle-wrapper>
 <br />
