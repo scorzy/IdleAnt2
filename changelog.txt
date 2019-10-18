@@ -1,3 +1,7 @@
+18-10-2019
+- Better workers stack multi
+- Angular update
+
 13-04-2019
 - Added a flag to disable auto saving
 
