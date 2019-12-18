@@ -3,14 +3,14 @@
       class="clr-form clr-form-compact">
 
   <div class="form-group">
-    <label for="dark">Theme:</label>
+    <label for="dark">Dark Theme:</label>
     <div class="toggle-switch">
       <input name="dark"
              type="checkbox"
              id="dark"
              [(ngModel)]="ms.options.dark"
              (change)="ms.setTheme()">
-      <label for="dark">Dark</label>
+             <label for="dark"></label> 
     </div>
   </div>
 
@@ -40,7 +40,7 @@
              name="format"
              [(ngModel)]="ms.options.usaFormat"
              (change)="ms.options.generateFormatter()">
-      <label for="format">On</label>
+             <label for="format"></label>
     </div>
   </div>
 
