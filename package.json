@@ -62,7 +62,7 @@
     "date-fns": "^1.29.0",
     "husky": "^1.1.2",
     "lint-staged": "^7.3.0",
-    "lodash-es": "^4.17.11",
+    "lodash-es": "^4.17.14",
     "lz-string": "^1.4.4",
     "ngx-toastr": "^9.1.1",
     "node-sass": "^4.13.0",
